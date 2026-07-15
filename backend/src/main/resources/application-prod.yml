@@ -1,0 +1,29 @@
+# ============================================================================
+# Perfil PROD - produccion
+# ----------------------------------------------------------------------------
+# Todos los valores sensibles se resuelven EXCLUSIVAMENTE desde variables de
+# entorno (sin defaults inseguros). Se activa con SPRING_PROFILES_ACTIVE=prod.
+# ============================================================================
+
+server:
+  port: ${SERVER_PORT:8080}
+
+logging:
+  level:
+    root: WARN
+    com.alura: INFO
+
+# En produccion la interfaz de Swagger UI permanece deshabilitada por seguridad.
+springdoc:
+  swagger-ui:
+    enabled: false
+
+security:
+  jwt:
+    # Obligatorio en produccion: la aplicacion no debe arrancar sin un secreto real.
+    secret: ${JWT_SECRET}
+    expiration: ${JWT_EXPIRATION:86400000}
+
+prediction:
+  api:
+    base-url: ${PREDICTION_API_BASE_URL}
