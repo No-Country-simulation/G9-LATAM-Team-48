@@ -1,0 +1,17 @@
+[
+    {
+     "mes":"Enero",
+     "consumo":320,
+     "costo":240
+    },
+    {
+     "mes":"Febrero",
+     "consumo":350,
+     "costo":262
+    },
+    {
+     "mes":"Marzo",
+     "consumo":410,
+     "costo":307
+    }
+]
