@@ -1,2 +1,4 @@
 .claude
 .bin
+.idea/
+*.iml
