@@ -7,18 +7,21 @@ import {
     Tooltip,
     ResponsiveContainer
   } from 'recharts'
+  import { useTheme } from '../context/ThemeContext'
+  import consumoData from '../data/consumo.json'
   
   
-  function GraficoConsumo(){
+  function GraficoConsumo({ consumos = consumoData }){
   
-    const datos = [
-      {mes:'Ene', consumo:320},
-      {mes:'Feb', consumo:340},
-      {mes:'Mar', consumo:310},
-      {mes:'Abr', consumo:360},
-      {mes:'May', consumo:350},
-      {mes:'Jun', consumo:380}
-    ]
+    const { theme } = useTheme()
+    const gridColor = theme === 'dark' ? '#444' : '#ccc'
+    const textColor = theme === 'dark' ? '#ccc' : '#333'
+    const lineColor = theme === 'dark' ? '#6ea8fe' : '#0d6efd'
+  
+    const datos = consumos.map((item) => ({
+      mes: item.mes.slice(0, 3),
+      consumo: item.consumo,
+    }))
   
   
     return (
@@ -36,17 +39,25 @@ import {
   
             <LineChart data={datos}>
   
-              <CartesianGrid />
+              <CartesianGrid stroke={gridColor} />
   
-              <XAxis dataKey="mes"/>
+              <XAxis dataKey="mes" stroke={textColor} tick={{ fill: textColor }} />
   
-              <YAxis/>
+              <YAxis stroke={textColor} tick={{ fill: textColor }} />
   
-              <Tooltip/>
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: theme === 'dark' ? '#212529' : '#fff',
+                  borderColor: gridColor,
+                  color: textColor
+                }}
+              />
   
-              <Line 
+              <Line
                 type="monotone"
                 dataKey="consumo"
+                stroke={lineColor}
+                strokeWidth={2}
               />
   
             </LineChart>

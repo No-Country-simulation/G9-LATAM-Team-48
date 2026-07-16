@@ -1,52 +1,31 @@
 import Dashboard from './pages/Dashboard'
+import Consumos from './pages/Consumos'
 import AnalisisIA from './pages/AnalisisIA'
+import RecomendacionesPage from './pages/RecomendacionesPage'
 import MainLayout from './layouts/MainLayout'
 import { useState } from 'react'
 
+function App() {
+  const [pagina, setPagina] = useState('dashboard')
 
-function App(){
-
- const [pagina,setPagina] = useState('dashboard')
-
-
- return (
-
-  <MainLayout>
-
-
-    <div className="mb-3">
-
-      <button
-        className="btn btn-dark me-2"
-        onClick={()=>setPagina('dashboard')}
-      >
-        Dashboard
-      </button>
-
-
-      <button
-        className="btn btn-success"
-        onClick={()=>setPagina('ia')}
-      >
-        Análisis IA
-      </button>
-
-    </div>
-
-
-    {
-      pagina === 'dashboard'
-      ?
-      <Dashboard/>
-      :
-      <AnalisisIA/>
+  const renderPagina = () => {
+    switch (pagina) {
+      case 'consumos':
+        return <Consumos />
+      case 'ia':
+        return <AnalisisIA />
+      case 'recomendaciones':
+        return <RecomendacionesPage />
+      default:
+        return <Dashboard />
     }
+  }
 
-
-  </MainLayout>
-
- )
-
+  return (
+    <MainLayout pagina={pagina} setPagina={setPagina}>
+      {renderPagina()}
+    </MainLayout>
+  )
 }
 
 export default App

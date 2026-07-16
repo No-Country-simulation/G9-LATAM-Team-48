@@ -1,36 +1,51 @@
+import { useState } from 'react'
+import Offcanvas from 'react-bootstrap/Offcanvas'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
+import LoginModal from '../components/LoginModal'
 
+function MainLayout({ children, pagina, setPagina }) {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [loginOpen, setLoginOpen] = useState(false)
 
-function MainLayout({children}){
+  return (
+    <div className="app-layout">
+      <Header
+        onMenuOpen={() => setMenuOpen(true)}
+        onLoginClick={() => setLoginOpen(true)}
+      />
 
-return (
+      <LoginModal show={loginOpen} onHide={() => setLoginOpen(false)} />
 
-<div>
+      <Offcanvas
+        show={menuOpen}
+        onHide={() => setMenuOpen(false)}
+        placement="start"
+        className="d-md-none"
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Menú</Offcanvas.Title>
+        </Offcanvas.Header>
 
-<Header/>
+        <Offcanvas.Body className="p-0">
+          <Sidebar
+            pagina={pagina}
+            setPagina={setPagina}
+            onNavigate={() => setMenuOpen(false)}
+            isMobile
+          />
+        </Offcanvas.Body>
+      </Offcanvas>
 
-<div className="row">
+      <div className="app-body">
+        <aside className="app-sidebar d-none d-md-block">
+          <Sidebar pagina={pagina} setPagina={setPagina} />
+        </aside>
 
-<div className="col-md-2">
-<Sidebar/>
-</div>
-
-
-<div className="col-md-10 p-4">
-
-{children}
-
-</div>
-
-
-</div>
-
-
-</div>
-
-)
-
+        <main className="app-main p-3 p-md-4">{children}</main>
+      </div>
+    </div>
+  )
 }
 
 export default MainLayout

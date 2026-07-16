@@ -1,17 +1,8 @@
 [
-    {
-     "mes":"Enero",
-     "consumo":320,
-     "costo":240
-    },
-    {
-     "mes":"Febrero",
-     "consumo":350,
-     "costo":262
-    },
-    {
-     "mes":"Marzo",
-     "consumo":410,
-     "costo":307
-    }
+  { "mes": "Enero", "consumo": 320, "costo": 240 },
+  { "mes": "Febrero", "consumo": 340, "costo": 255 },
+  { "mes": "Marzo", "consumo": 310, "costo": 232 },
+  { "mes": "Abril", "consumo": 360, "costo": 270 },
+  { "mes": "Mayo", "consumo": 350, "costo": 262 },
+  { "mes": "Junio", "consumo": 380, "costo": 285 }
 ]
