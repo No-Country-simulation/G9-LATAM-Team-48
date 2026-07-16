@@ -1,20 +1,26 @@
 package com.alura.config;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * Configuracion de la documentacion OpenAPI / Swagger UI.
  *
- * <p>Define unicamente los metadatos de la API. La configuracion de esquemas
- * de seguridad (Bearer JWT) se anadira cuando se implemente la autenticacion.</p>
+ * <p>Define los metadatos de la API y el esquema de seguridad {@code bearerAuth}
+ * (JWT). Cada operacion protegida se marca con
+ * {@code @SecurityRequirement(name = "bearerAuth")}, lo que habilita el boton
+ * <em>Authorize</em> en Swagger UI para enviar el token.</p>
  */
 @Configuration
 public class OpenApiConfig {
+
+    private static final String SECURITY_SCHEME_NAME = "bearerAuth";
 
     @Bean
     public OpenAPI energyOpenAPI() {
@@ -25,7 +31,12 @@ public class OpenApiConfig {
                                 + "consumo energetico y clasificacion de usuarios - Hackathon ONE G9.")
                         .version("v0.1.0")
                         .contact(new Contact().name("Team 48 - LATAM"))
-                        .license(new License().name("TBD")));
-        // TODO: registrar el SecurityScheme "bearerAuth" cuando el modulo JWT este operativo.
+                        .license(new License().name("TBD")))
+                .components(new Components()
+                        .addSecuritySchemes(SECURITY_SCHEME_NAME, new SecurityScheme()
+                                .name(SECURITY_SCHEME_NAME)
+                                .type(SecurityScheme.Type.HTTP)
+                                .scheme("bearer")
+                                .bearerFormat("JWT")));
     }
 }
