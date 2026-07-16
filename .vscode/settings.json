@@ -1,0 +1,11 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "python.analysis.typeCheckingMode": "basic",
+  "notebook.lineNumbers": "on",
+  "files.autoSave": "afterDelay",
+  "telemetry.telemetryLevel": "off"
+}
