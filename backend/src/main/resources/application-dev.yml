@@ -1,0 +1,23 @@
+# ============================================================================
+# Perfil DEV - desarrollo local
+# ----------------------------------------------------------------------------
+# Valores comodos para desarrollo. Se activa con SPRING_PROFILES_ACTIVE=dev
+# (valor por defecto del proyecto).
+# ============================================================================
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    com.alura: DEBUG
+
+# Swagger UI habilitado en desarrollo.
+springdoc:
+  swagger-ui:
+    enabled: true
+
+prediction:
+  api:
+    base-url: http://localhost:8000

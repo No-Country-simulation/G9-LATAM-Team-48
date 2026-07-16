@@ -1,0 +1,17 @@
+[
+  {
+    "userId": "1",
+    "category": "LOW_CONSUMPTION",
+    "confidence": 0.92
+  },
+  {
+    "userId": "2",
+    "category": "HIGH_CONSUMPTION",
+    "confidence": 0.87
+  },
+  {
+    "userId": "3",
+    "category": "MEDIUM_CONSUMPTION",
+    "confidence": 0.78
+  }
+]
