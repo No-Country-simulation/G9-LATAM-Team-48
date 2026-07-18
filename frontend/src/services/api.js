@@ -1,7 +1,17 @@
 import axios from 'axios'
 
+// Vacío = misma origen (nginx proxea /api → backend).
+// Solo en DEV sin variable usamos localhost del backend.
+const envUrl = import.meta.env.VITE_API_URL
+const baseURL =
+  envUrl !== undefined
+    ? envUrl
+    : import.meta.env.DEV
+      ? 'http://localhost:8080'
+      : ''
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
+  baseURL,
 })
 
 api.interceptors.request.use((config) => {

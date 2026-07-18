@@ -12,9 +12,11 @@ COPY . .
 
 # URL del backend vista desde el navegador.
 # En docker-compose, nginx proxea /api → backend, así que usamos ruta relativa.
+# VITE_API_URL vacío = rutas relativas; nginx proxea /api → backend.
+# Mock de datos: el backend JWT aún no expone consumos/recomendaciones.
 ARG VITE_API_URL=
 ARG VITE_USE_MOCK_AUTH=false
-ARG VITE_USE_MOCK_API=false
+ARG VITE_USE_MOCK_API=true
 ENV VITE_API_URL=$VITE_API_URL \
     VITE_USE_MOCK_AUTH=$VITE_USE_MOCK_AUTH \
     VITE_USE_MOCK_API=$VITE_USE_MOCK_API
