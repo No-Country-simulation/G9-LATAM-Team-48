@@ -133,7 +133,7 @@ export const pagesCa = {
     "june": "Juny"
   },
   "insights": {
-    "title": "En paraules senzilles: com va el consum?",
+    "title": "Com va el teu consum?",
     "subtitle": "Resum clar perquè qualsevol persona a casa o a l’empresa l’entengui.",
     "trend": {
       "up": "Al {month} vas usar un {pct}% més d’energia que al {prevMonth} ({kwh} kWh de més).",

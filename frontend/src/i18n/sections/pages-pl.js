@@ -133,7 +133,7 @@ export const pagesPl = {
     "june": "Czerwiec"
   },
   "insights": {
-    "title": "Prosto mówiąc: jak wygląda zużycie?",
+    "title": "Jak wygląda Twoje zużycie?",
     "subtitle": "Jasne podsumowanie dla każdego w domu lub firmie.",
     "trend": {
       "up": "W {month} zużyłeś o {pct}% więcej energii niż w {prevMonth} (o {kwh} kWh więcej).",

@@ -53,7 +53,7 @@ export const pagesEs = {
     },
   },
   insights: {
-    title: 'En simple: ¿cómo viene tu consumo?',
+    title: '¿Cómo viene tu consumo?',
     subtitle: 'Resumen en lenguaje claro, pensado para cualquier persona del hogar o la empresa.',
     trend: {
       up: 'En {month} usaste un {pct}% más de energía que en {prevMonth} ({kwh} kWh de más).',

@@ -133,7 +133,7 @@ export const pagesTr = {
     "june": "Haziran"
   },
   "insights": {
-    "title": "Basitçe: tüketimin nasıl?",
+    "title": "Tüketimin nasıl?",
     "subtitle": "Evde veya işte herkesin anlayacağı net bir özet.",
     "trend": {
       "up": "{month} ayında {prevMonth} ayına göre %{pct} daha fazla enerji kullandın ({kwh} kWh fazla).",

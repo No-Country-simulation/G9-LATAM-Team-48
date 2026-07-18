@@ -15,15 +15,15 @@ Plataforma para el análisis y la optimización del consumo energético.
 | Carpeta | Descripción |
 |---------|-------------|
 | [`frontend/`](./frontend) | Aplicación web (React + Vite) |
-| [`backend/`](./backend) | API y lógica del servidor |
-| [`docs/`](./docs) | Documentación del proyecto |
+| [`backend/`](./backend) | API Spring Boot (JWT, predicción, recomendaciones) |
+| [`docs/`](./docs) | Documentación (arquitectura, deploy NAS, etc.) |
 
 ---
 
 ## Vista previa del frontend
 
-> La interfaz soporta **tema claro y oscuro**. Las capturas están tomadas en modo oscuro.
-> Más detalle en el [README del frontend](./frontend/README.md).
+> Tema claro/oscuro, multilenguaje y capturas en modo oscuro.
+> Detalle completo en el [README del frontend](./frontend/README.md).
 
 <div align="center">
 
@@ -40,7 +40,11 @@ Plataforma para el análisis y la optimización del consumo energético.
   </tr>
   <tr>
     <td width="50%"><strong>Recomendaciones</strong><br /><img src="./frontend/screenshots/recomendaciones.png" alt="Recomendaciones" /></td>
-    <td width="50%" valign="top"><strong>Login (modal)</strong><br /><img src="./frontend/screenshots/login.png" alt="Login" /></td>
+    <td width="50%"><strong>Login</strong><br /><img src="./frontend/screenshots/login.png" alt="Login" /></td>
+  </tr>
+  <tr>
+    <td width="50%"><strong>Registro</strong><br /><img src="./frontend/screenshots/registro.png" alt="Registro" /></td>
+    <td width="50%"></td>
   </tr>
 </table>
 
@@ -54,7 +58,7 @@ npm install
 npm run dev
 ```
 
-La aplicación queda disponible en `http://localhost:5173`. Ver más detalles, credenciales de ejemplo y variables de entorno en el [README del frontend](./frontend/README.md).
+App en `http://localhost:5173`. Credenciales, i18n, Docker/NAS y contrato API: [frontend/README.md](./frontend/README.md).
 
 ---
 

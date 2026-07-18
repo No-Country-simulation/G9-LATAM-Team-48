@@ -133,7 +133,7 @@ export const pagesIt = {
     "june": "Giugno"
   },
   "insights": {
-    "title": "In parole semplici: come va il consumo?",
+    "title": "Come va il tuo consumo?",
     "subtitle": "Riassunto chiaro, pensato per chiunque in casa o in azienda.",
     "trend": {
       "up": "A {month} hai usato il {pct}% di energia in più rispetto a {prevMonth} ({kwh} kWh in più).",

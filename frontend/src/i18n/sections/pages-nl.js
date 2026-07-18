@@ -133,7 +133,7 @@ export const pagesNl = {
     "june": "Juni"
   },
   "insights": {
-    "title": "Eenvoudig gezegd: hoe staat je verbruik?",
+    "title": "Hoe staat je verbruik?",
     "subtitle": "Duidelijke samenvatting voor iedereen thuis of op het werk.",
     "trend": {
       "up": "In {month} gebruikte je {pct}% meer energie dan in {prevMonth} ({kwh} kWh meer).",

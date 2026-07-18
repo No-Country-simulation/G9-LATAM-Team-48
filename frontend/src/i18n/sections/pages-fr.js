@@ -133,7 +133,7 @@ export const pagesFr = {
     "june": "Juin"
   },
   "insights": {
-    "title": "En clair : comment va votre conso ?",
+    "title": "Comment va votre consommation ?",
     "subtitle": "Résumé simple, compréhensible par toute personne à la maison ou au travail.",
     "trend": {
       "up": "En {month}, vous avez consommé {pct}% de plus qu’en {prevMonth} ({kwh} kWh de plus).",

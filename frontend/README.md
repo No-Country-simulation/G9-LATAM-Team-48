@@ -4,7 +4,7 @@
 
 **Plataforma web para el análisis y la optimización del consumo energético**
 
-Dashboard interactivo, análisis asistido por IA, recomendaciones de ahorro y acceso para operadores.
+Dashboard interactivo, registro/login, multilenguaje, análisis asistido por IA y recomendaciones de ahorro.
 
 <br />
 
@@ -39,7 +39,7 @@ Hackathon ONE G9 · Team 48
 
 ## Vista previa
 
-> La interfaz soporta **tema claro y oscuro**. Las capturas están tomadas en modo oscuro.
+> La interfaz soporta **tema claro/oscuro** e **11 idiomas** (ES, EN, PT, FR, IT, DE, NL, PL, RO, CA, TR). Las capturas están en modo oscuro y español.
 
 <div align="center">
 
@@ -56,9 +56,19 @@ Hackathon ONE G9 · Team 48
   </tr>
   <tr>
     <td width="50%"><strong>Recomendaciones</strong><br /><img src="./screenshots/recomendaciones.png" alt="Recomendaciones" /></td>
-    <td width="50%" valign="top"><strong>Login (modal)</strong><br /><img src="./screenshots/login.png" alt="Login" /></td>
+    <td width="50%"><strong>Login</strong><br /><img src="./screenshots/login.png" alt="Login" /></td>
+  </tr>
+  <tr>
+    <td width="50%"><strong>Registro</strong><br /><img src="./screenshots/registro.png" alt="Registro" /></td>
+    <td width="50%"></td>
   </tr>
 </table>
+
+Para regenerar las capturas (con el front en `npm run dev`):
+
+```bash
+npm run screenshots
+```
 
 ---
 
@@ -66,23 +76,22 @@ Hackathon ONE G9 · Team 48
 
 | Módulo | Descripción |
 |--------|-------------|
-| **Dashboard** | Tarjetas con consumo del último mes, costo y promedio, más gráfico mensual y recomendaciones destacadas. |
-| **Consumos** | Resumen (total, costo, promedio), tabla del historial con estado (normal / sobre promedio) y gráfico de evolución. |
-| **Análisis IA** | Formulario (kWh, personas, equipos) que devuelve nivel de eficiencia, ahorro estimado y recomendaciones. |
-| **Recomendaciones** | Tarjetas con categoría, prioridad, descripción y ahorro estimado; resumen con ahorro potencial acumulado. |
-| **Tema claro / oscuro** | Alternable desde el header y persistido en `localStorage`; todos los componentes se adaptan. |
-| **Login opcional** | La navegación es pública; el inicio de sesión (modal) queda reservado para acciones de operador. |
+| **Dashboard** | Tarjetas de resumen, bloque “En simple” (lenguaje claro), gráfico mensual, mock **real vs predicción**, **pico vs valle** y recomendaciones destacadas. |
+| **Consumos** | Totales, historial con estado (normal / sobre promedio) y gráfico de evolución. |
+| **Análisis IA** | Formulario (kWh, personas, equipos) → nivel, ahorro estimado y tips. |
+| **Recomendaciones** | Tarjetas con categoría, prioridad y ahorro; resumen acumulado. |
+| **Registro / Login** | Modal con pestañas; campos obligatorios; contraseña de registro ≥ 8 caracteres. |
+| **Multilenguaje** | Selector en el header; detecta idioma del navegador (fallback inglés). |
+| **Tema claro / oscuro** | Alternable desde el header; persistido en `localStorage`. |
+| **Login opcional** | Navegación pública; sesión para acciones de operador. |
 
 ### Detalles de experiencia y calidad
 
-- **Diseño responsive** con tres estados de menú:
-  - Escritorio (≥ 992px): menú lateral completo con iconos y texto.
-  - Tablet (768–991px): menú lateral angosto, solo iconos.
-  - Móvil (< 768px): menú hamburguesa desplegable.
-- **Layout tipo app shell**: header y menú siempre visibles; solo el contenido hace scroll.
-- **Capa de servicios (mock → API)**: los datos se consumen desde `services/`; al conectar el backend solo cambia la configuración, no las páginas.
-- **Estados de UI**: carga (spinner), error (con opción de reintentar) y vacío en cada sección.
-- **Accesibilidad**: animaciones sutiles que respetan `prefers-reduced-motion` y foco visible por teclado.
+- **Diseño responsive** con tres estados de menú (completo / solo iconos / hamburguesa).
+- **Layout app shell**: header y menú fijos; scroll solo en el contenido.
+- **Capa de servicios (mock → API)** en `services/`.
+- **Estados de UI**: carga, error (reintentar) y vacío.
+- **Accesibilidad**: respeta `prefers-reduced-motion` y foco por teclado.
 
 ---
 
@@ -92,10 +101,11 @@ Hackathon ONE G9 · Team 48
 |-------------|-----|
 | [React 19](https://react.dev/) | Librería de interfaz |
 | [Vite 7](https://vitejs.dev/) | Bundler y servidor de desarrollo |
-| [Bootstrap 5](https://getbootstrap.com/) + [React Bootstrap](https://react-bootstrap.netlify.app/) | Estilos y componentes (modal, offcanvas) |
+| [Bootstrap 5](https://getbootstrap.com/) + [React Bootstrap](https://react-bootstrap.netlify.app/) | Estilos y componentes |
 | [React Icons](https://react-icons.github.io/react-icons/) | Iconografía del menú |
-| [Recharts](https://recharts.org/) | Gráficos de consumo |
-| [Axios](https://axios-http.com/) | Cliente HTTP hacia el backend |
+| [Recharts](https://recharts.org/) | Gráficos |
+| [Axios](https://axios-http.com/) | Cliente HTTP |
+| [Playwright](https://playwright.dev/) (dev) | Regenerar capturas del README |
 
 ---
 
@@ -104,14 +114,11 @@ Hackathon ONE G9 · Team 48
 Requisitos: **Node.js 18+** y **npm**.
 
 ```bash
-# 1. Instalar dependencias
 npm install
-
-# 2. Levantar el entorno de desarrollo
 npm run dev
 ```
 
-La aplicación queda disponible en `http://localhost:5173`.
+App en `http://localhost:5173`.
 
 ---
 
@@ -119,62 +126,76 @@ La aplicación queda disponible en `http://localhost:5173`.
 
 | Script | Descripción |
 |--------|-------------|
-| `npm run dev` | Servidor de desarrollo con recarga en caliente |
-| `npm run build` | Compila la versión de producción en `dist/` |
-| `npm run preview` | Sirve localmente el build de producción |
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Build de producción en `dist/` |
+| `npm run preview` | Preview del build |
+| `npm run screenshots` | Regenera PNG en `screenshots/` (requiere `npm run dev`) |
 
 ---
 
 ## Variables de entorno
 
-Copiá `.env.example` a `.env` y ajustá según el entorno:
+Copiá `.env.example` a `.env`:
 
 ```env
-VITE_API_URL=http://localhost:8000
-VITE_USE_MOCK_AUTH=true
+VITE_API_URL=
+VITE_USE_MOCK_AUTH=false
 VITE_USE_MOCK_API=true
 ```
 
 | Variable | Descripción |
 |----------|-------------|
-| `VITE_API_URL` | URL base del backend |
-| `VITE_USE_MOCK_AUTH` | `true` usa login simulado; `false` usa la API real |
-| `VITE_USE_MOCK_API` | `true` usa datos simulados; `false` consume la API real |
+| `VITE_API_URL` | URL base del backend. Vacío = misma origen (nginx/proxy en Docker). |
+| `VITE_USE_MOCK_AUTH` | `true` = auth simulada; `false` = API JWT |
+| `VITE_USE_MOCK_API` | `true` = datos mock; `false` = API real |
 
 ---
 
 ## Integración con el backend
 
-Al tener el backend disponible, establecé `VITE_USE_MOCK_API=false` y `VITE_USE_MOCK_AUTH=false`, y configurá `VITE_API_URL`. Los servicios ya esperan estos endpoints:
+Con API real: `VITE_USE_MOCK_AUTH=false` y `VITE_API_URL` apuntando al backend (o vacío detrás de nginx).
 
-| Método | Endpoint | Descripción |
-|:------:|----------|-------------|
-| `POST` | `/api/auth/login` | Inicio de sesión (devuelve `token` y `user`) |
-| `POST` | `/api/auth/logout` | Cierre de sesión |
-| `GET` | `/api/consumos` | Lista de consumos mensuales |
-| `GET` | `/api/recomendaciones` | Lista de recomendaciones |
-| `POST` | `/api/analisis` | Análisis de consumo (recibe `consumo`, `personas`, `equipos`) |
+| Método | Endpoint | Body / notas |
+|:------:|----------|--------------|
+| `POST` | `/api/v1/auth/register` | `{ "name", "email", "password" }` → `data.accessToken` |
+| `POST` | `/api/v1/auth/login` | `{ "email", "password" }` → `data.accessToken` |
+| `GET` | `/api/consumos` | Lista mensual (mock o API) |
+| `GET` | `/api/recomendaciones` | Recomendaciones |
+| `POST` | `/api/analisis` | `{ consumo, personas, equipos }` |
 
-El token se adjunta automáticamente en el header `Authorization: Bearer <token>` de cada petición autenticada.
+Contrato propuesto para Data Analysis (mock en `src/data/analyticsMock.js`):
+
+```json
+{
+  "months": ["january", "..."],
+  "actualKwh": [],
+  "predictedKwh": [],
+  "peakKwh": [],
+  "offPeakKwh": [],
+  "category": "MEDIUM_CONSUMPTION",
+  "confidence": 0.87,
+  "cost": []
+}
+```
+
+El token se envía como `Authorization: Bearer <accessToken>`.
 
 ---
 
 ## Autenticación
 
-Mientras el backend no esté conectado, se puede ingresar con estas cuentas de ejemplo:
+Cuentas de ejemplo (mock / primer registro en API en memoria):
 
 | Usuario | Email | Contraseña |
 |---------|-------|------------|
-| Operador | `operador@energyai.com` | `1234` |
-| Admin | `admin@energyai.com` | `admin123` |
-| Equipo 48 | `team48@energyai.com` | `team48` |
-
-> También funciona cualquier email válido con una contraseña de 4 o más caracteres.
+| Operador | `operador@energyai.com` | `operador123` |
+| Admin | `admin@energyai.com` | `admin1234` |
+| Equipo 48 | `team48@energyai.com` | `team48123` |
 
 **Pasos:**
-1. Ejecutar `npm run dev` y abrir `http://localhost:5173`.
-2. Hacer clic en **Iniciar sesión** (header).
-3. Usar una credencial de la tabla o el botón **Usar operador de ejemplo**.
+1. `npm run dev` → `http://localhost:5173`
+2. **Iniciar sesión** o pestaña **Registrarse** (nombre, email, contraseña ≥ 8)
+3. Opcional: **Usar operador de ejemplo**
 
 ---
 
@@ -182,19 +203,19 @@ Mientras el backend no esté conectado, se puede ingresar con estas cuentas de e
 
 ```
 frontend/
-├── screenshots/            # Capturas usadas en este README
+├── screenshots/            # Capturas del README
+├── scripts/                # screenshots + utilidades i18n
 ├── src/
-│   ├── components/         # UI reutilizable (Header, Sidebar, cards, estados, modal)
-│   ├── context/            # ThemeContext y AuthContext
-│   ├── data/               # Datos de ejemplo y configuración del menú
-│   ├── hooks/              # useFetch (loading / error / data)
-│   ├── layouts/            # Layout principal (app shell)
-│   ├── pages/              # Dashboard, Consumos, Análisis IA, Recomendaciones
-│   ├── services/           # API, autenticación y servicios de datos
-│   ├── utils/              # Utilidades (formato de nombres, etc.)
-│   └── index.css           # Estilos globales y animaciones
-├── .env.example            # Variables de entorno de referencia
-├── .gitignore
+│   ├── components/
+│   ├── context/            # Theme, Auth, Locale
+│   ├── data/               # mocks (consumo, analytics, demos)
+│   ├── i18n/               # diccionarios multilenguaje
+│   ├── hooks/
+│   ├── layouts/
+│   ├── pages/
+│   ├── services/
+│   └── utils/
+├── .env.example
 └── package.json
 ```
 

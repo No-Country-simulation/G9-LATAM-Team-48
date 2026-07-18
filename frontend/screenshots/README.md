@@ -1,13 +1,19 @@
 # Capturas de pantalla
 
-Imágenes usadas en el README principal. Si actualizás la interfaz, reemplazá estos archivos manteniendo los mismos nombres:
+Imágenes del README. Regenerar con el front levantado:
 
-| Archivo | Página / vista |
-|---------|----------------|
-| `dashboard.png` | Dashboard principal |
-| `consumos.png` | Página de Consumos |
-| `analisis-ia.png` | Página de Análisis IA |
-| `recomendaciones.png` | Página de Recomendaciones |
-| `login.png` | Modal de inicio de sesión |
+```bash
+npm run dev          # en una terminal
+npm run screenshots  # en otra
+```
 
-Formato recomendado: **PNG**, ancho aproximado de 1280px.
+| Archivo | Vista |
+|---------|--------|
+| `dashboard.png` | Dashboard (resumen, insights, gráficos) |
+| `consumos.png` | Consumos |
+| `analisis-ia.png` | Análisis IA |
+| `recomendaciones.png` | Recomendaciones |
+| `login.png` | Modal — pestaña Entrar |
+| `registro.png` | Modal — pestaña Registrarse |
+
+Formato: **PNG**, viewport ~1440×900 (o `fullPage` en dashboard/páginas).

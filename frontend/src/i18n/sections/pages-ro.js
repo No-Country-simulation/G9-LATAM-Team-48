@@ -133,7 +133,7 @@ export const pagesRo = {
     "june": "Iunie"
   },
   "insights": {
-    "title": "Pe scurt: cum arată consumul tău?",
+    "title": "Cum arată consumul tău?",
     "subtitle": "Rezumat clar, ușor de înțeles acasă sau la firmă.",
     "trend": {
       "up": "În {month} ai consumat cu {pct}% mai mult decât în {prevMonth} ({kwh} kWh în plus).",

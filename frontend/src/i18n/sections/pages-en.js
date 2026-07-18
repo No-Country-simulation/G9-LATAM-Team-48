@@ -53,7 +53,7 @@ export const pagesEn = {
     },
   },
   insights: {
-    title: 'In plain words: how is your usage?',
+    title: 'How is your usage?',
     subtitle: 'A clear summary anyone at home or work can understand.',
     trend: {
       up: 'In {month} you used {pct}% more energy than in {prevMonth} ({kwh} kWh more).',

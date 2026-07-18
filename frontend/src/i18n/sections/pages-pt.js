@@ -133,7 +133,7 @@ export const pagesPt = {
     "june": "Junho"
   },
   "insights": {
-    "title": "Em palavras simples: como está o seu consumo?",
+    "title": "Como está o seu consumo?",
     "subtitle": "Resumo claro, pensado para qualquer pessoa em casa ou na empresa.",
     "trend": {
       "up": "Em {month} você usou {pct}% mais energia do que em {prevMonth} ({kwh} kWh a mais).",

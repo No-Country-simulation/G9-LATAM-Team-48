@@ -133,7 +133,7 @@ export const pagesDe = {
     "june": "Juni"
   },
   "insights": {
-    "title": "Einfach erklärt: Wie ist Ihr Verbrauch?",
+    "title": "Wie ist Ihr Verbrauch?",
     "subtitle": "Klarer Überblick für alle – zu Hause oder im Betrieb.",
     "trend": {
       "up": "Im {month} haben Sie {pct}% mehr Energie verbraucht als im {prevMonth} ({kwh} kWh mehr).",

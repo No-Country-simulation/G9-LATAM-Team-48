@@ -97,8 +97,7 @@ function ResumenFacil() {
   return (
     <div className="card shadow mt-4">
       <div className="card-body">
-        <h4 className="mb-1">{t('insights.title')}</h4>
-        <p className="text-muted small mb-3">{t('insights.subtitle')}</p>
+        <h4 className="mb-3">{t('insights.title')}</h4>
 
         <div className="row g-3">
           {insights.map((item) => (
