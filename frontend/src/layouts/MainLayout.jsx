@@ -3,10 +3,12 @@ import Offcanvas from 'react-bootstrap/Offcanvas'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import LoginModal from '../components/LoginModal'
+import { useLocale } from '../context/LocaleContext'
 
 function MainLayout({ children, pagina, setPagina }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [loginOpen, setLoginOpen] = useState(false)
+  const { t } = useLocale()
 
   return (
     <div className="app-layout">
@@ -24,7 +26,7 @@ function MainLayout({ children, pagina, setPagina }) {
         className="d-md-none"
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Menú</Offcanvas.Title>
+          <Offcanvas.Title>{t('common.menu')}</Offcanvas.Title>
         </Offcanvas.Header>
 
         <Offcanvas.Body className="p-0">

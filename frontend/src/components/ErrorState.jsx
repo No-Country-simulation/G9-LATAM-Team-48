@@ -1,10 +1,14 @@
-function ErrorState({ mensaje = 'No se pudieron cargar los datos.', onRetry }) {
+import { useLocale } from '../context/LocaleContext'
+
+function ErrorState({ mensaje, onRetry }) {
+  const { t } = useLocale()
+
   return (
     <div
       className="alert alert-danger d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2"
       role="alert"
     >
-      <span>{mensaje}</span>
+      <span>{mensaje || t('states.error')}</span>
 
       {onRetry && (
         <button
@@ -12,7 +16,7 @@ function ErrorState({ mensaje = 'No se pudieron cargar los datos.', onRetry }) {
           className="btn btn-sm btn-outline-danger"
           onClick={onRetry}
         >
-          Reintentar
+          {t('states.retry')}
         </button>
       )}
     </div>

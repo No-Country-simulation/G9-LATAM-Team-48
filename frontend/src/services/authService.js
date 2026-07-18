@@ -1,59 +1,38 @@
 import api from './api'
 import { formatDisplayName } from '../utils/formatDisplayName'
+import { mockLogin, mockRegister } from './mockAuth'
 
 const USE_MOCK_AUTH = import.meta.env.VITE_USE_MOCK_AUTH === 'true'
 
-async function mockLogin({ email, password }) {
-  await new Promise((resolve) => setTimeout(resolve, 600))
-
-  if (!email || password.length < 4) {
-    throw new Error('Credenciales inválidas')
-  }
-
-  const nombre = formatDisplayName(email.split('@')[0])
-
-  return {
-    token: `mock-token-${Date.now()}`,
-    user: {
-      id: 1,
-      nombre,
-      email,
-      rol: 'operador',
-    },
-  }
+function authErrorMessage(error, fallback) {
+  return (
+    error.response?.data?.message ||
+    error.response?.data?.detail ||
+    (error.code === 'ERR_NETWORK' ? 'network' : null) ||
+    fallback
+  )
 }
 
-function mapAuthResponse(payload, email) {
+function mapAuthResponse(payload, email, name) {
   const auth = payload?.data ?? payload
   const token = auth?.accessToken ?? auth?.token
 
   if (!token) {
-    throw new Error('El backend no devolvió un token')
+    throw new Error('noToken')
   }
 
   return {
     token,
     user: {
       id: auth?.userId ?? 0,
-      nombre: auth?.name ?? formatDisplayName(email.split('@')[0]),
+      nombre:
+        name?.trim() ||
+        auth?.name ||
+        formatDisplayName(email.split('@')[0]),
       email,
       rol: auth?.rol ?? 'operador',
     },
   }
-}
-
-async function loginAgainstApi(credentials) {
-  const { data } = await api.post('/api/v1/auth/login', credentials)
-  return mapAuthResponse(data, credentials.email)
-}
-
-async function registerThenLogin(credentials) {
-  await api.post('/api/v1/auth/register', {
-    name: formatDisplayName(credentials.email.split('@')[0]),
-    email: credentials.email,
-    password: credentials.password,
-  })
-  return loginAgainstApi(credentials)
 }
 
 export async function login(credentials) {
@@ -62,36 +41,43 @@ export async function login(credentials) {
   }
 
   try {
-    return await loginAgainstApi(credentials)
+    const { data } = await api.post('/api/v1/auth/login', {
+      email: credentials.email.trim(),
+      password: credentials.password,
+    })
+    return mapAuthResponse(data, credentials.email.trim())
   } catch (error) {
-    // Primera vez en memoria: si no existe el usuario, lo registramos y reintentamos.
-    if (error.response?.status === 401 || error.response?.status === 404) {
-      try {
-        return await registerThenLogin(credentials)
-      } catch {
-        // Seguir con el error original de login.
-      }
-    }
-
     if (import.meta.env.DEV && error.code === 'ERR_NETWORK') {
       return mockLogin(credentials)
     }
 
-    const message =
-      error.response?.data?.message ||
-      error.response?.data?.detail ||
-      (error.code === 'ERR_NETWORK'
-        ? 'No se pudo conectar con el backend'
-        : 'No se pudo iniciar sesión')
+    throw new Error(authErrorMessage(error, 'loginFailed'))
+  }
+}
 
-    throw new Error(message)
+export async function register(credentials) {
+  const body = {
+    name: credentials.name.trim(),
+    email: credentials.email.trim(),
+    password: credentials.password,
+  }
+
+  if (USE_MOCK_AUTH) {
+    return mockRegister(body)
+  }
+
+  try {
+    const { data } = await api.post('/api/v1/auth/register', body)
+    return mapAuthResponse(data, body.email, body.name)
+  } catch (error) {
+    if (import.meta.env.DEV && error.code === 'ERR_NETWORK') {
+      return mockRegister(body)
+    }
+
+    throw new Error(authErrorMessage(error, 'registerFailed'))
   }
 }
 
 export async function logout() {
-  if (USE_MOCK_AUTH) {
-    return
-  }
-
   // El backend JWT no expone logout; la sesión se limpia en el cliente.
 }

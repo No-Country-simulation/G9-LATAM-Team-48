@@ -1,16 +1,16 @@
 export const DEMO_CREDENTIALS = [
   {
-    label: 'Operador',
+    roleKey: 'operator',
     email: 'operador@energyai.com',
     password: 'operador123',
   },
   {
-    label: 'Admin',
+    roleKey: 'admin',
     email: 'admin@energyai.com',
     password: 'admin1234',
   },
   {
-    label: 'Equipo 48',
+    roleKey: 'team',
     email: 'team48@energyai.com',
     password: 'team48123',
   },

@@ -1,5 +1,9 @@
 import { createContext, useContext, useState } from 'react'
-import { login as loginRequest, logout as logoutRequest } from '../services/authService'
+import {
+  login as loginRequest,
+  logout as logoutRequest,
+  register as registerRequest,
+} from '../services/authService'
 
 const AuthContext = createContext()
 
@@ -18,6 +22,13 @@ function getStoredUser() {
   }
 }
 
+function persistSession(data, setUser, setToken) {
+  setUser(data.user)
+  setToken(data.token)
+  localStorage.setItem('user', JSON.stringify(data.user))
+  localStorage.setItem('token', data.token)
+}
+
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(getStoredUser)
   const [token, setToken] = useState(() => localStorage.getItem('token'))
@@ -32,11 +43,24 @@ export function AuthProvider({ children }) {
 
     try {
       const data = await loginRequest({ email, password })
+      persistSession(data, setUser, setToken)
+      return data
+    } catch (err) {
+      setError(err.message)
+      throw err
+    } finally {
+      setLoading(false)
+    }
+  }
 
-      setUser(data.user)
-      setToken(data.token)
-      localStorage.setItem('user', JSON.stringify(data.user))
-      localStorage.setItem('token', data.token)
+  const register = async ({ name, email, password }) => {
+    setLoading(true)
+    setError(null)
+
+    try {
+      const data = await registerRequest({ name, email, password })
+      persistSession(data, setUser, setToken)
+      return data
     } catch (err) {
       setError(err.message)
       throw err
@@ -69,6 +93,7 @@ export function AuthProvider({ children }) {
         loading,
         error,
         login,
+        register,
         logout,
       }}
     >

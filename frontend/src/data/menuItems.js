@@ -1,10 +1,10 @@
 export const MENU_ITEMS = [
-  { id: 'dashboard', label: 'Dashboard', icon: 'dashboard', color: 'blue' },
-  { id: 'consumos', label: 'Consumos', icon: 'consumos', color: 'amber' },
-  { id: 'ia', label: 'Análisis IA', icon: 'ia', color: 'purple' },
+  { id: 'dashboard', labelKey: 'menu.dashboard', icon: 'dashboard', color: 'blue' },
+  { id: 'consumos', labelKey: 'menu.consumos', icon: 'consumos', color: 'amber' },
+  { id: 'ia', labelKey: 'menu.ia', icon: 'ia', color: 'purple' },
   {
     id: 'recomendaciones',
-    label: 'Recomendaciones',
+    labelKey: 'menu.recomendaciones',
     icon: 'recomendaciones',
     color: 'green',
   },

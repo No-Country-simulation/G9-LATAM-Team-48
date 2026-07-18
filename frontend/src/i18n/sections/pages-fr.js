@@ -1,0 +1,160 @@
+export const pagesFr = {
+  "states": {
+    "loading": "Chargement...",
+    "loadingConsumo": "Chargement des données de consommation...",
+    "loadingHistorial": "Chargement de l'historique...",
+    "loadingRecomendaciones": "Chargement des recommandations...",
+    "empty": "Aucune donnée à afficher.",
+    "error": "Impossible de charger les données.",
+    "retry": "Réessayer"
+  },
+  "dashboard": {
+    "title": "EnergyAI Dashboard",
+    "subtitle": "Hackathon ONE G9 - TEAM 48",
+    "lastMonthUsage": "Consommation du dernier mois",
+    "lastMonthCost": "Coût du dernier mois",
+    "monthlyAverage": "Moyenne mensuelle"
+  },
+  "consumos": {
+    "title": "Consommations énergétiques",
+    "subtitle": "Détail mensuel de la consommation en kWh et du coût estimé.",
+    "totalUsage": "Consommation totale",
+    "totalCost": "Coût total",
+    "monthlyAverage": "Moyenne mensuelle",
+    "history": "Historique mensuel",
+    "peak": "Pic de consommation",
+    "month": "Mois",
+    "usageKwh": "Consommation (kWh)",
+    "estimatedCost": "Coût estimé",
+    "status": "État",
+    "aboveAverage": "Au-dessus de la moyenne",
+    "normal": "Normal"
+  },
+  "chart": {
+    "title": "Consommation énergétique mensuelle (kWh)",
+    "actualVsPredicted": "Réel vs prévision (kWh)",
+    "actualVsPredictedHint": "Mock pour Data Analysis : comparer la conso mesurée à la prévision du modèle.",
+    "peakVsOffPeak": "Pointe vs heures creuses (kWh)",
+    "peakVsOffPeakHint": "Mock pour Data Analysis : séparer la conso en heures de pointe et creuses.",
+    "seriesActual": "Réel",
+    "seriesPredicted": "Prévu",
+    "seriesPeak": "Pointe",
+    "seriesOffPeak": "Heures creuses",
+    "axisMonth": "Mois",
+    "axisKwh": "kWh",
+    "confidence": "Confiance du modèle",
+    "categories": {
+      "LOW_CONSUMPTION": "Faible consommation",
+      "MEDIUM_CONSUMPTION": "Consommation moyenne",
+      "HIGH_CONSUMPTION": "Forte consommation"
+    }
+  },
+  "analysis": {
+    "title": "Analyse intelligente IA",
+    "subtitle": "Évaluation de la consommation énergétique",
+    "monthlyUsage": "Consommation mensuelle (kWh)",
+    "people": "Nombre de personnes",
+    "devices": "Nombre d'appareils",
+    "submit": "Analyser la consommation",
+    "submitting": "Analyse...",
+    "result": "Résultat IA",
+    "level": "Niveau",
+    "estimatedSavings": "Économie estimée",
+    "tips": "Recommandations",
+    "failed": "Impossible de terminer l'analyse.",
+    "levels": {
+      "efficient": "Efficace",
+      "moderate": "Modéré",
+      "inefficient": "Inefficace"
+    },
+    "tipsList": {
+      "led": "Utiliser un éclairage LED",
+      "peak": "Réduire la conso aux heures de pointe",
+      "appliances": "Optimiser les appareils",
+      "ac": "Réduire la climatisation",
+      "replace": "Remplacer les anciens appareils",
+      "night": "Contrôler la conso nocturne",
+      "keep": "Maintenir les habitudes",
+      "monitor": "Continuer le suivi"
+    }
+  },
+  "recommendations": {
+    "title": "Recommandations IA",
+    "subtitle": "Suggestions personnalisées pour optimiser la consommation.",
+    "total": "Total des recommandations",
+    "highPriority": "Priorité haute",
+    "potentialSavings": "Économies potentielles cumulées",
+    "estimatedSavings": "Économie estimée",
+    "priority": {
+      "high": "Haute",
+      "medium": "Moyenne",
+      "low": "Basse"
+    },
+    "category": {
+      "lighting": "Éclairage",
+      "habits": "Habitudes",
+      "climate": "Climatisation",
+      "equipment": "Équipement",
+      "tech": "Technologie"
+    },
+    "items": {
+      "1": {
+        "title": "Remplacer l’éclairage traditionnel par des LED",
+        "description": "Remplacer les ampoules à incandescence peut réduire jusqu’à 80 % de la consommation d’éclairage."
+      },
+      "2": {
+        "title": "Réduire la consommation aux heures de pointe",
+        "description": "Programmer les appareils hors de la plage 18:00–22:00 pour éviter les pics de demande."
+      },
+      "3": {
+        "title": "Optimiser l’usage de la climatisation",
+        "description": "Maintenir l’appareil entre 24 °C et 26 °C et utiliser le mode éco la nuit."
+      },
+      "4": {
+        "title": "Évaluer les anciens appareils énergivores",
+        "description": "Identifier réfrigérateurs, micro-ondes ou lave-linge de plus de 10 ans."
+      },
+      "5": {
+        "title": "Débrancher les chargeurs en veille",
+        "description": "Éviter la consommation fantôme en éteignant adaptateurs et appareils inutilisés."
+      },
+      "6": {
+        "title": "Installer un thermostat intelligent",
+        "description": "Automatiser chauffage et climatisation selon les horaires d’occupation."
+      }
+    }
+  },
+  "months": {
+    "january": "Janvier",
+    "february": "Février",
+    "march": "Mars",
+    "april": "Avril",
+    "may": "Mai",
+    "june": "Juin"
+  },
+  "insights": {
+    "title": "En clair : comment va votre conso ?",
+    "subtitle": "Résumé simple, compréhensible par toute personne à la maison ou au travail.",
+    "trend": {
+      "up": "En {month}, vous avez consommé {pct}% de plus qu’en {prevMonth} ({kwh} kWh de plus).",
+      "down": "En {month}, vous avez baissé de {pct}% par rapport à {prevMonth} ({kwh} kWh économisés).",
+      "flat": "En {month}, votre conso est presque la même qu’en {prevMonth}."
+    },
+    "peak": "{pct}% de votre énergie en {month} a été utilisée aux heures de pointe (souvent plus chères).",
+    "bill": {
+      "up": "Facture estimée de {month} : ${amount} (environ ${diff} de plus que le mois dernier).",
+      "down": "Facture estimée de {month} : ${amount} (environ ${diff} de moins que le mois dernier).",
+      "flat": "Facture estimée de {month} : toujours ${amount}."
+    },
+    "level": {
+      "good": "Votre conso est basse : c’est bien.",
+      "ok": "Votre conso est moyenne : de petits gestes peuvent encore aider.",
+      "high": "Votre conso est élevée : regardez les habitudes et les appareils gourmands."
+    },
+    "tip": {
+      "good": "Conseil : continuez d’éteindre l’inutile et gardez la clim vers 24–26 °C.",
+      "ok": "Conseil : lancez lave-linge ou lave-vaisselle hors 18:00–22:00 pour payer moins.",
+      "high": "Conseil : vérifiez clim et vieux appareils ; c’est souvent le plus gros poste."
+    }
+  }
+}

@@ -1,9 +1,11 @@
 import { useTheme } from '../context/ThemeContext'
+import { useLocale } from '../context/LocaleContext'
 import { MENU_ITEMS } from '../data/menuItems'
 import MenuIcon from './MenuIcon'
 
 function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
   const { theme } = useTheme()
+  const { t } = useLocale()
 
   const sidebarClass =
     theme === 'dark' ? 'bg-dark text-white' : 'bg-light'
@@ -26,27 +28,31 @@ function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
         isMobile ? '' : 'h-100'
       }`}
     >
-      {!isMobile && <h5 className="sidebar-title">Menú</h5>}
+      {!isMobile && <h5 className="sidebar-title">{t('common.menu')}</h5>}
       {!isMobile && <hr />}
 
       <ul className="nav flex-column gap-1">
-        {MENU_ITEMS.map((item) => (
-          <li className="nav-item" key={item.id}>
-            <button
-              type="button"
-              className={`${linkClass(item.id)} sidebar-link border-0 text-start w-100 py-2 d-flex align-items-center gap-2`}
-              onClick={() => handleNavigate(item.id)}
-              title={item.label}
-            >
-              <MenuIcon
-                name={item.icon}
-                color={item.color}
-                isActive={pagina === item.id}
-              />
-              <span className="sidebar-label">{item.label}</span>
-            </button>
-          </li>
-        ))}
+        {MENU_ITEMS.map((item) => {
+          const label = t(item.labelKey)
+
+          return (
+            <li className="nav-item" key={item.id}>
+              <button
+                type="button"
+                className={`${linkClass(item.id)} sidebar-link border-0 text-start w-100 py-2 d-flex align-items-center gap-2`}
+                onClick={() => handleNavigate(item.id)}
+                title={label}
+              >
+                <MenuIcon
+                  name={item.icon}
+                  color={item.color}
+                  isActive={pagina === item.id}
+                />
+                <span className="sidebar-label">{label}</span>
+              </button>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
