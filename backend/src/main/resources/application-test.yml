@@ -1,0 +1,30 @@
+# ============================================================================
+# Perfil TEST - configuración para pruebas automatizadas
+# ============================================================================
+# Se activa con @ActiveProfiles("test")
+# Usa InMemoryUserRepository y base de datos H2 en memoria
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+    open-in-view: false
+  flyway:
+    enabled: false
+
+# Usar InMemoryUserRepository para tests
+app:
+  persistence:
+    type: in-memory
+
+# Logging para tests
+logging:
+  level:
+    root: INFO
+    com.alura: DEBUG
