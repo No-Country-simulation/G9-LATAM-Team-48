@@ -19,7 +19,7 @@ import java.util.Locale;
  * la resolución de textos al componente {@link MessageSource} de Spring.</p>
  *
  * @author miyo
- * @version 1.0
+ * @version 1.1
  */
 @Component
 public class MediumConsumptionRule implements RecommendationRule {
