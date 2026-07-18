@@ -1,0 +1,40 @@
+# EnergyAI — stack para NAS / Docker
+# Uso: docker compose up -d --build
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: energyai-backend
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
+      SERVER_PORT: 8080
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production-please-use-a-long-random-secret}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-86400000}
+      PREDICTION_API_BASE_URL: ${PREDICTION_API_BASE_URL:-http://host.docker.internal:8000}
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ""
+        VITE_USE_MOCK_AUTH: "false"
+        VITE_USE_MOCK_API: "false"
+    container_name: energyai-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    depends_on:
+      backend:
+        condition: service_started

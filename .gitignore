@@ -1,2 +1,13 @@
 .claude
 .bin
+
+# Secrets / local env
+.env
+.env.local
+*.pem
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
