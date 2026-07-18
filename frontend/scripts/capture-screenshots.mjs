@@ -59,9 +59,17 @@ async function main() {
   await page.waitForTimeout(700)
   await shot(page, 'consumos.png', { fullPage: true })
 
-  // Análisis IA
+  // Análisis IA (casa con datos + análisis para mostrar gráfico y tips)
   await page.getByRole('button', { name: /Análisis IA|Analisis IA/i }).first().click()
-  await page.waitForTimeout(700)
+  await page.waitForTimeout(500)
+  await page.locator('#consumo').fill('380')
+  await page.locator('#personas').fill('4')
+  await page.locator('#equipos').fill('8')
+  await page.locator('#area').fill('64')
+  await page.locator('#climateHours').fill('0')
+  await page.locator('#peakUseHours').fill('6')
+  await page.getByRole('button', { name: /Analizar consumo|Analyze usage/i }).click()
+  await page.waitForTimeout(1200)
   await shot(page, 'analisis-ia.png', { fullPage: true })
 
   // Recomendaciones

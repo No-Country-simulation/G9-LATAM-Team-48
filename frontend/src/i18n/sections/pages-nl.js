@@ -51,31 +51,88 @@ export const pagesNl = {
   },
   "analysis": {
     "title": "Slimme AI-analyse",
-    "subtitle": "Beoordeling van energieverbruik",
+    "subtitle": "Verbruiksevaluatie per installatietype",
+    "installationType": "Type installatie",
+    "types": {
+      "casa": "Huis",
+      "fabrica_mediana": "Middelgrote fabriek",
+      "fabrica_grande": "Grote fabriek"
+    },
+    "typeHints": {
+      "casa": "Woninggegevens om verbruik per persoon en klimaat te schatten.",
+      "fabrica_mediana": "Operationele data om machines, diensten en intensiteit te vergelijken.",
+      "fabrica_grande": "Fabrieksdata om lijnen, capaciteit en monitoring te beoordelen."
+    },
     "monthlyUsage": "Maandelijks verbruik (kWh)",
     "people": "Aantal personen",
     "devices": "Aantal apparaten",
+    "homeArea": "Woonoppervlakte (m²)",
+    "climateHours": "Klimaaturen per dag",
+    "peakUseHours": "Uren intensief gebruik per dag",
+    "shifts": "Diensten per dag",
+    "machines": "Aantal machines",
+    "area": "Fabrieksoppervlakte (m²)",
+    "hoursPerDay": "Bedrijfsuren per dag",
+    "processIntensity": "Procesintensiteit",
+    "hasCompressedAir": "Gebruikt perslucht?",
+    "lines": "Productielijnen",
+    "operatingDays": "Bedrijfsdagen per maand",
+    "capacityPct": "Benutte capaciteit (%)",
+    "hasMonitoring": "Heeft energiomonitoring / SCADA?",
+    "intensity": {
+      "baja": "Laag",
+      "media": "Gemiddeld",
+      "alta": "Hoog"
+    },
+    "yesNo": {
+      "yes": "Ja",
+      "no": "Nee"
+    },
     "submit": "Verbruik analyseren",
     "submitting": "Analyseren...",
+    "panelHint": "Vul de velden van het gekozen type in en start de analyse.",
     "result": "AI-resultaat",
     "level": "Niveau",
     "estimatedSavings": "Geschatte besparing",
-    "tips": "Aanbevelingen",
+    "tips": "Tips om het verbruik te verbeteren",
+    "confidence": "Modelvertrouwen",
+    "sourceMl": "getraind model",
+    "sourceLocal": "lokale regels",
     "failed": "Analyse kon niet worden voltooid.",
+    "chart": {
+      "title": "Uw verbruik vs referentie",
+      "hint": "De referentie past zich aan de formuliergegevens aan.",
+      "empty": "Voer maandelijks verbruik in om de grafiek te zien.",
+      "seriesYours": "Uw verbruik",
+      "seriesBenchmark": "Referentie"
+    },
     "levels": {
       "efficient": "Efficiënt",
-      "moderate": "Gemiddeld",
+      "moderate": "Matig",
       "inefficient": "Inefficiënt"
     },
     "tipsList": {
       "led": "LED-verlichting gebruiken",
       "peak": "Verbruik in piekuren verlagen",
-      "appliances": "Apparaten optimaliseren",
-      "ac": "Airco-gebruik verminderen",
-      "replace": "Oude apparaten vervangen",
+      "appliances": "Apparatengebruik optimaliseren",
+      "ac": "Airconditioning verminderen",
+      "replace": "Oude apparatuur vervangen",
       "night": "Nachtverbruik controleren",
-      "keep": "Gewoonten behouden",
-      "monitor": "Verbruik blijven volgen"
+      "keep": "Huidige gewoonten behouden",
+      "monitor": "Verbruik blijven monitoren",
+      "insulation": "Thermische isolatie van de woning verbeteren",
+      "standby": "Stand-by uitschakelen bij weinig gebruik",
+      "solar": "Zonne-energie evalueren om pieken te dekken",
+      "shifts": "Intensieve processen buiten piekuren plannen",
+      "motors": "Efficiëntie van motoren en inverters controleren",
+      "compressedAir": "Lekken opsporen en perslucht optimaliseren",
+      "processHeat": "Proceswarmte terugwinnen of ovens isoleren",
+      "loadBalancing": "Belasting verdelen over machines en diensten",
+      "idleLines": "Ongebruikte lijnen uitschakelen of idle zetten",
+      "schedules": "Productieschema’s optimaliseren",
+      "predictive": "Voorspellend onderhoud toepassen",
+      "scada": "Energiemonitoring / SCADA uitrollen of uitbreiden",
+      "capacity": "Productie afstemmen op werkelijk gebruikte capaciteit"
     }
   },
   "recommendations": {

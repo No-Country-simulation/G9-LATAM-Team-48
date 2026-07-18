@@ -51,17 +51,61 @@ export const pagesFr = {
   },
   "analysis": {
     "title": "Analyse intelligente IA",
-    "subtitle": "Évaluation de la consommation énergétique",
+    "subtitle": "Évaluation de la consommation selon le type d'installation",
+    "installationType": "Type d'installation",
+    "types": {
+      "casa": "Maison",
+      "fabrica_mediana": "Usine moyenne",
+      "fabrica_grande": "Grande usine"
+    },
+    "typeHints": {
+      "casa": "Données du foyer pour estimer la conso. par personne et la clim.",
+      "fabrica_mediana": "Données opérationnelles pour comparer machines, équipes et intensité.",
+      "fabrica_grande": "Données usine pour évaluer lignes, capacité et supervision."
+    },
     "monthlyUsage": "Consommation mensuelle (kWh)",
     "people": "Nombre de personnes",
     "devices": "Nombre d'appareils",
+    "homeArea": "Surface du logement (m²)",
+    "climateHours": "Heures de climatisation par jour",
+    "peakUseHours": "Heures d'usage intensif par jour",
+    "shifts": "Équipes par jour",
+    "machines": "Nombre de machines",
+    "area": "Surface de l'usine (m²)",
+    "hoursPerDay": "Heures d'exploitation par jour",
+    "processIntensity": "Intensité du process",
+    "hasCompressedAir": "Utilise de l'air comprimé ?",
+    "lines": "Lignes de production",
+    "operatingDays": "Jours d'exploitation par mois",
+    "capacityPct": "Capacité utilisée (%)",
+    "hasMonitoring": "A un monitoring énergétique / SCADA ?",
+    "intensity": {
+      "baja": "Faible",
+      "media": "Moyenne",
+      "alta": "Élevée"
+    },
+    "yesNo": {
+      "yes": "Oui",
+      "no": "Non"
+    },
     "submit": "Analyser la consommation",
     "submitting": "Analyse...",
+    "panelHint": "Renseignez les champs du type choisi et lancez l'analyse.",
     "result": "Résultat IA",
     "level": "Niveau",
-    "estimatedSavings": "Économie estimée",
-    "tips": "Recommandations",
+    "estimatedSavings": "Économies estimées",
+    "tips": "Conseils pour améliorer la consommation",
+    "confidence": "Confiance du modèle",
+    "sourceMl": "modèle entraîné",
+    "sourceLocal": "règles locales",
     "failed": "Impossible de terminer l'analyse.",
+    "chart": {
+      "title": "Votre conso. vs référence",
+      "hint": "La référence s’ajuste aux données du formulaire.",
+      "empty": "Saisissez la consommation mensuelle pour voir le graphique.",
+      "seriesYours": "Votre consommation",
+      "seriesBenchmark": "Référence"
+    },
     "levels": {
       "efficient": "Efficace",
       "moderate": "Modéré",
@@ -69,13 +113,26 @@ export const pagesFr = {
     },
     "tipsList": {
       "led": "Utiliser un éclairage LED",
-      "peak": "Réduire la conso aux heures de pointe",
-      "appliances": "Optimiser les appareils",
+      "peak": "Réduire la conso. aux heures de pointe",
+      "appliances": "Optimiser l'usage des appareils",
       "ac": "Réduire la climatisation",
-      "replace": "Remplacer les anciens appareils",
-      "night": "Contrôler la conso nocturne",
-      "keep": "Maintenir les habitudes",
-      "monitor": "Continuer le suivi"
+      "replace": "Remplacer les équipements anciens",
+      "night": "Surveiller la consommation nocturne",
+      "keep": "Maintenir les habitudes actuelles",
+      "monitor": "Continuer à surveiller la consommation",
+      "insulation": "Améliorer l’isolation thermique du logement",
+      "standby": "Couper le standby aux heures creuses",
+      "solar": "Évaluer le solaire pour couvrir les pics",
+      "shifts": "Décaler les processus intensifs hors pointe",
+      "motors": "Vérifier l'efficacité des moteurs et variateurs",
+      "compressedAir": "Détecter les fuites d'air comprimé",
+      "processHeat": "Récupérer la chaleur process ou isoler les fours",
+      "loadBalancing": "Équilibrer la charge entre machines et équipes",
+      "idleLines": "Arrêter ou mettre en veille les lignes inutilisées",
+      "schedules": "Optimiser les plannings de production",
+      "predictive": "Appliquer une maintenance prédictive",
+      "scada": "Déployer ou étendre le monitoring / SCADA",
+      "capacity": "Ajuster la production à la capacité réelle"
     }
   },
   "recommendations": {

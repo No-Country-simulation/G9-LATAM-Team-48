@@ -51,17 +51,61 @@ export const pagesDe = {
   },
   "analysis": {
     "title": "Intelligente KI-Analyse",
-    "subtitle": "Bewertung des Energieverbrauchs",
+    "subtitle": "Verbrauchsbewertung nach Anlagentyp",
+    "installationType": "Anlagentyp",
+    "types": {
+      "casa": "Haus",
+      "fabrica_mediana": "Mittlere Fabrik",
+      "fabrica_grande": "Große Fabrik"
+    },
+    "typeHints": {
+      "casa": "Haushaltsdaten für Verbrauch pro Person und Klimatisierung.",
+      "fabrica_mediana": "Betriebsdaten zum Vergleich von Maschinen, Schichten und Intensität.",
+      "fabrica_grande": "Werkdaten zur Bewertung von Linien, Kapazität und Monitoring."
+    },
     "monthlyUsage": "Monatsverbrauch (kWh)",
     "people": "Anzahl Personen",
     "devices": "Anzahl Geräte",
+    "homeArea": "Wohnfläche (m²)",
+    "climateHours": "Klimastunden pro Tag",
+    "peakUseHours": "Stunden intensiver Nutzung pro Tag",
+    "shifts": "Schichten pro Tag",
+    "machines": "Anzahl Maschinen",
+    "area": "Werksfläche (m²)",
+    "hoursPerDay": "Betriebsstunden pro Tag",
+    "processIntensity": "Prozessintensität",
+    "hasCompressedAir": "Nutzt Druckluft?",
+    "lines": "Produktionslinien",
+    "operatingDays": "Betriebstage pro Monat",
+    "capacityPct": "Genutzte Kapazität (%)",
+    "hasMonitoring": "Hat Energiemonitoring / SCADA?",
+    "intensity": {
+      "baja": "Niedrig",
+      "media": "Mittel",
+      "alta": "Hoch"
+    },
+    "yesNo": {
+      "yes": "Ja",
+      "no": "Nein"
+    },
     "submit": "Verbrauch analysieren",
     "submitting": "Analysiere...",
+    "panelHint": "Füllen Sie die Felder des gewählten Typs aus und starten Sie die Analyse.",
     "result": "KI-Ergebnis",
     "level": "Niveau",
     "estimatedSavings": "Geschätzte Einsparung",
-    "tips": "Empfehlungen",
+    "tips": "Tipps zur Verbrauchsverbesserung",
+    "confidence": "Modellvertrauen",
+    "sourceMl": "trainiertes Modell",
+    "sourceLocal": "lokale Regeln",
     "failed": "Analyse konnte nicht abgeschlossen werden.",
+    "chart": {
+      "title": "Ihr Verbrauch vs. Referenz",
+      "hint": "Die Referenz passt sich an Ihre Formulardaten an.",
+      "empty": "Monatsverbrauch eingeben, um das Diagramm zu sehen.",
+      "seriesYours": "Ihr Verbrauch",
+      "seriesBenchmark": "Referenz"
+    },
     "levels": {
       "efficient": "Effizient",
       "moderate": "Moderat",
@@ -70,12 +114,25 @@ export const pagesDe = {
     "tipsList": {
       "led": "LED-Beleuchtung nutzen",
       "peak": "Verbrauch in Spitzenzeiten senken",
-      "appliances": "Geräteeinsatz optimieren",
-      "ac": "Klimaanlagennutzung reduzieren",
+      "appliances": "Gerätenutzung optimieren",
+      "ac": "Klimanutzung reduzieren",
       "replace": "Alte Geräte ersetzen",
       "night": "Nachtverbrauch kontrollieren",
-      "keep": "Gewohnheiten beibehalten",
-      "monitor": "Verbrauch weiter überwachen"
+      "keep": "Aktuelle Gewohnheiten beibehalten",
+      "monitor": "Verbrauch weiter überwachen",
+      "insulation": "Wärmedämmung der Wohnung verbessern",
+      "standby": "Standby in Zeiten geringer Nutzung abschalten",
+      "solar": "Solarstrom zur Abdeckung von Spitzen prüfen",
+      "shifts": "Intensive Prozesse aus Spitzenzeiten verlagern",
+      "motors": "Motor- und Umrichtereffizienz prüfen",
+      "compressedAir": "Lecks finden und Druckluft optimieren",
+      "processHeat": "Prozesswärme zurückgewinnen oder Öfen dämmen",
+      "loadBalancing": "Last zwischen Maschinen und Schichten ausgleichen",
+      "idleLines": "Ungenutzte Linien abschalten oder pausieren",
+      "schedules": "Produktionspläne nach Bedarf optimieren",
+      "predictive": "Prädiktive Wartung für kritische Anlagen",
+      "scada": "Energiemonitoring / SCADA einführen oder erweitern",
+      "capacity": "Produktion an die tatsächlich genutzte Kapazität anpassen"
     }
   },
   "recommendations": {

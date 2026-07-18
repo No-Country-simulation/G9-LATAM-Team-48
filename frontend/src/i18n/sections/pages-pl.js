@@ -51,31 +51,88 @@ export const pagesPl = {
   },
   "analysis": {
     "title": "Inteligentna analiza AI",
-    "subtitle": "Ocena zużycia energii",
-    "monthlyUsage": "Zużycie miesięczne (kWh)",
+    "subtitle": "Ocena zużycia według typu instalacji",
+    "installationType": "Typ instalacji",
+    "types": {
+      "casa": "Dom",
+      "fabrica_mediana": "Średnia fabryka",
+      "fabrica_grande": "Duża fabryka"
+    },
+    "typeHints": {
+      "casa": "Dane domu do szacowania zużycia na osobę i klimatyzacji.",
+      "fabrica_mediana": "Dane operacyjne do porównania maszyn, zmian i intensywności.",
+      "fabrica_grande": "Dane zakładu do oceny linii, mocy i monitoringu."
+    },
+    "monthlyUsage": "Miesięczne zużycie (kWh)",
     "people": "Liczba osób",
     "devices": "Liczba urządzeń",
+    "homeArea": "Powierzchnia mieszkania (m²)",
+    "climateHours": "Godziny klimatyzacji dziennie",
+    "peakUseHours": "Godziny intensywnego użycia dziennie",
+    "shifts": "Zmiany dziennie",
+    "machines": "Liczba maszyn",
+    "area": "Powierzchnia zakładu (m²)",
+    "hoursPerDay": "Godziny pracy dziennie",
+    "processIntensity": "Intensywność procesu",
+    "hasCompressedAir": "Czy używa sprężonego powietrza?",
+    "lines": "Linie produkcyjne",
+    "operatingDays": "Dni pracy w miesiącu",
+    "capacityPct": "Wykorzystana zdolność (%)",
+    "hasMonitoring": "Czy ma monitoring energetyczny / SCADA?",
+    "intensity": {
+      "baja": "Niska",
+      "media": "Średnia",
+      "alta": "Wysoka"
+    },
+    "yesNo": {
+      "yes": "Tak",
+      "no": "Nie"
+    },
     "submit": "Analizuj zużycie",
     "submitting": "Analizowanie...",
+    "panelHint": "Wypełnij pola wybranego typu i uruchom analizę.",
     "result": "Wynik AI",
     "level": "Poziom",
     "estimatedSavings": "Szacowane oszczędności",
-    "tips": "Rekomendacje",
-    "failed": "Nie udało się dokończyć analizy.",
+    "tips": "Wskazówki poprawy zużycia",
+    "confidence": "Pewność modelu",
+    "sourceMl": "wytrenowany model",
+    "sourceLocal": "reguły lokalne",
+    "failed": "Nie udało się ukończyć analizy.",
+    "chart": {
+      "title": "Twoje zużycie vs referencja",
+      "hint": "Referencja dostosowuje się do danych formularza.",
+      "empty": "Wpisz miesięczne zużycie, aby zobaczyć wykres.",
+      "seriesYours": "Twoje zużycie",
+      "seriesBenchmark": "Referencja"
+    },
     "levels": {
-      "efficient": "Wydajne",
+      "efficient": "Efektywne",
       "moderate": "Umiarkowane",
-      "inefficient": "Niewydajne"
+      "inefficient": "Nieefektywne"
     },
     "tipsList": {
       "led": "Używać oświetlenia LED",
-      "peak": "Zmniejszyć zużycie w szczycie",
-      "appliances": "Optymalizować urządzenia",
+      "peak": "Zmniejszyć zużycie w godzinach szczytu",
+      "appliances": "Optymalizować użycie urządzeń",
       "ac": "Ograniczyć klimatyzację",
       "replace": "Wymienić stare urządzenia",
       "night": "Kontrolować zużycie nocne",
-      "keep": "Utrzymać nawyki",
-      "monitor": "Dalej monitorować zużycie"
+      "keep": "Utrzymać obecne nawyki",
+      "monitor": "Dalej monitorować zużycie",
+      "insulation": "Poprawić izolację termiczną mieszkania",
+      "standby": "Wyłączać tryb czuwania przy niskim użyciu",
+      "solar": "Rozważyć fotowoltaikę na pokrycie szczytów",
+      "shifts": "Przenieść procesy poza szczyt",
+      "motors": "Sprawdzić sprawność silników i falowników",
+      "compressedAir": "Wykryć wycieki i zoptymalizować sprężone powietrze",
+      "processHeat": "Odzyskać ciepło procesowe lub izolować piece",
+      "loadBalancing": "Równoważyć obciążenie między maszynami i zmianami",
+      "idleLines": "Wyłączyć lub uśpić nieużywane linie",
+      "schedules": "Optymalizować harmonogramy produkcji",
+      "predictive": "Stosować konserwację predykcyjną",
+      "scada": "Wdrożyć lub rozszerzyć monitoring / SCADA",
+      "capacity": "Dostosować produkcję do realnie używanej mocy"
     }
   },
   "recommendations": {

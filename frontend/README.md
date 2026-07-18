@@ -52,7 +52,7 @@ Hackathon ONE G9 · Team 48
 <table>
   <tr>
     <td width="50%"><strong>Consumos</strong><br /><img src="./screenshots/consumos.png" alt="Consumos" /></td>
-    <td width="50%"><strong>Análisis IA</strong><br /><img src="./screenshots/analisis-ia.png" alt="Análisis IA" /></td>
+    <td width="50%"><strong>Análisis IA</strong> — formulario por tipo + gráfico vs referencia<br /><img src="./screenshots/analisis-ia.png" alt="Análisis IA" /></td>
   </tr>
   <tr>
     <td width="50%"><strong>Recomendaciones</strong><br /><img src="./screenshots/recomendaciones.png" alt="Recomendaciones" /></td>
@@ -78,7 +78,7 @@ npm run screenshots
 |--------|-------------|
 | **Dashboard** | Tarjetas de resumen, bloque “En simple” (lenguaje claro), gráfico mensual, mock **real vs predicción**, **pico vs valle** y recomendaciones destacadas. |
 | **Consumos** | Totales, historial con estado (normal / sobre promedio) y gráfico de evolución. |
-| **Análisis IA** | Formulario (kWh, personas, equipos) → nivel, ahorro estimado y tips. |
+| **Análisis IA** | Formulario por tipo (**casa** / **fábrica mediana** / **fábrica grande**); gráfico en vivo; clasificación con **modelo ML** (RandomForest en FastAPI) o reglas locales de respaldo; nivel, confianza, ahorro y tips. |
 | **Recomendaciones** | Tarjetas con categoría, prioridad y ahorro; resumen acumulado. |
 | **Registro / Login** | Modal con pestañas; campos obligatorios; contraseña de registro ≥ 8 caracteres. |
 | **Multilenguaje** | Selector en el header; detecta idioma del navegador (fallback inglés). |
@@ -147,7 +147,8 @@ VITE_USE_MOCK_API=true
 |----------|-------------|
 | `VITE_API_URL` | URL base del backend. Vacío = misma origen (nginx/proxy en Docker). |
 | `VITE_USE_MOCK_AUTH` | `true` = auth simulada; `false` = API JWT |
-| `VITE_USE_MOCK_API` | `true` = datos mock; `false` = API real |
+| `VITE_USE_MOCK_API` | `true` = datos mock; `false` = API real (predicción vía Spring) |
+| `VITE_ML_API_URL` | URL del ML FastAPI (ej. `http://localhost:8000`). Si está definida, Análisis IA la usa primero. |
 
 ---
 
@@ -161,9 +162,23 @@ Con API real: `VITE_USE_MOCK_AUTH=false` y `VITE_API_URL` apuntando al backend (
 | `POST` | `/api/v1/auth/login` | `{ "email", "password" }` → `data.accessToken` |
 | `GET` | `/api/consumos` | Lista mensual (mock o API) |
 | `GET` | `/api/recomendaciones` | Recomendaciones |
-| `POST` | `/api/analisis` | `{ consumo, personas, equipos }` |
+| `POST` | `/api/analisis` | Payload plano del form → ML (ver abajo y `docs/backend/ANALISIS_IA.md`) |
 
-Contrato propuesto para Data Analysis (mock en `src/data/analyticsMock.js`):
+### Análisis IA — modelo ML y payload
+
+Prioridad al analizar: `VITE_ML_API_URL` → Spring `POST /api/analisis` → reglas locales (`iaService.js`).
+
+Detalle: [`ml-service/README.md`](../ml-service/README.md) y [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md).
+
+| `tipo` | Campos |
+|--------|--------|
+| `casa` | `consumo`, `personas`, `equipos`, `area`, `climateHours`, `peakUseHours` |
+| `fabrica_mediana` | `consumo`, `turnos`, `maquinas`, `area`, `hoursPerDay`, `processIntensity`, `hasCompressedAir` |
+| `fabrica_grande` | `consumo`, `lineas`, `maquinas`, `turnos`, `area`, `operatingDays`, `capacityPct`, `hasMonitoring`, `hasCompressedAir` |
+
+Respuesta: `{ nivelKey, ahorro, tipKeys, benchmark, confidence }`.
+
+Contrato propuesto para Data Analysis del Dashboard (mock en `src/data/analyticsMock.js`):
 
 ```json
 {

@@ -11,7 +11,7 @@ npm run screenshots  # en otra
 |---------|--------|
 | `dashboard.png` | Dashboard (resumen, insights, gráficos) |
 | `consumos.png` | Consumos |
-| `analisis-ia.png` | Análisis IA |
+| `analisis-ia.png` | Análisis IA (formulario por tipo + gráfico vs referencia + tips) |
 | `recomendaciones.png` | Recomendaciones |
 | `login.png` | Modal — pestaña Entrar |
 | `registro.png` | Modal — pestaña Registrarse |

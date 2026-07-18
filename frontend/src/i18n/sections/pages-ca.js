@@ -51,17 +51,61 @@ export const pagesCa = {
   },
   "analysis": {
     "title": "Anàlisi intel·ligent IA",
-    "subtitle": "Avaluació del consum energètic",
+    "subtitle": "Avaluació del consum segons el tipus d'instal·lació",
+    "installationType": "Tipus d'instal·lació",
+    "types": {
+      "casa": "Casa",
+      "fabrica_mediana": "Fàbrica mitjana",
+      "fabrica_grande": "Fàbrica gran"
+    },
+    "typeHints": {
+      "casa": "Dades de la llar per estimar consum per persona i climatització.",
+      "fabrica_mediana": "Dades operatives per comparar màquines, torns i intensitat.",
+      "fabrica_grande": "Dades de planta per avaluar línies, capacitat i monitoratge."
+    },
     "monthlyUsage": "Consum mensual (kWh)",
     "people": "Quantitat de persones",
     "devices": "Quantitat d'equips",
+    "homeArea": "Superfície de l’habitatge (m²)",
+    "climateHours": "Hores de climatització al dia",
+    "peakUseHours": "Hores d’ús intensiu al dia",
+    "shifts": "Tornades al dia",
+    "machines": "Quantitat de màquines",
+    "area": "Àrea de planta (m²)",
+    "hoursPerDay": "Hores d’operació al dia",
+    "processIntensity": "Intensitat del procés",
+    "hasCompressedAir": "Fa servir aire comprimit?",
+    "lines": "Línies de producció",
+    "operatingDays": "Dies d’operació al mes",
+    "capacityPct": "Capacitat utilitzada (%)",
+    "hasMonitoring": "Té monitoratge energètic / SCADA?",
+    "intensity": {
+      "baja": "Baixa",
+      "media": "Mitjana",
+      "alta": "Alta"
+    },
+    "yesNo": {
+      "yes": "Sí",
+      "no": "No"
+    },
     "submit": "Analitzar consum",
     "submitting": "Analitzant...",
+    "panelHint": "Omple els camps del tipus triat i executa l’anàlisi.",
     "result": "Resultat IA",
     "level": "Nivell",
     "estimatedSavings": "Estalvi estimat",
-    "tips": "Recomanacions",
+    "tips": "Suggeriments per millorar el consum",
+    "confidence": "Confiança del model",
+    "sourceMl": "model entrenat",
+    "sourceLocal": "regles locals",
     "failed": "No s'ha pogut completar l'anàlisi.",
+    "chart": {
+      "title": "El teu consum vs referència",
+      "hint": "La referència s’ajusta amb les dades del formulari.",
+      "empty": "Introdueix el consum mensual per veure el gràfic.",
+      "seriesYours": "El teu consum",
+      "seriesBenchmark": "Referència"
+    },
     "levels": {
       "efficient": "Eficient",
       "moderate": "Moderat",
@@ -69,13 +113,26 @@ export const pagesCa = {
     },
     "tipsList": {
       "led": "Utilitzar il·luminació LED",
-      "peak": "Reduir consum en hores punta",
-      "appliances": "Optimitzar electrodomèstics",
-      "ac": "Reduir aire condicionat",
+      "peak": "Reduir el consum en hores punta",
+      "appliances": "Optimitzar l'ús d'electrodomèstics",
+      "ac": "Reduir l'ús de l'aire condicionat",
       "replace": "Substituir equips antics",
-      "night": "Controlar consum nocturn",
-      "keep": "Mantenir hàbits",
-      "monitor": "Continuar monitorant"
+      "night": "Controlar el consum nocturn",
+      "keep": "Mantenir els hàbits actuals",
+      "monitor": "Continuar monitorant el consum",
+      "insulation": "Millorar l’aïllament tèrmic de l’habitatge",
+      "standby": "Tallar el standby en hores de baix ús",
+      "solar": "Avaluar generació solar per cobrir pics",
+      "shifts": "Moure processos intensius fora de punta",
+      "motors": "Revisar l'eficiència de motors i inversors",
+      "compressedAir": "Detectar fuites i optimitzar l'aire comprimit",
+      "processHeat": "Recuperar calor de procés o aïllar forns",
+      "loadBalancing": "Equilibrar la càrrega entre màquines i torns",
+      "idleLines": "Apagar o hibernar línies ocioses",
+      "schedules": "Optimitzar horaris de producció",
+      "predictive": "Aplicar manteniment predictiu",
+      "scada": "Implementar o ampliar monitoratge / SCADA",
+      "capacity": "Ajustar la producció a la capacitat real utilitzada"
     }
   },
   "recommendations": {

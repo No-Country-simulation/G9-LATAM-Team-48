@@ -51,17 +51,61 @@ export const pagesPt = {
   },
   "analysis": {
     "title": "Análise inteligente IA",
-    "subtitle": "Avaliação do consumo energético",
+    "subtitle": "Avaliação do consumo conforme o tipo de instalação",
+    "installationType": "Tipo de instalação",
+    "types": {
+      "casa": "Casa",
+      "fabrica_mediana": "Fábrica média",
+      "fabrica_grande": "Fábrica grande"
+    },
+    "typeHints": {
+      "casa": "Dados da residência para estimar consumo por pessoa e climatização.",
+      "fabrica_mediana": "Dados operacionais para comparar máquinas, turnos e intensidade.",
+      "fabrica_grande": "Dados da planta para avaliar linhas, capacidade e monitoramento."
+    },
     "monthlyUsage": "Consumo mensal (kWh)",
     "people": "Quantidade de pessoas",
     "devices": "Quantidade de equipamentos",
+    "homeArea": "Área da residência (m²)",
+    "climateHours": "Horas de climatização por dia",
+    "peakUseHours": "Horas de uso intensivo por dia",
+    "shifts": "Turnos por dia",
+    "machines": "Quantidade de máquinas",
+    "area": "Área da planta (m²)",
+    "hoursPerDay": "Horas de operação por dia",
+    "processIntensity": "Intensidade do processo",
+    "hasCompressedAir": "Usa ar comprimido?",
+    "lines": "Linhas de produção",
+    "operatingDays": "Dias de operação por mês",
+    "capacityPct": "Capacidade utilizada (%)",
+    "hasMonitoring": "Tem monitoramento energético / SCADA?",
+    "intensity": {
+      "baja": "Baixa",
+      "media": "Média",
+      "alta": "Alta"
+    },
+    "yesNo": {
+      "yes": "Sim",
+      "no": "Não"
+    },
     "submit": "Analisar consumo",
     "submitting": "Analisando...",
+    "panelHint": "Preencha os dados do tipo escolhido e analise para ver sugestões.",
     "result": "Resultado IA",
     "level": "Nível",
     "estimatedSavings": "Economia estimada",
-    "tips": "Recomendações",
+    "tips": "Sugestões para melhorar o consumo",
+    "confidence": "Confiança do modelo",
+    "sourceMl": "modelo treinado",
+    "sourceLocal": "regras locais",
     "failed": "Não foi possível concluir a análise.",
+    "chart": {
+      "title": "Seu consumo vs referência",
+      "hint": "A referência se ajusta aos dados do formulário.",
+      "empty": "Informe o consumo mensal para ver o gráfico.",
+      "seriesYours": "Seu consumo",
+      "seriesBenchmark": "Referência"
+    },
     "levels": {
       "efficient": "Eficiente",
       "moderate": "Moderado",
@@ -75,7 +119,20 @@ export const pagesPt = {
       "replace": "Substituir equipamentos antigos",
       "night": "Controlar consumo noturno",
       "keep": "Manter hábitos atuais",
-      "monitor": "Continuar monitorando o consumo"
+      "monitor": "Continuar monitorando o consumo",
+      "insulation": "Melhorar o isolamento térmico da residência",
+      "standby": "Cortar standby em horários de baixo uso",
+      "solar": "Avaliar geração solar para cobrir picos",
+      "shifts": "Mover processos intensivos para fora do horário de pico",
+      "motors": "Revisar eficiência de motores e inversores",
+      "compressedAir": "Detectar vazamentos e otimizar ar comprimido",
+      "processHeat": "Recuperar calor de processo ou isolar fornos",
+      "loadBalancing": "Balancear carga entre máquinas e turnos",
+      "idleLines": "Desligar ou hibernar linhas ociosas",
+      "schedules": "Otimizar horários de produção conforme a demanda",
+      "predictive": "Aplicar manutenção preditiva em equipamentos críticos",
+      "scada": "Implementar ou ampliar monitoramento energético / SCADA",
+      "capacity": "Ajustar a produção à capacidade realmente utilizada"
     }
   },
   "recommendations": {

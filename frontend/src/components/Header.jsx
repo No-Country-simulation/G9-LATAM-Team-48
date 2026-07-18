@@ -50,7 +50,7 @@ function Header({ onMenuOpen, onLoginClick }) {
           >
             {locales.map((item) => (
               <option key={item.code} value={item.code}>
-                {item.label}
+                {item.label} — {t(`common.languages.${item.code}`)}
               </option>
             ))}
           </select>

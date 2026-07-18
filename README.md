@@ -16,6 +16,7 @@ Plataforma para el análisis y la optimización del consumo energético.
 |---------|-------------|
 | [`frontend/`](./frontend) | Aplicación web (React + Vite) |
 | [`backend/`](./backend) | API Spring Boot (JWT, predicción, recomendaciones) |
+| [`ml-service/`](./ml-service) | Modelo ML (RandomForest + FastAPI) para Análisis IA |
 | [`docs/`](./docs) | Documentación (arquitectura, deploy NAS, etc.) |
 
 ---

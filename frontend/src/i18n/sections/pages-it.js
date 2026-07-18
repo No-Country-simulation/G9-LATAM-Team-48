@@ -51,17 +51,61 @@ export const pagesIt = {
   },
   "analysis": {
     "title": "Analisi intelligente IA",
-    "subtitle": "Valutazione del consumo energetico",
+    "subtitle": "Valutazione dei consumi in base al tipo di impianto",
+    "installationType": "Tipo di impianto",
+    "types": {
+      "casa": "Casa",
+      "fabrica_mediana": "Fabbrica media",
+      "fabrica_grande": "Grande fabbrica"
+    },
+    "typeHints": {
+      "casa": "Dati domestici per stimare consumo pro capite e climatizzazione.",
+      "fabrica_mediana": "Dati operativi per confrontare macchine, turni e intensità.",
+      "fabrica_grande": "Dati di impianto per valutare linee, capacità e monitoraggio."
+    },
     "monthlyUsage": "Consumo mensile (kWh)",
     "people": "Numero di persone",
     "devices": "Numero di dispositivi",
+    "homeArea": "Superficie abitazione (m²)",
+    "climateHours": "Ore di climatizzazione al giorno",
+    "peakUseHours": "Ore di uso intensivo al giorno",
+    "shifts": "Turni al giorno",
+    "machines": "Numero di macchine",
+    "area": "Area dello stabilimento (m²)",
+    "hoursPerDay": "Ore di esercizio al giorno",
+    "processIntensity": "Intensità del processo",
+    "hasCompressedAir": "Usa aria compressa?",
+    "lines": "Linee di produzione",
+    "operatingDays": "Giorni di esercizio al mese",
+    "capacityPct": "Capacità utilizzata (%)",
+    "hasMonitoring": "Ha monitoraggio energetico / SCADA?",
+    "intensity": {
+      "baja": "Bassa",
+      "media": "Media",
+      "alta": "Alta"
+    },
+    "yesNo": {
+      "yes": "Sì",
+      "no": "No"
+    },
     "submit": "Analizza consumo",
     "submitting": "Analisi...",
+    "panelHint": "Compila i campi del tipo scelto e avvia l’analisi.",
     "result": "Risultato IA",
     "level": "Livello",
     "estimatedSavings": "Risparmio stimato",
-    "tips": "Raccomandazioni",
+    "tips": "Suggerimenti per migliorare i consumi",
+    "confidence": "Affidabilità del modello",
+    "sourceMl": "modello addestrato",
+    "sourceLocal": "regole locali",
     "failed": "Impossibile completare l'analisi.",
+    "chart": {
+      "title": "Il tuo consumo vs riferimento",
+      "hint": "Il riferimento si adatta ai dati del modulo.",
+      "empty": "Inserisci il consumo mensile per vedere il grafico.",
+      "seriesYours": "Il tuo consumo",
+      "seriesBenchmark": "Riferimento"
+    },
     "levels": {
       "efficient": "Efficiente",
       "moderate": "Moderato",
@@ -70,12 +114,25 @@ export const pagesIt = {
     "tipsList": {
       "led": "Usare illuminazione LED",
       "peak": "Ridurre i consumi nelle ore di punta",
-      "appliances": "Ottimizzare gli elettrodomestici",
-      "ac": "Ridurre l'aria condizionata",
-      "replace": "Sostituire apparecchi vecchi",
+      "appliances": "Ottimizzare l'uso degli elettrodomestici",
+      "ac": "Ridurre l'uso del condizionatore",
+      "replace": "Sostituire attrezzature obsolete",
       "night": "Controllare i consumi notturni",
-      "keep": "Mantenere le abitudini",
-      "monitor": "Continuare il monitoraggio"
+      "keep": "Mantenere le abitudini attuali",
+      "monitor": "Continuare a monitorare i consumi",
+      "insulation": "Migliorare l'isolamento termico dell'abitazione",
+      "standby": "Tagliare lo standby nelle ore di basso uso",
+      "solar": "Valutare il fotovoltaico per coprire i picchi",
+      "shifts": "Spostare i processi intensivi fuori punta",
+      "motors": "Verificare l'efficienza di motori e inverter",
+      "compressedAir": "Rilevare perdite e ottimizzare l'aria compressa",
+      "processHeat": "Recuperare calore di processo o isolare forni",
+      "loadBalancing": "Bilanciare il carico tra macchine e turni",
+      "idleLines": "Spegnere o mettere in idle le linee inutilizzate",
+      "schedules": "Ottimizzare i piani di produzione",
+      "predictive": "Applicare manutenzione predittiva",
+      "scada": "Implementare o ampliare monitoraggio / SCADA",
+      "capacity": "Allineare la produzione alla capacità reale"
     }
   },
   "recommendations": {

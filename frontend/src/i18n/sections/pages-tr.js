@@ -50,18 +50,62 @@ export const pagesTr = {
     }
   },
   "analysis": {
-    "title": "Akıllı YA analizi",
-    "subtitle": "Enerji tüketimi değerlendirmesi",
+    "title": "Akıllı Yapay Zeka analizi",
+    "subtitle": "Tesis türüne göre enerji tüketimi değerlendirmesi",
+    "installationType": "Tesis türü",
+    "types": {
+      "casa": "Ev",
+      "fabrica_mediana": "Orta fabrika",
+      "fabrica_grande": "Büyük fabrika"
+    },
+    "typeHints": {
+      "casa": "Kişi başı tüketim ve iklimlendirme için ev verileri.",
+      "fabrica_mediana": "Makine, vardiya ve yoğunluk karşılaştırması için operasyon verileri.",
+      "fabrica_grande": "Hat, kapasite ve izleme değerlendirmesi için tesis verileri."
+    },
     "monthlyUsage": "Aylık tüketim (kWh)",
     "people": "Kişi sayısı",
     "devices": "Cihaz sayısı",
+    "homeArea": "Konut alanı (m²)",
+    "climateHours": "Günlük iklimlendirme saati",
+    "peakUseHours": "Günlük yoğun kullanım saati",
+    "shifts": "Günlük vardiya",
+    "machines": "Makine sayısı",
+    "area": "Tesis alanı (m²)",
+    "hoursPerDay": "Günlük çalışma saati",
+    "processIntensity": "Süreç yoğunluğu",
+    "hasCompressedAir": "Basınçlı hava kullanıyor mu?",
+    "lines": "Üretim hatları",
+    "operatingDays": "Aylık çalışma günü",
+    "capacityPct": "Kullanılan kapasite (%)",
+    "hasMonitoring": "Enerji izleme / SCADA var mı?",
+    "intensity": {
+      "baja": "Düşük",
+      "media": "Orta",
+      "alta": "Yüksek"
+    },
+    "yesNo": {
+      "yes": "Evet",
+      "no": "Hayır"
+    },
     "submit": "Tüketimi analiz et",
     "submitting": "Analiz ediliyor...",
-    "result": "YA sonucu",
+    "panelHint": "Seçilen türün alanlarını doldurun ve analizi çalıştırın.",
+    "result": "YZ sonucu",
     "level": "Seviye",
     "estimatedSavings": "Tahmini tasarruf",
-    "tips": "Öneriler",
+    "tips": "Tüketimi iyileştirme önerileri",
+    "confidence": "Model güveni",
+    "sourceMl": "eğitilmiş model",
+    "sourceLocal": "yerel kurallar",
     "failed": "Analiz tamamlanamadı.",
+    "chart": {
+      "title": "Tüketiminiz vs referans",
+      "hint": "Referans, formdaki verilere göre ayarlanır.",
+      "empty": "Grafiği görmek için aylık tüketimi girin.",
+      "seriesYours": "Tüketiminiz",
+      "seriesBenchmark": "Referans"
+    },
     "levels": {
       "efficient": "Verimli",
       "moderate": "Orta",
@@ -70,12 +114,25 @@ export const pagesTr = {
     "tipsList": {
       "led": "LED aydınlatma kullanın",
       "peak": "Yoğun saatlerde tüketimi azaltın",
-      "appliances": "Ev aletlerini optimize edin",
-      "ac": "Klimayı azaltın",
-      "replace": "Eski cihazları değiştirin",
-      "night": "Gece tüketimini kontrol edin",
-      "keep": "Alışkanlıkları koruyun",
-      "monitor": "Tüketimi izlemeye devam edin"
+      "appliances": "Cihaz kullanımını optimize edin",
+      "ac": "Klima kullanımını azaltın",
+      "replace": "Eski ekipmanı değiştirin",
+      "night": "Gece tüketimini izleyin",
+      "keep": "Mevcut alışkanlıkları koruyun",
+      "monitor": "Tüketimi izlemeye devam edin",
+      "insulation": "Konutun ısı yalıtımını iyileştirin",
+      "standby": "Düşük kullanım saatlerinde beklemeyi kesin",
+      "solar": "Pikleri karşılamak için güneş enerjisini değerlendirin",
+      "shifts": "Yoğun süreçleri yoğun saat dışına alın",
+      "motors": "Motor ve invertör verimliliğini kontrol edin",
+      "compressedAir": "Sızıntıları bulun ve basınçlı havayı optimize edin",
+      "processHeat": "Proses ısısını geri kazanın veya fırınları yalıtın",
+      "loadBalancing": "Yükü makineler ve vardiyalar arasında dengeleyin",
+      "idleLines": "Boş hatları kapatın veya beklemeye alın",
+      "schedules": "Üretim programlarını talebe göre optimize edin",
+      "predictive": "Kritik ekipmanda öngörücü bakım uygulayın",
+      "scada": "Enerji izleme / SCADA kurun veya genişletin",
+      "capacity": "Üretimi gerçek kullanılan kapasiteye göre ayarlayın"
     }
   },
   "recommendations": {
