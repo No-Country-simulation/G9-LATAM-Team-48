@@ -51,7 +51,7 @@ public class LowConsumptionRule implements RecommendationRule {
             return false;
         }
         String category = request.category().trim().toUpperCase();
-        return "LOW".equals(category) || "BAJO".equals(category);
+        return "LOW_CONSUMPTION".equals(category);
     }
 
     /**

@@ -9,6 +9,7 @@ import com.alura.recommendation.rules.RecommendationRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
@@ -60,6 +61,18 @@ class RecommendationServiceImplTest {
         // Instanciamos el servicio a probar
         recommendationService = new RecommendationServiceImpl(rules, messageSource);
     }
+    /**
+     * Limpieza posterior a cada test.
+     *
+     * <p>{@link LocaleContextHolder} guarda el Locale en un {@code ThreadLocal}
+     * que no se resetea solo entre tests. Sin este reset, el orden de ejecución
+     * podría afectar el resultado de tests futuros que no seteen su propio
+     * Locale explícitamente (fuente clásica de tests frágiles).</p>
+     */
+    @AfterEach
+    void tearDown() {
+        LocaleContextHolder.resetLocaleContext();
+    }
 
     /**
      * Prueba la generación de recomendaciones para perfiles de alto consumo en Español.
@@ -77,7 +90,7 @@ class RecommendationServiceImplTest {
     void shouldGenerateHighConsumptionRecommendationInSpanish() {
         // Given
         LocaleContextHolder.setLocale(Locale.of("es"));
-        RecommendationRequest request = new RecommendationRequest("user-123", "HIGH");
+        RecommendationRequest request = new RecommendationRequest("user-123", "HIGH_CONSUMPTION");
 
         // When
         RecommendationResponse response = recommendationService.generate(request);
@@ -108,7 +121,7 @@ class RecommendationServiceImplTest {
     void shouldGenerateMediumConsumptionRecommendationInEnglish() {
         // Given
         LocaleContextHolder.setLocale(Locale.ENGLISH);
-        RecommendationRequest request = new RecommendationRequest("user-456", "MEDIO");
+        RecommendationRequest request = new RecommendationRequest("user-456", "MEDIUM_CONSUMPTION");
 
         // When
         RecommendationResponse response = recommendationService.generate(request);
@@ -138,7 +151,7 @@ class RecommendationServiceImplTest {
     void shouldGenerateLowConsumptionRecommendationInPortuguese() {
         // Given
         LocaleContextHolder.setLocale(Locale.of("pt"));
-        RecommendationRequest request = new RecommendationRequest("user-789", "LOW");
+        RecommendationRequest request = new RecommendationRequest("user-789", "LOW_CONSUMPTION");
 
         // When
         RecommendationResponse response = recommendationService.generate(request);

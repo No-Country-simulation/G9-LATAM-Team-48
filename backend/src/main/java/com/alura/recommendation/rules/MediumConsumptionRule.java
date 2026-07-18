@@ -51,7 +51,7 @@ public class MediumConsumptionRule implements RecommendationRule {
             return false;
         }
         String category = request.category().trim().toUpperCase();
-        return "MEDIUM".equals(category) || "MEDIO".equals(category);
+        return "MEDIUM_CONSUMPTION".equals(category);
     }
 
     /**
