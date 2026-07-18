@@ -20,7 +20,7 @@ import java.util.Locale;
  * de Spring, eliminando textos duros del código fuente Java.</p>
  *
  * @author miyo
- * @version 1.0
+ * @version 1.1
  */
 @Component
 public class HighConsumptionRule implements RecommendationRule {

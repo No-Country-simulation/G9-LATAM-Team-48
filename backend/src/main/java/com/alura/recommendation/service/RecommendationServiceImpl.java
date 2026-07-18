@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * {@code rules} sin necesidad de modificar el código de este servicio.</p>
  *
  * @author miyo
- * @version 1.0
+ * @version 1.1
  */
 @Service
 public class RecommendationServiceImpl implements RecommendationService {
@@ -62,24 +62,28 @@ public class RecommendationServiceImpl implements RecommendationService {
     @Override
     public RecommendationResponse generate(RecommendationRequest request) {
         if (request == null) {
-            Locale locale = LocaleContextHolder.getLocale();
-            String defaultMessage = messageSource.getMessage("recommendation.default", null, locale);
-            return new RecommendationResponse(null, List.of(defaultMessage));
+            return new RecommendationResponse(null, List.of(resolveDefaultMessage()));
         }
 
-        // Evaluamos de manera segura las reglas que aplican para el request dado
         List<String> recommendations = rules.stream()
                 .filter(rule -> rule.applies(request))
                 .map(rule -> rule.evaluate(request))
                 .collect(Collectors.toList());
 
-        // Si el perfil no encajó en ninguna regla de negocio, retornamos la sugerencia por defecto traducida
         if (recommendations.isEmpty()) {
-            Locale locale = LocaleContextHolder.getLocale();
-            String defaultMessage = messageSource.getMessage("recommendation.default", null, locale);
-            recommendations.add(defaultMessage);
+            recommendations.add(resolveDefaultMessage());
         }
 
         return new RecommendationResponse(request.userId(), recommendations);
+    }
+
+    /**
+     * Resuelve el mensaje de recomendación por defecto en el idioma del hilo actual.
+     *
+     * @return mensaje de contingencia traducido según el {@link Locale} activo.
+     */
+    private String resolveDefaultMessage() {
+        Locale locale = LocaleContextHolder.getLocale();
+        return messageSource.getMessage("recommendation.default", null, locale);
     }
 }
