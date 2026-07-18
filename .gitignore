@@ -1,2 +1,4 @@
 .claude
 .bin
+# IntelliJ local files
+.idea/
