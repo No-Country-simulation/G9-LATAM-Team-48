@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -17,9 +18,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Verifica el flujo de autorizacion JWT de extremo a extremo:
  * registro -> login -> acceso a ruta protegida con y sin token.
+ *
+ * <p>Usa el perfil "test" que activa InMemoryUserRepository y H2 en memoria.</p>
  */
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 class AuthFlowIntegrationTest {
 
     @Autowired
