@@ -1,6 +1,7 @@
 package com.alura.user.repository;
 
 import com.alura.user.model.User;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
@@ -13,11 +14,16 @@ import java.util.concurrent.atomic.AtomicLong;
  *
  * <p>Provee una persistencia volatil (se pierde al reiniciar) suficiente para
  * que el flujo de autenticacion sea funcional y testeable sin base de datos ni
- * JPA. Cuando se introduzca una capa de persistencia real, bastara con crear una
- * nueva implementacion de {@link UserRepository} sin tocar el resto del codigo
- * (principio de inversion de dependencias).</p>
+ * JPA. Se registra como bean SOLO cuando la propiedad {@code app.persistence.type}
+ * tiene valor {@code in-memory} (típicamente en tests).</p>
+ *
+ * <p>En produccion se usa {@link com.alura.user.infrastructure.persistence.JpaUserRepositoryAdapter}.</p>
  */
 @Repository
+@ConditionalOnProperty(
+        name = "app.persistence.type",
+        havingValue = "in-memory"
+)
 public class InMemoryUserRepository implements UserRepository {
 
     private final Map<String, User> usersByEmail = new ConcurrentHashMap<>();
