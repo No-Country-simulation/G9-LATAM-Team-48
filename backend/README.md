@@ -8,6 +8,59 @@ prediccion, recomendaciones y calculo de costos.
 
 ---
 
+## Qué se implementó (Análisis IA) — para integrar
+
+Módulo **aparte**: no modifica recomendaciones, costos ni persistencia de
+consumos. El equipo puede mergearlo sin pisar ese trabajo.
+
+### Resumen
+
+| Pieza | Detalle |
+|-------|---------|
+| `POST /api/analisis` | Fachada del formulario del frontend (`com.alura.analisis`) |
+| `com.alura.prediction` | Cliente HTTP → FastAPI (`FastApiPredictionClient`) |
+| Respuesta | `nivelKey`, `ahorro`, `tipKeys`, `benchmark`, `confidence` |
+| Errores | `400` body inválido · `503` ML caído |
+| Seguridad | `/api/analisis/**` y `/api/v1/predictions/**` públicos (demo) |
+| CORS | Habilitado para el front en local |
+| Compose | Servicio `ml` + `PREDICTION_API_BASE_URL=http://ml:8000` |
+
+### Flujo
+
+```text
+Frontend → POST /api/analisis → Spring → ml-service (FastAPI :8000)
+```
+
+### Cómo probar en local
+
+```bash
+# Terminal 1 — modelo
+cd ml-service
+python -m venv .venv && .\.venv\Scripts\activate
+pip install -r requirements.txt
+python train.py
+uvicorn app.main:app --reload --port 8000
+
+# Terminal 2 — backend
+cd backend
+mvn spring-boot:run
+```
+
+Ejemplo:
+
+```bash
+curl -X POST http://localhost:8080/api/analisis ^
+  -H "Content-Type: application/json" ^
+  -d "{\"tipo\":\"casa\",\"consumo\":380,\"personas\":4,\"equipos\":8,\"area\":64,\"climateHours\":0,\"peakUseHours\":6}"
+```
+
+Guía completa de contrato e integración:
+[`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md).
+
+Microservicio Python: [`ml-service/README.md`](../ml-service/README.md).
+
+---
+
 ## Tecnologias
 
 - **Java 21**
@@ -109,6 +162,7 @@ backend
     │   │   │   ├── service     #   UserDetailsService
     │   │   │   └── config      #   SecurityFilterChain
     │   │   ├── auth            # Login / registro / emision de tokens
+    │   │   ├── analisis        # Fachada Analisis IA (POST /api/analisis)
     │   │   ├── prediction      # Cliente del servicio de ML (FastAPI)
     │   │   ├── recommendation  # Motor de reglas de recomendacion
     │   │   ├── cost            # Calculo de costos energeticos
@@ -138,6 +192,8 @@ Cada modulo sigue una **arquitectura por capas** (`controller` -> `service` ->
 - [`docs/backend/JWT_AUTHENTICATION.md`](../docs/backend/JWT_AUTHENTICATION.md) —
   feature de autenticacion/autorizacion con JWT: justificacion, beneficios,
   diseno y uso.
+- [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md) —
+  modulo Analisis IA (Spring + FastAPI): contrato, env y como integrarlo.
 
 ---
 
@@ -177,6 +233,6 @@ curl http://localhost:8080/api/v1/users/me -H "Authorization: Bearer $TOKEN"
 - DTOs inmutables (`record`) para los contratos de la API.
 - Preparado para **pruebas unitarias** e **integracion continua**.
 
-> El modulo de autenticacion/autorizacion (JWT) ya esta implementado. El resto
-> de modulos (prediccion, recomendaciones, costos, consumo de FastAPI,
-> persistencia real) siguen siendo esqueletos con `TODO`.
+> Implementados: autenticacion JWT y **Analisis IA** (`/api/analisis` +
+> `prediction` → FastAPI). Recomendaciones, costos y persistencia de consumos
+> siguen pendientes / en esqueleto.

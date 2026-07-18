@@ -34,6 +34,18 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.CONFLICT, ex.getMessage(), request, null);
     }
 
+    @ExceptionHandler(MlServiceUnavailableException.class)
+    public ResponseEntity<ErrorResponse> handleMlUnavailable(
+            MlServiceUnavailableException ex, HttpServletRequest request) {
+        return build(HttpStatus.SERVICE_UNAVAILABLE, ex.getMessage(), request, null);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalArgument(
+            IllegalArgumentException ex, HttpServletRequest request) {
+        return build(HttpStatus.BAD_REQUEST, ex.getMessage(), request, null);
+    }
+
     @ExceptionHandler({BadCredentialsException.class, UsernameNotFoundException.class})
     public ResponseEntity<ErrorResponse> handleBadCredentials(
             RuntimeException ex, HttpServletRequest request) {

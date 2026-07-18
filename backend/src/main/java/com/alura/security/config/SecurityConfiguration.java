@@ -35,6 +35,8 @@ public class SecurityConfiguration {
     /** Rutas accesibles sin autenticacion. */
     private static final String[] PUBLIC_ENDPOINTS = {
             "/api/v1/auth/**",
+            "/api/analisis/**",
+            "/api/v1/predictions/**",
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/swagger-ui.html",
@@ -53,6 +55,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> {})
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
                         .anyRequest().authenticated())
