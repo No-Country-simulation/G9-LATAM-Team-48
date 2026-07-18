@@ -52,7 +52,7 @@ public class HighConsumptionRule implements RecommendationRule {
             return false;
         }
         String category = request.category().trim().toUpperCase();
-        return "HIGH".equals(category) || "ALTO".equals(category);
+        return "HIGH_CONSUMPTION".equals(category);
     }
 
     /**
