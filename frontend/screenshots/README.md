@@ -21,7 +21,6 @@ npm run screenshots  # en otra
 | `forgot-password.png` | Modal — Recuperar contraseña |
 | `reset-password.png` | Pantalla — Nueva contraseña (link del mail) |
 | `verify-email.png` | Pantalla — Verificar email (link del mail) |
-| `equipo-48.png` | Pantalla — Equipo 48 |
-| `contacto.png` | Pantalla — Contáctanos |
+| `contacto.png` | Pantalla — Contáctanos (formulario + Equipo 48 flip cards) |
 
 Formato: **PNG**, viewport ~1440×900 (o `fullPage` en dashboard/páginas).

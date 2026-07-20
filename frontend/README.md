@@ -72,11 +72,7 @@ Hackathon ONE G9 · Team 48
   </tr>
   <tr>
     <td width="50%"><strong>Verificar email</strong> (solo vía link del mail)<br /><img src="./screenshots/verify-email.png" alt="Verificar email" /></td>
-    <td width="50%"><strong>Equipo 48</strong><br /><img src="./screenshots/equipo-48.png" alt="Equipo 48" /></td>
-  </tr>
-  <tr>
-    <td width="50%"><strong>Contáctanos</strong><br /><img src="./screenshots/contacto.png" alt="Contáctanos" /></td>
-    <td width="50%"></td>
+    <td width="50%"><strong>Contáctanos</strong> — formulario + Equipo 48 (flip cards)<br /><img src="./screenshots/contacto.png" alt="Contáctanos" /></td>
   </tr>
 </table>
 
@@ -99,7 +95,7 @@ npm run screenshots
 | **Registro / Login** | Modal con pestañas; registro exige verificar email (mail SMTP) antes del login; contraseña ≥ 8 caracteres. |
 | **Verificar email / Reset password** | Pantallas que solo se abren con el link del correo (`?verifyToken=` / `?resetToken=`). |
 | **Panel Admin** | CRUD de usuarios (rol `ADMIN`): alta, edición, desactivación lógica; admins no se desactivan. |
-| **Contáctanos** | Formulario de contacto + Equipo 48 en cards con flip (links LinkedIn/GitHub/CV). |
+| **Contáctanos** | Formulario de contacto + Equipo 48 en flip cards (LinkedIn, GitHub, portafolio, Instagram, email). |
 | **Multilenguaje** | Selector en el header; detecta idioma del navegador (fallback inglés). |
 | **Tema claro / oscuro** | Alternable desde el header; persistido en `localStorage`. |
 | **Login opcional** | Navegación pública; sesión para acciones de operador. |
