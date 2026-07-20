@@ -74,6 +74,10 @@ Hackathon ONE G9 · Team 48
     <td width="50%"><strong>Verificar email</strong> (solo vía link del mail)<br /><img src="./screenshots/verify-email.png" alt="Verificar email" /></td>
     <td width="50%"><strong>Equipo 48</strong><br /><img src="./screenshots/equipo-48.png" alt="Equipo 48" /></td>
   </tr>
+  <tr>
+    <td width="50%"><strong>Contáctanos</strong><br /><img src="./screenshots/contacto.png" alt="Contáctanos" /></td>
+    <td width="50%"></td>
+  </tr>
 </table>
 
 Para regenerar las capturas (con el front en `npm run dev`):
