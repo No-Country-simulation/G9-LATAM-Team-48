@@ -16,6 +16,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -55,7 +56,7 @@ public class AnalisisConsultaEntity {
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "tip_keys_json")
-    private Object tipKeysJson;
+    private List<String> tipKeysJson;
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "response_json")
