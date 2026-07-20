@@ -55,6 +55,10 @@ Plataforma para el análisis y la optimización del consumo energético.
     <td width="50%"><strong>Recuperar contraseña</strong><br /><img src="./frontend/screenshots/forgot-password.png" alt="Recuperar contraseña" /></td>
     <td width="50%"><strong>Nueva contraseña</strong><br /><img src="./frontend/screenshots/reset-password.png" alt="Nueva contraseña" /></td>
   </tr>
+  <tr>
+    <td width="50%"><strong>Verificar email</strong><br /><img src="./frontend/screenshots/verify-email.png" alt="Verificar email" /></td>
+    <td width="50%"></td>
+  </tr>
 </table>
 
 Documentación de auth, email y admin: [`docs/backend/AUTH_EMAIL_ADMIN.md`](./docs/backend/AUTH_EMAIL_ADMIN.md).

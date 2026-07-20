@@ -20,5 +20,6 @@ npm run screenshots  # en otra
 | `admin-editar-usuario.png` | Modal — Editar usuario |
 | `forgot-password.png` | Modal — Recuperar contraseña |
 | `reset-password.png` | Pantalla — Nueva contraseña (link del mail) |
+| `verify-email.png` | Pantalla — Verificar email (link del mail) |
 
 Formato: **PNG**, viewport ~1440×900 (o `fullPage` en dashboard/páginas).

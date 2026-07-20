@@ -70,6 +70,10 @@ Hackathon ONE G9 · Team 48
     <td width="50%"><strong>Recuperar contraseña</strong><br /><img src="./screenshots/forgot-password.png" alt="Recuperar contraseña" /></td>
     <td width="50%"><strong>Nueva contraseña</strong> (solo vía link del mail)<br /><img src="./screenshots/reset-password.png" alt="Nueva contraseña" /></td>
   </tr>
+  <tr>
+    <td width="50%"><strong>Verificar email</strong> (solo vía link del mail)<br /><img src="./screenshots/verify-email.png" alt="Verificar email" /></td>
+    <td width="50%"></td>
+  </tr>
 </table>
 
 Para regenerar las capturas (con el front en `npm run dev`):
