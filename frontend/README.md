@@ -271,7 +271,7 @@ El roster vive en Contáctanos (flip cards). Datos en [`src/data/equipo.js`](./s
 
 | Integrante | Rol | Perfil |
 |------------|-----|--------|
-| Jorge Gustavo Martinez | Full Stack Developer | [LinkedIn](https://www.linkedin.com/in/jorgegustavomartinez) · [GitHub](https://github.com/TnlComputer) |
+| Jorge Gustavo Martinez | Full Stack Developer | [LinkedIn](https://www.linkedin.com/in/jorgegustavomartinez) · [GitHub](https://github.com/TnlComputer) · [Portafolio](https://www.tnlcomputer.com.ar/portfolio.html) · [Instagram](https://www.instagram.com/tnlcomputer/) |
 | Ricardo Chirinos | Data Analyst | [LinkedIn](https://www.linkedin.com/in/ricardo-alexander-chirinos-bustos) · [GitHub](https://github.com/RicardoACB) |
 | Elizabeth Díaz Familia | Data Scientist | [LinkedIn](https://www.linkedin.com/in/eli-familia/) · [GitHub](https://github.com/Lizzy0981) · [Portafolio](https://lizzy0981.github.io/) |
 | Carlos Miyen Brandolino | Backend Developer | — |

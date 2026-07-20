@@ -12,6 +12,8 @@ export const EQUIPO_48 = [
     photo: '/equipo/jorge-martinez.png',
     linkedin: 'https://www.linkedin.com/in/jorgegustavomartinez',
     github: 'https://github.com/TnlComputer',
+    portfolio: 'https://www.tnlcomputer.com.ar/portfolio.html',
+    instagram: 'https://www.instagram.com/tnlcomputer/',
     email: 'jgmartinez1965@gmail.com',
     cv: '',
   },
