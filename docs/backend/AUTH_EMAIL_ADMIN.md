@@ -49,6 +49,7 @@ Migraciones Flyway relevantes (`backend/src/main/resources/db/migration/`):
 | V3 | `password_reset_tokens` |
 | V4 | `users.deleted_at` (borrado lógico) |
 | V5 | `users.email_verified_at` + `email_verification_tokens` |
+| V6 | Seed usuarios demo (`operador`, `admin`, `team48`) |
 
 ### `users.email_verified_at`
 
@@ -227,10 +228,13 @@ SPRING_PROFILES_ACTIVE=dev
 4. Forgot password → llegar mail → abrir link → nueva contraseña.
 5. Login como `admin@energyai.com` → Panel Admin → CRUD.
 
-Cuentas demo (seed / alta manual; email ya verificado):
+Cuentas demo (migración Flyway `V6__seed_demo_users.sql`; email ya verificado):
 
 | Usuario | Email | Password |
 |---------|-------|----------|
 | Operador | `operador@energyai.com` | `operador123` |
 | Admin | `admin@energyai.com` | `admin1234` |
 | Team 48 | `team48@energyai.com` | `team48123` |
+
+> La DB `energia_ia` se crea con Docker (`POSTGRES_DB`) o a mano
+> (`CREATE DATABASE energia_ia;`). Flyway solo crea tablas y el seed demo.
