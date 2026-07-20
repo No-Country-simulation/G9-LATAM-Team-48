@@ -57,7 +57,7 @@ Plataforma para el análisis y la optimización del consumo energético.
   </tr>
   <tr>
     <td width="50%"><strong>Verificar email</strong><br /><img src="./frontend/screenshots/verify-email.png" alt="Verificar email" /></td>
-    <td width="50%"></td>
+    <td width="50%"><strong>Equipo 48</strong><br /><img src="./frontend/screenshots/equipo-48.png" alt="Equipo 48" /></td>
   </tr>
 </table>
 
