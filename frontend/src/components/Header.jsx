@@ -1,3 +1,4 @@
+import Dropdown from 'react-bootstrap/Dropdown'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
@@ -14,6 +15,9 @@ function Header({ onMenuOpen, onLoginClick }) {
 
   const outlineClass =
     theme === 'dark' ? 'btn-outline-light' : 'btn-outline-dark'
+
+  const selectedLocale =
+    locales.find((item) => item.code === locale) || locales[0]
 
   return (
     <nav
@@ -38,22 +42,29 @@ function Header({ onMenuOpen, onLoginClick }) {
         </div>
 
         <div className="d-flex align-items-center gap-2 gap-md-3 ms-auto">
-          <label className="visually-hidden" htmlFor="locale-select">
-            {t('common.language')}
-          </label>
-          <select
-            id="locale-select"
-            className="form-select form-select-sm w-auto"
-            value={locale}
-            onChange={(event) => setLocale(event.target.value)}
-            aria-label={t('common.language')}
-          >
-            {locales.map((item) => (
-              <option key={item.code} value={item.code}>
-                {item.label} — {t(`common.languages.${item.code}`)}
-              </option>
-            ))}
-          </select>
+          <Dropdown align="end">
+            <Dropdown.Toggle
+              id="locale-select"
+              size="sm"
+              variant={theme === 'dark' ? 'outline-light' : 'outline-dark'}
+              aria-label={t('common.language')}
+              title={`${selectedLocale.label} — ${t(`common.languages.${selectedLocale.code}`)}`}
+            >
+              {selectedLocale.label}
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu className="locale-menu">
+              {locales.map((item) => (
+                <Dropdown.Item
+                  key={item.code}
+                  active={item.code === locale}
+                  onClick={() => setLocale(item.code)}
+                >
+                  {item.label} — {t(`common.languages.${item.code}`)}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
 
           <button
             type="button"

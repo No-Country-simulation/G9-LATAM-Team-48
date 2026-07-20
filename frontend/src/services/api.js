@@ -16,9 +16,16 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token')
+  const headers = config.headers || {}
+  const existing =
+    headers.Authorization ||
+    headers.authorization ||
+    (typeof headers.get === 'function' ? headers.get('Authorization') : null)
 
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`
+  // No pisar un Authorization ya enviado (ej. login → /me con token nuevo)
+  if (token && !existing) {
+    headers.Authorization = `Bearer ${token}`
+    config.headers = headers
   }
 
   return config

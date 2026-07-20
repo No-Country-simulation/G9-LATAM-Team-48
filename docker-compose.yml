@@ -2,6 +2,24 @@
 # Uso: docker compose up -d --build
 
 services:
+  db:
+    image: postgres:16-alpine
+    container_name: energyai-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-energia_ia}
+      POSTGRES_USER: ${POSTGRES_USER:-energia_app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - energyai_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-energia_app} -d ${POSTGRES_DB:-energia_ia}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   ml:
     build:
       context: ./ml-service
@@ -29,9 +47,18 @@ services:
       JWT_SECRET: ${JWT_SECRET:-change-me-in-production-please-use-a-long-random-secret}
       JWT_EXPIRATION: ${JWT_EXPIRATION:-86400000}
       PREDICTION_API_BASE_URL: ${PREDICTION_API_BASE_URL:-http://ml:8000}
+      APP_PERSISTENCE_TYPE: jpa
+      FLYWAY_ENABLED: "true"
+      JPA_DDL: validate
+      DB_URL: jdbc:postgresql://db:5432/${POSTGRES_DB:-energia_ia}
+      DB_USERNAME: ${POSTGRES_USER:-energia_app}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+      DB_DRIVER: org.postgresql.Driver
     ports:
       - "${BACKEND_PORT:-8080}:8080"
     depends_on:
+      db:
+        condition: service_healthy
       ml:
         condition: service_started
     healthcheck:
@@ -57,3 +84,6 @@ services:
     depends_on:
       backend:
         condition: service_started
+
+volumes:
+  energyai_pgdata:

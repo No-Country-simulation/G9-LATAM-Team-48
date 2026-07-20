@@ -27,6 +27,7 @@ export default {
     consumos: 'Tüketim',
     ia: 'YA analizi',
     recomendaciones: 'Öneriler',
+    adminUsuarios: 'Panel Admin',
   },
   auth: {
     loginTitle: 'Giriş yap',

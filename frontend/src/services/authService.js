@@ -13,6 +13,23 @@ function authErrorMessage(error, fallback) {
   )
 }
 
+export async function getCurrentUser(token = localStorage.getItem('token')) {
+  if (!token) {
+    throw new Error('noToken')
+  }
+
+  const { data } = await api.get('/api/v1/users/me', {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+  const profile = data?.data ?? data
+  return {
+    id: profile.id,
+    nombre: profile.name || profile.nombre,
+    email: profile.email,
+    rol: String(profile.role || profile.rol || 'USER').toUpperCase(),
+  }
+}
+
 function mapAuthResponse(payload, email, name) {
   const auth = payload?.data ?? payload
   const token = auth?.accessToken ?? auth?.token
@@ -30,7 +47,7 @@ function mapAuthResponse(payload, email, name) {
         auth?.name ||
         formatDisplayName(email.split('@')[0]),
       email,
-      rol: auth?.rol ?? 'operador',
+      rol: String(auth?.role ?? auth?.rol ?? 'USER').toUpperCase(),
     },
   }
 }
@@ -45,9 +62,18 @@ export async function login(credentials) {
       email: credentials.email.trim(),
       password: credentials.password,
     })
-    return mapAuthResponse(data, credentials.email.trim())
+    const session = mapAuthResponse(data, credentials.email.trim())
+    localStorage.setItem('token', session.token)
+    try {
+      session.user = await getCurrentUser(session.token)
+    } catch {
+      // Si /me falla, al menos queda la sesion basica
+    }
+    return session
   } catch (error) {
+    // Solo mock si no hay backend; si el backend responde error, no enmascarar
     if (import.meta.env.DEV && error.code === 'ERR_NETWORK') {
+      console.warn('Backend no disponible, usando mock auth')
       return mockLogin(credentials)
     }
 
@@ -55,6 +81,10 @@ export async function login(credentials) {
   }
 }
 
+/**
+ * Registro: no inicia sesion. Requiere verificar email.
+ * En dev el backend puede devolver verificationToken para abrir la pantalla.
+ */
 export async function register(credentials) {
   const body = {
     name: credentials.name.trim(),
@@ -68,7 +98,17 @@ export async function register(credentials) {
 
   try {
     const { data } = await api.post('/api/v1/auth/register', body)
-    return mapAuthResponse(data, body.email, body.name)
+    const payload = data?.data ?? data
+    return {
+      pendingVerification: true,
+      message:
+        payload?.message ||
+        data?.message ||
+        'Cuenta creada. Revisa tu email para verificarla.',
+      emailStatus: payload?.emailStatus,
+      verificationToken: payload?.verificationToken ?? null,
+      email: body.email,
+    }
   } catch (error) {
     if (import.meta.env.DEV && error.code === 'ERR_NETWORK') {
       return mockRegister(body)

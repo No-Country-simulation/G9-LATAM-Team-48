@@ -27,6 +27,7 @@ export default {
     consumos: 'Consumos',
     ia: 'Análise IA',
     recomendaciones: 'Recomendações',
+    adminUsuarios: 'Panel Admin',
   },
   auth: {
     loginTitle: 'Entrar',

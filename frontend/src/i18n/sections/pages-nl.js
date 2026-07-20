@@ -99,6 +99,11 @@ export const pagesNl = {
     "sourceMl": "getraind model",
     "sourceLocal": "lokale regels",
     "failed": "Analyse kon niet worden voltooid.",
+    "loginRequired": "Log in of registreer om te analyseren en het resultaat per e-mail te ontvangen.",
+    "loginCta": "Inloggen / Registreren",
+    "emailHint": "We sturen de analyse naar",
+    "emailPending": "We sturen je deze analyse binnenkort ook per e-mail.",
+    "emailSent": "We hebben je deze analyse per e-mail gestuurd.",
     "chart": {
       "title": "Uw verbruik vs referentie",
       "hint": "De referentie past zich aan de formuliergegevens aan.",

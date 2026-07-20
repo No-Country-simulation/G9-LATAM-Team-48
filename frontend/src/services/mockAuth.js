@@ -9,8 +9,16 @@ function seedUsers() {
     nombre: formatDisplayName(cred.email.split('@')[0]),
     email: cred.email.toLowerCase(),
     password: cred.password,
-    rol: 'operador',
+    rol: cred.roleKey === 'admin' ? 'ADMIN' : 'USER',
   }))
+}
+
+function normalizeDemoRoles(users) {
+  return users.map((user) =>
+    user.email === 'admin@energyai.com'
+      ? { ...user, rol: 'ADMIN' }
+      : { ...user, rol: user.rol === 'operador' ? 'USER' : user.rol },
+  )
 }
 
 function readUsers() {
@@ -21,7 +29,9 @@ function readUsers() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded))
       return seeded
     }
-    return JSON.parse(raw)
+    const normalized = normalizeDemoRoles(JSON.parse(raw))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized))
+    return normalized
   } catch {
     const seeded = seedUsers()
     localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded))

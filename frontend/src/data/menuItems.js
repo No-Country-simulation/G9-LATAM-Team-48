@@ -8,4 +8,11 @@ export const MENU_ITEMS = [
     icon: 'recomendaciones',
     color: 'green',
   },
+  {
+    id: 'admin-usuarios',
+    labelKey: 'menu.adminUsuarios',
+    icon: 'admin',
+    color: 'rose',
+    adminOnly: true,
+  },
 ]

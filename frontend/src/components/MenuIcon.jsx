@@ -3,6 +3,7 @@ import {
   LuZap,
   LuBrainCircuit,
   LuLightbulb,
+  LuUsers,
 } from 'react-icons/lu'
 
 const ICONS = {
@@ -10,6 +11,7 @@ const ICONS = {
   consumos: LuZap,
   ia: LuBrainCircuit,
   recomendaciones: LuLightbulb,
+  admin: LuUsers,
 }
 
 const COLORS = {
@@ -28,6 +30,10 @@ const COLORS = {
   green: {
     bg: 'rgba(25, 135, 84, 0.18)',
     icon: '#198754',
+  },
+  rose: {
+    bg: 'rgba(214, 51, 108, 0.16)',
+    icon: '#d6336c',
   },
 }
 

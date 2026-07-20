@@ -99,6 +99,11 @@ export const pagesIt = {
     "sourceMl": "modello addestrato",
     "sourceLocal": "regole locali",
     "failed": "Impossibile completare l'analisi.",
+    "loginRequired": "Accedi o registrati per analizzare e ricevere il risultato via email.",
+    "loginCta": "Accedi / Registrati",
+    "emailHint": "Invieremo l'analisi a",
+    "emailPending": "Ti invieremo anche questa analisi via email a breve.",
+    "emailSent": "Ti abbiamo inviato questa analisi via email.",
     "chart": {
       "title": "Il tuo consumo vs riferimento",
       "hint": "Il riferimento si adatta ai dati del modulo.",

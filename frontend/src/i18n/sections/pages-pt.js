@@ -99,6 +99,11 @@ export const pagesPt = {
     "sourceMl": "modelo treinado",
     "sourceLocal": "regras locais",
     "failed": "Não foi possível concluir a análise.",
+    "loginRequired": "Para analisar e receber o resultado por e-mail, inicie sessao ou registre-se.",
+    "loginCta": "Entrar / Registrar",
+    "emailHint": "Enviaremos a analise para",
+    "emailPending": "Tambem enviaremos esta analise por e-mail em breve.",
+    "emailSent": "Enviamos esta analise por e-mail.",
     "chart": {
       "title": "Seu consumo vs referência",
       "hint": "A referência se ajusta aos dados do formulário.",

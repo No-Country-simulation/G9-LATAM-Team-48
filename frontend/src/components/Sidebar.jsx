@@ -1,11 +1,17 @@
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
+import { useAuth } from '../context/AuthContext'
 import { MENU_ITEMS } from '../data/menuItems'
+import { isAdmin } from '../utils/roles'
 import MenuIcon from './MenuIcon'
 
 function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
   const { theme } = useTheme()
   const { t } = useLocale()
+  const { user, isAuthenticated } = useAuth()
+  const items = MENU_ITEMS.filter(
+    (item) => !item.adminOnly || (isAuthenticated && isAdmin(user)),
+  )
 
   const sidebarClass =
     theme === 'dark' ? 'bg-dark text-white' : 'bg-light'
@@ -32,7 +38,7 @@ function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
       {!isMobile && <hr />}
 
       <ul className="nav flex-column gap-1">
-        {MENU_ITEMS.map((item) => {
+        {items.map((item) => {
           const label = t(item.labelKey)
 
           return (

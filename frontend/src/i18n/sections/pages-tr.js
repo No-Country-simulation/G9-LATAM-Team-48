@@ -99,6 +99,11 @@ export const pagesTr = {
     "sourceMl": "eğitilmiş model",
     "sourceLocal": "yerel kurallar",
     "failed": "Analiz tamamlanamadı.",
+    "loginRequired": "Analizi calistirmak ve e-posta ile almak icin giris yapin veya kaydolun.",
+    "loginCta": "Giris / Kayit",
+    "emailHint": "Analizi su adrese e-posta ile gonderecegiz:",
+    "emailPending": "Bu analizi yakinda e-posta ile de gonderecegiz.",
+    "emailSent": "Bu analizi e-posta ile gonderdik.",
     "chart": {
       "title": "Tüketiminiz vs referans",
       "hint": "Referans, formdaki verilere göre ayarlanır.",

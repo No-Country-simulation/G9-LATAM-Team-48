@@ -99,6 +99,11 @@ export const pagesDe = {
     "sourceMl": "trainiertes Modell",
     "sourceLocal": "lokale Regeln",
     "failed": "Analyse konnte nicht abgeschlossen werden.",
+    "loginRequired": "Melden Sie sich an oder registrieren Sie sich, um die Analyse zu starten und per E-Mail zu erhalten.",
+    "loginCta": "Anmelden / Registrieren",
+    "emailHint": "Wir senden die Analyse an",
+    "emailPending": "Wir senden Ihnen diese Analyse in Kürze auch per E-Mail.",
+    "emailSent": "Wir haben Ihnen diese Analyse per E-Mail gesendet.",
     "chart": {
       "title": "Ihr Verbrauch vs. Referenz",
       "hint": "Die Referenz passt sich an Ihre Formulardaten an.",

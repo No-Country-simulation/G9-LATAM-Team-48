@@ -25,8 +25,10 @@
 
 ## 1. Que se implemento
 
-- **Registro** de usuarios (`POST /api/v1/auth/register`).
-- **Login** con emision de token (`POST /api/v1/auth/login`).
+- **Registro** de usuarios (`POST /api/v1/auth/register`) — sin JWT hasta
+  verificar email (ver [`AUTH_EMAIL_ADMIN.md`](./AUTH_EMAIL_ADMIN.md)).
+- **Login** con emision de token (`POST /api/v1/auth/login`), solo si el email
+  esta verificado.
 - **Autorizacion** de rutas mediante un filtro que valida el token en cada
   peticion.
 - **Ruta protegida de ejemplo** (`GET /api/v1/users/me`) que devuelve el perfil
@@ -34,9 +36,9 @@
 - **Manejo centralizado de errores** (validacion, credenciales invalidas, etc.).
 - **Integracion con Swagger UI** (boton *Authorize* con esquema Bearer).
 
-> La persistencia es **en memoria** (`InMemoryUserRepository`): suficiente para
-> un flujo funcional y testeable sin base de datos. Se sustituye por una
-> implementacion real sin tocar el resto del codigo (ver seccion 12).
+> Persistencia: perfil `test` usa `InMemoryUserRepository` + H2. En desarrollo
+> con Postgres: `APP_PERSISTENCE_TYPE=jpa` + Flyway (ver
+> [`AUTH_EMAIL_ADMIN.md`](./AUTH_EMAIL_ADMIN.md)).
 
 ---
 

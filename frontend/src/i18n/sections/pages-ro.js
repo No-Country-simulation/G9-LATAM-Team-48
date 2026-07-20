@@ -99,6 +99,11 @@ export const pagesRo = {
     "sourceMl": "model antrenat",
     "sourceLocal": "reguli locale",
     "failed": "Analiza nu a putut fi finalizată.",
+    "loginRequired": "Autentifica-te sau inregistreaza-te pentru a analiza si a primi rezultatul pe email.",
+    "loginCta": "Autentificare / Inregistrare",
+    "emailHint": "Vom trimite analiza la",
+    "emailPending": "Iti vom trimite si aceasta analiza pe email in curand.",
+    "emailSent": "Ti-am trimis aceasta analiza pe email.",
     "chart": {
       "title": "Consumul tău vs referință",
       "hint": "Referința se ajustează după datele din formular.",

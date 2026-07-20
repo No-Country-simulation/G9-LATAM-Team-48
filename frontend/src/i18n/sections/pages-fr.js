@@ -99,6 +99,11 @@ export const pagesFr = {
     "sourceMl": "modèle entraîné",
     "sourceLocal": "règles locales",
     "failed": "Impossible de terminer l'analyse.",
+    "loginRequired": "Connectez-vous ou inscrivez-vous pour analyser et recevoir le resultat par e-mail.",
+    "loginCta": "Connexion / Inscription",
+    "emailHint": "Nous enverrons l'analyse a",
+    "emailPending": "Nous vous enverrons aussi cette analyse par e-mail sous peu.",
+    "emailSent": "Nous vous avons envoye cette analyse par e-mail.",
     "chart": {
       "title": "Votre conso. vs référence",
       "hint": "La référence s’ajuste aux données du formulaire.",

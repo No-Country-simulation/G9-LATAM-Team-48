@@ -27,6 +27,7 @@ export default {
     consumos: 'Verbrauch',
     ia: 'KI-Analyse',
     recomendaciones: 'Empfehlungen',
+    adminUsuarios: 'Panel Admin',
   },
   auth: {
     loginTitle: 'Anmelden',

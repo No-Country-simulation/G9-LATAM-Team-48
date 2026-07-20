@@ -99,6 +99,11 @@ export const pagesPl = {
     "sourceMl": "wytrenowany model",
     "sourceLocal": "reguły lokalne",
     "failed": "Nie udało się ukończyć analizy.",
+    "loginRequired": "Zaloguj sie lub zarejestruj, aby uruchomic analize i otrzymac wynik e-mailem.",
+    "loginCta": "Zaloguj / Zarejestruj",
+    "emailHint": "Wyslemy analize na",
+    "emailPending": "Wyslemy Ci tez te analize e-mailem wkrotce.",
+    "emailSent": "Wyslalismy Ci te analize e-mailem.",
     "chart": {
       "title": "Twoje zużycie vs referencja",
       "hint": "Referencja dostosowuje się do danych formularza.",

@@ -15,5 +15,8 @@ npm run screenshots  # en otra
 | `recomendaciones.png` | Recomendaciones |
 | `login.png` | Modal — pestaña Entrar |
 | `registro.png` | Modal — pestaña Registrarse |
+| `admin-usuarios.png` | Panel Admin — listado de usuarios |
+| `admin-crear-usuario.png` | Modal — Crear usuario |
+| `admin-editar-usuario.png` | Modal — Editar usuario |
 
 Formato: **PNG**, viewport ~1440×900 (o `fullPage` en dashboard/páginas).

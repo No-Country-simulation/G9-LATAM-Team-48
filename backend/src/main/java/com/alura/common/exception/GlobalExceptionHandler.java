@@ -4,6 +4,7 @@ import com.alura.common.response.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -46,10 +47,22 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.BAD_REQUEST, ex.getMessage(), request, null);
     }
 
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalState(
+            IllegalStateException ex, HttpServletRequest request) {
+        return build(HttpStatus.UNAUTHORIZED, ex.getMessage(), request, null);
+    }
+
     @ExceptionHandler({BadCredentialsException.class, UsernameNotFoundException.class})
     public ResponseEntity<ErrorResponse> handleBadCredentials(
             RuntimeException ex, HttpServletRequest request) {
         return build(HttpStatus.UNAUTHORIZED, "Credenciales invalidas", request, null);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorResponse> handleAccessDenied(
+            AccessDeniedException ex, HttpServletRequest request) {
+        return build(HttpStatus.FORBIDDEN, "No tenes permisos para esta operacion", request, null);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

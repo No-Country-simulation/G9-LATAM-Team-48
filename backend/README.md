@@ -8,6 +8,24 @@ prediccion, recomendaciones y calculo de costos.
 
 ---
 
+## Persistencia (PostgreSQL)
+
+Se integró el trabajo de auth con JPA/Flyway del equipo, adaptado a **PostgreSQL**
+(la rama original usaba MySQL; la documentación del proyecto apunta a Postgres).
+
+| Modo | Cómo |
+|------|------|
+| Demo local (default) | `APP_PERSISTENCE_TYPE=in-memory` — sin DB |
+| PostgreSQL | Creá la DB `energia_ia` y usá vars de `backend/.env.example` |
+
+Migraciones Flyway:
+- `V1__create_users_table.sql` — usuarios
+- `V2__create_analisis_consultas.sql` — consultas del Análisis IA (historial + email)
+
+`POST /api/analisis` **requiere login** (JWT): guarda la consulta y deja el email en `PENDING`.
+
+---
+
 ## Qué se implementó (Análisis IA) — para integrar
 
 Módulo **aparte**: no modifica recomendaciones, costos ni persistencia de
@@ -192,36 +210,46 @@ Cada modulo sigue una **arquitectura por capas** (`controller` -> `service` ->
 - [`docs/backend/JWT_AUTHENTICATION.md`](../docs/backend/JWT_AUTHENTICATION.md) —
   feature de autenticacion/autorizacion con JWT: justificacion, beneficios,
   diseno y uso.
+- [`docs/backend/AUTH_EMAIL_ADMIN.md`](../docs/backend/AUTH_EMAIL_ADMIN.md) —
+  verificacion de email, SMTP, reset password, soft delete y Panel Admin.
 - [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md) —
   modulo Analisis IA (Spring + FastAPI): contrato, env y como integrarlo.
 
 ---
 
-## Autenticacion (JWT)
+## Autenticacion (JWT + email)
 
-El backend usa autenticacion **stateless** con JSON Web Tokens. Endpoints
-principales:
+El backend usa autenticacion **stateless** con JSON Web Tokens. El registro
+**no** emite JWT: hay que verificar el email antes del login.
 
 | Metodo | Ruta | Acceso | Descripcion |
 |--------|------|--------|-------------|
-| `POST` | `/api/v1/auth/register` | Publico | Registra un usuario y emite un token. |
-| `POST` | `/api/v1/auth/login` | Publico | Autentica y emite un token. |
+| `POST` | `/api/v1/auth/register` | Publico | Crea usuario y envia mail de verificacion. |
+| `POST` | `/api/v1/auth/verify-email` | Publico | Confirma email con token del mail. |
+| `POST` | `/api/v1/auth/resend-verification` | Publico | Reenvia enlace de verificacion. |
+| `POST` | `/api/v1/auth/login` | Publico | Autentica (solo email verificado) y emite JWT. |
+| `POST` | `/api/v1/auth/forgot-password` | Publico | Envia mail de recuperacion. |
+| `POST` | `/api/v1/auth/reset-password` | Publico | Cambia password con token del mail. |
 | `GET`  | `/api/v1/users/me` | Protegido | Perfil del usuario autenticado. |
+| `*`    | `/api/v1/admin/users` | ADMIN | CRUD de usuarios (soft delete). |
 
-Ejemplo rapido:
+SMTP (Gmail App Password) y variables: ver `backend/.env.example` y
+[`docs/backend/AUTH_EMAIL_ADMIN.md`](../docs/backend/AUTH_EMAIL_ADMIN.md).
+
+Ejemplo rapido (usuario ya verificado):
 
 ```bash
 # 1. Login y captura del token
 TOKEN=$(curl -s -X POST http://localhost:8080/api/v1/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"ana@example.com","password":"secret123"}' | jq -r .data.accessToken)
+  -d '{"email":"admin@energyai.com","password":"admin1234"}' | jq -r .data.accessToken)
 
 # 2. Consumir una ruta protegida
 curl http://localhost:8080/api/v1/users/me -H "Authorization: Bearer $TOKEN"
 ```
 
-> Detalle completo (configuracion, flujo, manejo de errores y seguridad) en
-> [`docs/backend/JWT_AUTHENTICATION.md`](../docs/backend/JWT_AUTHENTICATION.md).
+> JWT base: [`docs/backend/JWT_AUTHENTICATION.md`](../docs/backend/JWT_AUTHENTICATION.md).
+> Email + admin: [`docs/backend/AUTH_EMAIL_ADMIN.md`](../docs/backend/AUTH_EMAIL_ADMIN.md).
 
 ---
 

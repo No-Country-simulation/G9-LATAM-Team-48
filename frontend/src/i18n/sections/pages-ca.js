@@ -99,6 +99,11 @@ export const pagesCa = {
     "sourceMl": "model entrenat",
     "sourceLocal": "regles locals",
     "failed": "No s'ha pogut completar l'anàlisi.",
+    "loginRequired": "Inicia sessio o registra't per analitzar i rebre el resultat per correu.",
+    "loginCta": "Iniciar sessio / Registrar-se",
+    "emailHint": "T'enviarem l'analisi a",
+    "emailPending": "Tambe t'enviarem aquesta analisi per correu aviat.",
+    "emailSent": "T'hem enviat aquesta analisi per correu.",
     "chart": {
       "title": "El teu consum vs referència",
       "hint": "La referència s’ajusta amb les dades del formulari.",

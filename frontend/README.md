@@ -60,7 +60,11 @@ Hackathon ONE G9 · Team 48
   </tr>
   <tr>
     <td width="50%"><strong>Registro</strong><br /><img src="./screenshots/registro.png" alt="Registro" /></td>
-    <td width="50%"></td>
+    <td width="50%"><strong>Panel Admin</strong><br /><img src="./screenshots/admin-usuarios.png" alt="Panel Admin" /></td>
+  </tr>
+  <tr>
+    <td width="50%"><strong>Crear usuario</strong><br /><img src="./screenshots/admin-crear-usuario.png" alt="Crear usuario" /></td>
+    <td width="50%"><strong>Editar usuario</strong><br /><img src="./screenshots/admin-editar-usuario.png" alt="Editar usuario" /></td>
   </tr>
 </table>
 
@@ -80,7 +84,9 @@ npm run screenshots
 | **Consumos** | Totales, historial con estado (normal / sobre promedio) y gráfico de evolución. |
 | **Análisis IA** | Formulario por tipo (**casa** / **fábrica mediana** / **fábrica grande**); gráfico en vivo; clasificación con **modelo ML** (RandomForest en FastAPI) o reglas locales de respaldo; nivel, confianza, ahorro y tips. |
 | **Recomendaciones** | Tarjetas con categoría, prioridad y ahorro; resumen acumulado. |
-| **Registro / Login** | Modal con pestañas; campos obligatorios; contraseña de registro ≥ 8 caracteres. |
+| **Registro / Login** | Modal con pestañas; registro exige verificar email (mail SMTP) antes del login; contraseña ≥ 8 caracteres. |
+| **Verificar email / Reset password** | Pantallas que solo se abren con el link del correo (`?verifyToken=` / `?resetToken=`). |
+| **Panel Admin** | CRUD de usuarios (rol `ADMIN`): alta, edición, desactivación lógica; admins no se desactivan. |
 | **Multilenguaje** | Selector en el header; detecta idioma del navegador (fallback inglés). |
 | **Tema claro / oscuro** | Alternable desde el header; persistido en `localStorage`. |
 | **Login opcional** | Navegación pública; sesión para acciones de operador. |
@@ -158,8 +164,13 @@ Con API real: `VITE_USE_MOCK_AUTH=false` y `VITE_API_URL` apuntando al backend (
 
 | Método | Endpoint | Body / notas |
 |:------:|----------|--------------|
-| `POST` | `/api/v1/auth/register` | `{ "name", "email", "password" }` → `data.accessToken` |
-| `POST` | `/api/v1/auth/login` | `{ "email", "password" }` → `data.accessToken` |
+| `POST` | `/api/v1/auth/register` | `{ "name", "email", "password" }` → crea cuenta y envía verificación (sin JWT) |
+| `POST` | `/api/v1/auth/verify-email` | `{ "token" }` → marca `email_verified_at` |
+| `POST` | `/api/v1/auth/resend-verification` | `{ "email" }` → reenvía enlace |
+| `POST` | `/api/v1/auth/login` | `{ "email", "password" }` → `data.accessToken` (solo si el email está verificado) |
+| `POST` | `/api/v1/auth/forgot-password` | `{ "email" }` → envía mail (sin abrir UI de reset) |
+| `POST` | `/api/v1/auth/reset-password` | `{ "token", "newPassword" }` |
+| `GET`/`POST`/`PUT`/`DELETE` | `/api/v1/admin/users` | CRUD admin (JWT + rol `ADMIN`) |
 | `GET` | `/api/consumos` | Lista mensual (mock o API) |
 | `GET` | `/api/recomendaciones` | Recomendaciones |
 | `POST` | `/api/analisis` | Payload plano del form → ML (ver abajo y `docs/backend/ANALISIS_IA.md`) |
@@ -199,7 +210,7 @@ El token se envía como `Authorization: Bearer <accessToken>`.
 
 ## Autenticación
 
-Cuentas de ejemplo (mock / primer registro en API en memoria):
+Cuentas demo (Postgres + email ya verificado):
 
 | Usuario | Email | Contraseña |
 |---------|-------|------------|
@@ -207,10 +218,14 @@ Cuentas de ejemplo (mock / primer registro en API en memoria):
 | Admin | `admin@energyai.com` | `admin1234` |
 | Equipo 48 | `team48@energyai.com` | `team48123` |
 
-**Pasos:**
-1. `npm run dev` → `http://localhost:5173`
-2. **Iniciar sesión** o pestaña **Registrarse** (nombre, email, contraseña ≥ 8)
-3. Opcional: **Usar operador de ejemplo**
+**Flujo de registro real:**
+1. Registrarse → llega mail de verificación (SMTP Gmail).
+2. Abrir el link del mail → pantalla de verificación.
+3. Recién ahí iniciar sesión.
+
+**Forgot password:** solo el link del mail abre la pantalla de nueva contraseña.
+
+Detalle backend (SMTP, Flyway, admin): [`docs/backend/AUTH_EMAIL_ADMIN.md`](../docs/backend/AUTH_EMAIL_ADMIN.md).
 
 ---
 

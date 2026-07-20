@@ -5,6 +5,13 @@
   --focus-ring: 0 0 0 0.2rem rgba(13, 110, 253, 0.35);
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
 /* ===== Layout (app shell de altura fija) ===== */
 .app-layout {
   display: flex;
@@ -153,6 +160,11 @@
 .offcanvas,
 .offcanvas-backdrop {
   z-index: 1045;
+}
+
+.locale-menu {
+  max-height: min(70vh, 360px);
+  overflow-y: auto;
 }
 
 /* ===== Responsive: barra angosta solo con iconos ===== */

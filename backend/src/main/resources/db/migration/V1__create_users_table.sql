@@ -1,14 +1,18 @@
 -- ============================================================================
--- V1: Creación de tabla users
--- Persiste el modelo de dominio User con auditoría
+-- V1: Creación de tabla users (PostgreSQL)
+-- Persiste el modelo de dominio User con autenticación
 -- ============================================================================
 
 CREATE TABLE users (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL COMMENT 'Hash BCrypt de la contraseña',
-    role VARCHAR(50) NOT NULL DEFAULT 'USER',
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+    id              BIGSERIAL PRIMARY KEY,
+    name            VARCHAR(255) NOT NULL,
+    email           VARCHAR(255) NOT NULL UNIQUE,
+    password_hash   VARCHAR(255) NOT NULL,
+    role            VARCHAR(50)  NOT NULL DEFAULT 'USER',
+    created_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+COMMENT ON COLUMN users.password_hash IS 'Hash BCrypt de la contraseña';
+
+CREATE INDEX idx_users_email ON users (email);

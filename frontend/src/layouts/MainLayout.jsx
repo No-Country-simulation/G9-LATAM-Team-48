@@ -4,20 +4,25 @@ import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import LoginModal from '../components/LoginModal'
 import { useLocale } from '../context/LocaleContext'
+import { useAuth } from '../context/AuthContext'
 
-function MainLayout({ children, pagina, setPagina }) {
+function MainLayout({ children, pagina, setPagina, onAuthSuccess }) {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [loginOpen, setLoginOpen] = useState(false)
   const { t } = useLocale()
+  const { loginOpen, openLogin, closeLogin } = useAuth()
 
   return (
     <div className="app-layout">
       <Header
         onMenuOpen={() => setMenuOpen(true)}
-        onLoginClick={() => setLoginOpen(true)}
+        onLoginClick={openLogin}
       />
 
-      <LoginModal show={loginOpen} onHide={() => setLoginOpen(false)} />
+      <LoginModal
+        show={loginOpen}
+        onHide={closeLogin}
+        onAuthSuccess={onAuthSuccess}
+      />
 
       <Offcanvas
         show={menuOpen}

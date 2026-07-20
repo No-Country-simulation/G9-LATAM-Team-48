@@ -1,41 +1,115 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import {
+  getCurrentUser,
   login as loginRequest,
   logout as logoutRequest,
   register as registerRequest,
 } from '../services/authService'
+import {
+  TOKEN_STORAGE_KEY,
+  USER_STORAGE_KEY,
+  clearStoredPagina,
+  getStoredUser,
+  normalizeUser,
+} from '../utils/session'
 
 const AuthContext = createContext()
 
-function getStoredUser() {
-  const savedUser = localStorage.getItem('user')
-
-  if (!savedUser) {
-    return null
-  }
-
-  try {
-    return JSON.parse(savedUser)
-  } catch {
-    localStorage.removeItem('user')
-    return null
-  }
+function clearSession(setUser, setToken) {
+  setUser(null)
+  setToken(null)
+  localStorage.removeItem(USER_STORAGE_KEY)
+  localStorage.removeItem(TOKEN_STORAGE_KEY)
+  clearStoredPagina()
 }
 
 function persistSession(data, setUser, setToken) {
-  setUser(data.user)
+  const user = normalizeUser(data.user)
+  setUser(user)
   setToken(data.token)
-  localStorage.setItem('user', JSON.stringify(data.user))
-  localStorage.setItem('token', data.token)
+  localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user))
+  localStorage.setItem(TOKEN_STORAGE_KEY, data.token)
 }
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(getStoredUser)
-  const [token, setToken] = useState(() => localStorage.getItem('token'))
+  const [token, setToken] = useState(() => localStorage.getItem(TOKEN_STORAGE_KEY))
   const [loading, setLoading] = useState(false)
+  const [hydrating, setHydrating] = useState(() =>
+    Boolean(localStorage.getItem(TOKEN_STORAGE_KEY)),
+  )
   const [error, setError] = useState(null)
+  const [loginOpen, setLoginOpen] = useState(false)
 
   const isAuthenticated = Boolean(user && token)
+  const openLogin = () => setLoginOpen(true)
+  const closeLogin = () => setLoginOpen(false)
+
+  const refreshUser = async () => {
+    const currentToken = localStorage.getItem(TOKEN_STORAGE_KEY)
+    if (!currentToken) {
+      clearSession(setUser, setToken)
+      return null
+    }
+
+    const profile = normalizeUser(await getCurrentUser(currentToken))
+    setUser(profile)
+    setToken(currentToken)
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(profile))
+    return profile
+  }
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function hydrate() {
+      const currentToken = localStorage.getItem(TOKEN_STORAGE_KEY)
+      const storedUser = getStoredUser()
+
+      if (!currentToken) {
+        if (!cancelled) setHydrating(false)
+        return
+      }
+
+      // Mantener sesion visible de inmediato (evita que el menu Admin parpadee/desaparezca)
+      if (!cancelled && storedUser) {
+        setUser(storedUser)
+        setToken(currentToken)
+      }
+
+      if (String(currentToken).startsWith('mock-token')) {
+        if (!cancelled) setHydrating(false)
+        return
+      }
+
+      try {
+        const profile = normalizeUser(await getCurrentUser(currentToken))
+        if (!cancelled) {
+          setUser(profile)
+          setToken(currentToken)
+          localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(profile))
+        }
+      } catch (err) {
+        const status = err?.response?.status
+        if (!cancelled) {
+          // Solo cerrar si el token es invalido. Si el backend falla, conservar cache.
+          if (status === 401) {
+            clearSession(setUser, setToken)
+          } else if (storedUser) {
+            setUser(storedUser)
+            setToken(currentToken)
+          }
+        }
+      } finally {
+        if (!cancelled) setHydrating(false)
+      }
+    }
+
+    hydrate()
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   const login = async (email, password) => {
     setLoading(true)
@@ -44,7 +118,7 @@ export function AuthProvider({ children }) {
     try {
       const data = await loginRequest({ email, password })
       persistSession(data, setUser, setToken)
-      return data
+      return { ...data, user: normalizeUser(data.user) }
     } catch (err) {
       setError(err.message)
       throw err
@@ -59,8 +133,12 @@ export function AuthProvider({ children }) {
 
     try {
       const data = await registerRequest({ name, email, password })
+      // Registro ya no inicia sesion: hay que verificar el email
+      if (data?.pendingVerification || !data?.token) {
+        return data
+      }
       persistSession(data, setUser, setToken)
-      return data
+      return { ...data, user: normalizeUser(data.user) }
     } catch (err) {
       setError(err.message)
       throw err
@@ -75,11 +153,8 @@ export function AuthProvider({ children }) {
     try {
       await logoutRequest()
     } finally {
-      setUser(null)
-      setToken(null)
+      clearSession(setUser, setToken)
       setError(null)
-      localStorage.removeItem('user')
-      localStorage.removeItem('token')
       setLoading(false)
     }
   }
@@ -91,10 +166,15 @@ export function AuthProvider({ children }) {
         token,
         isAuthenticated,
         loading,
+        hydrating,
         error,
         login,
         register,
         logout,
+        refreshUser,
+        loginOpen,
+        openLogin,
+        closeLogin,
       }}
     >
       {children}
@@ -103,5 +183,9 @@ export function AuthProvider({ children }) {
 }
 
 export function useAuth() {
-  return useContext(AuthContext)
+  const context = useContext(AuthContext)
+  if (!context) {
+    throw new Error('useAuth debe usarse dentro de AuthProvider')
+  }
+  return context
 }
