@@ -180,6 +180,7 @@ Con API real: `VITE_USE_MOCK_AUTH=false` y `VITE_API_URL` apuntando al backend (
 | `POST` | `/api/v1/auth/forgot-password` | `{ "email" }` → envía mail (sin abrir UI de reset) |
 | `POST` | `/api/v1/auth/reset-password` | `{ "token", "newPassword" }` |
 | `GET`/`POST`/`PUT`/`DELETE` | `/api/v1/admin/users` | CRUD admin (JWT + rol `ADMIN`) |
+| `POST` | `/api/v1/contact` | `{ "name", "email", "message" }` → mail al inbox del equipo (público) |
 | `GET` | `/api/consumos` | Lista mensual (mock o API) |
 | `GET` | `/api/recomendaciones` | Recomendaciones |
 | `POST` | `/api/analisis` | Payload plano del form → ML (ver abajo y `docs/backend/ANALISIS_IA.md`) |
@@ -242,17 +243,19 @@ Detalle backend (SMTP, Flyway, admin): [`docs/backend/AUTH_EMAIL_ADMIN.md`](../d
 
 ```
 frontend/
+├── public/
+│   └── equipo/             # Fotos de integrantes (PNG/JPG)
 ├── screenshots/            # Capturas del README
 ├── scripts/                # screenshots + utilidades i18n
 ├── src/
 │   ├── components/
 │   ├── context/            # Theme, Auth, Locale
-│   ├── data/               # mocks (consumo, analytics, demos)
+│   ├── data/               # mocks + roster (`equipo.js`)
 │   ├── i18n/               # diccionarios multilenguaje
 │   ├── hooks/
 │   ├── layouts/
-│   ├── pages/
-│   ├── services/
+│   ├── pages/              # Contáctanos incluye Equipo 48 (flip cards)
+│   ├── services/           # auth, contact, consumos, análisis…
 │   └── utils/
 ├── .env.example
 └── package.json
@@ -264,15 +267,19 @@ frontend/
 
 Desarrollado durante el **Hackathon ONE G9 — Team 48**.
 
-| Integrante | Rol |
-|------------|-----|
-| Jorge Gustavo Martinez | Full Stack Developer |
-| Ricardo Chirinos | Data Analyst |
-| Elizabeth Díaz Familia | Data Scientist |
-| Carlos Miyen Brandolino | Backend Developer |
-| Germán French | Backend Developer |
-| Jharle Compres | Data Analyst |
-| Neil Jacome | Project Manager |
+El roster vive en Contáctanos (flip cards). Datos en [`src/data/equipo.js`](./src/data/equipo.js); fotos en [`public/equipo/`](./public/equipo/).
+
+| Integrante | Rol | Perfil |
+|------------|-----|--------|
+| Jorge Gustavo Martinez | Full Stack Developer | [LinkedIn](https://www.linkedin.com/in/jorgegustavomartinez) · [GitHub](https://github.com/TnlComputer) |
+| Ricardo Chirinos | Data Analyst | [LinkedIn](https://www.linkedin.com/in/ricardo-alexander-chirinos-bustos) · [GitHub](https://github.com/RicardoACB) |
+| Elizabeth Díaz Familia | Data Scientist | [LinkedIn](https://www.linkedin.com/in/eli-familia/) · [GitHub](https://github.com/Lizzy0981) · [Portafolio](https://lizzy0981.github.io/) |
+| Carlos Miyen Brandolino | Backend Developer | — |
+| Germán French | Backend Developer | [LinkedIn](https://www.linkedin.com/in/germanfrench-gf/) · [GitHub](https://github.com/GermanFrench) |
+| Jharle Compres | Data Analyst | [LinkedIn](https://www.linkedin.com/in/jharle-compres-data) · [GitHub](https://github.com/JharleCompres) · [Portafolio](https://app.notion.com/p/jharlecompres/Portafolio-Profesional-Jharle-Compres-396da4b1305480c5bd7ccecf93cca4d5) |
+| Neil Jacome | Project Manager | — |
+
+Contacto del proyecto: `energyaiteam48@gmail.com`
 
 <div align="center">
 

@@ -65,6 +65,22 @@ Documentación de auth, email y admin: [`docs/backend/AUTH_EMAIL_ADMIN.md`](./do
 
 ---
 
+## Equipo 48
+
+| Integrante | Rol |
+|------------|-----|
+| Jorge Gustavo Martinez | Full Stack Developer |
+| Ricardo Chirinos | Data Analyst |
+| Elizabeth Díaz Familia | Data Scientist |
+| Carlos Miyen Brandolino | Backend Developer |
+| Germán French | Backend Developer |
+| Jharle Compres | Data Analyst |
+| Neil Jacome | Project Manager |
+
+Perfiles y fotos: pantalla **Contáctanos** del frontend. Detalle y links: [frontend/README.md § Equipo](./frontend/README.md#equipo).
+
+---
+
 ## Cómo ejecutar el frontend
 
 ```bash
@@ -79,6 +95,6 @@ App en `http://localhost:5173`. Credenciales, i18n, Docker/NAS y contrato API: [
 
 <div align="center">
 
-Hackathon ONE G9 — LATAM · Team 48
+Hackathon ONE G9 — LATAM · Team 48 · `energyaiteam48@gmail.com`
 
 </div>
