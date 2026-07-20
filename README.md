@@ -53,7 +53,7 @@ Plataforma para el análisis y la optimización del consumo energético.
   </tr>
   <tr>
     <td width="50%"><strong>Recuperar contraseña</strong><br /><img src="./frontend/screenshots/forgot-password.png" alt="Recuperar contraseña" /></td>
-    <td width="50%"></td>
+    <td width="50%"><strong>Nueva contraseña</strong><br /><img src="./frontend/screenshots/reset-password.png" alt="Nueva contraseña" /></td>
   </tr>
 </table>
 

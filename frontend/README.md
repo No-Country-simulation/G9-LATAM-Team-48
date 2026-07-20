@@ -68,7 +68,7 @@ Hackathon ONE G9 · Team 48
   </tr>
   <tr>
     <td width="50%"><strong>Recuperar contraseña</strong><br /><img src="./screenshots/forgot-password.png" alt="Recuperar contraseña" /></td>
-    <td width="50%"></td>
+    <td width="50%"><strong>Nueva contraseña</strong> (solo vía link del mail)<br /><img src="./screenshots/reset-password.png" alt="Nueva contraseña" /></td>
   </tr>
 </table>
 
