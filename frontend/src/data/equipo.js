@@ -1,0 +1,77 @@
+/**
+ * Integrantes Team 48 — EnergyAI (Hackathon ONE G9).
+ * Fotos: colocá archivos en `public/equipo/<id>.jpg` (o .png).
+ * Links: completá linkedin / github / cv cuando los tengas.
+ */
+export const EQUIPO_48 = [
+  {
+    id: 'jorge-martinez',
+    name: 'Jorge Gustavo Martinez',
+    roleKey: 'fullstack',
+    initials: 'JM',
+    photo: '/equipo/jorge-martinez.jpg',
+    linkedin: '',
+    github: '',
+    cv: '',
+  },
+  {
+    id: 'ricardo-chirinos',
+    name: 'Ricardo Chirinos',
+    roleKey: 'dataAnalyst',
+    initials: 'RC',
+    photo: '/equipo/ricardo-chirinos.jpg',
+    linkedin: '',
+    github: '',
+    cv: '',
+  },
+  {
+    id: 'elizabeth-diaz',
+    name: 'Elizabeth Díaz Familia',
+    roleKey: 'dataScientist',
+    initials: 'ED',
+    photo: '/equipo/elizabeth-diaz.jpg',
+    linkedin: '',
+    github: '',
+    cv: '',
+  },
+  {
+    id: 'carlos-miyen',
+    name: 'Carlos Miyen Brandolino',
+    roleKey: 'backend',
+    initials: 'CM',
+    photo: '/equipo/carlos-miyen.jpg',
+    linkedin: '',
+    github: '',
+    cv: '',
+  },
+  {
+    id: 'german-french',
+    name: 'Germán French',
+    roleKey: 'backend',
+    initials: 'GF',
+    photo: '/equipo/german-french.jpg',
+    linkedin: '',
+    github: '',
+    cv: '',
+  },
+  {
+    id: 'jharle-compres',
+    name: 'Jharle Compres',
+    roleKey: 'dataAnalyst',
+    initials: 'JC',
+    photo: '/equipo/jharle-compres.jpg',
+    linkedin: '',
+    github: '',
+    cv: '',
+  },
+  {
+    id: 'neil-jacome',
+    name: 'Neil Jacome',
+    roleKey: 'pm',
+    initials: 'NJ',
+    photo: '/equipo/neil-jacome.jpg',
+    linkedin: '',
+    github: '',
+    cv: '',
+  },
+]

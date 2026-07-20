@@ -80,10 +80,32 @@ public class UserMailService {
 
                 Si no creaste esta cuenta, ignorá este mensaje.
                 """.formatted(link);
-        return send(email, subject, body);
+        return send(email, subject, body, null);
+    }
+
+    /**
+     * Mensaje del formulario Contáctanos: llega a la casilla SMTP del equipo.
+     */
+    public String sendContactMessage(String fromName, String fromEmail, String message) {
+        String inbox = resolveFrom();
+        String subject = "EnergyAI — Contacto de " + fromName;
+        String body = """
+                Nuevo mensaje desde Contáctanos
+
+                Nombre: %s
+                Email: %s
+
+                Mensaje:
+                %s
+                """.formatted(fromName, fromEmail, message);
+        return send(inbox, subject, body, fromEmail);
     }
 
     private String send(String to, String subject, String body) {
+        return send(to, subject, body, null);
+    }
+
+    private String send(String to, String subject, String body, String replyTo) {
         if (!mailEnabled || !StringUtils.hasText(mailUsername)
                 || !StringUtils.hasText(resolveFrom())) {
             log.warn("SMTP no configurado. Mail pendiente para {} | {} | body=\n{}", to, subject, body);
@@ -95,6 +117,9 @@ public class UserMailService {
             MimeMessageHelper helper = new MimeMessageHelper(message, false, "UTF-8");
             helper.setFrom(resolveFrom());
             helper.setTo(to);
+            if (StringUtils.hasText(replyTo)) {
+                helper.setReplyTo(replyTo);
+            }
             helper.setSubject(subject);
             helper.setText(body, false);
             mailSender.send(message);

@@ -50,6 +50,51 @@ body,
   overflow-x: hidden;
 }
 
+/* ===== Equipo 48 ===== */
+.equipo-card {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.85rem;
+  background: var(--bs-body-bg);
+  transition: border-color var(--motion-base) var(--ease-standard),
+    box-shadow var(--motion-base) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard);
+}
+
+.equipo-card:hover {
+  border-color: rgba(13, 110, 253, 0.35);
+  box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+[data-bs-theme='dark'] .equipo-card:hover {
+  box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.35);
+}
+
+.equipo-avatar {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.equipo-avatar--initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+  background: linear-gradient(135deg, #6f42c1, #d63384);
+}
+
+.equipo-links .btn {
+  --bs-btn-padding-y: 0.2rem;
+  --bs-btn-padding-x: 0.55rem;
+  --bs-btn-font-size: 0.8rem;
+}
+
 /* ===== Sidebar ===== */
 .sidebar {
   overflow: hidden;

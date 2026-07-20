@@ -218,5 +218,39 @@ export const pagesFr = {
       "ok": "Conseil : lancez lave-linge ou lave-vaisselle hors 18:00–22:00 pour payer moins.",
       "high": "Conseil : vérifiez clim et vieux appareils ; c’est souvent le plus gros poste."
     }
-  }
+  },
+  contact: {
+    title: 'Contactez-nous',
+    subtitle: 'Envoyez votre demande et nous vous répondrons rapidement.',
+    name: 'Nom',
+    email: 'Email',
+    message: 'Message',
+    messageHint: 'Minimum 10 caractères.',
+    submit: 'Envoyer le message',
+    submitting: 'Envoi...',
+    success: 'Message envoyé. Nous vous répondrons bientôt.',
+    infoTitle: 'Coordonnées',
+    infoText: 'Vous pouvez aussi nous écrire directement par email.',
+    infoEmailLabel: 'Email',
+    infoNote: 'Hackathon ONE G9 — Team 48 · EnergyAI',
+    errors: {
+      incomplete: 'Remplissez le nom, l’email et un message d’au moins 10 caractères.',
+      sendFailed: 'Impossible d’envoyer le message.',
+    },
+  },
+  team: {
+    title: 'Équipe 48',
+    subtitle: 'Hackathon ONE G9 — LATAM. Ceux qui construisent EnergyAI.',
+    linkedin: 'LinkedIn',
+    github: 'GitHub',
+    cv: 'CV',
+    linksSoon: 'Liens de profil bientôt.',
+    roles: {
+      fullstack: 'Full Stack Developer',
+      dataAnalyst: 'Data Analyst',
+      dataScientist: 'Data Scientist',
+      backend: 'Backend Developer',
+      pm: 'Project Manager',
+    },
+  },
 }

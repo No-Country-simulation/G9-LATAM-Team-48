@@ -218,5 +218,39 @@ export const pagesDe = {
       "ok": "Tipp: Waschmaschine außerhalb von 18:00–22:00 laufen lassen – oft günstiger.",
       "high": "Tipp: Klima und alte Geräte prüfen; dort liegt meist der größte Anteil."
     }
-  }
+  },
+  contact: {
+    title: 'Kontakt',
+    subtitle: 'Schicken Sie uns Ihre Anfrage – wir melden uns bald.',
+    name: 'Name',
+    email: 'E-Mail',
+    message: 'Nachricht',
+    messageHint: 'Mindestens 10 Zeichen.',
+    submit: 'Nachricht senden',
+    submitting: 'Wird gesendet...',
+    success: 'Nachricht gesendet. Wir antworten bald.',
+    infoTitle: 'Kontaktdaten',
+    infoText: 'Sie können uns auch direkt per E-Mail schreiben.',
+    infoEmailLabel: 'E-Mail',
+    infoNote: 'Hackathon ONE G9 — Team 48 · EnergyAI',
+    errors: {
+      incomplete: 'Bitte Name, E-Mail und eine Nachricht mit mindestens 10 Zeichen ausfüllen.',
+      sendFailed: 'Nachricht konnte nicht gesendet werden.',
+    },
+  },
+  team: {
+    title: 'Team 48',
+    subtitle: 'Hackathon ONE G9 — LATAM. Die Menschen hinter EnergyAI.',
+    linkedin: 'LinkedIn',
+    github: 'GitHub',
+    cv: 'Lebenslauf',
+    linksSoon: 'Profil-Links folgen bald.',
+    roles: {
+      fullstack: 'Full Stack Developer',
+      dataAnalyst: 'Data Analyst',
+      dataScientist: 'Data Scientist',
+      backend: 'Backend Developer',
+      pm: 'Project Manager',
+    },
+  },
 }

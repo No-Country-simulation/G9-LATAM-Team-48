@@ -9,6 +9,18 @@ export const MENU_ITEMS = [
     color: 'green',
   },
   {
+    id: 'contacto',
+    labelKey: 'menu.contacto',
+    icon: 'contacto',
+    color: 'teal',
+  },
+  {
+    id: 'equipo',
+    labelKey: 'menu.equipo',
+    icon: 'equipo',
+    color: 'indigo',
+  },
+  {
     id: 'admin-usuarios',
     labelKey: 'menu.adminUsuarios',
     icon: 'admin',

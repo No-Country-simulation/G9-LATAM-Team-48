@@ -218,5 +218,39 @@ export const pagesCa = {
       "ok": "Consell: posa la rentadora fora de 18:00–22:00 per pagar menys.",
       "high": "Consell: revisa l’aire condicionat i equips vells; allà sol ser la despesa més gran."
     }
-  }
+  },
+  contact: {
+    title: "Contacta'ns",
+    subtitle: 'Escriu-nos la teva consulta i et respondrem aviat.',
+    name: 'Nom',
+    email: 'Email',
+    message: 'Missatge',
+    messageHint: 'Mínim 10 caràcters.',
+    submit: 'Enviar missatge',
+    submitting: 'Enviant...',
+    success: 'Missatge enviat. Et respondrem aviat.',
+    infoTitle: 'Dades de contacte',
+    infoText: 'També ens pots escriure directament al correu de l’equip.',
+    infoEmailLabel: 'Email',
+    infoNote: 'Hackathon ONE G9 — Team 48 · EnergyAI',
+    errors: {
+      incomplete: 'Omple el nom, l’email i un missatge d’almenys 10 caràcters.',
+      sendFailed: 'No s’ha pogut enviar el missatge.',
+    },
+  },
+  team: {
+    title: 'Equip 48',
+    subtitle: 'Hackathon ONE G9 — LATAM. Qui construeix EnergyAI.',
+    linkedin: 'LinkedIn',
+    github: 'GitHub',
+    cv: 'CV',
+    linksSoon: 'Enllaços de perfil aviat.',
+    roles: {
+      fullstack: 'Full Stack Developer',
+      dataAnalyst: 'Data Analyst',
+      dataScientist: 'Data Scientist',
+      backend: 'Backend Developer',
+      pm: 'Project Manager',
+    },
+  },
 }

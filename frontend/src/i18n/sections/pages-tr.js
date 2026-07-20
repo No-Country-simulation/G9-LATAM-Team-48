@@ -218,5 +218,39 @@ export const pagesTr = {
       "ok": "İpucu: çamaşır makinesini 18:00–22:00 dışında çalıştırarak daha az öde.",
       "high": "İpucu: klima ve eski cihazları gözden geçir; en büyük maliyet genelde orada."
     }
-  }
+  },
+  contact: {
+    title: 'Bize ulaşın',
+    subtitle: 'Sorunuzu gönderin, kısa sürede dönüş yapalım.',
+    name: 'Ad',
+    email: 'E-posta',
+    message: 'Mesaj',
+    messageHint: 'En az 10 karakter.',
+    submit: 'Mesaj gönder',
+    submitting: 'Gönderiliyor...',
+    success: 'Mesaj gönderildi. Yakında yanıtlayacağız.',
+    infoTitle: 'İletişim bilgileri',
+    infoText: 'Doğrudan ekip e-postamıza da yazabilirsiniz.',
+    infoEmailLabel: 'E-posta',
+    infoNote: 'Hackathon ONE G9 — Team 48 · EnergyAI',
+    errors: {
+      incomplete: 'Ad, e-posta ve en az 10 karakterlik bir mesaj girin.',
+      sendFailed: 'Mesaj gönderilemedi.',
+    },
+  },
+  team: {
+    title: '48. Takım',
+    subtitle: 'Hackathon ONE G9 — LATAM. EnergyAI’yi oluşturan ekip.',
+    linkedin: 'LinkedIn',
+    github: 'GitHub',
+    cv: 'CV',
+    linksSoon: 'Profil bağlantıları yakında.',
+    roles: {
+      fullstack: 'Full Stack Developer',
+      dataAnalyst: 'Data Analyst',
+      dataScientist: 'Data Scientist',
+      backend: 'Backend Developer',
+      pm: 'Project Manager',
+    },
+  },
 }
