@@ -66,6 +66,10 @@ Hackathon ONE G9 · Team 48
     <td width="50%"><strong>Crear usuario</strong><br /><img src="./screenshots/admin-crear-usuario.png" alt="Crear usuario" /></td>
     <td width="50%"><strong>Editar usuario</strong><br /><img src="./screenshots/admin-editar-usuario.png" alt="Editar usuario" /></td>
   </tr>
+  <tr>
+    <td width="50%"><strong>Recuperar contraseña</strong><br /><img src="./screenshots/forgot-password.png" alt="Recuperar contraseña" /></td>
+    <td width="50%"></td>
+  </tr>
 </table>
 
 Para regenerar las capturas (con el front en `npm run dev`):

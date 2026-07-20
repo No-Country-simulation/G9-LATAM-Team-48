@@ -18,5 +18,6 @@ npm run screenshots  # en otra
 | `admin-usuarios.png` | Panel Admin — listado de usuarios |
 | `admin-crear-usuario.png` | Modal — Crear usuario |
 | `admin-editar-usuario.png` | Modal — Editar usuario |
+| `forgot-password.png` | Modal — Recuperar contraseña |
 
 Formato: **PNG**, viewport ~1440×900 (o `fullPage` en dashboard/páginas).
