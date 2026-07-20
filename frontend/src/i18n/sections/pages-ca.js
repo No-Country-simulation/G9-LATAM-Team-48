@@ -243,6 +243,9 @@ export const pagesCa = {
     subtitle: 'Hackathon ONE G9 — LATAM. Qui construeix EnergyAI.',
     linkedin: 'LinkedIn',
     github: 'GitHub',
+    portfolio: 'Portfolio',
+    instagram: 'Instagram',
+    email: 'Email',
     cv: 'CV',
     linksSoon: 'Enllaços de perfil aviat.',
     roles: {

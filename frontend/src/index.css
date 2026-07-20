@@ -50,32 +50,125 @@ body,
   overflow-x: hidden;
 }
 
-/* ===== Equipo 48 ===== */
-.equipo-card {
-  padding: 1rem 1.1rem;
+/* ===== Equipo 48 (flip cards en Contáctanos) ===== */
+.equipo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .equipo-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .equipo-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+}
+
+.equipo-flip {
+  perspective: 1000px;
+  width: 100%;
+  height: 13.25rem;
+  min-height: 13.25rem;
+  max-height: 13.25rem;
+}
+
+/* Grid apila frente y dorso; tamaño fijo en todas las tarjetas. */
+.equipo-flip-inner {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.55s var(--ease-standard, ease);
+}
+
+.equipo-flip-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.equipo-face {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 0.7rem 0.45rem;
   border: 1px solid var(--bs-border-color);
-  border-radius: 0.85rem;
+  border-radius: 0.75rem;
   background: var(--bs-body-bg);
-  transition: border-color var(--motion-base) var(--ease-standard),
-    box-shadow var(--motion-base) var(--ease-standard),
-    transform var(--motion-fast) var(--ease-standard);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  text-align: center;
 }
 
-.equipo-card:hover {
+.equipo-face--front {
+  cursor: pointer;
+}
+
+.equipo-face--back {
+  transform: rotateY(180deg);
+  justify-content: flex-start;
+  overflow-y: auto;
+  cursor: pointer;
+  padding-top: 0.85rem;
+}
+
+.equipo-role {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.72rem;
+  line-height: 1.25;
+}
+
+.equipo-name {
+  font-size: 0.8rem;
+  line-height: 1.2;
+  margin-bottom: 0.15rem !important;
+}
+
+.equipo-flip-inner:hover .equipo-face,
+.equipo-flip-inner:focus-visible .equipo-face {
   border-color: rgba(13, 110, 253, 0.35);
-  box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
 }
 
-[data-bs-theme='dark'] .equipo-card:hover {
-  box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.35);
+.equipo-flip-inner:focus-visible {
+  outline: none;
+}
+
+.equipo-flip-inner:focus-visible .equipo-face {
+  outline: 2px solid rgba(13, 110, 253, 0.55);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .equipo-flip-inner {
+    transition: none;
+  }
 }
 
 .equipo-avatar {
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 4.75rem;
+  height: 4.75rem;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center top;
   flex-shrink: 0;
 }
 
@@ -84,15 +177,44 @@ body,
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   color: #fff;
   background: linear-gradient(135deg, #6f42c1, #d63384);
 }
 
-.equipo-links .btn {
-  --bs-btn-padding-y: 0.2rem;
-  --bs-btn-padding-x: 0.55rem;
-  --bs-btn-font-size: 0.8rem;
+.equipo-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.equipo-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(13, 110, 253, 0.45);
+  color: var(--bs-primary);
+  background: transparent;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.equipo-link-icon svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.equipo-link-icon:hover,
+.equipo-link-icon:focus-visible {
+  background: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: #fff;
+  outline: none;
 }
 
 /* ===== Sidebar ===== */

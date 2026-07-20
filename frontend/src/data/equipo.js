@@ -1,7 +1,7 @@
 /**
  * Integrantes Team 48 — EnergyAI (Hackathon ONE G9).
  * Fotos: colocá archivos en `public/equipo/<id>.jpg` (o .png).
- * Links: completá linkedin / github / cv cuando los tengas.
+ * Links: linkedin / github / portfolio / instagram / email / cv.
  */
 export const EQUIPO_48 = [
   {
@@ -9,9 +9,10 @@ export const EQUIPO_48 = [
     name: 'Jorge Gustavo Martinez',
     roleKey: 'fullstack',
     initials: 'JM',
-    photo: '/equipo/jorge-martinez.jpg',
-    linkedin: '',
-    github: '',
+    photo: '/equipo/jorge-martinez.png',
+    linkedin: 'https://www.linkedin.com/in/jorgegustavomartinez',
+    github: 'https://github.com/TnlComputer',
+    email: 'jgmartinez1965@gmail.com',
     cv: '',
   },
   {
@@ -20,8 +21,9 @@ export const EQUIPO_48 = [
     roleKey: 'dataAnalyst',
     initials: 'RC',
     photo: '/equipo/ricardo-chirinos.jpg',
-    linkedin: '',
-    github: '',
+    linkedin: 'https://www.linkedin.com/in/ricardo-alexander-chirinos-bustos',
+    github: 'https://github.com/RicardoACB',
+    email: '',
     cv: '',
   },
   {
@@ -29,9 +31,12 @@ export const EQUIPO_48 = [
     name: 'Elizabeth Díaz Familia',
     roleKey: 'dataScientist',
     initials: 'ED',
-    photo: '/equipo/elizabeth-diaz.jpg',
-    linkedin: '',
-    github: '',
+    photo: '/equipo/elizabeth-diaz.png',
+    linkedin: 'https://www.linkedin.com/in/eli-familia/',
+    github: 'https://github.com/Lizzy0981',
+    portfolio: 'https://lizzy0981.github.io/',
+    instagram: 'https://www.instagram.com/lizzy_familia/',
+    email: 'lizzyfamilia@gmail.com',
     cv: '',
   },
   {
@@ -39,9 +44,10 @@ export const EQUIPO_48 = [
     name: 'Carlos Miyen Brandolino',
     roleKey: 'backend',
     initials: 'CM',
-    photo: '/equipo/carlos-miyen.jpg',
+    photo: '/equipo/carlos-miyen.png',
     linkedin: '',
     github: '',
+    email: '',
     cv: '',
   },
   {
@@ -49,9 +55,10 @@ export const EQUIPO_48 = [
     name: 'Germán French',
     roleKey: 'backend',
     initials: 'GF',
-    photo: '/equipo/german-french.jpg',
-    linkedin: '',
-    github: '',
+    photo: '/equipo/german-french.png',
+    linkedin: 'https://www.linkedin.com/in/germanfrench-gf/',
+    github: 'https://github.com/GermanFrench',
+    email: '',
     cv: '',
   },
   {
@@ -59,9 +66,12 @@ export const EQUIPO_48 = [
     name: 'Jharle Compres',
     roleKey: 'dataAnalyst',
     initials: 'JC',
-    photo: '/equipo/jharle-compres.jpg',
-    linkedin: '',
-    github: '',
+    photo: '/equipo/jharle-compres.png',
+    linkedin: 'https://www.linkedin.com/in/jharle-compres-data',
+    github: 'https://github.com/JharleCompres',
+    portfolio:
+      'https://app.notion.com/p/jharlecompres/Portafolio-Profesional-Jharle-Compres-396da4b1305480c5bd7ccecf93cca4d5',
+    email: '',
     cv: '',
   },
   {
@@ -72,6 +82,7 @@ export const EQUIPO_48 = [
     photo: '/equipo/neil-jacome.jpg',
     linkedin: '',
     github: '',
+    email: '',
     cv: '',
   },
 ]

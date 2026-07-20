@@ -99,8 +99,7 @@ npm run screenshots
 | **Registro / Login** | Modal con pestañas; registro exige verificar email (mail SMTP) antes del login; contraseña ≥ 8 caracteres. |
 | **Verificar email / Reset password** | Pantallas que solo se abren con el link del correo (`?verifyToken=` / `?resetToken=`). |
 | **Panel Admin** | CRUD de usuarios (rol `ADMIN`): alta, edición, desactivación lógica; admins no se desactivan. |
-| **Contáctanos** | Formulario público que envía mail al equipo por SMTP. |
-| **Equipo 48** | Integrantes del hackathon con roles; fotos y links de perfil configurables. |
+| **Contáctanos** | Formulario de contacto + Equipo 48 en cards con flip (links LinkedIn/GitHub/CV). |
 | **Multilenguaje** | Selector en el header; detecta idioma del navegador (fallback inglés). |
 | **Tema claro / oscuro** | Alternable desde el header; persistido en `localStorage`. |
 | **Login opcional** | Navegación pública; sesión para acciones de operador. |
