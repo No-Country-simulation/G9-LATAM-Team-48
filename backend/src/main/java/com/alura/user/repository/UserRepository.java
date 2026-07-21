@@ -2,18 +2,27 @@ package com.alura.user.repository;
 
 import com.alura.user.model.User;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
  * Abstraccion de acceso a datos de usuarios.
- *
- * <p>Se define como interfaz propia (no extiende ningun repositorio de Spring
- * Data) para <strong>desacoplar el dominio del mecanismo de persistencia</strong>.</p>
- *
  */
 public interface UserRepository {
 
+    /** Busca usuario activo por email (ignora borrados logicos). */
     Optional<User> findByEmail(String email);
 
+    /** Busca usuario activo por id. */
+    Optional<User> findById(Long id);
+
+    /** Lista solo usuarios activos. */
+    List<User> findAll();
+
     User save(User user);
+
+    /** Borrado logico: marca deleted_at, no elimina la fila. */
+    void softDeleteById(Long id);
+
+    boolean existsByEmail(String email);
 }

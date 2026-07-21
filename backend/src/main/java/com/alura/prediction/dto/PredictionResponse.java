@@ -1,18 +1,17 @@
 package com.alura.prediction.dto;
 
+import java.util.List;
+
 /**
- * Contrato de salida del modulo de prediccion.
- *
- * <p>Representa el resultado de la clasificacion devuelta por el modelo de
- * Machine Learning.</p>
- *
- * @param userId     identificador del usuario evaluado
- * @param category   categoria/clase de consumo asignada por el modelo
- * @param confidence nivel de confianza de la prediccion (0.0 - 1.0)
+ * Resultado de clasificacion del servicio ML (FastAPI).
  */
 public record PredictionResponse(
         String userId,
         String category,
-        double confidence
+        String nivelKey,
+        double confidence,
+        int ahorro,
+        List<String> tipKeys,
+        double benchmark
 ) {
 }
