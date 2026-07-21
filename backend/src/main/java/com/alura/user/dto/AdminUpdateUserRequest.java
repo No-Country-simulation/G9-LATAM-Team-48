@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Pattern;
 /**
  * Actualizacion de usuario desde el panel admin.
  * {@code password} es opcional: si viene vacio no se cambia.
+ * {@code emailVerified} null = no cambia; true/false actualiza el estado.
  */
 public record AdminUpdateUserRequest(
 
@@ -21,6 +22,8 @@ public record AdminUpdateUserRequest(
 
         @NotBlank(message = "El rol es obligatorio")
         @Pattern(regexp = "USER|ADMIN", message = "El rol debe ser USER o ADMIN")
-        String role
+        String role,
+
+        Boolean emailVerified
 ) {
 }
