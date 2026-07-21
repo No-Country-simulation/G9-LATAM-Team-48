@@ -6,22 +6,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 /**
- * Adaptador que implementa la interfaz de dominio {@link UserRepository}
- * usando Spring Data JPA y {@link UserRepositoryJpa}.
- *
- * <p>Convierte bidireccionalamente entre el modelo de dominio {@link User}
- * y la entidad JPA {@link UserEntity}. Se registra como bean SOLO cuando
- * la propiedad {@code app.persistence.type} tiene valor {@code jpa}.</p>
+ * Adaptador JPA de {@link UserRepository} con soporte de borrado logico.
  */
 @Repository
 @RequiredArgsConstructor
 @ConditionalOnProperty(
         name = "app.persistence.type",
-        havingValue = "jpa",
-        matchIfMissing = true
+        havingValue = "jpa"
 )
 public class JpaUserRepositoryAdapter implements UserRepository {
 
@@ -32,8 +28,23 @@ public class JpaUserRepositoryAdapter implements UserRepository {
         if (email == null) {
             return Optional.empty();
         }
-        return userRepositoryJpa.findByEmailIgnoreCase(email)
+        return userRepositoryJpa.findByEmailIgnoreCaseAndDeletedAtIsNull(email)
                 .map(this::toDomain);
+    }
+
+    @Override
+    public Optional<User> findById(Long id) {
+        if (id == null) {
+            return Optional.empty();
+        }
+        return userRepositoryJpa.findByIdAndDeletedAtIsNull(id).map(this::toDomain);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepositoryJpa.findAllByDeletedAtIsNullOrderByIdAsc().stream()
+                .map(this::toDomain)
+                .toList();
     }
 
     @Override
@@ -43,9 +54,20 @@ public class JpaUserRepositoryAdapter implements UserRepository {
         return toDomain(saved);
     }
 
-    /**
-     * Convierte una entidad JPA a modelo de dominio.
-     */
+    @Override
+    public void softDeleteById(Long id) {
+        userRepositoryJpa.findByIdAndDeletedAtIsNull(id).ifPresent(entity -> {
+            entity.setDeletedAt(LocalDateTime.now());
+            userRepositoryJpa.save(entity);
+        });
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return email != null
+                && userRepositoryJpa.existsByEmailIgnoreCaseAndDeletedAtIsNull(email);
+    }
+
     private User toDomain(UserEntity entity) {
         return User.builder()
                 .id(entity.getId())
@@ -53,12 +75,11 @@ public class JpaUserRepositoryAdapter implements UserRepository {
                 .email(entity.getEmail())
                 .password(entity.getPassword())
                 .role(entity.getRole())
+                .deletedAt(entity.getDeletedAt())
+                .emailVerifiedAt(entity.getEmailVerifiedAt())
                 .build();
     }
 
-    /**
-     * Convierte un modelo de dominio a entidad JPA.
-     */
     private UserEntity toEntity(User user) {
         return UserEntity.builder()
                 .id(user.getId())
@@ -66,6 +87,8 @@ public class JpaUserRepositoryAdapter implements UserRepository {
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .role(user.getRole())
+                .deletedAt(user.getDeletedAt())
+                .emailVerifiedAt(user.getEmailVerifiedAt())
                 .build();
     }
 }

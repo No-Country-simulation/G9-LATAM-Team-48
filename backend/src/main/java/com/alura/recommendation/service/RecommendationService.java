@@ -7,7 +7,7 @@ import com.alura.recommendation.dto.RecommendationResponse;
  * Orquesta la generacion de recomendaciones evaluando el conjunto de reglas
  * ({@code RecommendationRule}) aplicables al usuario.
  *
- * <p>Implementacion actual: {@code RecommendationServiceImpl}.</p>
+ * <p>Implementacion: {@code RecommendationServiceImpl}.</p>
  */
 public interface RecommendationService {
 
