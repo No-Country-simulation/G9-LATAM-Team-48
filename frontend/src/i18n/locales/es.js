@@ -42,6 +42,8 @@ export default {
       'Creá tu cuenta con nombre, email y contraseña. Te enviaremos un enlace para verificar el email.',
     registerVerifySent:
       'Cuenta creada. Revisá tu email y verificá la cuenta antes de iniciar sesión.',
+    verifyLinkFallback:
+      'Si no te llega el mail, abrí este enlace para verificar la cuenta:',
     name: 'Nombre',
     email: 'Email',
     password: 'Contraseña',

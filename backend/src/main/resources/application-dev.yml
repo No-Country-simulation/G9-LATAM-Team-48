@@ -67,6 +67,7 @@ app:
   mail:
     from: ${MAIL_FROM:${MAIL_USERNAME:}}
     enabled: ${MAIL_ENABLED:true}
+    resend-api-key: ${RESEND_API_KEY:}
   email-verification:
     # false = el usuario solo verifica con el link del mail (no auto-verify en UI)
     expose-token: ${EMAIL_VERIFICATION_EXPOSE_TOKEN:false}
