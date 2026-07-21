@@ -24,6 +24,9 @@ body,
 .app-layout > .navbar {
   flex-shrink: 0;
   z-index: 1030;
+  min-height: 4.75rem;
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
 }
 
 .brand-mark {
@@ -35,22 +38,27 @@ body,
 
 .brand-logo {
   display: block;
-  height: 3.25rem;
+  height: 4.25rem;
   width: auto;
-  max-width: min(58vw, 16rem);
+  max-width: min(70vw, 15rem);
   object-fit: contain;
 }
 
 @media (min-width: 768px) {
+  .app-layout > .navbar {
+    min-height: 5.5rem;
+  }
+
   .brand-logo {
-    height: 3.75rem;
+    height: 5rem;
+    max-width: 17rem;
   }
 }
 
 /* Logo con fondo blanco: contraste en navbar oscura */
 .navbar-dark .brand-mark {
-  padding: 0.3rem 0.55rem;
-  border-radius: 0.55rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.65rem;
   background: #fff;
 }
 
