@@ -60,12 +60,14 @@ public class AdminUserService {
                 ? passwordResetService.generateTemporaryPassword()
                 : request.password();
 
+        boolean verified = request.emailVerified() == null || Boolean.TRUE.equals(request.emailVerified());
+
         User user = User.builder()
                 .name(request.name().trim())
                 .email(email)
                 .password(passwordEncoder.encode(temporaryPassword))
                 .role(normalizeRole(request.role()))
-                .emailVerifiedAt(LocalDateTime.now())
+                .emailVerifiedAt(verified ? LocalDateTime.now() : null)
                 .build();
 
         User saved = userRepository.save(user);
@@ -101,6 +103,16 @@ public class AdminUserService {
             user.setPassword(passwordEncoder.encode(request.password()));
         }
 
+        if (request.emailVerified() != null) {
+            if (Boolean.TRUE.equals(request.emailVerified())) {
+                if (user.getEmailVerifiedAt() == null) {
+                    user.setEmailVerifiedAt(LocalDateTime.now());
+                }
+            } else {
+                user.setEmailVerifiedAt(null);
+            }
+        }
+
         return toResponse(userRepository.save(user));
     }
 
@@ -123,7 +135,12 @@ public class AdminUserService {
     }
 
     private UserResponse toResponse(User user) {
-        return new UserResponse(user.getId(), user.getName(), user.getEmail(), user.getRole());
+        return new UserResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getRole(),
+                user.isEmailVerified());
     }
 
     private String normalizeEmail(String email) {

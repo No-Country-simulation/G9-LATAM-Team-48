@@ -247,6 +247,12 @@ export const pagesEn = {
     dismiss: 'Dismiss',
     passwordMin: 'Password must be at least 8 characters.',
     role: 'Role',
+    verified: 'Email',
+    verifiedYes: 'Verified',
+    verifiedNo: 'Pending',
+    emailVerified: 'Email verified (can sign in without link)',
+    emailVerifiedHint:
+      'If checked, the user does not need to verify email to sign in.',
     actions: 'Actions',
     edit: 'Edit',
     delete: 'Deactivate',
