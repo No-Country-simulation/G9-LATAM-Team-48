@@ -2,3 +2,8 @@
 .bin
 # IntelliJ local files
 .idea/
+
+__pycache__/
+*.pyc
+*.joblib
+
