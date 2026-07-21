@@ -40,7 +40,7 @@ function Header({ onMenuOpen, onLoginClick }) {
 
           <span className="navbar-brand brand-mark mb-0 py-0" aria-label="EnergIA">
             <img
-              src="/logo-energia.png"
+              src={theme === 'dark' ? '/logo-energia-dark.png' : '/logo-energia.png'}
               alt="EnergIA"
               className="brand-logo"
               width="280"

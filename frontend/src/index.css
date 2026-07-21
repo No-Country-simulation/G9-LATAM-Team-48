@@ -55,13 +55,6 @@ body,
   }
 }
 
-/* Logo con fondo blanco: contraste en navbar oscura */
-.navbar-dark .brand-mark {
-  padding: 0.35rem 0.65rem;
-  border-radius: 0.65rem;
-  background: #fff;
-}
-
 .app-body {
   display: flex;
   flex: 1;

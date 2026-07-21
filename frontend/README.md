@@ -276,8 +276,9 @@ Detalle backend (SMTP, Flyway, admin): [`docs/backend/AUTH_EMAIL_ADMIN.md`](../d
 ```
 frontend/
 ├── public/
-│   ├── logo-energia.png    # Marca EnergIA (header + favicon)
-│   └── equipo/             # Fotos de integrantes (PNG/JPG)
+│   ├── logo-energia.png       # Marca EnergIA (fondo transparente, tema claro)
+│   ├── logo-energia-dark.png  # Variante para navbar oscura
+│   └── equipo/                # Fotos de integrantes (PNG/JPG)
 ├── screenshots/            # Capturas del README
 ├── scripts/                # screenshots + utilidades i18n
 ├── src/
