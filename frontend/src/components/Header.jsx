@@ -43,8 +43,8 @@ function Header({ onMenuOpen, onLoginClick }) {
               src={theme === 'dark' ? '/logo-energia-dark.png' : '/logo-energia.png'}
               alt="EnergIA"
               className="brand-logo"
-              width="280"
-              height="96"
+              width="360"
+              height="250"
               decoding="async"
             />
           </span>
