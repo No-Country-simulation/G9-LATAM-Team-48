@@ -42,6 +42,8 @@ export default {
       'Create your account with name, email and password. We will email you a verification link.',
     registerVerifySent:
       'Account created. Check your email and verify before signing in.',
+    verifyLinkFallback:
+      "If the email doesn't arrive, open this link to verify your account:",
     name: 'Name',
     email: 'Email',
     password: 'Password',

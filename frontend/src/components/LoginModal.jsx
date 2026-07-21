@@ -34,12 +34,14 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
   const [fieldErrors, setFieldErrors] = useState({})
   const [formError, setFormError] = useState('')
   const [infoMessage, setInfoMessage] = useState('')
+  const [verifyLink, setVerifyLink] = useState('')
   const [forgotLoading, setForgotLoading] = useState(false)
   const [resendLoading, setResendLoading] = useState(false)
 
   useEffect(() => {
     if (!show) {
       setInfoMessage('')
+      setVerifyLink('')
       return
     }
     setFieldErrors({})
@@ -53,6 +55,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
     setFieldErrors({})
     setFormError('')
     setInfoMessage('')
+    setVerifyLink('')
   }
 
   const handleForgot = async (event) => {
@@ -89,6 +92,13 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
     try {
       const result = await resendVerification(email.trim())
       setInfoMessage(result?.message || t('auth.resendSent'))
+      if (result?.verificationToken) {
+        setVerifyLink(
+          `${window.location.origin}/?verifyToken=${result.verificationToken}`,
+        )
+      } else {
+        setVerifyLink('')
+      }
     } catch (err) {
       setFormError(
         err?.response?.data?.message || err?.message || t('auth.resendFailed'),
@@ -124,6 +134,13 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
         if (result?.pendingVerification || !result?.token) {
           // No auto-verificar: el usuario debe usar el link del email
           setInfoMessage(result.message || t('auth.registerVerifySent'))
+          if (result?.verificationToken) {
+            setVerifyLink(
+              `${window.location.origin}/?verifyToken=${result.verificationToken}`,
+            )
+          } else {
+            setVerifyLink('')
+          }
           setMode('login')
           setPassword('')
           return
@@ -221,6 +238,14 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
                 role="alert"
               >
                 {infoMessage || formError}
+                {verifyLink && (
+                  <div className="mt-2 small">
+                    <div className="mb-1">{t('auth.verifyLinkFallback')}</div>
+                    <a href={verifyLink} className="text-break">
+                      {verifyLink}
+                    </a>
+                  </div>
+                )}
               </div>
             )}
 
@@ -322,6 +347,14 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
                 role="alert"
               >
                 {infoMessage || formError || resolveAuthError(t, error)}
+                {verifyLink && (
+                  <div className="mt-2 small">
+                    <div className="mb-1">{t('auth.verifyLinkFallback')}</div>
+                    <a href={verifyLink} className="text-break">
+                      {verifyLink}
+                    </a>
+                  </div>
+                )}
               </div>
             )}
 

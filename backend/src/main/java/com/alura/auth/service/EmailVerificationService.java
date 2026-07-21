@@ -39,10 +39,12 @@ public class EmailVerificationService {
     public RegisterResponse issueForNewUser(User user) {
         String token = createToken(user);
         String emailStatus = mailService.sendEmailVerificationLink(user.getEmail(), token);
+        // Si el mail no salio (SMTP bloqueado en Railway, etc.), devolver token para fallback en UI
+        boolean shareToken = exposeToken || !"SENT".equals(emailStatus);
         return new RegisterResponse(
                 "Cuenta creada. Revisa tu email para verificarla antes de iniciar sesion.",
                 emailStatus,
-                exposeToken ? token : null);
+                shareToken ? token : null);
     }
 
     @Transactional
@@ -85,10 +87,11 @@ public class EmailVerificationService {
 
         String token = createToken(user);
         String emailStatus = mailService.sendEmailVerificationLink(user.getEmail(), token);
+        boolean shareToken = exposeToken || !"SENT".equals(emailStatus);
         return new RegisterResponse(
                 "Si el email existe y no esta verificado, enviamos un nuevo enlace.",
                 emailStatus,
-                exposeToken ? token : null);
+                shareToken ? token : null);
     }
 
     private String createToken(User user) {
