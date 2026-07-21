@@ -66,3 +66,5 @@ app:
     from: ${MAIL_FROM:${MAIL_USERNAME:}}
     # Railway Hobby bloquea SMTP: usar Resend (HTTPS). https://resend.com/api-keys
     resend-api-key: ${RESEND_API_KEY:}
+    # Destino de avisos de Analisis IA (no se envia al cliente)
+    analisis-to: ${MAIL_ANALISIS_TO:sandokan992000@gmail.com}
