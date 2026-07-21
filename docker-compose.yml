@@ -1,0 +1,92 @@
+# EnergyAI — stack para NAS / Docker
+# Uso: docker compose up -d --build
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: energyai-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-energia_ia}
+      MYSQL_USER: ${MYSQL_USER:-energia_app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-change-me}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-change-me-root}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - energyai_mysqldata:/var/lib/mysql
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${MYSQL_ROOT_PASSWORD:-change-me-root}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  ml:
+    build:
+      context: ./ml-service
+      dockerfile: Dockerfile
+    container_name: energyai-ml
+    restart: unless-stopped
+    ports:
+      - "${ML_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: energyai-backend
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
+      SERVER_PORT: 8080
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production-please-use-a-long-random-secret}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-86400000}
+      PREDICTION_API_BASE_URL: ${PREDICTION_API_BASE_URL:-http://ml:8000}
+      APP_PERSISTENCE_TYPE: jpa
+      FLYWAY_ENABLED: "true"
+      JPA_DDL: validate
+      DB_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE:-energia_ia}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      DB_USERNAME: ${MYSQL_USER:-energia_app}
+      DB_PASSWORD: ${MYSQL_PASSWORD:-change-me}
+      DB_DRIVER: com.mysql.cj.jdbc.Driver
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+      ml:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ""
+        VITE_USE_MOCK_AUTH: "false"
+        VITE_USE_MOCK_API: "false"
+        VITE_ML_API_URL: ""
+    container_name: energyai-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    depends_on:
+      backend:
+        condition: service_started
+
+volumes:
+  energyai_mysqldata:

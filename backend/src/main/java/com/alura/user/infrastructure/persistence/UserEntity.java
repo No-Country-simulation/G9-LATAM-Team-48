@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 /**
- * Entidad JPA que representa a un usuario persistido en MySQL.
+ * Entidad JPA que representa a un usuario persistido en PostgreSQL.
  *
  * <p>Mapea la tabla {@code users} y convierte el modelo de dominio {@link com.alura.user.model.User}
  * a un formato persistible.</p>
@@ -45,6 +45,14 @@ public class UserEntity {
 
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+
+    /** NULL = activo; con valor = borrado logico. */
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
+    /** NULL = email no verificado; con fecha = verificado. */
+    @Column(name = "email_verified_at")
+    private LocalDateTime emailVerifiedAt;
 
     @PrePersist
     protected void onCreate() {

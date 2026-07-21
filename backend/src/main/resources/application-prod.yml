@@ -27,3 +27,25 @@ security:
 prediction:
   api:
     base-url: ${PREDICTION_API_BASE_URL}
+
+# Persistencia MySQL obligatoria en produccion
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+app:
+  persistence:
+    type: jpa
+  frontend-base-url: ${FRONTEND_BASE_URL:https://g9-latam-team-48.vercel.app}
+  mail:
+    enabled: ${MAIL_ENABLED:false}
+    from: ${MAIL_FROM:}
