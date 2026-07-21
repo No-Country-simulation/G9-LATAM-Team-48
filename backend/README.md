@@ -132,12 +132,40 @@ Cada modulo sigue una **arquitectura por capas** (`controller` -> `service` ->
 
 ## Documentacion tecnica
 
-La guia detallada de arquitectura se encuentra en:
+- [`docs/backend/ARCHITECTURE.md`](../docs/backend/ARCHITECTURE.md) — decisiones
+  de diseno, responsabilidades de cada paquete, principios SOLID y como
+  incorporar nuevos modulos.
+- [`docs/backend/JWT_AUTHENTICATION.md`](../docs/backend/JWT_AUTHENTICATION.md) —
+  feature de autenticacion/autorizacion con JWT: justificacion, beneficios,
+  diseno y uso.
 
-- [`docs/backend/ARCHITECTURE.md`](../docs/backend/ARCHITECTURE.md)
+---
 
-Explica las decisiones de diseno, las responsabilidades de cada paquete, los
-principios SOLID aplicados y como incorporar nuevos modulos.
+## Autenticacion (JWT)
+
+El backend usa autenticacion **stateless** con JSON Web Tokens. Endpoints
+principales:
+
+| Metodo | Ruta | Acceso | Descripcion |
+|--------|------|--------|-------------|
+| `POST` | `/api/v1/auth/register` | Publico | Registra un usuario y emite un token. |
+| `POST` | `/api/v1/auth/login` | Publico | Autentica y emite un token. |
+| `GET`  | `/api/v1/users/me` | Protegido | Perfil del usuario autenticado. |
+
+Ejemplo rapido:
+
+```bash
+# 1. Login y captura del token
+TOKEN=$(curl -s -X POST http://localhost:8080/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"ana@example.com","password":"secret123"}' | jq -r .data.accessToken)
+
+# 2. Consumir una ruta protegida
+curl http://localhost:8080/api/v1/users/me -H "Authorization: Bearer $TOKEN"
+```
+
+> Detalle completo (configuracion, flujo, manejo de errores y seguridad) en
+> [`docs/backend/JWT_AUTHENTICATION.md`](../docs/backend/JWT_AUTHENTICATION.md).
 
 ---
 
@@ -149,5 +177,6 @@ principios SOLID aplicados y como incorporar nuevos modulos.
 - DTOs inmutables (`record`) para los contratos de la API.
 - Preparado para **pruebas unitarias** e **integracion continua**.
 
-> Ninguna funcionalidad esta implementada aun: controladores, servicios,
-> seguridad, persistencia y consumo de FastAPI son esqueletos con `TODO`.
+> El modulo de autenticacion/autorizacion (JWT) ya esta implementado. El resto
+> de modulos (prediccion, recomendaciones, costos, consumo de FastAPI,
+> persistencia real) siguen siendo esqueletos con `TODO`.

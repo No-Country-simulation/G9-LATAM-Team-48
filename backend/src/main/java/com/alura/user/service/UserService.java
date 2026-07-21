@@ -3,17 +3,15 @@ package com.alura.user.service;
 import com.alura.user.dto.UserResponse;
 
 /**
- * Orquesta la logica de gestion de usuarios (consulta y administracion de perfiles).
- *
- * <p>Sin implementacion todavia.</p>
+ * Orquesta la logica de gestion de usuarios (consulta de perfiles).
  */
 public interface UserService {
 
     /**
-     * Recupera el perfil publico de un usuario por su identificador.
+     * Recupera el perfil publico de un usuario a partir de su email.
      *
-     * @param id identificador del usuario
+     * @param email correo electronico (identificador de acceso)
      * @return vista publica del usuario
      */
-    UserResponse findById(Long id);
+    UserResponse findByEmail(String email);
 }
