@@ -107,9 +107,14 @@ public class UserMailService {
     }
 
     private String send(String to, String subject, String body, String replyTo) {
-        if (!mailEnabled || mailSender == null || !StringUtils.hasText(mailUsername)
+        if (!mailEnabled) {
+            log.warn("Mail deshabilitado (MAIL_ENABLED=false). Pendiente para {} | {}", to, subject);
+            return "PENDING";
+        }
+        if (mailSender == null || !StringUtils.hasText(mailUsername)
                 || !StringUtils.hasText(resolveFrom())) {
-            log.warn("SMTP no configurado. Mail pendiente para {} | {} | body=\n{}", to, subject, body);
+            log.warn("SMTP incompleto (host/user/from). Mail pendiente para {} | {} | body=\n{}",
+                    to, subject, body);
             return "PENDING";
         }
 
