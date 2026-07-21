@@ -1,14 +1,19 @@
 package com.alura.prediction.service;
 
+import com.alura.common.exception.MlServiceUnavailableException;
 import com.alura.prediction.client.PredictionClient;
 import com.alura.prediction.dto.PredictionRequest;
 import com.alura.prediction.dto.PredictionResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 @Service
 public class PredictionServiceImpl implements PredictionService {
+
+    private static final Logger log = LoggerFactory.getLogger(PredictionServiceImpl.class);
 
     private final PredictionClient predictionClient;
 
@@ -21,7 +26,13 @@ public class PredictionServiceImpl implements PredictionService {
         if (request == null || request.features() == null || request.features().isEmpty()) {
             throw new IllegalArgumentException("features are required");
         }
-        return predictionClient.predict(request);
+        try {
+            return predictionClient.predict(request);
+        } catch (MlServiceUnavailableException ex) {
+            // Railway suele tener PREDICTION_API_BASE_URL=http://127.0.0.1:8000 sin ML.
+            log.warn("ML no disponible; usando fallback heuristico: {}", ex.getMessage());
+            return HeuristicPrediction.fromFeatures(request.features());
+        }
     }
 
     @Override
