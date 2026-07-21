@@ -65,6 +65,34 @@ Documentación de auth, email y admin: [`docs/backend/AUTH_EMAIL_ADMIN.md`](./do
 
 ---
 
+## Deploy (demo en línea)
+
+| Capa | Plataforma | URL / notas |
+|------|------------|-------------|
+| **Frontend** | [Vercel](https://vercel.com) | App pública (Root Directory `frontend`, rama `Jorge-martinez`) |
+| **Backend** | [Railway](https://railway.app) | https://g9-latam-team-48-production.up.railway.app |
+| **Base de datos** | Railway MySQL | Flyway crea tablas y usuarios demo al arrancar |
+
+Variables del front en Vercel (Production / Preview):
+
+```env
+VITE_API_URL=https://g9-latam-team-48-production.up.railway.app
+VITE_USE_MOCK_AUTH=false
+VITE_USE_MOCK_API=false
+```
+
+Usuarios demo:
+
+| Email | Contraseña | Rol |
+|-------|------------|-----|
+| `operador@energyai.com` | `operador123` | USER |
+| `admin@energyai.com` | `admin1234` | ADMIN |
+| `team48@energyai.com` | `team48123` | USER |
+
+> Un push a `Jorge-martinez` redespliega Vercel y Railway si el auto-deploy está activo en esa rama (no uses `main`: ahí `frontend/` está vacío).
+
+---
+
 ## Equipo 48
 
 | Integrante | Rol |

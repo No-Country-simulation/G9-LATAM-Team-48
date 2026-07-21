@@ -12,7 +12,7 @@ Dashboard interactivo, registro/login, multilenguaje, análisis asistido por IA 
 ![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap&logoColor=white)
 ![Recharts](https://img.shields.io/badge/Recharts-3-FF6384)
-![Estado](https://img.shields.io/badge/estado-en%20desarrollo-yellow)
+![Estado](https://img.shields.io/badge/estado-demo%20online-success)
 
 <br />
 
@@ -24,6 +24,7 @@ Hackathon ONE G9 · Team 48
 
 ## Tabla de contenidos
 
+- [Deploy (demo)](#deploy-demo)
 - [Vista previa](#vista-previa)
 - [Funcionalidades](#funcionalidades)
 - [Tecnologías](#tecnologías)
@@ -34,6 +35,28 @@ Hackathon ONE G9 · Team 48
 - [Autenticación](#autenticación)
 - [Estructura del proyecto](#estructura-del-proyecto)
 - [Equipo](#equipo)
+
+---
+
+## Deploy (demo)
+
+| Capa | Dónde | Notas |
+|------|--------|--------|
+| Frontend | **Vercel** | Root Directory `frontend`, rama **`Jorge-martinez`** |
+| Backend API | **Railway** | https://g9-latam-team-48-production.up.railway.app |
+| MySQL | **Railway** | Migraciones Flyway + seed de usuarios demo |
+
+En Vercel (Environment Variables):
+
+```env
+VITE_API_URL=https://g9-latam-team-48-production.up.railway.app
+VITE_USE_MOCK_AUTH=false
+VITE_USE_MOCK_API=false
+```
+
+Tras cambiar variables `VITE_*`, hace falta **Redeploy**. Un push a `Jorge-martinez` dispara deploy automático si está configurado.
+
+> La URL de Railway es solo API: abrir `/` en el navegador puede devolver 403. Usá la app en Vercel.
 
 ---
 
@@ -153,17 +176,20 @@ App en `http://localhost:5173`.
 Copiá `.env.example` a `.env`:
 
 ```env
-VITE_API_URL=
+VITE_API_URL=http://localhost:8080
 VITE_USE_MOCK_AUTH=false
-VITE_USE_MOCK_API=true
+VITE_USE_MOCK_API=false
+VITE_ML_API_URL=http://localhost:8000
 ```
 
 | Variable | Descripción |
 |----------|-------------|
-| `VITE_API_URL` | URL base del backend. Vacío = misma origen (nginx/proxy en Docker). |
+| `VITE_API_URL` | URL base del backend (`https://…` en prod). Vacío = misma origen (nginx/proxy en Docker). |
 | `VITE_USE_MOCK_AUTH` | `true` = auth simulada; `false` = API JWT |
 | `VITE_USE_MOCK_API` | `true` = datos mock; `false` = API real (predicción vía Spring) |
 | `VITE_ML_API_URL` | URL del ML FastAPI (ej. `http://localhost:8000`). Si está definida, Análisis IA la usa primero. |
+
+En producción la URL debe incluir el protocolo (`https://…`). Sin eso Axios falla con errores del tipo `Unsupported protocol …`.
 
 ---
 
@@ -220,7 +246,7 @@ El token se envía como `Authorization: Bearer <accessToken>`.
 
 ## Autenticación
 
-Cuentas demo (Postgres + email ya verificado):
+Cuentas demo (MySQL + Flyway V6, email ya verificado):
 
 | Usuario | Email | Contraseña |
 |---------|-------|------------|
