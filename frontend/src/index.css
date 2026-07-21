@@ -35,22 +35,22 @@ body,
 
 .brand-logo {
   display: block;
-  height: 2.35rem;
+  height: 3.25rem;
   width: auto;
-  max-width: min(42vw, 11rem);
+  max-width: min(58vw, 16rem);
   object-fit: contain;
 }
 
 @media (min-width: 768px) {
   .brand-logo {
-    height: 2.75rem;
+    height: 3.75rem;
   }
 }
 
 /* Logo con fondo blanco: contraste en navbar oscura */
 .navbar-dark .brand-mark {
-  padding: 0.2rem 0.45rem;
-  border-radius: 0.5rem;
+  padding: 0.3rem 0.55rem;
+  border-radius: 0.55rem;
   background: #fff;
 }
 
