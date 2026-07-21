@@ -18,7 +18,7 @@ export default class ErrorBoundary extends Component {
     if (this.state.error) {
       return (
         <div style={{ padding: 24, fontFamily: 'sans-serif' }}>
-          <h1 style={{ fontSize: 20 }}>Error al cargar EnergyAI</h1>
+          <h1 style={{ fontSize: 20 }}>Error al cargar EnergIA</h1>
           <pre style={{ whiteSpace: 'pre-wrap', color: '#b00020' }}>
             {String(this.state.error?.message || this.state.error)}
           </pre>

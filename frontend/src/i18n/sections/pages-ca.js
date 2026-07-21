@@ -9,7 +9,7 @@ export const pagesCa = {
     "retry": "Tornar a provar"
   },
   "dashboard": {
-    "title": "EnergyAI Dashboard",
+    "title": "EnergIA Dashboard",
     "subtitle": "Hackathon ONE G9 - TEAM 48",
     "lastMonthUsage": "Consum d'últim mes",
     "lastMonthCost": "Cost d'últim mes",
@@ -232,7 +232,7 @@ export const pagesCa = {
     infoTitle: 'Dades de contacte',
     infoText: 'També ens pots escriure directament al correu de l’equip.',
     infoEmailLabel: 'Email',
-    infoNote: 'Hackathon ONE G9 — Team 48 · EnergyAI',
+    infoNote: 'Hackathon ONE G9 — Team 48 · EnergIA',
     errors: {
       incomplete: 'Omple el nom, l’email i un missatge d’almenys 10 caràcters.',
       sendFailed: 'No s’ha pogut enviar el missatge.',
@@ -240,7 +240,7 @@ export const pagesCa = {
   },
   team: {
     title: 'Equip 48',
-    subtitle: 'Hackathon ONE G9 — LATAM. Qui construeix EnergyAI.',
+    subtitle: 'Hackathon ONE G9 — LATAM. Qui construeix EnergIA.',
     linkedin: 'LinkedIn',
     github: 'GitHub',
     portfolio: 'Portfolio',

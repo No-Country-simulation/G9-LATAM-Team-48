@@ -1,4 +1,4 @@
-# Multi-stage build — EnergyAI Frontend
+# Multi-stage build — EnergIA Frontend
 # Etapa 1: build con Node
 # Etapa 2: servir estáticos con nginx
 

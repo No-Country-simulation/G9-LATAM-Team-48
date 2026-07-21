@@ -1,5 +1,5 @@
 /**
- * Integrantes Team 48 — EnergyAI (Hackathon ONE G9).
+ * Integrantes Team 48 — EnergIA (Hackathon ONE G9).
  * Fotos: colocá archivos en `public/equipo/<id>.jpg` (o .png).
  * Links: linkedin / github / portfolio / instagram / email / cv.
  */

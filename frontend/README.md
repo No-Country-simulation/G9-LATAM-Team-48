@@ -1,10 +1,16 @@
 <div align="center">
 
-# ⚡ EnergyAI — Frontend
+# ⚡ EnergIA — Frontend
+
+<div align="center">
+<img src="./public/logo-energia.png" alt="EnergIA" width="220" />
+</div>
 
 **Plataforma web para el análisis y la optimización del consumo energético**
 
 Dashboard interactivo, registro/login, multilenguaje, análisis asistido por IA y recomendaciones de ahorro.
+
+Marca del producto: **EnergIA** (logo en [`public/logo-energia.png`](./public/logo-energia.png); header, favicon y títulos de UI).
 
 <br />
 
@@ -270,6 +276,7 @@ Detalle backend (SMTP, Flyway, admin): [`docs/backend/AUTH_EMAIL_ADMIN.md`](../d
 ```
 frontend/
 ├── public/
+│   ├── logo-energia.png    # Marca EnergIA (header + favicon)
 │   └── equipo/             # Fotos de integrantes (PNG/JPG)
 ├── screenshots/            # Capturas del README
 ├── scripts/                # screenshots + utilidades i18n
@@ -309,6 +316,6 @@ Contacto del proyecto: `energyaiteam48@gmail.com`
 
 <div align="center">
 
-⚡ *EnergyAI — energía más inteligente*
+⚡ *EnergIA — energía más inteligente*
 
 </div>

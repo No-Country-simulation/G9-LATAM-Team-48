@@ -26,6 +26,34 @@ body,
   z-index: 1030;
 }
 
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  text-decoration: none;
+}
+
+.brand-logo {
+  display: block;
+  height: 2.35rem;
+  width: auto;
+  max-width: min(42vw, 11rem);
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .brand-logo {
+    height: 2.75rem;
+  }
+}
+
+/* Logo con fondo blanco: contraste en navbar oscura */
+.navbar-dark .brand-mark {
+  padding: 0.2rem 0.45rem;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
 .app-body {
   display: flex;
   flex: 1;
