@@ -100,39 +100,40 @@ public class UserMailService {
     }
 
     /**
-     * Resumen de Analisis IA: llega al inbox del equipo (no al usuario cliente).
+     * Resultado del Analisis IA: se envia al email del usuario cliente.
      */
-    public String sendAnalisisSummary(
-            String inbox,
-            String userEmail,
-            Long consultaId,
-            String tipo,
+    public String sendAnalisisResult(
+            String toEmail,
             String nivelKey,
             Integer ahorro,
             Double confidence,
-            Double benchmark) {
-        String subject = "EnergIA — Nuevo análisis IA #" + (consultaId != null ? consultaId : "");
+            Double benchmark,
+            Long consultaId) {
+        String subject = "EnergIA — Resultado de tu Análisis IA";
+        String confLabel = confidence == null ? "-" : String.format("%.0f%%", confidence * 100);
+        String benchLabel = benchmark == null ? "-" : String.format("%.0f", benchmark);
         String body = """
-                Nuevo análisis IA en EnergIA
+                Hola,
 
-                Usuario: %s
-                Consulta #: %s
-                Tipo: %s
+                Ya procesamos tu consulta de Análisis IA (#%s).
+
                 Nivel: %s
                 Ahorro estimado: %s%%
                 Confianza: %s
-                Benchmark: %s
+                Referencia (benchmark): %s kWh
 
-                Revisá el detalle en el Panel Admin → Análisis IA.
+                Podés volver a la app para ver más detalle:
+                %s
+
+                Equipo EnergIA — Team 48
                 """.formatted(
-                userEmail,
-                consultaId,
-                tipo,
-                nivelKey,
-                ahorro,
-                confidence,
-                benchmark);
-        return send(inbox, subject, body, userEmail);
+                consultaId == null ? "-" : consultaId.toString(),
+                nivelKey == null ? "-" : nivelKey,
+                ahorro == null ? "-" : ahorro.toString(),
+                confLabel,
+                benchLabel,
+                frontendBaseUrl);
+        return send(toEmail, subject, body, null);
     }
 
     /**
