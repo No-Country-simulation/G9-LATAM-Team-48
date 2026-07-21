@@ -38,7 +38,16 @@ function Header({ onMenuOpen, onLoginClick }) {
             ☰
           </button>
 
-          <span className="navbar-brand mb-0 h1 fs-5 fs-md-3">⚡ EnergyAI</span>
+          <span className="navbar-brand brand-mark mb-0 py-0" aria-label="EnergIA">
+            <img
+              src="/logo-energia.png"
+              alt="EnergIA"
+              className="brand-logo"
+              width="148"
+              height="48"
+              decoding="async"
+            />
+          </span>
         </div>
 
         <div className="d-flex align-items-center gap-2 gap-md-3 ms-auto">

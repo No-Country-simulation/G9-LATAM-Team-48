@@ -1,10 +1,14 @@
 <div align="center">
 
-# ⚡ EnergyAI — G9 LATAM Team 48
+# ⚡ EnergIA — G9 LATAM Team 48
 
 Repositorio del **Team 48** del Hackathon ONE G9 — LATAM.
 
-Plataforma para el análisis y la optimización del consumo energético.
+Plataforma para el análisis y la optimización del consumo energético (**EnergIA**).
+
+<div align="center">
+<img src="./frontend/public/logo-energia.png" alt="EnergIA" width="220" />
+</div>
 
 </div>
 
@@ -123,6 +127,6 @@ App en `http://localhost:5173`. Credenciales, i18n, Docker/NAS y contrato API: [
 
 <div align="center">
 
-Hackathon ONE G9 — LATAM · Team 48 · `energyaiteam48@gmail.com`
+Hackathon ONE G9 — LATAM · Team 48 · EnergIA · `energyaiteam48@gmail.com`
 
 </div>
