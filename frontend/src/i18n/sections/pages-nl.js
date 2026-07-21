@@ -218,42 +218,5 @@ export const pagesNl = {
       "ok": "Tip: draai wasmachine buiten 18:00–22:00 om minder te betalen.",
       "high": "Tip: check airco en oude apparaten; daar zit vaak de grootste kostenpost."
     }
-  },
-  contact: {
-    title: 'Contact',
-    subtitle: 'Stuur je vraag en we reageren zo snel mogelijk.',
-    name: 'Naam',
-    email: 'E-mail',
-    message: 'Bericht',
-    messageHint: 'Minimaal 10 tekens.',
-    submit: 'Bericht versturen',
-    submitting: 'Versturen...',
-    success: 'Bericht verzonden. We reageren binnenkort.',
-    infoTitle: 'Contactgegevens',
-    infoText: 'Je kunt ons ook rechtstreeks e-mailen.',
-    infoEmailLabel: 'E-mail',
-    infoNote: 'Hackathon ONE G9 — Team 48 · EnergyAI',
-    errors: {
-      incomplete: 'Vul naam, e-mail en een bericht van minstens 10 tekens in.',
-      sendFailed: 'Het bericht kon niet worden verzonden.',
-    },
-  },
-  team: {
-    title: 'Team 48',
-    subtitle: 'Hackathon ONE G9 — LATAM. Wie EnergyAI bouwt.',
-    linkedin: 'LinkedIn',
-    github: 'GitHub',
-    portfolio: 'Portfolio',
-    instagram: 'Instagram',
-    email: 'Email',
-    cv: 'CV',
-    linksSoon: 'Profiellinks volgen binnenkort.',
-    roles: {
-      fullstack: 'Full Stack Developer',
-      dataAnalyst: 'Data Analyst',
-      dataScientist: 'Data Scientist',
-      backend: 'Backend Developer',
-      pm: 'Project Manager',
-    },
-  },
+  }
 }

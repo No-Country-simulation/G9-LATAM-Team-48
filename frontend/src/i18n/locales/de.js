@@ -27,8 +27,6 @@ export default {
     consumos: 'Verbrauch',
     ia: 'KI-Analyse',
     recomendaciones: 'Empfehlungen',
-    contacto: 'Kontakt',
-    equipo: 'Team 48',
     adminUsuarios: 'Panel Admin',
   },
   auth: {

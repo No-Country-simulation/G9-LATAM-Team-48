@@ -37,8 +37,6 @@ public class SecurityConfiguration {
     /** Rutas accesibles sin autenticacion. */
     private static final String[] PUBLIC_ENDPOINTS = {
             "/api/v1/auth/**",
-            "/api/v1/contact",
-            "/api/v1/contact/**",
             // /api/analisis requiere JWT (guardar consulta + email)
             "/api/v1/predictions/**",
             "/api/recomendaciones",

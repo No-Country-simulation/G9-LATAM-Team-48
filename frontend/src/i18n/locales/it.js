@@ -27,8 +27,6 @@ export default {
     consumos: 'Consumi',
     ia: 'Analisi IA',
     recomendaciones: 'Raccomandazioni',
-    contacto: 'Contattaci',
-    equipo: 'Team 48',
     adminUsuarios: 'Panel Admin',
   },
   auth: {

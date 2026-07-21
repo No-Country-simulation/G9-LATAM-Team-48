@@ -2,7 +2,6 @@ import Dashboard from './pages/Dashboard'
 import Consumos from './pages/Consumos'
 import AnalisisIA from './pages/AnalisisIA'
 import RecomendacionesPage from './pages/RecomendacionesPage'
-import Contacto from './pages/Contacto'
 import AdminUsuarios from './pages/AdminUsuarios'
 import ResetPassword from './pages/ResetPassword'
 import VerifyEmail from './pages/VerifyEmail'
@@ -87,9 +86,6 @@ function App() {
         return <AnalisisIA />
       case 'recomendaciones':
         return <RecomendacionesPage />
-      case 'contacto':
-      case 'equipo':
-        return <Contacto />
       case 'admin-usuarios':
         return <AdminUsuarios />
       case 'reset-password':

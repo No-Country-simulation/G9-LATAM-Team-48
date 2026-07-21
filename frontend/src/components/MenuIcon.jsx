@@ -4,8 +4,6 @@ import {
   LuBrainCircuit,
   LuLightbulb,
   LuUsers,
-  LuMail,
-  LuUsersRound,
 } from 'react-icons/lu'
 
 const ICONS = {
@@ -13,8 +11,6 @@ const ICONS = {
   consumos: LuZap,
   ia: LuBrainCircuit,
   recomendaciones: LuLightbulb,
-  contacto: LuMail,
-  equipo: LuUsersRound,
   admin: LuUsers,
 }
 
@@ -34,14 +30,6 @@ const COLORS = {
   green: {
     bg: 'rgba(25, 135, 84, 0.18)',
     icon: '#198754',
-  },
-  teal: {
-    bg: 'rgba(32, 201, 151, 0.18)',
-    icon: '#20c997',
-  },
-  indigo: {
-    bg: 'rgba(102, 16, 242, 0.16)',
-    icon: '#6610f2',
   },
   rose: {
     bg: 'rgba(214, 51, 108, 0.16)',

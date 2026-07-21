@@ -27,8 +27,6 @@ export default {
     consumos: 'Consum',
     ia: 'Analiză IA',
     recomendaciones: 'Recomandări',
-    contacto: 'Contactează-ne',
-    equipo: 'Echipa 48',
     adminUsuarios: 'Panel Admin',
   },
   auth: {

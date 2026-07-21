@@ -27,8 +27,6 @@ export default {
     consumos: 'Tüketim',
     ia: 'YA analizi',
     recomendaciones: 'Öneriler',
-    contacto: 'Bize ulaşın',
-    equipo: '48. Takım',
     adminUsuarios: 'Panel Admin',
   },
   auth: {

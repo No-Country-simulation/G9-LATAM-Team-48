@@ -57,27 +57,11 @@ Plataforma para el análisis y la optimización del consumo energético.
   </tr>
   <tr>
     <td width="50%"><strong>Verificar email</strong><br /><img src="./frontend/screenshots/verify-email.png" alt="Verificar email" /></td>
-    <td width="50%"><strong>Contáctanos</strong> — formulario + Equipo 48<br /><img src="./frontend/screenshots/contacto.png" alt="Contáctanos" /></td>
+    <td width="50%"></td>
   </tr>
 </table>
 
 Documentación de auth, email y admin: [`docs/backend/AUTH_EMAIL_ADMIN.md`](./docs/backend/AUTH_EMAIL_ADMIN.md).
-
----
-
-## Equipo 48
-
-| Integrante | Rol |
-|------------|-----|
-| Jorge Gustavo Martinez | Full Stack Developer |
-| Ricardo Chirinos | Data Analyst |
-| Elizabeth Díaz Familia | Data Scientist |
-| Carlos Miyen Brandolino | Backend Developer |
-| Germán French | Backend Developer |
-| Jharle Compres | Data Analyst |
-| Neil Jacome | Project Manager |
-
-Perfiles y fotos: pantalla **Contáctanos** del frontend. Detalle y links: [frontend/README.md § Equipo](./frontend/README.md#equipo).
 
 ---
 
@@ -95,6 +79,6 @@ App en `http://localhost:5173`. Credenciales, i18n, Docker/NAS y contrato API: [
 
 <div align="center">
 
-Hackathon ONE G9 — LATAM · Team 48 · `energyaiteam48@gmail.com`
+Hackathon ONE G9 — LATAM · Team 48
 
 </div>

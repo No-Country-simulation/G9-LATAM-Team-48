@@ -218,42 +218,5 @@ export const pagesRo = {
       "ok": "Sfat: folosește mașina de spălat în afara 18:00–22:00 ca să plătești mai puțin.",
       "high": "Sfat: verifică aerul condiționat și aparatele vechi; acolo e de obicei cel mai mare cost."
     }
-  },
-  contact: {
-    title: 'Contactează-ne',
-    subtitle: 'Trimite-ne întrebarea ta și îți răspundem curând.',
-    name: 'Nume',
-    email: 'Email',
-    message: 'Mesaj',
-    messageHint: 'Minim 10 caractere.',
-    submit: 'Trimite mesajul',
-    submitting: 'Se trimite...',
-    success: 'Mesaj trimis. Îți vom răspunde curând.',
-    infoTitle: 'Date de contact',
-    infoText: 'Ne poți scrie și direct pe emailul echipei.',
-    infoEmailLabel: 'Email',
-    infoNote: 'Hackathon ONE G9 — Team 48 · EnergyAI',
-    errors: {
-      incomplete: 'Completează numele, emailul și un mesaj de cel puțin 10 caractere.',
-      sendFailed: 'Mesajul nu a putut fi trimis.',
-    },
-  },
-  team: {
-    title: 'Echipa 48',
-    subtitle: 'Hackathon ONE G9 — LATAM. Cei care construiesc EnergyAI.',
-    linkedin: 'LinkedIn',
-    github: 'GitHub',
-    portfolio: 'Portfolio',
-    instagram: 'Instagram',
-    email: 'Email',
-    cv: 'CV',
-    linksSoon: 'Linkuri de profil în curând.',
-    roles: {
-      fullstack: 'Full Stack Developer',
-      dataAnalyst: 'Data Analyst',
-      dataScientist: 'Data Scientist',
-      backend: 'Backend Developer',
-      pm: 'Project Manager',
-    },
-  },
+  }
 }
