@@ -43,8 +43,8 @@ function Header({ onMenuOpen, onLoginClick }) {
               src="/logo-energia.png"
               alt="EnergIA"
               className="brand-logo"
-              width="148"
-              height="48"
+              width="220"
+              height="72"
               decoding="async"
             />
           </span>
