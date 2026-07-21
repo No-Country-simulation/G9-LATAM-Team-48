@@ -17,11 +17,22 @@ spring:
     open-in-view: false
   flyway:
     enabled: false
+  mail:
+    host: localhost
+    port: 25
+    username: test
+    password: test
 
-# Usar InMemoryUserRepository para tests
+# Usar InMemoryUserRepository para tests; mail desactivado
 app:
   persistence:
     type: in-memory
+  mail:
+    enabled: false
+  email-verification:
+    expose-token: true
+  password-reset:
+    expose-token: true
 
 # Logging para tests
 logging:

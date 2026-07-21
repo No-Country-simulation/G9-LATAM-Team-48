@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /**
  * Verifica el flujo de autorizacion JWT de extremo a extremo:
- * registro -> login -> acceso a ruta protegida con y sin token.
+ * registro -> verificar email -> login -> acceso a ruta protegida.
  *
  * <p>Usa el perfil "test" que activa InMemoryUserRepository y H2 en memoria.</p>
  */
@@ -33,37 +33,52 @@ class AuthFlowIntegrationTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void registerLoginAndAccessProtectedResource() throws Exception {
+    void registerVerifyLoginAndAccessProtectedResource() throws Exception {
         String registerBody = """
                 {"name":"Ana Torres","email":"ana@example.com","password":"secret123"}
                 """;
 
-        // 1) Registro -> 201 y token emitido
+        // 1) Registro -> 201 sin JWT; con token de verificacion (dev)
         String registerResponse = mockMvc.perform(post("/api/v1/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(registerBody))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.data.accessToken").isNotEmpty())
-                .andExpect(jsonPath("$.data.tokenType").value("Bearer"))
+                .andExpect(jsonPath("$.data.verificationToken").isNotEmpty())
+                .andExpect(jsonPath("$.data.accessToken").doesNotExist())
                 .andReturn().getResponse().getContentAsString();
 
-        String token = extractToken(registerResponse);
+        String verifyToken = extractField(registerResponse, "verificationToken");
 
-        // 2) Login -> 200 y token emitido
+        // 2) Login sin verificar -> 409
         String loginBody = """
                 {"email":"ana@example.com","password":"secret123"}
                 """;
         mockMvc.perform(post("/api/v1/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(loginBody))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.accessToken").isNotEmpty());
+                .andExpect(status().isConflict());
 
-        // 3) Ruta protegida sin token -> 401/403
+        // 3) Verificar email
+        mockMvc.perform(post("/api/v1/auth/verify-email")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"token\":\"" + verifyToken + "\"}"))
+                .andExpect(status().isOk());
+
+        // 4) Login -> 200 y token emitido
+        String loginResponse = mockMvc.perform(post("/api/v1/auth/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(loginBody))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.accessToken").isNotEmpty())
+                .andReturn().getResponse().getContentAsString();
+
+        String token = extractField(loginResponse, "accessToken");
+
+        // 5) Ruta protegida sin token -> 401/403
         mockMvc.perform(get("/api/v1/users/me"))
                 .andExpect(status().is4xxClientError());
 
-        // 4) Ruta protegida con token -> 200 y datos del usuario
+        // 6) Ruta protegida con token -> 200 y datos del usuario
         mockMvc.perform(get("/api/v1/users/me")
                         .header("Authorization", "Bearer " + token))
                 .andExpect(status().isOk())
@@ -76,10 +91,17 @@ class AuthFlowIntegrationTest {
         String registerBody = """
                 {"name":"Bruno Diaz","email":"bruno@example.com","password":"secret123"}
                 """;
-        mockMvc.perform(post("/api/v1/auth/register")
+        String registerResponse = mockMvc.perform(post("/api/v1/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(registerBody))
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+                .andReturn().getResponse().getContentAsString();
+
+        String verifyToken = extractField(registerResponse, "verificationToken");
+        mockMvc.perform(post("/api/v1/auth/verify-email")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"token\":\"" + verifyToken + "\"}"))
+                .andExpect(status().isOk());
 
         String wrongLogin = """
                 {"email":"bruno@example.com","password":"wrong-password"}
@@ -101,8 +123,8 @@ class AuthFlowIntegrationTest {
                 .andExpect(status().isBadRequest());
     }
 
-    private String extractToken(String responseBody) throws Exception {
+    private String extractField(String responseBody, String field) throws Exception {
         JsonNode root = objectMapper.readTree(responseBody);
-        return root.path("data").path("accessToken").asText();
+        return root.path("data").path(field).asText();
     }
 }

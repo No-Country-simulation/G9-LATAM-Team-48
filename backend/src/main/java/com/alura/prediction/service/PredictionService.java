@@ -3,20 +3,22 @@ package com.alura.prediction.service;
 import com.alura.prediction.dto.PredictionRequest;
 import com.alura.prediction.dto.PredictionResponse;
 
+import java.util.Map;
+
 /**
- * Orquesta la logica de prediccion. Delegara en {@code PredictionClient} para
- * comunicarse con el servicio FastAPI y aplicara las reglas de negocio propias
- * del backend (validacion, enriquecimiento, manejo de errores).
+ * Orquesta la clasificacion de consumo hacia el servicio FastAPI.
  *
- * <p>Sin implementacion todavia.</p>
+ * <p>Implementacion: {@code PredictionServiceImpl}.</p>
  */
 public interface PredictionService {
 
     /**
-     * Clasifica a un usuario a partir de sus datos de consumo.
-     *
-     * @param request datos de entrada
-     * @return resultado de la clasificacion
+     * Clasifica a partir del contrato {@code { userId, features }}.
      */
     PredictionResponse classify(PredictionRequest request);
+
+    /**
+     * Clasifica a partir del payload plano del formulario de Analisis IA.
+     */
+    PredictionResponse analyze(Map<String, Object> features);
 }
