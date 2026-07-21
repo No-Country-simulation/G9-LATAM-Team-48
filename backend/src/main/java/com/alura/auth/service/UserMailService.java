@@ -10,8 +10,11 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.concurrent.CompletableFuture;
+
 /**
  * Envio de mails de cuenta via SMTP (Gmail u otro proveedor).
+ * El envio corre en background para no colgar el registro si SMTP tarda.
  * Si el mail no esta configurado o falla, deja el link en logs para desarrollo.
  */
 @Service
@@ -38,11 +41,11 @@ public class UserMailService {
     }
 
     public String sendWelcomeWithPassword(String email, String name, String temporaryPassword) {
-        String subject = "EnergyAI — Tu cuenta fue creada";
+        String subject = "EnergIA — Tu cuenta fue creada";
         String body = """
                 Hola %s,
 
-                Te creamos una cuenta en EnergyAI.
+                Te creamos una cuenta en EnergIA.
 
                 Email: %s
                 Contraseña temporal: %s
@@ -54,7 +57,7 @@ public class UserMailService {
 
     public String sendPasswordResetLink(String email, String resetToken) {
         String link = frontendBaseUrl + "/?resetToken=" + resetToken;
-        String subject = "EnergyAI — Recuperar contraseña";
+        String subject = "EnergIA — Recuperar contraseña";
         String body = """
                 Hola,
 
@@ -70,11 +73,11 @@ public class UserMailService {
 
     public String sendEmailVerificationLink(String email, String verificationToken) {
         String link = frontendBaseUrl + "/?verifyToken=" + verificationToken;
-        String subject = "EnergyAI — Verificá tu email";
+        String subject = "EnergIA — Verificá tu email";
         String body = """
                 Hola,
 
-                Gracias por registrarte en EnergyAI.
+                Gracias por registrarte en EnergIA.
                 Para activar tu cuenta, verificá tu email abriendo este enlace:
 
                 %s
@@ -89,7 +92,7 @@ public class UserMailService {
      */
     public String sendContactMessage(String fromName, String fromEmail, String message) {
         String inbox = resolveFrom();
-        String subject = "EnergyAI — Contacto de " + fromName;
+        String subject = "EnergIA — Contacto de " + fromName;
         String body = """
                 Nuevo mensaje desde Contáctanos
 
@@ -111,13 +114,19 @@ public class UserMailService {
             log.warn("Mail deshabilitado (MAIL_ENABLED=false). Pendiente para {} | {}", to, subject);
             return "PENDING";
         }
-        if (mailSender == null || !StringUtils.hasText(mailUsername)
+        if (mailSender == null || !isUsableSmtpUser(mailUsername)
                 || !StringUtils.hasText(resolveFrom())) {
             log.warn("SMTP incompleto (host/user/from). Mail pendiente para {} | {} | body=\n{}",
                     to, subject, body);
             return "PENDING";
         }
 
+        // No bloquear el request HTTP si Gmail/SMTP tarda o cuelga
+        CompletableFuture.runAsync(() -> deliver(to, subject, body, replyTo));
+        return "QUEUED";
+    }
+
+    private void deliver(String to, String subject, String body, String replyTo) {
         try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, false, "UTF-8");
@@ -130,12 +139,18 @@ public class UserMailService {
             helper.setText(body, false);
             mailSender.send(message);
             log.info("Email enviado a {} asunto={}", to, subject);
-            return "SENT";
         } catch (Exception ex) {
             log.error("Fallo envio de email a {}: {}", to, ex.getMessage());
             log.info("Fallback link/contenido para {}:\n{}", to, body);
-            return "FAILED";
         }
+    }
+
+    private boolean isUsableSmtpUser(String username) {
+        if (!StringUtils.hasText(username)) {
+            return false;
+        }
+        String normalized = username.trim().toLowerCase();
+        return !"disabled".equals(normalized) && !"none".equals(normalized);
     }
 
     private String resolveFrom() {
