@@ -21,4 +21,11 @@ export const MENU_ITEMS = [
     color: 'rose',
     adminOnly: true,
   },
+  {
+    id: 'admin-analisis',
+    labelKey: 'menu.adminAnalisis',
+    icon: 'ia',
+    color: 'purple',
+    adminOnly: true,
+  },
 ]

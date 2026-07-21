@@ -30,6 +30,7 @@ export default {
     contacto: 'Contáctanos',
     equipo: 'Equipo 48',
     adminUsuarios: 'Panel Admin',
+    adminAnalisis: 'Análisis IA (admin)',
   },
   auth: {
     loginTitle: 'Iniciar sesión',

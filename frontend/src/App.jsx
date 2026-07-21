@@ -4,6 +4,7 @@ import AnalisisIA from './pages/AnalisisIA'
 import RecomendacionesPage from './pages/RecomendacionesPage'
 import Contacto from './pages/Contacto'
 import AdminUsuarios from './pages/AdminUsuarios'
+import AdminAnalisis from './pages/AdminAnalisis'
 import ResetPassword from './pages/ResetPassword'
 import VerifyEmail from './pages/VerifyEmail'
 import MainLayout from './layouts/MainLayout'
@@ -43,14 +44,17 @@ function App() {
   useEffect(() => {
     if (hydrating) return
 
+    const isAdminPage =
+      pagina === 'admin-usuarios' || pagina === 'admin-analisis'
+
     // Sin sesion: no quedarse en admin
-    if (pagina === 'admin-usuarios' && !isAuthenticated) {
+    if (isAdminPage && !isAuthenticated) {
       setPagina('dashboard')
       return
     }
 
     // Con sesion no-admin: sacar de admin
-    if (pagina === 'admin-usuarios' && user && !isAdmin(user)) {
+    if (isAdminPage && user && !isAdmin(user)) {
       setPagina('dashboard')
     }
   }, [pagina, user, hydrating, isAuthenticated])
@@ -92,6 +96,8 @@ function App() {
         return <Contacto />
       case 'admin-usuarios':
         return <AdminUsuarios />
+      case 'admin-analisis':
+        return <AdminAnalisis />
       case 'reset-password':
         return <ResetPassword token={resetToken} onDone={clearReset} />
       case 'verify-email':
