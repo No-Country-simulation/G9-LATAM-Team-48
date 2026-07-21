@@ -7,4 +7,6 @@ import java.util.List;
 public interface AnalisisConsultaRepository extends JpaRepository<AnalisisConsultaEntity, Long> {
 
     List<AnalisisConsultaEntity> findByUserEmailOrderByCreatedAtDesc(String userEmail);
+
+    List<AnalisisConsultaEntity> findAllByOrderByCreatedAtDesc();
 }
