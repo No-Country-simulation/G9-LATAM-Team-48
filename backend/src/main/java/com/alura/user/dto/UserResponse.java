@@ -1,5 +1,7 @@
 package com.alura.user.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Vista publica de un usuario expuesta por la API.
  *
@@ -10,6 +12,6 @@ public record UserResponse(
         String name,
         String email,
         String role,
-        boolean emailVerified
+        @JsonProperty("emailVerified") boolean emailVerified
 ) {
 }
