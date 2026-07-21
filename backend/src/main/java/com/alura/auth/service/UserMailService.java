@@ -3,6 +3,7 @@ package com.alura.auth.service;
 import jakarta.mail.internet.MimeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -32,8 +33,8 @@ public class UserMailService {
     @Value("${app.frontend-base-url:http://localhost:5173}")
     private String frontendBaseUrl;
 
-    public UserMailService(JavaMailSender mailSender) {
-        this.mailSender = mailSender;
+    public UserMailService(ObjectProvider<JavaMailSender> mailSenderProvider) {
+        this.mailSender = mailSenderProvider.getIfAvailable();
     }
 
     public String sendWelcomeWithPassword(String email, String name, String temporaryPassword) {
@@ -106,7 +107,7 @@ public class UserMailService {
     }
 
     private String send(String to, String subject, String body, String replyTo) {
-        if (!mailEnabled || !StringUtils.hasText(mailUsername)
+        if (!mailEnabled || mailSender == null || !StringUtils.hasText(mailUsername)
                 || !StringUtils.hasText(resolveFrom())) {
             log.warn("SMTP no configurado. Mail pendiente para {} | {} | body=\n{}", to, subject, body);
             return "PENDING";
