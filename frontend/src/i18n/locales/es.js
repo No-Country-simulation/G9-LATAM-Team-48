@@ -63,6 +63,15 @@ export default {
     forgotSubmitting: 'Enviando...',
     forgotSent: 'Si el email existe, enviamos instrucciones de recuperación.',
     forgotFailed: 'No se pudo solicitar la recuperación.',
+    resendLink: '¿No te llegó el email de verificación?',
+    resendTitle: 'Reenviar verificación',
+    resendHint:
+      'Ingresá el email con el que te registraste y te enviamos un nuevo enlace.',
+    resendSubmit: 'Reenviar email',
+    resendSubmitting: 'Enviando...',
+    resendSent:
+      'Si el email existe y no está verificado, enviamos un nuevo enlace.',
+    resendFailed: 'No se pudo reenviar el email de verificación.',
     resetTitle: 'Nueva contraseña',
     resetHint: 'Ingresá tu nueva contraseña para recuperar el acceso.',
     resetSubmit: 'Guardar contraseña',

@@ -63,6 +63,15 @@ export default {
     forgotSubmitting: 'Sending...',
     forgotSent: 'If the email exists, we sent recovery instructions.',
     forgotFailed: 'Could not request password recovery.',
+    resendLink: "Didn't get the verification email?",
+    resendTitle: 'Resend verification',
+    resendHint:
+      'Enter the email you registered with and we will send a new link.',
+    resendSubmit: 'Resend email',
+    resendSubmitting: 'Sending...',
+    resendSent:
+      'If the email exists and is not verified, we sent a new link.',
+    resendFailed: 'Could not resend the verification email.',
     resetTitle: 'New password',
     resetHint: 'Enter your new password to regain access.',
     resetSubmit: 'Save password',
