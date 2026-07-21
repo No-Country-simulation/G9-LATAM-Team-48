@@ -11,7 +11,9 @@ import com.alura.recommendation.dto.RecommendationRequest;
  * implementacion de esta interfaz, sin modificar el codigo existente
  * (principio Abierto/Cerrado).</p>
  *
- * <p>Sin implementaciones todavia.</p>
+ * <p>Implementaciones actuales: {@code HighConsumptionRule},
+ * {@code MediumConsumptionRule} y {@code LowConsumptionRule}, una por cada
+ * categoria de consumo devuelta por el modulo de prediccion.</p>
  */
 public interface RecommendationRule {
 
