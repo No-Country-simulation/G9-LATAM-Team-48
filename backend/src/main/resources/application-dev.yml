@@ -21,3 +21,22 @@ springdoc:
 prediction:
   api:
     base-url: http://localhost:8000
+
+# Configuración de persistencia MySQL
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+# Usar adaptador JPA para persistencia
+app:
+  persistence:
+    type: jpa
