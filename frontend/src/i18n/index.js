@@ -51,6 +51,7 @@ const dictionaries = {
 }
 
 const browserMap = [
+  ['es', 'es'],
   ['pt', 'pt'],
   ['en', 'en'],
   ['fr', 'fr'],
@@ -69,11 +70,11 @@ export function detectLocale() {
     return saved
   }
 
-  const lang = (navigator.language || 'en').toLowerCase()
+  const lang = (navigator.language || 'es').toLowerCase()
   for (const [prefix, code] of browserMap) {
     if (lang.startsWith(prefix)) return code
   }
-  return 'en'
+  return 'es'
 }
 
 function getByPath(obj, path) {
