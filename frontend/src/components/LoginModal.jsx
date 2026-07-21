@@ -3,7 +3,10 @@ import Modal from 'react-bootstrap/Modal'
 import Nav from 'react-bootstrap/Nav'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
-import { forgotPassword } from '../services/passwordService'
+import {
+  forgotPassword,
+  resendVerification,
+} from '../services/passwordService'
 import {
   validateLogin,
   validateRegister,
@@ -32,6 +35,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
   const [formError, setFormError] = useState('')
   const [infoMessage, setInfoMessage] = useState('')
   const [forgotLoading, setForgotLoading] = useState(false)
+  const [resendLoading, setResendLoading] = useState(false)
 
   useEffect(() => {
     if (!show) {
@@ -69,6 +73,28 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
       setFormError(err?.response?.data?.message || err?.message || t('auth.forgotFailed'))
     } finally {
       setForgotLoading(false)
+    }
+  }
+
+  const handleResend = async (event) => {
+    event.preventDefault()
+    setFormError('')
+    setInfoMessage('')
+    if (!email.trim()) {
+      setFormError(t('auth.errors.required'))
+      return
+    }
+
+    setResendLoading(true)
+    try {
+      const result = await resendVerification(email.trim())
+      setInfoMessage(result?.message || t('auth.resendSent'))
+    } catch (err) {
+      setFormError(
+        err?.response?.data?.message || err?.message || t('auth.resendFailed'),
+      )
+    } finally {
+      setResendLoading(false)
     }
   }
 
@@ -119,6 +145,8 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
 
   const isRegister = mode === 'register'
   const isForgot = mode === 'forgot'
+  const isResend = mode === 'resend'
+  const isEmailOnly = isForgot || isResend
 
   return (
     <Modal show={show} onHide={onHide} centered>
@@ -126,14 +154,16 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
         <Modal.Title className="h5 mb-0">
           {isForgot
             ? t('auth.forgotTitle')
-            : isRegister
-              ? t('auth.registerTitle')
-              : t('auth.loginTitle')}
+            : isResend
+              ? t('auth.resendTitle')
+              : isRegister
+                ? t('auth.registerTitle')
+                : t('auth.loginTitle')}
         </Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
-        {!isForgot && (
+        {!isEmailOnly && (
           <Nav variant="pills" className="mb-3 gap-2">
             <Nav.Item>
               <Nav.Link
@@ -159,13 +189,18 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
         <p className="text-muted small mb-3">
           {isForgot
             ? t('auth.forgotHint')
-            : isRegister
-              ? t('auth.registerHint')
-              : t('auth.loginHint')}
+            : isResend
+              ? t('auth.resendHint')
+              : isRegister
+                ? t('auth.registerHint')
+                : t('auth.loginHint')}
         </p>
 
-        {isForgot ? (
-          <form onSubmit={handleForgot} noValidate>
+        {isEmailOnly ? (
+          <form
+            onSubmit={isResend ? handleResend : handleForgot}
+            noValidate
+          >
             <div className="mb-3">
               <label htmlFor="auth-email" className="form-label">
                 {t('auth.email')} <span className="text-danger">*</span>
@@ -192,9 +227,15 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
             <button
               type="submit"
               className="btn btn-primary w-100"
-              disabled={forgotLoading}
+              disabled={isResend ? resendLoading : forgotLoading}
             >
-              {forgotLoading ? t('auth.forgotSubmitting') : t('auth.forgotSubmit')}
+              {isResend
+                ? resendLoading
+                  ? t('auth.resendSubmitting')
+                  : t('auth.resendSubmit')
+                : forgotLoading
+                  ? t('auth.forgotSubmitting')
+                  : t('auth.forgotSubmit')}
             </button>
 
             <button
@@ -300,7 +341,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
           </form>
         )}
 
-        {!isForgot && (
+        {!isEmailOnly && (
           <>
             <button
               type="button"
@@ -311,13 +352,22 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
             </button>
 
             {!isRegister && (
-              <button
-                type="button"
-                className="btn btn-link btn-sm w-100"
-                onClick={() => setMode('forgot')}
-              >
-                {t('auth.forgotLink')}
-              </button>
+              <>
+                <button
+                  type="button"
+                  className="btn btn-link btn-sm w-100"
+                  onClick={() => setMode('forgot')}
+                >
+                  {t('auth.forgotLink')}
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-link btn-sm w-100"
+                  onClick={() => setMode('resend')}
+                >
+                  {t('auth.resendLink')}
+                </button>
+              </>
             )}
           </>
         )}
