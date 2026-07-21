@@ -100,6 +100,42 @@ public class UserMailService {
     }
 
     /**
+     * Resumen de Analisis IA: llega al inbox del equipo (no al usuario cliente).
+     */
+    public String sendAnalisisSummary(
+            String inbox,
+            String userEmail,
+            Long consultaId,
+            String tipo,
+            String nivelKey,
+            Integer ahorro,
+            Double confidence,
+            Double benchmark) {
+        String subject = "EnergIA — Nuevo análisis IA #" + (consultaId != null ? consultaId : "");
+        String body = """
+                Nuevo análisis IA en EnergIA
+
+                Usuario: %s
+                Consulta #: %s
+                Tipo: %s
+                Nivel: %s
+                Ahorro estimado: %s%%
+                Confianza: %s
+                Benchmark: %s
+
+                Revisá el detalle en el Panel Admin → Análisis IA.
+                """.formatted(
+                userEmail,
+                consultaId,
+                tipo,
+                nivelKey,
+                ahorro,
+                confidence,
+                benchmark);
+        return send(inbox, subject, body, userEmail);
+    }
+
+    /**
      * Mensaje del formulario Contáctanos: llega a la casilla del equipo.
      */
     public String sendContactMessage(String fromName, String fromEmail, String message) {
