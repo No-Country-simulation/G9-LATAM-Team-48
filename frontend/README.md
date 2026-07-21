@@ -68,13 +68,13 @@ Tras cambiar variables `VITE_*`, hace falta **Redeploy**. Un push a `Jorge-marti
 
 ## Vista previa
 
-> La interfaz soporta **tema claro/oscuro** e **11 idiomas** (ES, EN, PT, FR, IT, DE, NL, PL, RO, CA, TR). Las capturas están en modo oscuro y español.
+> La interfaz soporta **tema claro/oscuro** e **11 idiomas** (ES, EN, PT, FR, IT, DE, NL, PL, RO, CA, TR). La captura principal del Dashboard está en tema claro con marca **EnergIA**.
 
 <div align="center">
 
-### Dashboard
+### Dashboard — EnergIA
 
-<img src="./screenshots/dashboard.png" alt="Dashboard" width="900" />
+<img src="./screenshots/dashboard.png" alt="EnergIA Dashboard" width="900" />
 
 </div>
 

@@ -27,14 +27,14 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
 
 ## Vista previa del frontend
 
-> Tema claro/oscuro, multilenguaje y capturas en modo oscuro.
+> Tema claro/oscuro, multilenguaje. Dashboard actualizado con marca **EnergIA**.
 > Detalle completo en el [README del frontend](./frontend/README.md).
 
 <div align="center">
 
-### Dashboard
+### Dashboard — EnergIA
 
-<img src="./frontend/screenshots/dashboard.png" alt="Dashboard" width="900" />
+<img src="./frontend/screenshots/dashboard.png" alt="EnergIA Dashboard" width="900" />
 
 </div>
 
