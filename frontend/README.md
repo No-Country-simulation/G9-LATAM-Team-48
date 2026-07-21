@@ -126,7 +126,7 @@ npm run screenshots
 | **Panel Admin** | CRUD de usuarios (rol `ADMIN`): alta, edición, desactivación lógica; admins no se desactivan. |
 | **Contáctanos** | Formulario de contacto + Equipo 48 en flip cards (LinkedIn, GitHub, portafolio, Instagram, email). |
 | **Multilenguaje** | Selector en el header; detecta idioma del navegador (fallback español). |
-| **Tema claro / oscuro** | Alternable desde el header; persistido en `localStorage`. |
+| **Tema claro / oscuro** | Por defecto oscuro; alternable desde el header; persistido en `localStorage`. |
 | **Login opcional** | Navegación pública; sesión para acciones de operador. |
 
 ### Detalles de experiencia y calidad
