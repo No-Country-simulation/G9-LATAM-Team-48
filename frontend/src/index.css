@@ -24,9 +24,9 @@ body,
 .app-layout > .navbar {
   flex-shrink: 0;
   z-index: 1030;
-  min-height: 4.75rem;
-  padding-top: 0.55rem;
-  padding-bottom: 0.55rem;
+  min-height: 7.5rem;
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
 }
 
 .brand-mark {
@@ -38,20 +38,20 @@ body,
 
 .brand-logo {
   display: block;
-  height: 4.25rem;
+  height: 6.75rem;
   width: auto;
-  max-width: min(70vw, 15rem);
+  max-width: min(78vw, 22rem);
   object-fit: contain;
 }
 
 @media (min-width: 768px) {
   .app-layout > .navbar {
-    min-height: 5.5rem;
+    min-height: 9rem;
   }
 
   .brand-logo {
-    height: 5rem;
-    max-width: 17rem;
+    height: 8.25rem;
+    max-width: 26rem;
   }
 }
 
