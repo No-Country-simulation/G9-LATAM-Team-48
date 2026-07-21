@@ -41,6 +41,19 @@ spring:
     open-in-view: false
   flyway:
     enabled: true
+  # SMTP: setear MAIL_* (o SPRING_MAIL_*) en Railway. Sin esto el registro deja emailStatus=PENDING.
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
 
 app:
   persistence:
@@ -48,4 +61,4 @@ app:
   frontend-base-url: ${FRONTEND_BASE_URL:https://g9-latam-team-48.vercel.app}
   mail:
     enabled: ${MAIL_ENABLED:false}
-    from: ${MAIL_FROM:}
+    from: ${MAIL_FROM:${MAIL_USERNAME:}}
