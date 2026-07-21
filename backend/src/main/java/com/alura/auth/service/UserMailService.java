@@ -10,19 +10,28 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.concurrent.CompletableFuture;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 
 /**
- * Envio de mails de cuenta via SMTP (Gmail u otro proveedor).
- * El envio corre en background para no colgar el registro si SMTP tarda.
- * Si el mail no esta configurado o falla, deja el link en logs para desarrollo.
+ * Envio de mails de cuenta.
+ * <p>En Railway Hobby/Free el SMTP sale bloqueado: usar {@code RESEND_API_KEY} (HTTPS).
+ * En local se puede usar SMTP Gmail con App Password.
  */
 @Service
 public class UserMailService {
 
     private static final Logger log = LoggerFactory.getLogger(UserMailService.class);
+    private static final URI RESEND_URI = URI.create("https://api.resend.com/emails");
 
     private final JavaMailSender mailSender;
+    private final HttpClient httpClient = HttpClient.newBuilder()
+            .connectTimeout(Duration.ofSeconds(10))
+            .build();
 
     @Value("${app.mail.enabled:true}")
     private boolean mailEnabled;
@@ -32,6 +41,9 @@ public class UserMailService {
 
     @Value("${spring.mail.username:}")
     private String mailUsername;
+
+    @Value("${app.mail.resend-api-key:}")
+    private String resendApiKey;
 
     @Value("${app.frontend-base-url:http://localhost:5173}")
     private String frontendBaseUrl;
@@ -88,10 +100,10 @@ public class UserMailService {
     }
 
     /**
-     * Mensaje del formulario Contáctanos: llega a la casilla SMTP del equipo.
+     * Mensaje del formulario Contáctanos: llega a la casilla del equipo.
      */
     public String sendContactMessage(String fromName, String fromEmail, String message) {
-        String inbox = resolveFrom();
+        String inbox = resolveInbox();
         String subject = "EnergIA — Contacto de " + fromName;
         String body = """
                 Nuevo mensaje desde Contáctanos
@@ -114,19 +126,57 @@ public class UserMailService {
             log.warn("Mail deshabilitado (MAIL_ENABLED=false). Pendiente para {} | {}", to, subject);
             return "PENDING";
         }
+
+        if (StringUtils.hasText(resendApiKey)) {
+            return deliverViaResend(to, subject, body);
+        }
+
         if (mailSender == null || !isUsableSmtpUser(mailUsername)
                 || !StringUtils.hasText(resolveFrom())) {
-            log.warn("SMTP incompleto (host/user/from). Mail pendiente para {} | {} | body=\n{}",
+            log.warn("Sin RESEND_API_KEY ni SMTP. Mail pendiente para {} | {} | body=\n{}",
                     to, subject, body);
             return "PENDING";
         }
 
-        // No bloquear el request HTTP si Gmail/SMTP tarda o cuelga
-        CompletableFuture.runAsync(() -> deliver(to, subject, body, replyTo));
-        return "QUEUED";
+        return deliverViaSmtp(to, subject, body, replyTo);
     }
 
-    private void deliver(String to, String subject, String body, String replyTo) {
+    private String deliverViaResend(String to, String subject, String body) {
+        try {
+            String from = resolveResendFrom();
+            String json = """
+                    {"from":%s,"to":[%s],"subject":%s,"text":%s}
+                    """.formatted(
+                    jsonString(from),
+                    jsonString(to),
+                    jsonString(subject),
+                    jsonString(body));
+
+            HttpRequest request = HttpRequest.newBuilder(RESEND_URI)
+                    .timeout(Duration.ofSeconds(20))
+                    .header("Authorization", "Bearer " + resendApiKey.trim())
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(json, StandardCharsets.UTF_8))
+                    .build();
+
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() >= 200 && response.statusCode() < 300) {
+                log.info("Email enviado via Resend a {} asunto={}", to, subject);
+                return "SENT";
+            }
+
+            log.error("Resend rechazo envio a {} status={} body={}",
+                    to, response.statusCode(), response.body());
+            log.info("Fallback link/contenido para {}:\n{}", to, body);
+            return "FAILED";
+        } catch (Exception ex) {
+            log.error("Fallo Resend a {}: {}", to, ex.getMessage());
+            log.info("Fallback link/contenido para {}:\n{}", to, body);
+            return "FAILED";
+        }
+    }
+
+    private String deliverViaSmtp(String to, String subject, String body, String replyTo) {
         try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, false, "UTF-8");
@@ -138,10 +188,12 @@ public class UserMailService {
             helper.setSubject(subject);
             helper.setText(body, false);
             mailSender.send(message);
-            log.info("Email enviado a {} asunto={}", to, subject);
+            log.info("Email enviado via SMTP a {} asunto={}", to, subject);
+            return "SENT";
         } catch (Exception ex) {
-            log.error("Fallo envio de email a {}: {}", to, ex.getMessage());
+            log.error("Fallo SMTP a {}: {}", to, ex.getMessage());
             log.info("Fallback link/contenido para {}:\n{}", to, body);
+            return "FAILED";
         }
     }
 
@@ -155,5 +207,49 @@ public class UserMailService {
 
     private String resolveFrom() {
         return StringUtils.hasText(fromAddress) ? fromAddress : mailUsername;
+    }
+
+    /** Destino del formulario de contacto. */
+    private String resolveInbox() {
+        if (StringUtils.hasText(fromAddress) && fromAddress.contains("@")
+                && !fromAddress.contains("resend.dev")) {
+            return extractEmail(fromAddress);
+        }
+        if (isUsableSmtpUser(mailUsername) && mailUsername.contains("@")) {
+            return mailUsername.trim();
+        }
+        return extractEmail(resolveFrom());
+    }
+
+    private String resolveResendFrom() {
+        if (StringUtils.hasText(fromAddress) && fromAddress.contains("@")) {
+            return fromAddress.trim();
+        }
+        return "EnergIA <onboarding@resend.dev>";
+    }
+
+    private static String extractEmail(String from) {
+        if (!StringUtils.hasText(from)) {
+            return from;
+        }
+        int start = from.indexOf('<');
+        int end = from.indexOf('>');
+        if (start >= 0 && end > start) {
+            return from.substring(start + 1, end).trim();
+        }
+        return from.trim();
+    }
+
+    private static String jsonString(String value) {
+        if (value == null) {
+            return "\"\"";
+        }
+        String escaped = value
+                .replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("\r", "\\r")
+                .replace("\n", "\\n")
+                .replace("\t", "\\t");
+        return "\"" + escaped + "\"";
     }
 }
