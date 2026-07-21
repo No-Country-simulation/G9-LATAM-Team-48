@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Pattern;
 /**
  * Alta de usuario desde el panel admin.
  * Si {@code password} viene vacio, el backend genera una temporal y la envia por email.
+ * {@code emailVerified} null o true = puede iniciar sesion sin verificar mail.
  */
 public record AdminCreateUserRequest(
 
@@ -21,6 +22,8 @@ public record AdminCreateUserRequest(
 
         @NotBlank(message = "El rol es obligatorio")
         @Pattern(regexp = "USER|ADMIN", message = "El rol debe ser USER o ADMIN")
-        String role
+        String role,
+
+        Boolean emailVerified
 ) {
 }

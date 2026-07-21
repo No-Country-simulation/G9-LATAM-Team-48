@@ -247,6 +247,12 @@ export const pagesEs = {
     dismiss: 'Cerrar aviso',
     passwordMin: 'La contraseña debe tener al menos 8 caracteres.',
     role: 'Rol',
+    verified: 'Email',
+    verifiedYes: 'Verificado',
+    verifiedNo: 'Pendiente',
+    emailVerified: 'Email verificado (puede iniciar sesión sin link)',
+    emailVerifiedHint:
+      'Si está tildado, el usuario no necesita verificar el correo para entrar.',
     actions: 'Acciones',
     edit: 'Editar',
     delete: 'Desactivar',

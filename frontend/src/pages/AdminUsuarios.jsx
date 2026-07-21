@@ -19,6 +19,7 @@ const emptyForm = {
   email: '',
   password: '',
   role: 'USER',
+  emailVerified: true,
 }
 
 function AdminUsuarios() {
@@ -96,6 +97,7 @@ function AdminUsuarios() {
       email: row.email || '',
       password: '',
       role: row.role || 'USER',
+      emailVerified: Boolean(row.emailVerified),
     })
     setFormError('')
     setFormOpen(true)
@@ -236,6 +238,7 @@ function AdminUsuarios() {
                     <th>{t('adminUsers.name')}</th>
                     <th>{t('adminUsers.email')}</th>
                     <th>{t('adminUsers.role')}</th>
+                    <th>{t('adminUsers.verified')}</th>
                     <th className="text-end">{t('adminUsers.actions')}</th>
                   </tr>
                 </thead>
@@ -254,6 +257,19 @@ function AdminUsuarios() {
                           }`}
                         >
                           {row.role}
+                        </span>
+                      </td>
+                      <td>
+                        <span
+                          className={`badge ${
+                            row.emailVerified
+                              ? 'text-bg-success'
+                              : 'text-bg-warning'
+                          }`}
+                        >
+                          {row.emailVerified
+                            ? t('adminUsers.verifiedYes')
+                            : t('adminUsers.verifiedNo')}
                         </span>
                       </td>
                       <td className="text-end text-nowrap">
@@ -362,6 +378,22 @@ function AdminUsuarios() {
                 <option value="USER">USER</option>
                 <option value="ADMIN">ADMIN</option>
               </select>
+            </div>
+
+            <div className="form-check mb-3">
+              <input
+                id="admin-verified"
+                type="checkbox"
+                className="form-check-input"
+                checked={Boolean(form.emailVerified)}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, emailVerified: e.target.checked }))
+                }
+              />
+              <label className="form-check-label" htmlFor="admin-verified">
+                {t('adminUsers.emailVerified')}
+              </label>
+              <div className="form-text">{t('adminUsers.emailVerifiedHint')}</div>
             </div>
 
             <div className="d-flex justify-content-end gap-2">

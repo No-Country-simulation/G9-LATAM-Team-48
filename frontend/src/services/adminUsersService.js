@@ -22,6 +22,7 @@ export async function createUser(user) {
     name: user.name.trim(),
     email: user.email.trim(),
     role: user.role,
+    emailVerified: user.emailVerified !== false,
   }
   if (user.password?.trim()) {
     body.password = user.password
@@ -35,6 +36,7 @@ export async function updateUser(id, user) {
     name: user.name.trim(),
     email: user.email.trim(),
     role: user.role,
+    emailVerified: Boolean(user.emailVerified),
   }
   if (user.password?.trim()) {
     body.password = user.password
