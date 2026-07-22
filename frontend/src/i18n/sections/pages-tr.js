@@ -54,21 +54,23 @@ export const pagesTr = {
     "subtitle": "Tesis türüne göre enerji tüketimi değerlendirmesi",
     "installationType": "Tesis türü",
     "types": {
-      "casa": "Ev",
-      "fabrica_mediana": "Orta fabrika",
-      "fabrica_grande": "Büyük fabrika"
+      "APARTAMENTO": "Apartman",
+      "CASA_UNIFAMILIAR": "Müstakil ev",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Küçük ticari işletme"
     },
     "typeHints": {
-      "casa": "Kişi başı tüketim ve iklimlendirme için ev verileri.",
-      "fabrica_mediana": "Makine, vardiya ve yoğunluk karşılaştırması için operasyon verileri.",
-      "fabrica_grande": "Hat, kapasite ve izleme değerlendirmesi için tesis verileri."
+      "APARTAMENTO": "Kişi başı tüketim ve iklimlendirme için apartman verileri.",
+      "CASA_UNIFAMILIAR": "Kişi başı tüketim ve iklimlendirme için ev verileri.",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Doluluk, ekipman ve saatlere göre tüketim için işletme verileri."
     },
     "monthlyUsage": "Aylık tüketim (kWh)",
     "people": "Kişi sayısı",
+    "peopleCommercial": "Kişi sayısı (doluluk)",
     "devices": "Cihaz sayısı",
     "homeArea": "Konut alanı (m²)",
     "climateHours": "Günlük iklimlendirme saati",
     "peakUseHours": "Günlük yoğun kullanım saati",
+    "peakHoursUse": "Peak hours",
     "shifts": "Günlük vardiya",
     "machines": "Makine sayısı",
     "area": "Tesis alanı (m²)",

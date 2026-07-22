@@ -54,21 +54,23 @@ export const pagesDe = {
     "subtitle": "Verbrauchsbewertung nach Anlagentyp",
     "installationType": "Anlagentyp",
     "types": {
-      "casa": "Haus",
-      "fabrica_mediana": "Mittlere Fabrik",
-      "fabrica_grande": "Große Fabrik"
+      "APARTAMENTO": "Wohnung",
+      "CASA_UNIFAMILIAR": "Einfamilienhaus",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Kleines Gewerbe"
     },
     "typeHints": {
-      "casa": "Haushaltsdaten für Verbrauch pro Person und Klimatisierung.",
-      "fabrica_mediana": "Betriebsdaten zum Vergleich von Maschinen, Schichten und Intensität.",
-      "fabrica_grande": "Werkdaten zur Bewertung von Linien, Kapazität und Monitoring."
+      "APARTAMENTO": "Wohnungsdaten zur Schätzung von Verbrauch pro Person und Klimatisierung.",
+      "CASA_UNIFAMILIAR": "Hausdaten zur Schätzung von Verbrauch pro Person und Klimatisierung.",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Geschäftsdaten zur Schätzung nach Belegung, Geräten und Zeiten."
     },
     "monthlyUsage": "Monatsverbrauch (kWh)",
     "people": "Anzahl Personen",
+    "peopleCommercial": "Anzahl Personen (Belegung)",
     "devices": "Anzahl Geräte",
     "homeArea": "Wohnfläche (m²)",
     "climateHours": "Klimastunden pro Tag",
     "peakUseHours": "Stunden intensiver Nutzung pro Tag",
+    "peakHoursUse": "Peak hours",
     "shifts": "Schichten pro Tag",
     "machines": "Anzahl Maschinen",
     "area": "Werksfläche (m²)",

@@ -54,21 +54,23 @@ export const pagesPt = {
     "subtitle": "Avaliação do consumo conforme o tipo de instalação",
     "installationType": "Tipo de instalação",
     "types": {
-      "casa": "Casa",
-      "fabrica_mediana": "Fábrica média",
-      "fabrica_grande": "Fábrica grande"
+      "APARTAMENTO": "Apartamento",
+      "CASA_UNIFAMILIAR": "Casa unifamiliar",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Pequeno estabelecimento comercial"
     },
     "typeHints": {
-      "casa": "Dados da residência para estimar consumo por pessoa e climatização.",
-      "fabrica_mediana": "Dados operacionais para comparar máquinas, turnos e intensidade.",
-      "fabrica_grande": "Dados da planta para avaliar linhas, capacidade e monitoramento."
+      "APARTAMENTO": "Dados do apartamento para estimar consumo por pessoa e climatização.",
+      "CASA_UNIFAMILIAR": "Dados da casa para estimar consumo por pessoa e climatização.",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Dados do local para estimar consumo por ocupação, equipamentos e horários."
     },
     "monthlyUsage": "Consumo mensal (kWh)",
     "people": "Quantidade de pessoas",
+    "peopleCommercial": "Quantidade de pessoas (ocupação)",
     "devices": "Quantidade de equipamentos",
     "homeArea": "Área da residência (m²)",
     "climateHours": "Horas de climatização por dia",
     "peakUseHours": "Horas de uso intensivo por dia",
+    "peakHoursUse": "Peak hours",
     "shifts": "Turnos por dia",
     "machines": "Quantidade de máquinas",
     "area": "Área da planta (m²)",

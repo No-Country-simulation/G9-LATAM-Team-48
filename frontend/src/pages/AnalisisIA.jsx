@@ -7,22 +7,14 @@ import { useLocale } from '../context/LocaleContext'
 import { useAuth } from '../context/AuthContext'
 
 const initialState = {
-  tipo: INSTALLATION_TYPES.casa,
-  consumo: '',
-  personas: '',
-  equipos: '',
-  area: '',
-  climateHours: '',
-  peakUseHours: '',
-  turnos: '',
-  maquinas: '',
-  hoursPerDay: '',
-  hasCompressedAir: 'no',
-  processIntensity: 'media',
-  lineas: '',
-  operatingDays: '',
-  capacityPct: '',
-  hasMonitoring: 'no',
+  tipoInmueble: INSTALLATION_TYPES.CASA_UNIFAMILIAR,
+  consumoKwh: '',
+  cantidadPersonas: '',
+  cantidadEquipos: '',
+  areaM2: '',
+  horasClimatizacion: '',
+  horasAltoConsumo: '',
+  usoHorarioPico: false,
 }
 
 function Field({ id, label, children }) {
@@ -45,50 +37,24 @@ function AnalisisIA() {
   const [error, setError] = useState(null)
 
   function cambiarCampo(e) {
-    const { name, value } = e.target
-    setDatos((prev) => ({ ...prev, [name]: value }))
+    const { name, value, type, checked } = e.target
+    setDatos((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }))
     setResultado(null)
   }
 
   function payloadFromForm() {
-    const base = {
-      tipo: datos.tipo,
-      consumo: Number(datos.consumo) || 0,
-    }
-
-    if (datos.tipo === INSTALLATION_TYPES.casa) {
-      return {
-        ...base,
-        personas: Number(datos.personas) || 0,
-        equipos: Number(datos.equipos) || 0,
-        area: Number(datos.area) || 0,
-        climateHours: Number(datos.climateHours) || 0,
-        peakUseHours: Number(datos.peakUseHours) || 0,
-      }
-    }
-
-    if (datos.tipo === INSTALLATION_TYPES.fabrica_mediana) {
-      return {
-        ...base,
-        turnos: Number(datos.turnos) || 0,
-        maquinas: Number(datos.maquinas) || 0,
-        area: Number(datos.area) || 0,
-        hoursPerDay: Number(datos.hoursPerDay) || 0,
-        hasCompressedAir: datos.hasCompressedAir,
-        processIntensity: datos.processIntensity,
-      }
-    }
-
     return {
-      ...base,
-      lineas: Number(datos.lineas) || 0,
-      maquinas: Number(datos.maquinas) || 0,
-      turnos: Number(datos.turnos) || 0,
-      area: Number(datos.area) || 0,
-      operatingDays: Number(datos.operatingDays) || 0,
-      capacityPct: Number(datos.capacityPct) || 0,
-      hasMonitoring: datos.hasMonitoring,
-      hasCompressedAir: datos.hasCompressedAir,
+      tipoInmueble: datos.tipoInmueble,
+      areaM2: Number(datos.areaM2) || 0,
+      consumoKwh: Number(datos.consumoKwh) || 0,
+      cantidadEquipos: Number(datos.cantidadEquipos) || 0,
+      cantidadPersonas: Number(datos.cantidadPersonas) || 0,
+      horasClimatizacion: Number(datos.horasClimatizacion) || 0,
+      horasAltoConsumo: Number(datos.horasAltoConsumo) || 0,
+      usoHorarioPico: Boolean(datos.usoHorarioPico),
     }
   }
 
@@ -119,10 +85,9 @@ function AnalisisIA() {
     }
   }
 
-  const isCasa = datos.tipo === INSTALLATION_TYPES.casa
-  const isMediana = datos.tipo === INSTALLATION_TYPES.fabrica_mediana
-  const isGrande = datos.tipo === INSTALLATION_TYPES.fabrica_grande
   const chartDatos = payloadFromForm()
+  const isComercial =
+    datos.tipoInmueble === INSTALLATION_TYPES.PEQUENO_ESTABLECIMIENTO_COMERCIAL
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -150,280 +115,125 @@ function AnalisisIA() {
         <div className="col-12 col-lg-4">
           <div className="card shadow-sm" style={{ maxWidth: 360 }}>
             <div className="card-body p-3">
-              <Field id="tipo" label={t('analysis.installationType')}>
+              <Field id="tipoInmueble" label={t('analysis.installationType')}>
                 <select
-                  id="tipo"
+                  id="tipoInmueble"
                   className="form-select form-select-sm"
-                  name="tipo"
-                  value={datos.tipo}
+                  name="tipoInmueble"
+                  value={datos.tipoInmueble}
                   onChange={cambiarCampo}
                 >
-                  <option value={INSTALLATION_TYPES.casa}>
-                    {t('analysis.types.casa')}
-                  </option>
-                  <option value={INSTALLATION_TYPES.fabrica_mediana}>
-                    {t('analysis.types.fabrica_mediana')}
-                  </option>
-                  <option value={INSTALLATION_TYPES.fabrica_grande}>
-                    {t('analysis.types.fabrica_grande')}
-                  </option>
+                  {Object.values(INSTALLATION_TYPES).map((tipo) => (
+                    <option key={tipo} value={tipo}>
+                      {t(`analysis.types.${tipo}`)}
+                    </option>
+                  ))}
                 </select>
               </Field>
 
               <p className="text-muted small mb-2">
-                {t(`analysis.typeHints.${datos.tipo}`)}
+                {t(`analysis.typeHints.${datos.tipoInmueble}`)}
               </p>
 
-              <Field id="consumo" label={t('analysis.monthlyUsage')}>
+              <Field id="consumoKwh" label={t('analysis.monthlyUsage')}>
                 <input
-                  id="consumo"
+                  id="consumoKwh"
                   className="form-control form-control-sm"
-                  name="consumo"
+                  name="consumoKwh"
                   type="number"
                   min="0"
-                  value={datos.consumo}
+                  value={datos.consumoKwh}
                   onChange={cambiarCampo}
                 />
               </Field>
 
-              {isCasa && (
-                <>
-                  <Field id="personas" label={t('analysis.people')}>
-                    <input
-                      id="personas"
-                      className="form-control form-control-sm"
-                      name="personas"
-                      type="number"
-                      min="0"
-                      value={datos.personas}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="equipos" label={t('analysis.devices')}>
-                    <input
-                      id="equipos"
-                      className="form-control form-control-sm"
-                      name="equipos"
-                      type="number"
-                      min="0"
-                      value={datos.equipos}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="area" label={t('analysis.homeArea')}>
-                    <input
-                      id="area"
-                      className="form-control form-control-sm"
-                      name="area"
-                      type="number"
-                      min="0"
-                      value={datos.area}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="climateHours" label={t('analysis.climateHours')}>
-                    <input
-                      id="climateHours"
-                      className="form-control form-control-sm"
-                      name="climateHours"
-                      type="number"
-                      min="0"
-                      max="24"
-                      value={datos.climateHours}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="peakUseHours" label={t('analysis.peakUseHours')}>
-                    <input
-                      id="peakUseHours"
-                      className="form-control form-control-sm"
-                      name="peakUseHours"
-                      type="number"
-                      min="0"
-                      max="24"
-                      value={datos.peakUseHours}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                </>
-              )}
+              <Field
+                id="areaM2"
+                label={isComercial ? t('analysis.area') : t('analysis.homeArea')}
+              >
+                <input
+                  id="areaM2"
+                  className="form-control form-control-sm"
+                  name="areaM2"
+                  type="number"
+                  min="0"
+                  value={datos.areaM2}
+                  onChange={cambiarCampo}
+                />
+              </Field>
 
-              {isMediana && (
-                <>
-                  <Field id="turnos" label={t('analysis.shifts')}>
-                    <input
-                      id="turnos"
-                      className="form-control form-control-sm"
-                      name="turnos"
-                      type="number"
-                      min="0"
-                      value={datos.turnos}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="maquinas" label={t('analysis.machines')}>
-                    <input
-                      id="maquinas"
-                      className="form-control form-control-sm"
-                      name="maquinas"
-                      type="number"
-                      min="0"
-                      value={datos.maquinas}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="area" label={t('analysis.area')}>
-                    <input
-                      id="area"
-                      className="form-control form-control-sm"
-                      name="area"
-                      type="number"
-                      min="0"
-                      value={datos.area}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="hoursPerDay" label={t('analysis.hoursPerDay')}>
-                    <input
-                      id="hoursPerDay"
-                      className="form-control form-control-sm"
-                      name="hoursPerDay"
-                      type="number"
-                      min="0"
-                      max="24"
-                      value={datos.hoursPerDay}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="processIntensity" label={t('analysis.processIntensity')}>
-                    <select
-                      id="processIntensity"
-                      className="form-select form-select-sm"
-                      name="processIntensity"
-                      value={datos.processIntensity}
-                      onChange={cambiarCampo}
-                    >
-                      <option value="baja">{t('analysis.intensity.baja')}</option>
-                      <option value="media">{t('analysis.intensity.media')}</option>
-                      <option value="alta">{t('analysis.intensity.alta')}</option>
-                    </select>
-                  </Field>
-                  <Field id="hasCompressedAir" label={t('analysis.hasCompressedAir')}>
-                    <select
-                      id="hasCompressedAir"
-                      className="form-select form-select-sm"
-                      name="hasCompressedAir"
-                      value={datos.hasCompressedAir}
-                      onChange={cambiarCampo}
-                    >
-                      <option value="no">{t('analysis.yesNo.no')}</option>
-                      <option value="yes">{t('analysis.yesNo.yes')}</option>
-                    </select>
-                  </Field>
-                </>
-              )}
+              <Field
+                id="cantidadPersonas"
+                label={isComercial ? t('analysis.peopleCommercial') : t('analysis.people')}
+              >
+                <input
+                  id="cantidadPersonas"
+                  className="form-control form-control-sm"
+                  name="cantidadPersonas"
+                  type="number"
+                  min="0"
+                  value={datos.cantidadPersonas}
+                  onChange={cambiarCampo}
+                />
+              </Field>
 
-              {isGrande && (
-                <>
-                  <Field id="lineas" label={t('analysis.lines')}>
-                    <input
-                      id="lineas"
-                      className="form-control form-control-sm"
-                      name="lineas"
-                      type="number"
-                      min="0"
-                      value={datos.lineas}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="maquinas" label={t('analysis.machines')}>
-                    <input
-                      id="maquinas"
-                      className="form-control form-control-sm"
-                      name="maquinas"
-                      type="number"
-                      min="0"
-                      value={datos.maquinas}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="turnos" label={t('analysis.shifts')}>
-                    <input
-                      id="turnos"
-                      className="form-control form-control-sm"
-                      name="turnos"
-                      type="number"
-                      min="0"
-                      value={datos.turnos}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="area" label={t('analysis.area')}>
-                    <input
-                      id="area"
-                      className="form-control form-control-sm"
-                      name="area"
-                      type="number"
-                      min="0"
-                      value={datos.area}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="operatingDays" label={t('analysis.operatingDays')}>
-                    <input
-                      id="operatingDays"
-                      className="form-control form-control-sm"
-                      name="operatingDays"
-                      type="number"
-                      min="0"
-                      max="31"
-                      value={datos.operatingDays}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="capacityPct" label={t('analysis.capacityPct')}>
-                    <input
-                      id="capacityPct"
-                      className="form-control form-control-sm"
-                      name="capacityPct"
-                      type="number"
-                      min="0"
-                      max="100"
-                      value={datos.capacityPct}
-                      onChange={cambiarCampo}
-                    />
-                  </Field>
-                  <Field id="hasMonitoring" label={t('analysis.hasMonitoring')}>
-                    <select
-                      id="hasMonitoring"
-                      className="form-select form-select-sm"
-                      name="hasMonitoring"
-                      value={datos.hasMonitoring}
-                      onChange={cambiarCampo}
-                    >
-                      <option value="no">{t('analysis.yesNo.no')}</option>
-                      <option value="yes">{t('analysis.yesNo.yes')}</option>
-                    </select>
-                  </Field>
-                  <Field id="hasCompressedAir" label={t('analysis.hasCompressedAir')}>
-                    <select
-                      id="hasCompressedAir"
-                      className="form-select form-select-sm"
-                      name="hasCompressedAir"
-                      value={datos.hasCompressedAir}
-                      onChange={cambiarCampo}
-                    >
-                      <option value="no">{t('analysis.yesNo.no')}</option>
-                      <option value="yes">{t('analysis.yesNo.yes')}</option>
-                    </select>
-                  </Field>
-                </>
-              )}
+              <Field id="cantidadEquipos" label={t('analysis.devices')}>
+                <input
+                  id="cantidadEquipos"
+                  className="form-control form-control-sm"
+                  name="cantidadEquipos"
+                  type="number"
+                  min="0"
+                  value={datos.cantidadEquipos}
+                  onChange={cambiarCampo}
+                />
+              </Field>
+
+              <Field id="horasClimatizacion" label={t('analysis.climateHours')}>
+                <input
+                  id="horasClimatizacion"
+                  className="form-control form-control-sm"
+                  name="horasClimatizacion"
+                  type="number"
+                  min="0"
+                  max="24"
+                  value={datos.horasClimatizacion}
+                  onChange={cambiarCampo}
+                />
+              </Field>
+
+              <Field id="horasAltoConsumo" label={t('analysis.peakUseHours')}>
+                <input
+                  id="horasAltoConsumo"
+                  className="form-control form-control-sm"
+                  name="horasAltoConsumo"
+                  type="number"
+                  min="0"
+                  max="24"
+                  value={datos.horasAltoConsumo}
+                  onChange={cambiarCampo}
+                />
+              </Field>
+
+              <div className="form-check form-switch mb-3 ps-0 d-flex align-items-center justify-content-between gap-2">
+                <label className="form-check-label small mb-0" htmlFor="usoHorarioPico">
+                  {t('analysis.peakHoursUse')}
+                </label>
+                <input
+                  id="usoHorarioPico"
+                  className="form-check-input ms-0 flex-shrink-0"
+                  name="usoHorarioPico"
+                  type="checkbox"
+                  role="switch"
+                  checked={Boolean(datos.usoHorarioPico)}
+                  onChange={cambiarCampo}
+                />
+              </div>
 
               <button
                 className="btn btn-primary btn-sm w-100 mt-1"
                 onClick={analizar}
-                disabled={loading || !datos.consumo}
+                disabled={loading || !datos.consumoKwh}
               >
                 {loading ? (
                   <>
@@ -445,8 +255,8 @@ function AnalisisIA() {
         <div className="col-12 col-lg-8">
           <div className="d-flex flex-column gap-3">
             <GraficoAnalisisIA
-              tipo={datos.tipo}
-              consumo={datos.consumo}
+              tipo={datos.tipoInmueble}
+              consumo={datos.consumoKwh}
               datos={chartDatos}
             />
 

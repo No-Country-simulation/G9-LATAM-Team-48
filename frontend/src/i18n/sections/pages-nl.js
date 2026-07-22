@@ -54,21 +54,23 @@ export const pagesNl = {
     "subtitle": "Verbruiksevaluatie per installatietype",
     "installationType": "Type installatie",
     "types": {
-      "casa": "Huis",
-      "fabrica_mediana": "Middelgrote fabriek",
-      "fabrica_grande": "Grote fabriek"
+      "APARTAMENTO": "Appartement",
+      "CASA_UNIFAMILIAR": "Eengezinswoning",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Kleine handelszaak"
     },
     "typeHints": {
-      "casa": "Woninggegevens om verbruik per persoon en klimaat te schatten.",
-      "fabrica_mediana": "Operationele data om machines, diensten en intensiteit te vergelijken.",
-      "fabrica_grande": "Fabrieksdata om lijnen, capaciteit en monitoring te beoordelen."
+      "APARTAMENTO": "Appartementgegevens om verbruik per persoon en klimaat te schatten.",
+      "CASA_UNIFAMILIAR": "Woninggegevens om verbruik per persoon en klimaat te schatten.",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Winkelgegevens om verbruik te schatten op bezetting, apparatuur en uren."
     },
     "monthlyUsage": "Maandelijks verbruik (kWh)",
     "people": "Aantal personen",
+    "peopleCommercial": "Aantal personen (bezetting)",
     "devices": "Aantal apparaten",
     "homeArea": "Woonoppervlakte (m²)",
     "climateHours": "Klimaaturen per dag",
     "peakUseHours": "Uren intensief gebruik per dag",
+    "peakHoursUse": "Peak hours",
     "shifts": "Diensten per dag",
     "machines": "Aantal machines",
     "area": "Fabrieksoppervlakte (m²)",

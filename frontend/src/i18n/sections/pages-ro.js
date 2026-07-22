@@ -54,21 +54,23 @@ export const pagesRo = {
     "subtitle": "Evaluarea consumului după tipul de instalație",
     "installationType": "Tip de instalație",
     "types": {
-      "casa": "Casă",
-      "fabrica_mediana": "Fabrică medie",
-      "fabrica_grande": "Fabrică mare"
+      "APARTAMENTO": "Apartament",
+      "CASA_UNIFAMILIAR": "Casă unifamilială",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Mică unitate comercială"
     },
     "typeHints": {
-      "casa": "Date despre locuință pentru consum pe persoană și climatizare.",
-      "fabrica_mediana": "Date operaționale pentru mașini, schimburi și intensitate.",
-      "fabrica_grande": "Date de fabrică pentru linii, capacitate și monitorizare."
+      "APARTAMENTO": "Date despre apartament pentru consum pe persoană și climatizare.",
+      "CASA_UNIFAMILIAR": "Date despre casă pentru consum pe persoană și climatizare.",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Date despre local pentru consum pe ocupație, echipamente și program."
     },
     "monthlyUsage": "Consum lunar (kWh)",
     "people": "Număr de persoane",
+    "peopleCommercial": "Număr de persoane (ocupare)",
     "devices": "Număr de echipamente",
     "homeArea": "Suprafața locuinței (m²)",
     "climateHours": "Ore de climatizare pe zi",
     "peakUseHours": "Ore de utilizare intensă pe zi",
+    "peakHoursUse": "Peak hours",
     "shifts": "Schimburi pe zi",
     "machines": "Număr de mașini",
     "area": "Suprafața fabricii (m²)",

@@ -54,21 +54,23 @@ export const pagesFr = {
     "subtitle": "Évaluation de la consommation selon le type d'installation",
     "installationType": "Type d'installation",
     "types": {
-      "casa": "Maison",
-      "fabrica_mediana": "Usine moyenne",
-      "fabrica_grande": "Grande usine"
+      "APARTAMENTO": "Appartement",
+      "CASA_UNIFAMILIAR": "Maison individuelle",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Petit établissement commercial"
     },
     "typeHints": {
-      "casa": "Données du foyer pour estimer la conso. par personne et la clim.",
-      "fabrica_mediana": "Données opérationnelles pour comparer machines, équipes et intensité.",
-      "fabrica_grande": "Données usine pour évaluer lignes, capacité et supervision."
+      "APARTAMENTO": "Données de l'appartement pour estimer conso. par personne et clim.",
+      "CASA_UNIFAMILIAR": "Données de la maison pour estimer conso. par personne et clim.",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Données du local pour estimer conso. par occupation, équipements et horaires."
     },
     "monthlyUsage": "Consommation mensuelle (kWh)",
     "people": "Nombre de personnes",
+    "peopleCommercial": "Nombre de personnes (occupation)",
     "devices": "Nombre d'appareils",
     "homeArea": "Surface du logement (m²)",
     "climateHours": "Heures de climatisation par jour",
     "peakUseHours": "Heures d'usage intensif par jour",
+    "peakHoursUse": "Peak hours",
     "shifts": "Équipes par jour",
     "machines": "Nombre de machines",
     "area": "Surface de l'usine (m²)",

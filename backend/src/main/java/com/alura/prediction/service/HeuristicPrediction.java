@@ -16,15 +16,19 @@ final class HeuristicPrediction {
     }
 
     static PredictionResponse fromFeatures(Map<String, Object> features) {
-        String tipo = String.valueOf(features.getOrDefault("tipo", "casa"))
-                .trim()
-                .toLowerCase(Locale.ROOT);
-        double consumo = toDouble(features.get("consumo"), 0);
-        double benchmark = switch (tipo) {
-            case "fabrica_mediana" -> 2500;
-            case "fabrica_grande" -> 8000;
-            default -> 450;
+        String tipo = normalizeTipo(features);
+        double consumo = firstDouble(features, 0, "consumoKwh", "consumo");
+        double personas = firstDouble(features, defaultPersonas(tipo), "cantidadPersonas", "personas");
+        double area = firstDouble(features, defaultArea(tipo), "areaM2", "area");
+        double climate = firstDouble(features, 2, "horasClimatizacion", "climateHours");
+        double base = switch (tipo) {
+            case "APARTAMENTO" -> 220;
+            case "PEQUENO_ESTABLECIMIENTO_COMERCIAL" -> 650;
+            default -> 300;
         };
+        double personFactor = "PEQUENO_ESTABLECIMIENTO_COMERCIAL".equals(tipo) ? 70 : 55;
+        double areaFactor = "PEQUENO_ESTABLECIMIENTO_COMERCIAL".equals(tipo) ? 2.2 : 1.2;
+        double benchmark = Math.round(base * 0.45 + personas * personFactor + area * areaFactor + climate * 25);
 
         double ratio = benchmark <= 0 ? 1 : consumo / benchmark;
         String nivelKey;
@@ -50,13 +54,16 @@ final class HeuristicPrediction {
             category = "inefficient";
             ahorro = 28;
             confidence = 0.74;
-            tipKeys = List.of("ac", "replace", "peak", "standby");
+            tipKeys = "PEQUENO_ESTABLECIMIENTO_COMERCIAL".equals(tipo)
+                    ? List.of("schedules", "replace", "peak", "led")
+                    : List.of("ac", "replace", "peak", "standby");
         }
 
-        if ("fabrica_mediana".equals(tipo) || "fabrica_grande".equals(tipo)) {
-            tipKeys = ratio <= 0.85
-                    ? List.of("keep", "monitor", "scada")
-                    : List.of("shifts", "motors", "loadBalancing", "idleLines");
+        if (Boolean.TRUE.equals(asBoolean(features.get("usoHorarioPico")))
+                || firstDouble(features, 0, "horasAltoConsumo", "peakUseHours") >= 5) {
+            if (!tipKeys.contains("standby") && !tipKeys.contains("peak")) {
+                tipKeys = List.of("led", "peak", "standby");
+            }
         }
 
         return new PredictionResponse(
@@ -67,6 +74,59 @@ final class HeuristicPrediction {
                 ahorro,
                 tipKeys,
                 benchmark);
+    }
+
+    private static double defaultPersonas(String tipo) {
+        return "APARTAMENTO".equals(tipo) ? 2 : 3;
+    }
+
+    private static double defaultArea(String tipo) {
+        return "APARTAMENTO".equals(tipo) ? 55 : 80;
+    }
+
+    private static String normalizeTipo(Map<String, Object> features) {
+        Object raw = features.get("tipoInmueble");
+        if (raw == null) {
+            raw = features.get("tipo");
+        }
+        String tipo = String.valueOf(raw != null ? raw : "CASA_UNIFAMILIAR").trim();
+        return switch (tipo.toLowerCase(Locale.ROOT)) {
+            case "casa", "casa_unifamiliar" -> "CASA_UNIFAMILIAR";
+            case "apartamento", "departamento" -> "APARTAMENTO";
+            case "pequeno_establecimiento_comercial",
+                    "pequeño_establecimiento_comercial",
+                    "comercio",
+                    "local_comercial" -> "PEQUENO_ESTABLECIMIENTO_COMERCIAL";
+            case "fabrica_mediana" -> "FABRICA_MEDIANA";
+            case "fabrica_grande" -> "FABRICA_GRANDE";
+            default -> tipo.toUpperCase(Locale.ROOT);
+        };
+    }
+
+    private static double firstDouble(Map<String, Object> features, double fallback, String... keys) {
+        for (String key : keys) {
+            if (features.containsKey(key) && features.get(key) != null) {
+                return toDouble(features.get(key), fallback);
+            }
+        }
+        return fallback;
+    }
+
+    private static Boolean asBoolean(Object value) {
+        if (value instanceof Boolean b) {
+            return b;
+        }
+        if (value == null) {
+            return null;
+        }
+        String s = String.valueOf(value).trim().toLowerCase(Locale.ROOT);
+        if ("true".equals(s) || "1".equals(s) || "yes".equals(s) || "si".equals(s)) {
+            return true;
+        }
+        if ("false".equals(s) || "0".equals(s) || "no".equals(s)) {
+            return false;
+        }
+        return null;
     }
 
     private static double toDouble(Object value, double fallback) {

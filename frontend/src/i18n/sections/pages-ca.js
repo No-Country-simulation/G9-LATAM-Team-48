@@ -54,21 +54,23 @@ export const pagesCa = {
     "subtitle": "Avaluació del consum segons el tipus d'instal·lació",
     "installationType": "Tipus d'instal·lació",
     "types": {
-      "casa": "Casa",
-      "fabrica_mediana": "Fàbrica mitjana",
-      "fabrica_grande": "Fàbrica gran"
+      "APARTAMENTO": "Apartament",
+      "CASA_UNIFAMILIAR": "Casa unifamiliar",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Petit establiment comercial"
     },
     "typeHints": {
-      "casa": "Dades de la llar per estimar consum per persona i climatització.",
-      "fabrica_mediana": "Dades operatives per comparar màquines, torns i intensitat.",
-      "fabrica_grande": "Dades de planta per avaluar línies, capacitat i monitoratge."
+      "APARTAMENTO": "Dades de l'apartament per estimar consum per persona i climatització.",
+      "CASA_UNIFAMILIAR": "Dades de la casa per estimar consum per persona i climatització.",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Dades del local per estimar consum per ocupació, equips i horaris."
     },
     "monthlyUsage": "Consum mensual (kWh)",
     "people": "Quantitat de persones",
+    "peopleCommercial": "Quantitat de persones (ocupació)",
     "devices": "Quantitat d'equips",
     "homeArea": "Superfície de l’habitatge (m²)",
     "climateHours": "Hores de climatització al dia",
     "peakUseHours": "Hores d’ús intensiu al dia",
+    "peakHoursUse": "Peak hours",
     "shifts": "Tornades al dia",
     "machines": "Quantitat de màquines",
     "area": "Àrea de planta (m²)",
