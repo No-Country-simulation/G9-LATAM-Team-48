@@ -10,8 +10,22 @@ import VerifyEmail from './pages/VerifyEmail'
 import MainLayout from './layouts/MainLayout'
 import { useEffect, useState } from 'react'
 import { useAuth } from './context/AuthContext'
+import { useLocale } from './context/LocaleContext'
 import { isAdmin } from './utils/roles'
 import { getStoredPagina, setStoredPagina } from './utils/session'
+
+const PAGE_TITLE_KEYS = {
+  dashboard: 'menu.dashboard',
+  consumos: 'menu.consumos',
+  ia: 'menu.ia',
+  recomendaciones: 'menu.recomendaciones',
+  contacto: 'menu.contacto',
+  equipo: 'menu.equipo',
+  'admin-usuarios': 'menu.adminUsuarios',
+  'admin-analisis': 'menu.adminAnalisis',
+  'reset-password': 'auth.resetTitle',
+  'verify-email': 'auth.verifyTitle',
+}
 
 function readQueryParam(name) {
   try {
@@ -32,6 +46,7 @@ function App() {
   const [resetToken, setResetToken] = useState(initialReset)
   const [verifyToken, setVerifyToken] = useState(initialVerify)
   const { user, hydrating, isAuthenticated } = useAuth()
+  const { t } = useLocale()
 
   const setPagina = (next) => {
     setPaginaState((current) => {
@@ -40,6 +55,12 @@ function App() {
       return value
     })
   }
+
+  useEffect(() => {
+    const key = PAGE_TITLE_KEYS[pagina]
+    const pageLabel = key ? t(key) : t('menu.dashboard')
+    document.title = `${pageLabel} | EnergIA`
+  }, [pagina, t])
 
   useEffect(() => {
     if (hydrating) return
