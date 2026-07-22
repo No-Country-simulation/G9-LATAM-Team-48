@@ -10,7 +10,7 @@ export const pagesEn = {
     retry: 'Retry',
   },
   dashboard: {
-    title: 'EnergIA Dashboard',
+    title: 'Dashboard',
     subtitle: 'Hackathon ONE G9 - TEAM 48',
     lastMonthUsage: 'Last month usage',
     lastMonthCost: 'Last month cost',
