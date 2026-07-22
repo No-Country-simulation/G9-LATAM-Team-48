@@ -49,7 +49,7 @@ export const EQUIPO_48 = [
     photo: '/equipo/carlos-miyen.png',
     linkedin: '',
     github: '',
-    email: '',
+    email: 'miyenbranbrandolino@gmail.com',
     cv: '',
   },
   {
