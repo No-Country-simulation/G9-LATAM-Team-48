@@ -54,21 +54,23 @@ export const pagesIt = {
     "subtitle": "Valutazione dei consumi in base al tipo di impianto",
     "installationType": "Tipo di impianto",
     "types": {
-      "casa": "Casa",
-      "fabrica_mediana": "Fabbrica media",
-      "fabrica_grande": "Grande fabbrica"
+      "APARTAMENTO": "Appartamento",
+      "CASA_UNIFAMILIAR": "Casa unifamiliare",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Piccolo esercizio commerciale"
     },
     "typeHints": {
-      "casa": "Dati domestici per stimare consumo pro capite e climatizzazione.",
-      "fabrica_mediana": "Dati operativi per confrontare macchine, turni e intensità.",
-      "fabrica_grande": "Dati di impianto per valutare linee, capacità e monitoraggio."
+      "APARTAMENTO": "Dati dell'appartamento per stimare consumo pro capite e climatizzazione.",
+      "CASA_UNIFAMILIAR": "Dati della casa per stimare consumo pro capite e climatizzazione.",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Dati del locale per stimare consumo per occupazione, apparecchi e orari."
     },
     "monthlyUsage": "Consumo mensile (kWh)",
     "people": "Numero di persone",
+    "peopleCommercial": "Numero di persone (occupazione)",
     "devices": "Numero di dispositivi",
     "homeArea": "Superficie abitazione (m²)",
     "climateHours": "Ore di climatizzazione al giorno",
     "peakUseHours": "Ore di uso intensivo al giorno",
+    "peakHoursUse": "Peak hours",
     "shifts": "Turni al giorno",
     "machines": "Numero di macchine",
     "area": "Area dello stabilimento (m²)",

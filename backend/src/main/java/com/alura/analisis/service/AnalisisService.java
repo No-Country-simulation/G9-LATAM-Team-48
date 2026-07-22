@@ -45,8 +45,12 @@ public class AnalisisService {
         if (datos == null || datos.isEmpty()) {
             throw new IllegalArgumentException("El body del analisis no puede estar vacio");
         }
-        if (datos.get("consumo") == null) {
-            throw new IllegalArgumentException("El campo 'consumo' es obligatorio");
+        Object consumo = datos.get("consumoKwh");
+        if (consumo == null) {
+            consumo = datos.get("consumo");
+        }
+        if (consumo == null) {
+            throw new IllegalArgumentException("El campo 'consumoKwh' es obligatorio");
         }
 
         String email = currentUserEmail();
@@ -57,10 +61,17 @@ public class AnalisisService {
         Map<String, Object> responseMap = objectMapper.convertValue(
                 result, new TypeReference<Map<String, Object>>() {});
 
+        Object tipoRaw = datos.get("tipoInmueble");
+        if (tipoRaw == null) {
+            tipoRaw = datos.get("tipo");
+        }
+        String tipoInstalacion = String.valueOf(
+                tipoRaw != null ? tipoRaw : "CASA_UNIFAMILIAR");
+
         AnalisisConsultaEntity entity = AnalisisConsultaEntity.builder()
                 .userId(user != null ? user.getId() : null)
                 .userEmail(email)
-                .tipoInstalacion(String.valueOf(datos.getOrDefault("tipo", "casa")))
+                .tipoInstalacion(tipoInstalacion)
                 .requestJson(new HashMap<>(datos))
                 .nivelKey(result.nivelKey())
                 .ahorro(result.ahorro())

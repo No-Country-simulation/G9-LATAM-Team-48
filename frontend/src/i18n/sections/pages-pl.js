@@ -54,21 +54,23 @@ export const pagesPl = {
     "subtitle": "Ocena zużycia według typu instalacji",
     "installationType": "Typ instalacji",
     "types": {
-      "casa": "Dom",
-      "fabrica_mediana": "Średnia fabryka",
-      "fabrica_grande": "Duża fabryka"
+      "APARTAMENTO": "Apartament",
+      "CASA_UNIFAMILIAR": "Dom jednorodzinny",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Mały lokal handlowy"
     },
     "typeHints": {
-      "casa": "Dane domu do szacowania zużycia na osobę i klimatyzacji.",
-      "fabrica_mediana": "Dane operacyjne do porównania maszyn, zmian i intensywności.",
-      "fabrica_grande": "Dane zakładu do oceny linii, mocy i monitoringu."
+      "APARTAMENTO": "Dane apartamentu do szacowania zużycia na osobę i klimatyzacji.",
+      "CASA_UNIFAMILIAR": "Dane domu do szacowania zużycia na osobę i klimatyzacji.",
+      "PEQUENO_ESTABLECIMIENTO_COMERCIAL": "Dane lokalu do szacowania zużycia wg zajętości, urządzeń i godzin."
     },
     "monthlyUsage": "Miesięczne zużycie (kWh)",
     "people": "Liczba osób",
+    "peopleCommercial": "Liczba osób (zajętość)",
     "devices": "Liczba urządzeń",
     "homeArea": "Powierzchnia mieszkania (m²)",
     "climateHours": "Godziny klimatyzacji dziennie",
     "peakUseHours": "Godziny intensywnego użycia dziennie",
+    "peakHoursUse": "Peak hours",
     "shifts": "Zmiany dziennie",
     "machines": "Liczba maszyn",
     "area": "Powierzchnia zakładu (m²)",
