@@ -25,7 +25,7 @@ export const EQUIPO_48 = [
     photo: '/equipo/ricardo-chirinos.jpg',
     linkedin: 'https://www.linkedin.com/in/ricardo-alexander-chirinos-bustos',
     github: 'https://github.com/RicardoACB',
-    email: '',
+    email: 'ricardo.chirinosg@gmail.com',
     cv: '',
   },
   {
