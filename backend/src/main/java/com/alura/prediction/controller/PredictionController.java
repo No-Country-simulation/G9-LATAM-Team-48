@@ -37,7 +37,7 @@ public class PredictionController {
     }
 
     @PostMapping("/analyze")
-    @Operation(summary = "Clasificar con payload plano (alias)")
+    @Operation(summary = "Clasificar con payload plano del formulario Analisis IA")
     public ResponseEntity<PredictionResponse> analyze(@RequestBody Map<String, Object> features) {
         return ResponseEntity.ok(predictionService.analyze(features));
     }
