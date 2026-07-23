@@ -9,9 +9,12 @@ function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
   const { theme } = useTheme()
   const { t } = useLocale()
   const { user, isAuthenticated } = useAuth()
-  const items = MENU_ITEMS.filter(
-    (item) => !item.adminOnly || (isAuthenticated && isAdmin(user)),
-  )
+  const showAdmin = isAuthenticated && isAdmin(user)
+
+  const mainItems = MENU_ITEMS.filter((item) => !item.adminOnly)
+  const adminItems = showAdmin
+    ? MENU_ITEMS.filter((item) => item.adminOnly)
+    : []
 
   const sidebarClass =
     theme === 'dark' ? 'bg-dark text-white' : 'bg-light'
@@ -28,6 +31,30 @@ function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
     onNavigate?.()
   }
 
+  function renderItems(items) {
+    return items.map((item) => {
+      const label = t(item.labelKey)
+
+      return (
+        <li className="nav-item" key={item.id}>
+          <button
+            type="button"
+            className={`${linkClass(item.id)} sidebar-link border-0 text-start w-100 py-2 d-flex align-items-center gap-2`}
+            onClick={() => handleNavigate(item.id)}
+            title={label}
+          >
+            <MenuIcon
+              name={item.icon}
+              color={item.color}
+              isActive={pagina === item.id}
+            />
+            <span className="sidebar-label">{label}</span>
+          </button>
+        </li>
+      )
+    })
+  }
+
   return (
     <div
       className={`sidebar ${sidebarClass} p-3 ${
@@ -37,29 +64,15 @@ function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
       {!isMobile && <h5 className="sidebar-title">{t('common.menu')}</h5>}
       {!isMobile && <hr />}
 
-      <ul className="nav flex-column gap-1">
-        {items.map((item) => {
-          const label = t(item.labelKey)
+      <ul className="nav flex-column gap-1">{renderItems(mainItems)}</ul>
 
-          return (
-            <li className="nav-item" key={item.id}>
-              <button
-                type="button"
-                className={`${linkClass(item.id)} sidebar-link border-0 text-start w-100 py-2 d-flex align-items-center gap-2`}
-                onClick={() => handleNavigate(item.id)}
-                title={label}
-              >
-                <MenuIcon
-                  name={item.icon}
-                  color={item.color}
-                  isActive={pagina === item.id}
-                />
-                <span className="sidebar-label">{label}</span>
-              </button>
-            </li>
-          )
-        })}
-      </ul>
+      {adminItems.length > 0 && (
+        <>
+          <hr className="sidebar-admin-divider my-3" />
+          <p className="sidebar-admin-heading mb-2 px-1">{t('menu.adminPanel')}</p>
+          <ul className="nav flex-column gap-1">{renderItems(adminItems)}</ul>
+        </>
+      )}
     </div>
   )
 }

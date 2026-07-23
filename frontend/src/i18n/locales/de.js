@@ -35,8 +35,9 @@ export default {
     recomendaciones: 'Empfehlungen',
     contacto: 'Kontakt',
     equipo: 'Team 48',
-    adminUsuarios: 'Benutzer (Admin)',
-    adminAnalisis: 'KI-Analyse (Admin)',
+    adminPanel: 'Admin-Bereich',
+    adminUsuarios: 'Benutzer',
+    adminAnalisis: 'KI-Analyse',
   },
   auth: {
     loginTitle: 'Anmelden',

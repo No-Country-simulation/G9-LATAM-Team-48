@@ -35,8 +35,9 @@ export default {
     recomendaciones: 'Recomanacions',
     contacto: "Contacta'ns",
     equipo: 'Equip 48',
-    adminUsuarios: 'Usuaris (admin)',
-    adminAnalisis: 'Anàlisi IA (admin)',
+    adminPanel: 'Panell Admin',
+    adminUsuarios: 'Usuaris',
+    adminAnalisis: 'Anàlisi IA',
   },
   auth: {
     loginTitle: 'Iniciar sessió',
