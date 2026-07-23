@@ -274,6 +274,19 @@ body,
   color: #0a58ca;
 }
 
+.sidebar-admin-divider {
+  opacity: 0.35;
+}
+
+.sidebar-admin-heading {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-bottom: 0.35rem;
+}
+
 [data-bs-theme='dark'] .sidebar-link:hover {
   background-color: rgba(255, 255, 255, 0.08);
 }
