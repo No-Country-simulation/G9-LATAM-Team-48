@@ -1,17 +1,17 @@
 package com.alura.analisis.controller;
 
 import com.alura.analisis.dto.AnalisisApiResponse;
+import com.alura.analisis.dto.AnalisisPayload;
 import com.alura.analisis.service.AnalisisService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
 
 /**
  * API del Analisis Inteligente IA.
@@ -35,10 +35,11 @@ public class AnalisisController {
     @Operation(
             summary = "Analizar consumo (autenticado)",
             description = """
-                    Requiere Bearer token. Ejecuta el modelo ML, persiste la consulta
+                    Requiere Bearer token. Valida el contrato tipado del formulario,
+                    ejecuta el modelo ML (o heuristica), persiste la consulta
                     y deja el email en estado PENDING para envio posterior.
                     """)
-    public ResponseEntity<AnalisisApiResponse> analizar(@RequestBody Map<String, Object> datos) {
-        return ResponseEntity.ok(analisisService.analizarYGuardar(datos));
+    public ResponseEntity<AnalisisApiResponse> analizar(@Valid @RequestBody AnalisisPayload payload) {
+        return ResponseEntity.ok(analisisService.analizarYGuardar(payload.toFeatureMap()));
     }
 }

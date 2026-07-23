@@ -2,13 +2,22 @@ package com.alura.prediction.service;
 
 import com.alura.prediction.dto.PredictionResponse;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Clasificacion heuristica cuando el microservicio FastAPI no esta disponible
  * (tipico en Railway Hobby sin servicio ML desplegado).
+ *
+ * <p>Combina:
+ * <ul>
+ *   <li>benchmark por tipo de inmueble (nuestro flujo actual),</li>
+ *   <li>score por habitos del mock del equipo (consumo, pico, horas altas, equipos).</li>
+ * </ul>
  */
 final class HeuristicPrediction {
 
@@ -21,6 +30,10 @@ final class HeuristicPrediction {
         double personas = firstDouble(features, defaultPersonas(tipo), "cantidadPersonas", "personas");
         double area = firstDouble(features, defaultArea(tipo), "areaM2", "area");
         double climate = firstDouble(features, 2, "horasClimatizacion", "climateHours");
+        double equipos = firstDouble(features, 0, "cantidadEquipos", "equipos");
+        double horasAlto = firstDouble(features, 0, "horasAltoConsumo", "peakUseHours");
+        boolean usoPico = Boolean.TRUE.equals(asBoolean(features.get("usoHorarioPico")));
+
         double base = switch (tipo) {
             case "APARTAMENTO" -> 220;
             case "PEQUENO_ESTABLECIMIENTO_COMERCIAL" -> 650;
@@ -31,40 +44,46 @@ final class HeuristicPrediction {
         double benchmark = Math.round(base * 0.45 + personas * personFactor + area * areaFactor + climate * 25);
 
         double ratio = benchmark <= 0 ? 1 : consumo / benchmark;
+        // Score del mock tipado del equipo (feat-backend-prediction-mock-german).
+        int habitScore = 0;
+        if (consumo >= 500) {
+            habitScore += 2;
+        } else if (consumo >= 250) {
+            habitScore++;
+        }
+        if (usoPico) {
+            habitScore++;
+        }
+        if (horasAlto >= 8) {
+            habitScore++;
+        }
+        if (equipos >= 10) {
+            habitScore++;
+        }
+
         String nivelKey;
         String category;
         int ahorro;
         double confidence;
-        List<String> tipKeys;
 
-        if (ratio <= 0.85) {
+        if (ratio <= 0.85 && habitScore <= 1) {
             nivelKey = "efficient";
             category = "efficient";
             ahorro = 5;
             confidence = 0.72;
-            tipKeys = List.of("keep", "monitor", "standby");
-        } else if (ratio <= 1.15) {
+        } else if (ratio > 1.15 || habitScore >= 3) {
+            nivelKey = "inefficient";
+            category = "inefficient";
+            ahorro = habitScore >= 4 ? 32 : 28;
+            confidence = 0.74;
+        } else {
             nivelKey = "moderate";
             category = "moderate";
             ahorro = 15;
             confidence = 0.68;
-            tipKeys = List.of("led", "peak", "appliances");
-        } else {
-            nivelKey = "inefficient";
-            category = "inefficient";
-            ahorro = 28;
-            confidence = 0.74;
-            tipKeys = "PEQUENO_ESTABLECIMIENTO_COMERCIAL".equals(tipo)
-                    ? List.of("schedules", "replace", "peak", "led")
-                    : List.of("ac", "replace", "peak", "standby");
         }
 
-        if (Boolean.TRUE.equals(asBoolean(features.get("usoHorarioPico")))
-                || firstDouble(features, 0, "horasAltoConsumo", "peakUseHours") >= 5) {
-            if (!tipKeys.contains("standby") && !tipKeys.contains("peak")) {
-                tipKeys = List.of("led", "peak", "standby");
-            }
-        }
+        List<String> tipKeys = tipsFor(nivelKey, tipo, usoPico, horasAlto, equipos, climate);
 
         return new PredictionResponse(
                 null,
@@ -74,6 +93,47 @@ final class HeuristicPrediction {
                 ahorro,
                 tipKeys,
                 benchmark);
+    }
+
+    private static List<String> tipsFor(
+            String nivelKey,
+            String tipo,
+            boolean usoPico,
+            double horasAlto,
+            double equipos,
+            double climate) {
+        Set<String> tips = new LinkedHashSet<>();
+        boolean comercial = "PEQUENO_ESTABLECIMIENTO_COMERCIAL".equals(tipo);
+
+        if ("efficient".equals(nivelKey)) {
+            tips.add("keep");
+            tips.add("monitor");
+            if (climate >= 4) {
+                tips.add("ac");
+            }
+        } else if ("inefficient".equals(nivelKey)) {
+            tips.add(comercial ? "schedules" : "ac");
+            tips.add("replace");
+            tips.add("peak");
+            tips.add(comercial ? "led" : "standby");
+        } else {
+            tips.add("led");
+            tips.add("peak");
+            tips.add("appliances");
+        }
+
+        if (usoPico || horasAlto >= 5) {
+            tips.add("peak");
+            tips.add("standby");
+        }
+        if (equipos >= 10) {
+            tips.add("replace");
+        }
+        if (climate >= 6) {
+            tips.add("insulation");
+        }
+
+        return new ArrayList<>(tips).stream().limit(5).toList();
     }
 
     private static double defaultPersonas(String tipo) {

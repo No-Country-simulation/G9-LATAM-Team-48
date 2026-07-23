@@ -7,6 +7,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;
+import java.util.Set;
 
 /**
  * Regla de recomendación para usuarios con perfiles de alto consumo energético.
@@ -51,8 +52,13 @@ public class HighConsumptionRule implements RecommendationRule {
         if (request == null || request.category() == null) {
             return false;
         }
-        String category = request.category().trim().toUpperCase();
-        return "HIGH_CONSUMPTION".equals(category);
+        String category = request.category().trim().toUpperCase(Locale.ROOT);
+        return Set.of(
+                "HIGH_CONSUMPTION",
+                "HIGH",
+                "ALTO",
+                "INEFFICIENT"
+        ).contains(category);
     }
 
     /**
