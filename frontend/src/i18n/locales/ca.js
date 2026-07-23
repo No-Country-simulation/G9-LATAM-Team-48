@@ -29,7 +29,8 @@ export default {
     recomendaciones: 'Recomanacions',
     contacto: "Contacta'ns",
     equipo: 'Equip 48',
-    adminUsuarios: 'Panel Admin',
+    adminUsuarios: 'Panell Admin',
+    adminAnalisis: 'Anàlisi IA (admin)',
   },
   auth: {
     loginTitle: 'Iniciar sessió',

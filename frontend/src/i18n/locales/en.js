@@ -29,7 +29,7 @@ export default {
     recomendaciones: 'Recommendations',
     contacto: 'Contact us',
     equipo: 'Team 48',
-    adminUsuarios: 'Panel Admin',
+    adminUsuarios: 'Admin panel',
     adminAnalisis: 'AI Analysis (admin)',
   },
   auth: {

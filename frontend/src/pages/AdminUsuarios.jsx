@@ -256,7 +256,9 @@ function AdminUsuarios() {
                               : 'text-bg-secondary'
                           }`}
                         >
-                          {row.role}
+                          {row.role === 'ADMIN'
+                            ? t('adminUsers.roleAdmin')
+                            : t('adminUsers.roleUser')}
                         </span>
                       </td>
                       <td>
@@ -375,8 +377,8 @@ function AdminUsuarios() {
                 value={form.role}
                 onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))}
               >
-                <option value="USER">USER</option>
-                <option value="ADMIN">ADMIN</option>
+                <option value="USER">{t('adminUsers.roleUser')}</option>
+                <option value="ADMIN">{t('adminUsers.roleAdmin')}</option>
               </select>
             </div>
 

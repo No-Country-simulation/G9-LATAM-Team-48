@@ -7,17 +7,45 @@ import { isAdmin } from '../utils/roles'
 import Loader from '../components/Loader'
 import EmptyState from '../components/EmptyState'
 
-function formatDate(value) {
+const LOCALE_TAGS = {
+  es: 'es-AR',
+  en: 'en-US',
+  pt: 'pt-BR',
+  fr: 'fr-FR',
+  it: 'it-IT',
+  de: 'de-DE',
+  nl: 'nl-NL',
+  pl: 'pl-PL',
+  ro: 'ro-RO',
+  ca: 'ca-ES',
+  tr: 'tr-TR',
+}
+
+function formatDate(value, locale) {
   if (!value) return '—'
   try {
-    return new Date(value).toLocaleString()
+    return new Date(value).toLocaleString(LOCALE_TAGS[locale] || locale || undefined)
   } catch {
     return String(value)
   }
 }
 
+function labelTipo(t, tipo) {
+  if (!tipo) return '—'
+  const key = `analysis.types.${tipo}`
+  const translated = t(key)
+  return translated === key ? tipo : translated
+}
+
+function labelNivel(t, nivel) {
+  if (!nivel) return '—'
+  const key = `analysis.levels.${nivel}`
+  const translated = t(key)
+  return translated === key ? nivel : translated
+}
+
 function AdminAnalisis() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const { user, token, openLogin, refreshUser, logout, hydrating } = useAuth()
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
@@ -149,8 +177,8 @@ function AdminAnalisis() {
                     <tr key={row.id}>
                       <td>{row.id}</td>
                       <td>{row.userEmail}</td>
-                      <td>{row.tipoInstalacion || '—'}</td>
-                      <td>{row.nivelKey || '—'}</td>
+                      <td>{labelTipo(t, row.tipoInstalacion)}</td>
+                      <td>{labelNivel(t, row.nivelKey)}</td>
                       <td>{row.ahorro != null ? `${row.ahorro}%` : '—'}</td>
                       <td>
                         {row.confidence != null
@@ -162,7 +190,7 @@ function AdminAnalisis() {
                           {row.emailStatus || '—'}
                         </span>
                       </td>
-                      <td className="small text-nowrap">{formatDate(row.createdAt)}</td>
+                      <td className="small text-nowrap">{formatDate(row.createdAt, locale)}</td>
                       <td className="text-end">
                         <button
                           type="button"
@@ -196,14 +224,15 @@ function AdminAnalisis() {
                 </div>
                 <div>
                   <strong>{t('adminAnalisis.tipo')}:</strong>{' '}
-                  {detail.tipoInstalacion || '—'}
+                  {labelTipo(t, detail.tipoInstalacion)}
                 </div>
                 <div>
-                  <strong>{t('adminAnalisis.nivel')}:</strong> {detail.nivelKey || '—'}
+                  <strong>{t('adminAnalisis.nivel')}:</strong>{' '}
+                  {labelNivel(t, detail.nivelKey)}
                 </div>
                 <div>
                   <strong>{t('adminAnalisis.createdAt')}:</strong>{' '}
-                  {formatDate(detail.createdAt)}
+                  {formatDate(detail.createdAt, locale)}
                 </div>
               </div>
               <div>
