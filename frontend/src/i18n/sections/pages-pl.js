@@ -311,6 +311,10 @@ export const pagesPl = {
     email: 'Email',
     cv: 'CV',
     linksSoon: 'Linki do profili wkrótce.',
+    tapHint: 'Dotknij, by zobaczyć linki',
+    tapBack: 'Dotknij, by wrócić',
+    flipFront: 'Pokaż linki profilu',
+    flipBack: 'Wróć do karty',
     roles: {
       fullstack: 'Full Stack Developer',
       dataAnalyst: 'Data Analyst',

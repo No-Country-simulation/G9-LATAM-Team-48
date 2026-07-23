@@ -311,6 +311,10 @@ export const pagesCa = {
     email: 'Email',
     cv: 'CV',
     linksSoon: 'Enllaços de perfil aviat.',
+    tapHint: 'Toca per veure els enllaços',
+    tapBack: 'Toca per tornar',
+    flipFront: 'Veure enllaços del perfil',
+    flipBack: 'Tornar a la targeta',
     roles: {
       fullstack: 'Full Stack Developer',
       dataAnalyst: 'Data Analyst',

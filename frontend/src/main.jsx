@@ -5,6 +5,7 @@ import { ThemeProvider } from './context/ThemeContext.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import { LocaleProvider } from './context/LocaleContext.jsx'
 import ErrorBoundary from './components/ErrorBoundary.jsx'
+import { detectLocale, translate } from './i18n'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
@@ -12,7 +13,7 @@ import './index.css'
 const root = document.getElementById('root')
 
 if (!root) {
-  document.body.textContent = 'No se encontro #root'
+  document.body.textContent = translate(detectLocale(), 'common.rootMissing')
 } else {
   ReactDOM.createRoot(root).render(
     <React.StrictMode>

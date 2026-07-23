@@ -311,6 +311,10 @@ export const pagesRo = {
     email: 'Email',
     cv: 'CV',
     linksSoon: 'Linkuri de profil în curând.',
+    tapHint: 'Atinge pentru a vedea linkurile',
+    tapBack: 'Atinge pentru a reveni',
+    flipFront: 'Vezi linkurile profilului',
+    flipBack: 'Înapoi la card',
     roles: {
       fullstack: 'Full Stack Developer',
       dataAnalyst: 'Data Analyst',

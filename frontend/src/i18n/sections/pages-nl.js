@@ -311,6 +311,10 @@ export const pagesNl = {
     email: 'Email',
     cv: 'CV',
     linksSoon: 'Profiellinks volgen binnenkort.',
+    tapHint: 'Tik om links te zien',
+    tapBack: 'Tik om terug te gaan',
+    flipFront: 'Profiellinks tonen',
+    flipBack: 'Terug naar kaart',
     roles: {
       fullstack: 'Full Stack Developer',
       dataAnalyst: 'Data Analyst',

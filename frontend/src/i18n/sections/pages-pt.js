@@ -311,6 +311,10 @@ export const pagesPt = {
     email: 'Email',
     cv: 'Currículo',
     linksSoon: 'Links de perfil em breve.',
+    tapHint: 'Toque para ver links',
+    tapBack: 'Toque para voltar',
+    flipFront: 'Ver links do perfil',
+    flipBack: 'Voltar ao cartão',
     roles: {
       fullstack: 'Full Stack Developer',
       dataAnalyst: 'Data Analyst',
