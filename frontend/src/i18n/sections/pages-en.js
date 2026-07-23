@@ -248,6 +248,8 @@ export const pagesEn = {
     dismiss: 'Dismiss',
     passwordMin: 'Password must be at least 8 characters.',
     role: 'Role',
+    roleUser: 'User',
+    roleAdmin: 'Admin',
     verified: 'Verified',
     verifiedYes: 'Yes',
     verifiedNo: 'Pending',

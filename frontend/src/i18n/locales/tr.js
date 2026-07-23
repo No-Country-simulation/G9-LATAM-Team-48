@@ -29,7 +29,8 @@ export default {
     recomendaciones: 'Öneriler',
     contacto: 'Bize ulaşın',
     equipo: '48. Takım',
-    adminUsuarios: 'Panel Admin',
+    adminUsuarios: 'Yönetici paneli',
+    adminAnalisis: 'YZ analizi (admin)',
   },
   auth: {
     loginTitle: 'Giriş yap',
