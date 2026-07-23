@@ -222,9 +222,10 @@ export const pagesRo = {
     }
   },
   adminUsers: {
-    title: 'Administrare utilizatori',
+    title: 'Utilizatori — administrare',
     subtitle: 'Creează, editează sau dezactivează conturile sistemului.',
     create: 'Utilizator nou',
+    refresh: 'Actualizează',
     createTitle: 'Creează utilizator',
     editTitle: 'Editează utilizator',
     name: 'Nume',

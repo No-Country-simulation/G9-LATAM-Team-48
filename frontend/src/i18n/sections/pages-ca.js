@@ -222,9 +222,10 @@ export const pagesCa = {
     }
   },
   adminUsers: {
-    title: 'Administració d\'usuaris',
+    title: 'Usuaris — administració'usuaris',
     subtitle: 'Crea, edita o desactiva comptes del sistema.',
     create: 'Nou usuari',
+    refresh: 'Actualitzar',
     createTitle: 'Crear usuari',
     editTitle: 'Editar usuari',
     name: 'Nom',

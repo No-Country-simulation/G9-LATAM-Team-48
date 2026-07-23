@@ -222,9 +222,10 @@ export const pagesTr = {
     }
   },
   adminUsers: {
-    title: 'Kullanıcı yönetimi',
+    title: 'Kullanıcılar — yönetim',
     subtitle: 'Sistem hesaplarını oluşturun, düzenleyin veya devre dışı bırakın.',
     create: 'Yeni kullanıcı',
+    refresh: 'Yenile',
     createTitle: 'Kullanıcı oluştur',
     editTitle: 'Kullanıcıyı düzenle',
     name: 'Ad',

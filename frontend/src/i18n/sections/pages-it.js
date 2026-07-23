@@ -222,9 +222,10 @@ export const pagesIt = {
     }
   },
   adminUsers: {
-    title: 'Amministrazione utenti',
+    title: 'Utenti — amministrazione',
     subtitle: 'Crea, modifica o disattiva gli account di sistema.',
     create: 'Nuovo utente',
+    refresh: 'Aggiorna',
     createTitle: 'Crea utente',
     editTitle: 'Modifica utente',
     name: 'Nome',
