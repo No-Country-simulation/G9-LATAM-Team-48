@@ -35,7 +35,7 @@ export default {
     recomendaciones: 'Aanbevelingen',
     contacto: 'Contact',
     equipo: 'Team 48',
-    adminUsuarios: 'Adminpaneel',
+    adminUsuarios: 'Gebruikers (admin)',
     adminAnalisis: 'AI-analyse (admin)',
   },
   auth: {

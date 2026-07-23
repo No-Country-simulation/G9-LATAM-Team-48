@@ -35,7 +35,7 @@ export default {
     recomendaciones: 'Empfehlungen',
     contacto: 'Kontakt',
     equipo: 'Team 48',
-    adminUsuarios: 'Admin-Bereich',
+    adminUsuarios: 'Benutzer (Admin)',
     adminAnalisis: 'KI-Analyse (Admin)',
   },
   auth: {

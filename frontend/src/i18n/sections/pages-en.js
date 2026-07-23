@@ -231,9 +231,10 @@ export const pagesEn = {
     june: 'June',
   },
   adminUsers: {
-    title: 'User administration',
-    subtitle: 'Create, edit or delete system accounts.',
+    title: 'Users — administration',
+    subtitle: 'Create, edit or deactivate system accounts.',
     create: 'New user',
+    refresh: 'Refresh',
     createTitle: 'Create user',
     editTitle: 'Edit user',
     name: 'Name',
