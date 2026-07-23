@@ -187,7 +187,12 @@ function AdminAnalisis() {
                       </td>
                       <td>
                         <span className="badge text-bg-secondary">
-                          {row.emailStatus || '—'}
+                          {row.emailStatus
+                            ? t(
+                                `common.${String(row.emailStatus).toLowerCase()}`,
+                                row.emailStatus,
+                              )
+                            : '—'}
                         </span>
                       </td>
                       <td className="small text-nowrap">{formatDate(row.createdAt, locale)}</td>

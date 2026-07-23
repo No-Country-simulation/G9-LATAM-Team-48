@@ -101,10 +101,7 @@ export async function register(credentials) {
     const payload = data?.data ?? data
     return {
       pendingVerification: true,
-      message:
-        payload?.message ||
-        data?.message ||
-        'Cuenta creada. Revisa tu email para verificarla.',
+      message: payload?.message || data?.message || null,
       emailStatus: payload?.emailStatus,
       verificationToken: payload?.verificationToken ?? null,
       email: body.email,

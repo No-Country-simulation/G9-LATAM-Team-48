@@ -21,6 +21,12 @@ export default {
       ca: 'Catalán',
       tr: 'Turco',
     },
+    errorLoad: 'Error al cargar EnergIA',
+    reload: 'Recargar',
+    rootMissing: 'No se encontró #root',
+    pending: 'Pendiente',
+    sent: 'Enviado',
+    failed: 'Fallido',
   },
   menu: {
     dashboard: 'Dashboard',

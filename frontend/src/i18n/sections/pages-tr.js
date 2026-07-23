@@ -311,6 +311,10 @@ export const pagesTr = {
     email: 'Email',
     cv: 'CV',
     linksSoon: 'Profil bağlantıları yakında.',
+    tapHint: 'Bağlantıları görmek için dokunun',
+    tapBack: 'Geri dönmek için dokunun',
+    flipFront: 'Profil bağlantılarını göster',
+    flipBack: 'Karta dön',
     roles: {
       fullstack: 'Full Stack Developer',
       dataAnalyst: 'Data Analyst',

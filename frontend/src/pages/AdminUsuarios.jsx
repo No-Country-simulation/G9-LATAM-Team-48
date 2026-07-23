@@ -197,7 +197,10 @@ function AdminUsuarios() {
             </div>
           )}
           <div className="small mb-0 text-muted">
-            {t('adminUsers.emailStatus')}: {createdCreds.emailStatus || 'PENDING'}
+            {t('adminUsers.emailStatus')}:{' '}
+            {createdCreds.emailStatus
+              ? t(`common.${String(createdCreds.emailStatus).toLowerCase()}`, createdCreds.emailStatus)
+              : t('common.pending')}
           </div>
           <button
             type="button"
