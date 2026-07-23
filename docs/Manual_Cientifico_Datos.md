@@ -1,4 +1,302 @@
-# **Capítulo 01 – Arquitectura General del Proyecto**
+**Contenido**
+
+[**Objetivo** 6](#_Toc235650482)
+
+[**1. Arquitectura General** 6](#_Toc235650483)
+
+[La solución estará compuesta por cinco capas. 6](#_Toc235650484)
+
+[**2. Responsabilidad del Científico de Datos** 6](#_Toc235650485)
+
+[**3. Flujo completo del sistema** 7](#_Toc235650486)
+
+[**4. Arquitectura de Ciencia de Datos** 8](#_Toc235650487)
+
+[**5. Flujo interno del modelo** 8](#_Toc235650488)
+
+[**6. Responsabilidad del Backend** 9](#_Toc235650489)
+
+[**7. Responsabilidad del Frontend** 9](#_Toc235650490)
+
+[**8. Arquitectura del Modelo de Machine Learning** 10](#_Toc235650491)
+
+[**9. Contrato entre Ciencia de Datos y Backend** 10](#_Toc235650492)
+
+[**10. Arquitectura de almacenamiento** 11](#_Toc235650493)
+
+[**11. Arquitectura lógica del proyecto** 11](#_Toc235650494)
+
+[**12. Integración con OCI** 12](#_Toc235650495)
+
+[**13. Entregables del Científico de Datos** 12](#_Toc235650496)
+
+[**14. Decisiones de arquitectura adoptadas para este manual** 12](#_Toc235650497)
+
+[**Capítulo 02 – Configuración Profesional del Entorno** 13](#_Toc235650498)
+
+[**Objetivo** 13](#_Toc235650499)
+
+[**1. Software a instalar** 13](#_Toc235650500)
+
+[**2. Instalación de Python** 14](#_Toc235650501)
+
+[**3. Instalación de Visual Studio Code** 14](#_Toc235650502)
+
+[**4. Crear la carpeta del proyecto** 14](#_Toc235650503)
+
+[**5. Abrir el proyecto en VSCode** 15](#_Toc235650504)
+
+[**6. Extensiones obligatorias de VSCode** 16](#_Toc235650505)
+
+[**Python** 16](#_Toc235650506)
+
+[**Jupyter** 16](#_Toc235650507)
+
+[**Pylance** 17](#_Toc235650508)
+
+[**Ruff** 17](#_Toc235650509)
+
+[**Black Formatter** 17](#_Toc235650510)
+
+[**GitLens** 17](#_Toc235650511)
+
+[**Error Lens** 18](#_Toc235650512)
+
+[**Markdown All in One** 18](#_Toc235650513)
+
+[**Material Icon Theme** 18](#_Toc235650514)
+
+[**Docker** 18](#_Toc235650515)
+
+[**REST Client** 18](#_Toc235650516)
+
+[**7. Seleccionar el intérprete de Python** 19](#_Toc235650517)
+
+[**8. Crear el entorno virtual** 19](#_Toc235650518)
+
+[**9. Configuración inicial de VSCode** 19](#_Toc235650519)
+
+[**10. Instalar dependencias** 20](#_Toc235650520)
+
+[**11. Verificar instalación** 21](#_Toc235650521)
+
+[**12. Configuración de Git** 21](#_Toc235650522)
+
+[**13. Crear archivo .gitignore** 21](#_Toc235650523)
+
+[**14. Configuración de Jupyter** 22](#_Toc235650524)
+
+[**15. Configuración de Postman** 22](#_Toc235650525)
+
+[**16. Validación final del entorno** 23](#_Toc235650526)
+
+[**17. Decisiones adoptadas para el resto del manual** 23](#_Toc235650527)
+
+[**Capítulo 03 – Organización del Proyecto en GitHub** 24](#_Toc235650528)
+
+[**Objetivo** 24](#_Toc235650529)
+
+[**1. Organización general del Hackathon** 24](#_Toc235650530)
+
+[**2. Repositorio de Ciencia de Datos** 24](#_Toc235650531)
+
+[**3. Configuración inicial del repositorio** 25](#_Toc235650532)
+
+[**4. Incorporación de un nuevo integrante** 25](#_Toc235650533)
+
+[**5. Entorno de trabajo de cada analista** 26](#_Toc235650534)
+
+[**6. Flujo oficial de trabajo** 26](#_Toc235650535)
+
+[**7. Estrategia de ramas** 27](#_Toc235650536)
+
+[**Ramas de trabajo** 27](#_Toc235650537)
+
+[**8. Flujo de creación de ramas** 28](#_Toc235650538)
+
+[**9. Distribución de responsabilidades** 29](#_Toc235650539)
+
+[**Ricardo Chirinos – Ingeniería y Análisis de Datos** 29](#_Toc235650540)
+
+[**Jharle Compres – Machine Learning e Integración** 29](#_Toc235650541)
+
+[**10. Sincronización entre analistas** 29](#_Toc235650542)
+
+[**11. Revisión de cambios** 30](#_Toc235650543)
+
+[**12. Organización de notebooks** 30](#_Toc235650544)
+
+[**13. Organización del código en src** 31](#_Toc235650545)
+
+[**14. Integración con Backend** 31](#_Toc235650546)
+
+[**15. Integración con Frontend** 32](#_Toc235650547)
+
+[**16. Convención de commits** 32](#_Toc235650548)
+
+[**17. Gestión de versiones del modelo** 32](#_Toc235650549)
+
+[**18. Flujo de trabajo durante el proyecto** 33](#_Toc235650550)
+
+[**19. Decisiones adoptadas para el resto del manual** 34](#_Toc235650551)
+
+[**Capítulo 04 – Definición del Problema de Ciencia de Datos** 34](#_Toc235650552)
+
+[**Objetivo** 34](#_Toc235650553)
+
+[**1. Contexto del problema** 35](#_Toc235650554)
+
+[**2. Definición del problema** 35](#_Toc235650555)
+
+[**3. Objetivo del modelo** 35](#_Toc235650556)
+
+[**4. Alcance del MVP** 36](#_Toc235650557)
+
+[**5. Tipo de aprendizaje** 36](#_Toc235650558)
+
+[**6. Tipo de problema** 36](#_Toc235650559)
+
+[**7. Unidad de análisis** 37](#_Toc235650560)
+
+[**8. Variables de entrada** 38](#_Toc235650561)
+
+[**9. Variable objetivo (Target)** 38](#_Toc235650562)
+
+[**10. Restricciones del modelo** 38](#_Toc235650563)
+
+[**11. Criterios de éxito** 39](#_Toc235650564)
+
+[**12. Exclusiones del proyecto** 39](#_Toc235650565)
+
+[**13. Distribución del trabajo** 39](#_Toc235650566)
+
+[**Ricardo Chirinos – Ingeniería y Análisis de Datos** 39](#_Toc235650567)
+
+[**Jharle Compres – Machine Learning e Integración** 40](#_Toc235650568)
+
+[**14. Dependencias con los siguientes capítulos** 40](#_Toc235650569)
+
+[**15. Decisiones adoptadas para el resto del manual** 40](#_Toc235650570)
+
+[**Capítulo 05 – Estrategia del Modelo** 41](#_Toc235650571)
+
+[**Objetivo** 41](#_Toc235650572)
+
+[**1. Estrategia general** 41](#_Toc235650573)
+
+[**2. Principios de desarrollo** 42](#_Toc235650574)
+
+[**3. Arquitectura del modelo** 43](#_Toc235650575)
+
+[**4. Estrategia de selección de algoritmos** 44](#_Toc235650576)
+
+[**Algoritmos candidatos** 44](#_Toc235650577)
+
+[**5. Modelo Baseline** 45](#_Toc235650578)
+
+[**6. Estrategia de experimentación** 45](#_Toc235650579)
+
+[**7. Control de experimentos** 45](#_Toc235650580)
+
+[**8. Estrategia de validación** 46](#_Toc235650581)
+
+[**9. Gestión de versiones del modelo** 46](#_Toc235650582)
+
+[**10. Criterios para reemplazar un modelo** 47](#_Toc235650583)
+
+[**11. Preparación para producción** 47](#_Toc235650584)
+
+[**12. Integración con Backend** 48](#_Toc235650585)
+
+[**13. Estrategia de mantenimiento** 48](#_Toc235650586)
+
+[**14. Distribución del trabajo** 48](#_Toc235650587)
+
+[**Ricardo Chirinos – Ingeniería y Análisis de Datos** 48](#_Toc235650588)
+
+[**Jharle Compres – Machine Learning e Integración** 49](#_Toc235650589)
+
+[**15. Dependencias con los siguientes capítulos** 49](#_Toc235650590)
+
+[**16. Decisiones adoptadas para el resto del manual** 50](#_Toc235650591)
+
+[**Objetivo** 50](#_Toc235650592)
+
+[**1. Estrategia de obtención de datos** 51](#_Toc235650593)
+
+[**2. Decisión técnica del proyecto** 51](#_Toc235650594)
+
+[**3. Objetivo del dataset** 52](#_Toc235650595)
+
+[**4. Metodología de construcción** 52](#_Toc235650596)
+
+[**5. Principios de construcción** 53](#_Toc235650597)
+
+[**6. Diseño de variables** 53](#_Toc235650598)
+
+[**7. Construcción del Target** 54](#_Toc235650599)
+
+[**8. Generación de escenarios** 55](#_Toc235650600)
+
+[**9. Incorporación controlada de problemas de calidad** 55](#_Toc235650601)
+
+[**10. Tamaño del dataset** 56](#_Toc235650602)
+
+[**11. Versionado del dataset** 56](#_Toc235650603)
+
+[**12. Organización del trabajo** 57](#_Toc235650604)
+
+[**Ricardo Chirinos– Ingeniería y Análisis de Datos** 57](#_Toc235650605)
+
+[**Jharle Compres– Machine Learning e Integración** 57](#_Toc235650606)
+
+[**13. Almacenamiento del dataset** 57](#_Toc235650607)
+
+[**14. Dependencias con los siguientes capítulos** 58](#_Toc235650608)
+
+[**15. Decisiones adoptadas para el resto del manual** 59](#_Toc235650609)
+
+[**Objetivo** 59](#_Toc235650610)
+
+[**1. Alcance de la validación** 59](#_Toc235650611)
+
+[**2. Objetivos de la validación** 60](#_Toc235650612)
+
+[**3. Flujo oficial de validación** 60](#_Toc235650613)
+
+[**4. Validación estructural** 61](#_Toc235650614)
+
+[**5. Validación de variables** 61](#_Toc235650615)
+
+[**6. Validación de tipos de datos** 62](#_Toc235650616)
+
+[**7. Validación de integridad** 62](#_Toc235650617)
+
+[**8. Validación de dominios** 63](#_Toc235650618)
+
+[**9. Validación de reglas de negocio** 63](#_Toc235650619)
+
+[**10. Validación de la variable objetivo** 63](#_Toc235650620)
+
+[**11. Validación de identificadores** 64](#_Toc235650621)
+
+[**12. Validación estadística inicial** 64](#_Toc235650622)
+
+[**13. Registro de incidencias** 65](#_Toc235650623)
+
+[**14. Criterios de aprobación** 65](#_Toc235650624)
+
+[**15. Distribución del trabajo** 66](#_Toc235650625)
+
+[**Ricardo Chirinos– Ingeniería y Análisis de Datos** 66](#_Toc235650626)
+
+[**Jharle Compres– Machine Learning e Integración** 66](#_Toc235650627)
+
+[**16. Dependencias con los siguientes capítulos** 66](#_Toc235650628)
+
+[**17. Decisiones adoptadas para el resto del manual** 67](#_Toc235650629)
+
+**Capítulo 01 – Arquitectura General del Proyecto**
 
 ## **Objetivo**
 
@@ -1915,7 +2213,7 @@ Esto garantizará que todas las versiones sean controladas y reproducibles.
 
 ## **14. Distribución del trabajo**
 
-### **Analista A – Ingeniería y Análisis de Datos**
+### **Ricardo Chirinos – Ingeniería y Análisis de Datos**
 
 Responsable de:
 
@@ -1925,7 +2223,7 @@ Responsable de:
 * Documentar los experimentos realizados.
 * Verificar que las transformaciones mantengan coherencia con el problema definido.
 
-### **Analista B – Machine Learning e Integración**
+### **Jharle Compres – Machine Learning e Integración**
 
 Responsable de:
 
@@ -1972,13 +2270,13 @@ Las siguientes decisiones quedan establecidas como estándar para el resto del p
 
 **Capítulo 06 – Búsqueda y Construcción del Dataset**
 
-**Objetivo**
+## **Objetivo**
 
 Definir la metodología oficial para obtener el conjunto de datos que utilizará el proyecto, documentando el proceso de investigación, la justificación técnica para la construcción de un dataset sintético, el procedimiento de generación de datos y los estándares que garantizarán la calidad y trazabilidad del dataset durante todo el ciclo de desarrollo.
 
 Las decisiones establecidas en este capítulo serán utilizadas en todos los procesos posteriores de validación, EDA, limpieza, ingeniería de variables, entrenamiento e integración.
 
-**1. Estrategia de obtención de datos**
+## **1. Estrategia de obtención de datos**
 
 El Equipo de Ciencia de Datos inició el proyecto realizando una investigación exhaustiva de fuentes públicas nacionales e internacionales relacionadas con consumo energético.
 
@@ -1996,7 +2294,7 @@ Durante la investigación se identificó que los datasets disponibles presentan 
 
 Como resultado, se concluyó que **no existe un dataset público que represente de forma integral el problema planteado por el hackathon**.
 
-**2. Decisión técnica del proyecto**
+## **2. Decisión técnica del proyecto**
 
 Se adopta como decisión oficial la construcción de un **dataset sintético de alta fidelidad**, diseñado específicamente para representar el comportamiento energético de viviendas y pequeños establecimientos.
 
@@ -2011,7 +2309,7 @@ Esta decisión permitirá:
 
 A partir de este capítulo, el dataset sintético será considerado el **dataset oficial del proyecto**.
 
-**3. Objetivo del dataset**
+## **3. Objetivo del dataset**
 
 El dataset deberá representar una observación individual por registro.
 
@@ -2026,7 +2324,7 @@ El conjunto de datos deberá contener información suficiente para:
 * Generar recomendaciones.
 * Estimar impactos económicos asociados al consumo energético.
 
-**4. Metodología de construcción**
+## **4. Metodología de construcción**
 
 La construcción del dataset seguirá una estrategia de simulación basada en reglas de negocio.
 
@@ -2074,7 +2372,7 @@ El dataset no será generado mediante valores aleatorios sin restricciones.
 
 Cada variable deberá respetar relaciones lógicas con el resto de las variables del registro.
 
-**5. Principios de construcción**
+## **5. Principios de construcción**
 
 Durante la generación del dataset deberán cumplirse los siguientes principios:
 
@@ -2084,7 +2382,7 @@ Durante la generación del dataset deberán cumplirse los siguientes principios:
 * Las relaciones entre variables deberán reflejar dependencia lógica cuando corresponda.
 * No se permitirán combinaciones físicamente imposibles.
 
-**6. Diseño de variables**
+## **6. Diseño de variables**
 
 Las variables incluidas en el dataset deberán representar factores que influyen directa o indirectamente en el consumo energético.
 
@@ -2102,7 +2400,7 @@ Las categorías de información serán:
 
 La definición detallada de cada variable se documentará en el Diccionario de Datos.
 
-**7. Construcción del Target**
+## **7. Construcción del Target**
 
 El dataset será generado incluyendo desde su origen la variable objetivo.
 
@@ -2122,7 +2420,7 @@ Ineficiente
 
 No se utilizarán categorías adicionales durante el MVP.
 
-**8. Generación de escenarios**
+## **8. Generación de escenarios**
 
 El dataset deberá contener registros representativos de diferentes patrones de consumo.
 
@@ -2141,7 +2439,7 @@ Como mínimo deberán existir escenarios asociados a:
 
 La distribución de escenarios deberá evitar concentraciones excesivas en una única categoría.
 
-**9. Incorporación controlada de problemas de calidad**
+## **9. Incorporación controlada de problemas de calidad**
 
 Con el objetivo de construir un caso de estudio realista, el dataset crudo incluirá deliberadamente problemas de calidad.
 
@@ -2159,7 +2457,7 @@ Estos problemas serán documentados y corregidos en los capítulos posteriores.
 
 No se introducirán errores que impidan la utilización del dataset.
 
-**10. Tamaño del dataset**
+## **10. Tamaño del dataset**
 
 El dataset deberá contener un volumen suficiente para:
 
@@ -2171,7 +2469,7 @@ El dataset deberá contener un volumen suficiente para:
 
 El número definitivo de registros será fijado antes de iniciar el EDA y permanecerá constante durante todo el proyecto, salvo la creación de nuevas versiones documentadas del dataset.
 
-**11. Versionado del dataset**
+## **11. Versionado del dataset**
 
 Cada modificación estructural del dataset generará una nueva versión.
 
@@ -2207,9 +2505,9 @@ Cada versión deberá estar acompañada por:
 * Cantidad de registros.
 * Cantidad de variables.
 
-**12. Organización del trabajo**
+## **12. Organización del trabajo**
 
-**Analista A – Ingeniería y Análisis de Datos**
+### **Ricardo Chirinos– Ingeniería y Análisis de Datos**
 
 Responsable de:
 
@@ -2220,7 +2518,7 @@ Responsable de:
 * Generar el dataset crudo.
 * Documentar el proceso de construcción.
 
-**Analista B – Machine Learning e Integración**
+### **Jharle Compres– Machine Learning e Integración**
 
 Responsable de:
 
@@ -2230,7 +2528,7 @@ Responsable de:
 * Detectar posibles riesgos para el modelado.
 * Aprobar la versión oficial que será utilizada en los experimentos.
 
-**13. Almacenamiento del dataset**
+## **13. Almacenamiento del dataset**
 
 La ubicación oficial será:
 
@@ -2250,7 +2548,7 @@ Las reglas serán:
 
 No se modificarán manualmente los archivos ubicados en raw/.
 
-**14. Dependencias con los siguientes capítulos**
+## **14. Dependencias con los siguientes capítulos**
 
 Las decisiones tomadas en este capítulo servirán como base para:
 
@@ -2266,7 +2564,7 @@ Las decisiones tomadas en este capítulo servirán como base para:
 
 Todos estos capítulos deberán utilizar exclusivamente el dataset oficial definido aquí.
 
-**15. Decisiones adoptadas para el resto del manual**
+## **15. Decisiones adoptadas para el resto del manual**
 
 Las siguientes decisiones quedan establecidas como estándar para todos los capítulos posteriores:
 
@@ -2277,3 +2575,578 @@ Las siguientes decisiones quedan establecidas como estándar para todos los cap�
 * El dataset incluirá de forma intencional problemas controlados de calidad para validar los procesos de limpieza y preparación de datos documentados en capítulos posteriores.
 * Se mantendrá un sistema de versionado que preserve el dataset crudo y todas las versiones procesadas, garantizando trazabilidad y reproducibilidad.
 * Todas las actividades de análisis, entrenamiento, evaluación e integración se realizarán exclusivamente sobre las versiones oficiales del dataset definidas en este capítulo.
+
+**Capítulo 07 – Validación del Dataset**
+
+## **Objetivo**
+
+Definir el procedimiento oficial para validar el dataset sintético antes de iniciar cualquier proceso de análisis, transformación o entrenamiento, garantizando que la información utilizada por el proyecto sea consistente, íntegra, reproducible y técnicamente apta para el desarrollo del modelo de Machine Learning.
+
+La validación constituye el punto de control obligatorio entre la construcción del dataset y el inicio del Análisis Exploratorio de Datos (EDA).
+
+## **1. Alcance de la validación**
+
+La validación se realizará exclusivamente sobre la versión oficial ubicada en:
+
+datasets/raw/
+
+Durante esta etapa no se modificarán registros ni variables.
+
+El objetivo será identificar y documentar el estado inicial del dataset.
+
+Cualquier corrección se realizará únicamente en el capítulo de Limpieza de Datos.
+
+## **2. Objetivos de la validación**
+
+La validación deberá responder las siguientes preguntas:
+
+* ¿El archivo puede cargarse correctamente?
+* ¿La estructura coincide con el diseño definido?
+* ¿Las variables esperadas están presentes?
+* ¿Los tipos de datos son coherentes?
+* ¿Existen registros duplicados?
+* ¿Existen valores faltantes?
+* ¿Existen valores fuera del dominio esperado?
+* ¿Las relaciones entre variables son coherentes?
+* ¿La variable objetivo cumple con la definición establecida?
+* ¿El dataset está listo para iniciar el EDA?
+
+Ningún análisis posterior podrá comenzar sin completar esta validación.
+
+## **3. Flujo oficial de validación**
+
+El proceso seguirá el siguiente orden:
+
+Carga del dataset
+
+↓
+
+Validación estructural
+
+↓
+
+Validación de variables
+
+↓
+
+Validación de tipos de datos
+
+↓
+
+Validación de integridad
+
+↓
+
+Validación de reglas de negocio
+
+↓
+
+Validación del Target
+
+↓
+
+Generación del informe
+
+↓
+
+Aprobación del dataset
+
+Cada etapa deberá completarse antes de continuar con la siguiente.
+
+## **4. Validación estructural**
+
+Se verificará que:
+
+* El archivo pueda abrirse sin errores.
+* El delimitador sea correcto.
+* La codificación de caracteres sea consistente.
+* No existan columnas desplazadas.
+* No existan encabezados duplicados.
+* No existan columnas vacías.
+* El número de columnas coincida con el diseño oficial del dataset.
+
+La estructura validada será considerada la versión de referencia para todo el proyecto.
+
+## **5. Validación de variables**
+
+Se comprobará que todas las variables definidas en el diseño del dataset estén presentes.
+
+Para cada variable se verificará:
+
+* Nombre.
+* Orden.
+* Tipo esperado.
+* Descripción.
+* Dominio permitido.
+
+No se permitirá incorporar nuevas variables directamente al dataset oficial sin documentar previamente el cambio.
+
+## **6. Validación de tipos de datos**
+
+Cada variable deberá corresponder al tipo de dato esperado.
+
+Se verificarán, como mínimo:
+
+* Variables numéricas.
+* Variables categóricas.
+* Variables booleanas.
+* Variables temporales.
+* Variables identificadoras.
+
+La detección de tipos inconsistentes deberá documentarse, pero no corregirse durante esta etapa.
+
+## **7. Validación de integridad**
+
+Se evaluará la calidad general del dataset mediante la identificación de:
+
+* Valores faltantes.
+* Registros duplicados.
+* Valores nulos.
+* Registros incompletos.
+* Variables completamente vacías.
+* Valores imposibles.
+
+Todos los hallazgos deberán registrarse para ser tratados posteriormente.
+
+## **8. Validación de dominios**
+
+Cada variable deberá respetar el dominio definido durante la construcción del dataset.
+
+Se verificará que:
+
+* Las variables categóricas contengan únicamente categorías válidas.
+* Las variables booleanas utilicen únicamente los valores permitidos.
+* Las variables numéricas permanezcan dentro de rangos técnicamente posibles.
+* Las unidades de medida sean consistentes.
+
+No se corregirán valores durante esta etapa.
+
+Únicamente se documentarán.
+
+## **9. Validación de reglas de negocio**
+
+Además de validar cada variable individualmente, se comprobará la coherencia entre variables relacionadas.
+
+Se evaluarán relaciones tales como:
+
+* Consumo energético respecto al número de equipos.
+* Consumo respecto a horas de uso.
+* Consumo respecto al tipo de inmueble.
+* Consumo respecto al nivel de ocupación.
+* Consumo respecto a la presencia de generación fotovoltaica.
+* Costo energético respecto al consumo registrado.
+* Perfil energético respecto a las características generales del registro.
+
+Las reglas de negocio deberán validar la consistencia lógica del conjunto de datos y no únicamente la validez individual de cada campo.
+
+## **10. Validación de la variable objetivo**
+
+La variable objetivo oficial será:
+
+perfil\_energetico
+
+Se verificará que:
+
+* Todos los registros posean una categoría válida o, si existen valores faltantes introducidos intencionalmente, que estos correspondan al diseño del dataset.
+* No existan categorías distintas de las definidas oficialmente.
+* La distribución de clases sea conocida y documentada.
+* No existan errores de escritura.
+* No existan diferencias de mayúsculas y minúsculas que generen categorías duplicadas.
+
+La distribución obtenida servirá como referencia para el entrenamiento.
+
+## **11. Validación de identificadores**
+
+Cada registro deberá poseer un identificador único.
+
+Se comprobará:
+
+* Unicidad.
+* Ausencia de valores nulos.
+* Formato consistente.
+* Ausencia de duplicados.
+
+El identificador será utilizado únicamente para trazabilidad y nunca como variable predictora.
+
+## **12. Validación estadística inicial**
+
+Antes del EDA se calcularán indicadores descriptivos básicos con el objetivo de comprender el estado general del dataset.
+
+Como mínimo se documentarán:
+
+* Número de registros.
+* Número de variables.
+* Cantidad de variables numéricas.
+* Cantidad de variables categóricas.
+* Cantidad de valores faltantes por variable.
+* Cantidad de registros duplicados.
+* Distribución preliminar de la variable objetivo.
+
+Esta información servirá como línea base para evaluar el impacto de los procesos de limpieza.
+
+## **13. Registro de incidencias**
+
+Cada problema identificado deberá registrarse en un informe de validación.
+
+El informe incluirá:
+
+* Identificador de la incidencia.
+* Variable afectada.
+* Tipo de problema.
+* Descripción.
+* Severidad.
+* Responsable de resolución.
+* Estado.
+
+No se permitirá corregir incidencias sin que hayan sido previamente documentadas.
+
+## **14. Criterios de aprobación**
+
+El dataset podrá avanzar al capítulo de EDA cuando:
+
+* La estructura sea consistente.
+* Todas las variables esperadas estén presentes.
+* Las incidencias hayan sido documentadas.
+* La variable objetivo haya sido validada.
+* No existan errores que impidan la carga del dataset.
+* El equipo de Ciencia de Datos apruebe formalmente la versión analizada.
+
+La existencia de valores faltantes, duplicados o inconsistencias no impedirá continuar, siempre que formen parte del diseño controlado del dataset y hayan sido registrados.
+
+## **15. Distribución del trabajo**
+
+### **Ricardo Chirinos– Ingeniería y Análisis de Datos**
+
+Responsable de:
+
+* Ejecutar la validación estructural.
+* Revisar tipos de datos.
+* Validar dominios.
+* Analizar reglas de negocio.
+* Elaborar el informe de validación.
+* Documentar todas las incidencias detectadas.
+
+### **Jharle Compres– Machine Learning e Integración**
+
+Responsable de:
+
+* Validar la variable objetivo.
+* Revisar la distribución de clases.
+* Identificar riesgos para el entrenamiento.
+* Confirmar la compatibilidad del dataset con el Pipeline.
+* Aprobar técnicamente el dataset para iniciar el modelado.
+
+## **16. Dependencias con los siguientes capítulos**
+
+Las decisiones adoptadas durante la validación serán utilizadas directamente en:
+
+* Diccionario de Datos.
+* Definición del Target.
+* Definición de Variables.
+* Análisis Exploratorio (EDA).
+* Limpieza de Datos.
+* Feature Engineering.
+* Entrenamiento del modelo.
+
+Ningún capítulo posterior deberá modificar la estructura del dataset sin actualizar previamente el informe de validación.
+
+## **17. Decisiones adoptadas para el resto del manual**
+
+Las siguientes decisiones quedan establecidas como estándar para los capítulos posteriores:
+
+* La validación del dataset será un proceso exclusivamente de inspección y documentación; no se realizarán modificaciones sobre la versión almacenada en datasets/raw.
+* Toda incidencia detectada deberá registrarse antes de ser corregida, garantizando la trazabilidad entre el dataset original y las versiones procesadas.
+* La variable perfil\_energetico será validada como la única variable objetivo oficial del proyecto y su distribución servirá como referencia para las etapas de entrenamiento y evaluación.
+* Las reglas de negocio definidas durante la construcción del dataset serán utilizadas como criterio principal para validar la coherencia entre variables.
+* El informe de validación constituirá la línea base para medir el impacto de los procesos de limpieza y transformación documentados en los capítulos siguientes.
+* Únicamente los datasets aprobados mediante este procedimiento podrán avanzar al Análisis Exploratorio de Datos (EDA) y al resto del flujo de Ciencia de Datos.
+
+**Capítulo 08 – Diccionario de Datos**
+
+## **Objetivo**
+
+Establecer el diccionario oficial del dataset del proyecto, definiendo de manera unificada el significado, tipo, dominio, unidad de medida y propósito de cada variable. Este documento será la referencia técnica utilizada por el Equipo de Ciencia de Datos, Backend y Frontend para garantizar una interpretación consistente de los datos durante todo el ciclo de desarrollo.
+
+El diccionario se construirá a partir del **dataset sintético oficial del proyecto**, compuesto por 44 columnas (43 variables funcionales más una columna artefacto generada durante la exportación), y será la única referencia válida para los capítulos posteriores.
+
+## **1. Alcance**
+
+El diccionario documentará exclusivamente las variables presentes en la versión oficial del dataset ubicado en:
+
+datasets/raw/
+
+Toda incorporación, eliminación o modificación de variables deberá reflejarse primero en este documento antes de ser utilizada por cualquier componente del proyecto.
+
+## **2. Estructura del diccionario**
+
+Cada variable deberá documentarse utilizando la siguiente estructura:
+
+| **Campo** | **Descripción** |
+| --- | --- |
+| Nombre | Nombre oficial de la variable |
+| Tipo de dato | Tipo esperado durante el procesamiento |
+| Unidad | Unidad de medida cuando aplique |
+| Dominio | Valores permitidos |
+| Obligatoria | Sí / No |
+| Variable Predictora | Sí / No |
+| Variable Objetivo | Sí / No |
+| Descripción | Propósito de la variable |
+
+Esta estructura será utilizada durante todo el proyecto.
+
+## **3. Clasificación de variables**
+
+Las variables del dataset se agrupan en las siguientes categorías funcionales:
+
+* Identificación.
+* Información temporal.
+* Características del inmueble.
+* Equipamiento eléctrico.
+* Hábitos de consumo.
+* Variables energéticas.
+* Variables económicas.
+* Variables ambientales.
+* Variables derivadas.
+* Variable objetivo.
+
+Esta clasificación será utilizada en el EDA, Feature Engineering y documentación técnica.
+
+## **4. Variables de identificación**
+
+| **Variable** | **Tipo** | **Predictora** | **Objetivo** | **Descripción** |
+| --- | --- | --- | --- | --- |
+| id\_registro | String | No | No | Identificador único del registro. Utilizado únicamente para trazabilidad. |
+
+El identificador nunca será utilizado durante el entrenamiento del modelo.
+
+## **5. Variables temporales**
+
+| **Variable** | **Tipo** | **Descripción** |
+| --- | --- | --- |
+| mes\_referencia | Categórica | Mes correspondiente al período de análisis. |
+| dias\_facturacion | Entero | Cantidad de días considerados en la facturación del período. |
+
+Estas variables permitirán capturar efectos estacionales y diferencias en la duración del ciclo de facturación.
+
+## **6. Variables del inmueble**
+
+Las variables relacionadas con las características físicas del inmueble describen el contexto donde ocurre el consumo energético.
+
+Incluyen, entre otras:
+
+* tipo\_inmueble
+* superficie\_m2
+* zona
+* nivel\_socioeconomico
+* antiguedad\_construccion\_anios
+* aislamiento\_termico
+* num\_personas
+
+Estas variables serán consideradas predictoras durante el entrenamiento.
+
+## **7. Variables de equipamiento eléctrico**
+
+Este grupo representa la infraestructura instalada en la vivienda o establecimiento.
+
+Incluye variables relacionadas con la presencia y cantidad de equipos eléctricos.
+
+Ejemplos:
+
+* cantidad\_equipos\_total
+* tiene\_aire\_acondicionado
+* tiene\_calentador\_agua\_electrico
+* tiene\_lavadora
+
+Estas variables permiten modelar el potencial de consumo energético del inmueble.
+
+## **8. Variables de hábitos de uso**
+
+Estas variables describen el comportamiento de los usuarios.
+
+Incluyen información relacionada con:
+
+* horario\_pico\_uso
+* horas\_uso\_aa\_dia
+* porcentaje de iluminación LED
+* utilización de equipos
+* patrones de ocupación
+
+Estas variables representan uno de los principales factores explicativos del consumo energético.
+
+## **9. Variables energéticas**
+
+Este grupo contiene las variables directamente relacionadas con el consumo eléctrico.
+
+Incluye:
+
+* consumo\_kwh\_mensual
+* consumo\_kwh\_mes\_anterior
+* variacion\_pct\_consumo\_mensual
+* consumo\_neto\_facturado\_kwh
+
+Estas variables serán utilizadas tanto para el análisis exploratorio como para la construcción de nuevas características.
+
+## **10. Variables ambientales**
+
+El dataset incorpora variables exógenas que influyen en el comportamiento energético.
+
+Incluyen:
+
+* temperatura\_promedio\_c
+* dias\_sin\_electricidad\_mes
+* fuente\_energia\_secundaria
+* horas\_uso\_planta\_o\_inversor\_mes
+* generacion\_solar\_kwh\_mensual
+
+Estas variables permiten representar condiciones reales del entorno que afectan el consumo energético.
+
+## **11. Variables económicas**
+
+El dataset incorpora variables relacionadas con el impacto financiero del consumo.
+
+La variable principal será:
+
+costo\_estimado\_usd
+
+Su cálculo deberá mantenerse consistente con la tarifa de referencia establecida por el proyecto.
+
+Durante la validación y limpieza se verificará la coherencia entre:
+
+* consumo\_neto\_facturado\_kwh
+* costo\_estimado\_usd
+
+Esta relación constituye una regla oficial de validación del proyecto.
+
+## **12. Variable objetivo**
+
+La variable objetivo oficial del proyecto será:
+
+perfil\_energetico
+
+Las categorías permitidas serán únicamente:
+
+Eficiente
+
+Moderado
+
+Ineficiente
+
+No se admitirán categorías adicionales durante el proyecto.
+
+Los registros sin etiqueta serán tratados como parte del proceso de limpieza definido en capítulos posteriores.
+
+## **13. Variable artefacto**
+
+El dataset contiene una columna adicional:
+
+Unnamed: 0
+
+Esta columna corresponde a un artefacto generado durante la exportación del archivo.
+
+No representa información del negocio.
+
+No deberá utilizarse durante:
+
+* EDA.
+* Limpieza.
+* Entrenamiento.
+* Evaluación.
+* Exportación del modelo.
+
+Será eliminada durante el proceso de limpieza de datos.
+
+## **14. Variables predictoras**
+
+Se consideran variables predictoras todas aquellas que:
+
+* Estén disponibles antes de realizar la inferencia.
+* No representen información futura.
+* No generen fuga de información (Data Leakage).
+* Aporten información potencialmente útil al modelo.
+
+La selección definitiva de variables predictoras se realizará en el capítulo de Definición de Variables.
+
+## **15. Variables excluidas del entrenamiento**
+
+No podrán utilizarse como variables predictoras:
+
+* id\_registro.
+* Unnamed: 0.
+* Variables utilizadas únicamente para auditoría.
+* Variables derivadas que introduzcan fuga de información respecto al Target.
+
+La exclusión definitiva se documentará antes del entrenamiento del modelo.
+
+## **16. Reglas de nomenclatura**
+
+Todas las variables deberán cumplir los siguientes estándares:
+
+* Minúsculas.
+* Snake Case.
+* Sin espacios.
+* Sin caracteres especiales.
+* Sin acentos.
+* Nombres descriptivos.
+* Sin abreviaturas ambiguas.
+
+Las transformaciones de nombres se realizarán únicamente durante la etapa de limpieza, preservando siempre una correspondencia documentada con el dataset original.
+
+## **17. Trazabilidad**
+
+Cada variable deberá poder rastrearse desde:
+
+* Dataset original.
+* Dataset limpio.
+* Pipeline.
+* Modelo entrenado.
+* JSON de inferencia.
+* Respuesta de Backend.
+
+No se permitirá renombrar variables durante el proyecto sin actualizar el diccionario.
+
+## **18. Organización del trabajo**
+
+### **Ricardo Chirinos– Ingeniería y Análisis de Datos**
+
+Responsable de:
+
+* Documentar todas las variables del dataset.
+* Verificar tipos de datos.
+* Documentar dominios.
+* Registrar unidades de medida.
+* Mantener actualizado el diccionario.
+
+### **Jharle Compres – Machine Learning e Integración**
+
+Responsable de:
+
+* Validar qué variables podrán utilizarse durante el entrenamiento.
+* Detectar posibles riesgos de Data Leakage.
+* Confirmar la compatibilidad del diccionario con el Pipeline.
+* Validar que Backend utilice la nomenclatura oficial durante la integración.
+
+## **19. Dependencias con los siguientes capítulos**
+
+El diccionario de datos será la referencia oficial para:
+
+* Definición del Target.
+* Definición de Variables.
+* EDA.
+* Limpieza de Datos.
+* Feature Engineering.
+* Entrenamiento.
+* Diseño del JSON.
+* Contrato con Backend.
+
+Ningún capítulo posterior podrá introducir variables nuevas sin actualizar previamente este documento.
+
+## **20. Decisiones adoptadas para el resto del manual**
+
+Las siguientes decisiones quedan establecidas como estándar para todos los capítulos posteriores:
+
+* El diccionario de datos será la única referencia oficial para la interpretación de las variables del proyecto.
+* La estructura del dataset estará compuesta por categorías funcionales que facilitarán el análisis, la ingeniería de variables y la integración con los demás componentes del sistema.
+* La variable perfil\_energetico permanecerá como la única variable objetivo del proyecto.
+* La columna Unnamed: 0 será considerada un artefacto técnico y será eliminada durante la etapa de limpieza, sin participar en ningún proceso analítico o de modelado.
+* Toda modificación en nombres, tipos, dominios o estructura de las variables deberá reflejarse primero en este diccionario antes de ser aplicada al dataset o al código del proyecto.
+* La trazabilidad entre el dataset original, el dataset procesado, el Pipeline, el modelo y los contratos de integración será obligatoria durante todo el desarrollo.
