@@ -231,9 +231,10 @@ export const pagesEs = {
     june: 'Junio',
   },
   adminUsers: {
-    title: 'Administración de usuarios',
-    subtitle: 'Creá, editá o eliminá cuentas del sistema.',
+    title: 'Usuarios — administración',
+    subtitle: 'Creá, editá o desactivá cuentas del sistema.',
     create: 'Nuevo usuario',
+    refresh: 'Actualizar',
     createTitle: 'Crear usuario',
     editTitle: 'Editar usuario',
     name: 'Nombre',

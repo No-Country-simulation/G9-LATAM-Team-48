@@ -174,14 +174,24 @@ function AdminUsuarios() {
           <h1 className="fs-3 fs-md-2 mb-1">{t('adminUsers.title')}</h1>
           <p className="text-muted mb-0">{t('adminUsers.subtitle')}</p>
         </div>
-        <button
-          type="button"
-          className="btn btn-primary btn-sm"
-          onClick={openCreate}
-          disabled={!allowed || loading || hydrating || Boolean(error)}
-        >
-          {t('adminUsers.create')}
-        </button>
+        <div className="d-flex gap-2">
+          <button
+            type="button"
+            className="btn btn-outline-primary btn-sm"
+            onClick={load}
+            disabled={!allowed || loading || hydrating}
+          >
+            {t('adminUsers.refresh')}
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary btn-sm"
+            onClick={openCreate}
+            disabled={!allowed || loading || hydrating || Boolean(error)}
+          >
+            {t('adminUsers.create')}
+          </button>
+        </div>
       </div>
 
       {createdCreds && (

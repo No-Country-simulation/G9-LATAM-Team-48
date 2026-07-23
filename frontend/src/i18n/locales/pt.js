@@ -35,7 +35,7 @@ export default {
     recomendaciones: 'Recomendações',
     contacto: 'Fale conosco',
     equipo: 'Equipe 48',
-    adminUsuarios: 'Painel Admin',
+    adminUsuarios: 'Usuários (admin)',
     adminAnalisis: 'Análise IA (admin)',
   },
   auth: {
