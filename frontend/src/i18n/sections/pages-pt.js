@@ -222,9 +222,10 @@ export const pagesPt = {
     }
   },
   adminUsers: {
-    title: 'Administração de usuários',
-    subtitle: 'Crie, edite ou exclua contas do sistema.',
+    title: 'Usuários — administração',
+    subtitle: 'Crie, edite ou desative contas do sistema.',
     create: 'Novo usuário',
+    refresh: 'Atualizar',
     createTitle: 'Criar usuário',
     editTitle: 'Editar usuário',
     name: 'Nome',

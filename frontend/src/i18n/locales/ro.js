@@ -35,7 +35,7 @@ export default {
     recomendaciones: 'Recomandări',
     contacto: 'Contactează-ne',
     equipo: 'Echipa 48',
-    adminUsuarios: 'Panou Admin',
+    adminUsuarios: 'Utilizatori (admin)',
     adminAnalisis: 'Analiză IA (admin)',
   },
   auth: {

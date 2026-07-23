@@ -222,9 +222,10 @@ export const pagesNl = {
     }
   },
   adminUsers: {
-    title: 'Gebruikersbeheer',
+    title: 'Gebruikers — beheer',
     subtitle: 'Systeemaccounts aanmaken, bewerken of deactiveren.',
     create: 'Nieuwe gebruiker',
+    refresh: 'Vernieuwen',
     createTitle: 'Gebruiker aanmaken',
     editTitle: 'Gebruiker bewerken',
     name: 'Naam',
