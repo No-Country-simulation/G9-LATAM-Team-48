@@ -26,7 +26,7 @@ function Consumos() {
 
       {!loading && !error && consumos?.length > 0 && (
         <>
-          <div className="row">
+          <div className="row g-3 mb-4 mb-md-5">
             <CardConsumo
               titulo={t('consumos.totalUsage')}
               valor={`${resumen.total} kWh`}
@@ -41,7 +41,7 @@ function Consumos() {
             />
           </div>
 
-          <div className="card shadow mb-4">
+          <div className="card shadow mb-4 mt-2">
             <div className="card-body">
               <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2 mb-3">
                 <h4 className="mb-0">{t('consumos.history')}</h4>
