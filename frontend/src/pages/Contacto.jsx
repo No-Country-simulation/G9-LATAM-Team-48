@@ -280,7 +280,7 @@ function Contacto() {
                 />
                 <span className="contact-team-badge__name">G9-LATAM-Team 48</span>
                 <span className="contact-team-badge__count">
-                  <span className="contact-team-badge__count-num">8</span>{' '}
+                  <span className="contact-team-badge__count-num">7</span>{' '}
                   <span className="contact-team-badge__count-label">
                     {t('contact.membersLabel', 'integrantes')}
                   </span>
