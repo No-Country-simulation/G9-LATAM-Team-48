@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
-import { listMisAnalisis } from '../services/historiaConsumosService'
+import { LuEye, LuMail } from 'react-icons/lu'
+import {
+  listMisAnalisis,
+  reenviarEmailAnalisis,
+} from '../services/historiaConsumosService'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
 import Loader from '../components/Loader'
@@ -19,6 +23,17 @@ const LOCALE_TAGS = {
   ca: 'ca-ES',
   tr: 'tr-TR',
 }
+
+const REQUEST_FIELDS = [
+  { key: 'tipoInmueble', labelKey: 'analysis.installationType', type: 'tipo' },
+  { key: 'consumoKwh', labelKey: 'analysis.monthlyUsage', type: 'number', suffix: 'kWh' },
+  { key: 'areaM2', labelKey: 'analysis.homeArea', type: 'number', suffix: 'm²' },
+  { key: 'cantidadPersonas', labelKey: 'analysis.people', type: 'number' },
+  { key: 'cantidadEquipos', labelKey: 'analysis.devices', type: 'number' },
+  { key: 'horasClimatizacion', labelKey: 'analysis.climateHours', type: 'number' },
+  { key: 'horasAltoConsumo', labelKey: 'analysis.peakUseHours', type: 'number' },
+  { key: 'usoHorarioPico', labelKey: 'analysis.peakHoursUse', type: 'bool' },
+]
 
 function formatDate(value, locale) {
   if (!value) return '—'
@@ -43,6 +58,28 @@ function labelNivel(t, nivel) {
   return translated === key ? nivel : translated
 }
 
+function formatRequestValue(t, field, raw) {
+  if (raw == null || raw === '') return '—'
+  if (field.type === 'tipo') return labelTipo(t, String(raw))
+  if (field.type === 'bool') {
+    return raw === true || raw === 'true' || raw === 1 || raw === '1'
+      ? t('analysis.yesNo.yes')
+      : t('analysis.yesNo.no')
+  }
+  if (field.type === 'number') {
+    const num = Number(raw)
+    const text = Number.isFinite(num) ? String(num) : String(raw)
+    return field.suffix ? `${text} ${field.suffix}` : text
+  }
+  return String(raw)
+}
+
+function tipKeysFrom(detail) {
+  if (Array.isArray(detail?.tipKeys) && detail.tipKeys.length) return detail.tipKeys
+  if (Array.isArray(detail?.responseJson?.tipKeys)) return detail.responseJson.tipKeys
+  return []
+}
+
 function HistoriaConsumos() {
   const { t, locale } = useLocale()
   const { token, openLogin, hydrating } = useAuth()
@@ -50,6 +87,8 @@ function HistoriaConsumos() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [detail, setDetail] = useState(null)
+  const [mailBusyId, setMailBusyId] = useState(null)
+  const [mailMessage, setMailMessage] = useState(null)
 
   async function load() {
     setLoading(true)
@@ -91,6 +130,35 @@ function HistoriaConsumos() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, hydrating])
 
+  async function handleResendEmail(row) {
+    if (!row?.id) return
+    setMailBusyId(row.id)
+    setMailMessage(null)
+    try {
+      const updated = await reenviarEmailAnalisis(row.id)
+      setRows((prev) =>
+        prev.map((item) => (item.id === row.id ? { ...item, ...updated } : item)),
+      )
+      if (detail?.id === row.id) {
+        setDetail((prev) => (prev ? { ...prev, ...updated } : prev))
+      }
+      setMailMessage({
+        type: 'success',
+        text: t('historiaConsumos.emailResent'),
+      })
+    } catch (err) {
+      setMailMessage({
+        type: 'danger',
+        text:
+          err?.response?.data?.message ||
+          err?.message ||
+          t('historiaConsumos.emailResendFailed'),
+      })
+    } finally {
+      setMailBusyId(null)
+    }
+  }
+
   if (!token && !hydrating) {
     return (
       <div className="container-fluid px-0 px-sm-2">
@@ -102,6 +170,9 @@ function HistoriaConsumos() {
       </div>
     )
   }
+
+  const request = detail?.requestJson || {}
+  const tips = tipKeysFrom(detail)
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -119,6 +190,12 @@ function HistoriaConsumos() {
           {t('historiaConsumos.refresh')}
         </button>
       </div>
+
+      {mailMessage && (
+        <div className={`alert alert-${mailMessage.type} py-2`} role="alert">
+          {mailMessage.text}
+        </div>
+      )}
 
       {loading && <Loader mensaje={t('states.loading')} />}
 
@@ -165,13 +242,35 @@ function HistoriaConsumos() {
                         </span>
                       </td>
                       <td className="text-end">
-                        <button
-                          type="button"
-                          className="btn btn-sm btn-outline-primary"
-                          onClick={() => setDetail(row)}
-                        >
-                          {t('historiaConsumos.detail')}
-                        </button>
+                        <div className="d-inline-flex align-items-center gap-1">
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-outline-primary"
+                            title={t('historiaConsumos.detail')}
+                            aria-label={t('historiaConsumos.detail')}
+                            onClick={() => setDetail(row)}
+                          >
+                            <LuEye size={16} aria-hidden="true" />
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-outline-secondary"
+                            title={t('historiaConsumos.resendEmail')}
+                            aria-label={t('historiaConsumos.resendEmail')}
+                            disabled={mailBusyId === row.id}
+                            onClick={() => handleResendEmail(row)}
+                          >
+                            {mailBusyId === row.id ? (
+                              <span
+                                className="spinner-border spinner-border-sm"
+                                role="status"
+                                aria-hidden="true"
+                              />
+                            ) : (
+                              <LuMail size={16} aria-hidden="true" />
+                            )}
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -192,36 +291,73 @@ function HistoriaConsumos() {
         <Modal.Body>
           {detail && (
             <>
-              <p className="mb-2">
-                <strong>{t('historiaConsumos.createdAt')}:</strong>{' '}
-                {formatDate(detail.createdAt, locale)}
-              </p>
-              <p className="mb-2">
-                <strong>{t('historiaConsumos.tipo')}:</strong>{' '}
-                {labelTipo(t, detail.tipoInstalacion)}
-              </p>
-              <p className="mb-2">
-                <strong>{t('historiaConsumos.nivel')}:</strong>{' '}
-                {labelNivel(t, detail.nivelKey)}
-              </p>
-              <p className="mb-2">
-                <strong>{t('historiaConsumos.ahorro')}:</strong>{' '}
-                {detail.ahorro != null ? `${detail.ahorro}%` : '—'}
-              </p>
-              <p className="mb-3">
-                <strong>{t('historiaConsumos.emailStatus')}:</strong>{' '}
-                {detail.emailStatus
-                  ? t(`common.${String(detail.emailStatus).toLowerCase()}`, detail.emailStatus)
-                  : '—'}
-              </p>
-              <h6 className="mb-2">{t('historiaConsumos.request')}</h6>
-              <pre className="bg-body-secondary p-2 rounded small overflow-auto">
-                {JSON.stringify(detail.requestJson ?? {}, null, 2)}
-              </pre>
-              <h6 className="mb-2 mt-3">{t('historiaConsumos.response')}</h6>
-              <pre className="bg-body-secondary p-2 rounded small overflow-auto mb-0">
-                {JSON.stringify(detail.responseJson ?? {}, null, 2)}
-              </pre>
+              <div className="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+                <div>
+                  <p className="mb-1">
+                    <strong>{t('historiaConsumos.createdAt')}:</strong>{' '}
+                    {formatDate(detail.createdAt, locale)}
+                  </p>
+                  <p className="mb-1">
+                    <strong>{t('historiaConsumos.nivel')}:</strong>{' '}
+                    {labelNivel(t, detail.nivelKey)}
+                  </p>
+                  <p className="mb-1">
+                    <strong>{t('historiaConsumos.ahorro')}:</strong>{' '}
+                    {detail.ahorro != null ? `${detail.ahorro}%` : '—'}
+                  </p>
+                  <p className="mb-0">
+                    <strong>{t('historiaConsumos.emailStatus')}:</strong>{' '}
+                    {detail.emailStatus
+                      ? t(
+                          `common.${String(detail.emailStatus).toLowerCase()}`,
+                          detail.emailStatus,
+                        )
+                      : '—'}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"
+                  disabled={mailBusyId === detail.id}
+                  onClick={() => handleResendEmail(detail)}
+                >
+                  {mailBusyId === detail.id ? (
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <LuMail size={16} aria-hidden="true" />
+                  )}
+                  {t('historiaConsumos.resendEmail')}
+                </button>
+              </div>
+
+              <h6 className="mb-2">{t('historiaConsumos.enteredData')}</h6>
+              <ul className="list-unstyled small mb-3">
+                {REQUEST_FIELDS.map((field) => {
+                  const value = request[field.key]
+                  if (value == null && value !== 0 && value !== false) return null
+                  return (
+                    <li key={field.key} className="mb-1">
+                      <strong>{t(field.labelKey)}:</strong>{' '}
+                      {formatRequestValue(t, field, value)}
+                    </li>
+                  )
+                })}
+              </ul>
+
+              <h6 className="mb-2">{t('historiaConsumos.recommendations')}</h6>
+              {tips.length === 0 ? (
+                <p className="small text-muted mb-0">{t('historiaConsumos.noTips')}</p>
+              ) : (
+                <ul className="mb-0 small">
+                  {tips.map((key) => (
+                    <li key={key}>{t(`analysis.tipsList.${key}`, key)}</li>
+                  ))}
+                </ul>
+              )}
             </>
           )}
         </Modal.Body>
