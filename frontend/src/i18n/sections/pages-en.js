@@ -333,6 +333,7 @@ export const pagesEn = {
     detail: 'Detail',
     detailTitle: 'Query',
     enteredData: 'Entered data',
+    noEnteredData: 'No form data was saved for this query.',
     recommendations: 'Recommendations',
     noTips: 'No recommendations saved for this query.',
     resendEmail: 'Send by email',
