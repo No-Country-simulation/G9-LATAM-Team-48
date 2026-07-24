@@ -158,7 +158,7 @@ function AdminUsuarios() {
   if (!token && !hydrating) {
     return (
       <div className="container-fluid px-0 px-sm-2">
-        <h1 className="fs-3 mb-2">{t('adminUsers.title')}</h1>
+        <h1 className="fs-3 mb-2 text-primary">{t('adminUsers.title')}</h1>
         <p className="text-muted">{t('adminUsers.loginRequired')}</p>
         <button type="button" className="btn btn-primary btn-sm" onClick={openLogin}>
           {t('common.login')}
@@ -171,7 +171,7 @@ function AdminUsuarios() {
     <div className="container-fluid px-0 px-sm-2">
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-start gap-2 mb-3">
         <div>
-          <h1 className="fs-3 fs-md-2 mb-1">{t('adminUsers.title')}</h1>
+          <h1 className="fs-3 fs-md-2 mb-1 text-primary">{t('adminUsers.title')}</h1>
           <p className="text-muted mb-0">{t('adminUsers.subtitle')}</p>
         </div>
         <div className="d-flex gap-2">
