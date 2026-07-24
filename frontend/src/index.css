@@ -411,6 +411,35 @@ body,
   }
 }
 
+/* ===== Enlaces de texto del modal de login ===== */
+.auth-text-link {
+  display: block;
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #0d6efd;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: font-size 0.15s ease, color 0.15s ease;
+}
+
+.auth-text-link:hover,
+.auth-text-link:focus-visible {
+  color: #084298;
+  font-size: 0.98rem;
+  text-decoration: none;
+  outline: none;
+}
+
+.auth-text-link:focus-visible {
+  box-shadow: none;
+}
+
 /* ===== Ayuda de campos (Análisis IA) ===== */
 .field-hint-icon {
   display: inline-flex;
@@ -454,7 +483,14 @@ body,
   .sidebar-link:hover,
   .sidebar-link:hover .menu-icon-wrap,
   .btn:hover:not(:disabled),
-  .card.shadow:hover {
+  .card.shadow:hover,
+  .auth-text-link:hover,
+  .auth-text-link:focus-visible {
     transform: none;
+  }
+
+  .auth-text-link:hover,
+  .auth-text-link:focus-visible {
+    font-size: 0.875rem;
   }
 }

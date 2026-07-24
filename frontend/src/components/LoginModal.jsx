@@ -265,7 +265,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
 
             <button
               type="button"
-              className="btn btn-link btn-sm w-100 mt-2"
+              className="auth-text-link mt-2"
               onClick={() => setMode('login')}
             >
               {t('auth.switchToLogin')}
@@ -378,7 +378,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
           <>
             <button
               type="button"
-              className="btn btn-link btn-sm w-100 mt-2"
+              className="auth-text-link mt-2"
               onClick={() => setMode(isRegister ? 'login' : 'register')}
             >
               {isRegister ? t('auth.switchToLogin') : t('auth.switchToRegister')}
@@ -388,14 +388,14 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
               <>
                 <button
                   type="button"
-                  className="btn btn-link btn-sm w-100"
+                  className="auth-text-link"
                   onClick={() => setMode('forgot')}
                 >
                   {t('auth.forgotLink')}
                 </button>
                 <button
                   type="button"
-                  className="btn btn-link btn-sm w-100"
+                  className="auth-text-link"
                   onClick={() => setMode('resend')}
                 >
                   {t('auth.resendLink')}
