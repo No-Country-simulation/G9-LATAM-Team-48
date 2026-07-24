@@ -19,8 +19,7 @@ function Dashboard() {
 
   return (
     <div className="container-fluid px-0 px-sm-2">
-      <h1 className="mb-1 fs-3 fs-md-2">{t('dashboard.title')}</h1>
-      <h6 className="text-muted mb-4">{t('dashboard.subtitle')}</h6>
+      <h1 className="mb-4 fs-3 fs-md-2">{t('dashboard.title')}</h1>
 
       {loading && <Loader mensaje={t('states.loadingConsumo')} />}
 
