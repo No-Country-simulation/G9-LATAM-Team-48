@@ -168,7 +168,16 @@ function SavingsChart({ points }) {
   }
 
   const first = datos[0].ahorro
-  const yMax = Math.max(...datos.map((item) => item.ahorro), 1) * 1.2
+  const yDomain = [
+    (dataMin) => {
+      const span = Math.max(dataMin * 0.15, 1)
+      return Math.max(0, Math.floor(dataMin - span))
+    },
+    (dataMax) => {
+      const span = Math.max(dataMax * 0.15, 1)
+      return Math.ceil(dataMax + span)
+    },
+  ]
 
   return (
     <ChartCard
@@ -195,7 +204,8 @@ function SavingsChart({ points }) {
           <YAxis
             stroke={textColor}
             tick={{ fill: textColor, fontSize: 11 }}
-            domain={[0, Math.ceil(yMax)]}
+            domain={yDomain}
+            allowDataOverflow={false}
             width={48}
             tickFormatter={(value) => `${value}%`}
           />
