@@ -148,7 +148,12 @@ function GraficoHistoriaConsumo({ points = [] }) {
   const pct = first === 0 ? 0 : Math.round((delta / first) * 100)
   const absDelta = Math.abs(Math.round(delta * 10) / 10)
   const absPct = Math.abs(pct)
-  const yMax = Math.max(...datos.map((item) => item.consumo), 1) * 1.2
+  const valores = datos.map((item) => item.consumo)
+  const dataMin = Math.min(...valores)
+  const dataMax = Math.max(...valores)
+  const span = Math.max(dataMax - dataMin, dataMax * 0.08, 1)
+  const yMin = Math.max(0, Math.floor(dataMin - span * 0.35))
+  const yMax = Math.ceil(dataMax + span * 0.35)
 
   let trendText
   let trendClass = 'text-muted'
@@ -212,7 +217,7 @@ function GraficoHistoriaConsumo({ points = [] }) {
             <YAxis
               stroke={textColor}
               tick={{ fill: textColor, fontSize: 12 }}
-              domain={[0, Math.ceil(yMax)]}
+              domain={[yMin, yMax]}
               width={64}
             />
             <Tooltip
