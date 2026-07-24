@@ -23,6 +23,18 @@ function GraficoConsumo({ consumos = consumoData }) {
     consumo: item.consumo,
   }))
 
+  // Escala Y automática: acerca el rango a los valores para que se vea mejor la curva.
+  const yDomain = [
+    (dataMin) => {
+      const span = Math.max(dataMin * 0.15, 1)
+      return Math.max(0, Math.floor(dataMin - span))
+    },
+    (dataMax) => {
+      const span = Math.max(dataMax * 0.15, 1)
+      return Math.ceil(dataMax + span)
+    },
+  ]
+
   return (
     <div className="card shadow mt-4">
       <div className="card-body">
@@ -45,6 +57,8 @@ function GraficoConsumo({ consumos = consumoData }) {
             <YAxis
               stroke={textColor}
               tick={{ fill: textColor }}
+              domain={yDomain}
+              allowDataOverflow={false}
               label={{
                 value: t('chart.axisKwh'),
                 angle: -90,
