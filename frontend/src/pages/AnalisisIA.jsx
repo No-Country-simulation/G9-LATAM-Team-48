@@ -89,7 +89,19 @@ function AnalisisIA() {
   return (
     <div className="container-fluid px-0 px-sm-2">
       <h1 className="fs-3 fs-md-2 mb-1">{t('analysis.title')}</h1>
-      <p className="text-muted mb-3">{t('analysis.subtitle')}</p>
+      <p className="text-muted mb-2">{t('analysis.subtitle')}</p>
+      {!isAuthenticated && (
+        <p className="small text-warning mb-3">
+          {t('analysis.emailLoginHint')}{' '}
+          <button
+            type="button"
+            className="btn btn-link btn-sm p-0 align-baseline text-primary"
+            onClick={openLogin}
+          >
+            {t('analysis.loginCta')}
+          </button>
+        </p>
+      )}
       {isAuthenticated && user?.email && (
         <p className="small text-muted mb-3">
           {t('analysis.emailHint')} {user.email}
@@ -303,11 +315,11 @@ function AnalisisIA() {
                     )}
 
                   {!isAuthenticated && (
-                    <p className="small text-muted mt-3 mb-0">
+                    <p className="small text-warning mt-3 mb-0">
                       {t('analysis.emailLoginHint')}{' '}
                       <button
                         type="button"
-                        className="btn btn-link btn-sm p-0 align-baseline"
+                        className="btn btn-link btn-sm p-0 align-baseline text-primary"
                         onClick={openLogin}
                       >
                         {t('analysis.loginCta')}

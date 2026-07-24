@@ -132,7 +132,7 @@ export const pagesEs = {
     loginRequired: 'Opcional: iniciá sesión si querés recibir el reporte por correo.',
     emailLoginHint:
       'Podés analizar sin cuenta. Si querés el reporte por correo, iniciá sesión.',
-    loginCta: 'Iniciar sesión',
+    loginCta: 'Iniciar sesión / Registrarse',
     emailHint: 'Te enviaremos el análisis a',
     emailPending: 'También te enviaremos este análisis por email (en breve).',
     emailSent: 'Te enviamos este análisis por email.',
