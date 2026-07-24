@@ -47,7 +47,7 @@ export default {
     loginTab: 'Iniciar sesión',
     registerTab: 'Registrarse',
     loginHint:
-      'Ingresá para poder editar datos y cargar información. La navegación es libre sin necesidad de cuenta.',
+      'Iniciá sesión para recibir por correo los análisis y habilitar las estadísticas de tus consumos.',
     registerHint:
       'Creá tu cuenta con nombre, email y contraseña. Te enviaremos un enlace para verificar el email.',
     registerVerifySent:

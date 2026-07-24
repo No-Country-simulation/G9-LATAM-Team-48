@@ -47,7 +47,7 @@ export default {
     loginTab: 'Sign in',
     registerTab: 'Register',
     loginHint:
-      'Sign in to edit data and upload information. You can browse freely without an account.',
+      'Sign in to receive analyses by email and enable your consumption statistics.',
     registerHint:
       'Create your account with name, email and password. We will email you a verification link.',
     registerVerifySent:
