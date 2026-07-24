@@ -162,7 +162,7 @@ function HistoriaConsumos() {
   if (!token && !hydrating) {
     return (
       <div className="container-fluid px-0 px-sm-2">
-        <h1 className="fs-3 mb-2">{t('historiaConsumos.title')}</h1>
+        <h1 className="fs-3 mb-2 text-primary">{t('historiaConsumos.title')}</h1>
         <p className="text-muted">{t('historiaConsumos.loginRequired')}</p>
         <button type="button" className="btn btn-primary btn-sm" onClick={openLogin}>
           {t('common.login')}
@@ -178,7 +178,7 @@ function HistoriaConsumos() {
     <div className="container-fluid px-0 px-sm-2">
       <div className="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
         <div>
-          <h1 className="fs-3 mb-1">{t('historiaConsumos.title')}</h1>
+          <h1 className="fs-3 mb-1 text-primary">{t('historiaConsumos.title')}</h1>
           <p className="text-muted mb-0">{t('historiaConsumos.subtitle')}</p>
         </div>
         <button
