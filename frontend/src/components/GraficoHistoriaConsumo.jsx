@@ -10,6 +10,7 @@ import {
 } from 'recharts'
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
+import { yDomainWithPadding } from '../utils/chartScale'
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -149,17 +150,8 @@ function GraficoHistoriaConsumo({ points = [] }) {
   const absDelta = Math.abs(Math.round(delta * 10) / 10)
   const absPct = Math.abs(pct)
 
-  // Escala Y automática: acerca el rango a los valores reales para que se vea la curva.
-  const yDomain = [
-    (dataMin) => {
-      const span = Math.max(dataMin * 0.15, 1)
-      return Math.max(0, Math.floor(dataMin - span))
-    },
-    (dataMax) => {
-      const span = Math.max(dataMax * 0.15, 1)
-      return Math.ceil(dataMax + span)
-    },
-  ]
+  const valores = datos.map((item) => item.consumo)
+  const yDomain = yDomainWithPadding(valores)
 
   let trendText
   let trendClass = 'text-muted'
