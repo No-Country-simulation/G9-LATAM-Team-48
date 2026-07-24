@@ -11,7 +11,11 @@ function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
   const { user, isAuthenticated } = useAuth()
   const showAdmin = isAuthenticated && isAdmin(user)
 
-  const mainItems = MENU_ITEMS.filter((item) => !item.adminOnly)
+  const mainItems = MENU_ITEMS.filter((item) => {
+    if (item.adminOnly) return false
+    if (item.authOnly && !isAuthenticated) return false
+    return true
+  })
   const adminItems = showAdmin
     ? MENU_ITEMS.filter((item) => item.adminOnly)
     : []

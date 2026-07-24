@@ -33,6 +33,7 @@ export default {
   menu: {
     dashboard: 'Dashboard',
     consumos: 'Consumos',
+    historiaConsumos: 'Historia de consumos',
     ia: 'Análisis IA',
     recomendaciones: 'Recomendaciones',
     contacto: 'Contáctanos',
@@ -47,7 +48,7 @@ export default {
     loginTab: 'Iniciar sesión',
     registerTab: 'Registrarse',
     loginHint:
-      'Iniciá sesión para recibir por correo los análisis y habilitar las estadísticas de tus consumos.',
+      'Con tu cuenta recibís los análisis por correo y podés ver el historial de tus consultas.',
     registerHint:
       'Creá tu cuenta con nombre, email y contraseña. Te enviaremos un enlace para verificar el email.',
     registerVerifySent:

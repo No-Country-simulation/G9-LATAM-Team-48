@@ -6,11 +6,13 @@ import {
   LuUsers,
   LuMail,
   LuUsersRound,
+  LuHistory,
 } from 'react-icons/lu'
 
 const ICONS = {
   dashboard: LuLayoutDashboard,
   consumos: LuZap,
+  historia: LuHistory,
   ia: LuBrainCircuit,
   recomendaciones: LuLightbulb,
   contacto: LuMail,

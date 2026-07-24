@@ -1,8 +1,10 @@
 package com.alura.analisis.service;
 
+import com.alura.analisis.dto.AdminAnalisisItem;
 import com.alura.analisis.dto.AnalisisApiResponse;
 import com.alura.analisis.persistence.AnalisisConsultaEntity;
 import com.alura.analisis.persistence.AnalisisConsultaRepository;
+import com.alura.common.exception.BusinessException;
 import com.alura.prediction.dto.PredictionResponse;
 import com.alura.prediction.service.PredictionService;
 import com.alura.user.model.User;
@@ -91,6 +93,37 @@ public class AnalisisService {
         consultaRepository.save(saved);
 
         return AnalisisApiResponse.from(result, emailStatus, saved.getId());
+    }
+
+    /**
+     * Historial de Analisis IA del usuario autenticado (tabla analisis_consultas).
+     */
+    @Transactional(readOnly = true)
+    public List<AdminAnalisisItem> listarMisConsultas() {
+        String email = currentUserEmailOrNull();
+        if (email == null) {
+            throw new BusinessException("Debes iniciar sesion para ver tu historial");
+        }
+        return consultaRepository.findByUserEmailOrderByCreatedAtDesc(email).stream()
+                .map(this::toItem)
+                .toList();
+    }
+
+    private AdminAnalisisItem toItem(AnalisisConsultaEntity entity) {
+        return new AdminAnalisisItem(
+                entity.getId(),
+                entity.getUserId(),
+                entity.getUserEmail(),
+                entity.getTipoInstalacion(),
+                entity.getNivelKey(),
+                entity.getAhorro(),
+                entity.getConfidence(),
+                entity.getBenchmark(),
+                entity.getTipKeysJson(),
+                entity.getEmailStatus(),
+                entity.getCreatedAt(),
+                entity.getRequestJson(),
+                entity.getResponseJson());
     }
 
     /** Email del JWT si hay sesion valida; null si es consulta anonima. */
