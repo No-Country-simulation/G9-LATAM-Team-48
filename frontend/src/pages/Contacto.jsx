@@ -6,6 +6,7 @@ import {
   LuMail,
   LuInstagram,
   LuGlobe,
+  LuUsers,
 } from 'react-icons/lu'
 import { useLocale } from '../context/LocaleContext'
 import { sendContactMessage } from '../services/contactService'
@@ -269,7 +270,23 @@ function Contacto() {
               <strong>{t('contact.infoEmailLabel')}:</strong>{' '}
               <a href="mailto:energyiaTeam48@gmail.com">energyiaTeam48@gmail.com</a>
             </p>
-            <p className="mb-0 small text-muted">{t('contact.infoNote')}</p>
+            <div className="contact-team-badge mt-3" aria-label="Hackathon ONE G9 — G9-LATAM-Team 48">
+              <p className="contact-team-badge__event mb-2">Hackathon ONE G9</p>
+              <div className="contact-team-badge__row">
+                <LuUsers
+                  className="contact-team-badge__icon"
+                  size={18}
+                  aria-hidden="true"
+                />
+                <span className="contact-team-badge__name">G9-LATAM-Team 48</span>
+                <span className="contact-team-badge__count">
+                  <span className="contact-team-badge__count-num">8</span>{' '}
+                  <span className="contact-team-badge__count-label">
+                    {t('contact.membersLabel', 'integrantes')}
+                  </span>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
