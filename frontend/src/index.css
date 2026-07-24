@@ -443,6 +443,14 @@ body,
   margin-top: 1.1rem;
 }
 
+.auth-text-link--inline {
+  display: inline;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
 .auth-text-link:hover,
 .auth-text-link:focus-visible {
   color: #6ea8fe;
@@ -450,30 +458,10 @@ body,
   text-decoration: none;
   text-shadow: 0 0 10px rgba(110, 168, 254, 0.45);
   outline: none;
-  animation: auth-link-vibrate 0.35s ease-in-out;
 }
 
 .auth-text-link:focus-visible {
   box-shadow: none;
-}
-
-@keyframes auth-link-vibrate {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  20% {
-    transform: translateX(-2px);
-  }
-  40% {
-    transform: translateX(2px);
-  }
-  60% {
-    transform: translateX(-1.5px);
-  }
-  80% {
-    transform: translateX(1.5px);
-  }
 }
 
 /* ===== Ayuda de campos (Análisis IA) ===== */
@@ -525,7 +513,6 @@ body,
   .auth-text-link:hover,
   .auth-text-link:focus-visible {
     transform: none;
-    animation: none;
   }
 
   .auth-text-link:hover,
