@@ -333,6 +333,7 @@ export const pagesEs = {
     detail: 'Detalle',
     detailTitle: 'Consulta',
     enteredData: 'Datos ingresados',
+    noEnteredData: 'No hay datos del formulario guardados para esta consulta.',
     recommendations: 'Recomendaciones',
     noTips: 'Sin recomendaciones guardadas para esta consulta.',
     resendEmail: 'Enviar por correo',

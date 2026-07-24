@@ -131,6 +131,18 @@ public class AnalisisService {
     }
 
     private AdminAnalisisItem toItem(AnalisisConsultaEntity entity) {
+        Map<String, Object> request =
+                entity.getRequestJson() != null
+                        ? new HashMap<>(entity.getRequestJson())
+                        : Map.of();
+        Map<String, Object> response =
+                entity.getResponseJson() != null
+                        ? new HashMap<>(entity.getResponseJson())
+                        : Map.of();
+        List<String> tipKeys =
+                entity.getTipKeysJson() != null
+                        ? List.copyOf(entity.getTipKeysJson())
+                        : List.of();
         return new AdminAnalisisItem(
                 entity.getId(),
                 entity.getUserId(),
@@ -140,11 +152,11 @@ public class AnalisisService {
                 entity.getAhorro(),
                 entity.getConfidence(),
                 entity.getBenchmark(),
-                entity.getTipKeysJson(),
+                tipKeys,
                 entity.getEmailStatus(),
                 entity.getCreatedAt(),
-                entity.getRequestJson(),
-                entity.getResponseJson());
+                request,
+                response);
     }
 
     /** Email del JWT si hay sesion valida; null si es consulta anonima. */

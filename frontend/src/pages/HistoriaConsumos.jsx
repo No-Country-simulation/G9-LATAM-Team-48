@@ -25,15 +25,100 @@ const LOCALE_TAGS = {
 }
 
 const REQUEST_FIELDS = [
-  { key: 'tipoInmueble', labelKey: 'analysis.installationType', type: 'tipo' },
-  { key: 'consumoKwh', labelKey: 'analysis.monthlyUsage', type: 'number', suffix: 'kWh' },
-  { key: 'areaM2', labelKey: 'analysis.homeArea', type: 'number', suffix: 'm²' },
-  { key: 'cantidadPersonas', labelKey: 'analysis.people', type: 'number' },
-  { key: 'cantidadEquipos', labelKey: 'analysis.devices', type: 'number' },
-  { key: 'horasClimatizacion', labelKey: 'analysis.climateHours', type: 'number' },
-  { key: 'horasAltoConsumo', labelKey: 'analysis.peakUseHours', type: 'number' },
-  { key: 'usoHorarioPico', labelKey: 'analysis.peakHoursUse', type: 'bool' },
+  {
+    key: 'tipoInmueble',
+    labelKey: 'analysis.installationType',
+    type: 'tipo',
+    aliases: ['tipoInmueble', 'tipo_inmueble', 'tipo'],
+  },
+  {
+    key: 'consumoKwh',
+    labelKey: 'analysis.monthlyUsage',
+    type: 'number',
+    suffix: 'kWh',
+    aliases: ['consumoKwh', 'consumo_kwh', 'consumo'],
+  },
+  {
+    key: 'areaM2',
+    labelKey: 'analysis.homeArea',
+    type: 'number',
+    suffix: 'm²',
+    aliases: ['areaM2', 'area_m2', 'area'],
+  },
+  {
+    key: 'cantidadPersonas',
+    labelKey: 'analysis.people',
+    type: 'number',
+    aliases: ['cantidadPersonas', 'cantidad_personas'],
+  },
+  {
+    key: 'cantidadEquipos',
+    labelKey: 'analysis.devices',
+    type: 'number',
+    aliases: ['cantidadEquipos', 'cantidad_equipos'],
+  },
+  {
+    key: 'horasClimatizacion',
+    labelKey: 'analysis.climateHours',
+    type: 'number',
+    aliases: ['horasClimatizacion', 'horas_climatizacion'],
+  },
+  {
+    key: 'horasAltoConsumo',
+    labelKey: 'analysis.peakUseHours',
+    type: 'number',
+    aliases: ['horasAltoConsumo', 'horas_alto_consumo'],
+  },
+  {
+    key: 'usoHorarioPico',
+    labelKey: 'analysis.peakHoursUse',
+    type: 'bool',
+    aliases: ['usoHorarioPico', 'uso_horario_pico'],
+  },
 ]
+
+/** El backend a veces entrega requestJson como objeto o como string JSON. */
+function normalizeRequestJson(raw) {
+  if (raw == null || raw === '') return {}
+  if (typeof raw === 'string') {
+    try {
+      return normalizeRequestJson(JSON.parse(raw))
+    } catch {
+      return {}
+    }
+  }
+  if (typeof raw !== 'object' || Array.isArray(raw)) return {}
+  return raw
+}
+
+function pickRequestValue(request, field) {
+  const keys = field.aliases || [field.key]
+  for (const key of keys) {
+    if (!Object.prototype.hasOwnProperty.call(request, key)) continue
+    const value = request[key]
+    if (value !== undefined && value !== null && value !== '') return value
+    if (value === 0 || value === false) return value
+  }
+  const wanted = String(field.key).toLowerCase().replace(/_/g, '')
+  for (const [key, value] of Object.entries(request)) {
+    if (String(key).toLowerCase().replace(/_/g, '') === wanted) {
+      if (value !== undefined && value !== null && value !== '') return value
+      if (value === 0 || value === false) return value
+    }
+  }
+  return undefined
+}
+
+function buildEnteredRequest(detail) {
+  const request = { ...normalizeRequestJson(detail?.requestJson ?? detail?.request_json) }
+  if (
+    detail?.tipoInstalacion &&
+    pickRequestValue(request, REQUEST_FIELDS[0]) == null
+  ) {
+    request.tipoInmueble = detail.tipoInstalacion
+  }
+  return request
+}
 
 function formatDate(value, locale) {
   if (!value) return '—'
@@ -171,8 +256,26 @@ function HistoriaConsumos() {
     )
   }
 
-  const request = detail?.requestJson || {}
+  const request = buildEnteredRequest(detail)
   const tips = tipKeysFrom(detail)
+  const enteredRows = REQUEST_FIELDS.map((field) => ({
+    field,
+    value: pickRequestValue(request, field),
+  })).filter(({ value }) => value !== undefined && value !== null && value !== '')
+
+  const knownKeys = new Set(
+    REQUEST_FIELDS.flatMap((field) => field.aliases || [field.key]),
+  )
+  const extraEntries =
+    enteredRows.length === 0
+      ? Object.entries(request).filter(
+          ([key, value]) =>
+            !knownKeys.has(key) &&
+            value !== undefined &&
+            value !== null &&
+            value !== '',
+        )
+      : []
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -333,18 +436,23 @@ function HistoriaConsumos() {
               </div>
 
               <h6 className="mb-2">{t('historiaConsumos.enteredData')}</h6>
-              <ul className="list-unstyled small mb-3">
-                {REQUEST_FIELDS.map((field) => {
-                  const value = request[field.key]
-                  if (value == null && value !== 0 && value !== false) return null
-                  return (
+              {enteredRows.length === 0 && extraEntries.length === 0 ? (
+                <p className="small text-muted mb-3">{t('historiaConsumos.noEnteredData')}</p>
+              ) : (
+                <ul className="list-unstyled small mb-3">
+                  {enteredRows.map(({ field, value }) => (
                     <li key={field.key} className="mb-1">
                       <strong>{t(field.labelKey)}:</strong>{' '}
                       {formatRequestValue(t, field, value)}
                     </li>
-                  )
-                })}
-              </ul>
+                  ))}
+                  {extraEntries.map(([key, value]) => (
+                    <li key={key} className="mb-1">
+                      <strong>{key}:</strong> {String(value)}
+                    </li>
+                  ))}
+                </ul>
+              )}
 
               <h6 className="mb-2">{t('historiaConsumos.recommendations')}</h6>
               {tips.length === 0 ? (
