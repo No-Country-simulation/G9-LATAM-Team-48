@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
-import Nav from 'react-bootstrap/Nav'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
 import {
@@ -215,33 +214,16 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
 
   return (
     <Modal show={show} onHide={onHide} centered dialogClassName="login-modal-dialog" contentClassName="login-modal">
-      <Modal.Header closeButton className="login-modal-header">
-        {isEmailOnly ? (
-          <Modal.Title className="h5 mb-0">
-            {isForgot ? t('auth.forgotTitle') : t('auth.resendTitle')}
-          </Modal.Title>
-        ) : (
-          <Nav variant="pills" className="login-modal-tabs gap-2">
-            <Nav.Item>
-              <Nav.Link
-                active={!isRegister}
-                onClick={() => setMode('login')}
-                role="button"
-              >
-                {t('auth.loginTab')}
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                active={isRegister}
-                onClick={() => setMode('register')}
-                role="button"
-              >
-                {t('auth.registerTab')}
-              </Nav.Link>
-            </Nav.Item>
-          </Nav>
-        )}
+      <Modal.Header closeButton>
+        <Modal.Title className="h5 mb-0">
+          {isForgot
+            ? t('auth.forgotTitle')
+            : isResend
+              ? t('auth.resendTitle')
+              : isRegister
+                ? t('auth.registerTitle')
+                : t('auth.loginTitle')}
+        </Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
