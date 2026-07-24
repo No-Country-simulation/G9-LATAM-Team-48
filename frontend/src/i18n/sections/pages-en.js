@@ -102,6 +102,28 @@ export const pagesEn = {
     peakUseHours: 'High-consumption hours per day',
     peakHoursUse: 'Is there consumption during peak hours?',
     area: 'Premises area (m²)',
+    fieldHints: {
+      tipoInmueble:
+        'Choose the property type so we can adjust the usage benchmark (home, apartment, or shop).',
+      consumoKwh:
+        'Enter last month’s electricity usage in kilowatt-hours (kWh), as shown on your bill.',
+      areaM2:
+        'Habitable floor area of the home in square meters. Used to estimate expected usage.',
+      areaCommercial:
+        'Commercial premises area in square meters (usable floor space).',
+      cantidadPersonas:
+        'Usual number of people living in or using the home daily.',
+      cantidadPersonasCommercial:
+        'Average number of people in the premises during the day (customers + staff).',
+      cantidadEquipos:
+        'Approximate count of relevant electrical devices (fridge, washer, TVs, PCs, fryers, etc.).',
+      horasClimatizacion:
+        'Hours per day that A/C or heating is typically on.',
+      horasAltoConsumo:
+        'Hours per day with intensive energy use (cooking, laundry, work equipment, etc.).',
+      usoHorarioPico:
+        'Turn on if you usually consume during peak-rate hours (typically weekday late afternoon/evening).',
+    },
     hoursPerDay: 'Operating hours per day',
     processIntensity: 'Process intensity',
     hasCompressedAir: 'Uses compressed air?',

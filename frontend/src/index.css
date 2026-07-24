@@ -411,6 +411,36 @@ body,
   }
 }
 
+/* ===== Ayuda de campos (Análisis IA) ===== */
+.field-hint-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.95rem;
+  height: 0.95rem;
+  margin-left: 0.35rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--bs-secondary-color, #6c757d);
+  background: transparent;
+  color: var(--bs-secondary-color, #6c757d);
+  font-size: 0.65rem;
+  font-weight: 700;
+  font-style: italic;
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1;
+  cursor: help;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.field-hint-icon:hover,
+.field-hint-icon:focus-visible {
+  color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  outline: none;
+}
+
 /* ===== Accesibilidad: reduce el movimiento ===== */
 @media (prefers-reduced-motion: reduce) {
   *,
