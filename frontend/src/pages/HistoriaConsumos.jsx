@@ -263,17 +263,10 @@ function HistoriaConsumos() {
     value: pickRequestValue(request, field),
   })).filter(({ value }) => value !== undefined && value !== null && value !== '')
 
-  const knownKeys = new Set(
-    REQUEST_FIELDS.flatMap((field) => field.aliases || [field.key]),
-  )
   const extraEntries =
     enteredRows.length === 0
       ? Object.entries(request).filter(
-          ([key, value]) =>
-            !knownKeys.has(key) &&
-            value !== undefined &&
-            value !== null &&
-            value !== '',
+          ([, value]) => value !== undefined && value !== null && value !== '',
         )
       : []
 
