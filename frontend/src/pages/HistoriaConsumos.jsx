@@ -10,6 +10,7 @@ import { useLocale } from '../context/LocaleContext'
 import Loader from '../components/Loader'
 import EmptyState from '../components/EmptyState'
 import GraficoHistoriaConsumo from '../components/GraficoHistoriaConsumo'
+import GraficosHistoriaExtra from '../components/GraficosHistoriaExtra'
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -340,6 +341,14 @@ function HistoriaConsumos() {
                 }
               })
               .filter(Boolean)}
+          />
+          <GraficosHistoriaExtra
+            points={rows.map((row) => ({
+              id: row.id,
+              createdAt: row.createdAt,
+              ahorro: row.ahorro,
+              nivelKey: row.nivelKey,
+            }))}
           />
           <div className="card shadow-sm">
             <div className="card-body p-0">
