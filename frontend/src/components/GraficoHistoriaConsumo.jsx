@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import {
   LineChart,
   Line,
@@ -5,7 +6,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer,
   ReferenceLine,
 } from 'recharts'
 import { useTheme } from '../context/ThemeContext'
@@ -23,37 +23,6 @@ const LOCALE_TAGS = {
   ro: 'ro-RO',
   ca: 'ca-ES',
   tr: 'tr-TR',
-}
-
-const CONSUMO_ALIASES = ['consumoKwh', 'consumo_kwh', 'consumo']
-
-function normalizeRequestJson(raw) {
-  if (raw == null || raw === '') return {}
-  if (typeof raw === 'string') {
-    try {
-      return normalizeRequestJson(JSON.parse(raw))
-    } catch {
-      return {}
-    }
-  }
-  if (typeof raw !== 'object' || Array.isArray(raw)) return {}
-  return raw
-}
-
-function pickConsumo(request) {
-  for (const key of CONSUMO_ALIASES) {
-    if (!Object.prototype.hasOwnProperty.call(request, key)) continue
-    const num = Number(request[key])
-    if (Number.isFinite(num)) return num
-  }
-  for (const [key, value] of Object.entries(request)) {
-    const normalized = String(key).toLowerCase().replace(/_/g, '')
-    if (normalized === 'consumokwh' || normalized === 'consumo') {
-      const num = Number(value)
-      if (Number.isFinite(num)) return num
-    }
-  }
-  return null
 }
 
 function toDate(value) {
@@ -83,22 +52,22 @@ function formatShortDate(value, locale) {
   }
 }
 
-function buildSeries(rows, locale) {
-  return [...(rows || [])]
-    .map((row, index) => {
-      const request = normalizeRequestJson(row?.requestJson ?? row?.request_json)
-      const consumo = pickConsumo(request)
-      if (consumo == null) return null
-      const fecha = toDate(row.createdAt) || new Date(0)
-      const baseLabel = formatShortDate(row.createdAt, locale)
+/**
+ * @param {Array<{ id?: number|string, createdAt?: unknown, consumo: number }>} points
+ */
+export function buildHistoriaChartData(points, locale) {
+  return [...(points || [])]
+    .filter((item) => item && Number.isFinite(Number(item.consumo)))
+    .map((item, index) => {
+      const consumo = Number(item.consumo)
+      const fecha = toDate(item.createdAt) || new Date(index)
       return {
-        id: row.id ?? index,
+        id: item.id ?? index,
         fecha,
-        label: `${baseLabel} · #${row.id ?? index + 1}`,
-        consumo: Number(consumo),
+        label: `${formatShortDate(item.createdAt, locale)} · #${item.id ?? index + 1}`,
+        consumo,
       }
     })
-    .filter(Boolean)
     .sort((a, b) => a.fecha - b.fecha)
 }
 
@@ -109,16 +78,41 @@ function fillTemplate(template, values) {
   )
 }
 
-function GraficoHistoriaConsumo({ rows = [] }) {
+function useElementWidth() {
+  const ref = useRef(null)
+  const [width, setWidth] = useState(0)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return undefined
+
+    const update = () => setWidth(Math.floor(el.getBoundingClientRect().width))
+    update()
+
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', update)
+      return () => window.removeEventListener('resize', update)
+    }
+
+    const observer = new ResizeObserver(() => update())
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  return [ref, width]
+}
+
+function GraficoHistoriaConsumo({ points = [] }) {
   const { theme } = useTheme()
   const { t, locale } = useLocale()
-  const datos = buildSeries(rows, locale)
-  const totalRows = Array.isArray(rows) ? rows.length : 0
+  const [wrapRef, width] = useElementWidth()
+  const datos = buildHistoriaChartData(points, locale)
 
-  if (totalRows < 2) return null
+  if (!points.length && !datos.length) return null
 
   const gridColor = theme === 'dark' ? '#444' : '#ccc'
   const textColor = theme === 'dark' ? '#ccc' : '#333'
+  const chartHeight = 280
 
   if (datos.length < 2) {
     return (
@@ -144,7 +138,7 @@ function GraficoHistoriaConsumo({ rows = [] }) {
   const pct = first === 0 ? 0 : Math.round((delta / first) * 100)
   const absDelta = Math.abs(Math.round(delta * 10) / 10)
   const absPct = Math.abs(pct)
-  const yMax = Math.max(...datos.map((item) => item.consumo), first) * 1.15 || 10
+  const yMax = Math.max(...datos.map((item) => item.consumo), 1) * 1.2
 
   let trendText
   let trendClass = 'text-muted'
@@ -191,9 +185,14 @@ function GraficoHistoriaConsumo({ rows = [] }) {
         </p>
         <p className={`small mb-3 ${trendClass}`}>{trendText}</p>
 
-        <div style={{ width: '100%', height: 280 }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={datos} margin={{ top: 12, right: 16, left: 8, bottom: 8 }}>
+        <div ref={wrapRef} style={{ width: '100%', height: chartHeight }}>
+          {width > 0 ? (
+            <LineChart
+              width={width}
+              height={chartHeight}
+              data={datos}
+              margin={{ top: 12, right: 16, left: 8, bottom: 8 }}
+            >
               <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
               <XAxis
                 dataKey="label"
@@ -206,37 +205,30 @@ function GraficoHistoriaConsumo({ rows = [] }) {
                 tick={{ fill: textColor, fontSize: 12 }}
                 domain={[0, Math.ceil(yMax)]}
                 width={64}
-                tickFormatter={(value) => `${value}`}
               />
               <Tooltip
                 formatter={(value) => [
                   `${value} kWh`,
                   t('historiaConsumos.chartSeries', 'Consumo'),
                 ]}
-                labelFormatter={(label) => label}
                 contentStyle={{
                   backgroundColor: theme === 'dark' ? '#212529' : '#fff',
                   borderColor: gridColor,
                   color: textColor,
                 }}
               />
-              <ReferenceLine
-                y={first}
-                stroke={gridColor}
-                strokeDasharray="4 4"
-              />
+              <ReferenceLine y={first} stroke={gridColor} strokeDasharray="4 4" />
               <Line
                 type="monotone"
                 dataKey="consumo"
-                name={t('historiaConsumos.chartSeries', 'Consumo')}
                 stroke={lineColor}
-                strokeWidth={2}
-                dot={{ r: 5, strokeWidth: 2, fill: lineColor }}
+                strokeWidth={3}
+                dot={{ r: 5, fill: lineColor, strokeWidth: 0 }}
                 activeDot={{ r: 7 }}
                 isAnimationActive={false}
               />
             </LineChart>
-          </ResponsiveContainer>
+          ) : null}
         </div>
       </div>
     </div>

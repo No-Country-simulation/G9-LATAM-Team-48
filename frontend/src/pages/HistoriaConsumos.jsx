@@ -328,7 +328,19 @@ function HistoriaConsumos() {
 
       {!loading && !error && rows.length > 0 && (
         <>
-          <GraficoHistoriaConsumo rows={rows} />
+          <GraficoHistoriaConsumo
+            points={rows
+              .map((row) => {
+                const consumo = consumoFromRow(row)
+                if (consumo == null) return null
+                return {
+                  id: row.id,
+                  createdAt: row.createdAt,
+                  consumo,
+                }
+              })
+              .filter(Boolean)}
+          />
           <div className="card shadow-sm">
             <div className="card-body p-0">
               <div className="table-responsive">
