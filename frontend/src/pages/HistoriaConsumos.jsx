@@ -241,36 +241,34 @@ function HistoriaConsumos() {
                             : '—'}
                         </span>
                       </td>
-                      <td className="text-end">
-                        <div className="d-inline-flex align-items-center gap-1">
-                          <button
-                            type="button"
-                            className="btn btn-sm btn-outline-primary"
-                            title={t('historiaConsumos.detail')}
-                            aria-label={t('historiaConsumos.detail')}
-                            onClick={() => setDetail(row)}
-                          >
-                            <LuEye size={16} aria-hidden="true" />
-                          </button>
-                          <button
-                            type="button"
-                            className="btn btn-sm btn-outline-secondary"
-                            title={t('historiaConsumos.resendEmail')}
-                            aria-label={t('historiaConsumos.resendEmail')}
-                            disabled={mailBusyId === row.id}
-                            onClick={() => handleResendEmail(row)}
-                          >
-                            {mailBusyId === row.id ? (
-                              <span
-                                className="spinner-border spinner-border-sm"
-                                role="status"
-                                aria-hidden="true"
-                              />
-                            ) : (
-                              <LuMail size={16} aria-hidden="true" />
-                            )}
-                          </button>
-                        </div>
+                      <td className="text-end text-nowrap">
+                        <button
+                          type="button"
+                          className="btn btn-primary btn-sm me-2 d-inline-flex align-items-center justify-content-center"
+                          title={t('historiaConsumos.detail')}
+                          aria-label={t('historiaConsumos.detail')}
+                          onClick={() => setDetail(row)}
+                        >
+                          <LuEye size={16} aria-hidden="true" />
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-secondary btn-sm d-inline-flex align-items-center justify-content-center"
+                          title={t('historiaConsumos.resendEmail')}
+                          aria-label={t('historiaConsumos.resendEmail')}
+                          disabled={mailBusyId === row.id}
+                          onClick={() => handleResendEmail(row)}
+                        >
+                          {mailBusyId === row.id ? (
+                            <span
+                              className="spinner-border spinner-border-sm"
+                              role="status"
+                              aria-hidden="true"
+                            />
+                          ) : (
+                            <LuMail size={16} aria-hidden="true" />
+                          )}
+                        </button>
                       </td>
                     </tr>
                   ))}
