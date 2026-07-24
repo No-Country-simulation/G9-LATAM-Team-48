@@ -61,8 +61,9 @@ function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
         isMobile ? '' : 'h-100'
       }`}
     >
-      {!isMobile && <h5 className="sidebar-title">{t('common.menu')}</h5>}
-      {!isMobile && <hr />}
+      {!isMobile && (
+        <div className="sidebar-menu-spacer" aria-hidden="true" />
+      )}
 
       <ul className="nav flex-column gap-1">{renderItems(mainItems)}</ul>
 
