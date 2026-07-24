@@ -419,20 +419,21 @@ body,
   padding: 0;
   border: 0;
   background: transparent;
-  color: #0d6efd;
+  color: #3d8bfd;
   font-size: 0.875rem;
   line-height: 1.4;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  transition: font-size 0.15s ease, color 0.15s ease;
+  transition: font-size 0.15s ease, color 0.15s ease, text-shadow 0.15s ease;
 }
 
 .auth-text-link:hover,
 .auth-text-link:focus-visible {
-  color: #084298;
+  color: #6ea8fe;
   font-size: 0.98rem;
   text-decoration: none;
+  text-shadow: 0 0 10px rgba(110, 168, 254, 0.45);
   outline: none;
 }
 
