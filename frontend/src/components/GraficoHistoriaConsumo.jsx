@@ -86,17 +86,27 @@ function useElementWidth() {
     const el = ref.current
     if (!el) return undefined
 
-    const update = () => setWidth(Math.floor(el.getBoundingClientRect().width))
+    const update = () => {
+      const measured = Math.floor(el.getBoundingClientRect().width || el.clientWidth || 0)
+      setWidth(measured > 0 ? measured : 640)
+    }
     update()
+    const timer = window.setTimeout(update, 50)
 
     if (typeof ResizeObserver === 'undefined') {
       window.addEventListener('resize', update)
-      return () => window.removeEventListener('resize', update)
+      return () => {
+        window.clearTimeout(timer)
+        window.removeEventListener('resize', update)
+      }
     }
 
     const observer = new ResizeObserver(() => update())
     observer.observe(el)
-    return () => observer.disconnect()
+    return () => {
+      window.clearTimeout(timer)
+      observer.disconnect()
+    }
   }, [])
 
   return [ref, width]
@@ -185,50 +195,48 @@ function GraficoHistoriaConsumo({ points = [] }) {
         </p>
         <p className={`small mb-3 ${trendClass}`}>{trendText}</p>
 
-        <div ref={wrapRef} style={{ width: '100%', height: chartHeight }}>
-          {width > 0 ? (
-            <LineChart
-              width={width}
-              height={chartHeight}
-              data={datos}
-              margin={{ top: 12, right: 16, left: 8, bottom: 8 }}
-            >
-              <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
-              <XAxis
-                dataKey="label"
-                stroke={textColor}
-                tick={{ fill: textColor, fontSize: 11 }}
-                interval="preserveStartEnd"
-              />
-              <YAxis
-                stroke={textColor}
-                tick={{ fill: textColor, fontSize: 12 }}
-                domain={[0, Math.ceil(yMax)]}
-                width={64}
-              />
-              <Tooltip
-                formatter={(value) => [
-                  `${value} kWh`,
-                  t('historiaConsumos.chartSeries', 'Consumo'),
-                ]}
-                contentStyle={{
-                  backgroundColor: theme === 'dark' ? '#212529' : '#fff',
-                  borderColor: gridColor,
-                  color: textColor,
-                }}
-              />
-              <ReferenceLine y={first} stroke={gridColor} strokeDasharray="4 4" />
-              <Line
-                type="monotone"
-                dataKey="consumo"
-                stroke={lineColor}
-                strokeWidth={3}
-                dot={{ r: 5, fill: lineColor, strokeWidth: 0 }}
-                activeDot={{ r: 7 }}
-                isAnimationActive={false}
-              />
-            </LineChart>
-          ) : null}
+        <div ref={wrapRef} style={{ width: '100%', height: chartHeight, minHeight: chartHeight }}>
+          <LineChart
+            width={Math.max(width, 320)}
+            height={chartHeight}
+            data={datos}
+            margin={{ top: 12, right: 16, left: 8, bottom: 8 }}
+          >
+            <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
+            <XAxis
+              dataKey="label"
+              stroke={textColor}
+              tick={{ fill: textColor, fontSize: 11 }}
+              interval="preserveStartEnd"
+            />
+            <YAxis
+              stroke={textColor}
+              tick={{ fill: textColor, fontSize: 12 }}
+              domain={[0, Math.ceil(yMax)]}
+              width={64}
+            />
+            <Tooltip
+              formatter={(value) => [
+                `${value} kWh`,
+                t('historiaConsumos.chartSeries', 'Consumo'),
+              ]}
+              contentStyle={{
+                backgroundColor: theme === 'dark' ? '#212529' : '#fff',
+                borderColor: gridColor,
+                color: textColor,
+              }}
+            />
+            <ReferenceLine y={first} stroke={gridColor} strokeDasharray="4 4" />
+            <Line
+              type="monotone"
+              dataKey="consumo"
+              stroke={lineColor}
+              strokeWidth={3}
+              dot={{ r: 5, fill: lineColor, strokeWidth: 0 }}
+              activeDot={{ r: 7 }}
+              isAnimationActive={false}
+            />
+          </LineChart>
         </div>
       </div>
     </div>
