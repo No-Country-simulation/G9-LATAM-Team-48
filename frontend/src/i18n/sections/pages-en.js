@@ -325,6 +325,7 @@ export const pagesEn = {
     subtitle: 'Your saved consumption analyses (AI Analysis).',
     refresh: 'Refresh',
     tipo: 'Type',
+    consumo: 'Usage',
     nivel: 'Level',
     ahorro: 'Savings',
     emailStatus: 'Email',

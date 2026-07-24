@@ -325,6 +325,7 @@ export const pagesEs = {
     subtitle: 'Tus análisis de consumo guardados (Análisis IA).',
     refresh: 'Actualizar',
     tipo: 'Tipo',
+    consumo: 'Consumo',
     nivel: 'Nivel',
     ahorro: 'Ahorro',
     emailStatus: 'Email',
