@@ -251,15 +251,15 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
           </Nav>
         )}
 
-        <p className="text-muted small mb-3">
-          {isForgot
-            ? t('auth.forgotHint')
-            : isResend
-              ? t('auth.resendHint')
-              : isRegister
-                ? t('auth.registerHint')
-                : t('auth.loginHint')}
-        </p>
+        {(isForgot || isResend || isRegister) && (
+          <p className="text-muted small mb-3">
+            {isForgot
+              ? t('auth.forgotHint')
+              : isResend
+                ? t('auth.resendHint')
+                : t('auth.registerHint')}
+          </p>
+        )}
 
         {isEmailOnly ? (
           <form
