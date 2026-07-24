@@ -10,6 +10,7 @@ import {
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import consumoData from '../data/consumo.json'
+import { yDomainWithPadding } from '../utils/chartScale'
 
 function GraficoConsumo({ consumos = consumoData }) {
   const { theme } = useTheme()
@@ -20,20 +21,10 @@ function GraficoConsumo({ consumos = consumoData }) {
 
   const datos = consumos.map((item) => ({
     mes: t(`months.${item.mes}`).slice(0, 3),
-    consumo: item.consumo,
+    consumo: Number(item.consumo),
   }))
 
-  // Escala Y automática: acerca el rango a los valores para que se vea mejor la curva.
-  const yDomain = [
-    (dataMin) => {
-      const span = Math.max(dataMin * 0.15, 1)
-      return Math.max(0, Math.floor(dataMin - span))
-    },
-    (dataMax) => {
-      const span = Math.max(dataMax * 0.15, 1)
-      return Math.ceil(dataMax + span)
-    },
-  ]
+  const yDomain = yDomainWithPadding(datos.map((item) => item.consumo))
 
   return (
     <div className="card shadow mt-4">

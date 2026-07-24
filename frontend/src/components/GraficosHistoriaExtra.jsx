@@ -13,6 +13,7 @@ import {
 } from 'recharts'
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
+import { yDomainWithPadding } from '../utils/chartScale'
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -168,16 +169,7 @@ function SavingsChart({ points }) {
   }
 
   const first = datos[0].ahorro
-  const yDomain = [
-    (dataMin) => {
-      const span = Math.max(dataMin * 0.15, 1)
-      return Math.max(0, Math.floor(dataMin - span))
-    },
-    (dataMax) => {
-      const span = Math.max(dataMax * 0.15, 1)
-      return Math.ceil(dataMax + span)
-    },
-  ]
+  const yDomain = yDomainWithPadding(datos.map((item) => item.ahorro))
 
   return (
     <ChartCard
