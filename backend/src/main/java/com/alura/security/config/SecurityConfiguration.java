@@ -39,7 +39,9 @@ public class SecurityConfiguration {
             "/api/v1/auth/**",
             "/api/v1/contact",
             "/api/v1/contact/**",
-            // /api/analisis requiere JWT (guardar consulta + email)
+            // Guarda consulta siempre; email solo si hay JWT valido
+            "/api/analisis",
+            "/api/analisis/**",
             "/api/v1/predictions/**",
             "/api/recomendaciones",
             "/api/recomendaciones/**",

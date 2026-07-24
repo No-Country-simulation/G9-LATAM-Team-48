@@ -35,7 +35,8 @@ public class AnalisisConsultaEntity {
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "user_email", nullable = false)
+    /** Null cuando la consulta es anonima (sin login). */
+    @Column(name = "user_email")
     private String userEmail;
 
     @Column(name = "tipo_instalacion", nullable = false, length = 50)

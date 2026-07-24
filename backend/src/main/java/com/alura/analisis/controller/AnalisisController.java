@@ -16,13 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * API del Analisis Inteligente IA.
  *
- * <p>Requiere JWT. Guarda la consulta en {@code analisis_consultas} y encola
- * el envio del resultado por email al usuario autenticado.</p>
+ * <p>Publico: siempre guarda la consulta. Si hay Bearer JWT, asocia usuario
+ * y encola el email; si no, persiste como anonima ({@code emailStatus=SKIPPED}).</p>
  */
 @RestController
 @RequestMapping("/api/analisis")
-@Tag(name = "Analisis IA", description = "Clasificacion de consumo (requiere login)")
-@SecurityRequirement(name = "bearerAuth")
+@Tag(name = "Analisis IA", description = "Clasificacion de consumo (guarda siempre; email si hay login)")
 public class AnalisisController {
 
     private final AnalisisService analisisService;
@@ -33,12 +32,14 @@ public class AnalisisController {
 
     @PostMapping
     @Operation(
-            summary = "Analizar consumo (autenticado)",
+            summary = "Analizar consumo",
             description = """
-                    Requiere Bearer token. Valida el contrato tipado del formulario,
-                    ejecuta el modelo ML (o heuristica), persiste la consulta
-                    y deja el email en estado PENDING para envio posterior.
-                    """)
+                    Valida el contrato tipado del formulario, ejecuta el modelo ML
+                    (o heuristica) y persiste la consulta.
+                    Con Bearer token: asocia al usuario y envia el resultado por email.
+                    Sin login: guarda la consulta anonima (sin email).
+                    """,
+            security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<AnalisisApiResponse> analizar(@Valid @RequestBody AnalisisPayload payload) {
         return ResponseEntity.ok(analisisService.analizarYGuardar(payload.toFeatureMap()));
     }

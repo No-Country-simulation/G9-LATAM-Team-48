@@ -27,6 +27,8 @@ export default {
     pending: 'Pending',
     sent: 'Sent',
     failed: 'Failed',
+    skipped: 'Skipped',
+    queued: 'Queued',
   },
   menu: {
     dashboard: 'Dashboard',
