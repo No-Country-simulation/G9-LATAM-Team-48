@@ -7,7 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
- * Envia el resultado del Analisis IA al email del cliente (usuario autenticado).
+ * Envia el resultado del Analisis IA al email del cliente autenticado.
+ * Si no hay email (consulta anonima), marca SKIPPED.
  */
 @Service
 public class AnalisisEmailService {
@@ -21,10 +22,18 @@ public class AnalisisEmailService {
     }
 
     /**
-     * @return estado resultante: PENDING, SENT, FAILED o QUEUED
+     * @return estado resultante: PENDING, SENT, FAILED, QUEUED o SKIPPED
      */
     public String enqueue(AnalisisConsultaEntity consulta) {
         String to = consulta.getUserEmail();
+        if (to == null || to.isBlank()) {
+            log.info(
+                    "Consulta #{} anonima: sin email, se omite envio (nivel={})",
+                    consulta.getId(),
+                    consulta.getNivelKey());
+            return "SKIPPED";
+        }
+
         log.info(
                 "Enviando resultado de analisis a {} (consulta #{}, nivel={})",
                 to,

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { analizarConsumoAutenticado } from '../services/analisisService'
+import { analizarConsumo, analizarConsumoLocal } from '../services/analisisService'
 import { INSTALLATION_TYPES } from '../services/iaService'
 import ErrorState from '../components/ErrorState'
 import GraficoAnalisisIA from '../components/GraficoAnalisisIA'
@@ -59,25 +59,22 @@ function AnalisisIA() {
   }
 
   async function analizar() {
-    if (!isAuthenticated) {
-      openLogin()
-      setError(t('analysis.loginRequired'))
-      return
-    }
-
     setError(null)
     setResultado(null)
     setLoading(true)
 
+    const payload = payloadFromForm()
+
     try {
-      const respuesta = await analizarConsumoAutenticado(payloadFromForm())
+      // Siempre POST /api/analisis: guarda consulta (anonima o con usuario)
+      const respuesta = await analizarConsumo(payload)
       setResultado(respuesta)
     } catch (err) {
-      const status = err?.response?.status
-      if (status === 401 || status === 403) {
-        openLogin()
-        setError(t('analysis.loginRequired'))
-      } else {
+      try {
+        const local = await analizarConsumoLocal(payload)
+        setResultado(local)
+        setError(null)
+      } catch {
         setError(err?.response?.data?.message || err?.message || t('analysis.failed'))
       }
     } finally {
@@ -92,19 +89,7 @@ function AnalisisIA() {
   return (
     <div className="container-fluid px-0 px-sm-2">
       <h1 className="fs-3 fs-md-2 mb-1">{t('analysis.title')}</h1>
-      <p className="text-muted mb-2">{t('analysis.subtitle')}</p>
-      {!isAuthenticated && (
-        <p className="small text-warning mb-3">
-          {t('analysis.loginRequired')}{' '}
-          <button
-            type="button"
-            className="btn btn-link btn-sm p-0 align-baseline"
-            onClick={openLogin}
-          >
-            {t('analysis.loginCta')}
-          </button>
-        </p>
-      )}
+      <p className="text-muted mb-3">{t('analysis.subtitle')}</p>
       {isAuthenticated && user?.email && (
         <p className="small text-muted mb-3">
           {t('analysis.emailHint')} {user.email}
@@ -306,11 +291,27 @@ function AnalisisIA() {
                     ))}
                   </ul>
 
-                  {resultado.emailStatus && (
+                  {isAuthenticated &&
+                    (resultado.emailStatus === 'SENT' ||
+                      resultado.emailStatus === 'PENDING' ||
+                      resultado.emailStatus === 'QUEUED') && (
+                      <p className="small text-muted mt-3 mb-0">
+                        {resultado.emailStatus === 'SENT'
+                          ? t('analysis.emailSent')
+                          : t('analysis.emailPending')}
+                      </p>
+                    )}
+
+                  {!isAuthenticated && (
                     <p className="small text-muted mt-3 mb-0">
-                      {resultado.emailStatus === 'SENT'
-                        ? t('analysis.emailSent')
-                        : t('analysis.emailPending')}
+                      {t('analysis.emailLoginHint')}{' '}
+                      <button
+                        type="button"
+                        className="btn btn-link btn-sm p-0 align-baseline"
+                        onClick={openLogin}
+                      >
+                        {t('analysis.loginCta')}
+                      </button>
                     </p>
                   )}
                 </div>

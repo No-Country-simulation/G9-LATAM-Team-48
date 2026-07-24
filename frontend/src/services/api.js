@@ -15,6 +15,10 @@ const api = axios.create({
 })
 
 api.interceptors.request.use((config) => {
+  if (config.skipAuth) {
+    return config
+  }
+
   const token = localStorage.getItem('token')
   const headers = config.headers || {}
   const existing =

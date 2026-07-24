@@ -176,7 +176,7 @@ function AdminAnalisis() {
                   {rows.map((row) => (
                     <tr key={row.id}>
                       <td>{row.id}</td>
-                      <td>{row.userEmail}</td>
+                      <td>{row.userEmail || t('adminAnalisis.anonymous')}</td>
                       <td>{labelTipo(t, row.tipoInstalacion)}</td>
                       <td>{labelNivel(t, row.nivelKey)}</td>
                       <td>{row.ahorro != null ? `${row.ahorro}%` : '—'}</td>
@@ -225,7 +225,8 @@ function AdminAnalisis() {
             <div className="d-grid gap-3">
               <div className="small">
                 <div>
-                  <strong>{t('adminAnalisis.email')}:</strong> {detail.userEmail}
+                  <strong>{t('adminAnalisis.email')}:</strong>{' '}
+                  {detail.userEmail || t('adminAnalisis.anonymous')}
                 </div>
                 <div>
                   <strong>{t('adminAnalisis.tipo')}:</strong>{' '}

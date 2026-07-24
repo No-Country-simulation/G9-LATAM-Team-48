@@ -40,6 +40,9 @@ public class AnalisisService {
         this.objectMapper = objectMapper;
     }
 
+    /**
+     * Analiza, persiste la consulta siempre y envia email solo si hay usuario autenticado.
+     */
     @Transactional
     public AnalisisApiResponse analizarYGuardar(Map<String, Object> datos) {
         if (datos == null || datos.isEmpty()) {
@@ -53,8 +56,8 @@ public class AnalisisService {
             throw new IllegalArgumentException("El campo 'consumoKwh' es obligatorio");
         }
 
-        String email = currentUserEmail();
-        User user = userRepository.findByEmail(email).orElse(null);
+        String email = currentUserEmailOrNull();
+        User user = email != null ? userRepository.findByEmail(email).orElse(null) : null;
 
         PredictionResponse result = predictionService.analyze(datos);
 
@@ -79,7 +82,7 @@ public class AnalisisService {
                 .benchmark(result.benchmark())
                 .tipKeysJson(result.tipKeys() != null ? result.tipKeys() : List.of())
                 .responseJson(responseMap)
-                .emailStatus("PENDING")
+                .emailStatus(email != null ? "PENDING" : "SKIPPED")
                 .build();
 
         AnalisisConsultaEntity saved = consultaRepository.save(entity);
@@ -90,11 +93,12 @@ public class AnalisisService {
         return AnalisisApiResponse.from(result, emailStatus, saved.getId());
     }
 
-    private String currentUserEmail() {
+    /** Email del JWT si hay sesion valida; null si es consulta anonima. */
+    private String currentUserEmailOrNull() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth == null || !auth.isAuthenticated() || auth.getName() == null
                 || "anonymousUser".equals(auth.getName())) {
-            throw new IllegalStateException("Debes iniciar sesion para analizar el consumo");
+            return null;
         }
         return auth.getName();
     }
