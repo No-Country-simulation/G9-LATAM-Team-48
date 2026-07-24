@@ -31,7 +31,9 @@ function MainLayout({ children, pagina, setPagina, onAuthSuccess }) {
         className="d-md-none"
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>{t('common.menu')}</Offcanvas.Title>
+          <Offcanvas.Title className="visually-hidden">
+            {t('common.menu')}
+          </Offcanvas.Title>
         </Offcanvas.Header>
 
         <Offcanvas.Body className="p-0">
