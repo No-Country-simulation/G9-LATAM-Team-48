@@ -168,7 +168,6 @@ function AdminAnalisis() {
                     <th>{t('adminAnalisis.nivel')}</th>
                     <th>{t('adminAnalisis.ahorro')}</th>
                     <th>{t('adminAnalisis.confidence')}</th>
-                    <th>{t('adminAnalisis.emailStatus')}</th>
                     <th>{t('adminAnalisis.createdAt')}</th>
                     <th className="text-end">{t('adminAnalisis.actions')}</th>
                   </tr>
@@ -185,16 +184,6 @@ function AdminAnalisis() {
                         {row.confidence != null
                           ? `${Math.round(Number(row.confidence) * 100)}%`
                           : '—'}
-                      </td>
-                      <td>
-                        <span className="badge text-bg-secondary">
-                          {row.emailStatus
-                            ? t(
-                                `common.${String(row.emailStatus).toLowerCase()}`,
-                                row.emailStatus,
-                              )
-                            : '—'}
-                        </span>
                       </td>
                       <td className="small text-nowrap">{formatDate(row.createdAt, locale)}</td>
                       <td className="text-end text-nowrap">
