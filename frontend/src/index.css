@@ -453,7 +453,7 @@ body,
   cursor: pointer;
   transform: none !important;
   animation: none !important;
-  transition: color 0.15s ease, font-size 0.15s ease, text-shadow 0.15s ease;
+  transition: color 0.15s ease, text-shadow 0.15s ease, opacity 0.15s ease;
 }
 
 .auth-text-link--spaced {
@@ -471,9 +471,10 @@ body,
 .auth-text-link:hover,
 .auth-text-link:focus-visible {
   color: #6ea8fe;
-  font-size: 0.98rem;
+  font-size: 0.875rem;
   text-decoration: none;
-  text-shadow: 0 0 10px rgba(110, 168, 254, 0.45);
+  text-shadow: 0 0 12px rgba(110, 168, 254, 0.55);
+  opacity: 1;
   outline: none;
   transform: none !important;
   animation: none !important;
