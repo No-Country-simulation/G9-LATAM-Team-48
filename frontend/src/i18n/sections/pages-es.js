@@ -341,6 +341,8 @@ export const pagesEs = {
     chartSubtitle: 'Comparación entre tus consultas de Análisis IA.',
     chartSeries: 'Consumo',
     chartBaseline: 'Primera',
+    chartNeedData:
+      'Para ver el gráfico hacen falta al menos 2 consultas con consumo guardado.',
     trendDown: 'Bajaste {delta} kWh ({pct}%) respecto de tu primera consulta.',
     trendUp: 'Subiste {delta} kWh ({pct}%) respecto de tu primera consulta.',
     trendFlat: 'Tu consumo se mantiene igual que en la primera consulta.',
