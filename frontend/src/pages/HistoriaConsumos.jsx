@@ -9,6 +9,7 @@ import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
 import Loader from '../components/Loader'
 import EmptyState from '../components/EmptyState'
+import GraficoHistoriaConsumo from '../components/GraficoHistoriaConsumo'
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -306,73 +307,76 @@ function HistoriaConsumos() {
       )}
 
       {!loading && !error && rows.length > 0 && (
-        <div className="card shadow-sm">
-          <div className="card-body p-0">
-            <div className="table-responsive">
-              <table className="table table-hover align-middle mb-0">
-                <thead>
-                  <tr>
-                    <th>{t('historiaConsumos.createdAt')}</th>
-                    <th>{t('historiaConsumos.tipo')}</th>
-                    <th>{t('historiaConsumos.nivel')}</th>
-                    <th>{t('historiaConsumos.ahorro')}</th>
-                    <th>{t('historiaConsumos.emailStatus')}</th>
-                    <th className="text-end">{t('historiaConsumos.actions')}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map((row) => (
-                    <tr key={row.id}>
-                      <td className="small text-nowrap">{formatDate(row.createdAt, locale)}</td>
-                      <td>{labelTipo(t, row.tipoInstalacion)}</td>
-                      <td>{labelNivel(t, row.nivelKey)}</td>
-                      <td>{row.ahorro != null ? `${row.ahorro}%` : '—'}</td>
-                      <td>
-                        <span className="badge text-bg-secondary">
-                          {row.emailStatus
-                            ? t(
-                                `common.${String(row.emailStatus).toLowerCase()}`,
-                                row.emailStatus,
-                              )
-                            : '—'}
-                        </span>
-                      </td>
-                      <td className="text-end text-nowrap">
-                        <button
-                          type="button"
-                          className="btn btn-primary btn-sm me-2 d-inline-flex align-items-center justify-content-center"
-                          title={t('historiaConsumos.detail')}
-                          aria-label={t('historiaConsumos.detail')}
-                          onClick={() => setDetail(row)}
-                        >
-                          <LuEye size={16} aria-hidden="true" />
-                        </button>
-                        <button
-                          type="button"
-                          className="btn btn-secondary btn-sm d-inline-flex align-items-center justify-content-center"
-                          title={t('historiaConsumos.resendEmail')}
-                          aria-label={t('historiaConsumos.resendEmail')}
-                          disabled={mailBusyId === row.id}
-                          onClick={() => handleResendEmail(row)}
-                        >
-                          {mailBusyId === row.id ? (
-                            <span
-                              className="spinner-border spinner-border-sm"
-                              role="status"
-                              aria-hidden="true"
-                            />
-                          ) : (
-                            <LuMail size={16} aria-hidden="true" />
-                          )}
-                        </button>
-                      </td>
+        <>
+          <GraficoHistoriaConsumo rows={rows} />
+          <div className="card shadow-sm">
+            <div className="card-body p-0">
+              <div className="table-responsive">
+                <table className="table table-hover align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>{t('historiaConsumos.createdAt')}</th>
+                      <th>{t('historiaConsumos.tipo')}</th>
+                      <th>{t('historiaConsumos.nivel')}</th>
+                      <th>{t('historiaConsumos.ahorro')}</th>
+                      <th>{t('historiaConsumos.emailStatus')}</th>
+                      <th className="text-end">{t('historiaConsumos.actions')}</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {rows.map((row) => (
+                      <tr key={row.id}>
+                        <td className="small text-nowrap">{formatDate(row.createdAt, locale)}</td>
+                        <td>{labelTipo(t, row.tipoInstalacion)}</td>
+                        <td>{labelNivel(t, row.nivelKey)}</td>
+                        <td>{row.ahorro != null ? `${row.ahorro}%` : '—'}</td>
+                        <td>
+                          <span className="badge text-bg-secondary">
+                            {row.emailStatus
+                              ? t(
+                                  `common.${String(row.emailStatus).toLowerCase()}`,
+                                  row.emailStatus,
+                                )
+                              : '—'}
+                          </span>
+                        </td>
+                        <td className="text-end text-nowrap">
+                          <button
+                            type="button"
+                            className="btn btn-primary btn-sm me-2 d-inline-flex align-items-center justify-content-center"
+                            title={t('historiaConsumos.detail')}
+                            aria-label={t('historiaConsumos.detail')}
+                            onClick={() => setDetail(row)}
+                          >
+                            <LuEye size={16} aria-hidden="true" />
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-secondary btn-sm d-inline-flex align-items-center justify-content-center"
+                            title={t('historiaConsumos.resendEmail')}
+                            aria-label={t('historiaConsumos.resendEmail')}
+                            disabled={mailBusyId === row.id}
+                            onClick={() => handleResendEmail(row)}
+                          >
+                            {mailBusyId === row.id ? (
+                              <span
+                                className="spinner-border spinner-border-sm"
+                                role="status"
+                                aria-hidden="true"
+                              />
+                            ) : (
+                              <LuMail size={16} aria-hidden="true" />
+                            )}
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       <Modal show={Boolean(detail)} onHide={() => setDetail(null)} size="lg" centered>
