@@ -109,6 +109,27 @@ public class AnalisisService {
                 .toList();
     }
 
+    /**
+     * Reenvia el email del resultado de una consulta propia del usuario autenticado.
+     */
+    @Transactional
+    public AdminAnalisisItem reenviarEmail(Long consultaId) {
+        String email = currentUserEmailOrNull();
+        if (email == null) {
+            throw new BusinessException("Debes iniciar sesion para reenviar el analisis");
+        }
+        AnalisisConsultaEntity consulta = consultaRepository.findById(consultaId)
+                .orElseThrow(() -> new BusinessException("Consulta no encontrada"));
+        if (consulta.getUserEmail() == null
+                || !email.equalsIgnoreCase(consulta.getUserEmail())) {
+            throw new BusinessException("No podes reenviar una consulta que no es tuya");
+        }
+
+        String emailStatus = emailService.enqueue(consulta);
+        consulta.setEmailStatus(emailStatus);
+        return toItem(consultaRepository.save(consulta));
+    }
+
     private AdminAnalisisItem toItem(AnalisisConsultaEntity entity) {
         return new AdminAnalisisItem(
                 entity.getId(),

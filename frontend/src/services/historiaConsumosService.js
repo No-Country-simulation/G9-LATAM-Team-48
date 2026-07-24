@@ -9,3 +9,8 @@ export async function listMisAnalisis() {
   const value = unwrap(data)
   return Array.isArray(value) ? value : []
 }
+
+export async function reenviarEmailAnalisis(consultaId) {
+  const { data } = await api.post(`/api/analisis/mis/${consultaId}/reenviar-email`)
+  return unwrap(data)
+}

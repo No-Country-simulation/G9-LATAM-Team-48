@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,5 +58,16 @@ public class AnalisisController {
             security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<ApiResponse<List<AdminAnalisisItem>>> misConsultas() {
         return ResponseEntity.ok(ApiResponse.ok(analisisService.listarMisConsultas()));
+    }
+
+    @PostMapping("/mis/{id}/reenviar-email")
+    @Operation(
+            summary = "Reenviar email de un analisis propio",
+            description = "Reenvia el resultado de la consulta al email del usuario autenticado.",
+            security = @SecurityRequirement(name = "bearerAuth"))
+    public ResponseEntity<ApiResponse<AdminAnalisisItem>> reenviarEmail(@PathVariable Long id) {
+        return ResponseEntity.ok(ApiResponse.ok(
+                analisisService.reenviarEmail(id),
+                "Email reenviado"));
     }
 }
