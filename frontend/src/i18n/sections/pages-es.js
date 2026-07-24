@@ -343,6 +343,12 @@ export const pagesEs = {
     chartBaseline: 'Primera',
     chartNeedData:
       'Para ver el gráfico hacen falta al menos 2 consultas con consumo guardado.',
+    savingsChartTitle: 'Evolución del ahorro',
+    savingsChartSubtitle: 'Potencial de ahorro estimado en cada consulta.',
+    savingsSeries: 'Ahorro',
+    levelChartTitle: 'Distribución por nivel',
+    levelChartSubtitle: 'Cuántas consultas cayeron en cada nivel de eficiencia.',
+    levelCount: 'Consultas',
     trendDown: 'Bajaste {delta} kWh ({pct}%) respecto de tu primera consulta.',
     trendUp: 'Subiste {delta} kWh ({pct}%) respecto de tu primera consulta.',
     trendFlat: 'Tu consumo se mantiene igual que en la primera consulta.',
