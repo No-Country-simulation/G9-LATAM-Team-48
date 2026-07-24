@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
+import { LuEye } from 'react-icons/lu'
 import { listAnalisis } from '../services/adminAnalisisService'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
@@ -200,9 +201,11 @@ function AdminAnalisis() {
                         <button
                           type="button"
                           className="btn btn-sm btn-outline-primary"
+                          title={t('adminAnalisis.detail')}
+                          aria-label={t('adminAnalisis.detail')}
                           onClick={() => setDetail(row)}
                         >
-                          {t('adminAnalisis.detail')}
+                          <LuEye size={16} aria-hidden="true" />
                         </button>
                       </td>
                     </tr>
