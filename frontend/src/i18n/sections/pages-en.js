@@ -366,7 +366,7 @@ export const pagesEn = {
     infoTitle: 'Contact details',
     infoText: 'You can also email our team directly.',
     infoEmailLabel: 'Email',
-    infoNote: 'Hackathon ONE G9 — Team 48 · EnergIA',
+    membersLabel: 'members',
     errors: {
       incomplete: 'Please fill in name, email and a message of at least 10 characters.',
       sendFailed: 'Could not send the message.',

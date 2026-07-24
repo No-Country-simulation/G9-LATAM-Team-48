@@ -72,6 +72,82 @@ body,
   overflow-x: hidden;
 }
 
+/* ===== Badge equipo en Contáctanos ===== */
+.contact-team-badge {
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(
+    135deg,
+    rgba(214, 51, 132, 0.06),
+    rgba(111, 66, 193, 0.08)
+  );
+  border: 1px solid rgba(111, 66, 193, 0.15);
+}
+
+.contact-team-badge__event {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  background: linear-gradient(90deg, #e83e8c 0%, #9b59b6 55%, #6f42c1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.contact-team-badge__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.65rem;
+}
+
+.contact-team-badge__icon {
+  flex-shrink: 0;
+  color: #6f42c1;
+}
+
+.contact-team-badge__name {
+  font-weight: 700;
+  color: #343a40;
+  font-size: 0.95rem;
+}
+
+.contact-team-badge__count {
+  font-size: 0.875rem;
+}
+
+.contact-team-badge__count-num {
+  font-weight: 700;
+  color: #0d6efd;
+}
+
+.contact-team-badge__count-label {
+  color: #6c757d;
+}
+
+[data-bs-theme='dark'] .contact-team-badge {
+  background: linear-gradient(
+    135deg,
+    rgba(214, 51, 132, 0.12),
+    rgba(111, 66, 193, 0.16)
+  );
+  border-color: rgba(167, 139, 250, 0.25);
+}
+
+[data-bs-theme='dark'] .contact-team-badge__name {
+  color: #e9ecef;
+}
+
+[data-bs-theme='dark'] .contact-team-badge__count-label {
+  color: #adb5bd;
+}
+
+[data-bs-theme='dark'] .contact-team-badge__count-num {
+  color: #6ea8fe;
+}
+
 /* ===== Equipo 48 (flip cards en Contáctanos) ===== */
 .equipo-grid {
   display: grid;
