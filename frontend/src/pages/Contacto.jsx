@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import {
   LuLinkedin,
   LuGithub,
@@ -34,6 +34,7 @@ function MemberAvatar({ member }) {
 }
 
 function TeamFlipCard({ member, flipped, onToggle, t }) {
+  const lockRef = useRef(false)
   const links = [
     member.linkedin && {
       href: member.linkedin,
@@ -67,10 +68,20 @@ function TeamFlipCard({ member, flipped, onToggle, t }) {
     },
   ].filter(Boolean)
 
+  const handleToggle = () => {
+    // Evita spam de clicks durante la animación (scrollbar / jitter).
+    if (lockRef.current) return
+    lockRef.current = true
+    onToggle()
+    window.setTimeout(() => {
+      lockRef.current = false
+    }, 560)
+  }
+
   const onKeyToggle = (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
-      onToggle()
+      handleToggle()
     }
   }
 
@@ -84,7 +95,7 @@ function TeamFlipCard({ member, flipped, onToggle, t }) {
           className="equipo-face equipo-face--front"
           role="button"
           tabIndex={0}
-          onClick={onToggle}
+          onClick={handleToggle}
           onKeyDown={onKeyToggle}
           aria-label={`${member.name}. ${t('team.flipFront')}`}
         >
@@ -102,7 +113,7 @@ function TeamFlipCard({ member, flipped, onToggle, t }) {
           className="equipo-face equipo-face--back"
           role="button"
           tabIndex={0}
-          onClick={onToggle}
+          onClick={handleToggle}
           onKeyDown={onKeyToggle}
           aria-label={`${member.name}. ${t('team.tapBack')}`}
         >

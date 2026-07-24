@@ -78,6 +78,7 @@ body,
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.65rem;
   align-items: stretch;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
@@ -99,6 +100,7 @@ body,
   height: 13.25rem;
   min-height: 13.25rem;
   max-height: 13.25rem;
+  overflow: hidden;
 }
 
 /* Grid apila frente y dorso; tamaño fijo en todas las tarjetas. */
@@ -145,7 +147,7 @@ body,
 .equipo-face--back {
   transform: rotateY(180deg);
   justify-content: flex-start;
-  overflow-y: auto;
+  overflow: hidden;
   cursor: pointer;
   padding-top: 0.85rem;
 }
