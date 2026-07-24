@@ -412,13 +412,28 @@ body,
 }
 
 /* ===== Enlaces de texto del modal de login ===== */
+.login-modal .btn:hover:not(:disabled),
+.login-modal .btn:active:not(:disabled),
+.login-modal .btn:focus-visible {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.login-modal .nav-link {
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.login-modal .nav-link:hover {
+  transform: none;
+}
+
 .auth-text-links {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.65rem;
-  margin-top: 1.75rem;
-  padding-top: 1.15rem;
+  margin-top: 1.85rem;
+  padding-top: 1.2rem;
   border-top: 1px solid rgba(13, 110, 253, 0.12);
 }
 
@@ -436,7 +451,8 @@ body,
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  transform: none;
+  transform: none !important;
+  animation: none !important;
   transition: color 0.15s ease, text-shadow 0.15s ease;
 }
 
@@ -459,22 +475,16 @@ body,
   text-decoration: none;
   text-shadow: 0 0 10px rgba(110, 168, 254, 0.45);
   outline: none;
-  transform: none;
-  animation: none;
+  transform: none !important;
+  animation: none !important;
 }
 
 .auth-text-link:focus-visible {
   box-shadow: none;
 }
 
-/* El botón principal del login no debe “saltar” cerca de los enlaces */
-.modal-body > form > .btn.btn-primary {
-  margin-bottom: 0.25rem;
-}
-
-.modal-body .auth-text-link.btn,
-.modal-body button.auth-text-link {
-  transform: none !important;
+.login-modal form > .btn.btn-primary {
+  margin-bottom: 0;
 }
 
 /* ===== Ayuda de campos (Análisis IA) ===== */

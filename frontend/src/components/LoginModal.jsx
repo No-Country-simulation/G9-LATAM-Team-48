@@ -214,7 +214,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
   const isEmailOnly = isForgot || isResend
 
   return (
-    <Modal show={show} onHide={onHide} centered>
+    <Modal show={show} onHide={onHide} centered dialogClassName="login-modal-dialog" contentClassName="login-modal">
       <Modal.Header closeButton>
         <Modal.Title className="h5 mb-0">
           {isForgot
