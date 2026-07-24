@@ -24,6 +24,15 @@ function resolveAuthError(t, message) {
   return message
 }
 
+function isEmailNotVerifiedError(message) {
+  if (!message) return false
+  const normalized = String(message).toLowerCase()
+  return (
+    (normalized.includes('verificar') && normalized.includes('email')) ||
+    (normalized.includes('verify') && normalized.includes('email'))
+  )
+}
+
 function LoginModal({ show, onHide, onAuthSuccess }) {
   const { login, register, loading, error } = useAuth()
   const { t } = useLocale()
@@ -35,6 +44,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
   const [formError, setFormError] = useState('')
   const [infoMessage, setInfoMessage] = useState('')
   const [verifyLink, setVerifyLink] = useState('')
+  const [needsVerification, setNeedsVerification] = useState(false)
   const [forgotLoading, setForgotLoading] = useState(false)
   const [resendLoading, setResendLoading] = useState(false)
 
@@ -42,10 +52,14 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
     if (!show) {
       setInfoMessage('')
       setVerifyLink('')
+      setNeedsVerification(false)
       return
     }
     setFieldErrors({})
     setFormError('')
+    if (mode !== 'login') {
+      setNeedsVerification(false)
+    }
   }, [show, mode])
 
   const resetForm = () => {
@@ -56,6 +70,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
     setFormError('')
     setInfoMessage('')
     setVerifyLink('')
+    setNeedsVerification(false)
   }
 
   const handleForgot = async (event) => {
@@ -92,6 +107,35 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
     try {
       const result = await resendVerification(email.trim())
       setInfoMessage(result?.message || t('auth.resendSent'))
+      setNeedsVerification(false)
+      if (result?.verificationToken) {
+        setVerifyLink(
+          `${window.location.origin}/?verifyToken=${result.verificationToken}`,
+        )
+      } else {
+        setVerifyLink('')
+      }
+    } catch (err) {
+      setFormError(
+        err?.response?.data?.message || err?.message || t('auth.resendFailed'),
+      )
+    } finally {
+      setResendLoading(false)
+    }
+  }
+
+  const handleResendFromLoginError = async () => {
+    setFormError('')
+    if (!email.trim()) {
+      setMode('resend')
+      return
+    }
+
+    setResendLoading(true)
+    try {
+      const result = await resendVerification(email.trim())
+      setInfoMessage(result?.message || t('auth.resendSent'))
+      setNeedsVerification(false)
       if (result?.verificationToken) {
         setVerifyLink(
           `${window.location.origin}/?verifyToken=${result.verificationToken}`,
@@ -112,6 +156,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
     event.preventDefault()
     setFormError('')
     setInfoMessage('')
+    setNeedsVerification(false)
 
     const values = { name, email, password }
     const errors =
@@ -134,6 +179,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
         if (result?.pendingVerification || !result?.token) {
           // No auto-verificar: el usuario debe usar el link del email
           setInfoMessage(result.message || t('auth.registerVerifySent'))
+          setNeedsVerification(true)
           if (result?.verificationToken) {
             setVerifyLink(
               `${window.location.origin}/?verifyToken=${result.verificationToken}`,
@@ -156,7 +202,9 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
       onAuthSuccess?.(session)
       onHide()
     } catch (err) {
-      setFormError(resolveAuthError(t, err.message))
+      const message = resolveAuthError(t, err.message)
+      setFormError(message)
+      setNeedsVerification(isEmailNotVerifiedError(err.message || message))
     }
   }
 
@@ -355,6 +403,20 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
                     </a>
                   </div>
                 )}
+                {needsVerification && !isRegister && (
+                  <div className="mt-2">
+                    <button
+                      type="button"
+                      className="auth-text-link auth-text-link--inline"
+                      onClick={handleResendFromLoginError}
+                      disabled={resendLoading}
+                    >
+                      {resendLoading
+                        ? t('auth.resendSubmitting')
+                        : t('auth.resendLink')}
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 
@@ -385,22 +447,13 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
             </button>
 
             {!isRegister && (
-              <>
-                <button
-                  type="button"
-                  className="auth-text-link"
-                  onClick={() => setMode('forgot')}
-                >
-                  {t('auth.forgotLink')}
-                </button>
-                <button
-                  type="button"
-                  className="auth-text-link"
-                  onClick={() => setMode('resend')}
-                >
-                  {t('auth.resendLink')}
-                </button>
-              </>
+              <button
+                type="button"
+                className="auth-text-link"
+                onClick={() => setMode('forgot')}
+              >
+                {t('auth.forgotLink')}
+              </button>
             )}
           </div>
         )}
