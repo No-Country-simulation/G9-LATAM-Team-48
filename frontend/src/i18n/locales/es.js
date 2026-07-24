@@ -44,7 +44,7 @@ export default {
   auth: {
     loginTitle: 'Iniciar sesión',
     registerTitle: 'Crear cuenta',
-    loginTab: 'Entrar',
+    loginTab: 'Iniciar sesión',
     registerTab: 'Registrarse',
     loginHint:
       'Ingresá para poder editar datos y cargar información. La navegación es libre sin necesidad de cuenta.',
