@@ -341,6 +341,7 @@ export const pagesEn = {
     chartSubtitle: 'Comparison across your AI Analysis queries.',
     chartSeries: 'Usage',
     chartBaseline: 'First',
+    chartNeedData: 'You need at least 2 queries with saved usage to see the chart.',
     trendDown: 'You lowered usage by {delta} kWh ({pct}%) vs your first query.',
     trendUp: 'You increased usage by {delta} kWh ({pct}%) vs your first query.',
     trendFlat: 'Your usage matches your first query.',
