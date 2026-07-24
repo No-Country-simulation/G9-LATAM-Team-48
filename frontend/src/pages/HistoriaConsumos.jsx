@@ -89,12 +89,6 @@ function normalizeRequestJson(raw) {
     }
   }
   if (typeof raw !== 'object' || Array.isArray(raw)) return {}
-  if (raw.features && typeof raw.features === 'object' && !Array.isArray(raw.features)) {
-    return normalizeRequestJson(raw.features)
-  }
-  if (raw.payload && typeof raw.payload === 'object' && !Array.isArray(raw.payload)) {
-    return normalizeRequestJson(raw.payload)
-  }
   return raw
 }
 
@@ -296,9 +290,6 @@ function HistoriaConsumos() {
     value: pickRequestValue(request, field),
   }))
   const extraEntries = extraRequestEntries(request)
-  const hasEnteredData = enteredRows.some(
-    ({ value }) => value !== undefined && value !== null && value !== '',
-  ) || extraEntries.length > 0
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -466,27 +457,23 @@ function HistoriaConsumos() {
                 </button>
               </div>
 
-              <h6 className="mb-2">{t('historiaConsumos.enteredData')}</h6>
-              {!hasEnteredData ? (
-                <p className="small text-muted mb-3">{t('historiaConsumos.noEnteredData')}</p>
-              ) : (
-                <div className="row g-3 mb-3">
-                  {enteredRows.map(({ field, value }) => (
-                    <div className="col-12 col-sm-6" key={field.key}>
-                      <div className="small text-muted">{t(field.labelKey)}</div>
-                      <div className="fw-semibold">
-                        {formatRequestValue(t, field, value)}
-                      </div>
+              <h6 className="mb-3">{t('historiaConsumos.enteredData')}</h6>
+              <div className="row g-3 mb-3">
+                {enteredRows.map(({ field, value }) => (
+                  <div className="col-12 col-sm-6" key={field.key}>
+                    <div className="small text-muted">{t(field.labelKey)}</div>
+                    <div className="fw-semibold">
+                      {formatRequestValue(t, field, value)}
                     </div>
-                  ))}
-                  {extraEntries.map(([key, value]) => (
-                    <div className="col-12 col-sm-6" key={key}>
-                      <div className="small text-muted">{key}</div>
-                      <div className="fw-semibold">{String(value)}</div>
-                    </div>
-                  ))}
-                </div>
-              )}
+                  </div>
+                ))}
+                {extraEntries.map(([key, value]) => (
+                  <div className="col-12 col-sm-6" key={key}>
+                    <div className="small text-muted">{key}</div>
+                    <div className="fw-semibold">{String(value)}</div>
+                  </div>
+                ))}
+              </div>
 
               <h6 className="mb-2">{t('historiaConsumos.recommendations')}</h6>
               {tips.length === 0 ? (

@@ -10,13 +10,14 @@ import com.alura.prediction.service.PredictionService;
 import com.alura.user.model.User;
 import com.alura.user.repository.UserRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -77,13 +78,13 @@ public class AnalisisService {
                 .userId(user != null ? user.getId() : null)
                 .userEmail(email)
                 .tipoInstalacion(tipoInstalacion)
-                .requestJson(new HashMap<>(datos))
+                .requestJson(objectMapper.valueToTree(datos))
                 .nivelKey(result.nivelKey())
                 .ahorro(result.ahorro())
                 .confidence(result.confidence())
                 .benchmark(result.benchmark())
                 .tipKeysJson(result.tipKeys() != null ? result.tipKeys() : List.of())
-                .responseJson(responseMap)
+                .responseJson(objectMapper.valueToTree(responseMap))
                 .emailStatus(email != null ? "PENDING" : "SKIPPED")
                 .build();
 
@@ -131,18 +132,6 @@ public class AnalisisService {
     }
 
     private AdminAnalisisItem toItem(AnalisisConsultaEntity entity) {
-        Map<String, Object> request =
-                entity.getRequestJson() != null
-                        ? new HashMap<>(entity.getRequestJson())
-                        : Map.of();
-        Map<String, Object> response =
-                entity.getResponseJson() != null
-                        ? new HashMap<>(entity.getResponseJson())
-                        : Map.of();
-        List<String> tipKeys =
-                entity.getTipKeysJson() != null
-                        ? List.copyOf(entity.getTipKeysJson())
-                        : List.of();
         return new AdminAnalisisItem(
                 entity.getId(),
                 entity.getUserId(),
@@ -152,11 +141,33 @@ public class AnalisisService {
                 entity.getAhorro(),
                 entity.getConfidence(),
                 entity.getBenchmark(),
-                tipKeys,
+                entity.getTipKeysJson() != null
+                        ? List.copyOf(entity.getTipKeysJson())
+                        : List.of(),
                 entity.getEmailStatus(),
                 entity.getCreatedAt(),
-                request,
-                response);
+                jsonToMap(entity.getRequestJson()),
+                jsonToMap(entity.getResponseJson()));
+    }
+
+    private Map<String, Object> jsonToMap(JsonNode node) {
+        if (node == null || node.isNull()) {
+            return Map.of();
+        }
+        if (node.isTextual()) {
+            try {
+                return objectMapper.readValue(
+                        node.asText(), new TypeReference<LinkedHashMap<String, Object>>() {});
+            } catch (Exception ignored) {
+                return Map.of();
+            }
+        }
+        try {
+            return objectMapper.convertValue(
+                    node, new TypeReference<LinkedHashMap<String, Object>>() {});
+        } catch (Exception ignored) {
+            return Map.of();
+        }
     }
 
     /** Email del JWT si hay sesion valida; null si es consulta anonima. */

@@ -1,5 +1,6 @@
 package com.alura.analisis.persistence;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +18,6 @@ import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Table(name = "analisis_consultas")
@@ -44,7 +44,7 @@ public class AnalisisConsultaEntity {
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "request_json", nullable = false)
-    private Map<String, Object> requestJson;
+    private JsonNode requestJson;
 
     @Column(name = "nivel_key", length = 50)
     private String nivelKey;
@@ -61,7 +61,7 @@ public class AnalisisConsultaEntity {
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "response_json")
-    private Map<String, Object> responseJson;
+    private JsonNode responseJson;
 
     @Column(name = "email_status", nullable = false, length = 30)
     private String emailStatus;
