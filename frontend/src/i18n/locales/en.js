@@ -33,6 +33,7 @@ export default {
   menu: {
     dashboard: 'Dashboard',
     consumos: 'Usage',
+    historiaConsumos: 'Usage history',
     ia: 'AI Analysis',
     recomendaciones: 'Recommendations',
     contacto: 'Contact us',
@@ -47,7 +48,7 @@ export default {
     loginTab: 'Sign in',
     registerTab: 'Register',
     loginHint:
-      'Sign in to receive analyses by email and enable your consumption statistics.',
+      'With your account you get analysis reports by email and can browse your consultation history.',
     registerHint:
       'Create your account with name, email and password. We will email you a verification link.',
     registerVerifySent:

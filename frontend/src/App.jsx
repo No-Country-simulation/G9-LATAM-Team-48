@@ -1,5 +1,6 @@
 import Dashboard from './pages/Dashboard'
 import Consumos from './pages/Consumos'
+import HistoriaConsumos from './pages/HistoriaConsumos'
 import AnalisisIA from './pages/AnalisisIA'
 import RecomendacionesPage from './pages/RecomendacionesPage'
 import Contacto from './pages/Contacto'
@@ -17,6 +18,7 @@ import { getStoredPagina, setStoredPagina } from './utils/session'
 const PAGE_TITLE_KEYS = {
   dashboard: 'menu.dashboard',
   consumos: 'menu.consumos',
+  'historia-consumos': 'menu.historiaConsumos',
   ia: 'menu.ia',
   recomendaciones: 'menu.recomendaciones',
   contacto: 'menu.contacto',
@@ -67,9 +69,10 @@ function App() {
 
     const isAdminPage =
       pagina === 'admin-usuarios' || pagina === 'admin-analisis'
+    const isAuthPage = pagina === 'historia-consumos'
 
-    // Sin sesion: no quedarse en admin
-    if (isAdminPage && !isAuthenticated) {
+    // Sin sesion: no quedarse en admin ni historial personal
+    if ((isAdminPage || isAuthPage) && !isAuthenticated) {
       setPagina('dashboard')
       return
     }
@@ -108,6 +111,8 @@ function App() {
     switch (pagina) {
       case 'consumos':
         return <Consumos />
+      case 'historia-consumos':
+        return <HistoriaConsumos />
       case 'ia':
         return <AnalisisIA />
       case 'recomendaciones':
