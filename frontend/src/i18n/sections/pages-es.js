@@ -102,6 +102,28 @@ export const pagesEs = {
     peakUseHours: 'Horas de alto consumo por día',
     peakHoursUse: '¿Hay consumo en horario pico?',
     area: 'Área del local (m²)',
+    fieldHints: {
+      tipoInmueble:
+        'Elegí el tipo de inmueble para ajustar la referencia de consumo (casa, departamento o local comercial).',
+      consumoKwh:
+        'Ingresá el consumo eléctrico del último mes, en kilovatios-hora (kWh), como figura en la factura.',
+      areaM2:
+        'Superficie habitable de la vivienda en metros cuadrados. Sirve para estimar el consumo esperado.',
+      areaCommercial:
+        'Área del local comercial en metros cuadrados (piso útil del local).',
+      cantidadPersonas:
+        'Número habitual de personas que viven o usan la vivienda a diario.',
+      cantidadPersonasCommercial:
+        'Cantidad promedio de personas que ocupan el local durante la jornada (clientes + personal).',
+      cantidadEquipos:
+        'Cantidad aproximada de equipos eléctricos relevantes (heladera, lavarropas, TV, PCs, freidoras, etc.).',
+      horasClimatizacion:
+        'Horas por día que suele estar encendido el aire acondicionado o la calefacción.',
+      horasAltoConsumo:
+        'Horas por día con uso intensivo de energía (cocina, lavado, equipos de trabajo, etc.).',
+      usoHorarioPico:
+        'Activá si solés consumir en horarios de tarifa pico (típicamente tarde/noche laborable).',
+    },
     hoursPerDay: 'Horas de operación por día',
     processIntensity: 'Intensidad del proceso',
     hasCompressedAir: '¿Usa aire comprimido?',

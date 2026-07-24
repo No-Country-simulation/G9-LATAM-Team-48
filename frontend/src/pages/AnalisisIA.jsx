@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Tooltip from 'react-bootstrap/Tooltip'
 import { analizarConsumo, analizarConsumoLocal } from '../services/analisisService'
 import { INSTALLATION_TYPES } from '../services/iaService'
 import ErrorState from '../components/ErrorState'
@@ -17,11 +19,31 @@ const initialState = {
   usoHorarioPico: false,
 }
 
-function Field({ id, label, children }) {
+function FieldHint({ id, text }) {
+  if (!text) return null
+
+  return (
+    <OverlayTrigger
+      placement="top"
+      trigger={['hover', 'focus']}
+      overlay={<Tooltip id={`field-hint-${id}`}>{text}</Tooltip>}
+    >
+      <button type="button" className="field-hint-icon" aria-label={text}>
+        i
+      </button>
+    </OverlayTrigger>
+  )
+}
+
+function Field({ id, label, hint, children }) {
   return (
     <div className="mb-2">
-      <label className="form-label form-label-sm mb-1" htmlFor={id}>
-        {label}
+      <label
+        className="form-label form-label-sm mb-1 d-inline-flex align-items-center"
+        htmlFor={id}
+      >
+        <span>{label}</span>
+        <FieldHint id={id} text={hint} />
       </label>
       {children}
     </div>
@@ -112,7 +134,11 @@ function AnalisisIA() {
         <div className="col-12 col-lg-4">
           <div className="card shadow-sm" style={{ maxWidth: 360 }}>
             <div className="card-body p-3">
-              <Field id="tipoInmueble" label={t('analysis.installationType')}>
+              <Field
+                id="tipoInmueble"
+                label={t('analysis.installationType')}
+                hint={t('analysis.fieldHints.tipoInmueble')}
+              >
                 <select
                   id="tipoInmueble"
                   className="form-select form-select-sm"
@@ -132,7 +158,11 @@ function AnalisisIA() {
                 {t(`analysis.typeHints.${datos.tipoInmueble}`)}
               </p>
 
-              <Field id="consumoKwh" label={t('analysis.monthlyUsage')}>
+              <Field
+                id="consumoKwh"
+                label={t('analysis.monthlyUsage')}
+                hint={t('analysis.fieldHints.consumoKwh')}
+              >
                 <input
                   id="consumoKwh"
                   className="form-control form-control-sm"
@@ -147,6 +177,11 @@ function AnalisisIA() {
               <Field
                 id="areaM2"
                 label={isComercial ? t('analysis.area') : t('analysis.homeArea')}
+                hint={
+                  isComercial
+                    ? t('analysis.fieldHints.areaCommercial')
+                    : t('analysis.fieldHints.areaM2')
+                }
               >
                 <input
                   id="areaM2"
@@ -162,6 +197,11 @@ function AnalisisIA() {
               <Field
                 id="cantidadPersonas"
                 label={isComercial ? t('analysis.peopleCommercial') : t('analysis.people')}
+                hint={
+                  isComercial
+                    ? t('analysis.fieldHints.cantidadPersonasCommercial')
+                    : t('analysis.fieldHints.cantidadPersonas')
+                }
               >
                 <input
                   id="cantidadPersonas"
@@ -174,7 +214,11 @@ function AnalisisIA() {
                 />
               </Field>
 
-              <Field id="cantidadEquipos" label={t('analysis.devices')}>
+              <Field
+                id="cantidadEquipos"
+                label={t('analysis.devices')}
+                hint={t('analysis.fieldHints.cantidadEquipos')}
+              >
                 <input
                   id="cantidadEquipos"
                   className="form-control form-control-sm"
@@ -186,7 +230,11 @@ function AnalisisIA() {
                 />
               </Field>
 
-              <Field id="horasClimatizacion" label={t('analysis.climateHours')}>
+              <Field
+                id="horasClimatizacion"
+                label={t('analysis.climateHours')}
+                hint={t('analysis.fieldHints.horasClimatizacion')}
+              >
                 <input
                   id="horasClimatizacion"
                   className="form-control form-control-sm"
@@ -199,7 +247,11 @@ function AnalisisIA() {
                 />
               </Field>
 
-              <Field id="horasAltoConsumo" label={t('analysis.peakUseHours')}>
+              <Field
+                id="horasAltoConsumo"
+                label={t('analysis.peakUseHours')}
+                hint={t('analysis.fieldHints.horasAltoConsumo')}
+              >
                 <input
                   id="horasAltoConsumo"
                   className="form-control form-control-sm"
@@ -213,8 +265,15 @@ function AnalisisIA() {
               </Field>
 
               <div className="form-check form-switch mb-3 ps-0 d-flex align-items-center justify-content-between gap-2">
-                <label className="form-check-label small mb-0" htmlFor="usoHorarioPico">
-                  {t('analysis.peakHoursUse')}
+                <label
+                  className="form-check-label small mb-0 d-inline-flex align-items-center"
+                  htmlFor="usoHorarioPico"
+                >
+                  <span>{t('analysis.peakHoursUse')}</span>
+                  <FieldHint
+                    id="usoHorarioPico"
+                    text={t('analysis.fieldHints.usoHorarioPico')}
+                  />
                 </label>
                 <input
                   id="usoHorarioPico"
