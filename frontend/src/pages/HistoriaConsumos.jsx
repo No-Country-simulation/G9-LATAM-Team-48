@@ -89,6 +89,12 @@ function normalizeRequestJson(raw) {
     }
   }
   if (typeof raw !== 'object' || Array.isArray(raw)) return {}
+  if (raw.features && typeof raw.features === 'object' && !Array.isArray(raw.features)) {
+    return normalizeRequestJson(raw.features)
+  }
+  if (raw.payload && typeof raw.payload === 'object' && !Array.isArray(raw.payload)) {
+    return normalizeRequestJson(raw.payload)
+  }
   return raw
 }
 
@@ -110,6 +116,15 @@ function pickRequestValue(request, field) {
   return undefined
 }
 
+function isKnownRequestKey(key) {
+  const wanted = String(key).toLowerCase().replace(/_/g, '')
+  return REQUEST_FIELDS.some((field) =>
+    (field.aliases || [field.key]).some(
+      (alias) => String(alias).toLowerCase().replace(/_/g, '') === wanted,
+    ),
+  )
+}
+
 function buildEnteredRequest(detail) {
   const request = { ...normalizeRequestJson(detail?.requestJson ?? detail?.request_json) }
   if (
@@ -119,6 +134,23 @@ function buildEnteredRequest(detail) {
     request.tipoInmueble = detail.tipoInstalacion
   }
   return request
+}
+
+function consumoFromRow(row) {
+  const request = normalizeRequestJson(row?.requestJson ?? row?.request_json)
+  const field = REQUEST_FIELDS.find((item) => item.key === 'consumoKwh')
+  const value = field ? pickRequestValue(request, field) : null
+  const num = Number(value)
+  return Number.isFinite(num) ? num : null
+}
+
+function extraRequestEntries(request) {
+  return Object.entries(request).filter(([key, value]) => {
+    if (isKnownRequestKey(key)) return false
+    if (value === undefined || value === null || value === '') return false
+    if (typeof value === 'object') return false
+    return true
+  })
 }
 
 function formatDate(value, locale) {
@@ -262,14 +294,11 @@ function HistoriaConsumos() {
   const enteredRows = REQUEST_FIELDS.map((field) => ({
     field,
     value: pickRequestValue(request, field),
-  })).filter(({ value }) => value !== undefined && value !== null && value !== '')
-
-  const extraEntries =
-    enteredRows.length === 0
-      ? Object.entries(request).filter(
-          ([, value]) => value !== undefined && value !== null && value !== '',
-        )
-      : []
+  }))
+  const extraEntries = extraRequestEntries(request)
+  const hasEnteredData = enteredRows.some(
+    ({ value }) => value !== undefined && value !== null && value !== '',
+  ) || extraEntries.length > 0
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -317,6 +346,7 @@ function HistoriaConsumos() {
                     <tr>
                       <th>{t('historiaConsumos.createdAt')}</th>
                       <th>{t('historiaConsumos.tipo')}</th>
+                      <th>{t('historiaConsumos.consumo')}</th>
                       <th>{t('historiaConsumos.nivel')}</th>
                       <th>{t('historiaConsumos.ahorro')}</th>
                       <th>{t('historiaConsumos.emailStatus')}</th>
@@ -324,10 +354,13 @@ function HistoriaConsumos() {
                     </tr>
                   </thead>
                   <tbody>
-                    {rows.map((row) => (
+                    {rows.map((row) => {
+                      const consumo = consumoFromRow(row)
+                      return (
                       <tr key={row.id}>
                         <td className="small text-nowrap">{formatDate(row.createdAt, locale)}</td>
                         <td>{labelTipo(t, row.tipoInstalacion)}</td>
+                        <td>{consumo != null ? `${consumo} kWh` : '—'}</td>
                         <td>{labelNivel(t, row.nivelKey)}</td>
                         <td>{row.ahorro != null ? `${row.ahorro}%` : '—'}</td>
                         <td>
@@ -370,7 +403,8 @@ function HistoriaConsumos() {
                           </button>
                         </td>
                       </tr>
-                    ))}
+                      )
+                    })}
                   </tbody>
                 </table>
               </div>
@@ -433,22 +467,25 @@ function HistoriaConsumos() {
               </div>
 
               <h6 className="mb-2">{t('historiaConsumos.enteredData')}</h6>
-              {enteredRows.length === 0 && extraEntries.length === 0 ? (
+              {!hasEnteredData ? (
                 <p className="small text-muted mb-3">{t('historiaConsumos.noEnteredData')}</p>
               ) : (
-                <ul className="list-unstyled small mb-3">
+                <div className="row g-3 mb-3">
                   {enteredRows.map(({ field, value }) => (
-                    <li key={field.key} className="mb-1">
-                      <strong>{t(field.labelKey)}:</strong>{' '}
-                      {formatRequestValue(t, field, value)}
-                    </li>
+                    <div className="col-12 col-sm-6" key={field.key}>
+                      <div className="small text-muted">{t(field.labelKey)}</div>
+                      <div className="fw-semibold">
+                        {formatRequestValue(t, field, value)}
+                      </div>
+                    </div>
                   ))}
                   {extraEntries.map(([key, value]) => (
-                    <li key={key} className="mb-1">
-                      <strong>{key}:</strong> {String(value)}
-                    </li>
+                    <div className="col-12 col-sm-6" key={key}>
+                      <div className="small text-muted">{key}</div>
+                      <div className="fw-semibold">{String(value)}</div>
+                    </div>
                   ))}
-                </ul>
+                </div>
               )}
 
               <h6 className="mb-2">{t('historiaConsumos.recommendations')}</h6>
