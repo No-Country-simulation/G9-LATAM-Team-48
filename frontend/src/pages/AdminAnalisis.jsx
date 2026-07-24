@@ -197,10 +197,10 @@ function AdminAnalisis() {
                         </span>
                       </td>
                       <td className="small text-nowrap">{formatDate(row.createdAt, locale)}</td>
-                      <td className="text-end">
+                      <td className="text-end text-nowrap">
                         <button
                           type="button"
-                          className="btn btn-sm btn-outline-primary"
+                          className="btn btn-primary btn-sm d-inline-flex align-items-center justify-content-center"
                           title={t('adminAnalisis.detail')}
                           aria-label={t('adminAnalisis.detail')}
                           onClick={() => setDetail(row)}
