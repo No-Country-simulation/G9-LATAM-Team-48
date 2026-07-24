@@ -352,7 +352,6 @@ function HistoriaConsumos() {
                       <th>{t('historiaConsumos.consumo')}</th>
                       <th>{t('historiaConsumos.nivel')}</th>
                       <th>{t('historiaConsumos.ahorro')}</th>
-                      <th>{t('historiaConsumos.emailStatus')}</th>
                       <th className="text-end">{t('historiaConsumos.actions')}</th>
                     </tr>
                   </thead>
@@ -366,16 +365,6 @@ function HistoriaConsumos() {
                         <td>{consumo != null ? `${consumo} kWh` : '—'}</td>
                         <td>{labelNivel(t, row.nivelKey)}</td>
                         <td>{row.ahorro != null ? `${row.ahorro}%` : '—'}</td>
-                        <td>
-                          <span className="badge text-bg-secondary">
-                            {row.emailStatus
-                              ? t(
-                                  `common.${String(row.emailStatus).toLowerCase()}`,
-                                  row.emailStatus,
-                                )
-                              : '—'}
-                          </span>
-                        </td>
                         <td className="text-end text-nowrap">
                           <button
                             type="button"
@@ -439,15 +428,6 @@ function HistoriaConsumos() {
                   <p className="mb-1">
                     <strong>{t('historiaConsumos.ahorro')}:</strong>{' '}
                     {detail.ahorro != null ? `${detail.ahorro}%` : '—'}
-                  </p>
-                  <p className="mb-0">
-                    <strong>{t('historiaConsumos.emailStatus')}:</strong>{' '}
-                    {detail.emailStatus
-                      ? t(
-                          `common.${String(detail.emailStatus).toLowerCase()}`,
-                          detail.emailStatus,
-                        )
-                      : '—'}
                   </p>
                 </div>
                 <button
