@@ -265,7 +265,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
 
             <button
               type="button"
-              className="auth-text-link mt-2"
+              className="auth-text-link auth-text-link--spaced"
               onClick={() => setMode('login')}
             >
               {t('auth.switchToLogin')}
@@ -375,10 +375,10 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
         )}
 
         {!isEmailOnly && (
-          <>
+          <div className="auth-text-links">
             <button
               type="button"
-              className="auth-text-link mt-2"
+              className="auth-text-link"
               onClick={() => setMode(isRegister ? 'login' : 'register')}
             >
               {isRegister ? t('auth.switchToLogin') : t('auth.switchToRegister')}
@@ -402,7 +402,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
                 </button>
               </>
             )}
-          </>
+          </div>
         )}
       </Modal.Body>
     </Modal>
