@@ -132,7 +132,7 @@ export const pagesEn = {
     loginRequired: 'Optional: sign in if you want the report by email.',
     emailLoginHint:
       'You can analyze without an account. Sign in only if you want the report by email.',
-    loginCta: 'Sign in',
+    loginCta: 'Sign in / Register',
     emailHint: 'We will email the analysis to',
     emailPending: 'We will also email you this analysis shortly.',
     emailSent: 'We emailed you this analysis.',
