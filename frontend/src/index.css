@@ -313,6 +313,12 @@ body,
   font-size: 1rem;
 }
 
+/* Reserva el alto de "Menú" + <hr> sin mostrarlos */
+.sidebar-menu-spacer {
+  height: calc(1.2rem + 0.5rem + 1rem + 1px + 1rem);
+  flex-shrink: 0;
+}
+
 .menu-icon-wrap {
   width: 2rem;
   height: 2rem;
@@ -379,6 +385,7 @@ body,
 
   .app-sidebar .sidebar-title,
   .app-sidebar .sidebar hr,
+  .app-sidebar .sidebar-menu-spacer,
   .app-sidebar .sidebar-label {
     display: none;
   }
