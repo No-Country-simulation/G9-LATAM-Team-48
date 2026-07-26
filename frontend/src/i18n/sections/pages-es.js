@@ -15,6 +15,9 @@ export const pagesEs = {
     lastMonthUsage: 'Consumo último mes',
     lastMonthCost: 'Costo último mes',
     monthlyAverage: 'Promedio mensual',
+    demoSample: 'Ejemplo',
+    demoSampleHint:
+      'Datos de ejemplo para la demo. No provienen de tus análisis reales.',
   },
   consumos: {
     title: 'Consumos energéticos',
@@ -158,6 +161,14 @@ export const pagesEs = {
     emailHint: 'Te enviaremos el análisis a',
     emailPending: 'También te enviaremos este análisis por email (en breve).',
     emailSent: 'Te enviamos este análisis por email.',
+    prefilledFromHistory:
+      'Cargamos los datos de tu consulta anterior. Podés editarlos y analizar de nuevo.',
+    validation: {
+      consumoRequired: 'Ingresá un consumo mensual mayor a 0.',
+      areaInvalid: 'El área no puede ser negativa.',
+      peopleInvalid: 'La cantidad de personas no puede ser negativa.',
+      hoursRange: 'Usá un valor entre 0 y 24.',
+    },
     chart: {
       title: 'Tu consumo vs referencia',
       hint: 'La referencia se ajusta con los datos del formulario.',
@@ -326,6 +337,8 @@ export const pagesEs = {
     sessionInvalid:
       'Tu sesión no es válida para el backend. Cerrá sesión e iniciá de nuevo como admin.',
     loadFailed: 'No se pudieron cargar los análisis.',
+    empty: 'Todavía no hay análisis guardados.',
+    goToAnalysis: 'Ir a Análisis IA',
   },
   historiaConsumos: {
     title: 'Historia de consumos',
@@ -363,6 +376,8 @@ export const pagesEs = {
     emailResent: 'Análisis enviado por correo.',
     emailResendFailed: 'No se pudo enviar el análisis por correo.',
     empty: 'Todavía no tenés análisis guardados. Corré un Análisis IA estando logueado.',
+    goToAnalysis: 'Ir a Análisis IA',
+    repeatAnalysis: 'Repetir análisis',
     loginRequired: 'Iniciá sesión para ver el historial de tus análisis.',
     sessionInvalid:
       'Tu sesión no es válida. Cerrá sesión e iniciá de nuevo para ver el historial.',

@@ -10,9 +10,11 @@ import EmptyState from '../components/EmptyState'
 import { useFetch } from '../hooks/useFetch'
 import { getConsumos, calcularResumen } from '../services/consumoService'
 import { useLocale } from '../context/LocaleContext'
+import { useNavigation } from '../context/NavigationContext'
 
 function Dashboard() {
   const { t } = useLocale()
+  const { setPagina } = useNavigation()
   const { data: consumos, loading, error, refetch } = useFetch(getConsumos)
 
   const resumen = calcularResumen(consumos || [])
@@ -25,7 +27,13 @@ function Dashboard() {
 
       {!loading && error && <ErrorState mensaje={error} onRetry={refetch} />}
 
-      {!loading && !error && !consumos?.length && <EmptyState />}
+      {!loading && !error && !consumos?.length && (
+        <EmptyState
+          mensaje={t('states.empty')}
+          actionLabel={t('historiaConsumos.goToAnalysis', 'Ir a Análisis IA')}
+          onAction={() => setPagina('ia')}
+        />
+      )}
 
       {!loading && !error && consumos?.length > 0 && (
         <>
@@ -42,6 +50,16 @@ function Dashboard() {
               titulo={t('dashboard.monthlyAverage')}
               valor={`${resumen.promedio} kWh`}
             />
+          </div>
+
+          <div
+            className="alert alert-secondary border-0 py-2 small mt-3 mb-0"
+            role="note"
+          >
+            {t(
+              'dashboard.demoSampleHint',
+              'Datos de ejemplo para la demo. No provienen de tus análisis reales.',
+            )}
           </div>
 
           <ResumenFacil />

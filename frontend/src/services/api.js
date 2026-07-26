@@ -35,4 +35,29 @@ api.interceptors.request.use((config) => {
   return config
 })
 
+const AUTH_PUBLIC_PATHS = ['/api/v1/auth/login', '/api/v1/auth/register']
+
+/**
+ * Registra un handler global para 401 (sesión vencida).
+ * @returns {number} id del interceptor (para eject)
+ */
+export function setupUnauthorizedInterceptor(onUnauthorized) {
+  return api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      const status = error?.response?.status
+      const url = String(error?.config?.url || '')
+      const skipAuth = Boolean(error?.config?.skipAuth)
+      const isPublicAuth = AUTH_PUBLIC_PATHS.some((path) => url.includes(path))
+      const hadToken = Boolean(localStorage.getItem('token'))
+
+      if (status === 401 && hadToken && !skipAuth && !isPublicAuth) {
+        onUnauthorized?.(error)
+      }
+
+      return Promise.reject(error)
+    },
+  )
+}
+
 export default api

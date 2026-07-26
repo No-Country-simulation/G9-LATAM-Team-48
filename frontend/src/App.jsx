@@ -12,6 +12,7 @@ import MainLayout from './layouts/MainLayout'
 import { useEffect, useState } from 'react'
 import { useAuth } from './context/AuthContext'
 import { useLocale } from './context/LocaleContext'
+import { NavigationProvider } from './context/NavigationContext'
 import { isAdmin } from './utils/roles'
 import { getStoredPagina, setStoredPagina } from './utils/session'
 
@@ -134,13 +135,15 @@ function App() {
   }
 
   return (
-    <MainLayout
-      pagina={pagina}
-      setPagina={setPagina}
-      onAuthSuccess={handleAuthSuccess}
-    >
-      {renderPagina()}
-    </MainLayout>
+    <NavigationProvider pagina={pagina} setPagina={setPagina}>
+      <MainLayout
+        pagina={pagina}
+        setPagina={setPagina}
+        onAuthSuccess={handleAuthSuccess}
+      >
+        {renderPagina()}
+      </MainLayout>
+    </NavigationProvider>
   )
 }
 

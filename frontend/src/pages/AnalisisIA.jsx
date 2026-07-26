@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
 import { analizarConsumo, analizarConsumoLocal } from '../services/analisisService'
@@ -7,17 +7,7 @@ import ErrorState from '../components/ErrorState'
 import GraficoAnalisisIA from '../components/GraficoAnalisisIA'
 import { useLocale } from '../context/LocaleContext'
 import { useAuth } from '../context/AuthContext'
-
-const initialState = {
-  tipoInmueble: INSTALLATION_TYPES.CASA_UNIFAMILIAR,
-  consumoKwh: '',
-  cantidadPersonas: '',
-  cantidadEquipos: '',
-  areaM2: '',
-  horasClimatizacion: '',
-  horasAltoConsumo: '',
-  usoHorarioPico: false,
-}
+import { consumeAnalisisDraft, emptyDraft } from '../utils/analisisDraft'
 
 function FieldHint({ id, text }) {
   if (!text) return null
@@ -35,7 +25,7 @@ function FieldHint({ id, text }) {
   )
 }
 
-function Field({ id, label, hint, children }) {
+function Field({ id, label, hint, error, children }) {
   return (
     <div className="mb-2">
       <label
@@ -46,17 +36,83 @@ function Field({ id, label, hint, children }) {
         <FieldHint id={id} text={hint} />
       </label>
       {children}
+      {error && (
+        <div className="invalid-feedback d-block" role="alert">
+          {error}
+        </div>
+      )}
     </div>
   )
+}
+
+function validateForm(datos, t) {
+  const errors = {}
+  const consumo = Number(datos.consumoKwh)
+  const area = Number(datos.areaM2)
+  const personas = Number(datos.cantidadPersonas)
+  const climate = Number(datos.horasClimatizacion)
+  const peak = Number(datos.horasAltoConsumo)
+
+  if (datos.consumoKwh === '' || !Number.isFinite(consumo) || consumo <= 0) {
+    errors.consumoKwh = t(
+      'analysis.validation.consumoRequired',
+      'Ingresá un consumo mensual mayor a 0.',
+    )
+  }
+
+  if (datos.areaM2 !== '' && (!Number.isFinite(area) || area < 0)) {
+    errors.areaM2 = t('analysis.validation.areaInvalid', 'El área no puede ser negativa.')
+  }
+
+  if (datos.cantidadPersonas !== '' && (!Number.isFinite(personas) || personas < 0)) {
+    errors.cantidadPersonas = t(
+      'analysis.validation.peopleInvalid',
+      'La cantidad de personas no puede ser negativa.',
+    )
+  }
+
+  if (
+    datos.horasClimatizacion !== '' &&
+    (!Number.isFinite(climate) || climate < 0 || climate > 24)
+  ) {
+    errors.horasClimatizacion = t(
+      'analysis.validation.hoursRange',
+      'Usá un valor entre 0 y 24.',
+    )
+  }
+
+  if (
+    datos.horasAltoConsumo !== '' &&
+    (!Number.isFinite(peak) || peak < 0 || peak > 24)
+  ) {
+    errors.horasAltoConsumo = t(
+      'analysis.validation.hoursRange',
+      'Usá un valor entre 0 y 24.',
+    )
+  }
+
+  return errors
 }
 
 function AnalisisIA() {
   const { t } = useLocale()
   const { isAuthenticated, openLogin, user } = useAuth()
-  const [datos, setDatos] = useState(initialState)
+  const [datos, setDatos] = useState(emptyDraft)
   const [resultado, setResultado] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [fieldErrors, setFieldErrors] = useState({})
+  const [prefillNotice, setPrefillNotice] = useState(false)
+
+  useEffect(() => {
+    const draft = consumeAnalisisDraft()
+    if (!draft) return
+    setDatos(draft)
+    setResultado(null)
+    setError(null)
+    setFieldErrors({})
+    setPrefillNotice(true)
+  }, [])
 
   function cambiarCampo(e) {
     const { name, value, type, checked } = e.target
@@ -65,6 +121,12 @@ function AnalisisIA() {
       [name]: type === 'checkbox' ? checked : value,
     }))
     setResultado(null)
+    setFieldErrors((prev) => {
+      if (!prev[name]) return prev
+      const next = { ...prev }
+      delete next[name]
+      return next
+    })
   }
 
   function payloadFromForm() {
@@ -81,9 +143,18 @@ function AnalisisIA() {
   }
 
   async function analizar() {
+    const errors = validateForm(datos, t)
+    setFieldErrors(errors)
+    if (Object.keys(errors).length > 0) {
+      setError(null)
+      setResultado(null)
+      return
+    }
+
     setError(null)
     setResultado(null)
     setLoading(true)
+    setPrefillNotice(false)
 
     const payload = payloadFromForm()
 
@@ -107,6 +178,7 @@ function AnalisisIA() {
   const chartDatos = payloadFromForm()
   const isComercial =
     datos.tipoInmueble === INSTALLATION_TYPES.PEQUENO_ESTABLECIMIENTO_COMERCIAL
+  const canSubmit = !loading && String(datos.consumoKwh).trim() !== ''
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -128,6 +200,14 @@ function AnalisisIA() {
         <p className="small text-muted mb-3">
           {t('analysis.emailHint')} {user.email}
         </p>
+      )}
+      {prefillNotice && (
+        <div className="alert alert-info py-2 small" role="status">
+          {t(
+            'analysis.prefilledFromHistory',
+            'Cargamos los datos de tu consulta anterior. Podés editarlos y analizar de nuevo.',
+          )}
+        </div>
       )}
 
       <div className="row g-3 align-items-start">
@@ -162,13 +242,17 @@ function AnalisisIA() {
                 id="consumoKwh"
                 label={t('analysis.monthlyUsage')}
                 hint={t('analysis.fieldHints.consumoKwh')}
+                error={fieldErrors.consumoKwh}
               >
                 <input
                   id="consumoKwh"
-                  className="form-control form-control-sm"
+                  className={`form-control form-control-sm${fieldErrors.consumoKwh ? ' is-invalid' : ''}`}
                   name="consumoKwh"
                   type="number"
                   min="0"
+                  required
+                  aria-invalid={Boolean(fieldErrors.consumoKwh)}
+                  aria-describedby={fieldErrors.consumoKwh ? 'consumoKwh-error' : undefined}
                   value={datos.consumoKwh}
                   onChange={cambiarCampo}
                 />
@@ -182,13 +266,15 @@ function AnalisisIA() {
                     ? t('analysis.fieldHints.areaCommercial')
                     : t('analysis.fieldHints.areaM2')
                 }
+                error={fieldErrors.areaM2}
               >
                 <input
                   id="areaM2"
-                  className="form-control form-control-sm"
+                  className={`form-control form-control-sm${fieldErrors.areaM2 ? ' is-invalid' : ''}`}
                   name="areaM2"
                   type="number"
                   min="0"
+                  aria-invalid={Boolean(fieldErrors.areaM2)}
                   value={datos.areaM2}
                   onChange={cambiarCampo}
                 />
@@ -202,13 +288,15 @@ function AnalisisIA() {
                     ? t('analysis.fieldHints.cantidadPersonasCommercial')
                     : t('analysis.fieldHints.cantidadPersonas')
                 }
+                error={fieldErrors.cantidadPersonas}
               >
                 <input
                   id="cantidadPersonas"
-                  className="form-control form-control-sm"
+                  className={`form-control form-control-sm${fieldErrors.cantidadPersonas ? ' is-invalid' : ''}`}
                   name="cantidadPersonas"
                   type="number"
                   min="0"
+                  aria-invalid={Boolean(fieldErrors.cantidadPersonas)}
                   value={datos.cantidadPersonas}
                   onChange={cambiarCampo}
                 />
@@ -234,14 +322,16 @@ function AnalisisIA() {
                 id="horasClimatizacion"
                 label={t('analysis.climateHours')}
                 hint={t('analysis.fieldHints.horasClimatizacion')}
+                error={fieldErrors.horasClimatizacion}
               >
                 <input
                   id="horasClimatizacion"
-                  className="form-control form-control-sm"
+                  className={`form-control form-control-sm${fieldErrors.horasClimatizacion ? ' is-invalid' : ''}`}
                   name="horasClimatizacion"
                   type="number"
                   min="0"
                   max="24"
+                  aria-invalid={Boolean(fieldErrors.horasClimatizacion)}
                   value={datos.horasClimatizacion}
                   onChange={cambiarCampo}
                 />
@@ -251,14 +341,16 @@ function AnalisisIA() {
                 id="horasAltoConsumo"
                 label={t('analysis.peakUseHours')}
                 hint={t('analysis.fieldHints.horasAltoConsumo')}
+                error={fieldErrors.horasAltoConsumo}
               >
                 <input
                   id="horasAltoConsumo"
-                  className="form-control form-control-sm"
+                  className={`form-control form-control-sm${fieldErrors.horasAltoConsumo ? ' is-invalid' : ''}`}
                   name="horasAltoConsumo"
                   type="number"
                   min="0"
                   max="24"
+                  aria-invalid={Boolean(fieldErrors.horasAltoConsumo)}
                   value={datos.horasAltoConsumo}
                   onChange={cambiarCampo}
                 />
@@ -287,9 +379,10 @@ function AnalisisIA() {
               </div>
 
               <button
+                type="button"
                 className="btn btn-primary btn-sm w-100 mt-1"
                 onClick={analizar}
-                disabled={loading || !datos.consumoKwh}
+                disabled={!canSubmit}
               >
                 {loading ? (
                   <>

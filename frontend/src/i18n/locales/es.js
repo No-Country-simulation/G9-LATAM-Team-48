@@ -29,6 +29,7 @@ export default {
     failed: 'Fallido',
     skipped: 'Omitido',
     queued: 'En cola',
+    skipToContent: 'Saltar al contenido',
   },
   menu: {
     dashboard: 'Dashboard',

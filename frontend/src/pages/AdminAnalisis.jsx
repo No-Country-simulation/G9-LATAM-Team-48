@@ -4,6 +4,7 @@ import { LuEye } from 'react-icons/lu'
 import { listAnalisis, recalcularAnalisis } from '../services/adminAnalisisService'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
+import { useNavigation } from '../context/NavigationContext'
 import { isAdmin } from '../utils/roles'
 import Loader from '../components/Loader'
 import EmptyState from '../components/EmptyState'
@@ -48,6 +49,7 @@ function labelNivel(t, nivel) {
 function AdminAnalisis() {
   const { t, locale } = useLocale()
   const { user, token, openLogin, refreshUser, logout, hydrating } = useAuth()
+  const { setPagina } = useNavigation()
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
   const [recalculating, setRecalculating] = useState(false)
@@ -205,7 +207,13 @@ function AdminAnalisis() {
         </div>
       )}
 
-      {!loading && !hydrating && !error && rows.length === 0 && <EmptyState />}
+      {!loading && !hydrating && !error && rows.length === 0 && (
+        <EmptyState
+          mensaje={t('adminAnalisis.empty', 'Todavía no hay análisis guardados.')}
+          actionLabel={t('adminAnalisis.goToAnalysis', 'Ir a Análisis IA')}
+          onAction={() => setPagina('ia')}
+        />
+      )}
 
       {!loading && !hydrating && !error && rows.length > 0 && (
         <div className="card shadow-sm">
