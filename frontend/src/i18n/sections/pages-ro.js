@@ -267,6 +267,13 @@ export const pagesRo = {
     title: 'Analiză IA — istoric',
     subtitle: 'Interogări salvate de utilizatorii autentificați.',
     refresh: 'Actualizează',
+    recalculate: 'Recalculează cu regulile actuale',
+    recalculating: 'Se recalculează…',
+    recalculateConfirm:
+      'Recalculezi toate analizele salvate cu euristica actuală? Fără emailuri și fără interogări noi.',
+    recalculateDone:
+      'Gata: {total} interogări · {updated} actualizate · {unchanged} neschimbate · {skipped} omise.',
+    recalculateFailed: 'Nu s-au putut recalcula analizele.',
     email: 'Email',
     tipo: 'Tip',
     nivel: 'Nivel',

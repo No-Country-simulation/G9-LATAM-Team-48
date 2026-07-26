@@ -21,4 +21,10 @@ public interface PredictionService {
      * Clasifica a partir del payload plano del formulario de Analisis IA.
      */
     PredictionResponse analyze(Map<String, Object> features);
+
+    /**
+     * Recalcula siempre con la heuristica local (sin llamar a FastAPI).
+     * Usado para alinear consultas historicas con las reglas actuales.
+     */
+    PredictionResponse analyzeHeuristic(Map<String, Object> features);
 }

@@ -267,6 +267,13 @@ export const pagesIt = {
     title: 'Analisi IA — cronologia',
     subtitle: 'Query salvate dagli utenti autenticati.',
     refresh: 'Aggiorna',
+    recalculate: 'Ricalcola con le regole attuali',
+    recalculating: 'Ricalcolo…',
+    recalculateConfirm:
+      'Ricalcolare tutte le analisi salvate con l’euristica attuale? Nessuna email né nuove query.',
+    recalculateDone:
+      'Fatto: {total} query · {updated} aggiornate · {unchanged} invariate · {skipped} saltate.',
+    recalculateFailed: 'Impossibile ricalcolare le analisi.',
     email: 'Email',
     tipo: 'Tipo',
     nivel: 'Livello',

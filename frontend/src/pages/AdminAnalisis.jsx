@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { LuEye } from 'react-icons/lu'
-import { listAnalisis } from '../services/adminAnalisisService'
+import { listAnalisis, recalcularAnalisis } from '../services/adminAnalisisService'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
 import { isAdmin } from '../utils/roles'
@@ -50,7 +50,9 @@ function AdminAnalisis() {
   const { user, token, openLogin, refreshUser, logout, hydrating } = useAuth()
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
+  const [recalculating, setRecalculating] = useState(false)
   const [error, setError] = useState(null)
+  const [info, setInfo] = useState(null)
   const [detail, setDetail] = useState(null)
 
   const allowed = isAdmin(user)
@@ -108,6 +110,40 @@ function AdminAnalisis() {
     openLogin()
   }
 
+  async function handleRecalcular() {
+    if (!allowed || recalculating) return
+    const confirmed = window.confirm(t('adminAnalisis.recalculateConfirm'))
+    if (!confirmed) return
+
+    setRecalculating(true)
+    setError(null)
+    setInfo(null)
+    try {
+      const result = await recalcularAnalisis()
+      setInfo(
+        t('adminAnalisis.recalculateDone')
+          .replace('{total}', String(result.total ?? 0))
+          .replace('{updated}', String(result.updated ?? 0))
+          .replace('{unchanged}', String(result.unchanged ?? 0))
+          .replace('{skipped}', String(result.skipped ?? 0)),
+      )
+      await load()
+    } catch (err) {
+      const status = err?.response?.status
+      if (status === 401 || status === 403) {
+        setError(t('adminAnalisis.sessionInvalid'))
+      } else {
+        setError(
+          err?.response?.data?.message ||
+            err?.message ||
+            t('adminAnalisis.recalculateFailed'),
+        )
+      }
+    } finally {
+      setRecalculating(false)
+    }
+  }
+
   if (!token && !hydrating) {
     return (
       <div className="container-fluid px-0 px-sm-2">
@@ -127,17 +163,33 @@ function AdminAnalisis() {
           <h1 className="fs-3 fs-md-2 mb-1 text-primary">{t('adminAnalisis.title')}</h1>
           <p className="text-muted mb-0">{t('adminAnalisis.subtitle')}</p>
         </div>
-        <button
-          type="button"
-          className="btn btn-outline-primary btn-sm"
-          onClick={load}
-          disabled={!allowed || loading || hydrating}
-        >
-          {t('adminAnalisis.refresh')}
-        </button>
+        <div className="d-flex flex-wrap gap-2">
+          <button
+            type="button"
+            className="btn btn-outline-primary btn-sm"
+            onClick={load}
+            disabled={!allowed || loading || hydrating || recalculating}
+          >
+            {t('adminAnalisis.refresh')}
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary btn-sm"
+            onClick={handleRecalcular}
+            disabled={!allowed || loading || hydrating || recalculating}
+          >
+            {recalculating
+              ? t('adminAnalisis.recalculating')
+              : t('adminAnalisis.recalculate')}
+          </button>
+        </div>
       </div>
 
       {(loading || hydrating) && <Loader mensaje={t('states.loading')} />}
+
+      {!loading && !hydrating && info && (
+        <div className="alert alert-success py-2">{info}</div>
+      )}
 
       {!loading && !hydrating && error && (
         <div className="alert alert-danger">

@@ -267,6 +267,13 @@ export const pagesNl = {
     title: 'AI-analyse — geschiedenis',
     subtitle: 'Opgeslagen query\'s van ingelogde gebruikers.',
     refresh: 'Vernieuwen',
+    recalculate: 'Herberekenen met huidige regels',
+    recalculating: 'Herberekenen…',
+    recalculateConfirm:
+      'Alle opgeslagen analyses herberekenen met de huidige heuristiek? Geen e-mails en geen nieuwe queries.',
+    recalculateDone:
+      'Klaar: {total} queries · {updated} bijgewerkt · {unchanged} ongewijzigd · {skipped} overgeslagen.',
+    recalculateFailed: 'Analyses konden niet worden herberekend.',
     email: 'E-mail',
     tipo: 'Type',
     nivel: 'Niveau',

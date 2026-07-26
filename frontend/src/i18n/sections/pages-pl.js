@@ -267,6 +267,13 @@ export const pagesPl = {
     title: 'Analiza AI — historia',
     subtitle: 'Zapytania zapisane przez zalogowanych użytkowników.',
     refresh: 'Odśwież',
+    recalculate: 'Przelicz według aktualnych reguł',
+    recalculating: 'Przeliczanie…',
+    recalculateConfirm:
+      'Przeliczyć wszystkie zapisane analizy według aktualnej heurystyki? Bez e-maili i bez nowych zapytań.',
+    recalculateDone:
+      'Gotowe: {total} zapytań · {updated} zaktualizowanych · {unchanged} bez zmian · {skipped} pominiętych.',
+    recalculateFailed: 'Nie udało się przeliczyć analiz.',
     email: 'Email',
     tipo: 'Typ',
     nivel: 'Poziom',

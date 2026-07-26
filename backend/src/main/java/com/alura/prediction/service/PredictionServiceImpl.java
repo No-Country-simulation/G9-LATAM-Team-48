@@ -39,4 +39,12 @@ public class PredictionServiceImpl implements PredictionService {
     public PredictionResponse analyze(Map<String, Object> features) {
         return classify(new PredictionRequest(null, features));
     }
+
+    @Override
+    public PredictionResponse analyzeHeuristic(Map<String, Object> features) {
+        if (features == null || features.isEmpty()) {
+            throw new IllegalArgumentException("features are required");
+        }
+        return HeuristicPrediction.fromFeatures(features);
+    }
 }

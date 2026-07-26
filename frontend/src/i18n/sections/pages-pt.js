@@ -267,6 +267,13 @@ export const pagesPt = {
     title: 'Análise IA — histórico',
     subtitle: 'Consultas salvas por usuários autenticados.',
     refresh: 'Atualizar',
+    recalculate: 'Recalcular com regras atuais',
+    recalculating: 'Recalculando…',
+    recalculateConfirm:
+      'Recalcular todas as análises salvas com a heurística atual? Não envia emails nem cria consultas novas.',
+    recalculateDone:
+      'Pronto: {total} consultas · {updated} atualizadas · {unchanged} sem mudanças · {skipped} omitidas.',
+    recalculateFailed: 'Não foi possível recalcular as análises.',
     email: 'Email',
     tipo: 'Tipo',
     nivel: 'Nível',
