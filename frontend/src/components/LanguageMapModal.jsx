@@ -8,8 +8,10 @@ import { useAnnounce } from './SrAnnouncer'
 function LanguageMapModal({ show, onHide }) {
   const { t, locale, setLocale } = useLocale()
   const announce = useAnnounce()
+  const stageRef = useRef(null)
   const lastAnnouncedKey = useRef(null)
   const [hoveredId, setHoveredId] = useState(null)
+  const [tipPos, setTipPos] = useState({ x: 0, y: 0, visible: false })
 
   const hovered = useMemo(
     () => WORLD_COUNTRIES.find((c) => c.id === hoveredId) || null,
@@ -65,6 +67,32 @@ function LanguageMapModal({ show, onHide }) {
     }
   }, [hovered, hoveredLocale, focusMeta, announce, t])
 
+  function updateTipFromEvent(event) {
+    const stage = stageRef.current
+    if (!stage) return
+    const rect = stage.getBoundingClientRect()
+    const cursorX = event.clientX - rect.left
+    const cursorY = event.clientY - rect.top
+    const tipW = 150
+    const tipH = 44
+    const pad = 10
+    let left = cursorX + 14
+    let top = cursorY - tipH - 10
+
+    if (top < pad) top = cursorY + 16
+    if (left + tipW > rect.width - pad) left = cursorX - tipW - 12
+    if (left < pad) left = pad
+    if (top + tipH > rect.height - pad) top = rect.height - tipH - pad
+    if (top < pad) top = pad
+
+    setTipPos({ x: left, y: top, visible: true })
+  }
+
+  function clearHover() {
+    setHoveredId(null)
+    setTipPos((prev) => ({ ...prev, visible: false }))
+  }
+
   function chooseLocale(code) {
     if (!code) return
     const meta = getLanguageMeta(code)
@@ -86,6 +114,10 @@ function LanguageMapModal({ show, onHide }) {
     if (!country.locale) return
     chooseLocale(country.locale)
   }
+
+  const tipTitle = focusMeta
+    ? `${focusMeta.label} · ${focusMeta.name}`
+    : t('common.noLanguageMapped', 'Sin idioma en la app')
 
   return (
     <Modal
@@ -109,8 +141,9 @@ function LanguageMapModal({ show, onHide }) {
         </p>
 
         <div
+          ref={stageRef}
           className="language-map-stage"
-          onMouseLeave={() => setHoveredId(null)}
+          onMouseLeave={clearHover}
         >
           <div className="language-map-topbar">
             <h2 className="language-map-title h6 mb-0" id="language-map-heading">
@@ -144,6 +177,18 @@ function LanguageMapModal({ show, onHide }) {
               </div>
             )}
           </aside>
+
+          {tipPos.visible && hovered && (
+            <div
+              className={`language-map-tip${
+                hoveredLocale ? ' is-mapped' : ' is-muted'
+              }`}
+              style={{ left: tipPos.x, top: tipPos.y }}
+              aria-hidden="true"
+            >
+              <strong>{tipTitle}</strong>
+            </div>
+          )}
 
           <svg
             className="language-map-svg"
@@ -224,7 +269,11 @@ function LanguageMapModal({ show, onHide }) {
                         ? `${country.name} — ${meta.label} ${meta.name}`
                         : country.name
                     }
-                    onMouseEnter={() => setHoveredId(country.id)}
+                    onMouseEnter={(event) => {
+                      setHoveredId(country.id)
+                      updateTipFromEvent(event)
+                    }}
+                    onMouseMove={updateTipFromEvent}
                     onFocus={() => hasLocale && setHoveredId(country.id)}
                     onBlur={() =>
                       setHoveredId((id) => (id === country.id ? null : id))
