@@ -884,6 +884,14 @@ button:focus-visible .header-theme-icon--moon {
   fill: #3a4d63;
 }
 
+.language-map-stage.is-touch .language-map-country.is-mapped {
+  cursor: pointer;
+}
+
+.language-map-stage.is-touch .language-map-tip {
+  display: none;
+}
+
 .language-map-country.is-mapped {
   fill: var(--lang-map-mapped);
   stroke: var(--lang-map-mapped-stroke);
