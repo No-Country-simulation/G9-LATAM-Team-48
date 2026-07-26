@@ -678,6 +678,35 @@ button:focus-visible .header-theme-icon--moon {
   color: var(--bs-secondary-color);
 }
 
+.language-map-tip {
+  position: absolute;
+  z-index: 5;
+  padding: 0.4rem 0.65rem;
+  border-radius: 0.45rem;
+  border: 1px solid var(--bs-border-color);
+  background: color-mix(in srgb, var(--bs-body-bg) 94%, transparent);
+  box-shadow: 0 0.3rem 0.85rem rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+  white-space: nowrap;
+  max-width: calc(100% - 1.25rem);
+}
+
+.language-map-tip strong {
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--bs-heading-color, var(--bs-body-color));
+}
+
+.language-map-tip.is-mapped {
+  border-color: color-mix(in srgb, var(--bs-warning) 55%, var(--bs-border-color));
+}
+
+.language-map-tip.is-muted {
+  opacity: 0.95;
+}
+
 [data-bs-theme='dark'] .language-map-svg {
   --lang-map-ocean-top: #16324f;
   --lang-map-ocean-bottom: #0d1f33;
