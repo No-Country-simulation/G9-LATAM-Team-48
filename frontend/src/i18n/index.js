@@ -22,13 +22,27 @@ import { pagesRo } from './sections/pages-ro.js'
 import { pagesCa } from './sections/pages-ca.js'
 import { pagesTr } from './sections/pages-tr.js'
 
+import packAr from './packs/ar.js'
+import packZh from './packs/zh.js'
+import packJa from './packs/ja.js'
+import packRu from './packs/ru.js'
+import packHi from './packs/hi.js'
+import packUk from './packs/uk.js'
+import packVi from './packs/vi.js'
+import packId from './packs/id.js'
+import packKo from './packs/ko.js'
+import packSv from './packs/sv.js'
+
 import { APP_LANGUAGES, LOCALES, getLanguageMeta } from './languages'
+import { deepMerge } from './deepMerge'
 
 export { LOCALES, APP_LANGUAGES, getLanguageMeta }
 
+const enBase = { ...en, ...pagesEn }
+
 const fullDictionaries = {
   es: { ...es, ...pagesEs },
-  en: { ...en, ...pagesEn },
+  en: enBase,
   pt: { ...pt, ...pagesPt },
   fr: { ...fr, ...pagesFr },
   it: { ...it, ...pagesIt },
@@ -38,6 +52,16 @@ const fullDictionaries = {
   ro: { ...ro, ...pagesRo },
   ca: { ...ca, ...pagesCa },
   tr: { ...tr, ...pagesTr },
+  ar: deepMerge(enBase, packAr),
+  zh: deepMerge(enBase, packZh),
+  ja: deepMerge(enBase, packJa),
+  ru: deepMerge(enBase, packRu),
+  hi: deepMerge(enBase, packHi),
+  uk: deepMerge(enBase, packUk),
+  vi: deepMerge(enBase, packVi),
+  id: deepMerge(enBase, packId),
+  ko: deepMerge(enBase, packKo),
+  sv: deepMerge(enBase, packSv),
 }
 
 const localeSet = new Set(LOCALES.map((item) => item.code))
@@ -53,7 +77,6 @@ export function detectLocale() {
   }
 
   const lang = (navigator.language || 'es').toLowerCase()
-  // Prefijos más largos primero (zh-CN, pt-BR, etc.)
   const sorted = [...APP_LANGUAGES].sort(
     (a, b) => b.code.length - a.code.length,
   )
@@ -62,7 +85,6 @@ export function detectLocale() {
       return item.code
     }
   }
-  // Casos especiales del navegador
   if (lang.startsWith('zh')) return 'zh'
   if (lang.startsWith('nb') || lang.startsWith('nn')) return 'no'
   if (lang.startsWith('fil')) return 'tl'

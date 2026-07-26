@@ -13,7 +13,17 @@ function LanguageMapModal({ show, onHide }) {
     [hoveredId],
   )
 
-  const hoveredMeta = hovered?.locale ? getLanguageMeta(hovered.locale) : null
+  const selectedCountries = useMemo(
+    () => WORLD_COUNTRIES.filter((c) => c.locale === locale),
+    [locale],
+  )
+
+  const selectedMeta = getLanguageMeta(locale)
+
+  const focusCountry = hovered || selectedCountries[0] || null
+  const focusMeta = focusCountry?.locale
+    ? getLanguageMeta(focusCountry.locale)
+    : selectedMeta
 
   const sortedCountries = useMemo(() => {
     return [...WORLD_COUNTRIES].sort((a, b) => {
@@ -59,121 +69,136 @@ function LanguageMapModal({ show, onHide }) {
           )}
         </p>
 
-        <div
-          className="language-map-stage"
-          onMouseLeave={() => setHoveredId(null)}
-        >
-          <svg
-            className="language-map-svg"
-            viewBox={WORLD_MAP_VIEWBOX}
-            role="img"
-            aria-label={t('common.chooseLanguage', 'Elegí un idioma')}
-          >
-            <defs>
-              <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="var(--lang-map-ocean-top)" />
-                <stop offset="100%" stopColor="var(--lang-map-ocean-bottom)" />
-              </linearGradient>
-            </defs>
-
-            <rect width="1000" height="500" fill="url(#oceanGrad)" rx="14" />
-
-            <g className="language-map-grid" aria-hidden="true">
-              {[62.5, 125, 187.5, 250, 312.5, 375, 437.5].map((y) => (
-                <line
-                  key={`h${y}`}
-                  x1="0"
-                  y1={y}
-                  x2="1000"
-                  y2={y}
-                  stroke="currentColor"
-                  strokeWidth="0.6"
-                />
-              ))}
-              {[125, 250, 375, 500, 625, 750, 875].map((x) => (
-                <line
-                  key={`v${x}`}
-                  x1={x}
-                  y1="0"
-                  x2={x}
-                  y2="500"
-                  stroke="currentColor"
-                  strokeWidth="0.6"
-                />
-              ))}
-            </g>
-
-            <g className="language-map-countries">
-              {sortedCountries.map((country) => {
-                const hasLocale = Boolean(country.locale)
-                const isSelected = hasLocale && country.locale === locale
-                const isHovered = country.id === hoveredId
-                const meta = hasLocale ? getLanguageMeta(country.locale) : null
-                const className = [
-                  'language-map-country',
-                  hasLocale ? 'is-mapped' : 'is-muted',
-                  isSelected ? 'is-selected' : '',
-                  isHovered ? 'is-hovered' : '',
-                ]
-                  .filter(Boolean)
-                  .join(' ')
-
-                return (
-                  <path
-                    key={country.id}
-                    d={country.d}
-                    className={className}
-                    data-locale={country.locale || undefined}
-                    tabIndex={hasLocale ? 0 : undefined}
-                    role={hasLocale ? 'button' : undefined}
-                    aria-label={
-                      hasLocale
-                        ? `${country.name} — ${meta.label} ${meta.name}`
-                        : country.name
-                    }
-                    onMouseEnter={() => setHoveredId(country.id)}
-                    onFocus={() => hasLocale && setHoveredId(country.id)}
-                    onBlur={() =>
-                      setHoveredId((id) => (id === country.id ? null : id))
-                    }
-                    onClick={() => onCountryClick(country)}
-                    onKeyDown={(event) => {
-                      if (!hasLocale) return
-                      if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault()
-                        onCountryClick(country)
-                      }
-                    }}
-                  />
-                )
-              })}
-            </g>
-          </svg>
-
-          {hovered && (
-            <div className="language-map-tooltip" role="status">
-              <strong>{hovered.name}</strong>
-              {hoveredMeta ? (
-                <>
-                  <span>
-                    {hoveredMeta.label} — {hoveredMeta.name}
-                  </span>
-                  {!hoveredMeta.fullUi && (
-                    <span className="small text-muted">
-                      {t(
-                        'common.partialTranslation',
-                        'Traducción parcial (UI en inglés)',
-                      )}
-                    </span>
-                  )}
-                </>
-              ) : (
-                <span className="text-muted">
-                  {t('common.noLanguageMapped', 'Sin idioma en la app')}
-                </span>
-              )}
+        <div className="language-map-layout">
+          <aside className="language-map-side" aria-live="polite">
+            <div className="language-map-side-label">
+              {hovered
+                ? t('common.mapHoverLabel', 'Al pasar el mouse')
+                : t('common.mapSelectedLabel', 'Idioma actual')}
             </div>
-          )}
+            <div className="language-map-side-code">
+              {focusMeta?.label || '—'}
+            </div>
+            <div className="language-map-side-name">
+              {focusMeta?.name || '—'}
+            </div>
+            <div className="language-map-side-country">
+              {hovered
+                ? hovered.name
+                : selectedCountries.length > 1
+                  ? t('common.mapSelectedCountries', '{count} países').replace(
+                      '{count}',
+                      String(selectedCountries.length),
+                    )
+                  : focusCountry?.name ||
+                    t('common.mapPickCountry', 'Elegí un país en el mapa')}
+            </div>
+            {focusMeta && !focusMeta.fullUi && (
+              <div className="language-map-side-note">
+                {t(
+                  'common.partialTranslation',
+                  'Traducción parcial (UI en inglés)',
+                )}
+              </div>
+            )}
+          </aside>
+
+          <div
+            className="language-map-stage"
+            onMouseLeave={() => setHoveredId(null)}
+          >
+            <svg
+              className="language-map-svg"
+              viewBox={WORLD_MAP_VIEWBOX}
+              role="img"
+              aria-label={t('common.chooseLanguage', 'Elegí un idioma')}
+            >
+              <defs>
+                <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="var(--lang-map-ocean-top)" />
+                  <stop
+                    offset="100%"
+                    stopColor="var(--lang-map-ocean-bottom)"
+                  />
+                </linearGradient>
+              </defs>
+
+              <rect width="1000" height="500" fill="url(#oceanGrad)" rx="14" />
+
+              <g className="language-map-grid" aria-hidden="true">
+                {[62.5, 125, 187.5, 250, 312.5, 375, 437.5].map((y) => (
+                  <line
+                    key={`h${y}`}
+                    x1="0"
+                    y1={y}
+                    x2="1000"
+                    y2={y}
+                    stroke="currentColor"
+                    strokeWidth="0.6"
+                  />
+                ))}
+                {[125, 250, 375, 500, 625, 750, 875].map((x) => (
+                  <line
+                    key={`v${x}`}
+                    x1={x}
+                    y1="0"
+                    x2={x}
+                    y2="500"
+                    stroke="currentColor"
+                    strokeWidth="0.6"
+                  />
+                ))}
+              </g>
+
+              <g className="language-map-countries">
+                {sortedCountries.map((country) => {
+                  const hasLocale = Boolean(country.locale)
+                  const isSelected = hasLocale && country.locale === locale
+                  const isHovered = country.id === hoveredId
+                  const meta = hasLocale
+                    ? getLanguageMeta(country.locale)
+                    : null
+                  const className = [
+                    'language-map-country',
+                    hasLocale ? 'is-mapped' : 'is-muted',
+                    isSelected ? 'is-selected' : '',
+                    isHovered ? 'is-hovered' : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')
+
+                  return (
+                    <path
+                      key={country.id}
+                      d={country.d}
+                      className={className}
+                      data-locale={country.locale || undefined}
+                      tabIndex={hasLocale ? 0 : undefined}
+                      role={hasLocale ? 'button' : undefined}
+                      aria-label={
+                        hasLocale
+                          ? `${country.name} — ${meta.label} ${meta.name}`
+                          : country.name
+                      }
+                      onMouseEnter={() => setHoveredId(country.id)}
+                      onFocus={() => hasLocale && setHoveredId(country.id)}
+                      onBlur={() =>
+                        setHoveredId((id) => (id === country.id ? null : id))
+                      }
+                      onClick={() => onCountryClick(country)}
+                      onKeyDown={(event) => {
+                        if (!hasLocale) return
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault()
+                          onCountryClick(country)
+                        }
+                      }}
+                    />
+                  )
+                })}
+              </g>
+            </svg>
+          </div>
         </div>
       </Modal.Body>
     </Modal>

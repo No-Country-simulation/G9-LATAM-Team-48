@@ -13,6 +13,10 @@ export default {
     chooseLanguageMapHint: 'Hover a country and click to choose its language.',
     noLanguageMapped: 'No language in the app',
     partialTranslation: 'Partial translation (UI in English)',
+    mapHoverLabel: 'On hover',
+    mapSelectedLabel: 'Current language',
+    mapSelectedCountries: '{count} countries',
+    mapPickCountry: 'Pick a country on the map',
     languages: {
       es: 'Spanish',
       en: 'English',
