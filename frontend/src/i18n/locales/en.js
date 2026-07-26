@@ -10,7 +10,8 @@ export default {
     language: 'Language',
     chooseLanguage: 'Choose a language',
     chooseLanguageHint: 'Tap a pin on the map or pick a language from the list.',
-    chooseLanguageMapHint: 'Hover a country and click to choose its language.',
+    chooseLanguageMapHint:
+      'Tap a country and confirm the language in the window.',
     noLanguageMapped: 'No language in the app',
     partialTranslation: 'Partial translation (English)',
     mapHoverLabel: 'On hover',
