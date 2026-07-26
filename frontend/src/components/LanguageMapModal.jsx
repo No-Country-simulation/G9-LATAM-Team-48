@@ -80,9 +80,24 @@ function LanguageMapModal({ show, onHide }) {
     const stage = stageRef.current
     if (!stage) return
     const rect = stage.getBoundingClientRect()
-    const x = event.clientX - rect.left
-    const y = event.clientY - rect.top
-    setTipPos({ x, y, visible: true })
+    const cursorX = event.clientX - rect.left
+    const cursorY = event.clientY - rect.top
+    const tipW = 168
+    const tipH = 58
+    const pad = 10
+    let left = cursorX + 14
+    let top = cursorY + 16
+
+    if (left + tipW > rect.width - pad) {
+      left = cursorX - tipW - 12
+    }
+    if (top + tipH > rect.height - pad) {
+      top = cursorY - tipH - 12
+    }
+    if (left < pad) left = pad
+    if (top < pad) top = pad
+
+    setTipPos({ x: left, y: top, visible: true })
   }
 
   function clearHover() {
@@ -211,6 +226,11 @@ function LanguageMapModal({ show, onHide }) {
             >
               <strong>{tipLanguage}</strong>
               <span>{hovered.name}</span>
+              {hoveredLocale ? (
+                <em className="language-map-tip-hint">
+                  {t('common.mapClickToChoose', 'Click para elegir este idioma')}
+                </em>
+              ) : null}
             </div>
           )}
 
