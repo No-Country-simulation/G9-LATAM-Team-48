@@ -14,6 +14,10 @@ export default {
       'Pasá el mouse por un país y hacé click para elegir su idioma.',
     noLanguageMapped: 'Sin idioma en la app',
     partialTranslation: 'Traducción parcial (UI en inglés)',
+    mapHoverLabel: 'Al pasar el mouse',
+    mapSelectedLabel: 'Idioma actual',
+    mapSelectedCountries: '{count} países',
+    mapPickCountry: 'Elegí un país en el mapa',
     languages: {
       es: 'Español',
       en: 'Inglés',
