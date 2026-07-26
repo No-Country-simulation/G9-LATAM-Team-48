@@ -479,6 +479,116 @@ body,
   overflow-y: auto;
 }
 
+.header-lang-code {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.header-lang-name {
+  max-width: 7.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header-user-name {
+  max-width: 9rem;
+}
+
+.language-map-modal {
+  border: 0;
+  overflow: hidden;
+}
+
+.language-map-stage {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--bs-border-color);
+  background: var(--bs-body-bg);
+}
+
+.language-map-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--bs-body-color);
+  --lang-map-ocean-top: #9ec5fe;
+  --lang-map-ocean-bottom: #6ea8fe;
+  --lang-map-land: #a3cfbb;
+  --lang-map-land-deep: #75b798;
+}
+
+[data-bs-theme='dark'] .language-map-svg {
+  --lang-map-ocean-top: #1b3a57;
+  --lang-map-ocean-bottom: #12263a;
+  --lang-map-land: #3d6b55;
+  --lang-map-land-deep: #2f5242;
+}
+
+.language-map-pin-dot {
+  fill: #0d6efd;
+  stroke: #fff;
+  stroke-width: 2;
+  transition: r 120ms ease, fill 120ms ease;
+}
+
+.language-map-pin.is-active .language-map-pin-dot {
+  fill: #198754;
+}
+
+.language-map-pin-label {
+  fill: var(--bs-body-color);
+  font-size: 13px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: var(--bs-body-bg);
+  stroke-width: 3px;
+  pointer-events: none;
+}
+
+.language-map-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.language-map-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--bs-border-color);
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+}
+
+.language-map-chip:hover,
+.language-map-chip:focus-visible {
+  border-color: #0d6efd;
+  outline: none;
+}
+
+.language-map-chip.is-active {
+  background: #0d6efd;
+  border-color: #0d6efd;
+  color: #fff;
+}
+
+.language-map-chip-code {
+  font-weight: 700;
+}
+
+.language-map-chip-name {
+  opacity: 0.9;
+}
+
 /* ===== Responsive: barra angosta solo con iconos ===== */
 @media (min-width: 768px) and (max-width: 991.98px) {
   .app-sidebar {
