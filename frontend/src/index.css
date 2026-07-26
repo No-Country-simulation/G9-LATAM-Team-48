@@ -645,6 +645,55 @@ button:focus-visible .header-theme-icon--moon {
   pointer-events: none;
 }
 
+@media (max-width: 575.98px) {
+  .language-map-side {
+    left: 50%;
+    right: auto;
+    bottom: 0.45rem;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: calc(100% - 1rem);
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.2rem 0.45rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 0.55rem;
+  }
+
+  .language-map-side-label {
+    display: none;
+  }
+
+  .language-map-side-code {
+    font-size: 0.95rem;
+    line-height: 1.2;
+  }
+
+  .language-map-side-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .language-map-side-note {
+    flex-basis: 100%;
+    margin-top: 0;
+    text-align: center;
+    font-size: 0.65rem;
+  }
+
+  .language-map-tip {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .language-map-tip strong {
+    font-size: 0.75rem;
+  }
+}
+
 .language-map-side-label {
   font-size: 0.7rem;
   text-transform: uppercase;
