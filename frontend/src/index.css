@@ -756,6 +756,7 @@ button:focus-visible .header-theme-icon--moon {
   stroke: var(--lang-map-mapped-stroke);
   stroke-width: 0.55;
   cursor: pointer;
+  pointer-events: all;
 }
 
 .language-map-country.is-mapped:focus-visible {
@@ -764,10 +765,10 @@ button:focus-visible .header-theme-icon--moon {
 }
 
 .language-map-country.is-mapped.is-hovered {
-  fill: var(--lang-map-hover);
-  stroke: var(--lang-map-hover-stroke);
-  stroke-width: 1.15;
-  filter: brightness(1.12);
+  fill: #ffc107 !important;
+  stroke: rgba(120, 80, 0, 0.7) !important;
+  stroke-width: 1.2;
+  filter: brightness(1.08);
 }
 
 .language-map-country.is-mapped.is-selected {
@@ -777,8 +778,8 @@ button:focus-visible .header-theme-icon--moon {
 }
 
 .language-map-country.is-mapped.is-selected.is-hovered {
-  fill: var(--lang-map-hover);
-  stroke: var(--lang-map-hover-stroke);
+  fill: #ffc107 !important;
+  stroke: rgba(120, 80, 0, 0.7) !important;
 }
 
 .language-map-chips {
