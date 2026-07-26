@@ -7,7 +7,8 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "screenshots": "node scripts/capture-screenshots.mjs"
+        "screenshots": "node scripts/capture-screenshots.mjs",
+        "bake:world-map": "node scripts/bake-world-map.mjs"
     },
     "dependencies": {
         "axios": "^1.18.1",

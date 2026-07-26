@@ -102,9 +102,17 @@ function Header({ onMenuOpen, onLoginClick }) {
               }
             >
               {theme === 'dark' ? (
-                <LuSun size={16} aria-hidden="true" />
+                <LuSun
+                  size={18}
+                  className="header-theme-icon header-theme-icon--sun"
+                  aria-hidden="true"
+                />
               ) : (
-                <LuMoon size={16} aria-hidden="true" />
+                <LuMoon
+                  size={18}
+                  className="header-theme-icon header-theme-icon--moon"
+                  aria-hidden="true"
+                />
               )}
             </button>
 
@@ -116,12 +124,7 @@ function Header({ onMenuOpen, onLoginClick }) {
 
             {isAuthenticated ? (
               <>
-                <span
-                  className={`d-none d-sm-inline small text-truncate header-user-name ${
-                    theme === 'dark' ? 'text-white' : 'text-dark'
-                  }`}
-                  title={displayName}
-                >
+                <span className="d-none d-sm-inline header-user-name" title={displayName}>
                   {displayName}
                 </span>
 
