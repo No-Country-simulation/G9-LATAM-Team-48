@@ -162,9 +162,11 @@ function LanguageMapModal({ show, onHide }) {
 
   function onCountryClick(country, event) {
     if (!country.locale) return
+    const pointerType = event?.pointerType
     const touchLike =
+      pointerType === 'touch' ||
+      pointerType === 'pen' ||
       isMobile ||
-      event?.pointerType === 'touch' ||
       (typeof window !== 'undefined' &&
         window.matchMedia('(pointer: coarse)').matches)
 
@@ -180,6 +182,34 @@ function LanguageMapModal({ show, onHide }) {
     }
 
     applyLocale(country.locale)
+  }
+
+  // Evita que el primer tap en celular solo active hover y se pierda el click.
+  const lastTouchSelectRef = useRef(0)
+
+  function onCountryPointerUp(country, event) {
+    if (!country.locale) return
+    if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return
+    event.preventDefault()
+    event.stopPropagation()
+    const now = Date.now()
+    if (now - lastTouchSelectRef.current < 350) return
+    lastTouchSelectRef.current = now
+    onCountryClick(country, event)
+  }
+
+  function onCountryMouseEnter(country, event) {
+    // En touch, mouseenter sintético re-renderiza y cancela el click del primer toque.
+    if (
+      event.pointerType === 'touch' ||
+      event.pointerType === 'pen' ||
+      (typeof window !== 'undefined' &&
+        window.matchMedia('(pointer: coarse)').matches)
+    ) {
+      return
+    }
+    setHoveredId(country.id)
+    updateTipFromEvent(event)
   }
 
   const tipTitle = tipMeta
@@ -412,16 +442,31 @@ function LanguageMapModal({ show, onHide }) {
                         ? `${country.name} — ${meta.label} ${meta.name}`
                         : country.name
                     }
-                    onMouseEnter={(event) => {
-                      setHoveredId(country.id)
+                    onMouseEnter={(event) => onCountryMouseEnter(country, event)}
+                    onMouseMove={(event) => {
+                      if (
+                        event.pointerType === 'touch' ||
+                        event.pointerType === 'pen'
+                      ) {
+                        return
+                      }
                       updateTipFromEvent(event)
                     }}
-                    onMouseMove={updateTipFromEvent}
                     onFocus={() => hasLocale && setHoveredId(country.id)}
                     onBlur={() =>
                       setHoveredId((id) => (id === country.id ? null : id))
                     }
-                    onClick={(event) => onCountryClick(country, event)}
+                    onPointerUp={(event) => onCountryPointerUp(country, event)}
+                    onClick={(event) => {
+                      if (
+                        event.pointerType === 'touch' ||
+                        event.pointerType === 'pen'
+                      ) {
+                        event.preventDefault()
+                        return
+                      }
+                      onCountryClick(country, event)
+                    }}
                     onKeyDown={(event) => {
                       if (!hasLocale) return
                       if (event.key === 'Enter' || event.key === ' ') {

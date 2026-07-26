@@ -859,6 +859,8 @@ button:focus-visible .header-theme-icon--moon {
 .language-map-country {
   stroke-linejoin: round;
   stroke-linecap: round;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   transition:
     fill 120ms ease,
     stroke 120ms ease,
