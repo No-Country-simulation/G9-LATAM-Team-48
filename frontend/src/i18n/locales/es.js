@@ -22,6 +22,7 @@ export default {
     mapClickToChoose: 'Click para elegir este idioma',
     mapConfirmLanguage: 'Usar este idioma',
     mapTapToSelect: 'Tocá el idioma para seleccionarlo',
+    cancel: 'Cancelar',
     languages: {
       es: 'Español',
       en: 'Inglés',
