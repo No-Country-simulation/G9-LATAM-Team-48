@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
-import { LuEye, LuMail } from 'react-icons/lu'
+import { LuEye, LuMail, LuRotateCcw } from 'react-icons/lu'
 import {
   listMisAnalisis,
   reenviarEmailAnalisis,
 } from '../services/historiaConsumosService'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
+import { useNavigation } from '../context/NavigationContext'
 import Loader from '../components/Loader'
 import EmptyState from '../components/EmptyState'
 import GraficoHistoriaConsumo from '../components/GraficoHistoriaConsumo'
 import GraficosHistoriaExtra from '../components/GraficosHistoriaExtra'
+import { draftFromRequest, saveAnalisisDraft } from '../utils/analisisDraft'
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -196,12 +198,24 @@ function tipKeysFrom(detail) {
 function HistoriaConsumos() {
   const { t, locale } = useLocale()
   const { token, openLogin, hydrating } = useAuth()
+  const { setPagina } = useNavigation()
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [detail, setDetail] = useState(null)
   const [mailBusyId, setMailBusyId] = useState(null)
   const [mailMessage, setMailMessage] = useState(null)
+
+  function goToAnalisis() {
+    setPagina('ia')
+  }
+
+  function handleRepeatAnalysis(row) {
+    const draft = draftFromRequest(row?.requestJson || {})
+    saveAnalisisDraft(draft)
+    setDetail(null)
+    setPagina('ia')
+  }
 
   async function load() {
     setLoading(true)
@@ -324,7 +338,11 @@ function HistoriaConsumos() {
       )}
 
       {!loading && !error && rows.length === 0 && (
-        <EmptyState mensaje={t('historiaConsumos.empty')} />
+        <EmptyState
+          mensaje={t('historiaConsumos.empty')}
+          actionLabel={t('historiaConsumos.goToAnalysis', 'Ir a Análisis IA')}
+          onAction={goToAnalisis}
+        />
       )}
 
       {!loading && !error && rows.length > 0 && (
@@ -489,6 +507,18 @@ function HistoriaConsumos() {
             </>
           )}
         </Modal.Body>
+        {detail && (
+          <Modal.Footer>
+            <button
+              type="button"
+              className="btn btn-primary btn-sm d-inline-flex align-items-center gap-1"
+              onClick={() => handleRepeatAnalysis(detail)}
+            >
+              <LuRotateCcw size={16} aria-hidden="true" />
+              {t('historiaConsumos.repeatAnalysis', 'Repetir análisis')}
+            </button>
+          </Modal.Footer>
+        )}
       </Modal>
     </div>
   )

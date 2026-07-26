@@ -11,6 +11,7 @@ import {
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { analyticsMock } from '../data/analyticsMock'
+import DemoSampleBadge from './DemoSampleBadge'
 
 function buildSeries(t) {
   return analyticsMock.months.map((month, index) => ({
@@ -33,7 +34,10 @@ function GraficoRealVsPrediccion() {
   return (
     <div className="card shadow mt-4 mt-xl-0 w-100 h-100">
       <div className="card-body d-flex flex-column h-100">
-        <h4 className="mb-1">{t('chart.actualVsPredicted')}</h4>
+        <h4 className="mb-1 d-flex flex-wrap align-items-center gap-2">
+          <span>{t('chart.actualVsPredicted')}</span>
+          <DemoSampleBadge />
+        </h4>
         <p className="text-muted small mb-3">{t('chart.actualVsPredictedHint')}</p>
 
         <div className="flex-grow-1" style={{ minHeight: 300 }}>

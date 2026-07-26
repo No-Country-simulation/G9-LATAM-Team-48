@@ -13,6 +13,10 @@ function MainLayout({ children, pagina, setPagina, onAuthSuccess }) {
 
   return (
     <div className="app-layout">
+      <a href="#main-content" className="skip-link">
+        {t('common.skipToContent', 'Saltar al contenido')}
+      </a>
+
       <Header
         onMenuOpen={() => setMenuOpen(true)}
         onLoginClick={openLogin}
@@ -51,7 +55,9 @@ function MainLayout({ children, pagina, setPagina, onAuthSuccess }) {
           <Sidebar pagina={pagina} setPagina={setPagina} />
         </aside>
 
-        <main className="app-main p-3 p-md-4">{children}</main>
+        <main id="main-content" className="app-main p-3 p-md-4" tabIndex={-1}>
+          {children}
+        </main>
       </div>
     </div>
   )

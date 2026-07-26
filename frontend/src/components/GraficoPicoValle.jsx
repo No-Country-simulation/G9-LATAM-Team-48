@@ -11,6 +11,7 @@ import {
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { analyticsMock } from '../data/analyticsMock'
+import DemoSampleBadge from './DemoSampleBadge'
 
 function buildSeries(t) {
   return analyticsMock.months.map((month, index) => ({
@@ -36,7 +37,10 @@ function GraficoPicoValle() {
     <div className="card shadow mt-4 mt-xl-0 w-100 h-100">
       <div className="card-body d-flex flex-column h-100">
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-start gap-2 mb-1">
-          <h4 className="mb-0">{t('chart.peakVsOffPeak')}</h4>
+          <h4 className="mb-0 d-flex flex-wrap align-items-center gap-2">
+            <span>{t('chart.peakVsOffPeak')}</span>
+            <DemoSampleBadge />
+          </h4>
           <div className="d-flex flex-wrap gap-2">
             <span className="badge text-bg-primary">{categoryLabel}</span>
             <span className="badge text-bg-secondary">

@@ -5,6 +5,7 @@ import {
   logout as logoutRequest,
   register as registerRequest,
 } from '../services/authService'
+import api, { setupUnauthorizedInterceptor } from '../services/api'
 import {
   TOKEN_STORAGE_KEY,
   USER_STORAGE_KEY,
@@ -58,6 +59,18 @@ export function AuthProvider({ children }) {
     localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(profile))
     return profile
   }
+
+  // Sesión vencida en cualquier llamada autenticada → limpiar y abrir login
+  useEffect(() => {
+    const interceptorId = setupUnauthorizedInterceptor(() => {
+      clearSession(setUser, setToken)
+      setError(null)
+      setLoginOpen(true)
+    })
+    return () => {
+      api.interceptors.response.eject(interceptorId)
+    }
+  }, [])
 
   useEffect(() => {
     let cancelled = false

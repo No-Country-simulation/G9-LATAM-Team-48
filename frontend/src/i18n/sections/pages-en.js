@@ -15,6 +15,9 @@ export const pagesEn = {
     lastMonthUsage: 'Last month usage',
     lastMonthCost: 'Last month cost',
     monthlyAverage: 'Monthly average',
+    demoSample: 'Sample',
+    demoSampleHint:
+      'Sample data for the demo. It does not come from your real analyses.',
   },
   consumos: {
     title: 'Energy usage',
@@ -158,6 +161,14 @@ export const pagesEn = {
     emailHint: 'We will email the analysis to',
     emailPending: 'We will also email you this analysis shortly.',
     emailSent: 'We emailed you this analysis.',
+    prefilledFromHistory:
+      'We loaded the data from your previous query. You can edit it and analyze again.',
+    validation: {
+      consumoRequired: 'Enter a monthly usage greater than 0.',
+      areaInvalid: 'Area cannot be negative.',
+      peopleInvalid: 'Number of people cannot be negative.',
+      hoursRange: 'Use a value between 0 and 24.',
+    },
     chart: {
       title: 'Your usage vs benchmark',
       hint: 'The benchmark adjusts to the data you enter.',
@@ -326,6 +337,8 @@ export const pagesEn = {
     sessionInvalid:
       'Your session is not valid for the backend. Sign out and sign in again as admin.',
     loadFailed: 'Could not load analyses.',
+    empty: 'No saved analyses yet.',
+    goToAnalysis: 'Go to AI Analysis',
   },
   historiaConsumos: {
     title: 'Usage history',
@@ -362,6 +375,8 @@ export const pagesEn = {
     emailResent: 'Analysis sent by email.',
     emailResendFailed: 'Could not send the analysis by email.',
     empty: 'No saved analyses yet. Run an AI Analysis while signed in.',
+    goToAnalysis: 'Go to AI Analysis',
+    repeatAnalysis: 'Repeat analysis',
     loginRequired: 'Sign in to see your analysis history.',
     sessionInvalid: 'Your session is not valid. Sign out and sign in again to view history.',
     loadFailed: 'Could not load your analysis history.',

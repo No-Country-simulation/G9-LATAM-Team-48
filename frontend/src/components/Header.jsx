@@ -79,7 +79,11 @@ function Header({ onMenuOpen, onLoginClick }) {
             type="button"
             className={`btn btn-sm ${outlineClass}`}
             onClick={toggleTheme}
-            aria-label={t('common.themeLight')}
+            aria-label={
+              theme === 'dark'
+                ? t('common.themeLight')
+                : t('common.themeDark')
+            }
           >
             <span className="d-inline d-md-none">
               {theme === 'dark' ? '☀️' : '🌙'}
