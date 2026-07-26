@@ -126,9 +126,7 @@ function LanguageMapModal({ show, onHide }) {
 
           <aside className="language-map-side" aria-live="polite">
             <div className="language-map-side-label">
-              {hovered
-                ? t('common.mapHoverLabel', 'Al pasar el mouse')
-                : t('common.mapSelectedLabel', 'Idioma actual')}
+              {t('common.mapSelectedLabel', 'Idioma actual')}
             </div>
             <div className="language-map-side-code">
               {focusMeta?.label || '—'}
