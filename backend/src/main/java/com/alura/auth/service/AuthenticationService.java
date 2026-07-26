@@ -3,6 +3,7 @@ package com.alura.auth.service;
 import com.alura.auth.dto.AuthResponse;
 import com.alura.auth.dto.LoginRequest;
 import com.alura.auth.dto.RegisterRequest;
+import com.alura.auth.dto.RegisterResponse;
 import com.alura.common.constants.ApiConstants;
 import com.alura.common.exception.BusinessException;
 import com.alura.user.model.User;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Orquesta el proceso de registro y autenticacion de usuarios.
@@ -34,40 +36,54 @@ public class AuthenticationService {
     private final com.alura.security.jwt.JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
+    private final EmailVerificationService emailVerificationService;
 
     /**
-     * Registra un nuevo usuario y devuelve un token para uso inmediato.
+     * Registra un nuevo usuario sin emitir JWT: debe verificar el email primero.
      *
      * @throws BusinessException si el email ya esta registrado
      */
-    public AuthResponse register(RegisterRequest request) {
-        if (userRepository.findByEmail(request.email()).isPresent()) {
-            throw new BusinessException("El email ya esta registrado: " + request.email());
+    @Transactional
+    public RegisterResponse register(RegisterRequest request) {
+        String email = request.email().trim().toLowerCase();
+        if (userRepository.findByEmail(email).isPresent()) {
+            throw new BusinessException("El email ya esta registrado: " + email);
         }
 
         User user = User.builder()
-                .name(request.name())
-                .email(request.email())
+                .name(request.name().trim())
+                .email(email)
                 .password(passwordEncoder.encode(request.password()))
                 .role(DEFAULT_ROLE)
+                .emailVerifiedAt(null)
                 .build();
-        userRepository.save(user);
+        User saved = userRepository.save(user);
 
-        return buildToken(user.getEmail());
+        return emailVerificationService.issueForNewUser(saved);
     }
 
     /**
-     * Verifica las credenciales y devuelve un token si son validas.
+     * Verifica las credenciales y el email, y devuelve un token si son validas.
      *
      * <p>Si las credenciales son incorrectas, el {@link AuthenticationManager}
      * lanza {@code BadCredentialsException}, traducida a HTTP 401 por el
      * manejador global de excepciones.</p>
      */
     public AuthResponse login(LoginRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.email(), request.password()));
+        String email = request.email().trim().toLowerCase();
 
-        return buildToken(request.email());
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(email, request.password()));
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new BusinessException("Usuario no encontrado"));
+
+        if (!user.isEmailVerified()) {
+            throw new BusinessException(
+                    "Debes verificar tu email antes de iniciar sesion. Revisa tu correo.");
+        }
+
+        return buildToken(email);
     }
 
     private AuthResponse buildToken(String email) {

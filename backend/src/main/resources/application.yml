@@ -35,9 +35,8 @@ security:
 # ----------------------------------------------------------------------------
 prediction:
   api:
-    # TODO (URL FastAPI): URL base del microservicio de prediccion en Python.
+    # Microservicio ML (ml-service / FastAPI). Ver docs/backend/ANALISIS_IA.md
     base-url: ${PREDICTION_API_BASE_URL:http://localhost:8000}
-    # Timeout de las llamadas al servicio de prediccion (ms).
     timeout: ${PREDICTION_API_TIMEOUT:5000}
 
 # ----------------------------------------------------------------------------
