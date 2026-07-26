@@ -31,6 +31,7 @@ function LanguageMapModal({ show, onHide }) {
   const isMobile = useIsMobile()
   const stageRef = useRef(null)
   const lastAnnouncedKey = useRef(null)
+  const lastTouchSelectRef = useRef(0)
   const [hoveredId, setHoveredId] = useState(null)
   const [pendingLocale, setPendingLocale] = useState(null)
   const [tipPos, setTipPos] = useState({ x: 0, y: 0, visible: false })
@@ -44,18 +45,25 @@ function LanguageMapModal({ show, onHide }) {
   }, [show])
 
   useEffect(() => {
-    if (!isMobile) setPendingLocale(null)
+    if (isMobile) {
+      setHoveredId(null)
+      setTipPos((prev) => ({ ...prev, visible: false }))
+    } else {
+      setPendingLocale(null)
+    }
   }, [isMobile])
 
   const hovered = useMemo(
-    () => WORLD_COUNTRIES.find((c) => c.id === hoveredId) || null,
-    [hoveredId],
+    () =>
+      isMobile ? null : WORLD_COUNTRIES.find((c) => c.id === hoveredId) || null,
+    [hoveredId, isMobile],
   )
 
   const selectedMeta = getLanguageMeta(locale)
   const hoveredLocale = hovered?.locale || null
   const pendingMeta = pendingLocale ? getLanguageMeta(pendingLocale) : null
   const showLanguagePicker = Boolean(isMobile && pendingLocale)
+
   const sideMeta = showLanguagePicker
     ? selectedMeta
     : hovered
@@ -63,6 +71,7 @@ function LanguageMapModal({ show, onHide }) {
         ? getLanguageMeta(hoveredLocale)
         : null
       : selectedMeta
+
   const canApplyPending = Boolean(pendingLocale && pendingLocale !== locale)
 
   const tipMeta = hovered
@@ -74,19 +83,21 @@ function LanguageMapModal({ show, onHide }) {
   const sortedCountries = useMemo(() => {
     return [...WORLD_COUNTRIES].sort((a, b) => {
       const score = (country) => {
-        if (hoveredLocale && country.locale === hoveredLocale) return 5
+        if (!isMobile && hoveredLocale && country.locale === hoveredLocale) {
+          return 5
+        }
         if (pendingLocale && country.locale === pendingLocale) return 4
-        if (country.id === hoveredId) return 3
+        if (!isMobile && country.id === hoveredId) return 3
         if (country.locale && country.locale === locale) return 2
         if (country.locale) return 1
         return 0
       }
       return score(a) - score(b)
     })
-  }, [hoveredId, hoveredLocale, pendingLocale, locale])
+  }, [hoveredId, hoveredLocale, pendingLocale, locale, isMobile])
 
   useEffect(() => {
-    if (!hovered || showLanguagePicker) {
+    if (isMobile || !hovered) {
       lastAnnouncedKey.current = null
       return
     }
@@ -110,9 +121,10 @@ function LanguageMapModal({ show, onHide }) {
         )}`,
       )
     }
-  }, [hovered, hoveredLocale, tipMeta, announce, t, showLanguagePicker])
+  }, [hovered, hoveredLocale, tipMeta, announce, t, isMobile])
 
   function updateTipFromEvent(event) {
+    if (isMobile) return
     const stage = stageRef.current
     if (!stage) return
     const rect = stage.getBoundingClientRect()
@@ -160,13 +172,13 @@ function LanguageMapModal({ show, onHide }) {
     onHide()
   }
 
-  function onCountryClick(country, event) {
+  function proposeOrApplyLocale(country, event) {
     if (!country.locale) return
     const pointerType = event?.pointerType
     const touchLike =
+      isMobile ||
       pointerType === 'touch' ||
       pointerType === 'pen' ||
-      isMobile ||
       (typeof window !== 'undefined' &&
         window.matchMedia('(pointer: coarse)').matches)
 
@@ -184,9 +196,6 @@ function LanguageMapModal({ show, onHide }) {
     applyLocale(country.locale)
   }
 
-  // Evita que el primer tap en celular solo active hover y se pierda el click.
-  const lastTouchSelectRef = useRef(0)
-
   function onCountryPointerUp(country, event) {
     if (!country.locale) return
     if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return
@@ -195,21 +204,7 @@ function LanguageMapModal({ show, onHide }) {
     const now = Date.now()
     if (now - lastTouchSelectRef.current < 350) return
     lastTouchSelectRef.current = now
-    onCountryClick(country, event)
-  }
-
-  function onCountryMouseEnter(country, event) {
-    // En touch, mouseenter sintético re-renderiza y cancela el click del primer toque.
-    if (
-      event.pointerType === 'touch' ||
-      event.pointerType === 'pen' ||
-      (typeof window !== 'undefined' &&
-        window.matchMedia('(pointer: coarse)').matches)
-    ) {
-      return
-    }
-    setHoveredId(country.id)
-    updateTipFromEvent(event)
+    proposeOrApplyLocale(country, event)
   }
 
   const tipTitle = tipMeta
@@ -243,8 +238,8 @@ function LanguageMapModal({ show, onHide }) {
 
         <div
           ref={stageRef}
-          className="language-map-stage"
-          onMouseLeave={clearHover}
+          className={`language-map-stage${isMobile ? ' is-touch' : ''}`}
+          onMouseLeave={isMobile ? undefined : clearHover}
         >
           <div className="language-map-topbar">
             <h2 className="language-map-title h6 mb-0" id="language-map-heading">
@@ -325,7 +320,7 @@ function LanguageMapModal({ show, onHide }) {
             </div>
           )}
 
-          {tipPos.visible && hovered && !showLanguagePicker && (
+          {!isMobile && tipPos.visible && hovered && (
             <div
               className={`language-map-tip${
                 hoveredLocale ? ' is-mapped' : ' is-muted'
@@ -390,11 +385,12 @@ function LanguageMapModal({ show, onHide }) {
                   hasLocale &&
                   pendingLocale &&
                   country.locale === pendingLocale
-                const isHovered = hovered
-                  ? hoveredLocale
+                const isHovered =
+                  !isMobile &&
+                  hovered &&
+                  (hoveredLocale
                     ? country.locale === hoveredLocale
-                    : country.id === hoveredId
-                  : false
+                    : country.id === hoveredId)
                 const meta = hasLocale
                   ? getLanguageMeta(country.locale)
                   : null
@@ -442,19 +438,27 @@ function LanguageMapModal({ show, onHide }) {
                         ? `${country.name} — ${meta.label} ${meta.name}`
                         : country.name
                     }
-                    onMouseEnter={(event) => onCountryMouseEnter(country, event)}
-                    onMouseMove={(event) => {
-                      if (
-                        event.pointerType === 'touch' ||
-                        event.pointerType === 'pen'
-                      ) {
-                        return
-                      }
-                      updateTipFromEvent(event)
-                    }}
-                    onFocus={() => hasLocale && setHoveredId(country.id)}
-                    onBlur={() =>
-                      setHoveredId((id) => (id === country.id ? null : id))
+                    onMouseEnter={
+                      isMobile
+                        ? undefined
+                        : (event) => {
+                            setHoveredId(country.id)
+                            updateTipFromEvent(event)
+                          }
+                    }
+                    onMouseMove={isMobile ? undefined : updateTipFromEvent}
+                    onFocus={
+                      isMobile
+                        ? undefined
+                        : () => hasLocale && setHoveredId(country.id)
+                    }
+                    onBlur={
+                      isMobile
+                        ? undefined
+                        : () =>
+                            setHoveredId((id) =>
+                              id === country.id ? null : id,
+                            )
                     }
                     onPointerUp={(event) => onCountryPointerUp(country, event)}
                     onClick={(event) => {
@@ -465,13 +469,13 @@ function LanguageMapModal({ show, onHide }) {
                         event.preventDefault()
                         return
                       }
-                      onCountryClick(country, event)
+                      proposeOrApplyLocale(country, event)
                     }}
                     onKeyDown={(event) => {
                       if (!hasLocale) return
                       if (event.key === 'Enter' || event.key === ' ') {
                         event.preventDefault()
-                        onCountryClick(country, event)
+                        proposeOrApplyLocale(country, event)
                       }
                     }}
                   />
