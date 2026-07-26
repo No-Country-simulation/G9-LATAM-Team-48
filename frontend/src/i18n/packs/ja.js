@@ -13,7 +13,7 @@ export default {
     chooseLanguageHint: '地図上のピンをタップするか、リストから言語を選んでください。',
     chooseLanguageMapHint: '国にカーソルを合わせ、クリックしてその言語を選択します。',
     noLanguageMapped: 'アプリに対応言語がありません',
-    partialTranslation: '一部のみ翻訳（UI は英語）',
+    partialTranslation: '一部のみ翻訳（英語）',
     errorLoad: 'EnergIA を読み込めませんでした',
     reload: '再読み込み',
     rootMissing: '#root が見つかりません',

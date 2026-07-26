@@ -13,7 +13,7 @@ export default {
     chooseLanguageHint: 'Tryck på en markör på kartan eller välj ett språk i listan.',
     chooseLanguageMapHint: 'Håll muspekaren över ett land och klicka för att välja dess språk.',
     noLanguageMapped: 'Inget språk i appen',
-    partialTranslation: 'Delvis översatt (gränssnittet på engelska)',
+    partialTranslation: 'Delvis översatt (engelska)',
     errorLoad: 'Det gick inte att läsa in EnergIA',
     reload: 'Ladda om',
     rootMissing: '#root hittades inte',

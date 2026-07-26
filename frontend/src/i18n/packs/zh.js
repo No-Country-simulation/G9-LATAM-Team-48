@@ -13,7 +13,7 @@ export default {
     chooseLanguageHint: '点击地图上的标记，或从列表中选择一种语言。',
     chooseLanguageMapHint: '将鼠标悬停在国家上并点击以选择其语言。',
     noLanguageMapped: '应用中暂无该语言',
-    partialTranslation: '部分翻译（界面为英文）',
+    partialTranslation: '部分翻译（英文）',
     errorLoad: '无法加载 EnergIA',
     reload: '重新加载',
     rootMissing: '未找到 #root',

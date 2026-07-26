@@ -13,7 +13,7 @@ export default {
     chooseLanguageHint: 'Chạm vào một điểm trên bản đồ hoặc chọn ngôn ngữ trong danh sách.',
     chooseLanguageMapHint: 'Di chuột lên một quốc gia và nhấp để chọn ngôn ngữ của quốc gia đó.',
     noLanguageMapped: 'Ứng dụng chưa có ngôn ngữ này',
-    partialTranslation: 'Dịch một phần (giao diện bằng tiếng Anh)',
+    partialTranslation: 'Dịch một phần (tiếng Anh)',
     errorLoad: 'Không tải được EnergIA',
     reload: 'Tải lại',
     rootMissing: 'Không tìm thấy #root',
