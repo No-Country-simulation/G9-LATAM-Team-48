@@ -55,7 +55,7 @@ const NAME_TO_LOCALE = {
   Bahamas: 'en',
   Guyana: 'en',
   'Trinidad and Tobago': 'en',
-  'Falkland Is.': 'en',
+  'Falkland Is.': 'es',
   'Solomon Is.': 'en',
   Fiji: 'en',
   Vanuatu: 'en',
@@ -210,6 +210,11 @@ const NAME_TO_LOCALE = {
   Antarctica: null,
 }
 
+/** Nombres de visualización (p. ej. soberanía / uso local). */
+const DISPLAY_NAME_OVERRIDES = {
+  'Falkland Is.': 'Islas Malvinas',
+}
+
 const projection = geoEquirectangular()
   .fitSize([WIDTH, HEIGHT], { type: 'Sphere' })
   .precision(0.5)
@@ -222,20 +227,21 @@ let mapped = 0
 const unmapped = []
 
 for (const f of collection.features) {
-  const name = f.properties?.name || 'Unknown'
+  const rawName = f.properties?.name || 'Unknown'
+  const name = DISPLAY_NAME_OVERRIDES[rawName] || rawName
   const d = path(f)
   if (!d) continue
 
   const locale =
-    Object.prototype.hasOwnProperty.call(NAME_TO_LOCALE, name)
-      ? NAME_TO_LOCALE[name]
+    Object.prototype.hasOwnProperty.call(NAME_TO_LOCALE, rawName)
+      ? NAME_TO_LOCALE[rawName]
       : null
 
   if (locale) mapped += 1
-  else if (name !== 'Antarctica') unmapped.push(name)
+  else if (rawName !== 'Antarctica') unmapped.push(rawName)
 
   countries.push({
-    id: String(f.id ?? name),
+    id: String(f.id ?? rawName),
     name,
     locale,
     d,
