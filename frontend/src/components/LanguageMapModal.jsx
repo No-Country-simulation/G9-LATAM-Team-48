@@ -60,6 +60,7 @@ function LanguageMapModal({ show, onHide }) {
   const canConfirm = Boolean(
     isMobile && pendingLocale && pendingLocale !== locale,
   )
+  const sideMeta = canConfirm ? selectedMeta : panelMeta
 
   const tipMeta = hovered
     ? hoveredLocale
@@ -218,23 +219,18 @@ function LanguageMapModal({ show, onHide }) {
             />
           </div>
 
-          <aside
-            className={`language-map-side${canConfirm ? ' has-confirm' : ''}`}
-            aria-live="polite"
-          >
+          <aside className="language-map-side" aria-live="polite">
             <div className="language-map-side-label">
-              {canConfirm
-                ? t('common.mapPendingLabel', 'Idioma elegido')
-                : t('common.mapSelectedLabel', 'Idioma actual')}
+              {t('common.mapSelectedLabel', 'Idioma actual')}
             </div>
             <div className="language-map-side-code">
-              {panelMeta?.label || '—'}
+              {sideMeta?.label || '—'}
             </div>
             <div className="language-map-side-name">
-              {panelMeta?.name ||
+              {sideMeta?.name ||
                 t('common.noLanguageMapped', 'Sin idioma en la app')}
             </div>
-            {panelMeta && !panelMeta.fullUi && (
+            {sideMeta && !sideMeta.fullUi && (
               <div className="language-map-side-note">
                 {t(
                   'common.partialTranslation',
@@ -242,27 +238,53 @@ function LanguageMapModal({ show, onHide }) {
                 )}
               </div>
             )}
-            {canConfirm && (
-              <>
-                <div className="language-map-side-hint">
-                  {t(
-                    'common.mapTapToSelect',
-                    'Tocá el idioma para seleccionarlo',
-                  )}
-                </div>
-                <button
-                  type="button"
-                  className="btn btn-sm btn-primary language-map-side-confirm"
-                  onClick={confirmLocale}
-                >
-                  {t('common.mapConfirmLanguage', 'Usar este idioma')}:{' '}
-                  {panelMeta?.label} · {panelMeta?.name}
-                </button>
-              </>
-            )}
           </aside>
 
-          {tipPos.visible && hovered && (
+          {canConfirm && panelMeta && (
+            <div
+              className="language-confirm-sheet"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="language-confirm-title"
+            >
+              <div className="language-confirm-card">
+                <p
+                  className="language-confirm-title mb-1"
+                  id="language-confirm-title"
+                >
+                  {t('common.mapTapToSelect', 'Tocá el idioma para seleccionarlo')}
+                </p>
+                <div className="language-confirm-code">{panelMeta.label}</div>
+                <div className="language-confirm-name">{panelMeta.name}</div>
+                {panelMeta && !panelMeta.fullUi && (
+                  <div className="language-confirm-note">
+                    {t(
+                      'common.partialTranslation',
+                      'Traducción parcial (inglés)',
+                    )}
+                  </div>
+                )}
+                <div className="language-confirm-actions">
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary btn-sm"
+                    onClick={() => setPendingLocale(null)}
+                  >
+                    {t('common.cancel', 'Cancelar')}
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-sm language-confirm-accept"
+                    onClick={confirmLocale}
+                  >
+                    {t('common.mapConfirmLanguage', 'Usar este idioma')}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {tipPos.visible && hovered && !canConfirm && (
             <div
               className={`language-map-tip${
                 hoveredLocale ? ' is-mapped' : ' is-muted'
