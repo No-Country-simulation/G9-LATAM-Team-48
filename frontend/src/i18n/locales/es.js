@@ -21,6 +21,7 @@ export default {
     mapPickCountry: 'Elegí un país en el mapa',
     mapClickToChoose: 'Click para elegir este idioma',
     mapConfirmLanguage: 'Usar este idioma',
+    mapTapToSelect: 'Tocá el idioma para seleccionarlo',
     languages: {
       es: 'Español',
       en: 'Inglés',
