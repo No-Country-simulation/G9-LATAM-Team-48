@@ -8,6 +8,8 @@ export default {
     logout: 'Cerrar sesión',
     logoutShort: 'Salir',
     language: 'Idioma',
+    chooseLanguage: 'Elegí un idioma',
+    chooseLanguageHint: 'Tocá un punto en el mapa o elegí el idioma en la lista.',
     languages: {
       es: 'Español',
       en: 'Inglés',
