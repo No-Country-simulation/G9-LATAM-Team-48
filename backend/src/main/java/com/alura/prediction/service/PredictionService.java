@@ -3,20 +3,22 @@ package com.alura.prediction.service;
 import com.alura.prediction.dto.PredictionRequest;
 import com.alura.prediction.dto.PredictionResponse;
 
+import java.util.Map;
+
 /**
- * Define la operación de clasificación de consumo energético.
+ * Orquesta la clasificacion de consumo hacia el servicio FastAPI.
  *
- * <p>La implementación actual utilizará reglas mock para permitir pruebas
- * locales. Más adelante podrá delegar en un modelo de Machine Learning sin
- * cambiar el controller.</p>
+ * <p>Implementacion: {@code PredictionServiceImpl}.</p>
  */
 public interface PredictionService {
 
     /**
-     * Clasifica un consumo energético a partir de los datos ingresados.
-     *
-     * @param request datos validados de consumo e inmueble
-     * @return categoría y confianza calculadas
+     * Clasifica a partir del contrato {@code { userId, features }}.
      */
     PredictionResponse classify(PredictionRequest request);
+
+    /**
+     * Clasifica a partir del payload plano del formulario de Analisis IA.
+     */
+    PredictionResponse analyze(Map<String, Object> features);
 }

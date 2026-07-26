@@ -1,13 +1,17 @@
 package com.alura.prediction.dto;
 
+import java.util.List;
+
 /**
- * Resultado de una predicción de consumo energético.
- *
- * @param categoria categoría de consumo calculada por el servicio
- * @param confianza nivel de confianza de la predicción, entre 0.0 y 1.0
+ * Resultado de clasificacion del servicio ML (FastAPI).
  */
 public record PredictionResponse(
-        String categoria,
-        double confianza
+        String userId,
+        String category,
+        String nivelKey,
+        double confidence,
+        int ahorro,
+        List<String> tipKeys,
+        double benchmark
 ) {
 }

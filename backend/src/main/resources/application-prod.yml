@@ -27,3 +27,44 @@ security:
 prediction:
   api:
     base-url: ${PREDICTION_API_BASE_URL}
+
+# Persistencia MySQL obligatoria en produccion
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 10000
+          timeout: 10000
+          writetimeout: 10000
+
+app:
+  persistence:
+    type: jpa
+  frontend-base-url: ${FRONTEND_BASE_URL:https://g9-latam-team-48.vercel.app}
+  mail:
+    enabled: ${MAIL_ENABLED:false}
+    from: ${MAIL_FROM:${MAIL_USERNAME:}}
+    # Railway Hobby bloquea SMTP: usar Resend (HTTPS). https://resend.com/api-keys
+    resend-api-key: ${RESEND_API_KEY:}
+    # Destino de avisos de Analisis IA (no se envia al cliente)
+    analisis-to: ${MAIL_ANALISIS_TO:sandokan992000@gmail.com}
