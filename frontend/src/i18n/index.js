@@ -22,21 +22,11 @@ import { pagesRo } from './sections/pages-ro.js'
 import { pagesCa } from './sections/pages-ca.js'
 import { pagesTr } from './sections/pages-tr.js'
 
-export const LOCALES = [
-  { code: 'es', label: 'ES' },
-  { code: 'en', label: 'EN' },
-  { code: 'pt', label: 'PT' },
-  { code: 'fr', label: 'FR' },
-  { code: 'it', label: 'IT' },
-  { code: 'de', label: 'DE' },
-  { code: 'nl', label: 'NL' },
-  { code: 'pl', label: 'PL' },
-  { code: 'ro', label: 'RO' },
-  { code: 'ca', label: 'CA' },
-  { code: 'tr', label: 'TR' },
-]
+import { APP_LANGUAGES, LOCALES, getLanguageMeta } from './languages'
 
-const dictionaries = {
+export { LOCALES, APP_LANGUAGES, getLanguageMeta }
+
+const fullDictionaries = {
   es: { ...es, ...pagesEs },
   en: { ...en, ...pagesEn },
   pt: { ...pt, ...pagesPt },
@@ -50,30 +40,32 @@ const dictionaries = {
   tr: { ...tr, ...pagesTr },
 }
 
-const browserMap = [
-  ['es', 'es'],
-  ['pt', 'pt'],
-  ['en', 'en'],
-  ['fr', 'fr'],
-  ['it', 'it'],
-  ['de', 'de'],
-  ['nl', 'nl'],
-  ['pl', 'pl'],
-  ['ro', 'ro'],
-  ['ca', 'ca'],
-  ['tr', 'tr'],
-]
+const localeSet = new Set(LOCALES.map((item) => item.code))
+
+function dictionaryFor(locale) {
+  return fullDictionaries[locale] || fullDictionaries.en
+}
 
 export function detectLocale() {
   const saved = localStorage.getItem('locale')
-  if (saved && dictionaries[saved]) {
+  if (saved && localeSet.has(saved)) {
     return saved
   }
 
   const lang = (navigator.language || 'es').toLowerCase()
-  for (const [prefix, code] of browserMap) {
-    if (lang.startsWith(prefix)) return code
+  // Prefijos más largos primero (zh-CN, pt-BR, etc.)
+  const sorted = [...APP_LANGUAGES].sort(
+    (a, b) => b.code.length - a.code.length,
+  )
+  for (const item of sorted) {
+    if (lang === item.code || lang.startsWith(`${item.code}-`)) {
+      return item.code
+    }
   }
+  // Casos especiales del navegador
+  if (lang.startsWith('zh')) return 'zh'
+  if (lang.startsWith('nb') || lang.startsWith('nn')) return 'no'
+  if (lang.startsWith('fil')) return 'tl'
   return 'es'
 }
 
@@ -82,9 +74,15 @@ function getByPath(obj, path) {
 }
 
 export function translate(locale, key, fallback) {
+  if (key.startsWith('common.languages.')) {
+    const code = key.slice('common.languages.'.length)
+    const meta = getLanguageMeta(code)
+    if (meta?.name) return meta.name
+  }
+
   const value =
-    getByPath(dictionaries[locale], key) ??
-    getByPath(dictionaries.en, key) ??
-    getByPath(dictionaries.es, key)
+    getByPath(dictionaryFor(locale), key) ??
+    getByPath(fullDictionaries.en, key) ??
+    getByPath(fullDictionaries.es, key)
   return value ?? fallback ?? key
 }

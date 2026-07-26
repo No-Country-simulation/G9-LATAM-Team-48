@@ -9,10 +9,7 @@ const countriesTopo = require('world-atlas/countries-110m.json')
 const WIDTH = 1000
 const HEIGHT = 500
 
-/**
- * Natural Earth country names → locale code of the app.
- * Varios países pueden compartir el mismo idioma.
- */
+/** Natural Earth country name → locale code (idioma principal / oficial más usado). */
 const NAME_TO_LOCALE = {
   // Español
   Spain: 'es',
@@ -35,12 +32,16 @@ const NAME_TO_LOCALE = {
   Cuba: 'es',
   'Dominican Rep.': 'es',
   'Eq. Guinea': 'es',
+  'Puerto Rico': 'es',
+  Belize: 'en',
 
   // Portugués
   Portugal: 'pt',
   Brazil: 'pt',
   Angola: 'pt',
   Mozambique: 'pt',
+  'Guinea-Bissau': 'pt',
+  'Timor-Leste': 'pt',
 
   // Inglés
   'United States of America': 'en',
@@ -51,43 +52,162 @@ const NAME_TO_LOCALE = {
   'New Zealand': 'en',
   Jamaica: 'en',
   'South Africa': 'en',
+  Bahamas: 'en',
+  Guyana: 'en',
+  'Trinidad and Tobago': 'en',
+  'Falkland Is.': 'en',
+  'Solomon Is.': 'en',
+  Fiji: 'en',
+  Vanuatu: 'en',
+  'Papua New Guinea': 'en',
+  Ghana: 'en',
+  Nigeria: 'en',
+  Kenya: 'en',
+  Uganda: 'en',
+  Tanzania: 'sw',
+  Zambia: 'en',
+  Zimbabwe: 'en',
+  Botswana: 'en',
+  Namibia: 'en',
+  Malawi: 'en',
+  Liberia: 'en',
+  'Sierra Leone': 'en',
+  Gambia: 'en',
+  Rwanda: 'en',
+  'S. Sudan': 'en',
+  Cameroon: 'fr',
+  'New Caledonia': 'fr',
 
   // Francés
   France: 'fr',
   Belgium: 'fr',
   Luxembourg: 'fr',
-  Monaco: 'fr',
   Senegal: 'fr',
-  'Côte d\'Ivoire': 'fr',
-  Morocco: 'fr',
-  Algeria: 'fr',
-  Tunisia: 'fr',
+  "Côte d'Ivoire": 'fr',
+  Morocco: 'ar',
+  Algeria: 'ar',
+  Tunisia: 'ar',
+  Mali: 'fr',
+  Niger: 'fr',
+  Chad: 'fr',
+  Gabon: 'fr',
+  Congo: 'fr',
+  'Dem. Rep. Congo': 'fr',
+  'Central African Rep.': 'fr',
+  'Burkina Faso': 'fr',
+  Benin: 'fr',
+  Togo: 'fr',
+  Guinea: 'fr',
+  Madagascar: 'fr',
+  Haiti: 'fr',
+  Djibouti: 'fr',
+  Mauritania: 'ar',
+  'W. Sahara': 'ar',
 
-  // Italiano
+  // Italiano / alemán / neerlandés
   Italy: 'it',
-  'San Marino': 'it',
-
-  // Alemán
   Germany: 'de',
   Austria: 'de',
-  Liechtenstein: 'de',
-
-  // Neerlandés
+  Switzerland: 'de',
   Netherlands: 'nl',
   Suriname: 'nl',
 
-  // Polaco
+  // Europa Este / Norte
   Poland: 'pl',
-
-  // Rumano
   Romania: 'ro',
   Moldova: 'ro',
-
-  // Turco
   Turkey: 'tr',
+  Russia: 'ru',
+  Ukraine: 'uk',
+  Belarus: 'ru',
+  Czechia: 'cs',
+  Slovakia: 'sk',
+  Hungary: 'hu',
+  Bulgaria: 'bg',
+  Croatia: 'hr',
+  Serbia: 'sr',
+  Slovenia: 'sl',
+  'Bosnia and Herz.': 'hr',
+  Montenegro: 'sr',
+  Kosovo: 'sq',
+  Albania: 'sq',
+  Macedonia: 'mk',
+  Greece: 'el',
+  Cyprus: 'el',
+  'N. Cyprus': 'tr',
+  Sweden: 'sv',
+  Norway: 'no',
+  Denmark: 'da',
+  Finland: 'fi',
+  Estonia: 'et',
+  Latvia: 'lv',
+  Lithuania: 'lt',
+  Iceland: 'is',
+  Greenland: 'da',
 
-  // Catalán (Andorra; Catalunya no es país en este mapa)
-  Andorra: 'ca',
+  // Árabe / hebreo / persa
+  Egypt: 'ar',
+  'Saudi Arabia': 'ar',
+  'United Arab Emirates': 'ar',
+  Qatar: 'ar',
+  Kuwait: 'ar',
+  Oman: 'ar',
+  Yemen: 'ar',
+  Iraq: 'ar',
+  Syria: 'ar',
+  Jordan: 'ar',
+  Lebanon: 'ar',
+  Libya: 'ar',
+  Sudan: 'ar',
+  Palestine: 'ar',
+  Israel: 'he',
+  Iran: 'fa',
+  Afghanistan: 'fa',
+
+  // Asia
+  China: 'zh',
+  Taiwan: 'zh',
+  Japan: 'ja',
+  'South Korea': 'ko',
+  'North Korea': 'ko',
+  Mongolia: 'mn',
+  India: 'hi',
+  Pakistan: 'ur',
+  Bangladesh: 'bn',
+  Nepal: 'ne',
+  'Sri Lanka': 'si',
+  Bhutan: 'ne',
+  Thailand: 'th',
+  Vietnam: 'vi',
+  Laos: 'lo',
+  Cambodia: 'km',
+  Myanmar: 'my',
+  Malaysia: 'ms',
+  Indonesia: 'id',
+  Brunei: 'ms',
+  Philippines: 'tl',
+  Singapore: 'en',
+
+  // Centro Asia / Cáucaso
+  Kazakhstan: 'kk',
+  Uzbekistan: 'uz',
+  Kyrgyzstan: 'ky',
+  Turkmenistan: 'tk',
+  Tajikistan: 'fa',
+  Azerbaijan: 'az',
+  Armenia: 'hy',
+  Georgia: 'ka',
+
+  // África adicional
+  Ethiopia: 'am',
+  Eritrea: 'ar',
+  Somalia: 'ar',
+  Somaliland: 'ar',
+  'eSwatini': 'en',
+  Lesotho: 'en',
+  Burundi: 'sw',
+  'Fr. S. Antarctic Lands': 'fr',
+  Antarctica: null,
 }
 
 const projection = geoEquirectangular()
@@ -98,17 +218,21 @@ const path = geoPath(projection)
 const collection = feature(countriesTopo, countriesTopo.objects.countries)
 
 const countries = []
-const unknownNames = []
+let mapped = 0
+const unmapped = []
 
 for (const f of collection.features) {
   const name = f.properties?.name || 'Unknown'
   const d = path(f)
   if (!d) continue
 
-  const locale = NAME_TO_LOCALE[name] || null
-  if (!NAME_TO_LOCALE[name] && name !== 'Antarctica') {
-    // keep quiet; useful when debugging missing names
-  }
+  const locale =
+    Object.prototype.hasOwnProperty.call(NAME_TO_LOCALE, name)
+      ? NAME_TO_LOCALE[name]
+      : null
+
+  if (locale) mapped += 1
+  else if (name !== 'Antarctica') unmapped.push(name)
 
   countries.push({
     id: String(f.id ?? name),
@@ -118,53 +242,16 @@ for (const f of collection.features) {
   })
 }
 
-// Centroides aproximados para etiquetas de idioma (un pin por locale)
-const LOCALE_FOCUS = {
-  es: [-64, -34],
-  pt: [-47, -15],
-  en: [-95, 38],
-  ca: [1.5, 42.5],
-  fr: [2.3, 46.6],
-  nl: [5.3, 52.1],
-  de: [10.5, 51.2],
-  it: [12.5, 41.9],
-  pl: [19.1, 52.2],
-  ro: [26.1, 45.9],
-  tr: [32.8, 39.9],
-}
-
-const markers = Object.entries(LOCALE_FOCUS).map(([code, [lon, lat]]) => {
-  const [x, y] = projection([lon, lat])
-  return {
-    code,
-    x: Math.round(x * 10) / 10,
-    y: Math.round(y * 10) / 10,
-  }
-})
-
-const byLocale = {}
-for (const c of countries) {
-  if (!c.locale) continue
-  byLocale[c.locale] = (byLocale[c.locale] || 0) + 1
-}
-
 const js = `/* Auto-generated by scripts/bake-world-map.mjs — do not edit by hand. */
 export const WORLD_MAP_VIEWBOX = '0 0 ${WIDTH} ${HEIGHT}'
 
 export const WORLD_COUNTRIES = ${JSON.stringify(countries)}
-
-export const LOCALE_MAP_MARKERS = ${JSON.stringify(markers, null, 2)}
 `
 
 writeFileSync(new URL('../src/data/worldMap.js', import.meta.url), js)
 
 console.log('Wrote src/data/worldMap.js')
-console.log('Countries:', countries.length)
-console.log('Mapped by locale:', byLocale)
-console.log(
-  'Unmapped sample:',
-  countries
-    .filter((c) => !c.locale && c.name !== 'Antarctica')
-    .slice(0, 15)
-    .map((c) => c.name),
-)
+console.log(`Mapped countries: ${mapped}/${countries.length}`)
+if (unmapped.length) {
+  console.log('Unmapped:', unmapped.join(', '))
+}
