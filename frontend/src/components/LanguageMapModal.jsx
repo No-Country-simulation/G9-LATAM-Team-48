@@ -5,9 +5,30 @@ import { getLanguageMeta, translate } from '../i18n'
 import { WORLD_COUNTRIES, WORLD_MAP_VIEWBOX } from '../data/worldMap'
 import { useAnnounce } from './SrAnnouncer'
 
+const MOBILE_MQ = '(max-width: 575.98px)'
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined'
+      ? window.matchMedia(MOBILE_MQ).matches
+      : false,
+  )
+
+  useEffect(() => {
+    const media = window.matchMedia(MOBILE_MQ)
+    const onChange = () => setIsMobile(media.matches)
+    onChange()
+    media.addEventListener('change', onChange)
+    return () => media.removeEventListener('change', onChange)
+  }, [])
+
+  return isMobile
+}
+
 function LanguageMapModal({ show, onHide }) {
   const { t, locale, setLocale } = useLocale()
   const announce = useAnnounce()
+  const isMobile = useIsMobile()
   const stageRef = useRef(null)
   const lastAnnouncedKey = useRef(null)
   const [hoveredId, setHoveredId] = useState(null)
@@ -22,6 +43,10 @@ function LanguageMapModal({ show, onHide }) {
     }
   }, [show])
 
+  useEffect(() => {
+    if (!isMobile) setPendingLocale(null)
+  }, [isMobile])
+
   const hovered = useMemo(
     () => WORLD_COUNTRIES.find((c) => c.id === hoveredId) || null,
     [hoveredId],
@@ -32,7 +57,9 @@ function LanguageMapModal({ show, onHide }) {
   const pendingMeta = pendingLocale ? getLanguageMeta(pendingLocale) : null
 
   const panelMeta = pendingMeta || selectedMeta
-  const canConfirm = Boolean(pendingLocale && pendingLocale !== locale)
+  const canConfirm = Boolean(
+    isMobile && pendingLocale && pendingLocale !== locale,
+  )
 
   const tipMeta = hovered
     ? hoveredLocale
@@ -66,10 +93,10 @@ function LanguageMapModal({ show, onHide }) {
 
     if (hoveredLocale && tipMeta) {
       announce(
-        t('a11y.mapWouldSelect', 'Seleccionado: {lang}. Confirmá en el panel.').replace(
-          '{lang}',
-          tipMeta.name,
-        ),
+        (isMobile
+          ? t('a11y.mapWouldSelect', 'Seleccionado: {lang}. Confirmá en el panel.')
+          : t('a11y.mapWouldSelectDesktop', 'Click para elegir {lang}')
+        ).replace('{lang}', tipMeta.name),
       )
     } else {
       announce(
@@ -79,7 +106,7 @@ function LanguageMapModal({ show, onHide }) {
         )}`,
       )
     }
-  }, [hovered, hoveredLocale, tipMeta, announce, t])
+  }, [hovered, hoveredLocale, tipMeta, announce, t, isMobile])
 
   function updateTipFromEvent(event) {
     const stage = stageRef.current
@@ -107,20 +134,19 @@ function LanguageMapModal({ show, onHide }) {
     setTipPos((prev) => ({ ...prev, visible: false }))
   }
 
-  function confirmLocale() {
-    if (!pendingLocale || pendingLocale === locale) return
-    const meta = getLanguageMeta(pendingLocale)
+  function applyLocale(code) {
+    if (!code || code === locale) {
+      onHide()
+      return
+    }
+    const meta = getLanguageMeta(code)
     const langName =
-      translate(
-        pendingLocale,
-        `common.languages.${pendingLocale}`,
-        meta?.name || pendingLocale,
-      ) ||
+      translate(code, `common.languages.${code}`, meta?.name || code) ||
       meta?.name ||
-      pendingLocale
-    setLocale(pendingLocale)
+      code
+    setLocale(code)
     announce(
-      translate(pendingLocale, 'a11y.languageChanged', 'Language changed to {lang}').replace(
+      translate(code, 'a11y.languageChanged', 'Language changed to {lang}').replace(
         '{lang}',
         langName,
       ),
@@ -128,15 +154,24 @@ function LanguageMapModal({ show, onHide }) {
     onHide()
   }
 
+  function confirmLocale() {
+    if (!pendingLocale) return
+    applyLocale(pendingLocale)
+  }
+
   function onCountryClick(country) {
     if (!country.locale) return
-    setPendingLocale(country.locale)
-    announce(
-      t('a11y.mapPending', 'Idioma propuesto: {lang}. Tocá Usar este idioma para confirmar.').replace(
-        '{lang}',
-        getLanguageMeta(country.locale).name,
-      ),
-    )
+    if (isMobile) {
+      setPendingLocale(country.locale)
+      announce(
+        t(
+          'a11y.mapPending',
+          'Idioma propuesto: {lang}. Tocá Usar este idioma para confirmar.',
+        ).replace('{lang}', getLanguageMeta(country.locale).name),
+      )
+      return
+    }
+    applyLocale(country.locale)
   }
 
   const tipTitle = tipMeta
