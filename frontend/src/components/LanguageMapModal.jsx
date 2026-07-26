@@ -262,6 +262,21 @@ function LanguageMapModal({ show, onHide }) {
                     d={country.d}
                     className={className}
                     data-locale={country.locale || undefined}
+                    style={
+                      isHovered
+                        ? hasLocale
+                          ? {
+                              fill: '#ffc107',
+                              stroke: 'rgba(120, 80, 0, 0.7)',
+                              strokeWidth: 1.2,
+                            }
+                          : {
+                              fill: '#9aabbc',
+                              stroke: 'rgba(60, 80, 100, 0.45)',
+                              strokeWidth: 0.7,
+                            }
+                        : undefined
+                    }
                     tabIndex={hasLocale ? 0 : undefined}
                     role={hasLocale ? 'button' : undefined}
                     aria-label={
