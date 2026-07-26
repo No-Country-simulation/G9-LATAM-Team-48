@@ -10,6 +10,9 @@ export default {
     language: 'Idioma',
     chooseLanguage: 'Elegí un idioma',
     chooseLanguageHint: 'Tocá un punto en el mapa o elegí el idioma en la lista.',
+    chooseLanguageMapHint:
+      'Pasá el mouse por un país coloreado y hacé click para elegir su idioma.',
+    noLanguageMapped: 'Sin idioma en la app',
     languages: {
       es: 'Español',
       en: 'Inglés',

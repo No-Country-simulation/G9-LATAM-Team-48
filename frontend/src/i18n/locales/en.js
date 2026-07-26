@@ -10,6 +10,9 @@ export default {
     language: 'Language',
     chooseLanguage: 'Choose a language',
     chooseLanguageHint: 'Tap a pin on the map or pick a language from the list.',
+    chooseLanguageMapHint:
+      'Hover a colored country and click to choose its language.',
+    noLanguageMapped: 'No language in the app',
     languages: {
       es: 'Spanish',
       en: 'English',
