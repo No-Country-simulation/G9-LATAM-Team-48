@@ -1,3 +1,8 @@
+/**
+ * Espejo de `HeuristicPrediction.java` (backend). Si cambia una regla allá,
+ * hay que replicarla acá para que el fallback local no contradiga a la API.
+ */
+
 export const INSTALLATION_TYPES = {
   APARTAMENTO: 'APARTAMENTO',
   CASA_UNIFAMILIAR: 'CASA_UNIFAMILIAR',
@@ -11,96 +16,169 @@ export const BENCHMARKS_KWH = {
   PEQUENO_ESTABLECIMIENTO_COMERCIAL: 650,
 }
 
-function num(value, fallback = 0) {
-  const n = Number(value)
-  return Number.isFinite(n) ? n : fallback
+const COMERCIAL = INSTALLATION_TYPES.PEQUENO_ESTABLECIMIENTO_COMERCIAL
+
+function toNumber(value, fallback) {
+  if (value === null || value === undefined) return fallback
+  if (typeof value === 'number') {
+    return Number.isFinite(value) ? value : fallback
+  }
+  const text = String(value).trim()
+  if (text === '') return fallback
+  const parsed = Number(text)
+  return Number.isFinite(parsed) ? parsed : fallback
 }
 
-function ratioLevel(consumo, benchmark) {
-  const ratio = consumo / Math.max(benchmark, 1)
-
-  if (ratio < 0.85) {
-    return { nivelKey: 'efficient', ahorro: 5 }
+/** Toma la primera clave presente y no nula, igual que `firstDouble` del backend. */
+function firstNumber(datos, fallback, ...keys) {
+  for (const key of keys) {
+    if (key in datos && datos[key] !== null && datos[key] !== undefined) {
+      return toNumber(datos[key], fallback)
+    }
   }
-  if (ratio > 1.25) {
-    return { nivelKey: 'inefficient', ahorro: 28 }
-  }
-  return { nivelKey: 'moderate', ahorro: 15 }
+  return fallback
 }
 
-function tipsForInmueble(nivelKey, datos, tipo) {
-  const tips = []
-  const climateHours = num(datos.horasClimatizacion)
-  const peakUseHours = num(datos.horasAltoConsumo)
-  const perPerson =
-    num(datos.consumoKwh) / Math.max(num(datos.cantidadPersonas) || 1, 1)
-  const isComercial = tipo === INSTALLATION_TYPES.PEQUENO_ESTABLECIMIENTO_COMERCIAL
+function asBoolean(value) {
+  if (typeof value === 'boolean') return value
+  if (value === null || value === undefined) return null
+  const text = String(value).trim().toLowerCase()
+  if (text === 'true' || text === '1' || text === 'yes' || text === 'si') return true
+  if (text === 'false' || text === '0' || text === 'no') return false
+  return null
+}
+
+function normalizeTipo(tipoInmueble) {
+  const raw = tipoInmueble ?? INSTALLATION_TYPES.CASA_UNIFAMILIAR
+  const tipo = String(raw).trim()
+
+  switch (tipo.toLowerCase()) {
+    case 'casa':
+    case 'casa_unifamiliar':
+      return INSTALLATION_TYPES.CASA_UNIFAMILIAR
+    case 'apartamento':
+    case 'departamento':
+      return INSTALLATION_TYPES.APARTAMENTO
+    case 'pequeno_establecimiento_comercial':
+    case 'pequeño_establecimiento_comercial':
+    case 'comercio':
+    case 'local_comercial':
+      return COMERCIAL
+    default:
+      return tipo.toUpperCase()
+  }
+}
+
+function defaultPersonas(tipo) {
+  return tipo === INSTALLATION_TYPES.APARTAMENTO ? 2 : 3
+}
+
+function defaultArea(tipo) {
+  return tipo === INSTALLATION_TYPES.APARTAMENTO ? 55 : 80
+}
+
+function readFeatures(datos = {}) {
+  const tipo = normalizeTipo(datos.tipoInmueble ?? datos.tipo)
+
+  return {
+    tipo,
+    consumo: firstNumber(datos, 0, 'consumoKwh', 'consumo'),
+    personas: firstNumber(datos, defaultPersonas(tipo), 'cantidadPersonas', 'personas'),
+    area: firstNumber(datos, defaultArea(tipo), 'areaM2', 'area'),
+    climate: firstNumber(datos, 2, 'horasClimatizacion', 'climateHours'),
+    equipos: firstNumber(datos, 0, 'cantidadEquipos', 'equipos'),
+    horasAlto: firstNumber(datos, 0, 'horasAltoConsumo', 'peakUseHours'),
+    usoPico: asBoolean(datos.usoHorarioPico) === true,
+  }
+}
+
+function benchmarkFor({ tipo, personas, area, climate }) {
+  const base = BENCHMARKS_KWH[tipo] ?? BENCHMARKS_KWH.CASA_UNIFAMILIAR
+  const personFactor = tipo === COMERCIAL ? 70 : 55
+  const areaFactor = tipo === COMERCIAL ? 2.2 : 1.2
+
+  return Math.round(base * 0.45 + personas * personFactor + area * areaFactor + climate * 25)
+}
+
+/** Penaliza hábitos de consumo, no solo el total mensual. */
+function habitScoreFor({ consumo, usoPico, horasAlto, equipos }) {
+  let score = 0
+
+  if (consumo >= 500) {
+    score += 2
+  } else if (consumo >= 250) {
+    score += 1
+  }
+  if (usoPico) score += 1
+  if (horasAlto >= 8) score += 1
+  if (equipos >= 10) score += 1
+
+  return score
+}
+
+function tipsFor(nivelKey, { tipo, usoPico, horasAlto, equipos, climate }) {
+  const tips = new Set()
+  const comercial = tipo === COMERCIAL
 
   if (nivelKey === 'efficient') {
-    tips.push('keep', 'monitor')
-    if (climateHours >= 4) tips.push('ac')
-    return tips.slice(0, 4)
-  }
-
-  if (nivelKey === 'inefficient') {
-    tips.push(isComercial ? 'schedules' : 'ac', 'replace', 'night', 'led')
+    tips.add('keep')
+    tips.add('monitor')
+    if (climate >= 4) tips.add('ac')
+  } else if (nivelKey === 'inefficient') {
+    tips.add(comercial ? 'schedules' : 'ac')
+    tips.add('replace')
+    tips.add('peak')
+    tips.add(comercial ? 'led' : 'standby')
   } else {
-    tips.push('led', 'peak', 'appliances')
+    tips.add('led')
+    tips.add('peak')
+    tips.add('appliances')
   }
 
-  if (climateHours >= 6) tips.push('insulation')
-  if (peakUseHours >= 5 || datos.usoHorarioPico === true) tips.push('standby')
-  if (perPerson > (isComercial ? 220 : 180)) tips.push('solar')
+  if (usoPico || horasAlto >= 5) {
+    tips.add('peak')
+    tips.add('standby')
+  }
+  if (equipos >= 10) tips.add('replace')
+  if (climate >= 6) tips.add('insulation')
 
-  return [...new Set(tips)].slice(0, 5)
+  return [...tips].slice(0, 5)
 }
 
 export function getBenchmark(tipoInmueble, datos = {}) {
-  const tipo = tipoInmueble || INSTALLATION_TYPES.CASA_UNIFAMILIAR
-  const base = BENCHMARKS_KWH[tipo] ?? BENCHMARKS_KWH.CASA_UNIFAMILIAR
-  const personas = num(datos.cantidadPersonas, tipo === INSTALLATION_TYPES.APARTAMENTO ? 2 : 3)
-  const area = num(
-    datos.areaM2,
-    tipo === INSTALLATION_TYPES.APARTAMENTO
-      ? 55
-      : tipo === INSTALLATION_TYPES.PEQUENO_ESTABLECIMIENTO_COMERCIAL
-        ? 80
-        : 80,
-  )
-  const climateHours = num(datos.horasClimatizacion, 2)
-  const personFactor =
-    tipo === INSTALLATION_TYPES.PEQUENO_ESTABLECIMIENTO_COMERCIAL ? 70 : 55
-  const areaFactor =
-    tipo === INSTALLATION_TYPES.PEQUENO_ESTABLECIMIENTO_COMERCIAL ? 2.2 : 1.2
-
-  return Math.round(
-    base * 0.45 + personas * personFactor + area * areaFactor + climateHours * 25,
-  )
+  return benchmarkFor(readFeatures({ ...datos, tipoInmueble: tipoInmueble ?? datos.tipoInmueble }))
 }
 
 export function analizarConsumo(datos) {
-  const tipo = datos.tipoInmueble || INSTALLATION_TYPES.CASA_UNIFAMILIAR
-  const consumo = num(datos.consumoKwh)
-  const benchmark = getBenchmark(tipo, datos)
-  const personas = Math.max(num(datos.cantidadPersonas) || 1, 1)
-  const perPerson = consumo / personas
+  const features = readFeatures(datos)
+  const benchmark = benchmarkFor(features)
+  const ratio = benchmark <= 0 ? 1 : features.consumo / benchmark
+  const habitScore = habitScoreFor(features)
 
-  const inefficientThreshold =
-    tipo === INSTALLATION_TYPES.PEQUENO_ESTABLECIMIENTO_COMERCIAL ? 260 : 200
-  const efficientThreshold =
-    tipo === INSTALLATION_TYPES.APARTAMENTO ? 75 : 90
+  let nivelKey
+  let ahorro
+  let confidence
 
-  const level =
-    perPerson > inefficientThreshold || consumo > benchmark * 1.3
-      ? { nivelKey: 'inefficient', ahorro: 26 }
-      : perPerson < efficientThreshold && consumo < benchmark * 0.9
-        ? { nivelKey: 'efficient', ahorro: 6 }
-        : ratioLevel(consumo, benchmark)
+  if (ratio <= 0.85 && habitScore <= 1) {
+    nivelKey = 'efficient'
+    ahorro = 5
+    confidence = 0.72
+  } else if (ratio > 1.15 || habitScore >= 3) {
+    nivelKey = 'inefficient'
+    ahorro = habitScore >= 4 ? 32 : 28
+    confidence = 0.74
+  } else {
+    nivelKey = 'moderate'
+    ahorro = 15
+    confidence = 0.68
+  }
 
   return {
-    nivelKey: level.nivelKey,
-    ahorro: level.ahorro,
-    tipKeys: tipsForInmueble(level.nivelKey, datos, tipo),
+    nivelKey,
+    category: nivelKey,
+    ahorro,
+    confidence,
+    tipKeys: tipsFor(nivelKey, features),
     benchmark,
   }
 }
