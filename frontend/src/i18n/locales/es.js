@@ -11,7 +11,7 @@ export default {
     chooseLanguage: 'Elegí un idioma',
     chooseLanguageHint: 'Tocá un punto en el mapa o elegí el idioma en la lista.',
     chooseLanguageMapHint:
-      'Elegí un país en el mapa y confirmá el idioma en el panel.',
+      'Pasá el mouse por un país y hacé click para elegir su idioma.',
     noLanguageMapped: 'Sin idioma en la app',
     partialTranslation: 'Traducción parcial (inglés)',
     mapHoverLabel: 'Al pasar el mouse',
