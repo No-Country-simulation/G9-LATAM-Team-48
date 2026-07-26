@@ -267,6 +267,13 @@ export const pagesFr = {
     title: 'Analyse IA — historique',
     subtitle: 'Requêtes enregistrées par les utilisateurs authentifiés.',
     refresh: 'Actualiser',
+    recalculate: 'Recalculer avec les règles actuelles',
+    recalculating: 'Recalcul…',
+    recalculateConfirm:
+      'Recalculer toutes les analyses enregistrées avec l’heuristique actuelle ? Aucun e-mail ni nouvelle requête.',
+    recalculateDone:
+      'Terminé : {total} requêtes · {updated} mises à jour · {unchanged} inchangées · {skipped} ignorées.',
+    recalculateFailed: 'Impossible de recalculer les analyses.',
     email: 'Email',
     tipo: 'Type',
     nivel: 'Niveau',

@@ -267,6 +267,13 @@ export const pagesTr = {
     title: 'YZ analizi — geçmiş',
     subtitle: 'Kimliği doğrulanmış kullanıcıların kaydedilen sorguları.',
     refresh: 'Yenile',
+    recalculate: 'Güncel kurallarla yeniden hesapla',
+    recalculating: 'Yeniden hesaplanıyor…',
+    recalculateConfirm:
+      'Kayıtlı tüm analizler güncel sezgisel kurallarla yeniden hesaplansın mı? E-posta yok, yeni sorgu yok.',
+    recalculateDone:
+      'Tamam: {total} sorgu · {updated} güncellendi · {unchanged} değişmedi · {skipped} atlandı.',
+    recalculateFailed: 'Analizler yeniden hesaplanamadı.',
     email: 'E-posta',
     tipo: 'Tür',
     nivel: 'Seviye',

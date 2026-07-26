@@ -1,6 +1,7 @@
 package com.alura.analisis.controller;
 
 import com.alura.analisis.dto.AdminAnalisisItem;
+import com.alura.analisis.dto.AdminRecalculoResult;
 import com.alura.analisis.service.AdminAnalisisService;
 import com.alura.common.response.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,5 +34,11 @@ public class AdminAnalisisController {
     @Operation(summary = "Listar todas las consultas de Analisis IA")
     public ResponseEntity<ApiResponse<List<AdminAnalisisItem>>> list() {
         return ResponseEntity.ok(ApiResponse.ok(adminAnalisisService.listAll()));
+    }
+
+    @PostMapping("/recalcular")
+    @Operation(summary = "Recalcular consultas historicas con la heuristica actual")
+    public ResponseEntity<ApiResponse<AdminRecalculoResult>> recalcular() {
+        return ResponseEntity.ok(ApiResponse.ok(adminAnalisisService.recalcularConHeuristica()));
     }
 }

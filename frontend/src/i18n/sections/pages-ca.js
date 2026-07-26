@@ -267,6 +267,13 @@ export const pagesCa = {
     title: 'Anàlisi IA — historial',
     subtitle: 'Consultes desades pels usuaris autenticats.',
     refresh: 'Actualitzar',
+    recalculate: 'Recalcular amb les regles actuals',
+    recalculating: 'Recalculant…',
+    recalculateConfirm:
+      'Recalcular totes les anàlisis desades amb l’heurística actual? Sense emails ni consultes noves.',
+    recalculateDone:
+      'Fet: {total} consultes · {updated} actualitzades · {unchanged} sense canvis · {skipped} omeses.',
+    recalculateFailed: 'No s’han pogut recalcular les anàlisis.',
     email: 'Email',
     tipo: 'Tipus',
     nivel: 'Nivell',

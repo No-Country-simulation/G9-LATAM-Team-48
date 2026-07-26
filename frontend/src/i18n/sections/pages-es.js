@@ -301,6 +301,13 @@ export const pagesEs = {
     title: 'Análisis IA — historial',
     subtitle: 'Consultas guardadas (con o sin login). El email solo se envía si el usuario está autenticado.',
     refresh: 'Actualizar',
+    recalculate: 'Recalcular con reglas actuales',
+    recalculating: 'Recalculando…',
+    recalculateConfirm:
+      '¿Recalcular todos los análisis guardados con la heurística actual? No se envían emails ni se crean consultas nuevas.',
+    recalculateDone:
+      'Listo: {total} consultas · {updated} actualizadas · {unchanged} sin cambios · {skipped} omitidas.',
+    recalculateFailed: 'No se pudieron recalcular los análisis.',
     email: 'Email',
     anonymous: 'Anónimo',
     tipo: 'Tipo',

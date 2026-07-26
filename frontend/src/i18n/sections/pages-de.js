@@ -267,6 +267,13 @@ export const pagesDe = {
     title: 'KI-Analyse — Verlauf',
     subtitle: 'Gespeicherte Abfragen authentifizierter Benutzer.',
     refresh: 'Aktualisieren',
+    recalculate: 'Mit aktuellen Regeln neu berechnen',
+    recalculating: 'Neu berechnen…',
+    recalculateConfirm:
+      'Alle gespeicherten Analysen mit der aktuellen Heuristik neu berechnen? Keine E-Mails und keine neuen Abfragen.',
+    recalculateDone:
+      'Fertig: {total} Abfragen · {updated} aktualisiert · {unchanged} unverändert · {skipped} übersprungen.',
+    recalculateFailed: 'Analysen konnten nicht neu berechnet werden.',
     email: 'E-Mail',
     tipo: 'Typ',
     nivel: 'Stufe',
