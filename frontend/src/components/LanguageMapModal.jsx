@@ -8,30 +8,17 @@ import { useAnnounce } from './SrAnnouncer'
 function LanguageMapModal({ show, onHide }) {
   const { t, locale, setLocale } = useLocale()
   const announce = useAnnounce()
-  const stageRef = useRef(null)
-  const lastAnnouncedLocale = useRef(null)
+  const lastAnnouncedKey = useRef(null)
   const [hoveredId, setHoveredId] = useState(null)
-  const [tipPos, setTipPos] = useState({ x: 0, y: 0, visible: false })
 
   const hovered = useMemo(
     () => WORLD_COUNTRIES.find((c) => c.id === hoveredId) || null,
     [hoveredId],
   )
 
-  const selectedCountries = useMemo(
-    () => WORLD_COUNTRIES.filter((c) => c.locale === locale),
-    [locale],
-  )
-
   const selectedMeta = getLanguageMeta(locale)
   const hoveredLocale = hovered?.locale || null
 
-  const hoveredLanguageCountries = useMemo(() => {
-    if (!hoveredLocale) return []
-    return WORLD_COUNTRIES.filter((c) => c.locale === hoveredLocale)
-  }, [hoveredLocale])
-
-  const focusCountry = hovered || selectedCountries[0] || null
   const focusMeta = hovered
     ? hoveredLocale
       ? getLanguageMeta(hoveredLocale)
@@ -53,18 +40,20 @@ function LanguageMapModal({ show, onHide }) {
 
   useEffect(() => {
     if (!hovered) {
-      lastAnnouncedLocale.current = null
+      lastAnnouncedKey.current = null
       return
     }
 
     const nextKey = hoveredLocale || `country:${hovered.id}`
-    if (lastAnnouncedLocale.current === nextKey) return
-    lastAnnouncedLocale.current = nextKey
+    if (lastAnnouncedKey.current === nextKey) return
+    lastAnnouncedKey.current = nextKey
 
     if (hoveredLocale && focusMeta) {
       announce(
-        t('a11y.mapWouldSelect', 'Click para elegir {lang}')
-          .replace('{lang}', focusMeta.name),
+        t('a11y.mapWouldSelect', 'Click para elegir {lang}').replace(
+          '{lang}',
+          focusMeta.name,
+        ),
       )
     } else {
       announce(
@@ -75,35 +64,6 @@ function LanguageMapModal({ show, onHide }) {
       )
     }
   }, [hovered, hoveredLocale, focusMeta, announce, t])
-
-  function updateTipFromEvent(event) {
-    const stage = stageRef.current
-    if (!stage) return
-    const rect = stage.getBoundingClientRect()
-    const cursorX = event.clientX - rect.left
-    const cursorY = event.clientY - rect.top
-    const tipW = 168
-    const tipH = 58
-    const pad = 10
-    let left = cursorX + 14
-    let top = cursorY + 16
-
-    if (left + tipW > rect.width - pad) {
-      left = cursorX - tipW - 12
-    }
-    if (top + tipH > rect.height - pad) {
-      top = cursorY - tipH - 12
-    }
-    if (left < pad) left = pad
-    if (top < pad) top = pad
-
-    setTipPos({ x: left, y: top, visible: true })
-  }
-
-  function clearHover() {
-    setHoveredId(null)
-    setTipPos((prev) => ({ ...prev, visible: false }))
-  }
 
   function chooseLocale(code) {
     if (!code) return
@@ -127,25 +87,6 @@ function LanguageMapModal({ show, onHide }) {
     chooseLocale(country.locale)
   }
 
-  const countryLine = hovered
-    ? hoveredLocale && hoveredLanguageCountries.length > 1
-      ? `${hovered.name} · ${t(
-          'common.mapSelectedCountries',
-          '{count} países',
-        ).replace('{count}', String(hoveredLanguageCountries.length))}`
-      : hovered.name
-    : selectedCountries.length > 1
-      ? t('common.mapSelectedCountries', '{count} países').replace(
-          '{count}',
-          String(selectedCountries.length),
-        )
-      : focusCountry?.name ||
-        t('common.mapPickCountry', 'Elegí un país en el mapa')
-
-  const tipLanguage = focusMeta
-    ? `${focusMeta.label} · ${focusMeta.name}`
-    : t('common.noLanguageMapped', 'Sin idioma en la app')
-
   return (
     <Modal
       show={show}
@@ -168,9 +109,8 @@ function LanguageMapModal({ show, onHide }) {
         </p>
 
         <div
-          ref={stageRef}
           className="language-map-stage"
-          onMouseLeave={clearHover}
+          onMouseLeave={() => setHoveredId(null)}
         >
           <div className="language-map-topbar">
             <h2 className="language-map-title h6 mb-0" id="language-map-heading">
@@ -197,12 +137,6 @@ function LanguageMapModal({ show, onHide }) {
               {focusMeta?.name ||
                 t('common.noLanguageMapped', 'Sin idioma en la app')}
             </div>
-            <div className="language-map-side-country">{countryLine}</div>
-            {hovered && focusMeta && (
-              <div className="language-map-side-action">
-                {t('common.mapClickToChoose', 'Click para elegir este idioma')}
-              </div>
-            )}
             {focusMeta && !focusMeta.fullUi && (
               <div className="language-map-side-note">
                 {t(
@@ -212,27 +146,6 @@ function LanguageMapModal({ show, onHide }) {
               </div>
             )}
           </aside>
-
-          {tipPos.visible && hovered && (
-            <div
-              className={`language-map-tip${
-                hoveredLocale ? ' is-mapped' : ' is-muted'
-              }`}
-              style={{
-                left: tipPos.x,
-                top: tipPos.y,
-              }}
-              aria-hidden="true"
-            >
-              <strong>{tipLanguage}</strong>
-              <span>{hovered.name}</span>
-              {hoveredLocale ? (
-                <em className="language-map-tip-hint">
-                  {t('common.mapClickToChoose', 'Click para elegir este idioma')}
-                </em>
-              ) : null}
-            </div>
-          )}
 
           <svg
             className="language-map-svg"
@@ -313,11 +226,7 @@ function LanguageMapModal({ show, onHide }) {
                         ? `${country.name} — ${meta.label} ${meta.name}`
                         : country.name
                     }
-                    onMouseEnter={(event) => {
-                      setHoveredId(country.id)
-                      updateTipFromEvent(event)
-                    }}
-                    onMouseMove={updateTipFromEvent}
+                    onMouseEnter={() => setHoveredId(country.id)}
                     onFocus={() => hasLocale && setHoveredId(country.id)}
                     onBlur={() =>
                       setHoveredId((id) => (id === country.id ? null : id))
