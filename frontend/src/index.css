@@ -647,13 +647,43 @@ button:focus-visible .header-theme-icon--moon {
 
 .language-map-side.has-confirm {
   border-color: color-mix(in srgb, var(--bs-primary) 45%, var(--bs-border-color));
+  box-shadow:
+    0 0.35rem 1rem rgba(0, 0, 0, 0.18),
+    0 0 0 2px color-mix(in srgb, var(--bs-primary) 35%, transparent);
+}
+
+.language-map-side-hint {
+  margin-top: 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--bs-primary);
 }
 
 .language-map-side-confirm {
   pointer-events: auto;
-  margin-top: 0.35rem;
+  margin-top: 0.25rem;
   width: 100%;
   font-weight: 700;
+  animation: language-map-confirm-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes language-map-confirm-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--bs-primary) 40%, transparent);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 0.3rem color-mix(in srgb, var(--bs-primary) 18%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .language-map-side-confirm {
+    animation: none;
+  }
 }
 
 @media (max-width: 575.98px) {

@@ -243,13 +243,22 @@ function LanguageMapModal({ show, onHide }) {
               </div>
             )}
             {canConfirm && (
-              <button
-                type="button"
-                className="btn btn-sm btn-primary language-map-side-confirm"
-                onClick={confirmLocale}
-              >
-                {t('common.mapConfirmLanguage', 'Usar este idioma')}
-              </button>
+              <>
+                <div className="language-map-side-hint">
+                  {t(
+                    'common.mapTapToSelect',
+                    'Tocá el idioma para seleccionarlo',
+                  )}
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-primary language-map-side-confirm"
+                  onClick={confirmLocale}
+                >
+                  {t('common.mapConfirmLanguage', 'Usar este idioma')}:{' '}
+                  {panelMeta?.label} · {panelMeta?.name}
+                </button>
+              </>
             )}
           </aside>
 
