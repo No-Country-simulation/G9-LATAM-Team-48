@@ -13,11 +13,12 @@ export default {
     chooseLanguageMapHint:
       'Pasá el mouse por un país y hacé click para elegir su idioma.',
     noLanguageMapped: 'Sin idioma en la app',
-    partialTranslation: 'Traducción parcial (UI en inglés)',
+    partialTranslation: 'Traducción parcial (inglés)',
     mapHoverLabel: 'Al pasar el mouse',
     mapSelectedLabel: 'Idioma actual',
     mapSelectedCountries: '{count} países',
     mapPickCountry: 'Elegí un país en el mapa',
+    mapClickToChoose: 'Click para elegir este idioma',
     languages: {
       es: 'Español',
       en: 'Inglés',
@@ -40,6 +41,21 @@ export default {
     skipped: 'Omitido',
     queued: 'En cola',
     skipToContent: 'Saltar al contenido',
+  },
+  a11y: {
+    skipToNav: 'Saltar al menú',
+    mainNav: 'Menú principal',
+    topBar: 'Barra superior',
+    logoAlt: 'EnergIA, inicio',
+    pageChanged: 'Página: {page}',
+    themeLightOn: 'Tema claro activado',
+    themeDarkOn: 'Tema oscuro activado',
+    languageChanged: 'Idioma cambiado a {lang}',
+    loggedOut: 'Sesión cerrada',
+    signedInAs: 'Sesión iniciada como {name}',
+    mapKeyboardHint:
+      'Usá Tab para recorrer países con idioma. Enter o Espacio para elegir.',
+    mapWouldSelect: 'Click para elegir {lang}',
   },
   menu: {
     dashboard: 'Dashboard',

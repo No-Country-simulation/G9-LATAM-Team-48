@@ -13,7 +13,7 @@ export default {
     chooseLanguageHint: 'मानचित्र पर किसी पिन को टैप करें या सूची से भाषा चुनें।',
     chooseLanguageMapHint: 'किसी देश पर कर्सर ले जाएँ और उसकी भाषा चुनने के लिए क्लिक करें।',
     noLanguageMapped: 'ऐप में यह भाषा उपलब्ध नहीं है',
-    partialTranslation: 'आंशिक अनुवाद (UI अंग्रेज़ी में)',
+    partialTranslation: 'आंशिक अनुवाद (अंग्रेज़ी)',
     errorLoad: 'EnergIA लोड नहीं हो सका',
     reload: 'फिर से लोड करें',
     rootMissing: '#root नहीं मिला',

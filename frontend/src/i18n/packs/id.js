@@ -13,7 +13,7 @@ export default {
     chooseLanguageHint: 'Ketuk penanda di peta atau pilih bahasa dari daftar.',
     chooseLanguageMapHint: 'Arahkan kursor ke sebuah negara lalu klik untuk memilih bahasanya.',
     noLanguageMapped: 'Bahasa ini belum tersedia di aplikasi',
-    partialTranslation: 'Terjemahan sebagian (antarmuka dalam bahasa Inggris)',
+    partialTranslation: 'Terjemahan sebagian (bahasa Inggris)',
     errorLoad: 'Gagal memuat EnergIA',
     reload: 'Muat ulang',
     rootMissing: '#root tidak ditemukan',

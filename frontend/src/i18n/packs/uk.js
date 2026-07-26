@@ -13,7 +13,7 @@ export default {
     chooseLanguageHint: 'Натисніть позначку на карті або оберіть мову зі списку.',
     chooseLanguageMapHint: 'Наведіть курсор на країну й клацніть, щоб обрати її мову.',
     noLanguageMapped: 'Немає мови в застосунку',
-    partialTranslation: 'Частковий переклад (інтерфейс англійською)',
+    partialTranslation: 'Частковий переклад (англійською)',
     errorLoad: 'Не вдалося завантажити EnergIA',
     reload: 'Перезавантажити',
     rootMissing: 'Елемент #root не знайдено',

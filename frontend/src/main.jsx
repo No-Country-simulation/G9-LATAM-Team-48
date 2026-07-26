@@ -4,6 +4,7 @@ import App from './App.jsx'
 import { ThemeProvider } from './context/ThemeContext.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import { LocaleProvider } from './context/LocaleContext.jsx'
+import { SrAnnouncerProvider } from './components/SrAnnouncer.jsx'
 import ErrorBoundary from './components/ErrorBoundary.jsx'
 import { detectLocale, translate } from './i18n'
 
@@ -21,7 +22,9 @@ if (!root) {
         <LocaleProvider>
           <ThemeProvider>
             <AuthProvider>
-              <App />
+              <SrAnnouncerProvider>
+                <App />
+              </SrAnnouncerProvider>
             </AuthProvider>
           </ThemeProvider>
         </LocaleProvider>
