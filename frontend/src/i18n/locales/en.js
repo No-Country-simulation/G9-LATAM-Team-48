@@ -10,14 +10,17 @@ export default {
     language: 'Language',
     chooseLanguage: 'Choose a language',
     chooseLanguageHint: 'Tap a pin on the map or pick a language from the list.',
-    chooseLanguageMapHint: 'Hover a country and click to choose its language.',
+    chooseLanguageMapHint:
+      'Pick a country on the map and confirm the language in the panel.',
     noLanguageMapped: 'No language in the app',
     partialTranslation: 'Partial translation (English)',
     mapHoverLabel: 'On hover',
     mapSelectedLabel: 'Current language',
+    mapPendingLabel: 'Chosen language',
     mapSelectedCountries: '{count} countries',
     mapPickCountry: 'Pick a country on the map',
     mapClickToChoose: 'Click to choose this language',
+    mapConfirmLanguage: 'Use this language',
     languages: {
       es: 'Spanish',
       en: 'English',
@@ -53,8 +56,9 @@ export default {
     loggedOut: 'Signed out',
     signedInAs: 'Signed in as {name}',
     mapKeyboardHint:
-      'Use Tab to move through countries with a language. Press Enter or Space to choose.',
-    mapWouldSelect: 'Click to choose {lang}',
+      'Use Tab to move through countries with a language. Press Enter or Space to propose it, then confirm.',
+    mapWouldSelect: 'Selected: {lang}. Confirm in the panel.',
+    mapPending: 'Proposed language: {lang}. Tap Use this language to confirm.',
   },
   menu: {
     dashboard: 'Dashboard',

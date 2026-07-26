@@ -11,7 +11,16 @@ function LanguageMapModal({ show, onHide }) {
   const stageRef = useRef(null)
   const lastAnnouncedKey = useRef(null)
   const [hoveredId, setHoveredId] = useState(null)
+  const [pendingLocale, setPendingLocale] = useState(null)
   const [tipPos, setTipPos] = useState({ x: 0, y: 0, visible: false })
+
+  useEffect(() => {
+    if (!show) {
+      setPendingLocale(null)
+      setHoveredId(null)
+      setTipPos((prev) => ({ ...prev, visible: false }))
+    }
+  }, [show])
 
   const hovered = useMemo(
     () => WORLD_COUNTRIES.find((c) => c.id === hoveredId) || null,
@@ -20,17 +29,22 @@ function LanguageMapModal({ show, onHide }) {
 
   const selectedMeta = getLanguageMeta(locale)
   const hoveredLocale = hovered?.locale || null
+  const pendingMeta = pendingLocale ? getLanguageMeta(pendingLocale) : null
 
-  const focusMeta = hovered
+  const panelMeta = pendingMeta || selectedMeta
+  const canConfirm = Boolean(pendingLocale && pendingLocale !== locale)
+
+  const tipMeta = hovered
     ? hoveredLocale
       ? getLanguageMeta(hoveredLocale)
       : null
-    : selectedMeta
+    : null
 
   const sortedCountries = useMemo(() => {
     return [...WORLD_COUNTRIES].sort((a, b) => {
       const score = (country) => {
-        if (hoveredLocale && country.locale === hoveredLocale) return 4
+        if (hoveredLocale && country.locale === hoveredLocale) return 5
+        if (pendingLocale && country.locale === pendingLocale) return 4
         if (country.id === hoveredId) return 3
         if (country.locale && country.locale === locale) return 2
         if (country.locale) return 1
@@ -38,7 +52,7 @@ function LanguageMapModal({ show, onHide }) {
       }
       return score(a) - score(b)
     })
-  }, [hoveredId, hoveredLocale, locale])
+  }, [hoveredId, hoveredLocale, pendingLocale, locale])
 
   useEffect(() => {
     if (!hovered) {
@@ -50,11 +64,11 @@ function LanguageMapModal({ show, onHide }) {
     if (lastAnnouncedKey.current === nextKey) return
     lastAnnouncedKey.current = nextKey
 
-    if (hoveredLocale && focusMeta) {
+    if (hoveredLocale && tipMeta) {
       announce(
-        t('a11y.mapWouldSelect', 'Click para elegir {lang}').replace(
+        t('a11y.mapWouldSelect', 'Seleccionado: {lang}. Confirmá en el panel.').replace(
           '{lang}',
-          focusMeta.name,
+          tipMeta.name,
         ),
       )
     } else {
@@ -65,7 +79,7 @@ function LanguageMapModal({ show, onHide }) {
         )}`,
       )
     }
-  }, [hovered, hoveredLocale, focusMeta, announce, t])
+  }, [hovered, hoveredLocale, tipMeta, announce, t])
 
   function updateTipFromEvent(event) {
     const stage = stageRef.current
@@ -93,16 +107,20 @@ function LanguageMapModal({ show, onHide }) {
     setTipPos((prev) => ({ ...prev, visible: false }))
   }
 
-  function chooseLocale(code) {
-    if (!code) return
-    const meta = getLanguageMeta(code)
+  function confirmLocale() {
+    if (!pendingLocale || pendingLocale === locale) return
+    const meta = getLanguageMeta(pendingLocale)
     const langName =
-      translate(code, `common.languages.${code}`, meta?.name || code) ||
+      translate(
+        pendingLocale,
+        `common.languages.${pendingLocale}`,
+        meta?.name || pendingLocale,
+      ) ||
       meta?.name ||
-      code
-    setLocale(code)
+      pendingLocale
+    setLocale(pendingLocale)
     announce(
-      translate(code, 'a11y.languageChanged', 'Language changed to {lang}').replace(
+      translate(pendingLocale, 'a11y.languageChanged', 'Language changed to {lang}').replace(
         '{lang}',
         langName,
       ),
@@ -112,12 +130,20 @@ function LanguageMapModal({ show, onHide }) {
 
   function onCountryClick(country) {
     if (!country.locale) return
-    chooseLocale(country.locale)
+    setPendingLocale(country.locale)
+    announce(
+      t('a11y.mapPending', 'Idioma propuesto: {lang}. Tocá Usar este idioma para confirmar.').replace(
+        '{lang}',
+        getLanguageMeta(country.locale).name,
+      ),
+    )
   }
 
-  const tipTitle = focusMeta
-    ? `${focusMeta.label} · ${focusMeta.name}`
-    : t('common.noLanguageMapped', 'Sin idioma en la app')
+  const tipTitle = tipMeta
+    ? `${tipMeta.label} · ${tipMeta.name}`
+    : hovered
+      ? t('common.noLanguageMapped', 'Sin idioma en la app')
+      : ''
 
   return (
     <Modal
@@ -132,11 +158,11 @@ function LanguageMapModal({ show, onHide }) {
         <p className="visually-hidden" id="language-map-hint">
           {t(
             'common.chooseLanguageMapHint',
-            'Pasá el mouse por un país y hacé click para elegir su idioma.',
+            'Elegí un país en el mapa y confirmá el idioma en el panel.',
           )}{' '}
           {t(
             'a11y.mapKeyboardHint',
-            'Usá Tab para recorrer países con idioma. Enter o Espacio para elegir.',
+            'Usá Tab para recorrer países con idioma. Enter o Espacio para proponerlo, luego confirmá.',
           )}
         </p>
 
@@ -157,24 +183,38 @@ function LanguageMapModal({ show, onHide }) {
             />
           </div>
 
-          <aside className="language-map-side" aria-live="polite">
+          <aside
+            className={`language-map-side${canConfirm ? ' has-confirm' : ''}`}
+            aria-live="polite"
+          >
             <div className="language-map-side-label">
-              {t('common.mapSelectedLabel', 'Idioma actual')}
+              {canConfirm
+                ? t('common.mapPendingLabel', 'Idioma elegido')
+                : t('common.mapSelectedLabel', 'Idioma actual')}
             </div>
             <div className="language-map-side-code">
-              {focusMeta?.label || '—'}
+              {panelMeta?.label || '—'}
             </div>
             <div className="language-map-side-name">
-              {focusMeta?.name ||
+              {panelMeta?.name ||
                 t('common.noLanguageMapped', 'Sin idioma en la app')}
             </div>
-            {focusMeta && !focusMeta.fullUi && (
+            {panelMeta && !panelMeta.fullUi && (
               <div className="language-map-side-note">
                 {t(
                   'common.partialTranslation',
                   'Traducción parcial (inglés)',
                 )}
               </div>
+            )}
+            {canConfirm && (
+              <button
+                type="button"
+                className="btn btn-sm btn-primary language-map-side-confirm"
+                onClick={confirmLocale}
+              >
+                {t('common.mapConfirmLanguage', 'Usar este idioma')}
+              </button>
             )}
           </aside>
 
@@ -239,6 +279,8 @@ function LanguageMapModal({ show, onHide }) {
               {sortedCountries.map((country) => {
                 const hasLocale = Boolean(country.locale)
                 const isSelected = hasLocale && country.locale === locale
+                const isPending =
+                  hasLocale && pendingLocale && country.locale === pendingLocale
                 const isHovered = hovered
                   ? hoveredLocale
                     ? country.locale === hoveredLocale
@@ -251,6 +293,7 @@ function LanguageMapModal({ show, onHide }) {
                   'language-map-country',
                   hasLocale ? 'is-mapped' : 'is-muted',
                   isSelected ? 'is-selected' : '',
+                  isPending ? 'is-pending' : '',
                   isHovered ? 'is-hovered' : '',
                 ]
                   .filter(Boolean)
@@ -275,7 +318,13 @@ function LanguageMapModal({ show, onHide }) {
                               stroke: 'rgba(60, 80, 100, 0.45)',
                               strokeWidth: 0.7,
                             }
-                        : undefined
+                        : isPending
+                          ? {
+                              fill: '#fd7e14',
+                              stroke: 'rgba(120, 60, 0, 0.65)',
+                              strokeWidth: 1,
+                            }
+                          : undefined
                     }
                     tabIndex={hasLocale ? 0 : undefined}
                     role={hasLocale ? 'button' : undefined}

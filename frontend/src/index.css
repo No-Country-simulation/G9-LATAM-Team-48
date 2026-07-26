@@ -645,6 +645,17 @@ button:focus-visible .header-theme-icon--moon {
   pointer-events: none;
 }
 
+.language-map-side.has-confirm {
+  border-color: color-mix(in srgb, var(--bs-primary) 45%, var(--bs-border-color));
+}
+
+.language-map-side-confirm {
+  pointer-events: auto;
+  margin-top: 0.35rem;
+  width: 100%;
+  font-weight: 700;
+}
+
 @media (max-width: 575.98px) {
   .language-map-side {
     left: 50%;
@@ -682,6 +693,13 @@ button:focus-visible .header-theme-icon--moon {
     margin-top: 0;
     text-align: center;
     font-size: 0.65rem;
+  }
+
+  .language-map-side-confirm {
+    flex-basis: 100%;
+    margin-top: 0.15rem;
+    width: auto;
+    min-width: 8.5rem;
   }
 
   .language-map-tip {
