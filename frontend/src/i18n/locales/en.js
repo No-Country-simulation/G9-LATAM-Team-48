@@ -58,6 +58,7 @@ export default {
     mapKeyboardHint:
       'Use Tab to move through countries with a language. Press Enter or Space to propose it, then confirm.',
     mapWouldSelect: 'Selected: {lang}. Confirm in the panel.',
+    mapWouldSelectDesktop: 'Click to choose {lang}',
     mapPending: 'Proposed language: {lang}. Tap Use this language to confirm.',
   },
   menu: {
