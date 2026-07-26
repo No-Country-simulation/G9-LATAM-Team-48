@@ -5,7 +5,7 @@ import { getLanguageMeta, translate } from '../i18n'
 import { WORLD_COUNTRIES, WORLD_MAP_VIEWBOX } from '../data/worldMap'
 import { useAnnounce } from './SrAnnouncer'
 
-const MOBILE_MQ = '(max-width: 575.98px)'
+const MOBILE_MQ = '(max-width: 767.98px), (hover: none) and (pointer: coarse)'
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(() =>
@@ -57,10 +57,12 @@ function LanguageMapModal({ show, onHide }) {
   const pendingMeta = pendingLocale ? getLanguageMeta(pendingLocale) : null
 
   const panelMeta = pendingMeta || selectedMeta
-  const canConfirm = Boolean(
-    isMobile && pendingLocale && pendingLocale !== locale,
+  // En mobile, al tocar un país siempre se abre la ventana de idioma.
+  const showLanguagePicker = Boolean(isMobile && pendingLocale)
+  const sideMeta = showLanguagePicker ? selectedMeta : panelMeta
+  const canApplyPending = Boolean(
+    pendingLocale && pendingLocale !== locale,
   )
-  const sideMeta = canConfirm ? selectedMeta : panelMeta
 
   const tipMeta = hovered
     ? hoveredLocale
@@ -160,9 +162,18 @@ function LanguageMapModal({ show, onHide }) {
     applyLocale(pendingLocale)
   }
 
-  function onCountryClick(country) {
+  function needsConfirm(event) {
+    if (isMobile) return true
+    if (event?.pointerType === 'touch') return true
+    if (typeof window !== 'undefined') {
+      return window.matchMedia('(pointer: coarse)').matches
+    }
+    return false
+  }
+
+  function onCountryClick(country, event) {
     if (!country.locale) return
-    if (isMobile) {
+    if (needsConfirm(event)) {
       setPendingLocale(country.locale)
       announce(
         t(
@@ -240,7 +251,7 @@ function LanguageMapModal({ show, onHide }) {
             )}
           </aside>
 
-          {canConfirm && panelMeta && (
+          {showLanguagePicker && panelMeta && (
             <div
               className="language-confirm-sheet"
               role="dialog"
@@ -252,7 +263,10 @@ function LanguageMapModal({ show, onHide }) {
                   className="language-confirm-title mb-1"
                   id="language-confirm-title"
                 >
-                  {t('common.mapTapToSelect', 'Tocá el idioma para seleccionarlo')}
+                  {t(
+                    'common.mapSelectLanguageTitle',
+                    'Seleccionar idioma',
+                  )}
                 </p>
                 <div className="language-confirm-code">{panelMeta.label}</div>
                 <div className="language-confirm-name">{panelMeta.name}</div>
@@ -277,14 +291,16 @@ function LanguageMapModal({ show, onHide }) {
                     className="btn btn-primary btn-sm language-confirm-accept"
                     onClick={confirmLocale}
                   >
-                    {t('common.mapConfirmLanguage', 'Usar este idioma')}
+                    {canApplyPending
+                      ? t('common.mapConfirmLanguage', 'Usar este idioma')
+                      : t('common.mapKeepLanguage', 'Mantener este idioma')}
                   </button>
                 </div>
               </div>
             </div>
           )}
 
-          {tipPos.visible && hovered && !canConfirm && (
+          {tipPos.visible && hovered && !showLanguagePicker && (
             <div
               className={`language-map-tip${
                 hoveredLocale ? ' is-mapped' : ' is-muted'
@@ -408,12 +424,12 @@ function LanguageMapModal({ show, onHide }) {
                     onBlur={() =>
                       setHoveredId((id) => (id === country.id ? null : id))
                     }
-                    onClick={() => onCountryClick(country)}
+                    onClick={(event) => onCountryClick(country, event)}
                     onKeyDown={(event) => {
                       if (!hasLocale) return
                       if (event.key === 'Enter' || event.key === ' ') {
                         event.preventDefault()
-                        onCountryClick(country)
+                        onCountryClick(country, event)
                       }
                     }}
                   />
