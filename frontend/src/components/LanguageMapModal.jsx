@@ -1,27 +1,19 @@
 import { useMemo, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useLocale } from '../context/LocaleContext'
+import { getLanguageMeta } from '../i18n'
 import { WORLD_COUNTRIES, WORLD_MAP_VIEWBOX } from '../data/worldMap'
 
 function LanguageMapModal({ show, onHide }) {
-  const { t, locale, setLocale, locales } = useLocale()
+  const { t, locale, setLocale } = useLocale()
   const [hoveredId, setHoveredId] = useState(null)
-
-  const localeLabels = useMemo(() => {
-    const map = {}
-    for (const item of locales) {
-      map[item.code] = {
-        code: item.label,
-        name: t(`common.languages.${item.code}`),
-      }
-    }
-    return map
-  }, [locales, t])
 
   const hovered = useMemo(
     () => WORLD_COUNTRIES.find((c) => c.id === hoveredId) || null,
     [hoveredId],
   )
+
+  const hoveredMeta = hovered?.locale ? getLanguageMeta(hovered.locale) : null
 
   const sortedCountries = useMemo(() => {
     return [...WORLD_COUNTRIES].sort((a, b) => {
@@ -59,16 +51,16 @@ function LanguageMapModal({ show, onHide }) {
           {t('common.chooseLanguage', 'Elegí un idioma')}
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="pb-3">
         <p className="text-muted small mb-3">
           {t(
             'common.chooseLanguageMapHint',
-            'Pasá el mouse por un país coloreado y hacé click para elegir su idioma.',
+            'Pasá el mouse por un país y hacé click para elegir su idioma.',
           )}
         </p>
 
         <div
-          className="language-map-stage mb-3"
+          className="language-map-stage"
           onMouseLeave={() => setHoveredId(null)}
         >
           <svg
@@ -116,6 +108,7 @@ function LanguageMapModal({ show, onHide }) {
                 const hasLocale = Boolean(country.locale)
                 const isSelected = hasLocale && country.locale === locale
                 const isHovered = country.id === hoveredId
+                const meta = hasLocale ? getLanguageMeta(country.locale) : null
                 const className = [
                   'language-map-country',
                   hasLocale ? 'is-mapped' : 'is-muted',
@@ -135,12 +128,14 @@ function LanguageMapModal({ show, onHide }) {
                     role={hasLocale ? 'button' : undefined}
                     aria-label={
                       hasLocale
-                        ? `${country.name} — ${localeLabels[country.locale]?.name || country.locale}`
+                        ? `${country.name} — ${meta.label} ${meta.name}`
                         : country.name
                     }
                     onMouseEnter={() => setHoveredId(country.id)}
                     onFocus={() => hasLocale && setHoveredId(country.id)}
-                    onBlur={() => setHoveredId((id) => (id === country.id ? null : id))}
+                    onBlur={() =>
+                      setHoveredId((id) => (id === country.id ? null : id))
+                    }
                     onClick={() => onCountryClick(country)}
                     onKeyDown={(event) => {
                       if (!hasLocale) return
@@ -158,11 +153,20 @@ function LanguageMapModal({ show, onHide }) {
           {hovered && (
             <div className="language-map-tooltip" role="status">
               <strong>{hovered.name}</strong>
-              {hovered.locale ? (
-                <span>
-                  {localeLabels[hovered.locale]?.code} —{' '}
-                  {localeLabels[hovered.locale]?.name}
-                </span>
+              {hoveredMeta ? (
+                <>
+                  <span>
+                    {hoveredMeta.label} — {hoveredMeta.name}
+                  </span>
+                  {!hoveredMeta.fullUi && (
+                    <span className="small text-muted">
+                      {t(
+                        'common.partialTranslation',
+                        'Traducción parcial (UI en inglés)',
+                      )}
+                    </span>
+                  )}
+                </>
               ) : (
                 <span className="text-muted">
                   {t('common.noLanguageMapped', 'Sin idioma en la app')}
@@ -170,31 +174,6 @@ function LanguageMapModal({ show, onHide }) {
               )}
             </div>
           )}
-        </div>
-
-        <div
-          className="language-map-chips"
-          role="listbox"
-          aria-label={t('common.language')}
-        >
-          {locales.map((item) => {
-            const active = item.code === locale
-            return (
-              <button
-                key={item.code}
-                type="button"
-                role="option"
-                aria-selected={active}
-                className={`language-map-chip${active ? ' is-active' : ''}`}
-                onClick={() => chooseLocale(item.code)}
-              >
-                <span className="language-map-chip-code">{item.label}</span>
-                <span className="language-map-chip-name">
-                  {t(`common.languages.${item.code}`)}
-                </span>
-              </button>
-            )
-          })}
         </div>
       </Modal.Body>
     </Modal>

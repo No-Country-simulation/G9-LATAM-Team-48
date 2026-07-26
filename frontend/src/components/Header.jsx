@@ -76,14 +76,11 @@ function Header({ onMenuOpen, onLoginClick }) {
               type="button"
               className={`btn btn-sm d-inline-flex align-items-center gap-1 ${outlineClass}`}
               onClick={() => setLanguageOpen(true)}
-              aria-label={`${t('common.language')}: ${languageName}`}
+              aria-label={`${t('common.language')}: ${selectedLocale.label}`}
               title={`${t('common.language')}: ${languageName}`}
             >
               <LuGlobe size={16} aria-hidden="true" />
               <span className="header-lang-code">{selectedLocale.label}</span>
-              <span className="d-none d-md-inline header-lang-name">
-                {languageName}
-              </span>
             </button>
 
             <button
