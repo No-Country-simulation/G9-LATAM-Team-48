@@ -1,13 +1,19 @@
 package com.alura.recommendation.dto;
 
 /**
- * Contrato de entrada del modulo de recomendaciones.
+ * Contrato de entrada del módulo de recomendaciones (Opción C).
  *
- * @param userId   identificador del usuario
- * @param category categoria de consumo asignada por el modulo de prediccion
+ * <p>Incluye la categoría determinada por el modelo (vía prediction)
+ * más las variables específicas del consumo y el tipo de inmueble,
+ * para que las reglas granulares puedan evaluarse correctamente.</p>
  */
 public record RecommendationRequest(
         String userId,
-        String category
+        String category,
+        String tipoInmueble,
+        Integer cantidadEquipos,
+        Integer horasClimatizacion,
+        Integer horasAltoConsumo,
+        Boolean usoHorarioPico
 ) {
 }

@@ -80,6 +80,16 @@ Guía completa de contrato e integración:
 
 Microservicio Python: [`ml-service/README.md`](../ml-service/README.md).
 
+### Fallback sin ML (mock / heurística)
+
+Si FastAPI no está disponible, Spring usa `HeuristicPrediction`: clasifica por
+benchmark + hábitos (consumo, pico, equipos) y emite `nivelKey` / `tipKeys`
+compatibles con el frontend. Sustituye al antiguo `MockPredictionService`, cuyos
+contratos tipados no encajan con el `PredictionRequest`/`PredictionResponse`
+actuales.
+
+Material de notebooks y datasets: carpeta hermana [`datascience/`](../datascience/).
+
 ---
 
 ## Tecnologias
