@@ -60,6 +60,16 @@ Esto habilita el principio **Abierto/Cerrado (OCP)** de SOLID: añadir una recom
 | `RecommendationServiceImpl` | `recommendation.service` | Filtra las reglas, extrae las claves, las convierte a minúsculas y devuelve la lista final sin duplicados. |
 | `RecommendationRequest` | `recommendation.dto` | Entrada: `userId`, `category`, `tipoInmueble` + variables tipadas específicas del consumo. |
 | `RecommendationResponse` | `recommendation.dto` | Salida: `userId` + lista de `tipKeys`. |
+
+### 4.1. Contrato de Integración con el Modelo ML (Python)
+Para desacoplar el backend de los valores literales devueltos por el servicio de Inteligencia Artificial, se utiliza el Enum enriquecido `ConsumptionCategory`. Este componente incluye la clase anidada `ModelValues`, que actúa como única fuente de verdad para los estados de consumo:
+- `HIGH_CONSUMPTION` ("ALTO")
+- `MODERADO_CONSUMPTION` ("MODERADO")
+- `LOW_CONSUMPTION` ("BAJO")
+
+Esto permite que, ante modificaciones en el contrato del modelo predictivo, los cambios se realicen en un único punto sin afectar la lógica de las reglas (`Strategy`) ni el mapeo hacia las claves visuales del frontend (`efficient`, `inefficient`, etc.).
+
+
 ---
 
 ## 5. Flujo de generación de recomendaciones
@@ -85,7 +95,16 @@ RecommendationRequest  ──────────────►  rules.stre
                                         (userId, [tipKeys])
 
 ```
+## 5.1 Flujo de Integración y Orquestación (`PredictionServiceImpl`)
 
+El servicio principal `PredictionServiceImpl` coordina la petición del cliente con el motor de reglas mediante el siguiente pipeline:
+
+1. **Recepción del Request:** El controlador recibe los datos del formulario (consumo, tipo de inmueble, horas de climatización, etc.) validados mediante `PredictionRequest`.
+2. **Inferencia de IA (FastAPI):** Se invoca a `PredictionClient` para enviar los datos al modelo de Machine Learning en Python, el cual retorna una categoría general (ej. `"ALTO"`, `"MODERADO"`, `"BAJO"`).
+3. **Traducción de Estado:** Se utiliza el Enum `ConsumptionCategory` para mapear la respuesta de la IA a la clave visual correspondiente del frontend (`inefficient`, `moderate`, `efficient`).
+4. **Construcción del Contrato de Reglas:** Se instancia un `RecommendationRequest` enriquecido con los datos crudos del usuario y la categoría obtenida.
+5. **Evaluación Strategy:** Se invoca a `RecommendationService.generate()`, donde el motor recorre todas las reglas aplicables en base al tipo de inmueble y hábitos.
+6. **Respuesta Final:** Se empaqueta la categoría, el nivel visual y la lista limpia de `tipKeys` (ej. `["ac", "peak", "commercial"]`) en el `PredictionResponse` devuelto a la UI.
 ---
 
 ## 6. Manejo de categorías desconocidas
