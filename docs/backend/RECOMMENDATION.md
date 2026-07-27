@@ -1,56 +1,38 @@
 # Motor de Recomendaciones (Strategy) — Energy Backend
 
-> Guia del feature de recomendaciones energeticas. Explica el diseno interno,
-> el estado actual del contrato y las preguntas abiertas para el equipo.
-> Complementa a [`ARCHITECTURE.md`](./ARCHITECTURE.md) y a
-> [`I18N.md`](./I18N.md) (los mensajes de este modulo estan internacionalizados).
+> Guía del feature de recomendaciones energéticas. Explica el diseño interno, el estado actual del contrato y la evolución de la arquitectura tras la integración con el modelo de predicción. Complementa a `ARCHITECTURE.md`. 
+> *Nota: La internacionalización en el backend (`I18N.md`) fue deprecada a favor de delegar la traducción al frontend.*
 
 ---
 
 ## Tabla de contenidos
 
-1. [Que se implemento](#1-que-se-implemento)
-2. [Justificacion: por que Strategy](#2-justificacion-por-que-strategy)
+1. [Qué se implementó](#1-qué-se-implementó)
+2. [Justificación: por qué Strategy](#2-justificación-por-qué-strategy)
 3. [Beneficios](#3-beneficios)
-4. [Diseno y componentes](#4-diseno-y-componentes)
-5. [Flujo de generacion de recomendaciones](#5-flujo-de-generacion-de-recomendaciones)
-6. [Configuracion](#6-configuracion)
-7. [Uso](#7-uso)
-8. [Manejo de categorias desconocidas](#8-manejo-de-categorias-desconocidas)
-9. [Pruebas](#9-pruebas)
-10. [Limitaciones actuales y pregunta abierta para el equipo](#10-limitaciones-actuales-y-pregunta-abierta-para-el-equipo)
+4. [Diseño y componentes](#4-diseño-y-componentes)
+5. [Flujo de generación de recomendaciones](#5-flujo-de-generación-de-recomendaciones)
+6. [Manejo de categorías desconocidas](#6-manejo-de-categorías-desconocidas)
+7. [Pruebas](#7-pruebas)
+8. [Evolución del Contrato](#8-evolución-del-contrato)
 
 ---
 
-## 1. Que se implemento
+## 1. Qué se implementó
 
-- **Motor de reglas** (patron Strategy) que genera recomendaciones de ahorro
-  energetico segun la categoria de consumo de un usuario.
-- Tres reglas concretas: `HighConsumptionRule`, `MediumConsumptionRule`,
-  `LowConsumptionRule`, una por cada categoria de consumo.
-- **Mensaje de contingencia** cuando ninguna regla aplica (categoria
-  desconocida o no mapeada).
-- **Mensajes internacionalizados** (ES/EN/PT) — ver
-  [`I18N.md`](./I18N.md) para el diseno de esa parte.
-- **Pruebas unitarias** que verifican las 3 categorias + el fallback, en los
-  tres idiomas.
+*   **Motor de reglas** (patrón Strategy) que genera recomendaciones de ahorro energético.
+*   Reglas generales basadas en la categoría de consumo (`HighConsumptionRule`, `MediumConsumptionRule`, `LowConsumptionRule`).
+*   Reglas granulares basadas en hábitos específicos, como `PeakHourUsageRule`.
+*   **Pivote de i18n:** Las reglas devuelven claves cortas (ej. `"peak"`, `"ac"`, `"led"`) en lugar de oraciones traducidas. El frontend resuelve el texto final según su propio diccionario.
+*   **Mensaje de contingencia** (`"default"`) cuando ninguna regla aplica.
 
 ---
 
-## 2. Justificacion: por que Strategy
+## 2. Justificación: por qué Strategy
 
-El patron Strategy para este modulo fue definido por el Backend Lead
-(Daniel) como parte de la arquitectura base del proyecto
-(`feat-backend-base-architecture`). La idea central: cada regla de
-recomendacion es una estrategia independiente e intercambiable, y el
-servicio orquestador no necesita conocer cuantas reglas existen ni su
-logica interna — solo las recorre y compone el resultado.
+El patrón Strategy para este módulo fue definido como parte de la arquitectura base del proyecto. La idea central: cada regla de recomendación es una estrategia independiente e intercambiable, y el servicio orquestador no necesita conocer cuántas reglas existen ni su lógica interna — solo las recorre y compone el resultado.
 
-Esto habilita el principio **Abierto/Cerrado (OCP)** de SOLID: anadir una
-recomendacion nueva es crear una clase nueva que implemente
-`RecommendationRule`, sin modificar `RecommendationServiceImpl` ni las
-reglas existentes. Spring inyecta automaticamente todas las implementaciones
-anotadas `@Component` en la lista de reglas del servicio.
+Esto habilita el principio **Abierto/Cerrado (OCP)** de SOLID: añadir una recomendación nueva es crear una clase nueva que implemente `RecommendationRule`, sin modificar `RecommendationServiceImpl` ni las reglas existentes. Spring inyecta automáticamente todas las implementaciones anotadas `@Component` en la lista de reglas del servicio.
 
 ---
 
@@ -59,159 +41,74 @@ anotadas `@Component` en la lista de reglas del servicio.
 | Beneficio          | Detalle                                                                 |
 |--------------------|---------------------------------------------------------------------------|
 | Extensibilidad     | Sumar una regla nueva no requiere tocar el servicio orquestador (OCP).    |
-| Desacoplamiento    | Cada regla decide por si misma si aplica (`applies`) y que dice (`evaluate`). |
-| Testeabilidad      | Cada regla se prueba de forma aislada; el servicio se prueba con reglas reales o dobles de prueba. |
-| Composicion        | El servicio ya soporta que **varias reglas apliquen a la vez** para un mismo request (ver seccion 10). |
+| Desacoplamiento    | Cada regla decide por sí misma si aplica (`applies`) y qué clave devuelve (`evaluate`). |
+| Mantenibilidad     | Eliminación de *magic strings* mediante el uso de enums (`TipKey`) y constantes (`CategoryConstants`). |
+| Composición        | El servicio soporta que **varias reglas apliquen a la vez** para un mismo usuario, evitando duplicados mediante operaciones de *Stream*. |
 
 ---
 
-## 4. Diseno y componentes
+## 4. Diseño y componentes
 
 | Componente | Paquete | Responsabilidad |
 |------------|---------|-------------------|
-| `RecommendationRule` | `recommendation.rules` | Interfaz Strategy: `applies(request)` decide si la regla corresponde, `evaluate(request)` genera el mensaje. |
-| `HighConsumptionRule` / `MediumConsumptionRule` / `LowConsumptionRule` | `recommendation.rules` | Implementaciones concretas, una por categoria de consumo. |
-| `RecommendationService` | `recommendation.service` | Contrato del orquestador: `generate(request)`. |
-| `RecommendationServiceImpl` | `recommendation.service` | Filtra las reglas aplicables, compone el resultado y resuelve el fallback si ninguna aplica. |
-| `RecommendationRequest` | `recommendation.dto` | Entrada: `userId` + `category`. |
-| `RecommendationResponse` | `recommendation.dto` | Salida: `userId` + lista de recomendaciones. |
-
-**Estado actual del contrato de categorias:**
-
-Las reglas comparan contra los valores `LOW_CONSUMPTION`,
-`MEDIUM_CONSUMPTION` y `HIGH_CONSUMPTION`, alineados al mock disponible en
-`resources/data/sample-predictions.json`. Ese mock, segun su propio
-README, **no representa datos productivos** — es una referencia de
-prototipado, no un contrato cerrado. La consigna original del hackathon
-define las categorias como `Eficiente` / `Moderado` / `Ineficiente`. Cual de
-los dos conjuntos sera el definitivo es una decision pendiente de
-confirmar con el equipo (ver seccion 10).
+| `RecommendationRule` | `recommendation.rules` | Interfaz Strategy: `applies(request)` decide si aplica, `evaluate(request)` retorna el `TipKey`. |
+| `*Rule` (Implementaciones) | `recommendation.rules` | Clases concretas que evalúan categorías (ALTO, MODERADO, BAJO) o variables específicas (horario pico). |
+| `TipKey` | `recommendation.dto` | Enum que cataloga los identificadores de recomendación soportados por el sistema. |
+| `CategoryConstants` | `common.constants` | Centraliza los valores de categoría recibidos del modelo ML (`ALTO`, `MODERADO`, `BAJO`). |
+| `RecommendationServiceImpl` | `recommendation.service` | Filtra las reglas aplicables, extrae las claves, las convierte a minúsculas y devuelve la lista final sin duplicados. |
+| `RecommendationRequest` | `recommendation.dto` | Entrada: `userId`, `category` + variables tipadas específicas del consumo. |
+| `RecommendationResponse` | `recommendation.dto` | Salida: `userId` + lista de `tipKeys`. |
 
 ---
 
-## 5. Flujo de generacion de recomendaciones
+## 5. Flujo de generación de recomendaciones
 
-```
+```text
 PredictionResponse                    RecommendationServiceImpl
 (userId, category, confidence)                │
         │                                     │  1. Recibe RecommendationRequest
-        │  (se arma un                        │     (hoy: solo userId + category)
+        │  (se arma el                        │     (userId, category, usoHorarioPico, etc.)
         │   RecommendationRequest              │
-        │   con userId + category)             │
+        │   enriquecido)                       │
         ▼                                      ▼
 RecommendationRequest  ──────────────►  rules.stream()
                                             .filter(rule -> rule.applies(request))
-                                            .map(rule -> rule.evaluate(request))
-                                            .collect(...)
+                                            .map(rule -> rule.evaluate(request).name().toLowerCase())
+                                            .distinct()
+                                            .toList()
                                                │
-                                               │  Si la lista queda vacia:
-                                               │  resolveDefaultMessage()
+                                               │  Si la lista queda vacía:
+                                               │  Lista con ["default"]
                                                ▼
                                         RecommendationResponse
-                                        (userId, [recomendaciones])
-```
+                                        (userId, [tipKeys])
 
-> Quien arma el `RecommendationRequest` a partir del `PredictionResponse` (y
-> de que otros datos, si los hubiera) es parte de la pregunta abierta de la
-> seccion 10 — hoy no existe un controller/orquestador que haga ese paso.
-
----
-
-## 6. Configuracion
-
-Este modulo no requiere variables de entorno propias. Los unicos artefactos
-de configuracion son los archivos de mensajes (`messages_*.properties`),
-documentados en [`I18N.md`](./I18N.md).
-
----
-
-## 7. Uso
-
-> El modulo aun no tiene un endpoint HTTP propio (no existe
-> `RecommendationController` ni un orquestador que lo invoque desde
-> `POST /analisis-energetico`). Se usa hoy de forma programatica, invocado
-> directamente o desde tests.
-
-```java
-RecommendationRequest request = new RecommendationRequest("user-123", "HIGH_CONSUMPTION");
-RecommendationResponse response = recommendationService.generate(request);
-// response.recommendations() -> lista con 1 mensaje, en el idioma del Locale activo
 ```
 
 ---
 
-## 8. Manejo de categorias desconocidas
+## 6. Manejo de categorías desconocidas
 
-Si `category` es `null`, o no coincide con ninguna regla registrada,
-`RecommendationServiceImpl` devuelve un unico mensaje de contingencia
-(`recommendation.default`, tambien traducido). El usuario nunca recibe una
-lista vacia de recomendaciones.
+Si `category` es `null`, o el perfil de consumo no coincide con ninguna regla registrada, `RecommendationServiceImpl` devuelve una única clave de contingencia (`"default"`). El usuario nunca recibe una lista vacía de recomendaciones.
 
 ---
 
-## 9. Pruebas
+## 7. Pruebas
 
-`RecommendationServiceImplTest` cubre:
+La suite de pruebas `RecommendationServiceImplTest` cubre:
 
-- Una regla por categoria (`HIGH_CONSUMPTION`, `MEDIUM_CONSUMPTION`,
-  `LOW_CONSUMPTION`), cada una en un idioma distinto (ES/EN/PT) para
-  verificar reglas + i18n en conjunto.
-- El fallback por defecto ante una categoria no mapeada.
-- Reset del `Locale` entre tests (`@AfterEach`) para evitar filtraciones de
-  estado entre casos.
+* Evaluación correcta de las reglas según la constante de categoría.
+* Retorno del fallback `"default"` ante una categoría no mapeada.
+* Verificación de que el orquestador convierte correctamente los `TipKey` a cadenas en minúsculas y filtra elementos duplicados (ej. `["ac", "peak"]`).
 
-```bash
-cd backend
-mvn test -Dtest=RecommendationServiceImplTest
+---
+
+## 8. Evolución del Contrato
+
+Tras la revisión de arquitectura y los requerimientos del frontend, se resolvieron las preguntas abiertas de diseño adoptando un **Enfoque de Contrato Enriquecido**:
+
+1. **Contrato de Entrada Extendido:** `RecommendationRequest` ya no recibe únicamente la categoría general. Fue ampliado para incluir variables específicas (como cantidad de equipos o uso de horario pico) directamente alineadas a los campos validados de `PredictionRequest`.
+2. **Reglas Granulares:** Este contrato extendido permite que las implementaciones de `RecommendationRule` decidan con mayor granularidad, disparando recomendaciones precisas (ej. desenchufar equipos en standby si la cantidad de equipos es elevada) independientemente de la categoría general de la predicción.
+3. **Traducción Delegada:** El backend dejó de emitir mensajes completos traducidos (`MessageSource`). Actualmente, emite identificadores (claves cortas) para que la UI mapee la traducción correspondiente, alineando el vocabulario `tipKeys` con el resto del sistema.
+
 ```
-
----
-
-## 10. Limitaciones actuales y pregunta abierta para el equipo
-
-**Limitaciones (estado actual):**
-
-- No existe `RecommendationController` ni un orquestador que combine
-  `prediction` + `recommendation` para atender `POST /analisis-energetico`.
-- Los valores de categoria (`LOW/MEDIUM/HIGH_CONSUMPTION`) estan alineados a
-  un mock de prototipado, no a un contrato confirmado por el equipo de Data
-  Science.
-- Cada regla evalua **solo** la categoria general. No hay reglas basadas en
-  variables especificas de consumo (horario pico, cantidad de equipos,
-  horas de alto consumo).
-
-**Pregunta abierta (pendiente de definir en equipo):**
-
-`RecommendationRequest` hoy solo trae `userId` + `category`. La consigna
-original del hackathon incluye ejemplos de recomendaciones especificas por
-variable (ej. *"reducir el uso de equipos durante los horarios pico"*,
-*"evaluar equipos de alto consumo"*), que no son alcanzables solo con la
-categoria general.
-
-Segun lo conversado informalmente en el equipo: el modelo de Data Science
-entrega unicamente `category` + `confidence` (nivel de confianza); las
-variables crudas de consumo (`consumo_kwh`, `uso_horario_pico`,
-`cantidad_equipos`, etc.) llegarian por otro lado — probablemente desde el
-request original del usuario a `POST /analisis-energetico` — pero **aun no
-esta definido quien las captura ni quien las combina** con el resultado de
-`prediction` antes de llegar a este modulo.
-
-Dos caminos posibles, a decidir en equipo:
-
-1. **Mantener el alcance actual**: recomendaciones genericas por categoria
-   (lo que hay implementado hoy), suficiente para el MVP minimo.
-2. **Ampliar `RecommendationRequest`** con las variables crudas de consumo,
-   y sumar reglas especificas por variable (ej. `PeakHourUsageRule`,
-   `HighEquipmentCountRule`). El diseño Strategy actual ya soporta que
-   **varias reglas apliquen a la vez** sin cambios en
-   `RecommendationServiceImpl` — solo requeriria sumar clases nuevas y
-   definir quien arma el request enriquecido.
-
-Esta decision, y quien construye el orquestador necesario en cualquiera de
-los dos casos, esta pendiente de definir con el equipo.
-
----
-
-> Mantener este documento actualizado una vez se resuelva la pregunta
-> abierta de esta seccion, para que siga siendo la fuente de verdad del
-> feature.
