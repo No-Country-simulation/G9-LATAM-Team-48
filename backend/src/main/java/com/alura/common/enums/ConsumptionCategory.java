@@ -1,13 +1,26 @@
 package com.alura.common.enums;
 
 /**
- * Enum que mapea las categorías del modelo predictivo (Python)
- * con las claves visuales esperadas por el frontend.
+ * Enum que centraliza el mapeo entre los contratos del modelo ML (Python)
+ * y las claves visuales del frontend.
  */
 public enum ConsumptionCategory {
-    HIGH("ALTO", "inefficient"),
-    MEDIUM("MODERADO", "moderate"),
-    LOW("BAJO", "efficient");
+
+    // Definimos constantes autoexplicativas para los valores que emite el modelo
+    HIGH(ModelValues.HIGH_CONSUMPTION, "inefficient"),
+    MEDIUM(ModelValues.MODERADO_CONSUMPTION, "moderate"),
+    LOW(ModelValues.LOW_CONSUMPTION, "efficient");
+
+    /**
+     * Contratos esperados desde el servicio de Machine Learning (Python).
+     * Si el modelo cambia su salida, solo se actualiza aquí.
+     */
+    public static final class ModelValues {
+        private ModelValues() {}
+        public static final String HIGH_CONSUMPTION = "ALTO";
+        public static final String MODERADO_CONSUMPTION = "MODERADO";
+        public static final String LOW_CONSUMPTION = "BAJO";
+    }
 
     private final String modelValue;
     private final String frontendKey;
@@ -25,10 +38,6 @@ public enum ConsumptionCategory {
         return frontendKey;
     }
 
-    /**
-     * Devuelve la clave del frontend asociada al valor del modelo.
-     * Si no coincide, retorna "unknown" como fallback.
-     */
     public static String getFrontendKeyFor(String modelValue) {
         if (modelValue == null) return "unknown";
 
