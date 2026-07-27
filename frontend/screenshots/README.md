@@ -29,6 +29,7 @@ Formato: **PNG**, viewport ~**1440×900** (o `fullPage` en páginas largas).
 | `admin-crear-usuario.png` | Modal — Crear usuario |
 | `admin-editar-usuario.png` | Modal — Editar usuario |
 | `forgot-password.png` | Modal — Recuperar contraseña |
-| `verify-email.png` | Verificar email (link del mail) |
+| `reset-password.png` | Nueva contraseña (vía `?resetToken=` del mail; captura del flujo documentado) |
+| `verify-email.png` | Verificar email (vía `?verifyToken=` del mail) |
 
-`reset-password.png` no se publica: la pantalla solo abre con `?resetToken=` del correo y en la demo el SMTP no llega a todas las bandejas.
+En la demo el SMTP no llega a todas las bandejas; por eso reset puede no regenerarse en vivo, pero el flujo y la captura se mantienen en el README.
