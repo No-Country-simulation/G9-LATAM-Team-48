@@ -1,6 +1,6 @@
 package com.alura.recommendation.service;
 
-import com.alura.common.constants.CategoryConstants;
+import com.alura.common.enums.ConsumptionCategory;
 import com.alura.common.constants.PropertyTypeConstants;
 import com.alura.recommendation.dto.RecommendationRequest;
 import com.alura.recommendation.dto.RecommendationResponse;
@@ -49,7 +49,7 @@ class RecommendationServiceImplTest {
     void shouldGenerateHighConsumptionRecommendation() {
         // Pasamos los 7 parámetros: userId, category, tipoInmueble, cantidadEquipos, horasClima, horasAltoConsumo, usoPico
         RecommendationRequest request = new RecommendationRequest(
-                "user-123", CategoryConstants.HIGH, null, null, null, null, false
+                "user-123", ConsumptionCategory.HIGH.getModelValue(), null, null, null, null, false
         );
 
         RecommendationResponse response = recommendationService.generate(request);
@@ -60,7 +60,7 @@ class RecommendationServiceImplTest {
     @DisplayName("Debería retornar la clave 'shifts' para perfiles de consumo medio")
     void shouldGenerateMediumConsumptionRecommendation() {
         RecommendationRequest request = new RecommendationRequest(
-                "user-456", CategoryConstants.MEDIUM, null, null, null, null, false
+                "user-456", ConsumptionCategory.MEDIUM.getModelValue(), null, null, null, null, false
         );
 
         RecommendationResponse response = recommendationService.generate(request);
@@ -72,7 +72,7 @@ class RecommendationServiceImplTest {
     void shouldCombineKeysForMultipleRules() {
         // Given: Casa, 20 equipos (activa Standby), usa horario pico (activa Peak) y consumo Medio (activa Shifts)
         RecommendationRequest request = new RecommendationRequest(
-                "user-789", CategoryConstants.MEDIUM, PropertyTypeConstants.HOUSE, 20, 2, 2, true
+                "user-789", ConsumptionCategory.MEDIUM.getModelValue(), PropertyTypeConstants.HOUSE, 20, 2, 2, true
         );
 
         RecommendationResponse response = recommendationService.generate(request);
@@ -89,7 +89,7 @@ class RecommendationServiceImplTest {
     void shouldTriggerCommercialAndAcRules() {
         // Given: Comercio con 10 horas de climatización
         RecommendationRequest request = new RecommendationRequest(
-                "user-333", CategoryConstants.HIGH, PropertyTypeConstants.COMMERCIAL, 5, 10, 5, false
+                "user-333", ConsumptionCategory.HIGH.getModelValue(), PropertyTypeConstants.COMMERCIAL, 5, 10, 5, false
         );
 
         RecommendationResponse response = recommendationService.generate(request);
