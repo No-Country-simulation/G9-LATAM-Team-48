@@ -1,6 +1,6 @@
 package com.alura.recommendation.rules;
 
-import com.alura.common.constants.CategoryConstants;
+import com.alura.common.enums.ConsumptionCategory;
 import com.alura.recommendation.dto.RecommendationRequest;
 import com.alura.recommendation.dto.TipKey;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ public class LowConsumptionRule implements RecommendationRule {
 
     @Override
     public boolean applies(RecommendationRequest request) {
-        return request != null && CategoryConstants.LOW.equalsIgnoreCase(request.category());
+        return request != null && ConsumptionCategory.LOW.getModelValue().equalsIgnoreCase(request.category());
     }
 
     @Override

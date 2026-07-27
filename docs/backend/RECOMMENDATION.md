@@ -55,12 +55,11 @@ Esto habilita el principio **Abierto/Cerrado (OCP)** de SOLID: añadir una recom
 | `RecommendationRule` | `recommendation.rules` | Interfaz Strategy: `applies(request)` decide si aplica, `evaluate(request)` retorna el `TipKey`. |
 | `*Rule` (Implementaciones) | `recommendation.rules` | Clases concretas que evalúan categorías, variables de uso o tipos de inmuebles. |
 | `TipKey` | `recommendation.dto` | Enum que cataloga los identificadores soportados (ej. `AC`, `COMMERCIAL`, `STANDBY`). |
-| `CategoryConstants` | `common.constants` | Centraliza los valores de categoría del modelo ML (`ALTO`, `MODERADO`, `BAJO`). |
+| `ConsumptionCategory` | `common.enums` | Enum que centraliza y mapea las categorías del modelo ML (`ALTO`, `BAJO`) con las claves visuales del frontend (`inefficient`, `efficient`), eliminando condicionales en los servicios. |
 | `PropertyTypeConstants`| `common.constants` | Centraliza los tipos de inmuebles válidos (`CASA_UNIFAMILIAR`, etc.). |
 | `RecommendationServiceImpl` | `recommendation.service` | Filtra las reglas, extrae las claves, las convierte a minúsculas y devuelve la lista final sin duplicados. |
 | `RecommendationRequest` | `recommendation.dto` | Entrada: `userId`, `category`, `tipoInmueble` + variables tipadas específicas del consumo. |
 | `RecommendationResponse` | `recommendation.dto` | Salida: `userId` + lista de `tipKeys`. |
-
 ---
 
 ## 5. Flujo de generación de recomendaciones

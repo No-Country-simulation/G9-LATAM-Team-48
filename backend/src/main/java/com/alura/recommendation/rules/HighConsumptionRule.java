@@ -1,6 +1,6 @@
 package com.alura.recommendation.rules;
 
-import com.alura.common.constants.CategoryConstants;
+import com.alura.common.enums.ConsumptionCategory;
 import com.alura.recommendation.dto.RecommendationRequest;
 import com.alura.recommendation.dto.TipKey;
 import org.springframework.stereotype.Component;
@@ -15,8 +15,7 @@ public class HighConsumptionRule implements RecommendationRule {
 
     @Override
     public boolean applies(RecommendationRequest request) {
-        // Uso de la constante centralizada en lugar del magic string
-        return request != null && CategoryConstants.HIGH.equalsIgnoreCase(request.category());
+        return request != null && ConsumptionCategory.HIGH.getModelValue().equalsIgnoreCase(request.category());
     }
 
     @Override
