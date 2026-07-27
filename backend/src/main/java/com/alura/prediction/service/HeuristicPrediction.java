@@ -13,9 +13,11 @@ import java.util.Set;
  * Clasificacion heuristica cuando el microservicio FastAPI no esta disponible
  * (tipico en Railway Hobby sin servicio ML desplegado).
  *
- * <p>Combina:
+ * <p>Reemplaza al antiguo {@code MockPredictionService} (contratos tipados
+ * incompatibles con el {@code PredictionRequest}/{@code PredictionResponse} actual).
+ * Combina:
  * <ul>
- *   <li>benchmark por tipo de inmueble (nuestro flujo actual),</li>
+ *   <li>benchmark por tipo de inmueble (flujo actual),</li>
  *   <li>score por habitos del mock del equipo (consumo, pico, horas altas, equipos).</li>
  * </ul>
  */
