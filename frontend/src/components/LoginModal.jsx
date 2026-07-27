@@ -107,13 +107,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
       const result = await resendVerification(email.trim())
       setInfoMessage(result?.message || t('auth.resendSent'))
       setNeedsVerification(false)
-      if (result?.verificationToken) {
-        setVerifyLink(
-          `${window.location.origin}/?verifyToken=${result.verificationToken}`,
-        )
-      } else {
-        setVerifyLink('')
-      }
+      setVerifyLink('')
     } catch (err) {
       setFormError(
         err?.response?.data?.message || err?.message || t('auth.resendFailed'),
@@ -135,13 +129,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
       const result = await resendVerification(email.trim())
       setInfoMessage(result?.message || t('auth.resendSent'))
       setNeedsVerification(false)
-      if (result?.verificationToken) {
-        setVerifyLink(
-          `${window.location.origin}/?verifyToken=${result.verificationToken}`,
-        )
-      } else {
-        setVerifyLink('')
-      }
+      setVerifyLink('')
     } catch (err) {
       setFormError(
         err?.response?.data?.message || err?.message || t('auth.resendFailed'),
@@ -156,6 +144,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
     setFormError('')
     setInfoMessage('')
     setNeedsVerification(false)
+    setVerifyLink('')
 
     const values = { name, email, password }
     const errors =
@@ -176,16 +165,9 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
           password,
         })
         if (result?.pendingVerification || !result?.token) {
-          // No auto-verificar: el usuario debe usar el link del email
+          // Debe validar por el link del mail; no mostramos el token en la UI
           setInfoMessage(result.message || t('auth.registerVerifySent'))
           setNeedsVerification(true)
-          if (result?.verificationToken) {
-            setVerifyLink(
-              `${window.location.origin}/?verifyToken=${result.verificationToken}`,
-            )
-          } else {
-            setVerifyLink('')
-          }
           setMode('login')
           setPassword('')
           return
