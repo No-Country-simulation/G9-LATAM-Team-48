@@ -296,6 +296,8 @@ export const pagesEn = {
     emailVerified: 'Email verified (can sign in without link)',
     emailVerifiedHint:
       'If checked, the user does not need to verify email to sign in.',
+    createVerifiedHint:
+      'The user is created with a verified email and can sign in without a link.',
     actions: 'Actions',
     edit: 'Edit',
     delete: 'Deactivate',

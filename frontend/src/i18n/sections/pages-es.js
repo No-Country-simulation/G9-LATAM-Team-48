@@ -296,6 +296,8 @@ export const pagesEs = {
     emailVerified: 'Email verificado (puede iniciar sesión sin link)',
     emailVerifiedHint:
       'Si está tildado, el usuario no necesita verificar el correo para entrar.',
+    createVerifiedHint:
+      'El usuario se crea con email verificado y puede iniciar sesión sin link.',
     actions: 'Acciones',
     edit: 'Editar',
     delete: 'Desactivar',
