@@ -105,11 +105,15 @@ Tras cambiar variables `VITE_*`, hace falta **Redeploy**. Un push a `Jorge-marti
   </tr>
   <tr>
     <td width="50%"><strong>Recuperar contraseña</strong><br /><img src="./screenshots/forgot-password.png" alt="Recuperar contraseña" /></td>
+    <td width="50%"><strong>Nueva contraseña</strong> (vía link del mail)<br /><img src="./screenshots/reset-password.png" alt="Nueva contraseña" /></td>
+  </tr>
+  <tr>
     <td width="50%"><strong>Verificar email</strong> (vía link del mail)<br /><img src="./screenshots/verify-email.png" alt="Verificar email" /></td>
+    <td width="50%"></td>
   </tr>
 </table>
 
-> **Nueva contraseña** (`?resetToken=`) no se muestra en el README: solo abre con el link del correo y en la demo el mail no llega a todas las cuentas.
+> **Nueva contraseña** y **Verificar email** solo se abren con el link del correo. En la demo el mail no llega a todas las cuentas; se mantienen las capturas del flujo (reset puede ser la versión previa).
 
 Detalle de archivos: [`screenshots/README.md`](./screenshots/README.md).
 

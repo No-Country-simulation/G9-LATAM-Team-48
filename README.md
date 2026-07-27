@@ -68,11 +68,15 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
   </tr>
   <tr>
     <td width="50%"><strong>Recuperar contraseña</strong><br /><img src="./frontend/screenshots/forgot-password.png" alt="Recuperar contraseña" /></td>
-    <td width="50%"><strong>Verificar email</strong><br /><img src="./frontend/screenshots/verify-email.png" alt="Verificar email" /></td>
+    <td width="50%"><strong>Nueva contraseña</strong> (vía link del mail)<br /><img src="./frontend/screenshots/reset-password.png" alt="Nueva contraseña" /></td>
+  </tr>
+  <tr>
+    <td width="50%"><strong>Verificar email</strong> (vía link del mail)<br /><img src="./frontend/screenshots/verify-email.png" alt="Verificar email" /></td>
+    <td width="50%"></td>
   </tr>
 </table>
 
-> La pantalla **Nueva contraseña** (`?resetToken=`) solo aparece con el link del mail; en la demo el SMTP no llega a todas las bandejas, por eso no se documenta con captura.
+> **Nueva contraseña** y **Verificar email** se abren solo con el link del correo (`?resetToken=` / `?verifyToken=`). En la demo el SMTP no llega a todas las bandejas; la captura de reset es la del flujo documentado.
 
 Documentación de auth, email y admin: [`docs/backend/AUTH_EMAIL_ADMIN.md`](./docs/backend/AUTH_EMAIL_ADMIN.md).
 
