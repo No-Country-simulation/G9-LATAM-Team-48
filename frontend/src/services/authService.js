@@ -83,7 +83,8 @@ export async function login(credentials) {
 
 /**
  * Registro: no inicia sesion. Requiere verificar email.
- * En dev el backend puede devolver verificationToken para abrir la pantalla.
+ * En dev el backend puede devolver verificationToken solo con expose-token=true (tests).
+ * La UI no muestra el token: la validacion es por el link del correo.
  */
 export async function register(credentials) {
   const body = {
