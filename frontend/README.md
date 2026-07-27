@@ -68,7 +68,7 @@ Tras cambiar variables `VITE_*`, hace falta **Redeploy**. Un push a `Jorge-marti
 
 ## Vista previa
 
-> La interfaz soporta **tema claro/oscuro** e **11 idiomas** (ES, EN, PT, FR, IT, DE, NL, PL, RO, CA, TR). La captura principal del Dashboard está en tema claro con marca **EnergIA**.
+> Tema **claro/oscuro**, **mapa mundial de idiomas**, a11y (skip links + anuncios SR) y **21 idiomas** con UI completa (más packs parciales en el selector). Capturas en `screenshots/`.
 
 <div align="center">
 
@@ -81,7 +81,7 @@ Tras cambiar variables `VITE_*`, hace falta **Redeploy**. Un push a `Jorge-marti
 <table>
   <tr>
     <td width="50%"><strong>Consumos</strong><br /><img src="./screenshots/consumos.png" alt="Consumos" /></td>
-    <td width="50%"><strong>Análisis IA</strong> — formulario por tipo + gráfico vs referencia<br /><img src="./screenshots/analisis-ia.png" alt="Análisis IA" /></td>
+    <td width="50%"><strong>Análisis IA</strong> — casa / apartamento / comercio + tips<br /><img src="./screenshots/analisis-ia.png" alt="Análisis IA" /></td>
   </tr>
   <tr>
     <td width="50%"><strong>Recomendaciones</strong><br /><img src="./screenshots/recomendaciones.png" alt="Recomendaciones" /></td>
@@ -105,7 +105,17 @@ Tras cambiar variables `VITE_*`, hace falta **Redeploy**. Un push a `Jorge-marti
   </tr>
 </table>
 
-Para regenerar las capturas (con el front en `npm run dev`):
+**Pendientes de captura** (aún no están en el README visual):
+
+| Archivo sugerido | Pantalla |
+|------------------|----------|
+| `mapa-idiomas.png` | Modal del mapa mundial (país + confirmar idioma) |
+| `historia-consumos.png` | Historial de consumos (requiere login) |
+| `admin-analisis.png` | Admin · Análisis IA (requiere `admin@…`) |
+
+Detalle: [`screenshots/README.md`](./screenshots/README.md).
+
+Para regenerar las capturas automatizadas (con el front en `npm run dev`):
 
 ```bash
 npm run screenshots
@@ -117,17 +127,19 @@ npm run screenshots
 
 | Módulo | Descripción |
 |--------|-------------|
-| **Dashboard** | Tarjetas de resumen, bloque “En simple” (lenguaje claro), gráfico mensual, mock **real vs predicción**, **pico vs valle** y recomendaciones destacadas. |
+| **Dashboard** | Tarjetas de resumen, bloque “En simple”, gráfico mensual, mock **real vs predicción**, **pico vs valle** y recomendaciones destacadas. |
 | **Consumos** | Totales, historial con estado (normal / sobre promedio) y gráfico de evolución. |
-| **Análisis IA** | Formulario por tipo (**casa** / **fábrica mediana** / **fábrica grande**); gráfico en vivo; clasificación con **modelo ML** (RandomForest en FastAPI) o reglas locales de respaldo; nivel, confianza, ahorro y tips. |
-| **Recomendaciones** | Tarjetas con categoría, prioridad y ahorro; resumen acumulado. |
-| **Registro / Login** | Modal con pestañas; registro exige verificar email (mail SMTP) antes del login; contraseña ≥ 8 caracteres. |
-| **Verificar email / Reset password** | Pantallas que solo se abren con el link del correo (`?verifyToken=` / `?resetToken=`). |
-| **Panel Admin** | CRUD de usuarios (rol `ADMIN`): alta, edición, desactivación lógica; admins no se desactivan. |
-| **Contáctanos** | Formulario de contacto + Equipo 48 en flip cards (LinkedIn, GitHub, portafolio, Instagram, email). |
-| **Multilenguaje** | Selector en el header; detecta idioma del navegador (fallback español). |
-| **Tema claro / oscuro** | Por defecto oscuro; alternable desde el header; persistido en `localStorage`. |
-| **Login opcional** | Navegación pública; sesión para acciones de operador. |
+| **Historial de consumos** | Consultas personales del usuario autenticado. |
+| **Análisis IA** | Formulario por tipo (**apartamento** / **casa unifamiliar** / **pequeño establecimiento comercial**); gráfico vs referencia; ML (FastAPI) o **heurística/local** de respaldo; `nivelKey`, confianza, ahorro y `tipKeys`. |
+| **Recomendaciones** | Catálogo + tip keys granulares (hábitos / inmueble); i18n en el front. |
+| **Registro / Login** | Modal con pestañas; registro exige verificar email (SMTP) antes del login; contraseña ≥ 8 caracteres. |
+| **Verificar email / Reset password** | Solo con el link del correo (`?verifyToken=` / `?resetToken=`). |
+| **Panel Admin** | CRUD de usuarios (`ADMIN`) + pantalla de **Análisis IA** admin. |
+| **Contáctanos** | Formulario + Equipo 48 en flip cards. |
+| **Mapa de idiomas** | Modal con mapa mundial: desktop hover + click; móvil tap + diálogo de confirmación. |
+| **Multilenguaje** | 21 idiomas full UI + otros en el mapa (parcial → inglés); detecta idioma del navegador (fallback español). |
+| **Tema claro / oscuro** | Alternable desde el header; persistido en `localStorage`. |
+| **Login opcional** | Navegación pública; sesión para historial y acciones de operador. |
 
 ### Detalles de experiencia y calidad
 
@@ -135,7 +147,7 @@ npm run screenshots
 - **Layout app shell**: header y menú fijos; scroll solo en el contenido.
 - **Capa de servicios (mock → API)** en `services/`.
 - **Estados de UI**: carga, error (reintentar) y vacío.
-- **Accesibilidad**: respeta `prefers-reduced-motion` y foco por teclado.
+- **Accesibilidad**: skip links, landmarks, `SrAnnouncer`, `prefers-reduced-motion` y foco por teclado.
 
 ---
 
@@ -223,13 +235,11 @@ Prioridad al analizar: `VITE_ML_API_URL` → Spring `POST /api/analisis` → reg
 
 Detalle: [`ml-service/README.md`](../ml-service/README.md) y [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md).
 
-| `tipo` | Campos |
-|--------|--------|
-| `casa` | `consumo`, `personas`, `equipos`, `area`, `climateHours`, `peakUseHours` |
-| `fabrica_mediana` | `consumo`, `turnos`, `maquinas`, `area`, `hoursPerDay`, `processIntensity`, `hasCompressedAir` |
-| `fabrica_grande` | `consumo`, `lineas`, `maquinas`, `turnos`, `area`, `operatingDays`, `capacityPct`, `hasMonitoring`, `hasCompressedAir` |
+Tipos de inmueble (API / form): `APARTAMENTO`, `CASA_UNIFAMILIAR`, `PEQUENO_ESTABLECIMIENTO_COMERCIAL`.
 
-Respuesta: `{ nivelKey, ahorro, tipKeys, benchmark, confidence }`.
+Campos habituales: `consumo` / `consumoKwh`, `personas`, `equipos`, `area` / `areaM2`, `climateHours` / `horasClimatizacion`, `peakUseHours` / `horasAltoConsumo`, `usoHorarioPico`.
+
+Respuesta: `{ nivelKey, ahorro, tipKeys, benchmark, confidence }`. Sin ML, Spring usa `HeuristicPrediction`.
 
 Contrato propuesto para Data Analysis del Dashboard (mock en `src/data/analyticsMock.js`):
 
