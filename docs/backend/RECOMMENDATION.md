@@ -21,9 +21,10 @@
 ## 1. Qué se implementó
 
 *   **Motor de reglas** (patrón Strategy) que genera recomendaciones de ahorro energético.
-*   Reglas generales basadas en la categoría de consumo (`HighConsumptionRule`, `MediumConsumptionRule`, `LowConsumptionRule`).
-*   Reglas granulares basadas en hábitos específicos, como `PeakHourUsageRule`.
-*   **Pivote de i18n:** Las reglas devuelven claves cortas (ej. `"peak"`, `"ac"`, `"led"`) en lugar de oraciones traducidas. El frontend resuelve el texto final según su propio diccionario.
+*   **Reglas base** evaluadas por la categoría de consumo (`HighConsumptionRule`, `MediumConsumptionRule`, `LowConsumptionRule`).
+*   **Reglas granulares** basadas en hábitos específicos, como `PeakHourUsageRule`.
+*   **Reglas de enrutamiento por inmueble** (`CommercialOptimizationRule`, `HouseEfficiencyRule`, `ApartmentEfficiencyRule`) que aseguran coherencia estructural.
+*   **Pivote de i18n:** Las reglas devuelven claves cortas (ej. `"peak"`, `"ac"`, `"commercial"`) en lugar de oraciones traducidas. El frontend resuelve el texto final según su propio diccionario.
 *   **Mensaje de contingencia** (`"default"`) cuando ninguna regla aplica.
 
 ---
@@ -42,7 +43,7 @@ Esto habilita el principio **Abierto/Cerrado (OCP)** de SOLID: añadir una recom
 |--------------------|---------------------------------------------------------------------------|
 | Extensibilidad     | Sumar una regla nueva no requiere tocar el servicio orquestador (OCP).    |
 | Desacoplamiento    | Cada regla decide por sí misma si aplica (`applies`) y qué clave devuelve (`evaluate`). |
-| Mantenibilidad     | Eliminación de *magic strings* mediante el uso de enums (`TipKey`) y constantes (`CategoryConstants`). |
+| Mantenibilidad     | Eliminación de *magic strings* mediante el uso de enums (`TipKey`) y constantes (`CategoryConstants`, `PropertyTypeConstants`). |
 | Composición        | El servicio soporta que **varias reglas apliquen a la vez** para un mismo usuario, evitando duplicados mediante operaciones de *Stream*. |
 
 ---
@@ -52,11 +53,12 @@ Esto habilita el principio **Abierto/Cerrado (OCP)** de SOLID: añadir una recom
 | Componente | Paquete | Responsabilidad |
 |------------|---------|-------------------|
 | `RecommendationRule` | `recommendation.rules` | Interfaz Strategy: `applies(request)` decide si aplica, `evaluate(request)` retorna el `TipKey`. |
-| `*Rule` (Implementaciones) | `recommendation.rules` | Clases concretas que evalúan categorías (ALTO, MODERADO, BAJO) o variables específicas (horario pico). |
-| `TipKey` | `recommendation.dto` | Enum que cataloga los identificadores de recomendación soportados por el sistema. |
-| `CategoryConstants` | `common.constants` | Centraliza los valores de categoría recibidos del modelo ML (`ALTO`, `MODERADO`, `BAJO`). |
-| `RecommendationServiceImpl` | `recommendation.service` | Filtra las reglas aplicables, extrae las claves, las convierte a minúsculas y devuelve la lista final sin duplicados. |
-| `RecommendationRequest` | `recommendation.dto` | Entrada: `userId`, `category` + variables tipadas específicas del consumo. |
+| `*Rule` (Implementaciones) | `recommendation.rules` | Clases concretas que evalúan categorías, variables de uso o tipos de inmuebles. |
+| `TipKey` | `recommendation.dto` | Enum que cataloga los identificadores soportados (ej. `AC`, `COMMERCIAL`, `STANDBY`). |
+| `CategoryConstants` | `common.constants` | Centraliza los valores de categoría del modelo ML (`ALTO`, `MODERADO`, `BAJO`). |
+| `PropertyTypeConstants`| `common.constants` | Centraliza los tipos de inmuebles válidos (`CASA_UNIFAMILIAR`, etc.). |
+| `RecommendationServiceImpl` | `recommendation.service` | Filtra las reglas, extrae las claves, las convierte a minúsculas y devuelve la lista final sin duplicados. |
+| `RecommendationRequest` | `recommendation.dto` | Entrada: `userId`, `category`, `tipoInmueble` + variables tipadas específicas del consumo. |
 | `RecommendationResponse` | `recommendation.dto` | Salida: `userId` + lista de `tipKeys`. |
 
 ---
@@ -67,7 +69,7 @@ Esto habilita el principio **Abierto/Cerrado (OCP)** de SOLID: añadir una recom
 PredictionResponse                    RecommendationServiceImpl
 (userId, category, confidence)                │
         │                                     │  1. Recibe RecommendationRequest
-        │  (se arma el                        │     (userId, category, usoHorarioPico, etc.)
+        │  (se arma el                        │     (userId, category, tipoInmueble, usoHorarioPico, etc.)
         │   RecommendationRequest              │
         │   enriquecido)                       │
         ▼                                      ▼
@@ -89,7 +91,7 @@ RecommendationRequest  ──────────────►  rules.stre
 
 ## 6. Manejo de categorías desconocidas
 
-Si `category` es `null`, o el perfil de consumo no coincide con ninguna regla registrada, `RecommendationServiceImpl` devuelve una única clave de contingencia (`"default"`). El usuario nunca recibe una lista vacía de recomendaciones.
+Si la información provista no coincide con ninguna regla registrada, `RecommendationServiceImpl` devuelve una única clave de contingencia (`"default"`). El usuario nunca recibe una lista vacía de recomendaciones.
 
 ---
 
@@ -97,8 +99,8 @@ Si `category` es `null`, o el perfil de consumo no coincide con ninguna regla re
 
 La suite de pruebas `RecommendationServiceImplTest` cubre:
 
-* Evaluación correcta de las reglas según la constante de categoría.
-* Retorno del fallback `"default"` ante una categoría no mapeada.
+* Evaluación correcta de las reglas según la constante de categoría y tipo de inmueble.
+* Retorno del fallback `"default"` ante condiciones no mapeadas.
 * Verificación de que el orquestador convierte correctamente los `TipKey` a cadenas en minúsculas y filtra elementos duplicados (ej. `["ac", "peak"]`).
 
 ---
@@ -107,8 +109,7 @@ La suite de pruebas `RecommendationServiceImplTest` cubre:
 
 Tras la revisión de arquitectura y los requerimientos del frontend, se resolvieron las preguntas abiertas de diseño adoptando un **Enfoque de Contrato Enriquecido**:
 
-1. **Contrato de Entrada Extendido:** `RecommendationRequest` ya no recibe únicamente la categoría general. Fue ampliado para incluir variables específicas (como cantidad de equipos o uso de horario pico) directamente alineadas a los campos validados de `PredictionRequest`.
-2. **Reglas Granulares:** Este contrato extendido permite que las implementaciones de `RecommendationRule` decidan con mayor granularidad, disparando recomendaciones precisas (ej. desenchufar equipos en standby si la cantidad de equipos es elevada) independientemente de la categoría general de la predicción.
-3. **Traducción Delegada:** El backend dejó de emitir mensajes completos traducidos (`MessageSource`). Actualmente, emite identificadores (claves cortas) para que la UI mapee la traducción correspondiente, alineando el vocabulario `tipKeys` con el resto del sistema.
+1. **Contrato de Entrada Extendido:** `RecommendationRequest` ya no recibe únicamente la categoría general. Fue ampliado para incluir variables específicas y estructurales (tipo de inmueble) directamente alineadas a los campos validados de `PredictionRequest`.
+2. **Reglas Granulares:** Este contrato extendido permite que las implementaciones de `RecommendationRule` decidan con mayor precisión.
+3. **Traducción Delegada:** El backend dejó de emitir mensajes completos traducidos. Actualmente, emite identificadores (claves cortas) para que la UI mapee la traducción correspondiente, alineando el vocabulario `tipKeys` con el resto del sistema.
 
-```

@@ -1,14 +1,16 @@
 package com.alura.recommendation.dto;
 
 /**
- * Catálogo de claves cortas para recomendaciones (i18n).
- * El frontend es responsable de traducir estas claves a textos legibles.
+ * Catálogo de identificadores de recomendaciones soportados por el sistema.
  */
 public enum TipKey {
+    DEFAULT,
     AC,
-    LED,
     PEAK,
     STANDBY,
     SHIFTS,
-    DEFAULT
+    LED,
+    COMMERCIAL,
+    HOUSE,
+    APARTMENT
 }
