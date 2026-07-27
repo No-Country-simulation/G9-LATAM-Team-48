@@ -117,12 +117,11 @@ function AdminUsuarios() {
           setSaving(false)
           return
         }
-        const created = await createUser(form)
+        const created = await createUser({ ...form, emailVerified: true })
         const payload = created?.user ? created : { user: created }
         setCreatedCreds({
           email: payload.user?.email || form.email,
           temporaryPassword: payload.temporaryPassword,
-          resetToken: payload.resetToken,
           emailStatus: payload.emailStatus,
         })
       }
@@ -395,21 +394,30 @@ function AdminUsuarios() {
               </select>
             </div>
 
-            <div className="form-check mb-3">
-              <input
-                id="admin-verified"
-                type="checkbox"
-                className="form-check-input"
-                checked={Boolean(form.emailVerified)}
-                onChange={(e) =>
-                  setForm((f) => ({ ...f, emailVerified: e.target.checked }))
-                }
-              />
-              <label className="form-check-label" htmlFor="admin-verified">
-                {t('adminUsers.emailVerified')}
-              </label>
-              <div className="form-text">{t('adminUsers.emailVerifiedHint')}</div>
-            </div>
+            {editing ? (
+              <div className="form-check mb-3">
+                <input
+                  id="admin-verified"
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={Boolean(form.emailVerified)}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, emailVerified: e.target.checked }))
+                  }
+                />
+                <label className="form-check-label" htmlFor="admin-verified">
+                  {t('adminUsers.emailVerified')}
+                </label>
+                <div className="form-text">{t('adminUsers.emailVerifiedHint')}</div>
+              </div>
+            ) : (
+              <p className="small text-muted mb-3">
+                {t(
+                  'adminUsers.createVerifiedHint',
+                  'El usuario se crea con email verificado y puede iniciar sesión sin link.',
+                )}
+              </p>
+            )}
 
             <div className="d-flex justify-content-end gap-2">
               <button

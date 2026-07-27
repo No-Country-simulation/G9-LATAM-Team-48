@@ -60,25 +60,23 @@ public class AdminUserService {
                 ? passwordResetService.generateTemporaryPassword()
                 : request.password();
 
-        boolean verified = request.emailVerified() == null || Boolean.TRUE.equals(request.emailVerified());
-
+        // Alta admin: siempre verificado (sin token de email). Puede iniciar sesion ya.
         User user = User.builder()
                 .name(request.name().trim())
                 .email(email)
                 .password(passwordEncoder.encode(temporaryPassword))
                 .role(normalizeRole(request.role()))
-                .emailVerifiedAt(verified ? LocalDateTime.now() : null)
+                .emailVerifiedAt(LocalDateTime.now())
                 .build();
 
         User saved = userRepository.save(user);
-        String resetToken = passwordResetService.createInviteToken(saved);
         String emailStatus = userMailService.sendWelcomeWithPassword(
                 saved.getEmail(), saved.getName(), temporaryPassword);
 
         return new AdminUserCreatedResponse(
                 toResponse(saved),
                 temporaryPassword,
-                resetToken,
+                null,
                 emailStatus);
     }
 
