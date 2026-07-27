@@ -81,15 +81,23 @@ Tras cambiar variables `VITE_*`, hace falta **Redeploy**. Un push a `Jorge-marti
 <table>
   <tr>
     <td width="50%"><strong>Consumos</strong><br /><img src="./screenshots/consumos.png" alt="Consumos" /></td>
-    <td width="50%"><strong>Análisis IA</strong> — casa / apartamento / comercio + tips<br /><img src="./screenshots/analisis-ia.png" alt="Análisis IA" /></td>
+    <td width="50%"><strong>Análisis IA</strong> — casa / apartamento / comercio<br /><img src="./screenshots/analisis-ia.png" alt="Análisis IA" /></td>
+  </tr>
+  <tr>
+    <td width="50%"><strong>Historia de consumos</strong><br /><img src="./screenshots/historia-consumos.png" alt="Historia de consumos" /></td>
+    <td width="50%"><strong>Mapa de idiomas</strong><br /><img src="./screenshots/mapa-idiomas.png" alt="Mapa de idiomas" /></td>
   </tr>
   <tr>
     <td width="50%"><strong>Recomendaciones</strong><br /><img src="./screenshots/recomendaciones.png" alt="Recomendaciones" /></td>
-    <td width="50%"><strong>Login</strong><br /><img src="./screenshots/login.png" alt="Login" /></td>
+    <td width="50%"><strong>Contáctanos</strong> — formulario + Equipo 48<br /><img src="./screenshots/contacto.png" alt="Contáctanos" /></td>
   </tr>
   <tr>
+    <td width="50%"><strong>Panel Admin — Usuarios</strong><br /><img src="./screenshots/admin-usuarios.png" alt="Panel Admin" /></td>
+    <td width="50%"><strong>Admin — Análisis IA</strong><br /><img src="./screenshots/admin-analisis.png" alt="Admin Análisis IA" /></td>
+  </tr>
+  <tr>
+    <td width="50%"><strong>Login</strong><br /><img src="./screenshots/login.png" alt="Login" /></td>
     <td width="50%"><strong>Registro</strong><br /><img src="./screenshots/registro.png" alt="Registro" /></td>
-    <td width="50%"><strong>Panel Admin</strong><br /><img src="./screenshots/admin-usuarios.png" alt="Panel Admin" /></td>
   </tr>
   <tr>
     <td width="50%"><strong>Crear usuario</strong><br /><img src="./screenshots/admin-crear-usuario.png" alt="Crear usuario" /></td>
@@ -101,21 +109,13 @@ Tras cambiar variables `VITE_*`, hace falta **Redeploy**. Un push a `Jorge-marti
   </tr>
   <tr>
     <td width="50%"><strong>Verificar email</strong> (solo vía link del mail)<br /><img src="./screenshots/verify-email.png" alt="Verificar email" /></td>
-    <td width="50%"><strong>Contáctanos</strong> — formulario + Equipo 48 (flip cards)<br /><img src="./screenshots/contacto.png" alt="Contáctanos" /></td>
+    <td width="50%"></td>
   </tr>
 </table>
 
-**Pendientes de captura** (aún no están en el README visual):
+Detalle de archivos: [`screenshots/README.md`](./screenshots/README.md).
 
-| Archivo sugerido | Pantalla |
-|------------------|----------|
-| `mapa-idiomas.png` | Modal del mapa mundial (país + confirmar idioma) |
-| `historia-consumos.png` | Historial de consumos (requiere login) |
-| `admin-analisis.png` | Admin · Análisis IA (requiere `admin@…`) |
-
-Detalle: [`screenshots/README.md`](./screenshots/README.md).
-
-Para regenerar las capturas automatizadas (con el front en `npm run dev`):
+Para regenerar capturas con Playwright (front en `npm run dev`):
 
 ```bash
 npm run screenshots
