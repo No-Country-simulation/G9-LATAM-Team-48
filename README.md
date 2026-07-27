@@ -47,12 +47,20 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
     <td width="50%"><strong>Análisis IA</strong><br /><img src="./frontend/screenshots/analisis-ia.png" alt="Análisis IA" /></td>
   </tr>
   <tr>
-    <td width="50%"><strong>Recomendaciones</strong><br /><img src="./frontend/screenshots/recomendaciones.png" alt="Recomendaciones" /></td>
-    <td width="50%"><strong>Login</strong><br /><img src="./frontend/screenshots/login.png" alt="Login" /></td>
+    <td width="50%"><strong>Historia de consumos</strong><br /><img src="./frontend/screenshots/historia-consumos.png" alt="Historia de consumos" /></td>
+    <td width="50%"><strong>Mapa de idiomas</strong><br /><img src="./frontend/screenshots/mapa-idiomas.png" alt="Mapa de idiomas" /></td>
   </tr>
   <tr>
+    <td width="50%"><strong>Recomendaciones</strong><br /><img src="./frontend/screenshots/recomendaciones.png" alt="Recomendaciones" /></td>
+    <td width="50%"><strong>Contáctanos</strong> — formulario + Equipo 48<br /><img src="./frontend/screenshots/contacto.png" alt="Contáctanos" /></td>
+  </tr>
+  <tr>
+    <td width="50%"><strong>Panel Admin — Usuarios</strong><br /><img src="./frontend/screenshots/admin-usuarios.png" alt="Panel Admin" /></td>
+    <td width="50%"><strong>Admin — Análisis IA</strong><br /><img src="./frontend/screenshots/admin-analisis.png" alt="Admin Análisis IA" /></td>
+  </tr>
+  <tr>
+    <td width="50%"><strong>Login</strong><br /><img src="./frontend/screenshots/login.png" alt="Login" /></td>
     <td width="50%"><strong>Registro</strong><br /><img src="./frontend/screenshots/registro.png" alt="Registro" /></td>
-    <td width="50%"><strong>Panel Admin</strong><br /><img src="./frontend/screenshots/admin-usuarios.png" alt="Panel Admin" /></td>
   </tr>
   <tr>
     <td width="50%"><strong>Crear usuario</strong><br /><img src="./frontend/screenshots/admin-crear-usuario.png" alt="Crear usuario" /></td>
@@ -64,11 +72,9 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
   </tr>
   <tr>
     <td width="50%"><strong>Verificar email</strong><br /><img src="./frontend/screenshots/verify-email.png" alt="Verificar email" /></td>
-    <td width="50%"><strong>Contáctanos</strong> — formulario + Equipo 48<br /><img src="./frontend/screenshots/contacto.png" alt="Contáctanos" /></td>
+    <td width="50%"></td>
   </tr>
 </table>
-
-**Capturas pendientes** (para refrescar el README): mapa de idiomas, Historial de consumos y Admin · Análisis IA. Lista y nombres de archivo en [`frontend/screenshots/README.md`](./frontend/screenshots/README.md).
 
 Documentación de auth, email y admin: [`docs/backend/AUTH_EMAIL_ADMIN.md`](./docs/backend/AUTH_EMAIL_ADMIN.md).
 
