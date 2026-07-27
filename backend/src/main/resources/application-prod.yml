@@ -66,3 +66,5 @@ app:
     from: ${MAIL_FROM:${MAIL_USERNAME:}}
     # Railway Hobby bloquea SMTP: usar Resend (HTTPS). https://resend.com/api-keys
     resend-api-key: ${RESEND_API_KEY:}
+  google:
+    client-id: ${GOOGLE_CLIENT_ID:}

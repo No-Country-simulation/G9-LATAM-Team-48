@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
+import GoogleSignInButton, {
+  isGoogleSignInConfigured,
+} from './GoogleSignInButton'
 import {
   forgotPassword,
   resendVerification,
@@ -33,7 +36,7 @@ function isEmailNotVerifiedError(message) {
 }
 
 function LoginModal({ show, onHide, onAuthSuccess }) {
-  const { login, register, loading, error } = useAuth()
+  const { login, register, loginWithGoogle, loading, error } = useAuth()
   const { t } = useLocale()
   const [mode, setMode] = useState('login')
   const [name, setName] = useState('')
@@ -46,6 +49,24 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
   const [needsVerification, setNeedsVerification] = useState(false)
   const [forgotLoading, setForgotLoading] = useState(false)
   const [resendLoading, setResendLoading] = useState(false)
+  const [googleLoading, setGoogleLoading] = useState(false)
+  const showGoogle = isGoogleSignInConfigured() && (mode === 'login' || mode === 'register')
+
+  const handleGoogleCredential = async (credential) => {
+    setFormError('')
+    setInfoMessage('')
+    setGoogleLoading(true)
+    try {
+      const session = await loginWithGoogle(credential)
+      resetForm()
+      onAuthSuccess?.(session)
+      onHide()
+    } catch (err) {
+      setFormError(resolveAuthError(t, err.message))
+    } finally {
+      setGoogleLoading(false)
+    }
+  }
 
   useEffect(() => {
     if (!show) {
@@ -218,6 +239,21 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
                 ? t('auth.registerHint')
                 : t('auth.loginHint')}
         </p>
+
+        {showGoogle && (
+          <div className="mb-3">
+            <GoogleSignInButton
+              onCredential={handleGoogleCredential}
+              onError={(code) =>
+                setFormError(resolveAuthError(t, code || 'googleLoginFailed'))
+              }
+              disabled={loading || googleLoading}
+            />
+            <div className="auth-divider my-3 text-center text-muted small">
+              <span>{t('auth.orContinueWithEmail', 'o continuá con email')}</span>
+            </div>
+          </div>
+        )}
 
         {isEmailOnly ? (
           <form

@@ -134,7 +134,7 @@ npm run screenshots
 | **Historial de consumos** | Consultas personales del usuario autenticado. |
 | **Análisis IA** | Formulario por tipo (**apartamento** / **casa unifamiliar** / **pequeño establecimiento comercial**); gráfico vs referencia; ML (FastAPI) o **heurística/local** de respaldo; `nivelKey`, confianza, ahorro y `tipKeys`. |
 | **Recomendaciones** | Catálogo + tip keys granulares (hábitos / inmueble); i18n en el front. |
-| **Registro / Login** | Modal con pestañas; registro exige verificar email (SMTP) antes del login; contraseña ≥ 8 caracteres. |
+| **Registro / Login** | Modal con pestañas; registro por email exige verificar mail (SMTP) antes del login; **Google Sign-In** (si `VITE_GOOGLE_CLIENT_ID` está configurado) entra sin link de verificación. |
 | **Verificar email / Reset password** | Solo con el link del correo (`?verifyToken=` / `?resetToken=`). |
 | **Panel Admin** | CRUD de usuarios (`ADMIN`) + pantalla de **Análisis IA** admin. |
 | **Contáctanos** | Formulario + Equipo 48 en flip cards. |
@@ -220,6 +220,7 @@ Con API real: `VITE_USE_MOCK_AUTH=false` y `VITE_API_URL` apuntando al backend (
 | Método | Endpoint | Body / notas |
 |:------:|----------|--------------|
 | `POST` | `/api/v1/auth/register` | `{ "name", "email", "password" }` → crea cuenta y envía verificación (sin JWT) |
+| `POST` | `/api/v1/auth/google` | `{ "credential" }` ID token de Google → JWT (email ya verificado) |
 | `POST` | `/api/v1/auth/verify-email` | `{ "token" }` → marca `email_verified_at` |
 | `POST` | `/api/v1/auth/resend-verification` | `{ "email" }` → reenvía enlace |
 | `POST` | `/api/v1/auth/login` | `{ "email", "password" }` → `data.accessToken` (solo si el email está verificado) |

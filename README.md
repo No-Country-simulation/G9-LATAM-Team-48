@@ -96,8 +96,10 @@ Variables del front en Vercel (Production / Preview):
 VITE_API_URL=https://g9-latam-team-48-production.up.railway.app
 VITE_USE_MOCK_AUTH=false
 VITE_USE_MOCK_API=false
+VITE_GOOGLE_CLIENT_ID=tu-client-id.apps.googleusercontent.com
 ```
 
+En Railway (backend): `GOOGLE_CLIENT_ID` con el **mismo** Client ID. En Google Cloud Console → OAuth Web: origins `https://tu-app.vercel.app` y `http://localhost:5173`.
 Usuarios demo:
 
 | Email | Contraseña | Rol |

@@ -119,3 +119,31 @@ export async function register(credentials) {
 export async function logout() {
   // El backend JWT no expone logout; la sesión se limpia en el cliente.
 }
+
+/**
+ * Login/registro con Google Identity Services (credential = ID token).
+ * El email ya viene verificado por Google.
+ */
+export async function loginWithGoogle(credential) {
+  if (USE_MOCK_AUTH) {
+    throw new Error('googleNotAvailableInMock')
+  }
+
+  try {
+    const { data } = await api.post('/api/v1/auth/google', { credential })
+    const auth = data?.data ?? data
+    const token = auth?.accessToken ?? auth?.token
+    if (!token) throw new Error('noToken')
+
+    localStorage.setItem('token', token)
+    let user
+    try {
+      user = await getCurrentUser(token)
+    } catch {
+      user = { id: 0, nombre: 'Google', email: '', rol: 'USER' }
+    }
+    return { token, user }
+  } catch (error) {
+    throw new Error(authErrorMessage(error, 'googleLoginFailed'))
+  }
+}

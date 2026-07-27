@@ -4,6 +4,7 @@ import com.alura.auth.dto.AuthResponse;
 import com.alura.auth.dto.LoginRequest;
 import com.alura.auth.dto.RegisterRequest;
 import com.alura.auth.dto.RegisterResponse;
+import com.alura.auth.service.GoogleTokenVerifier.GoogleProfile;
 import com.alura.common.constants.ApiConstants;
 import com.alura.common.exception.BusinessException;
 import com.alura.user.model.User;
@@ -16,6 +17,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.security.SecureRandom;
+import java.time.LocalDateTime;
+import java.util.Base64;
 
 /**
  * Orquesta el proceso de registro y autenticacion de usuarios.
@@ -37,6 +42,8 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
     private final EmailVerificationService emailVerificationService;
+    private final GoogleTokenVerifier googleTokenVerifier;
+    private final SecureRandom secureRandom = new SecureRandom();
 
     /**
      * Registra un nuevo usuario sin emitir JWT: debe verificar el email primero.
@@ -84,6 +91,43 @@ public class AuthenticationService {
         }
 
         return buildToken(email);
+    }
+
+    /**
+     * Login/registro con Google Identity Services.
+     * El email ya viene verificado por Google: emite JWT sin link de mail.
+     */
+    @Transactional
+    public AuthResponse loginWithGoogle(String credential) {
+        GoogleProfile profile = googleTokenVerifier.verify(credential);
+        User user = userRepository.findByEmail(profile.email()).orElse(null);
+
+        if (user == null) {
+            String randomPassword = randomUnusablePassword();
+            user = User.builder()
+                    .name(profile.name())
+                    .email(profile.email())
+                    .password(passwordEncoder.encode(randomPassword))
+                    .role(DEFAULT_ROLE)
+                    .emailVerifiedAt(LocalDateTime.now())
+                    .build();
+            userRepository.save(user);
+        } else if (!user.isEmailVerified()) {
+            // Cuenta local pendiente: Google confirma el mismo email → marcar verificado
+            user.setEmailVerifiedAt(LocalDateTime.now());
+            if (user.getName() == null || user.getName().isBlank()) {
+                user.setName(profile.name());
+            }
+            userRepository.save(user);
+        }
+
+        return buildToken(profile.email());
+    }
+
+    private String randomUnusablePassword() {
+        byte[] bytes = new byte[32];
+        secureRandom.nextBytes(bytes);
+        return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
     }
 
     private AuthResponse buildToken(String email) {

@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import {
   getCurrentUser,
   login as loginRequest,
+  loginWithGoogle as loginWithGoogleRequest,
   logout as logoutRequest,
   register as registerRequest,
 } from '../services/authService'
@@ -160,6 +161,21 @@ export function AuthProvider({ children }) {
     }
   }
 
+  const loginWithGoogle = async (credential) => {
+    setLoading(true)
+    setError(null)
+    try {
+      const data = await loginWithGoogleRequest(credential)
+      persistSession(data, setUser, setToken)
+      return { ...data, user: normalizeUser(data.user) }
+    } catch (err) {
+      setError(err.message)
+      throw err
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const logout = async () => {
     setLoading(true)
 
@@ -183,6 +199,7 @@ export function AuthProvider({ children }) {
         error,
         login,
         register,
+        loginWithGoogle,
         logout,
         refreshUser,
         loginOpen,

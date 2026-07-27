@@ -1071,6 +1071,32 @@ button:focus-visible .header-theme-icon--moon {
   margin-bottom: 0;
 }
 
+.auth-divider {
+  position: relative;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 38%;
+  height: 1px;
+  background: rgba(148, 163, 184, 0.35);
+}
+
+.auth-divider::before {
+  left: 0;
+}
+
+.auth-divider::after {
+  right: 0;
+}
+
+.google-signin-host iframe {
+  margin: 0 auto;
+}
+
 /* ===== Ayuda de campos (Análisis IA) ===== */
 .field-hint-icon {
   display: inline-flex;

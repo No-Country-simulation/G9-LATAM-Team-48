@@ -76,3 +76,6 @@ app:
     # false = cambiar password solo con el link del mail
     expose-token: ${PASSWORD_RESET_EXPOSE_TOKEN:false}
     ttl-hours: ${PASSWORD_RESET_TTL_HOURS:24}
+  google:
+    # Mismo Client ID que VITE_GOOGLE_CLIENT_ID (Google Cloud Console → OAuth Web)
+    client-id: ${GOOGLE_CLIENT_ID:}
