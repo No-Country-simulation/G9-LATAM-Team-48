@@ -19,15 +19,18 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
 | Carpeta | Descripción |
 |---------|-------------|
 | [`frontend/`](./frontend) | Aplicación web (React + Vite) |
-| [`backend/`](./backend) | API Spring Boot (JWT, predicción, recomendaciones) |
+| [`backend/`](./backend) | API Spring Boot (JWT, predicción, recomendaciones, fallback heurístico) |
 | [`ml-service/`](./ml-service) | Modelo ML (RandomForest + FastAPI) para Análisis IA |
-| [`docs/`](./docs) | Documentación (arquitectura, deploy NAS, etc.) |
+| [`datascience/`](./datascience) | Notebooks, dataset y docs de ciencia de datos (no se despliega) |
+| [`docs/`](./docs) | Documentación (arquitectura, auth, recomendaciones, deploy) |
+
+> **Rama de deploy:** `Jorge-martinez` (Vercel + Railway). No uses `main` para el front: ahí `frontend/` puede estar vacío.
 
 ---
 
 ## Vista previa del frontend
 
-> Tema claro/oscuro, multilenguaje. Dashboard actualizado con marca **EnergIA**.
+> Tema claro/oscuro, mapa de idiomas, accesibilidad (lector de pantalla) y UI multilenguaje.
 > Detalle completo en el [README del frontend](./frontend/README.md).
 
 <div align="center">
@@ -65,6 +68,8 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
   </tr>
 </table>
 
+**Capturas pendientes** (para refrescar el README): mapa de idiomas, Historial de consumos y Admin · Análisis IA. Lista y nombres de archivo en [`frontend/screenshots/README.md`](./frontend/screenshots/README.md).
+
 Documentación de auth, email y admin: [`docs/backend/AUTH_EMAIL_ADMIN.md`](./docs/backend/AUTH_EMAIL_ADMIN.md).
 
 ---
@@ -93,7 +98,17 @@ Usuarios demo:
 | `admin@energyai.com` | `admin1234` | ADMIN |
 | `team48@energyai.com` | `team48123` | USER |
 
-> Un push a `Jorge-martinez` redespliega Vercel y Railway si el auto-deploy está activo en esa rama (no uses `main`: ahí `frontend/` está vacío).
+> Un push a `Jorge-martinez` redespliega Vercel y Railway si el auto-deploy está activo en esa rama.
+
+---
+
+## Highlights recientes
+
+- **Mapa de idiomas** (desktop: hover; móvil: tap + confirmar)
+- **i18n ampliado** (21 idiomas con UI completa + packs; tip keys y textos del mapa)
+- **Accesibilidad**: skip links, landmarks, anuncios para lector de pantalla
+- **Recomendaciones granulares** (tip keys por hábitos e inmueble) + fallback `HeuristicPrediction` sin ML
+- **Datascience** como carpeta hermana (EDA / dataset / notebooks)
 
 ---
 
@@ -113,15 +128,20 @@ Perfiles y fotos: pantalla **Contáctanos** del frontend. Detalle y links: [fron
 
 ---
 
-## Cómo ejecutar el frontend
+## Cómo ejecutar
 
 ```bash
-cd frontend
-npm install
-npm run dev
+# Frontend
+cd frontend && npm install && npm run dev
+
+# Backend (otra terminal)
+cd backend && mvn spring-boot:run
+
+# ML opcional
+cd ml-service && uvicorn app.main:app --reload --port 8000
 ```
 
-App en `http://localhost:5173`. Credenciales, i18n, Docker/NAS y contrato API: [frontend/README.md](./frontend/README.md).
+Front en `http://localhost:5173`. Más detalle: [frontend/README.md](./frontend/README.md) · [backend/README.md](./backend/README.md) · [datascience/README.md](./datascience/README.md).
 
 ---
 
