@@ -1,71 +1,30 @@
 package com.alura.recommendation.rules;
 
+import com.alura.common.enums.ConsumptionCategory;
 import com.alura.recommendation.dto.RecommendationRequest;
-import lombok.NonNull;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
+import com.alura.recommendation.dto.TipKey;
 import org.springframework.stereotype.Component;
-
-import java.util.Locale;
 
 /**
  * Regla de recomendación para usuarios con perfiles de consumo bajo o eficiente.
  *
  * <p>Esta clase forma parte del motor de reglas bajo el patrón Strategy.
- * Evalúa si la categoría de consumo corresponde a un perfil bajo y provee
- * mensajes de felicitación o sugerencias avanzadas de automatización.</p>
- *
- * <p>Cumple con el <b>Principio de Responsabilidad Única (SRP)</b> al delegar
- * la resolución de textos al componente {@link MessageSource} de Spring.</p>
+ * Evalúa si la categoría de consumo corresponde a un perfil bajo y retorna
+ * la clave corta correspondiente para que el frontend resuelva la traducción final.</p>
  *
  * @author miyo
- * @version 1.1
+ * @version 2.0
  */
 @Component
 public class LowConsumptionRule implements RecommendationRule {
 
-    private final MessageSource messageSource;
-
-    /**
-     * Construye una nueva instancia de la regla de bajo consumo.
-     *
-     * @param messageSource resolvedor de mensajes para internacionalización (i18n).
-     *                       Lombok garantiza la no-nulidad mediante {@code @NonNull}.
-     */
-    public LowConsumptionRule(@NonNull MessageSource messageSource) {
-        this.messageSource = messageSource;
-    }
-
-    /**
-     * Evalúa si esta regla de recomendación aplica para el contexto de usuario provisto.
-     *
-     * <p>La regla aplica si la categoría de consumo del request es "LOW" o "BAJO"
-     * (sin distinguir mayúsculas de minúsculas).</p>
-     *
-     * @param request contexto de evaluación que contiene la categoría del usuario.
-     * @return {@code true} si la categoría corresponde a bajo consumo; {@code false} de lo contrario.
-     */
     @Override
     public boolean applies(RecommendationRequest request) {
-        if (request == null || request.category() == null) {
-            return false;
-        }
-        String category = request.category().trim().toUpperCase();
-        return "LOW_CONSUMPTION".equals(category);
+        return request != null && ConsumptionCategory.LOW.getModelValue().equalsIgnoreCase(request.category());
     }
 
-    /**
-     * Genera el mensaje de recomendación localizado para perfiles de bajo consumo.
-     *
-     * <p>Obtiene dinámicamente el idioma del hilo de ejecución mediante
-     * {@link LocaleContextHolder#getLocale()} para resolver la traducción correcta.</p>
-     *
-     * @param request contexto de evaluación.
-     * @return el mensaje de recomendación traducido según la localización del usuario.
-     */
     @Override
-    public String evaluate(RecommendationRequest request) {
-        Locale locale = LocaleContextHolder.getLocale();
-        return messageSource.getMessage("recommendation.low.consumption", null, locale);
+    public TipKey evaluate(RecommendationRequest request) {
+        return TipKey.DEFAULT;
     }
 }
