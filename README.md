@@ -19,12 +19,16 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
 | Carpeta | Descripción |
 |---------|-------------|
 | [`frontend/`](./frontend) | Aplicación web (React + Vite) |
-| [`backend/`](./backend) | API Spring Boot (JWT, predicción, recomendaciones, fallback heurístico) |
+| [`backend/`](./backend) | API Spring Boot (JWT, Google, email, Análisis IA, admin, contacto) |
 | [`ml-service/`](./ml-service) | Modelo ML (RandomForest + FastAPI) para Análisis IA |
 | [`datascience/`](./datascience) | Notebooks, dataset y docs de ciencia de datos (no se despliega) |
 | [`docs/`](./docs) | Documentación (arquitectura, auth, recomendaciones, deploy) |
+| [`qa/`](./qa) | Checklist P0/P1, smoke scripts y notas NAS (sin tocar código de producto) |
 
-> **Rama de deploy:** `Jorge-martinez` (Vercel + Railway). No uses `main` para el front: ahí `frontend/` puede estar vacío.
+> **Rama de deploy:** `Jorge-martinez` (Vercel + Railway).  
+> La rama **`backend`** quedó **sincronizada** con `Jorge-martinez` (mismo contenido operativo; conflictos de prediction/mock resueltos a favor del flujo con `HeuristicPrediction` + `AnalisisPayload`).  
+> La rama **`develop`** está vacía a propósito (solo esqueleto de carpetas).  
+> No uses `main` para el front: ahí `frontend/` puede estar vacío.
 
 ---
 
@@ -76,7 +80,7 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
   </tr>
 </table>
 
-> **Nueva contraseña** y **Verificar email** se abren solo con el link del correo (`?resetToken=` / `?verifyToken=`). En la demo el SMTP no llega a todas las bandejas; la captura de reset es la del flujo documentado.
+> **Nueva contraseña** y **Verificar email** se abren solo con el link del correo (`?resetToken=` / `?verifyToken=`). En **prod** los mails salen por **Resend**; en **local** podés usar SMTP (Gmail). Detalle de flujos y troubleshooting: [`qa/QA.md`](./qa/QA.md). Scripts de smoke y checklist: [`qa/README.md`](./qa/README.md).
 
 Documentación de auth, email y admin: [`docs/backend/AUTH_EMAIL_ADMIN.md`](./docs/backend/AUTH_EMAIL_ADMIN.md).
 
@@ -114,11 +118,15 @@ Usuarios demo:
 
 ## Highlights recientes
 
-- **Mapa de idiomas** (desktop: hover; móvil: tap + confirmar)
-- **i18n ampliado** (21 idiomas con UI completa + packs; tip keys y textos del mapa)
-- **Accesibilidad**: skip links, landmarks, anuncios para lector de pantalla
-- **Recomendaciones granulares** (tip keys por hábitos e inmueble) + fallback `HeuristicPrediction` sin ML
-- **Datascience** como carpeta hermana (EDA / dataset / notebooks)
+- **Google Sign-In**
+- **Auth por email** (registro/verify/login, forgot/reset, admin CRUD)
+- **Análisis IA** with `AnalisisPayload`, historial, V7 anonymous, result email
+- **`HeuristicPrediction` fallback**
+- **Recomendaciones** tip keys + i18n
+- **Contáctanos** + Equipo 48; **Admin**
+- **Mapa idiomas** / i18n / a11y
+- **QA cerrado** in [`qa/`](./qa)
+- Rama **`backend`** alineada with `Jorge-martinez`
 
 ---
 
@@ -151,7 +159,7 @@ cd backend && mvn spring-boot:run
 cd ml-service && uvicorn app.main:app --reload --port 8000
 ```
 
-Front en `http://localhost:5173`. Más detalle: [frontend/README.md](./frontend/README.md) · [backend/README.md](./backend/README.md) · [datascience/README.md](./datascience/README.md).
+Front en `http://localhost:5173`. Más detalle: [frontend/README.md](./frontend/README.md) · [backend/README.md](./backend/README.md) · [datascience/README.md](./datascience/README.md) · [qa/README.md](./qa/README.md).
 
 ---
 
