@@ -7,7 +7,8 @@ import jakarta.validation.constraints.Pattern;
 /**
  * Alta de usuario desde el panel admin.
  * Si {@code password} viene vacio, el backend genera una temporal y la envia por email.
- * {@code emailVerified} null o true = puede iniciar sesion sin verificar mail.
+ * El alta admin siempre deja el email verificado (sin token de validacion).
+ * {@code emailVerified} se ignora.
  */
 public record AdminCreateUserRequest(
 

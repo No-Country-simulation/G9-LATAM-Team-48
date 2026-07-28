@@ -1,0 +1,263 @@
+import { createRequire } from 'module'
+import { writeFileSync } from 'fs'
+import { geoEquirectangular, geoPath } from 'd3-geo'
+import { feature } from 'topojson-client'
+
+const require = createRequire(import.meta.url)
+const countriesTopo = require('world-atlas/countries-110m.json')
+
+const WIDTH = 1000
+const HEIGHT = 500
+
+/** Natural Earth country name → locale code (idioma principal / oficial más usado). */
+const NAME_TO_LOCALE = {
+  // Español
+  Spain: 'es',
+  Mexico: 'es',
+  Argentina: 'es',
+  Colombia: 'es',
+  Chile: 'es',
+  Peru: 'es',
+  Uruguay: 'es',
+  Paraguay: 'es',
+  Bolivia: 'es',
+  Ecuador: 'es',
+  Venezuela: 'es',
+  Guatemala: 'es',
+  Honduras: 'es',
+  'El Salvador': 'es',
+  Nicaragua: 'es',
+  'Costa Rica': 'es',
+  Panama: 'es',
+  Cuba: 'es',
+  'Dominican Rep.': 'es',
+  'Eq. Guinea': 'es',
+  'Puerto Rico': 'es',
+  Belize: 'en',
+
+  // Portugués
+  Portugal: 'pt',
+  Brazil: 'pt',
+  Angola: 'pt',
+  Mozambique: 'pt',
+  'Guinea-Bissau': 'pt',
+  'Timor-Leste': 'pt',
+
+  // Inglés
+  'United States of America': 'en',
+  'United Kingdom': 'en',
+  Ireland: 'en',
+  Canada: 'en',
+  Australia: 'en',
+  'New Zealand': 'en',
+  Jamaica: 'en',
+  'South Africa': 'en',
+  Bahamas: 'en',
+  Guyana: 'en',
+  'Trinidad and Tobago': 'en',
+  'Falkland Is.': 'es',
+  'Solomon Is.': 'en',
+  Fiji: 'en',
+  Vanuatu: 'en',
+  'Papua New Guinea': 'en',
+  Ghana: 'en',
+  Nigeria: 'en',
+  Kenya: 'en',
+  Uganda: 'en',
+  Tanzania: 'sw',
+  Zambia: 'en',
+  Zimbabwe: 'en',
+  Botswana: 'en',
+  Namibia: 'en',
+  Malawi: 'en',
+  Liberia: 'en',
+  'Sierra Leone': 'en',
+  Gambia: 'en',
+  Rwanda: 'en',
+  'S. Sudan': 'en',
+  Cameroon: 'fr',
+  'New Caledonia': 'fr',
+
+  // Francés
+  France: 'fr',
+  Belgium: 'fr',
+  Luxembourg: 'fr',
+  Senegal: 'fr',
+  "Côte d'Ivoire": 'fr',
+  Morocco: 'ar',
+  Algeria: 'ar',
+  Tunisia: 'ar',
+  Mali: 'fr',
+  Niger: 'fr',
+  Chad: 'fr',
+  Gabon: 'fr',
+  Congo: 'fr',
+  'Dem. Rep. Congo': 'fr',
+  'Central African Rep.': 'fr',
+  'Burkina Faso': 'fr',
+  Benin: 'fr',
+  Togo: 'fr',
+  Guinea: 'fr',
+  Madagascar: 'fr',
+  Haiti: 'fr',
+  Djibouti: 'fr',
+  Mauritania: 'ar',
+  'W. Sahara': 'ar',
+
+  // Italiano / alemán / neerlandés
+  Italy: 'it',
+  Germany: 'de',
+  Austria: 'de',
+  Switzerland: 'de',
+  Netherlands: 'nl',
+  Suriname: 'nl',
+
+  // Europa Este / Norte
+  Poland: 'pl',
+  Romania: 'ro',
+  Moldova: 'ro',
+  Turkey: 'tr',
+  Russia: 'ru',
+  Ukraine: 'uk',
+  Belarus: 'ru',
+  Czechia: 'cs',
+  Slovakia: 'sk',
+  Hungary: 'hu',
+  Bulgaria: 'bg',
+  Croatia: 'hr',
+  Serbia: 'sr',
+  Slovenia: 'sl',
+  'Bosnia and Herz.': 'hr',
+  Montenegro: 'sr',
+  Kosovo: 'sq',
+  Albania: 'sq',
+  Macedonia: 'mk',
+  Greece: 'el',
+  Cyprus: 'el',
+  'N. Cyprus': 'tr',
+  Sweden: 'sv',
+  Norway: 'no',
+  Denmark: 'da',
+  Finland: 'fi',
+  Estonia: 'et',
+  Latvia: 'lv',
+  Lithuania: 'lt',
+  Iceland: 'is',
+  Greenland: 'da',
+
+  // Árabe / hebreo / persa
+  Egypt: 'ar',
+  'Saudi Arabia': 'ar',
+  'United Arab Emirates': 'ar',
+  Qatar: 'ar',
+  Kuwait: 'ar',
+  Oman: 'ar',
+  Yemen: 'ar',
+  Iraq: 'ar',
+  Syria: 'ar',
+  Jordan: 'ar',
+  Lebanon: 'ar',
+  Libya: 'ar',
+  Sudan: 'ar',
+  Palestine: 'ar',
+  Israel: 'he',
+  Iran: 'fa',
+  Afghanistan: 'fa',
+
+  // Asia
+  China: 'zh',
+  Taiwan: 'zh',
+  Japan: 'ja',
+  'South Korea': 'ko',
+  'North Korea': 'ko',
+  Mongolia: 'mn',
+  India: 'hi',
+  Pakistan: 'ur',
+  Bangladesh: 'bn',
+  Nepal: 'ne',
+  'Sri Lanka': 'si',
+  Bhutan: 'ne',
+  Thailand: 'th',
+  Vietnam: 'vi',
+  Laos: 'lo',
+  Cambodia: 'km',
+  Myanmar: 'my',
+  Malaysia: 'ms',
+  Indonesia: 'id',
+  Brunei: 'ms',
+  Philippines: 'tl',
+  Singapore: 'en',
+
+  // Centro Asia / Cáucaso
+  Kazakhstan: 'kk',
+  Uzbekistan: 'uz',
+  Kyrgyzstan: 'ky',
+  Turkmenistan: 'tk',
+  Tajikistan: 'fa',
+  Azerbaijan: 'az',
+  Armenia: 'hy',
+  Georgia: 'ka',
+
+  // África adicional
+  Ethiopia: 'am',
+  Eritrea: 'ar',
+  Somalia: 'ar',
+  Somaliland: 'ar',
+  'eSwatini': 'en',
+  Lesotho: 'en',
+  Burundi: 'sw',
+  'Fr. S. Antarctic Lands': 'fr',
+  Antarctica: null,
+}
+
+/** Nombres de visualización (p. ej. soberanía / uso local). */
+const DISPLAY_NAME_OVERRIDES = {
+  'Falkland Is.': 'Islas Malvinas',
+}
+
+const projection = geoEquirectangular()
+  .fitSize([WIDTH, HEIGHT], { type: 'Sphere' })
+  .precision(0.5)
+
+const path = geoPath(projection)
+const collection = feature(countriesTopo, countriesTopo.objects.countries)
+
+const countries = []
+let mapped = 0
+const unmapped = []
+
+for (const f of collection.features) {
+  const rawName = f.properties?.name || 'Unknown'
+  const name = DISPLAY_NAME_OVERRIDES[rawName] || rawName
+  const d = path(f)
+  if (!d) continue
+
+  const locale =
+    Object.prototype.hasOwnProperty.call(NAME_TO_LOCALE, rawName)
+      ? NAME_TO_LOCALE[rawName]
+      : null
+
+  if (locale) mapped += 1
+  else if (rawName !== 'Antarctica') unmapped.push(rawName)
+
+  countries.push({
+    id: String(f.id ?? rawName),
+    name,
+    locale,
+    d,
+  })
+}
+
+const js = `/* Auto-generated by scripts/bake-world-map.mjs — do not edit by hand. */
+export const WORLD_MAP_VIEWBOX = '0 0 ${WIDTH} ${HEIGHT}'
+
+export const WORLD_COUNTRIES = ${JSON.stringify(countries)}
+`
+
+writeFileSync(new URL('../src/data/worldMap.js', import.meta.url), js)
+
+console.log('Wrote src/data/worldMap.js')
+console.log(`Mapped countries: ${mapped}/${countries.length}`)
+if (unmapped.length) {
+  console.log('Unmapped:', unmapped.join(', '))
+}

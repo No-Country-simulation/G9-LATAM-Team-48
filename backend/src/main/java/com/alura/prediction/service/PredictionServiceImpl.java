@@ -1,66 +1,50 @@
 package com.alura.prediction.service;
 
-import com.alura.common.enums.ConsumptionCategory;
+import com.alura.common.exception.MlServiceUnavailableException;
 import com.alura.prediction.client.PredictionClient;
 import com.alura.prediction.dto.PredictionRequest;
 import com.alura.prediction.dto.PredictionResponse;
-import com.alura.recommendation.dto.RecommendationRequest;
-import com.alura.recommendation.dto.RecommendationResponse;
-import com.alura.recommendation.service.RecommendationService;
-import org.springframework.context.annotation.Primary;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 @Service
-@Primary
 public class PredictionServiceImpl implements PredictionService {
 
-    private final PredictionClient predictionClient;
-    private final RecommendationService recommendationService;
+    private static final Logger log = LoggerFactory.getLogger(PredictionServiceImpl.class);
 
-    public PredictionServiceImpl(PredictionClient predictionClient, RecommendationService recommendationService) {
+    private final PredictionClient predictionClient;
+
+    public PredictionServiceImpl(PredictionClient predictionClient) {
         this.predictionClient = predictionClient;
-        this.recommendationService = recommendationService;
     }
 
     @Override
     public PredictionResponse classify(PredictionRequest request) {
-        // 1. Llamamos a FastAPI (Python)
-        PredictionResponse mlResponse = predictionClient.predict(request);
-
-        // 2. Mapeamos el nivelKey usando las constantes centralizadas
-        String nivelKey = ConsumptionCategory.getFrontendKeyFor(mlResponse.category());
-
-        // 3. Armamos el contrato de recomendaciones
-        RecommendationRequest recRequest = new RecommendationRequest(
-                null,
-                mlResponse.category(),
-                request.tipoInmueble(),
-                request.cantidadEquipos(),
-                request.horasClimatizacion(),
-                request.horasAltoConsumo(),
-                request.usoHorarioPico()
-        );
-
-        RecommendationResponse recResponse = recommendationService.generate(recRequest);
-
-        // 4. Ensamblamos la respuesta completa para el Frontend
-        return new PredictionResponse(
-                null,
-                mlResponse.category(),
-                nivelKey,
-                mlResponse.confidence(),
-                0,
-                recResponse.recommendations(),
-                0.0
-        );
+        if (request == null || request.features() == null || request.features().isEmpty()) {
+            throw new IllegalArgumentException("features are required");
+        }
+        try {
+            return predictionClient.predict(request);
+        } catch (MlServiceUnavailableException ex) {
+            // Railway suele tener PREDICTION_API_BASE_URL=http://127.0.0.1:8000 sin ML.
+            log.warn("ML no disponible; usando fallback heuristico: {}", ex.getMessage());
+            return HeuristicPrediction.fromFeatures(request.features());
+        }
     }
 
     @Override
     public PredictionResponse analyze(Map<String, Object> features) {
-        throw new UnsupportedOperationException(
-                "El flujo de Map está deprecado. Utilice classify(PredictionRequest)."
-        );
+        return classify(new PredictionRequest(null, features));
+    }
+
+    @Override
+    public PredictionResponse analyzeHeuristic(Map<String, Object> features) {
+        if (features == null || features.isEmpty()) {
+            throw new IllegalArgumentException("features are required");
+        }
+        return HeuristicPrediction.fromFeatures(features);
     }
 }
