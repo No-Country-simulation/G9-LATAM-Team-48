@@ -1,10 +1,9 @@
 # Backend
 
-La aplicacion analiza patrones de consumo energetico y clasifica a los usuarios
-apoyandose en un modelo de **Machine Learning** desarrollado en Python
-(FastAPI). Este backend en **Spring Boot** actua como orquestador central:
-expone la API REST, gestiona la autenticacion con JWT y coordina los modulos de
-prediccion, recomendaciones y calculo de costos.
+API **Spring Boot** de EnergIA: orquesta autenticacion (JWT + email + Google),
+Analisis IA (FastAPI + fallback heuristico), recomendaciones (tipKeys),
+consumos, contacto y panel admin. Persistencia MySQL + Flyway; correo via
+SMTP (local) o Resend (prod / Railway).
 
 ---
 
@@ -33,8 +32,8 @@ Migraciones Flyway:
 
 ## Qué se implementó (Análisis IA)
 
-Módulo **aparte**: no modifica recomendaciones, costos ni persistencia de
-consumos. El equipo puede mergearlo sin pisar ese trabajo.
+Fachada del formulario del frontend (`com.alura.analisis`) + predicción
+(`com.alura.prediction` → FastAPI, con fallback local).
 
 ### Resumen
 
@@ -45,7 +44,7 @@ consumos. El equipo puede mergearlo sin pisar ese trabajo.
 | `com.alura.prediction` | Cliente HTTP → FastAPI (`FastApiPredictionClient`) |
 | Fallback | `HeuristicPrediction` si FastAPI no responde (**`MockPredictionService` no está en el stack**) |
 | Respuesta | `nivelKey`, `ahorro`, `tipKeys`, `benchmark`, `confidence` |
-| Errores | `400` body inválido · `503` ML caído (solo si no aplica heurística) |
+| Errores | `400` body inválido · si ML cae, responde con `HeuristicPrediction` (no corta el flujo) |
 | Seguridad | `POST /api/analisis` público; `GET /api/analisis/mis` con JWT |
 | CORS | Habilitado para el front en local |
 | Compose | Servicio `ml` + `PREDICTION_API_BASE_URL=http://ml:8000` |
@@ -95,13 +94,15 @@ Material de notebooks y datasets: carpeta hermana [`datascience/`](../datascienc
 - **Spring Boot 3.3.x**
 - **Maven**
 - **Spring Web** (API REST)
-- **Spring Security** + **JWT** (`jjwt`)
+- **Spring Security** + **JWT** (`jjwt`) + Google ID Token
+- **Spring Mail** / Resend (HTTPS)
 - **Spring Validation** (Bean Validation)
 - **Lombok**
 - **Springdoc OpenAPI** (Swagger UI)
+- **Flyway** + **JPA** (MySQL)
 - **Jackson** (serializacion JSON)
 - **Spring Boot Actuator** (health checks)
-- **Docker ready** 
+- **Docker ready**
 
 ---
 
