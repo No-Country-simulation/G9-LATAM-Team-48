@@ -3,6 +3,7 @@ package com.alura.auth.controller;
 import com.alura.auth.dto.AuthResponse;
 import com.alura.auth.dto.ForgotPasswordRequest;
 import com.alura.auth.dto.ForgotPasswordResponse;
+import com.alura.auth.dto.GoogleLoginRequest;
 import com.alura.auth.dto.LoginRequest;
 import com.alura.auth.dto.RegisterRequest;
 import com.alura.auth.dto.RegisterResponse;
@@ -53,6 +54,14 @@ public class AuthController {
             @Valid @RequestBody LoginRequest request) {
         AuthResponse response = authenticationService.login(request);
         return ResponseEntity.ok(ApiResponse.ok(response, "Autenticacion exitosa."));
+    }
+
+    @Operation(summary = "Login o registro con Google (email ya verificado por Google)")
+    @PostMapping("/google")
+    public ResponseEntity<ApiResponse<AuthResponse>> loginWithGoogle(
+            @Valid @RequestBody GoogleLoginRequest request) {
+        AuthResponse response = authenticationService.loginWithGoogle(request.credential());
+        return ResponseEntity.ok(ApiResponse.ok(response, "Autenticacion con Google exitosa."));
     }
 
     @Operation(summary = "Verificar email con token del enlace")

@@ -4,6 +4,7 @@ import com.alura.security.filter.JwtAuthenticationFilter;
 import com.alura.security.jwt.JwtService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -39,7 +40,6 @@ public class SecurityConfiguration {
             "/api/v1/auth/**",
             "/api/v1/contact",
             "/api/v1/contact/**",
-            // /api/analisis requiere JWT (guardar consulta + email)
             "/api/v1/predictions/**",
             "/api/recomendaciones",
             "/api/recomendaciones/**",
@@ -66,6 +66,9 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> {})
                 .authorizeHttpRequests(auth -> auth
+                        // Analisis: POST publico (guarda anonimo o con JWT);
+                        // GET /api/analisis/mis requiere autenticacion.
+                        .requestMatchers(HttpMethod.POST, "/api/analisis").permitAll()
                         .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
