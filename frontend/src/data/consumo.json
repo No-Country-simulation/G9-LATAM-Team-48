@@ -1,8 +1,0 @@
-[
-  { "mes": "january", "consumo": 320, "costo": 240 },
-  { "mes": "february", "consumo": 340, "costo": 255 },
-  { "mes": "march", "consumo": 310, "costo": 232 },
-  { "mes": "april", "consumo": 360, "costo": 270 },
-  { "mes": "may", "consumo": 350, "costo": 262 },
-  { "mes": "june", "consumo": 380, "costo": 285 }
-]

@@ -1,13 +1,8 @@
 .claude
 .bin
 
-# Secrets / local env
+node_modules/
+dist/
+target/
 .env
-.env.local
-*.pem
-
-# OS / IDE
-.DS_Store
-Thumbs.db
-.idea/
-.vscode/
+.vite/
