@@ -24,12 +24,14 @@ Migraciones Flyway:
 - `V4` — soft delete usuarios
 - `V5` — verificación de email
 - `V6` — seed usuarios demo
+- `V7` — consultas anónimas (`user_email` nullable)
 
-`POST /api/analisis` **requiere login** (JWT): guarda la consulta y deja el email en `PENDING`.
+`POST /api/analisis` es **público** (anonymous ok): guarda la consulta y deja el email en `PENDING` si se envía.
+`GET /api/analisis/mis` (y reenvío de email) **requieren login** (JWT).
 
 ---
 
-## Qué se implementó (Análisis IA) — para integrar
+## Qué se implementó (Análisis IA)
 
 Módulo **aparte**: no modifica recomendaciones, costos ni persistencia de
 consumos. El equipo puede mergearlo sin pisar ese trabajo.
@@ -39,17 +41,20 @@ consumos. El equipo puede mergearlo sin pisar ese trabajo.
 | Pieza | Detalle |
 |-------|---------|
 | `POST /api/analisis` | Fachada del formulario del frontend (`com.alura.analisis`) |
+| Contrato | `AnalisisPayload` tipado (`tipoInmueble`, `areaM2`, `consumoKwh`, etc.) |
 | `com.alura.prediction` | Cliente HTTP → FastAPI (`FastApiPredictionClient`) |
+| Fallback | `HeuristicPrediction` si FastAPI no responde (**`MockPredictionService` no está en el stack**) |
 | Respuesta | `nivelKey`, `ahorro`, `tipKeys`, `benchmark`, `confidence` |
-| Errores | `400` body inválido · `503` ML caído |
-| Seguridad | `/api/analisis/**` y `/api/v1/predictions/**` públicos (demo) |
+| Errores | `400` body inválido · `503` ML caído (solo si no aplica heurística) |
+| Seguridad | `POST /api/analisis` público; `GET /api/analisis/mis` con JWT |
 | CORS | Habilitado para el front en local |
 | Compose | Servicio `ml` + `PREDICTION_API_BASE_URL=http://ml:8000` |
 
 ### Flujo
 
 ```text
-Frontend → POST /api/analisis → Spring → ml-service (FastAPI :8000)
+Frontend → POST /api/analisis (AnalisisPayload) → Spring → ml-service (FastAPI :8000)
+                                    ↘ HeuristicPrediction (fallback)
 ```
 
 ### Cómo probar en local
@@ -67,26 +72,18 @@ cd backend
 mvn spring-boot:run
 ```
 
-Ejemplo:
+Ejemplo (campos tipados de `AnalisisPayload`):
 
 ```bash
 curl -X POST http://localhost:8080/api/analisis ^
   -H "Content-Type: application/json" ^
-  -d "{\"tipo\":\"casa\",\"consumo\":380,\"personas\":4,\"equipos\":8,\"area\":64,\"climateHours\":0,\"peakUseHours\":6}"
+  -d "{\"tipoInmueble\":\"casa\",\"areaM2\":64,\"consumoKwh\":380,\"cantidadEquipos\":8,\"cantidadPersonas\":4,\"horasClimatizacion\":0,\"horasAltoConsumo\":6,\"usoHorarioPico\":true}"
 ```
 
 Guía completa de contrato e integración:
 [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md).
 
 Microservicio Python: [`ml-service/README.md`](../ml-service/README.md).
-
-### Fallback sin ML (mock / heurística)
-
-Si FastAPI no está disponible, Spring usa `HeuristicPrediction`: clasifica por
-benchmark + hábitos (consumo, pico, equipos) y emite `nivelKey` / `tipKeys`
-compatibles con el frontend. Sustituye al antiguo `MockPredictionService`, cuyos
-contratos tipados no encajan con el `PredictionRequest`/`PredictionResponse`
-actuales.
 
 Material de notebooks y datasets: carpeta hermana [`datascience/`](../datascience/).
 
@@ -171,7 +168,17 @@ defecto para desarrollo). Los perfiles disponibles son:
 | `JWT_SECRET`              | Secreto de firma del JWT                 | *(placeholder inseguro)* |
 | `JWT_EXPIRATION`          | Expiracion del token (ms)                | `86400000`               |
 | `PREDICTION_API_BASE_URL` | URL base del servicio FastAPI            | `http://localhost:8000`  |
+| `FRONTEND_BASE_URL`       | Base URL del front (links en mails)      | `http://localhost:5173`  |
+| `MAIL_ENABLED`            | Activa envío de correo                   | `true`                   |
+| `MAIL_HOST`               | Host SMTP (local)                        | `smtp.gmail.com`         |
+| `MAIL_PORT`               | Puerto SMTP                              | `587`                    |
+| `MAIL_USERNAME`           | Usuario SMTP                             | —                        |
+| `MAIL_PASSWORD`           | App password SMTP                        | —                        |
+| `MAIL_FROM`               | Remitente (`From:`)                      | —                        |
+| `RESEND_API_KEY`          | API key Resend (prod)                    | —                        |
+| `GOOGLE_CLIENT_ID`        | Client ID OAuth Google (mismo que front) | —                        |
 
+> Si `RESEND_API_KEY` está definida, **Resend tiene prioridad** sobre SMTP.
 > En `prod`, `JWT_SECRET` y `PREDICTION_API_BASE_URL` **no** tienen valor por
 > defecto: la aplicacion no debe arrancar sin ellos.
 
@@ -192,11 +199,13 @@ backend
     │   │   │   ├── filter      #   Filtros de la cadena de seguridad
     │   │   │   ├── service     #   UserDetailsService
     │   │   │   └── config      #   SecurityFilterChain
-    │   │   ├── auth            # Login / registro / emision de tokens
-    │   │   ├── analisis        # Fachada Analisis IA (POST /api/analisis)
-    │   │   ├── prediction      # Cliente del servicio de ML (FastAPI)
+    │   │   ├── auth            # Login / registro / Google / emision de tokens
+    │   │   ├── analisis        # Fachada Analisis IA (POST /api/analisis, /mis)
+    │   │   ├── prediction      # Cliente ML + HeuristicPrediction (fallback)
     │   │   ├── recommendation  # Motor de reglas de recomendacion
     │   │   ├── cost            # Calculo de costos energeticos
+    │   │   ├── consumo         # Consumos e historial
+    │   │   ├── contact         # Formulario Contáctanos
     │   │   ├── user            # Gestion de usuarios
     │   │   ├── common          # Excepciones, respuestas, mappers, utils
     │   │   ├── infrastructure  # Adaptadores externos (HTTP, storage, OCI)
@@ -205,6 +214,7 @@ backend
     │       ├── application.yml
     │       ├── application-dev.yml
     │       ├── application-prod.yml
+    │       ├── db/migration    # Flyway V1–V7
     │       ├── data            # Datos de ejemplo para prototipado
     │       └── static
     └── test/java/com/alura     # Pruebas (contextLoads base)
@@ -230,10 +240,11 @@ Cada modulo sigue una **arquitectura por capas** (`controller` -> `service` ->
 
 ---
 
-## Autenticacion (JWT + email)
+## Autenticacion (JWT + email + Google)
 
 El backend usa autenticacion **stateless** con JSON Web Tokens. El registro
-**no** emite JWT: hay que verificar el email antes del login.
+**no** emite JWT: hay que verificar el email antes del login (salvo Google Sign-In,
+donde el email ya viene verificado por Google).
 
 | Metodo | Ruta | Acceso | Descripcion |
 |--------|------|--------|-------------|
@@ -241,12 +252,17 @@ El backend usa autenticacion **stateless** con JSON Web Tokens. El registro
 | `POST` | `/api/v1/auth/verify-email` | Publico | Confirma email con token del mail. |
 | `POST` | `/api/v1/auth/resend-verification` | Publico | Reenvia enlace de verificacion. |
 | `POST` | `/api/v1/auth/login` | Publico | Autentica (solo email verificado) y emite JWT. |
+| `POST` | `/api/v1/auth/google` | Publico | Login o registro con Google (ID token GIS). |
 | `POST` | `/api/v1/auth/forgot-password` | Publico | Envia mail de recuperacion. |
 | `POST` | `/api/v1/auth/reset-password` | Publico | Cambia password con token del mail. |
 | `GET`  | `/api/v1/users/me` | Protegido | Perfil del usuario autenticado. |
 | `*`    | `/api/v1/admin/users` | ADMIN | CRUD de usuarios (soft delete). |
+| `GET`  | `/api/v1/admin/analisis` | ADMIN | Listado de consultas Analisis IA. |
+| `POST` | `/api/v1/admin/analisis/recalcular` | ADMIN | Recalculo heurístico de historial. |
+| `POST` | `/api/v1/contact` | Publico | Formulario Contáctanos (mail al equipo). |
 
-SMTP (Gmail App Password) y variables: ver `backend/.env.example` y
+Correo: **Resend** en prod (`RESEND_API_KEY`) o **SMTP** local (`MAIL_*`).
+Links en mails usan `FRONTEND_BASE_URL`. Variables: `backend/.env.example` y
 [`docs/backend/AUTH_EMAIL_ADMIN.md`](../docs/backend/AUTH_EMAIL_ADMIN.md).
 
 Ejemplo rapido (usuario ya verificado):
@@ -274,6 +290,6 @@ curl http://localhost:8080/api/v1/users/me -H "Authorization: Bearer $TOKEN"
 - DTOs inmutables (`record`) para los contratos de la API.
 - Preparado para **pruebas unitarias** e **integracion continua**.
 
-> Implementados: autenticacion JWT y **Analisis IA** (`/api/analisis` +
-> `prediction` → FastAPI). Recomendaciones, costos y persistencia de consumos
-> siguen pendientes / en esqueleto.
+> Las ramas **`Jorge-martinez`** y **`backend`** están alineadas: auth, Análisis IA
+> (`AnalisisPayload` + `HeuristicPrediction`), recomendaciones, consumos, contacto
+> y admin operativos. Checklist y smoke: [`qa/README.md`](../qa/README.md).
