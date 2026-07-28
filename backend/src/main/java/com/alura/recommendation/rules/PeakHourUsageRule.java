@@ -1,25 +1,20 @@
 package com.alura.recommendation.rules;
 
-import com.alura.common.enums.ConsumptionCategory;
 import com.alura.recommendation.dto.RecommendationRequest;
 import com.alura.recommendation.dto.TipKey;
 import org.springframework.stereotype.Component;
 
-/**
- * Regla de recomendación para perfiles de consumo energético alto.
- *
- * @version 2.0
- */
 @Component
-public class HighConsumptionRule implements RecommendationRule {
+public class PeakHourUsageRule implements RecommendationRule {
 
     @Override
     public boolean applies(RecommendationRequest request) {
-        return request != null && ConsumptionCategory.HIGH.getModelValue().equalsIgnoreCase(request.category());
+        // Utilizamos la variable específica inyectada en el nuevo DTO
+        return Boolean.TRUE.equals(request.usoHorarioPico());
     }
 
     @Override
     public TipKey evaluate(RecommendationRequest request) {
-        return TipKey.AC;
+        return TipKey.PEAK;
     }
 }

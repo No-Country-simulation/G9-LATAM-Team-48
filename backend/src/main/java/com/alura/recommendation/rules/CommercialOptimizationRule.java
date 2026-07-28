@@ -1,25 +1,25 @@
 package com.alura.recommendation.rules;
 
-import com.alura.common.enums.ConsumptionCategory;
+import com.alura.common.constants.PropertyTypeConstants;
 import com.alura.recommendation.dto.RecommendationRequest;
 import com.alura.recommendation.dto.TipKey;
 import org.springframework.stereotype.Component;
 
 /**
- * Regla de recomendación para perfiles de consumo energético alto.
+ * Regla de recomendación específica para locales comerciales.
  *
- * @version 2.0
+ * @version 1.0
  */
 @Component
-public class HighConsumptionRule implements RecommendationRule {
+public class CommercialOptimizationRule implements RecommendationRule {
 
     @Override
     public boolean applies(RecommendationRequest request) {
-        return request != null && ConsumptionCategory.HIGH.getModelValue().equalsIgnoreCase(request.category());
+        return request != null && PropertyTypeConstants.COMMERCIAL.equalsIgnoreCase(request.tipoInmueble());
     }
 
     @Override
     public TipKey evaluate(RecommendationRequest request) {
-        return TipKey.AC;
+        return TipKey.COMMERCIAL;
     }
 }
