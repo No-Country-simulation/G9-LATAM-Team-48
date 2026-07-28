@@ -1,5 +1,7 @@
 # EnergyAI — stack para NAS / Docker
-# Uso: docker compose up -d --build
+# NAS de referencia: http://192.168.0.166 (front :3000, API :8080, ML :8000)
+# Uso en el NAS: copiar .env.example → .env, completar secretos, luego:
+#   docker compose up -d --build
 
 services:
   db:
@@ -57,6 +59,15 @@ services:
       DB_USERNAME: ${MYSQL_USER:-energia_app}
       DB_PASSWORD: ${MYSQL_PASSWORD:-change-me}
       DB_DRIVER: com.mysql.cj.jdbc.Driver
+      FRONTEND_BASE_URL: ${FRONTEND_BASE_URL:-http://192.168.0.166:3000}
+      MAIL_ENABLED: ${MAIL_ENABLED:-false}
+      MAIL_HOST: ${MAIL_HOST:-smtp.gmail.com}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_FROM: ${MAIL_FROM:-}
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
     ports:
       - "${BACKEND_PORT:-8080}:8080"
     depends_on:
@@ -76,10 +87,13 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
+        # Vacío = rutas relativas; nginx proxea /api → backend (ideal en NAS)
         VITE_API_URL: ""
         VITE_USE_MOCK_AUTH: "false"
         VITE_USE_MOCK_API: "false"
         VITE_ML_API_URL: ""
+        # Mismo valor que GOOGLE_CLIENT_ID (definilo en .env; Vite lo bakea al build)
+        VITE_GOOGLE_CLIENT_ID: ${VITE_GOOGLE_CLIENT_ID:-}
     container_name: energyai-frontend
     restart: unless-stopped
     ports:
