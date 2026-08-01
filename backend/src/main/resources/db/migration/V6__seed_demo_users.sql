@@ -1,13 +1,7 @@
--- ============================================================================
 -- V6: Usuarios demo para desarrollo / demo del hackathon (MySQL 8+)
 -- Password en BCrypt. Email ya verificado (pueden loguear sin mail).
 -- Seguro reaplicar: no pisa filas existentes con el mismo email.
--- ============================================================================
--- Credenciales:
---   operador@energyai.com / operador123  (USER)
---   admin@energyai.com    / admin1234    (ADMIN)
---   team48@energyai.com   / team48123    (USER)
--- ============================================================================
+-- Credenciales en texto plano: solo canal del equipo (no en Git).
 
 INSERT IGNORE INTO users (name, email, password_hash, role, email_verified_at)
 VALUES

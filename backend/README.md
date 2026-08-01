@@ -269,10 +269,10 @@ Links en mails usan `FRONTEND_BASE_URL`. Variables: `backend/.env.example` y
 Ejemplo rapido (usuario ya verificado):
 
 ```bash
-# 1. Login y captura del token
+# 1. Login y captura del token (exportá QA_DEMO_ADMIN_EMAIL / QA_DEMO_ADMIN_PASSWORD antes)
 TOKEN=$(curl -s -X POST http://localhost:8080/api/v1/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"admin@energyai.com","password":"admin1234"}' | jq -r .data.accessToken)
+  -d "{\"email\":\"$QA_DEMO_ADMIN_EMAIL\",\"password\":\"$QA_DEMO_ADMIN_PASSWORD\"}" | jq -r .data.accessToken)
 
 # 2. Consumir una ruta protegida
 curl http://localhost:8080/api/v1/users/me -H "Authorization: Bearer $TOKEN"

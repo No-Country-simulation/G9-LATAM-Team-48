@@ -7,6 +7,7 @@ import { useLocale } from '../context/LocaleContext'
 import { useAuth } from '../context/AuthContext'
 import { useAnnounce } from '../components/SrAnnouncer'
 import { translate } from '../i18n'
+import { SESSION_EXPIRED_EVENT } from '../utils/session'
 
 const PAGE_LABEL_KEYS = {
   dashboard: 'menu.dashboard',
@@ -27,6 +28,14 @@ function MainLayout({ children, pagina, setPagina, onAuthSuccess }) {
   const { t, locale } = useLocale()
   const { loginOpen, openLogin, closeLogin } = useAuth()
   const announce = useAnnounce()
+
+  useEffect(() => {
+    function onSessionExpired() {
+      setMenuOpen(false)
+    }
+    window.addEventListener(SESSION_EXPIRED_EVENT, onSessionExpired)
+    return () => window.removeEventListener(SESSION_EXPIRED_EVENT, onSessionExpired)
+  }, [])
 
   useEffect(() => {
     const key = PAGE_LABEL_KEYS[pagina]

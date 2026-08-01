@@ -104,13 +104,13 @@ VITE_GOOGLE_CLIENT_ID=tu-client-id.apps.googleusercontent.com
 ```
 
 En Railway (backend): `GOOGLE_CLIENT_ID` con el **mismo** Client ID. En Google Cloud Console → OAuth Web: origins `https://tu-app.vercel.app` y `http://localhost:5173`.
-Usuarios demo:
+Usuarios demo (emails en Flyway **V6**; contraseñas solo por canal del equipo / variables QA, **no en Git**):
 
-| Email | Contraseña | Rol |
-|-------|------------|-----|
-| `operador@energyai.com` | `operador123` | USER |
-| `admin@energyai.com` | `admin1234` | ADMIN |
-| `team48@energyai.com` | `team48123` | USER |
+| Email | Rol |
+|-------|-----|
+| `operador@energyai.com` | USER |
+| `admin@energyai.com` | ADMIN |
+| `team48@energyai.com` | USER |
 
 > Un push a `Jorge-martinez` redespliega Vercel y Railway si el auto-deploy está activo en esa rama.
 
