@@ -105,6 +105,8 @@ export default {
     switchToRegister: '¿No tenés cuenta? Registrate',
     switchToLogin: '¿Ya tenés cuenta? Iniciá sesión',
     orContinueWithEmail: 'o continuá con email',
+    googleBlockHint:
+      'Si usás bloqueador de anuncios o extensiones de privacidad, Google Sign-In puede no cargar. Desactivá el bloqueador para este sitio o permití accounts.google.com y recargá la página. Podés seguir entrando con email y contraseña.',
     forgotLink: '¿Olvidaste tu contraseña?',
     forgotTitle: 'Recuperar contraseña',
     forgotHint: 'Te enviaremos un enlace para restablecerla.',
@@ -152,7 +154,8 @@ export default {
       loginFailed: 'No se pudo iniciar sesión',
       registerFailed: 'No se pudo registrar',
       googleLoginFailed: 'No se pudo iniciar sesión con Google',
-      googleScriptFailed: 'No se pudo cargar Google Sign-In',
+      googleScriptFailed:
+        'No se pudo cargar Google Sign-In (revisá bloqueadores de anuncios o la consola OAuth)',
       googleNoCredential: 'Google no devolvió credenciales',
       googleNotAvailableInMock: 'Google no está disponible en modo mock',
       network: 'No se pudo conectar con el backend',
