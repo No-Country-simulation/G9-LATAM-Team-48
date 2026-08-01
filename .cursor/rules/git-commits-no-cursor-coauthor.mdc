@@ -1,0 +1,10 @@
+---
+description: Git commits must not credit Cursor as co-author
+alwaysApply: true
+---
+
+# Commits a GitHub (Team 48)
+
+- **Nunca** agregar `Co-authored-by: Cursor <cursoragent@cursor.com>` ni variantes en mensajes de commit.
+- Los commits deben figurar solo con la identidad del desarrollador del equipo (p. ej. sandokan992000-code / Jorge Martinez).
+- Si el entorno intenta inyectar co-autoría automáticamente, reescribir el mensaje antes del push o desactivar esa opción en Cursor (Agent / Git).
