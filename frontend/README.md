@@ -68,10 +68,10 @@ Tras cambiar variables `VITE_*` en Vercel, ejecutá **Redeploy** (Vite embebe en
 |--------|-------------|
 | **Dashboard** | KPIs de consumo y costo, resumen en lenguaje claro, gráfico mensual, comparativas mock (real vs predicción, pico vs valle) y recomendaciones destacadas. |
 | **Consumos** | Totales, historial con indicador normal / sobre promedio y evolución gráfica. |
-| **Historia de consumos** | Análisis guardados del usuario autenticado; reenvío de mail según backend. |
-| **Análisis IA** | Formulario por tipo de inmueble (apartamento, casa, comercio); resultado con nivel, confianza, ahorro y tips i18n. |
+| **Historia de consumos** | Análisis guardados del usuario; gráficos con todo el historial, tabla paginada, detalle con datos ingresados y tabla de sugerencias; reenvío de mail. |
+| **Análisis IA** | Formulario ML de **12 campos** por tipo de inmueble; panel derecho con gráfico consumo vs referencia y tips priorizados tras analizar. |
 | **Recomendaciones** | Catálogo de tips traducidos (hábitos e inmueble). |
-| **Registro / login** | Modal unificado: email + contraseña, recuperación y **Google Sign-In** (GIS) si hay Client ID. |
+| **Registro / login** | Modal unificado: email + contraseña, recuperación, **Google Sign-In** (GIS) y aviso visible si bloqueadores interfieren con Google. |
 | **Verificar email / reset** | Rutas dedicadas activadas solo por link del correo (`verifyToken`, `resetToken`). |
 | **Panel admin** | CRUD de usuarios y vista global de análisis IA (rol `ADMIN`). |
 | **Contáctanos** | Formulario de contacto y equipo en flip cards. |
@@ -154,6 +154,8 @@ Las contraseñas demo **no** van en el repo; ver [`qa/README.md`](../qa/README.m
 | `npm run build` | Build estático en `dist/` |
 | `npm run preview` | Sirve el build localmente |
 | `npm run screenshots` | Genera PNG en `screenshots/` (requiere `npm run dev` y, para Google en capturas, `VITE_GOOGLE_CLIENT_ID`) |
+| `npm run screenshots:auth` | Solo login y registro (recomendado contra Vercel + `APP_URL`) |
+| `npm run screenshots:analisis` | Solo Análisis IA (formulario 12 campos) |
 | `npm run bake:world-map` | Regenera assets del mapa de idiomas |
 
 ---
@@ -170,9 +172,35 @@ Recuperación: **olvidé contraseña** envía link; **reset** solo con `resetTok
 
 ### Google Sign-In
 
-- Botón **Google Identity Services** en login y registro.
+- Botón **Google Identity Services** en login y registro (requiere `VITE_GOOGLE_CLIENT_ID`).
 - El backend valida el ID token en `POST /api/v1/auth/google` y emite JWT (email considerado verificado).
-- **Bloqueadores de anuncios** pueden impedir el script o el popup: la UI muestra aviso **después de un clic fallido** en Google; el login por email sigue disponible.
+
+#### Bloqueadores de anuncios y privacidad
+
+Extensiones (uBlock, Privacy Badger, etc.) pueden **bloquear el script de Google** o **impedir que abra la ventana** al hacer clic en “Continuar con Google”.
+
+En el modal se muestra un **aviso amarillo** (`alert-warning`):
+
+| Momento | Texto (clave i18n) |
+|---------|---------------------|
+| Siempre que hay botón Google | `auth.googleBlockHintShort` — aviso preventivo |
+| Tras clic sin popup / script fallido | `auth.googleBlockHint` — instrucciones completas (permitir `accounts.google.com`, recargar) |
+
+Detección en cliente (`LoginModal.jsx` + `googleSignInSupport.js`):
+
+1. **Clic en Google** → temporizador; si no hay blur de ventana (popup) ni credencial en ~2 s, se asume bloqueo.
+2. **Error `googleScriptFailed`** al cargar GIS → mismo aviso ampliado.
+3. **Login por email y contraseña** sigue disponible siempre.
+
+<div align="center">
+
+<img src="./screenshots/login.png" alt="Login con aviso de bloqueador de anuncios y Google Sign-In" width="520" />
+
+*Iniciar sesión: aviso de bloqueadores, botón Google y formulario email.*
+
+</div>
+
+**Google Cloud Console** (OAuth Web): registrar **Authorized JavaScript origins** para cada URL de prueba (ver [Configuración](#configuración)).
 
 ### Sesión JWT (cliente)
 
@@ -236,7 +264,9 @@ Cliente: `src/services/api.js` (Axios + interceptor 401).
 | `POST` | `/api/v1/contact` | Formulario contacto |
 | `GET` | `/api/consumos` | Series de consumo |
 | `GET` | `/api/recomendaciones` | Recomendaciones |
-| `POST` | `/api/analisis` | Análisis IA (Spring → ML/heurística) |
+| `POST` | `/api/analisis` | Análisis IA (Spring → ML/heurística); persiste consulta |
+| `GET` | `/api/analisis/mis?page&size` | Historial del usuario (paginado) |
+| `GET` | `/api/analisis/mis/chart-points` | Puntos ligeros para gráficos del historial |
 
 Cabecera autenticada: `Authorization: Bearer <accessToken>`.
 
@@ -244,9 +274,49 @@ Cabecera autenticada: `Authorization: Bearer <accessToken>`.
 
 ## Análisis IA (frontend)
 
-- Página `AnalisisIA.jsx`: validación de campos, envío a cadena **ML directo** → **Spring** → **heurística local** (`iaService.js`).
-- Tipos: `APARTAMENTO`, `CASA_UNIFAMILIAR`, `PEQUENO_ESTABLECIMIENTO_COMERCIAL`.
-- Respuesta esperada: `nivelKey`, `ahorro`, `tipKeys`, `benchmark`, `confidence`.
+Página **`AnalisisIA.jsx`**: layout en dos columnas (formulario + resultados), validación por campo, hints accesibles y envío a cadena **ML directo** → **Spring** → **heurística local** (`iaService.js`).
+
+### Tipos de instalación
+
+- `APARTAMENTO`
+- `CASA_UNIFAMILIAR`
+- `PEQUENO_ESTABLECIMIENTO_COMERCIAL`
+
+Cada tipo muestra texto de ayuda contextual bajo el selector.
+
+### Formulario ML (12 campos)
+
+Contrato alineado con backend (`AnalisisPayload`) y `src/utils/analisisMlContract.js`:
+
+| Campo | Uso |
+|--------|-----|
+| Tipo de instalación | Apartamento, casa o comercio |
+| Consumo mensual (kWh) | Obligatorio |
+| Consumo mes anterior (kWh) | Obligatorio |
+| Superficie (m²) | Obligatorio |
+| Cantidad de personas | Obligatorio |
+| Cantidad de equipos | Obligatorio |
+| Horas de uso de AA por día | Obligatorio |
+| Aislamiento térmico | Bueno / Regular / Malo |
+| Iluminación LED (%) | Obligatorio |
+| Antigüedad de la construcción (años) | Obligatorio |
+| Zona | Suburbana, urbana costera, urbana interior |
+| Antigüedad de electrodomésticos (años) | Obligatorio |
+
+**Opcional (legacy, no enviados al modelo actual):** horas de alto consumo por día y toggle de consumo en horario pico.
+
+Si hay sesión, se muestra el aviso de envío del resultado por correo al email del usuario.
+
+### Panel de resultados (columna derecha)
+
+- **Tu consumo vs referencia** — gráfico Recharts al completar consumo y ejecutar análisis.
+- **Sugerencias** — tabla con prioridad, texto i18n (`analysis.tipsList.*`) y enfoque; claves generadas en backend (`AnalisisTipsComposer` + reglas).
+- Tarjetas de **nivel**, **ahorro**, **confianza** y **benchmark** cuando hay respuesta.
+
+### Persistencia y reutilización
+
+- Historial y admin muestran los mismos campos en **`AnalysisRequestFieldsTable`**.
+- **Repetir análisis** desde Historia precarga borrador (`analisisDraft.js`).
 
 Documentación de contrato: [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md), [`ml-service/README.md`](../ml-service/README.md).
 
@@ -275,30 +345,39 @@ Galería en [`screenshots/`](./screenshots/). Índice: [`screenshots/README.md`]
 
 </div>
 
+<div align="center">
+
+### Análisis Inteligente IA (formulario ML)
+
+Formulario de 12 campos por tipo de inmueble, sección opcional legacy y placeholders de gráfico / sugerencias hasta pulsar **Analizar consumo**.
+
+<img src="./screenshots/analisis-ia.png" alt="Análisis IA — formulario casa unifamiliar con 12 campos ML" width="900" />
+
+</div>
+
 <table>
   <tr>
     <td width="50%"><strong>Consumos</strong><br /><img src="./screenshots/consumos.png" alt="Consumos" /></td>
-    <td width="50%"><strong>Análisis IA</strong><br /><img src="./screenshots/analisis-ia.png" alt="Análisis IA" /></td>
-  </tr>
-  <tr>
     <td width="50%"><strong>Historia de consumos</strong><br /><img src="./screenshots/historia-consumos.png" alt="Historia" /></td>
+  </tr>
+  <tr>
     <td width="50%"><strong>Mapa de idiomas</strong><br /><img src="./screenshots/mapa-idiomas.png" alt="Mapa idiomas" /></td>
-  </tr>
-  <tr>
     <td width="50%"><strong>Recomendaciones</strong><br /><img src="./screenshots/recomendaciones.png" alt="Recomendaciones" /></td>
+  </tr>
+  <tr>
     <td width="50%"><strong>Contáctanos</strong><br /><img src="./screenshots/contacto.png" alt="Contacto" /></td>
-  </tr>
-  <tr>
     <td width="50%"><strong>Admin — Usuarios</strong><br /><img src="./screenshots/admin-usuarios.png" alt="Admin usuarios" /></td>
+  </tr>
+  <tr>
     <td width="50%"><strong>Admin — Análisis</strong><br /><img src="./screenshots/admin-analisis.png" alt="Admin análisis" /></td>
+    <td width="50%"><strong>Login</strong> (Google + aviso bloqueadores)<br /><img src="./screenshots/login.png" alt="Login con aviso Google y bloqueadores" /></td>
   </tr>
   <tr>
-    <td width="50%"><strong>Login</strong> (email + Google)<br /><img src="./screenshots/login.png" alt="Login" /></td>
     <td width="50%"><strong>Registro</strong> (email + Google)<br /><img src="./screenshots/registro.png" alt="Registro" /></td>
+    <td width="50%"><strong>Recuperar contraseña</strong><br /><img src="./screenshots/forgot-password.png" alt="Forgot password" /></td>
   </tr>
   <tr>
-    <td width="50%"><strong>Recuperar contraseña</strong><br /><img src="./screenshots/forgot-password.png" alt="Forgot password" /></td>
-    <td width="50%"><strong>Verificar email / Reset</strong> (vía link del mail)<br /><img src="./screenshots/verify-email.png" alt="Verify email" /></td>
+    <td colspan="2"><strong>Verificar email / Reset</strong> (vía link del mail)<br /><img src="./screenshots/verify-email.png" alt="Verify email" width="50%" /></td>
   </tr>
 </table>
 
