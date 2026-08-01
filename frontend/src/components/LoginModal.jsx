@@ -51,8 +51,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
   const [forgotLoading, setForgotLoading] = useState(false)
   const [resendLoading, setResendLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
-  const [googleBlockHint, setGoogleBlockHint] = useState('')
-  const [googleBlockConfirmed, setGoogleBlockConfirmed] = useState(false)
+  const [googleBlockDetected, setGoogleBlockDetected] = useState(false)
   const showGoogle = isGoogleSignInConfigured() && (mode === 'login' || mode === 'register')
 
   const handleGoogleCredential = async (credential) => {
@@ -76,8 +75,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
       setInfoMessage('')
       setVerifyLink('')
       setNeedsVerification(false)
-      setGoogleBlockHint('')
-      setGoogleBlockConfirmed(false)
+      setGoogleBlockDetected(false)
       return
     }
     setFieldErrors({})
@@ -89,21 +87,17 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
 
   useEffect(() => {
     if (!show || !showGoogle) {
-      setGoogleBlockHint('')
-      setGoogleBlockConfirmed(false)
+      setGoogleBlockDetected(false)
       return undefined
     }
     let cancelled = false
     probeGoogleSignInEnvironment().then((blocked) => {
-      if (!cancelled && blocked) {
-        setGoogleBlockHint(t('auth.googleBlockHint'))
-        setGoogleBlockConfirmed(true)
-      }
+      if (!cancelled && blocked) setGoogleBlockDetected(true)
     })
     return () => {
       cancelled = true
     }
-  }, [show, showGoogle, t])
+  }, [show, showGoogle])
 
   const resetForm = () => {
     setName('')
@@ -114,8 +108,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
     setInfoMessage('')
     setVerifyLink('')
     setNeedsVerification(false)
-    setGoogleBlockHint('')
-    setGoogleBlockConfirmed(false)
+    setGoogleBlockDetected(false)
   }
 
   const handleForgot = async (event) => {
@@ -267,24 +260,17 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
 
         {showGoogle && (
           <div className="mb-3">
-            <div className="alert alert-info py-2 small mb-2" role="note">
-              {t('auth.googleBlockHintShort')}
-            </div>
-            {googleBlockConfirmed && googleBlockHint && (
+            {googleBlockDetected && (
               <div className="alert alert-warning py-2 small mb-2" role="status">
-                {googleBlockHint}
+                {t('auth.googleBlockHint')}
               </div>
             )}
             <GoogleSignInButton
               onCredential={handleGoogleCredential}
-              onBlocked={() => {
-                setGoogleBlockHint(t('auth.googleBlockHint'))
-                setGoogleBlockConfirmed(true)
-              }}
+              onBlocked={() => setGoogleBlockDetected(true)}
               onError={(code) => {
                 if (code === 'googleScriptFailed') {
-                  setGoogleBlockHint(t('auth.googleBlockHint'))
-                  setGoogleBlockConfirmed(true)
+                  setGoogleBlockDetected(true)
                   setFormError('')
                   return
                 }

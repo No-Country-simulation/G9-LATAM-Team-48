@@ -42,7 +42,23 @@ export function probeGoogleIdentityScriptBlocked() {
   if (window.google?.accounts?.id) return Promise.resolve(false)
 
   const existing = document.querySelector(`script[src^="${GIS_SCRIPT_SRC}"]`)
-  if (existing && window.google?.accounts?.id) return Promise.resolve(false)
+  if (existing) {
+    if (window.google?.accounts?.id) return Promise.resolve(false)
+    return new Promise((resolve) => {
+      let settled = false
+      const done = (blocked) => {
+        if (settled) return
+        settled = true
+        window.clearTimeout(timer)
+        resolve(blocked)
+      }
+      existing.addEventListener('load', () => done(!window.google?.accounts?.id), {
+        once: true,
+      })
+      existing.addEventListener('error', () => done(true), { once: true })
+      const timer = window.setTimeout(() => done(false), 2500)
+    })
+  }
 
   return new Promise((resolve) => {
     let settled = false
@@ -60,17 +76,14 @@ export function probeGoogleIdentityScriptBlocked() {
     probe.onload = () => finish(!window.google?.accounts?.id)
     probe.onerror = () => finish(true)
 
-    const timer = window.setTimeout(() => finish(true), 3500)
+    const timer = window.setTimeout(() => finish(false), 2500)
     document.head.appendChild(probe)
   })
 }
 
 export async function probeGoogleSignInEnvironment() {
-  const [adBlock, scriptBlocked] = await Promise.all([
-    probeLikelyAdBlock(),
-    probeGoogleIdentityScriptBlocked(),
-  ])
-  return adBlock || scriptBlocked
+  if (await probeLikelyAdBlock()) return true
+  return probeGoogleIdentityScriptBlocked()
 }
 
 export function loadGoogleIdentityScript() {
