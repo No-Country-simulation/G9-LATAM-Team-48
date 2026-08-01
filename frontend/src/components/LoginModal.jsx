@@ -377,11 +377,11 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
               }
             }}
           >
-            <div className="alert alert-warning py-2 small mb-2" role="note">
-              {googleBlockDetected
-                ? t('auth.googleBlockHint')
-                : t('auth.googleBlockHintShort')}
-            </div>
+            {googleBlockDetected && (
+              <div className="alert alert-warning py-2 small mb-2" role="status">
+                {t('auth.googleBlockHintShort')}
+              </div>
+            )}
             <GoogleSignInButton
               onCredential={handleGoogleCredential}
               onBlocked={showGoogleBlockAfterClick}
