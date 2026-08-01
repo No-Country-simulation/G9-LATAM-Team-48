@@ -1,16 +1,24 @@
 import { useEffect, useRef } from 'react'
-import { loadGoogleIdentityScript } from '../utils/googleSignInSupport'
+import { loadGoogleIdentityScript, isGoogleSignInHostVisible } from '../utils/googleSignInSupport'
 
 const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || ''
-const RENDER_WATCH_MS = 2500
+const RENDER_CHECK_MS = [600, 1400, 2800]
 
-function hostHasGoogleButton(host) {
-  if (!host) return false
-  return Boolean(
-    host.querySelector('iframe') ||
-      host.querySelector('[role="button"]') ||
-      host.querySelector('div[tabindex]'),
+function notifyGoogleBlocked(onBlockedRef, onErrorRef) {
+  onBlockedRef.current?.('render')
+  onErrorRef.current?.('googleScriptFailed')
+}
+
+function scheduleRenderChecks(host, cancelledRef, onBlockedRef, onErrorRef) {
+  const timers = RENDER_CHECK_MS.map((delay) =>
+    window.setTimeout(() => {
+      if (cancelledRef.current || !host) return
+      if (!isGoogleSignInHostVisible(host)) {
+        notifyGoogleBlocked(onBlockedRef, onErrorRef)
+      }
+    }, delay),
   )
+  return () => timers.forEach((id) => window.clearTimeout(id))
 }
 
 /**
@@ -38,19 +46,18 @@ export default function GoogleSignInButton({
   useEffect(() => {
     if (!enabled || !hostRef.current || disabled) return undefined
     let cancelled = false
+    const cancelledRef = { current: false }
 
-    let renderTimer
+    let clearRenderChecks = () => {}
 
     loadGoogleIdentityScript()
       .then(() => {
         if (cancelled || !hostRef.current || !window.google?.accounts?.id) {
-          if (!cancelled) {
-            onBlockedRef.current?.('script')
-            onErrorRef.current?.('googleScriptFailed')
-          }
+          if (!cancelled) notifyGoogleBlocked(onBlockedRef, onErrorRef)
           return
         }
-        hostRef.current.innerHTML = ''
+        const host = hostRef.current
+        host.innerHTML = ''
         window.google.accounts.id.initialize({
           client_id: CLIENT_ID.trim(),
           callback: (response) => {
@@ -63,7 +70,7 @@ export default function GoogleSignInButton({
           auto_select: false,
           cancel_on_tap_outside: true,
         })
-        window.google.accounts.id.renderButton(hostRef.current, {
+        window.google.accounts.id.renderButton(host, {
           type: 'standard',
           theme: 'outline',
           size: 'large',
@@ -72,24 +79,21 @@ export default function GoogleSignInButton({
           logo_alignment: 'left',
           width: 320,
         })
-        renderTimer = window.setTimeout(() => {
-          if (cancelled || !hostRef.current) return
-          if (!hostHasGoogleButton(hostRef.current)) {
-            onBlockedRef.current?.('script')
-            onErrorRef.current?.('googleScriptFailed')
-          }
-        }, RENDER_WATCH_MS)
+        clearRenderChecks = scheduleRenderChecks(
+          host,
+          cancelledRef,
+          onBlockedRef,
+          onErrorRef,
+        )
       })
       .catch(() => {
-        if (!cancelled) {
-          onBlockedRef.current?.('script')
-          onErrorRef.current?.('googleScriptFailed')
-        }
+        if (!cancelled) notifyGoogleBlocked(onBlockedRef, onErrorRef)
       })
 
     return () => {
       cancelled = true
-      if (renderTimer) window.clearTimeout(renderTimer)
+      cancelledRef.current = true
+      clearRenderChecks()
     }
   }, [enabled, disabled])
 

@@ -1,11 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
 import GoogleSignInButton, {
   isGoogleSignInConfigured,
 } from './GoogleSignInButton'
-import { probeGoogleSignInEnvironment } from '../utils/googleSignInSupport'
+import {
+  GOOGLE_CLICK_WATCH_MS,
+  isGoogleSignInHostVisible,
+  isLikelyGoogleAuthPopupUrl,
+  probeGoogleSignInEnvironment,
+} from '../utils/googleSignInSupport'
 import {
   forgotPassword,
   resendVerification,
@@ -52,9 +57,51 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
   const [resendLoading, setResendLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
   const [googleBlockDetected, setGoogleBlockDetected] = useState(false)
+  const googleClickWatchRef = useRef(null)
+  const googleAuthStartedRef = useRef(false)
+  const googleBlurListenerRef = useRef(null)
   const showGoogle = isGoogleSignInConfigured() && (mode === 'login' || mode === 'register')
 
+  const clearGoogleClickWatch = useCallback(() => {
+    if (googleClickWatchRef.current) {
+      window.clearTimeout(googleClickWatchRef.current)
+      googleClickWatchRef.current = null
+    }
+    if (googleBlurListenerRef.current) {
+      window.removeEventListener('blur', googleBlurListenerRef.current)
+      googleBlurListenerRef.current = null
+    }
+  }, [])
+
+  const markGoogleAuthStarted = useCallback(() => {
+    googleAuthStartedRef.current = true
+    clearGoogleClickWatch()
+  }, [clearGoogleClickWatch])
+
+  const scheduleGoogleClickWatch = useCallback(() => {
+    clearGoogleClickWatch()
+    googleAuthStartedRef.current = false
+
+    const onBlur = () => {
+      markGoogleAuthStarted()
+    }
+    googleBlurListenerRef.current = onBlur
+    window.addEventListener('blur', onBlur)
+
+    googleClickWatchRef.current = window.setTimeout(() => {
+      googleClickWatchRef.current = null
+      if (googleBlurListenerRef.current) {
+        window.removeEventListener('blur', googleBlurListenerRef.current)
+        googleBlurListenerRef.current = null
+      }
+      if (!googleAuthStartedRef.current) {
+        setGoogleBlockDetected(true)
+      }
+    }, GOOGLE_CLICK_WATCH_MS)
+  }, [clearGoogleClickWatch, markGoogleAuthStarted])
+
   const handleGoogleCredential = async (credential) => {
+    markGoogleAuthStarted()
     setFormError('')
     setInfoMessage('')
     setGoogleLoading(true)
@@ -94,10 +141,50 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
     probeGoogleSignInEnvironment().then((blocked) => {
       if (!cancelled && blocked) setGoogleBlockDetected(true)
     })
+    const hostTimer = window.setTimeout(() => {
+      if (cancelled) return
+      const host = document.querySelector('.google-signin-host')
+      if (host && !isGoogleSignInHostVisible(host)) {
+        setGoogleBlockDetected(true)
+      }
+    }, 2200)
     return () => {
       cancelled = true
+      window.clearTimeout(hostTimer)
     }
   }, [show, showGoogle])
+
+  useEffect(() => {
+    if (!show || !showGoogle) {
+      clearGoogleClickWatch()
+      return undefined
+    }
+
+    const nativeOpen = window.open.bind(window)
+    window.open = (url, target, features) => {
+      const popup = nativeOpen(url, target, features)
+      if (isLikelyGoogleAuthPopupUrl(url)) {
+        if (!popup) {
+          setGoogleBlockDetected(true)
+        } else {
+          markGoogleAuthStarted()
+          window.setTimeout(() => {
+            try {
+              if (popup.closed) setGoogleBlockDetected(true)
+            } catch {
+              // cross-origin: popup abierto cuenta como progreso
+            }
+          }, 600)
+        }
+      }
+      return popup
+    }
+
+    return () => {
+      window.open = nativeOpen
+      clearGoogleClickWatch()
+    }
+  }, [show, showGoogle, clearGoogleClickWatch, markGoogleAuthStarted])
 
   const resetForm = () => {
     setName('')
@@ -259,7 +346,16 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
         </p>
 
         {showGoogle && (
-          <div className="mb-3">
+          <div
+            className="mb-3"
+            onPointerDownCapture={(event) => {
+              const host = event.currentTarget.querySelector('.google-signin-host')
+              if (!host) return
+              if (event.target === host || host.contains(event.target)) {
+                scheduleGoogleClickWatch()
+              }
+            }}
+          >
             {googleBlockDetected && (
               <div className="alert alert-warning py-2 small mb-2" role="status">
                 {t('auth.googleBlockHint')}

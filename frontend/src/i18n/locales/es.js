@@ -106,7 +106,7 @@ export default {
     switchToLogin: '¿Ya tenés cuenta? Iniciá sesión',
     orContinueWithEmail: 'o continuá con email',
     googleBlockHint:
-      'Si usás bloqueador de anuncios o extensiones de privacidad, Google Sign-In puede no cargar. Desactivá el bloqueador para este sitio o permití accounts.google.com y recargá la página. Podés seguir entrando con email y contraseña.',
+      'Si usás bloqueador de anuncios o extensiones de privacidad, Google Sign-In puede no cargar o no abrir la ventana al hacer clic. Desactivá el bloqueador para este sitio o permití accounts.google.com y recargá. Podés entrar con email y contraseña.',
     googleBlockHintShort:
       '¿Bloqueador de anuncios? Google Sign-In suele fallar: desactivá la extensión para este sitio o permití accounts.google.com. También podés entrar con email.',
     forgotLink: '¿Olvidaste tu contraseña?',
