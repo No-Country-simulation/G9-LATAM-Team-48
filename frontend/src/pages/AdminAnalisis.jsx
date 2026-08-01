@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import { LuEye } from 'react-icons/lu'
 import { listAnalisis, recalcularAnalisis } from '../services/adminAnalisisService'
 import AnalysisRequestFieldsTable from '../components/AnalysisRequestFieldsTable'
+import AnalysisResponsePanel from '../components/AnalysisResponsePanel'
 import {
   formatKwh,
   formatM2,
@@ -365,10 +366,12 @@ function AdminAnalisis() {
                 />
               </div>
               <div>
-                <div className="fw-semibold mb-1">{t('adminAnalisis.response')}</div>
-                <pre className="bg-body-tertiary p-2 rounded small mb-0 overflow-auto" style={{ maxHeight: 220 }}>
-                  {JSON.stringify(detail.responseJson ?? {}, null, 2)}
-                </pre>
+                <div className="fw-semibold mb-2">{t('adminAnalisis.response')}</div>
+                <AnalysisResponsePanel
+                  response={detail.responseJson ?? {}}
+                  row={detail}
+                  t={t}
+                />
               </div>
             </div>
           )}

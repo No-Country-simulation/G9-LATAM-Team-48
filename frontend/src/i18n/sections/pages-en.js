@@ -410,6 +410,8 @@ export const pagesEn = {
     detailTitle: 'Query',
     request: 'Request',
     response: 'Response',
+    responseBenchmark: 'Reference usage',
+    responseUserId: 'ML user ID',
     loginRequired: 'Sign in as an administrator to view analyses.',
     forbidden: 'Only administrators can access this section.',
     sessionInvalid:

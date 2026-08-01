@@ -413,6 +413,8 @@ export const pagesEs = {
     detailTitle: 'Consulta',
     request: 'Solicitud',
     response: 'Respuesta',
+    responseBenchmark: 'Consumo de referencia',
+    responseUserId: 'ID usuario ML',
     loginRequired: 'Iniciá sesión como administrador para ver los análisis.',
     forbidden: 'Solo los administradores pueden acceder a esta sección.',
     sessionInvalid:
