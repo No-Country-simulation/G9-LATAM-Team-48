@@ -13,6 +13,8 @@ import { isAdmin } from '../utils/roles'
 import Loader from '../components/Loader'
 import ErrorState from '../components/ErrorState'
 import EmptyState from '../components/EmptyState'
+import TablePagination from '../components/TablePagination'
+import { DEFAULT_PAGE_SIZE } from '../utils/pageResponse'
 
 const emptyForm = {
   name: '',
@@ -26,6 +28,10 @@ function AdminUsuarios() {
   const { t } = useLocale()
   const { user, token, openLogin, refreshUser, logout, hydrating } = useAuth()
   const [users, setUsers] = useState([])
+  const [page, setPage] = useState(0)
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE)
+  const [totalPages, setTotalPages] = useState(0)
+  const [totalElements, setTotalElements] = useState(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [formOpen, setFormOpen] = useState(false)
@@ -37,13 +43,15 @@ function AdminUsuarios() {
 
   const allowed = isAdmin(user)
 
-  async function load() {
+  async function load(pageIndex = page, size = pageSize) {
     setLoading(true)
     setError(null)
     try {
       if (!token || String(token).startsWith('mock-token')) {
         setError(t('adminUsers.sessionInvalid'))
         setUsers([])
+        setTotalElements(0)
+        setTotalPages(0)
         return
       }
 
@@ -51,11 +59,24 @@ function AdminUsuarios() {
       if (!isAdmin(current)) {
         setError(t('adminUsers.forbidden'))
         setUsers([])
+        setTotalElements(0)
+        setTotalPages(0)
         return
       }
 
-      const list = await listUsers()
-      setUsers(Array.isArray(list) ? list : [])
+      const result = await listUsers({ page: pageIndex, size })
+      if (
+        (!result.content || result.content.length === 0) &&
+        pageIndex > 0 &&
+        (result.totalElements ?? 0) > 0
+      ) {
+        await load(pageIndex - 1, size)
+        return
+      }
+      setUsers(Array.isArray(result.content) ? result.content : [])
+      setPage(result.page ?? pageIndex)
+      setTotalPages(result.totalPages ?? 0)
+      setTotalElements(result.totalElements ?? 0)
     } catch (err) {
       const status = err?.response?.status
       if (status === 401 || status === 403) {
@@ -72,6 +93,15 @@ function AdminUsuarios() {
     }
   }
 
+  function handlePageChange(nextPage) {
+    load(nextPage, pageSize)
+  }
+
+  function handlePageSizeChange(nextSize) {
+    setPageSize(nextSize)
+    load(0, nextSize)
+  }
+
   useEffect(() => {
     if (hydrating) return
     if (!token) {
@@ -79,7 +109,7 @@ function AdminUsuarios() {
       setUsers([])
       return
     }
-    load()
+    load(0, pageSize)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, hydrating])
 
@@ -177,7 +207,7 @@ function AdminUsuarios() {
           <button
             type="button"
             className="btn btn-outline-primary btn-sm"
-            onClick={load}
+            onClick={() => load(page, pageSize)}
             disabled={!allowed || loading || hydrating}
           >
             {t('adminUsers.refresh')}
@@ -237,9 +267,9 @@ function AdminUsuarios() {
         </div>
       )}
 
-      {!loading && !hydrating && !error && users.length === 0 && <EmptyState />}
+      {!loading && !hydrating && !error && totalElements === 0 && <EmptyState />}
 
-      {!loading && !hydrating && !error && users.length > 0 && (
+      {!loading && !hydrating && !error && totalElements > 0 && (
         <div className="card shadow-sm">
           <div className="card-body p-0">
             <div className="table-responsive">
@@ -319,6 +349,16 @@ function AdminUsuarios() {
                 </tbody>
               </table>
             </div>
+            <TablePagination
+              page={page}
+              totalPages={totalPages}
+              totalElements={totalElements}
+              pageSize={pageSize}
+              onPageChange={handlePageChange}
+              onPageSizeChange={handlePageSizeChange}
+              t={t}
+              idPrefix="admin-users"
+            />
           </div>
         </div>
       )}

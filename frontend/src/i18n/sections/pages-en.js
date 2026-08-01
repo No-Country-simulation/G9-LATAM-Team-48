@@ -9,6 +9,13 @@ export const pagesEn = {
     error: 'Could not load the data.',
     retry: 'Retry',
   },
+  pagination: {
+    summary: 'Page {current} of {totalPages} ({total} records)',
+    pageSize: 'Per page',
+    prev: 'Previous',
+    next: 'Next',
+    nav: 'Pagination',
+  },
   dashboard: {
     title: 'Dashboard',
     subtitle: 'Hackathon ONE G9 - TEAM 48',

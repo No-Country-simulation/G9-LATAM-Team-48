@@ -2,6 +2,8 @@ package com.alura.analisis.service;
 
 import com.alura.analisis.dto.AdminAnalisisItem;
 import com.alura.analisis.dto.AdminRecalculoResult;
+import com.alura.common.dto.PageResponse;
+import com.alura.common.util.PageRequests;
 import com.alura.analisis.persistence.AnalisisConsultaEntity;
 import com.alura.analisis.persistence.AnalisisConsultaRepository;
 import com.alura.prediction.dto.PredictionResponse;
@@ -9,6 +11,7 @@ import com.alura.prediction.service.PredictionService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,6 +44,13 @@ public class AdminAnalisisService {
         return repository.findAllByOrderByCreatedAtDesc().stream()
                 .map(this::toItem)
                 .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public PageResponse<AdminAnalisisItem> listPage(int page, int size) {
+        var springPage = repository.findAllByOrderByCreatedAtDesc(
+                PageRequests.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt")));
+        return PageResponse.from(springPage.map(this::toItem));
     }
 
     /**

@@ -9,6 +9,13 @@ export const pagesEs = {
     error: 'No se pudieron cargar los datos.',
     retry: 'Reintentar',
   },
+  pagination: {
+    summary: 'Página {current} de {totalPages} ({total} registros)',
+    pageSize: 'Por página',
+    prev: 'Anterior',
+    next: 'Siguiente',
+    nav: 'Paginación',
+  },
   dashboard: {
     title: 'Dashboard',
     subtitle: 'Hackathon ONE G9 - TEAM 48',

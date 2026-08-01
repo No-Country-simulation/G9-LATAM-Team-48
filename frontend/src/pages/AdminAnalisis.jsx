@@ -15,6 +15,8 @@ import { useNavigation } from '../context/NavigationContext'
 import { isAdmin } from '../utils/roles'
 import Loader from '../components/Loader'
 import EmptyState from '../components/EmptyState'
+import TablePagination from '../components/TablePagination'
+import { DEFAULT_PAGE_SIZE } from '../utils/pageResponse'
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -58,6 +60,10 @@ function AdminAnalisis() {
   const { user, token, openLogin, refreshUser, logout, hydrating } = useAuth()
   const { setPagina } = useNavigation()
   const [rows, setRows] = useState([])
+  const [page, setPage] = useState(0)
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE)
+  const [totalPages, setTotalPages] = useState(0)
+  const [totalElements, setTotalElements] = useState(0)
   const [loading, setLoading] = useState(true)
   const [recalculating, setRecalculating] = useState(false)
   const [error, setError] = useState(null)
@@ -66,13 +72,15 @@ function AdminAnalisis() {
 
   const allowed = isAdmin(user)
 
-  async function load() {
+  async function load(pageIndex = page, size = pageSize) {
     setLoading(true)
     setError(null)
     try {
       if (!token || String(token).startsWith('mock-token')) {
         setError(t('adminAnalisis.sessionInvalid'))
         setRows([])
+        setTotalElements(0)
+        setTotalPages(0)
         return
       }
 
@@ -80,11 +88,24 @@ function AdminAnalisis() {
       if (!isAdmin(current)) {
         setError(t('adminAnalisis.forbidden'))
         setRows([])
+        setTotalElements(0)
+        setTotalPages(0)
         return
       }
 
-      const list = await listAnalisis()
-      setRows(Array.isArray(list) ? list : [])
+      const result = await listAnalisis({ page: pageIndex, size })
+      if (
+        (!result.content || result.content.length === 0) &&
+        pageIndex > 0 &&
+        (result.totalElements ?? 0) > 0
+      ) {
+        await load(pageIndex - 1, size)
+        return
+      }
+      setRows(Array.isArray(result.content) ? result.content : [])
+      setPage(result.page ?? pageIndex)
+      setTotalPages(result.totalPages ?? 0)
+      setTotalElements(result.totalElements ?? 0)
     } catch (err) {
       const status = err?.response?.status
       if (status === 401 || status === 403) {
@@ -103,6 +124,15 @@ function AdminAnalisis() {
     }
   }
 
+  function handlePageChange(nextPage) {
+    load(nextPage, pageSize)
+  }
+
+  function handlePageSizeChange(nextSize) {
+    setPageSize(nextSize)
+    load(0, nextSize)
+  }
+
   useEffect(() => {
     if (hydrating) return
     if (!token) {
@@ -110,7 +140,7 @@ function AdminAnalisis() {
       setRows([])
       return
     }
-    load()
+    load(0, pageSize)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, hydrating])
 
@@ -176,7 +206,7 @@ function AdminAnalisis() {
           <button
             type="button"
             className="btn btn-outline-primary btn-sm"
-            onClick={load}
+            onClick={() => load(page, pageSize)}
             disabled={!allowed || loading || hydrating || recalculating}
           >
             {t('adminAnalisis.refresh')}
@@ -204,7 +234,7 @@ function AdminAnalisis() {
         <div className="alert alert-danger">
           <div className="mb-2">{error}</div>
           <div className="d-flex gap-2">
-            <button type="button" className="btn btn-sm btn-outline-danger" onClick={load}>
+            <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => load(page, pageSize)}>
               {t('states.retry')}
             </button>
             <button type="button" className="btn btn-sm btn-primary" onClick={handleRelogin}>
@@ -214,7 +244,7 @@ function AdminAnalisis() {
         </div>
       )}
 
-      {!loading && !hydrating && !error && rows.length === 0 && (
+      {!loading && !hydrating && !error && totalElements === 0 && (
         <EmptyState
           mensaje={t('adminAnalisis.empty', 'Todavía no hay análisis guardados.')}
           actionLabel={t('adminAnalisis.goToAnalysis', 'Ir a Análisis IA')}
@@ -222,7 +252,7 @@ function AdminAnalisis() {
         />
       )}
 
-      {!loading && !hydrating && !error && rows.length > 0 && (
+      {!loading && !hydrating && !error && totalElements > 0 && (
         <div className="card shadow-sm">
           <div className="card-body p-0">
             <div className="table-responsive">
@@ -285,6 +315,16 @@ function AdminAnalisis() {
                 </tbody>
               </table>
             </div>
+            <TablePagination
+              page={page}
+              totalPages={totalPages}
+              totalElements={totalElements}
+              pageSize={pageSize}
+              onPageChange={handlePageChange}
+              onPageSizeChange={handlePageSizeChange}
+              t={t}
+              idPrefix="admin-analisis"
+            />
           </div>
         </div>
       )}
