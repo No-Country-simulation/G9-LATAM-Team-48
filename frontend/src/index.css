@@ -501,7 +501,7 @@ body,
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-family: 'Nunito', 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-weight: 800;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
@@ -674,7 +674,7 @@ button:focus-visible .header-theme-icon--moon {
 }
 
 .language-confirm-code {
-  font-family: 'Nunito', 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-weight: 800;
   font-size: 2rem;
   line-height: 1.1;
@@ -784,7 +784,7 @@ button:focus-visible .header-theme-icon--moon {
 }
 
 .language-map-side-code {
-  font-family: 'Nunito', 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-weight: 800;
   font-size: 1.65rem;
   line-height: 1.1;

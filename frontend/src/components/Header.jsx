@@ -74,18 +74,29 @@ function Header({ onMenuOpen, onLoginClick }) {
             </button>
 
             <span className="navbar-brand brand-mark mb-0 py-0">
-              <img
-                src={
-                  theme === 'dark'
-                    ? '/logo-energia-dark.png'
-                    : '/logo-energia.png'
-                }
-                alt={t('a11y.logoAlt', 'EnergIA, inicio')}
-                className="brand-logo"
-                width="160"
-                height="110"
-                decoding="async"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet={
+                    theme === 'dark'
+                      ? '/logo-energia-dark.webp'
+                      : '/logo-energia.webp'
+                  }
+                />
+                <img
+                  src={
+                    theme === 'dark'
+                      ? '/logo-energia-dark.png'
+                      : '/logo-energia.png'
+                  }
+                  alt={t('a11y.logoAlt', 'EnergIA, inicio')}
+                  className="brand-logo"
+                  width="160"
+                  height="110"
+                  decoding="async"
+                  fetchPriority="high"
+                />
+              </picture>
             </span>
           </div>
 

@@ -1,13 +1,24 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { detectLocale, LOCALES, translate } from '../i18n'
+import { detectLocale, ensureLocale, LOCALES, translate } from '../i18n'
 
 const LocaleContext = createContext()
 
 export function LocaleProvider({ children }) {
   const [locale, setLocaleState] = useState(detectLocale)
+  const [, setDictTick] = useState(0)
 
   useEffect(() => {
     document.documentElement.lang = locale
+  }, [locale])
+
+  useEffect(() => {
+    let cancelled = false
+    ensureLocale(locale).then(() => {
+      if (!cancelled) setDictTick((n) => n + 1)
+    })
+    return () => {
+      cancelled = true
+    }
   }, [locale])
 
   const setLocale = (code) => {
