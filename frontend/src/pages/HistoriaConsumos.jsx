@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import { LuEye, LuMail, LuRotateCcw } from 'react-icons/lu'
 import {
   listMisAnalisis,
+  listMisAnalisisChartPoints,
   reenviarEmailAnalisis,
 } from '../services/historiaConsumosService'
 import { useAuth } from '../context/AuthContext'
@@ -14,6 +15,8 @@ import GraficoHistoriaConsumo from '../components/GraficoHistoriaConsumo'
 import GraficosHistoriaExtra from '../components/GraficosHistoriaExtra'
 import AnalysisRequestFieldsTable from '../components/AnalysisRequestFieldsTable'
 import AnalysisTipsTable from '../components/AnalysisTipsTable'
+import TablePagination from '../components/TablePagination'
+import { DEFAULT_PAGE_SIZE } from '../utils/pageResponse'
 import { draftFromRequest, saveAnalisisDraft } from '../utils/analisisDraft'
 import {
   ML_REQUEST_FIELD_DEFS,
@@ -102,6 +105,11 @@ function HistoriaConsumos() {
   const { token, isAuthenticated, openLogin, hydrating } = useAuth()
   const { setPagina } = useNavigation()
   const [rows, setRows] = useState([])
+  const [chartPoints, setChartPoints] = useState([])
+  const [page, setPage] = useState(0)
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE)
+  const [totalPages, setTotalPages] = useState(0)
+  const [totalElements, setTotalElements] = useState(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [detail, setDetail] = useState(null)
@@ -119,17 +127,39 @@ function HistoriaConsumos() {
     setPagina('ia')
   }
 
-  async function load() {
+  async function loadChartPoints() {
+    try {
+      const points = await listMisAnalisisChartPoints()
+      setChartPoints(Array.isArray(points) ? points : [])
+    } catch {
+      setChartPoints([])
+    }
+  }
+
+  async function loadTable(pageIndex = page, size = pageSize) {
     setLoading(true)
     setError(null)
     try {
       if (!token || String(token).startsWith('mock-token')) {
         setError(t('historiaConsumos.sessionInvalid'))
         setRows([])
+        setTotalElements(0)
+        setTotalPages(0)
         return
       }
-      const list = await listMisAnalisis()
-      setRows(Array.isArray(list) ? list : [])
+      const result = await listMisAnalisis({ page: pageIndex, size })
+      if (
+        (!result.content || result.content.length === 0) &&
+        pageIndex > 0 &&
+        (result.totalElements ?? 0) > 0
+      ) {
+        await loadTable(pageIndex - 1, size)
+        return
+      }
+      setRows(Array.isArray(result.content) ? result.content : [])
+      setPage(result.page ?? pageIndex)
+      setTotalPages(result.totalPages ?? 0)
+      setTotalElements(result.totalElements ?? 0)
     } catch (err) {
       const status = err?.response?.status
       if (status === 401 || status === 403) {
@@ -148,15 +178,30 @@ function HistoriaConsumos() {
     }
   }
 
+  async function loadAll() {
+    void loadChartPoints()
+    await loadTable(0, pageSize)
+  }
+
+  function handlePageChange(nextPage) {
+    loadTable(nextPage, pageSize)
+  }
+
+  function handlePageSizeChange(nextSize) {
+    setPageSize(nextSize)
+    loadTable(0, nextSize)
+  }
+
   useEffect(() => {
     if (hydrating) return
     if (!isAuthenticated || !token) {
       setLoading(false)
       setRows([])
+      setChartPoints([])
       setPagina('dashboard')
       return
     }
-    load()
+    loadAll()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, hydrating, isAuthenticated])
 
@@ -214,7 +259,10 @@ function HistoriaConsumos() {
         <button
           type="button"
           className="btn btn-outline-primary btn-sm"
-          onClick={load}
+          onClick={() => {
+            loadChartPoints()
+            loadTable(page, pageSize)
+          }}
           disabled={loading}
         >
           {t('historiaConsumos.refresh')}
@@ -235,7 +283,7 @@ function HistoriaConsumos() {
         </div>
       )}
 
-      {!loading && !error && rows.length === 0 && (
+      {!loading && !error && totalElements === 0 && (
         <EmptyState
           mensaje={t('historiaConsumos.empty')}
           actionLabel={t('historiaConsumos.goToAnalysis', 'Ir a Análisis IA')}
@@ -243,23 +291,17 @@ function HistoriaConsumos() {
         />
       )}
 
-      {!loading && !error && rows.length > 0 && (
+      {!loading && !error && totalElements > 0 && (
         <>
           <GraficoHistoriaConsumo
-            points={rows
-              .map((row) => {
-                const consumo = consumoFromRow(row)
-                if (consumo == null) return null
-                return {
-                  id: row.id,
-                  createdAt: row.createdAt,
-                  consumo,
-                }
-              })
-              .filter(Boolean)}
+            points={chartPoints.map((row) => ({
+              id: row.id,
+              createdAt: row.createdAt,
+              consumo: row.consumoKwh ?? row.consumo,
+            }))}
           />
           <GraficosHistoriaExtra
-            points={rows.map((row) => ({
+            points={chartPoints.map((row) => ({
               id: row.id,
               createdAt: row.createdAt,
               ahorro: row.ahorro,
@@ -339,6 +381,16 @@ function HistoriaConsumos() {
                   </tbody>
                 </table>
               </div>
+              <TablePagination
+                page={page}
+                totalPages={totalPages}
+                totalElements={totalElements}
+                pageSize={pageSize}
+                onPageChange={handlePageChange}
+                onPageSizeChange={handlePageSizeChange}
+                t={t}
+                idPrefix="historia-consumos"
+              />
             </div>
           </div>
         </>
