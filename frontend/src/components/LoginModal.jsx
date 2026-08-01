@@ -18,6 +18,7 @@ import {
   validateLogin,
   validateRegister,
 } from '../utils/authValidation'
+import { useAnnounce } from './SrAnnouncer'
 
 function fieldErrorMessage(t, code) {
   if (!code) return ''
@@ -43,6 +44,7 @@ function isEmailNotVerifiedError(message) {
 function LoginModal({ show, onHide, onAuthSuccess }) {
   const { login, register, loginWithGoogle, loading, error } = useAuth()
   const { t } = useLocale()
+  const announce = useAnnounce()
   const [mode, setMode] = useState('login')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -138,6 +140,22 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
       setNeedsVerification(false)
     }
   }, [show, mode])
+
+  const modalTitle =
+    mode === 'forgot'
+      ? t('auth.forgotTitle')
+      : mode === 'resend'
+        ? t('auth.resendTitle')
+        : mode === 'register'
+          ? t('auth.registerTitle')
+          : t('auth.loginTitle')
+
+  useEffect(() => {
+    if (!show) return
+    announce(
+      `${t('a11y.loginDialogOpened', 'Ventana de inicio de sesión abierta')}. ${modalTitle}`,
+    )
+  }, [show, modalTitle, announce, t])
 
   useEffect(() => {
     if (!show || !showGoogle) {
@@ -315,9 +333,16 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
   const isEmailOnly = isForgot || isResend
 
   return (
-    <Modal show={show} onHide={onHide} centered dialogClassName="login-modal-dialog" contentClassName="login-modal">
+    <Modal
+      show={show}
+      onHide={onHide}
+      centered
+      dialogClassName="login-modal-dialog"
+      contentClassName="login-modal"
+      aria-labelledby="login-modal-title"
+    >
       <Modal.Header closeButton>
-        <Modal.Title className="h5 mb-0">
+        <Modal.Title id="login-modal-title" className="h5 mb-0">
           {isForgot
             ? t('auth.forgotTitle')
             : isResend
@@ -329,7 +354,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
       </Modal.Header>
 
       <Modal.Body>
-        <p className="text-muted small mb-3">
+        <p className="text-muted small mb-3" id="login-modal-hint">
           {isForgot
             ? t('auth.forgotHint')
             : isResend
@@ -342,6 +367,8 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
         {showGoogle && (
           <div
             className="mb-3"
+            role="group"
+            aria-label={t('a11y.googleSignInRegion', 'Inicio de sesión con Google')}
             onPointerDownCapture={(event) => {
               const host = event.currentTarget.querySelector('.google-signin-host')
               if (!host) return
@@ -358,6 +385,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
             <GoogleSignInButton
               onCredential={handleGoogleCredential}
               onBlocked={showGoogleBlockAfterClick}
+              ariaLabel={t('a11y.googleSignInButton', 'Continuar con Google')}
               onError={(code) => {
                 if (code === 'googleScriptFailed') {
                   showGoogleBlockAfterClick()
@@ -433,7 +461,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
             </button>
           </form>
         ) : (
-          <form onSubmit={handleSubmit} noValidate>
+          <form onSubmit={handleSubmit} noValidate aria-describedby="login-modal-hint">
             {isRegister && (
               <div className="mb-3">
                 <label htmlFor="auth-name" className="form-label">

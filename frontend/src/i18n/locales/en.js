@@ -64,6 +64,10 @@ export default {
     mapWouldSelect: 'Selected: {lang}. Confirm in the panel.',
     mapWouldSelectDesktop: 'Click to choose {lang}',
     mapPending: 'Proposed language: {lang}. Tap Use this language to confirm.',
+    loginDialogOpened: 'Sign-in dialog opened',
+    googleSignInRegion: 'Sign in with Google',
+    googleSignInButton: 'Continue with Google',
+    chartDataCaption: 'Chart data as a table',
   },
   menu: {
     dashboard: 'Dashboard',
