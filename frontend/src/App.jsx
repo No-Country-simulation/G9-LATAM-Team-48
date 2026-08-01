@@ -1,15 +1,6 @@
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import Dashboard from './pages/Dashboard'
-import Consumos from './pages/Consumos'
-import HistoriaConsumos from './pages/HistoriaConsumos'
-import AnalisisIA from './pages/AnalisisIA'
-import RecomendacionesPage from './pages/RecomendacionesPage'
-import Contacto from './pages/Contacto'
-import AdminUsuarios from './pages/AdminUsuarios'
-import AdminAnalisis from './pages/AdminAnalisis'
-import ResetPassword from './pages/ResetPassword'
-import VerifyEmail from './pages/VerifyEmail'
 import MainLayout from './layouts/MainLayout'
-import { useEffect, useRef, useState } from 'react'
 import { useAuth } from './context/AuthContext'
 import { useLocale } from './context/LocaleContext'
 import { NavigationProvider } from './context/NavigationContext'
@@ -21,6 +12,16 @@ import {
   setStoredPagina,
 } from './utils/session'
 import Loader from './components/Loader'
+
+const Consumos = lazy(() => import('./pages/Consumos'))
+const HistoriaConsumos = lazy(() => import('./pages/HistoriaConsumos'))
+const AnalisisIA = lazy(() => import('./pages/AnalisisIA'))
+const RecomendacionesPage = lazy(() => import('./pages/RecomendacionesPage'))
+const Contacto = lazy(() => import('./pages/Contacto'))
+const AdminUsuarios = lazy(() => import('./pages/AdminUsuarios'))
+const AdminAnalisis = lazy(() => import('./pages/AdminAnalisis'))
+const ResetPassword = lazy(() => import('./pages/ResetPassword'))
+const VerifyEmail = lazy(() => import('./pages/VerifyEmail'))
 
 const PAGE_TITLE_KEYS = {
   dashboard: 'menu.dashboard',
@@ -146,29 +147,45 @@ function App() {
       }
     }
 
+    let view
     switch (pagina) {
       case 'consumos':
-        return <Consumos />
+        view = <Consumos />
+        break
       case 'historia-consumos':
-        return <HistoriaConsumos />
+        view = <HistoriaConsumos />
+        break
       case 'ia':
-        return <AnalisisIA />
+        view = <AnalisisIA />
+        break
       case 'recomendaciones':
-        return <RecomendacionesPage />
+        view = <RecomendacionesPage />
+        break
       case 'contacto':
       case 'equipo':
-        return <Contacto />
+        view = <Contacto />
+        break
       case 'admin-usuarios':
-        return <AdminUsuarios />
+        view = <AdminUsuarios />
+        break
       case 'admin-analisis':
-        return <AdminAnalisis />
+        view = <AdminAnalisis />
+        break
       case 'reset-password':
-        return <ResetPassword token={resetToken} onDone={clearReset} />
+        view = <ResetPassword token={resetToken} onDone={clearReset} />
+        break
       case 'verify-email':
-        return <VerifyEmail token={verifyToken} onDone={clearVerify} />
+        view = <VerifyEmail token={verifyToken} onDone={clearVerify} />
+        break
       default:
         return <Dashboard />
     }
+
+    return (
+      <Suspense fallback={<Loader />}>
+        {view}
+      </Suspense>
+    )
   }
 
   return (

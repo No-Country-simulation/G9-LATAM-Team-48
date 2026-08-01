@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import {
   LuGlobe,
   LuLogIn,
@@ -12,7 +12,7 @@ import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { formatDisplayName } from '../utils/formatDisplayName'
 import { useAnnounce } from './SrAnnouncer'
-import LanguageMapModal from './LanguageMapModal'
+const LanguageMapModal = lazy(() => import('./LanguageMapModal'))
 
 function Header({ onMenuOpen, onLoginClick }) {
   const { user, logout, loading, isAuthenticated } = useAuth()
@@ -183,10 +183,14 @@ function Header({ onMenuOpen, onLoginClick }) {
         </div>
       </nav>
 
-      <LanguageMapModal
-        show={languageOpen}
-        onHide={() => setLanguageOpen(false)}
-      />
+      {languageOpen ? (
+        <Suspense fallback={null}>
+          <LanguageMapModal
+            show={languageOpen}
+            onHide={() => setLanguageOpen(false)}
+          />
+        </Suspense>
+      ) : null}
     </>
   )
 }
