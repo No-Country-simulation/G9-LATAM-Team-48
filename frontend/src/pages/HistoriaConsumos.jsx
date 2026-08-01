@@ -18,6 +18,12 @@ import {
   ML_REQUEST_FIELD_DEFS,
   pickRequestFieldValue,
 } from '../utils/analisisMlContract'
+import {
+  formatKwh,
+  formatM2,
+  numericFromRow,
+  zonaLabelFromRow,
+} from '../utils/analisisRowHelpers'
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -58,11 +64,7 @@ function buildEnteredRequest(detail) {
 }
 
 function consumoFromRow(row) {
-  const request = normalizeRequestJson(row?.requestJson ?? row?.request_json)
-  const field = ML_REQUEST_FIELD_DEFS.find((item) => item.formKey === 'consumoKwh')
-  const value = field ? pickRequestFieldValue(request, field) : null
-  const num = Number(value)
-  return Number.isFinite(num) ? num : null
+  return numericFromRow(row, 'consumoKwh')
 }
 
 function formatDate(value, locale) {
@@ -271,7 +273,14 @@ function HistoriaConsumos() {
                     <tr>
                       <th>{t('historiaConsumos.createdAt')}</th>
                       <th>{t('historiaConsumos.tipo')}</th>
-                      <th>{t('historiaConsumos.consumo')}</th>
+                      <th>{t('historiaConsumos.consumoMensual')}</th>
+                      <th className="d-none d-md-table-cell">
+                        {t('historiaConsumos.consumoAnterior')}
+                      </th>
+                      <th className="d-none d-lg-table-cell">{t('historiaConsumos.zona')}</th>
+                      <th className="d-none d-xl-table-cell">
+                        {t('historiaConsumos.superficie')}
+                      </th>
                       <th>{t('historiaConsumos.nivel')}</th>
                       <th>{t('historiaConsumos.ahorro')}</th>
                       <th className="text-end">{t('historiaConsumos.actions')}</th>
@@ -280,11 +289,18 @@ function HistoriaConsumos() {
                   <tbody>
                     {rows.map((row) => {
                       const consumo = consumoFromRow(row)
+                      const consumoPrev = numericFromRow(row, 'consumoKwhMesAnterior')
+                      const superficie = numericFromRow(row, 'areaM2')
                       return (
                       <tr key={row.id}>
                         <td className="small text-nowrap">{formatDate(row.createdAt, locale)}</td>
                         <td>{labelTipo(t, row.tipoInstalacion)}</td>
-                        <td>{consumo != null ? `${consumo} kWh` : '—'}</td>
+                        <td>{formatKwh(consumo)}</td>
+                        <td className="d-none d-md-table-cell">{formatKwh(consumoPrev)}</td>
+                        <td className="d-none d-lg-table-cell small">
+                          {zonaLabelFromRow(row, t)}
+                        </td>
+                        <td className="d-none d-xl-table-cell">{formatM2(superficie)}</td>
                         <td>{labelNivel(t, row.nivelKey)}</td>
                         <td>{row.ahorro != null ? `${row.ahorro}%` : '—'}</td>
                         <td className="text-end text-nowrap">
