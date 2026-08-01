@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "command": ".cursor/hooks/check-no-cursor-coauthor-before-push.sh",
+        "matcher": "git push",
+        "failClosed": false
+      }
+    ]
+  }
+}

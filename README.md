@@ -27,8 +27,7 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
 
 > **Rama de deploy:** `Jorge-martinez` (Vercel + Railway).  
 > La rama **`backend`** quedó **sincronizada** con `Jorge-martinez` (mismo contenido operativo; conflictos de prediction/mock resueltos a favor del flujo con `HeuristicPrediction` + `AnalisisPayload`).  
-> La rama **`develop`** está vacía a propósito (solo esqueleto de carpetas).  
-> No uses `main` para el front: ahí `frontend/` puede estar vacío.
+> La rama **`develop`** está vacía a propósito (solo esqueleto de carpetas).
 
 ---
 

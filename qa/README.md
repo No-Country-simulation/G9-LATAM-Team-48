@@ -25,3 +25,7 @@ Rama de deploy de referencia: `Jorge-martinez`.
 - Scripts `run-p0.ps1`, `run-p1.ps1`, `check-users.ps1`, `mail-p0.ps1`, `run-mail-local.ps1` leen `QA_DEMO_*`, `QA_INBOX` o `secrets.local.ps1` (copiá desde `secrets.local.ps1.example`).
 - Si GitGuardian alertó una **App Password de Gmail** u otra clave real: **revocala ya** en Google / Resend / Railway y generá una nueva; un commit que la quite del código **no borra** el historial de GitHub.
 - Para borrar del historial: [GitHub — removing sensitive data](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository) o BFG; luego marcar el incidente como resuelto en GitGuardian.
+
+### Git hooks (co-autoría Cursor)
+
+Tras clonar, ejecutá **`scripts/setup-git-hooks.ps1`** (o `.sh`) para activar `.githooks/` y evitar `Co-authored-by: Cursor` en commits/push. Detalle: [`.cursor/rules/git-commits-no-cursor-coauthor.mdc`](../.cursor/rules/git-commits-no-cursor-coauthor.mdc).

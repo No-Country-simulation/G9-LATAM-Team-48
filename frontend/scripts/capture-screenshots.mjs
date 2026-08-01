@@ -7,6 +7,21 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const outDir = path.resolve(__dirname, '../screenshots')
 const baseURL = process.env.APP_URL || 'http://localhost:5173'
 
+async function waitForGoogleButton(modal, page, label) {
+  const iframe = modal.locator('.google-signin-host iframe')
+  try {
+    await iframe.waitFor({ state: 'visible', timeout: 20000 })
+    await page.waitForTimeout(600)
+    return true
+  } catch {
+    console.warn(
+      `[${label}] Botón Google no visible — revisá VITE_GOOGLE_CLIENT_ID o usá APP_URL=https://g9-latam-team-48.vercel.app`,
+    )
+    await page.waitForTimeout(800)
+    return false
+  }
+}
+
 async function shot(page, name, options = {}) {
   const file = path.join(outDir, name)
   await page.screenshot({
@@ -40,14 +55,15 @@ async function main() {
   // Login modal
   await page.getByRole('button', { name: /Iniciar sesión|Entrar/i }).first().click()
   await page.waitForSelector('.modal.show', { timeout: 5000 })
-  await page.waitForTimeout(400)
   const loginModal = page.locator('.modal.show .modal-content')
+  await waitForGoogleButton(loginModal, page, 'login')
   await loginModal.screenshot({ path: path.join(outDir, 'login.png') })
   console.log('saved login.png')
 
-  // Registro tab
-  await page.getByRole('button', { name: /Registrarse|Register/i }).first().click()
-  await page.waitForTimeout(300)
+  // Registro (enlace de texto en el modal, no pestaña)
+  await loginModal.getByRole('button', { name: /Registrate|Create account|No tenés cuenta|switch to register/i }).click()
+  await page.waitForTimeout(400)
+  await waitForGoogleButton(loginModal, page, 'registro')
   await loginModal.screenshot({ path: path.join(outDir, 'registro.png') })
   console.log('saved registro.png')
 

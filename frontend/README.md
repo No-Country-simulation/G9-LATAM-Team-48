@@ -293,8 +293,8 @@ Galería en [`screenshots/`](./screenshots/). Índice: [`screenshots/README.md`]
     <td width="50%"><strong>Admin — Análisis</strong><br /><img src="./screenshots/admin-analisis.png" alt="Admin análisis" /></td>
   </tr>
   <tr>
-    <td width="50%"><strong>Login</strong> (email + Google si está configurado)<br /><img src="./screenshots/login.png" alt="Login" /></td>
-    <td width="50%"><strong>Registro</strong><br /><img src="./screenshots/registro.png" alt="Registro" /></td>
+    <td width="50%"><strong>Login</strong> (email + Google)<br /><img src="./screenshots/login.png" alt="Login" /></td>
+    <td width="50%"><strong>Registro</strong> (email + Google)<br /><img src="./screenshots/registro.png" alt="Registro" /></td>
   </tr>
   <tr>
     <td width="50%"><strong>Recuperar contraseña</strong><br /><img src="./screenshots/forgot-password.png" alt="Forgot password" /></td>

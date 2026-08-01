@@ -1,0 +1,14 @@
+#!/bin/sh
+# Rechaza commits que sigan incluyendo co-autoría de Cursor.
+MSG_FILE=$1
+[ -f "$MSG_FILE" ] || exit 0
+
+if grep -qiE 'Co-authored-by:[[:space:]]*Cursor[[:space:]]*<' "$MSG_FILE"; then
+  echo >&2 ""
+  echo >&2 "Commit rechazado: el mensaje incluye Co-authored-by: Cursor."
+  echo >&2 "Quita esa linea y vuelve a commitear, o activa hooks: scripts/setup-git-hooks.ps1"
+  echo >&2 ""
+  exit 1
+fi
+
+exit 0

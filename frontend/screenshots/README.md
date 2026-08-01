@@ -5,9 +5,19 @@ Imágenes del README (tema oscuro, locale `es`, iconos actuales del menú).
 Regenerar las automatizadas:
 
 ```bash
-npm run dev          # en una terminal
+npm run dev          # en una terminal (con VITE_GOOGLE_CLIENT_ID en .env)
 npm run screenshots  # en otra
 ```
+
+Solo **login** y **registro** (recomendado, usa la demo en Vercel con Google ya configurado):
+
+```bash
+# PowerShell
+$env:APP_URL = "https://g9-latam-team-48.vercel.app"
+npm run screenshots:auth
+```
+
+El script espera el iframe de **Continuar con Google** antes de guardar cada PNG.
 
 Formato: **PNG**, viewport ~**1440×900** (o `fullPage` en páginas largas).
 
@@ -24,8 +34,8 @@ Formato: **PNG**, viewport ~**1440×900** (o `fullPage` en páginas largas).
 | `contacto.png` | Contáctanos + Equipo 48 |
 | `admin-usuarios.png` | Panel Admin — Usuarios |
 | `admin-analisis.png` | Admin — Análisis IA (historial global) |
-| `login.png` | Modal — Entrar |
-| `registro.png` | Modal — Registrarse |
+| `login.png` | Modal — Entrar (email + **Continuar con Google**) |
+| `registro.png` | Modal — Crear cuenta (email + **Continuar con Google**) |
 | `admin-crear-usuario.png` | Modal — Crear usuario |
 | `admin-editar-usuario.png` | Modal — Editar usuario |
 | `forgot-password.png` | Modal — Recuperar contraseña |
