@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { LuEye } from 'react-icons/lu'
 import { listAnalisis, recalcularAnalisis } from '../services/adminAnalisisService'
+import AnalysisRequestFieldsTable from '../components/AnalysisRequestFieldsTable'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
 import { useNavigation } from '../context/NavigationContext'
@@ -294,10 +295,12 @@ function AdminAnalisis() {
                 </div>
               </div>
               <div>
-                <div className="fw-semibold mb-1">{t('adminAnalisis.request')}</div>
-                <pre className="bg-body-tertiary p-2 rounded small mb-0 overflow-auto" style={{ maxHeight: 220 }}>
-                  {JSON.stringify(detail.requestJson ?? {}, null, 2)}
-                </pre>
+                <div className="fw-semibold mb-2">{t('adminAnalisis.request')}</div>
+                <AnalysisRequestFieldsTable
+                  request={detail.requestJson ?? {}}
+                  t={t}
+                  showMlKey
+                />
               </div>
               <div>
                 <div className="fw-semibold mb-1">{t('adminAnalisis.response')}</div>

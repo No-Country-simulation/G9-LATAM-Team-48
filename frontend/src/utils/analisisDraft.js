@@ -1,14 +1,27 @@
 import { INSTALLATION_TYPES } from '../services/iaService'
+import {
+  AISLAMIENTO_TERMICO,
+  ZONA_INMUEBLE,
+  pickRequestFieldValue,
+  ML_REQUEST_FIELD_DEFS,
+  resolveTipoInmuebleKey,
+} from './analisisMlContract'
 
 const DRAFT_KEY = 'energia-analisis-draft'
 
-const emptyDraft = {
+export const emptyDraft = {
   tipoInmueble: INSTALLATION_TYPES.CASA_UNIFAMILIAR,
   consumoKwh: '',
+  consumoKwhMesAnterior: '',
   cantidadPersonas: '',
   cantidadEquipos: '',
   areaM2: '',
   horasClimatizacion: '',
+  aislamientoTermico: 'REGULAR',
+  pctIluminacionLed: '',
+  antiguedadConstruccionAnios: '',
+  zona: 'URBANA_INTERIOR',
+  antiguedadElectrodomesticosAnios: '',
   horasAltoConsumo: '',
   usoHorarioPico: false,
 }
@@ -30,6 +43,24 @@ function asBool(value) {
   return text === 'true' || text === '1' || text === 'si' || text === 'yes'
 }
 
+function normalizeAislamientoKey(raw) {
+  const text = String(raw ?? '').trim()
+  if (!text) return emptyDraft.aislamientoTermico
+  const upper = text.toUpperCase()
+  if (AISLAMIENTO_TERMICO[upper]) return upper
+  const fromLabel = Object.entries(AISLAMIENTO_TERMICO).find(([, v]) => v === text)
+  return fromLabel ? fromLabel[0] : upper
+}
+
+function normalizeZonaKey(raw) {
+  const text = String(raw ?? '').trim()
+  if (!text) return emptyDraft.zona
+  const upper = text.toUpperCase().replace(/\s+/g, '_')
+  if (ZONA_INMUEBLE[upper]) return upper
+  const fromLabel = Object.entries(ZONA_INMUEBLE).find(([, v]) => v === text)
+  return fromLabel ? fromLabel[0] : upper
+}
+
 /** Normaliza requestJson / payload a la forma del formulario de Análisis IA. */
 export function draftFromRequest(raw = {}) {
   const source =
@@ -46,28 +77,30 @@ export function draftFromRequest(raw = {}) {
         : {}
 
   const nested = source.features || source.payload || source
-  const tipo = String(
+  const tipo = resolveTipoInmuebleKey(
     pick(nested, ['tipoInmueble', 'tipo_inmueble', 'tipo'], emptyDraft.tipoInmueble),
-  ).toUpperCase()
+  )
 
-  return {
-    tipoInmueble: INSTALLATION_TYPES[tipo] || tipo || emptyDraft.tipoInmueble,
-    consumoKwh: String(pick(nested, ['consumoKwh', 'consumo_kwh', 'consumo'], '')),
-    cantidadPersonas: String(
-      pick(nested, ['cantidadPersonas', 'cantidad_personas', 'personas'], ''),
-    ),
-    cantidadEquipos: String(
-      pick(nested, ['cantidadEquipos', 'cantidad_equipos', 'equipos'], ''),
-    ),
-    areaM2: String(pick(nested, ['areaM2', 'area_m2', 'area'], '')),
-    horasClimatizacion: String(
-      pick(nested, ['horasClimatizacion', 'horas_climatizacion', 'climateHours'], ''),
-    ),
-    horasAltoConsumo: String(
-      pick(nested, ['horasAltoConsumo', 'horas_alto_consumo', 'peakUseHours'], ''),
-    ),
-    usoHorarioPico: asBool(pick(nested, ['usoHorarioPico', 'uso_horario_pico'], false)),
+  const draft = { ...emptyDraft, tipoInmueble: INSTALLATION_TYPES[tipo] || tipo || emptyDraft.tipoInmueble }
+
+  for (const field of ML_REQUEST_FIELD_DEFS) {
+    const value = pickRequestFieldValue(nested, field)
+    if (value === undefined) continue
+    if (field.formKey === 'aislamientoTermico') {
+      draft.aislamientoTermico = normalizeAislamientoKey(value)
+    } else if (field.formKey === 'zona') {
+      draft.zona = normalizeZonaKey(value)
+    } else {
+      draft[field.formKey] = String(value)
+    }
   }
+
+  draft.horasAltoConsumo = String(
+    pick(nested, ['horasAltoConsumo', 'horas_alto_consumo', 'peakUseHours'], ''),
+  )
+  draft.usoHorarioPico = asBool(pick(nested, ['usoHorarioPico', 'uso_horario_pico'], false))
+
+  return draft
 }
 
 export function saveAnalisisDraft(datos) {
@@ -89,5 +122,3 @@ export function consumeAnalisisDraft() {
     return null
   }
 }
-
-export { emptyDraft }

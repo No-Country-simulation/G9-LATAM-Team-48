@@ -55,12 +55,14 @@ function normalizeTipo(tipoInmueble) {
   switch (tipo.toLowerCase()) {
     case 'casa':
     case 'casa_unifamiliar':
+    case 'casa unifamiliar':
       return INSTALLATION_TYPES.CASA_UNIFAMILIAR
     case 'apartamento':
     case 'departamento':
       return INSTALLATION_TYPES.APARTAMENTO
     case 'pequeno_establecimiento_comercial':
     case 'pequeño_establecimiento_comercial':
+    case 'pequeño establecimiento comercial':
     case 'comercio':
     case 'local_comercial':
       return COMERCIAL
@@ -82,11 +84,11 @@ function readFeatures(datos = {}) {
 
   return {
     tipo,
-    consumo: firstNumber(datos, 0, 'consumoKwh', 'consumo'),
-    personas: firstNumber(datos, defaultPersonas(tipo), 'cantidadPersonas', 'personas'),
-    area: firstNumber(datos, defaultArea(tipo), 'areaM2', 'area'),
-    climate: firstNumber(datos, 2, 'horasClimatizacion', 'climateHours'),
-    equipos: firstNumber(datos, 0, 'cantidadEquipos', 'equipos'),
+    consumo: firstNumber(datos, 0, 'consumo_kwh_mensual', 'consumoKwh', 'consumo'),
+    personas: firstNumber(datos, defaultPersonas(tipo), 'num_personas', 'cantidadPersonas', 'personas'),
+    area: firstNumber(datos, defaultArea(tipo), 'superficie_m2', 'areaM2', 'area'),
+    climate: firstNumber(datos, 2, 'horas_uso_aa_dia', 'horasClimatizacion', 'climateHours'),
+    equipos: firstNumber(datos, 0, 'cantidad_equipos_total', 'cantidadEquipos', 'equipos'),
     horasAlto: firstNumber(datos, 0, 'horasAltoConsumo', 'peakUseHours'),
     usoPico: asBoolean(datos.usoHorarioPico) === true,
   }

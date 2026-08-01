@@ -28,11 +28,11 @@ final class HeuristicPrediction {
 
     static PredictionResponse fromFeatures(Map<String, Object> features) {
         String tipo = normalizeTipo(features);
-        double consumo = firstDouble(features, 0, "consumoKwh", "consumo");
-        double personas = firstDouble(features, defaultPersonas(tipo), "cantidadPersonas", "personas");
-        double area = firstDouble(features, defaultArea(tipo), "areaM2", "area");
-        double climate = firstDouble(features, 2, "horasClimatizacion", "climateHours");
-        double equipos = firstDouble(features, 0, "cantidadEquipos", "equipos");
+        double consumo = firstDouble(features, 0, "consumo_kwh_mensual", "consumoKwh", "consumo");
+        double personas = firstDouble(features, defaultPersonas(tipo), "num_personas", "cantidadPersonas", "personas");
+        double area = firstDouble(features, defaultArea(tipo), "superficie_m2", "areaM2", "area");
+        double climate = firstDouble(features, 2, "horas_uso_aa_dia", "horasClimatizacion", "climateHours");
+        double equipos = firstDouble(features, 0, "cantidad_equipos_total", "cantidadEquipos", "equipos");
         double horasAlto = firstDouble(features, 0, "horasAltoConsumo", "peakUseHours");
         boolean usoPico = Boolean.TRUE.equals(asBoolean(features.get("usoHorarioPico")));
 
@@ -149,14 +149,18 @@ final class HeuristicPrediction {
     private static String normalizeTipo(Map<String, Object> features) {
         Object raw = features.get("tipoInmueble");
         if (raw == null) {
+            raw = features.get("tipo_inmueble");
+        }
+        if (raw == null) {
             raw = features.get("tipo");
         }
         String tipo = String.valueOf(raw != null ? raw : "CASA_UNIFAMILIAR").trim();
         return switch (tipo.toLowerCase(Locale.ROOT)) {
-            case "casa", "casa_unifamiliar" -> "CASA_UNIFAMILIAR";
+            case "casa", "casa_unifamiliar", "casa unifamiliar" -> "CASA_UNIFAMILIAR";
             case "apartamento", "departamento" -> "APARTAMENTO";
             case "pequeno_establecimiento_comercial",
                     "pequeño_establecimiento_comercial",
+                    "pequeño establecimiento comercial",
                     "comercio",
                     "local_comercial" -> "PEQUENO_ESTABLECIMIENTO_COMERCIAL";
             case "fabrica_mediana" -> "FABRICA_MEDIANA";

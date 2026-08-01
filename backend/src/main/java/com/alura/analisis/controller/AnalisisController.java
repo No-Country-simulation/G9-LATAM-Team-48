@@ -48,7 +48,8 @@ public class AnalisisController {
                     """,
             security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<AnalisisApiResponse> analizar(@Valid @RequestBody AnalisisPayload payload) {
-        return ResponseEntity.ok(analisisService.analizarYGuardar(payload.toFeatureMap()));
+        return ResponseEntity.ok(
+                analisisService.analizarYGuardar(payload.toMlFeatureMap(), payload.toStoredRequestMap()));
     }
 
     @GetMapping("/mis")

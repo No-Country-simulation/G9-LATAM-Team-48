@@ -102,6 +102,30 @@ export const pagesEs = {
     devices: 'Cantidad de equipos',
     homeArea: 'Superficie (m²)',
     climateHours: 'Horas de climatización por día',
+    acHoursDay: 'Horas de uso de AA por día',
+    previousMonthUsage: 'Consumo mes anterior (kWh)',
+    thermalInsulation: 'Aislamiento térmico',
+    ledLightingPct: 'Iluminación LED (%)',
+    buildingAgeYears: 'Antigüedad de la construcción (años)',
+    zone: 'Zona',
+    applianceAgeYears: 'Antigüedad de electrodomésticos (años)',
+    legacyFieldsTitle: 'Opcional — no usados por el modelo actual',
+    legacyFieldTag: 'no usado por el modelo',
+    aislamiento: {
+      BUENO: 'Bueno',
+      MALO: 'Malo',
+      REGULAR: 'Regular',
+    },
+    zona: {
+      SUBURBANA: 'Suburbana',
+      URBANA_COSTERA: 'Urbana Costera',
+      URBANA_INTERIOR: 'Urbana Interior',
+    },
+    requestTable: {
+      field: 'Campo',
+      jsonKey: 'Clave JSON',
+      value: 'Valor',
+    },
     peakUseHours: 'Horas de alto consumo por día',
     peakHoursUse: '¿Hay consumo en horario pico?',
     area: 'Área del local (m²)',
@@ -121,7 +145,16 @@ export const pagesEs = {
       cantidadEquipos:
         'Cantidad aproximada de equipos eléctricos relevantes (heladera, lavarropas, TV, PCs, freidoras, etc.).',
       horasClimatizacion:
-        'Horas por día que suele estar encendido el aire acondicionado o la calefacción.',
+        'Horas por día que suele estar encendido el aire acondicionado (campo enviado al modelo como horas_uso_aa_dia).',
+      consumoKwhMesAnterior:
+        'Consumo del mes calendario anterior, en kWh (como en la factura).',
+      aislamientoTermico: 'Calidad del aislamiento térmico del inmueble.',
+      pctIluminacionLed:
+        'Porcentaje de luminarias LED sobre el total (0 a 100, no usar 0–1).',
+      antiguedadConstruccionAnios: 'Años desde la construcción o última refacción mayor.',
+      zona: 'Ubicación según categorías del modelo (costa, interior urbano o suburbana).',
+      antiguedadElectrodomesticosAnios:
+        'Antigüedad promedio de electrodomésticos principales, en años.',
       horasAltoConsumo:
         'Horas por día con uso intensivo de energía (cocina, lavado, equipos de trabajo, etc.).',
       usoHorarioPico:
@@ -165,8 +198,12 @@ export const pagesEs = {
       'Cargamos los datos de tu consulta anterior. Podés editarlos y analizar de nuevo.',
     validation: {
       consumoRequired: 'Ingresá un consumo mensual mayor a 0.',
+      consumoPrevRequired: 'Ingresá el consumo del mes anterior (0 o más).',
       areaInvalid: 'El área no puede ser negativa.',
       peopleInvalid: 'La cantidad de personas no puede ser negativa.',
+      peopleMin: 'Indicá al menos una persona.',
+      pctLedRange: 'Usá un porcentaje entre 0 y 100.',
+      ageInvalid: 'La antigüedad no puede ser negativa.',
       hoursRange: 'Usá un valor entre 0 y 24.',
     },
     chart: {
