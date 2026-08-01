@@ -3,6 +3,12 @@ import Modal from 'react-bootstrap/Modal'
 import { LuEye } from 'react-icons/lu'
 import { listAnalisis, recalcularAnalisis } from '../services/adminAnalisisService'
 import AnalysisRequestFieldsTable from '../components/AnalysisRequestFieldsTable'
+import {
+  formatKwh,
+  formatM2,
+  numericFromRow,
+  zonaLabelFromRow,
+} from '../utils/analisisRowHelpers'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
 import { useNavigation } from '../context/NavigationContext'
@@ -226,9 +232,15 @@ function AdminAnalisis() {
                     <th>ID</th>
                     <th>{t('adminAnalisis.email')}</th>
                     <th>{t('adminAnalisis.tipo')}</th>
+                    <th>{t('adminAnalisis.consumoMensual')}</th>
+                    <th className="d-none d-md-table-cell">
+                      {t('adminAnalisis.consumoAnterior')}
+                    </th>
+                    <th className="d-none d-lg-table-cell">{t('adminAnalisis.zona')}</th>
+                    <th className="d-none d-xl-table-cell">{t('adminAnalisis.superficie')}</th>
                     <th>{t('adminAnalisis.nivel')}</th>
                     <th>{t('adminAnalisis.ahorro')}</th>
-                    <th>{t('adminAnalisis.confidence')}</th>
+                    <th className="d-none d-md-table-cell">{t('adminAnalisis.confidence')}</th>
                     <th>{t('adminAnalisis.createdAt')}</th>
                     <th className="text-end">{t('adminAnalisis.actions')}</th>
                   </tr>
@@ -237,11 +249,21 @@ function AdminAnalisis() {
                   {rows.map((row) => (
                     <tr key={row.id}>
                       <td>{row.id}</td>
-                      <td>{row.userEmail || t('adminAnalisis.anonymous')}</td>
+                      <td className="small">{row.userEmail || t('adminAnalisis.anonymous')}</td>
                       <td>{labelTipo(t, row.tipoInstalacion)}</td>
+                      <td>{formatKwh(numericFromRow(row, 'consumoKwh'))}</td>
+                      <td className="d-none d-md-table-cell">
+                        {formatKwh(numericFromRow(row, 'consumoKwhMesAnterior'))}
+                      </td>
+                      <td className="d-none d-lg-table-cell small">
+                        {zonaLabelFromRow(row, t)}
+                      </td>
+                      <td className="d-none d-xl-table-cell">
+                        {formatM2(numericFromRow(row, 'areaM2'))}
+                      </td>
                       <td>{labelNivel(t, row.nivelKey)}</td>
                       <td>{row.ahorro != null ? `${row.ahorro}%` : '—'}</td>
-                      <td>
+                      <td className="d-none d-md-table-cell">
                         {row.confidence != null
                           ? `${Math.round(Number(row.confidence) * 100)}%`
                           : '—'}
