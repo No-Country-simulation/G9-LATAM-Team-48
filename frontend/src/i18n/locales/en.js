@@ -106,7 +106,7 @@ export default {
     switchToLogin: 'Already have an account? Sign in',
     orContinueWithEmail: 'or continue with email',
     googleBlockHint:
-      'Ad blockers or strict privacy extensions may prevent Google Sign-In from loading. Disable them for this site or allow accounts.google.com, then reload. You can still sign in with email and password.',
+      'Ad blockers or privacy extensions may block Google Sign-In or stop the sign-in window from opening when you click. Disable them for this site or allow accounts.google.com, then reload. You can still sign in with email and password.',
     googleBlockHintShort:
       'Using an ad blocker? Google Sign-In often fails—disable the extension for this site or allow accounts.google.com. You can still use email sign-in.',
     forgotLink: 'Forgot your password?',
