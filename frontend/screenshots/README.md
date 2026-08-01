@@ -17,6 +17,13 @@ $env:APP_URL = "https://g9-latam-team-48.vercel.app"
 npm run screenshots:auth
 ```
 
+Solo **Análisis IA** (formulario 12 campos + resultado):
+
+```bash
+$env:APP_URL = "https://g9-latam-team-48.vercel.app"
+npm run screenshots:analisis
+```
+
 El script espera el iframe de **Continuar con Google** antes de guardar cada PNG.
 
 Formato: **PNG**, viewport ~**1440×900** (o `fullPage` en páginas largas).

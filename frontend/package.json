@@ -9,6 +9,7 @@
         "preview": "vite preview",
         "screenshots": "node scripts/capture-screenshots.mjs",
         "screenshots:auth": "node scripts/capture-auth-screenshots.mjs",
+        "screenshots:analisis": "node scripts/capture-analisis-screenshot.mjs",
         "bake:world-map": "node scripts/bake-world-map.mjs"
     },
     "dependencies": {
