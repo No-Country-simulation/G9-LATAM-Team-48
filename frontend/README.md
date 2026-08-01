@@ -194,9 +194,18 @@ Detección en cliente (`LoginModal.jsx` + `googleSignInSupport.js`):
 
 <div align="center">
 
-<img src="./screenshots/login.png" alt="Login con aviso de bloqueador de anuncios y Google Sign-In" width="520" />
-
-*Iniciar sesión: aviso de bloqueadores, botón Google y formulario email.*
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <strong>Login habitual</strong> (Google + aviso corto)<br />
+      <img src="./screenshots/login.png" alt="Iniciar sesión con Google y aviso preventivo" width="420" />
+    </td>
+    <td width="50%" align="center">
+      <strong>Si el bloqueador traba Google</strong> (aviso ampliado)<br />
+      <img src="./screenshots/login-bloqueador.png" alt="Login con aviso ampliado por bloqueador de anuncios" width="420" />
+    </td>
+  </tr>
+</table>
 
 </div>
 
@@ -370,11 +379,15 @@ Formulario de 12 campos por tipo de inmueble, sección opcional legacy y placeho
   </tr>
   <tr>
     <td width="50%"><strong>Admin — Análisis</strong><br /><img src="./screenshots/admin-analisis.png" alt="Admin análisis" /></td>
-    <td width="50%"><strong>Login</strong> (Google + aviso bloqueadores)<br /><img src="./screenshots/login.png" alt="Login con aviso Google y bloqueadores" /></td>
+    <td width="50%"><strong>Registro</strong> (email + Google)<br /><img src="./screenshots/registro.png" alt="Registro" /></td>
   </tr>
   <tr>
-    <td width="50%"><strong>Registro</strong> (email + Google)<br /><img src="./screenshots/registro.png" alt="Registro" /></td>
+    <td width="50%"><strong>Login</strong> (Google + aviso corto)<br /><img src="./screenshots/login.png" alt="Login habitual" /></td>
+    <td width="50%"><strong>Login — bloqueador traba Google</strong><br /><img src="./screenshots/login-bloqueador.png" alt="Login aviso ampliado" /></td>
+  </tr>
+  <tr>
     <td width="50%"><strong>Recuperar contraseña</strong><br /><img src="./screenshots/forgot-password.png" alt="Forgot password" /></td>
+    <td width="50%"></td>
   </tr>
   <tr>
     <td colspan="2"><strong>Verificar email / Reset</strong> (vía link del mail)<br /><img src="./screenshots/verify-email.png" alt="Verify email" width="50%" /></td>
