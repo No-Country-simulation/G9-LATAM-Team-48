@@ -22,7 +22,7 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
 | [`backend/`](./backend) | API Spring Boot (JWT, Google, email, Análisis IA, admin, contacto) |
 | [`ml-service/`](./ml-service) | Modelo ML (RandomForest + FastAPI) para Análisis IA |
 | [`datascience/`](./datascience) | Notebooks, dataset y docs de ciencia de datos (no se despliega) |
-| [`docs/`](./docs) | Documentación (arquitectura, auth, recomendaciones, deploy) |
+| [`docs/`](./docs) | Documentación (arquitectura, auth, recomendaciones, deploy, [accesibilidad frontend](./docs/frontend/ACCESIBILIDAD.md)) |
 | [`qa/`](./qa) | Checklist P0/P1, smoke scripts y notas NAS (sin tocar código de producto) |
 
 > **Rama de deploy:** `Jorge-martinez` (Vercel + Railway).  
