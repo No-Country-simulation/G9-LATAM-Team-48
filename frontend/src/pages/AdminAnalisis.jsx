@@ -2,12 +2,22 @@ import { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { LuEye } from 'react-icons/lu'
 import { listAnalisis, recalcularAnalisis } from '../services/adminAnalisisService'
+import AnalysisRequestFieldsTable from '../components/AnalysisRequestFieldsTable'
+import AnalysisResponsePanel from '../components/AnalysisResponsePanel'
+import {
+  formatKwh,
+  formatM2,
+  numericFromRow,
+  zonaLabelFromRow,
+} from '../utils/analisisRowHelpers'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
 import { useNavigation } from '../context/NavigationContext'
 import { isAdmin } from '../utils/roles'
 import Loader from '../components/Loader'
 import EmptyState from '../components/EmptyState'
+import TablePagination from '../components/TablePagination'
+import { DEFAULT_PAGE_SIZE } from '../utils/pageResponse'
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -51,6 +61,10 @@ function AdminAnalisis() {
   const { user, token, openLogin, refreshUser, logout, hydrating } = useAuth()
   const { setPagina } = useNavigation()
   const [rows, setRows] = useState([])
+  const [page, setPage] = useState(0)
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE)
+  const [totalPages, setTotalPages] = useState(0)
+  const [totalElements, setTotalElements] = useState(0)
   const [loading, setLoading] = useState(true)
   const [recalculating, setRecalculating] = useState(false)
   const [error, setError] = useState(null)
@@ -59,13 +73,15 @@ function AdminAnalisis() {
 
   const allowed = isAdmin(user)
 
-  async function load() {
+  async function load(pageIndex = page, size = pageSize) {
     setLoading(true)
     setError(null)
     try {
       if (!token || String(token).startsWith('mock-token')) {
         setError(t('adminAnalisis.sessionInvalid'))
         setRows([])
+        setTotalElements(0)
+        setTotalPages(0)
         return
       }
 
@@ -73,11 +89,24 @@ function AdminAnalisis() {
       if (!isAdmin(current)) {
         setError(t('adminAnalisis.forbidden'))
         setRows([])
+        setTotalElements(0)
+        setTotalPages(0)
         return
       }
 
-      const list = await listAnalisis()
-      setRows(Array.isArray(list) ? list : [])
+      const result = await listAnalisis({ page: pageIndex, size })
+      if (
+        (!result.content || result.content.length === 0) &&
+        pageIndex > 0 &&
+        (result.totalElements ?? 0) > 0
+      ) {
+        await load(pageIndex - 1, size)
+        return
+      }
+      setRows(Array.isArray(result.content) ? result.content : [])
+      setPage(result.page ?? pageIndex)
+      setTotalPages(result.totalPages ?? 0)
+      setTotalElements(result.totalElements ?? 0)
     } catch (err) {
       const status = err?.response?.status
       if (status === 401 || status === 403) {
@@ -96,6 +125,15 @@ function AdminAnalisis() {
     }
   }
 
+  function handlePageChange(nextPage) {
+    load(nextPage, pageSize)
+  }
+
+  function handlePageSizeChange(nextSize) {
+    setPageSize(nextSize)
+    load(0, nextSize)
+  }
+
   useEffect(() => {
     if (hydrating) return
     if (!token) {
@@ -103,7 +141,7 @@ function AdminAnalisis() {
       setRows([])
       return
     }
-    load()
+    load(0, pageSize)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, hydrating])
 
@@ -169,7 +207,7 @@ function AdminAnalisis() {
           <button
             type="button"
             className="btn btn-outline-primary btn-sm"
-            onClick={load}
+            onClick={() => load(page, pageSize)}
             disabled={!allowed || loading || hydrating || recalculating}
           >
             {t('adminAnalisis.refresh')}
@@ -197,7 +235,7 @@ function AdminAnalisis() {
         <div className="alert alert-danger">
           <div className="mb-2">{error}</div>
           <div className="d-flex gap-2">
-            <button type="button" className="btn btn-sm btn-outline-danger" onClick={load}>
+            <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => load(page, pageSize)}>
               {t('states.retry')}
             </button>
             <button type="button" className="btn btn-sm btn-primary" onClick={handleRelogin}>
@@ -207,7 +245,7 @@ function AdminAnalisis() {
         </div>
       )}
 
-      {!loading && !hydrating && !error && rows.length === 0 && (
+      {!loading && !hydrating && !error && totalElements === 0 && (
         <EmptyState
           mensaje={t('adminAnalisis.empty', 'Todavía no hay análisis guardados.')}
           actionLabel={t('adminAnalisis.goToAnalysis', 'Ir a Análisis IA')}
@@ -215,7 +253,7 @@ function AdminAnalisis() {
         />
       )}
 
-      {!loading && !hydrating && !error && rows.length > 0 && (
+      {!loading && !hydrating && !error && totalElements > 0 && (
         <div className="card shadow-sm">
           <div className="card-body p-0">
             <div className="table-responsive">
@@ -225,9 +263,15 @@ function AdminAnalisis() {
                     <th>ID</th>
                     <th>{t('adminAnalisis.email')}</th>
                     <th>{t('adminAnalisis.tipo')}</th>
+                    <th>{t('adminAnalisis.consumoMensual')}</th>
+                    <th className="d-none d-md-table-cell">
+                      {t('adminAnalisis.consumoAnterior')}
+                    </th>
+                    <th className="d-none d-lg-table-cell">{t('adminAnalisis.zona')}</th>
+                    <th className="d-none d-xl-table-cell">{t('adminAnalisis.superficie')}</th>
                     <th>{t('adminAnalisis.nivel')}</th>
                     <th>{t('adminAnalisis.ahorro')}</th>
-                    <th>{t('adminAnalisis.confidence')}</th>
+                    <th className="d-none d-md-table-cell">{t('adminAnalisis.confidence')}</th>
                     <th>{t('adminAnalisis.createdAt')}</th>
                     <th className="text-end">{t('adminAnalisis.actions')}</th>
                   </tr>
@@ -236,11 +280,21 @@ function AdminAnalisis() {
                   {rows.map((row) => (
                     <tr key={row.id}>
                       <td>{row.id}</td>
-                      <td>{row.userEmail || t('adminAnalisis.anonymous')}</td>
+                      <td className="small">{row.userEmail || t('adminAnalisis.anonymous')}</td>
                       <td>{labelTipo(t, row.tipoInstalacion)}</td>
+                      <td>{formatKwh(numericFromRow(row, 'consumoKwh'))}</td>
+                      <td className="d-none d-md-table-cell">
+                        {formatKwh(numericFromRow(row, 'consumoKwhMesAnterior'))}
+                      </td>
+                      <td className="d-none d-lg-table-cell small">
+                        {zonaLabelFromRow(row, t)}
+                      </td>
+                      <td className="d-none d-xl-table-cell">
+                        {formatM2(numericFromRow(row, 'areaM2'))}
+                      </td>
                       <td>{labelNivel(t, row.nivelKey)}</td>
                       <td>{row.ahorro != null ? `${row.ahorro}%` : '—'}</td>
-                      <td>
+                      <td className="d-none d-md-table-cell">
                         {row.confidence != null
                           ? `${Math.round(Number(row.confidence) * 100)}%`
                           : '—'}
@@ -262,6 +316,16 @@ function AdminAnalisis() {
                 </tbody>
               </table>
             </div>
+            <TablePagination
+              page={page}
+              totalPages={totalPages}
+              totalElements={totalElements}
+              pageSize={pageSize}
+              onPageChange={handlePageChange}
+              onPageSizeChange={handlePageSizeChange}
+              t={t}
+              idPrefix="admin-analisis"
+            />
           </div>
         </div>
       )}
@@ -294,16 +358,20 @@ function AdminAnalisis() {
                 </div>
               </div>
               <div>
-                <div className="fw-semibold mb-1">{t('adminAnalisis.request')}</div>
-                <pre className="bg-body-tertiary p-2 rounded small mb-0 overflow-auto" style={{ maxHeight: 220 }}>
-                  {JSON.stringify(detail.requestJson ?? {}, null, 2)}
-                </pre>
+                <div className="fw-semibold mb-2">{t('adminAnalisis.request')}</div>
+                <AnalysisRequestFieldsTable
+                  request={detail.requestJson ?? {}}
+                  t={t}
+                  showMlKey
+                />
               </div>
               <div>
-                <div className="fw-semibold mb-1">{t('adminAnalisis.response')}</div>
-                <pre className="bg-body-tertiary p-2 rounded small mb-0 overflow-auto" style={{ maxHeight: 220 }}>
-                  {JSON.stringify(detail.responseJson ?? {}, null, 2)}
-                </pre>
+                <div className="fw-semibold mb-2">{t('adminAnalisis.response')}</div>
+                <AnalysisResponsePanel
+                  response={detail.responseJson ?? {}}
+                  row={detail}
+                  t={t}
+                />
               </div>
             </div>
           )}

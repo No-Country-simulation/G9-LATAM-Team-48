@@ -230,11 +230,13 @@ SPRING_PROFILES_ACTIVE=dev
 
 Cuentas demo (migración Flyway `V6__seed_demo_users.sql`; email ya verificado):
 
-| Usuario | Email | Password |
-|---------|-------|----------|
-| Operador | `operador@energyai.com` | `operador123` |
-| Admin | `admin@energyai.com` | `admin1234` |
-| Team 48 | `team48@energyai.com` | `team48123` |
+| Usuario | Email | Rol |
+|---------|-------|-----|
+| Operador | `operador@energyai.com` | USER |
+| Admin | `admin@energyai.com` | ADMIN |
+| Team 48 | `team48@energyai.com` | USER |
+
+> Contraseñas demo: canal del equipo o `QA_DEMO_*` — no commitear en Git.
 
 > La DB `energia_ia` se crea a mano
 > (`CREATE DATABASE energia_ia CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;`)

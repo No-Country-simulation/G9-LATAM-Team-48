@@ -2,12 +2,9 @@ package com.alura.prediction.service;
 
 import com.alura.prediction.dto.PredictionResponse;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Clasificacion heuristica cuando el microservicio FastAPI no esta disponible
@@ -28,11 +25,11 @@ final class HeuristicPrediction {
 
     static PredictionResponse fromFeatures(Map<String, Object> features) {
         String tipo = normalizeTipo(features);
-        double consumo = firstDouble(features, 0, "consumoKwh", "consumo");
-        double personas = firstDouble(features, defaultPersonas(tipo), "cantidadPersonas", "personas");
-        double area = firstDouble(features, defaultArea(tipo), "areaM2", "area");
-        double climate = firstDouble(features, 2, "horasClimatizacion", "climateHours");
-        double equipos = firstDouble(features, 0, "cantidadEquipos", "equipos");
+        double consumo = firstDouble(features, 0, "consumo_kwh_mensual", "consumoKwh", "consumo");
+        double personas = firstDouble(features, defaultPersonas(tipo), "num_personas", "cantidadPersonas", "personas");
+        double area = firstDouble(features, defaultArea(tipo), "superficie_m2", "areaM2", "area");
+        double climate = firstDouble(features, 2, "horas_uso_aa_dia", "horasClimatizacion", "climateHours");
+        double equipos = firstDouble(features, 0, "cantidad_equipos_total", "cantidadEquipos", "equipos");
         double horasAlto = firstDouble(features, 0, "horasAltoConsumo", "peakUseHours");
         boolean usoPico = Boolean.TRUE.equals(asBoolean(features.get("usoHorarioPico")));
 
@@ -85,7 +82,7 @@ final class HeuristicPrediction {
             confidence = 0.68;
         }
 
-        List<String> tipKeys = tipsFor(nivelKey, tipo, usoPico, horasAlto, equipos, climate);
+        List<String> tipKeys = List.of();
 
         return new PredictionResponse(
                 null,
@@ -95,47 +92,6 @@ final class HeuristicPrediction {
                 ahorro,
                 tipKeys,
                 benchmark);
-    }
-
-    private static List<String> tipsFor(
-            String nivelKey,
-            String tipo,
-            boolean usoPico,
-            double horasAlto,
-            double equipos,
-            double climate) {
-        Set<String> tips = new LinkedHashSet<>();
-        boolean comercial = "PEQUENO_ESTABLECIMIENTO_COMERCIAL".equals(tipo);
-
-        if ("efficient".equals(nivelKey)) {
-            tips.add("keep");
-            tips.add("monitor");
-            if (climate >= 4) {
-                tips.add("ac");
-            }
-        } else if ("inefficient".equals(nivelKey)) {
-            tips.add(comercial ? "schedules" : "ac");
-            tips.add("replace");
-            tips.add("peak");
-            tips.add(comercial ? "led" : "standby");
-        } else {
-            tips.add("led");
-            tips.add("peak");
-            tips.add("appliances");
-        }
-
-        if (usoPico || horasAlto >= 5) {
-            tips.add("peak");
-            tips.add("standby");
-        }
-        if (equipos >= 10) {
-            tips.add("replace");
-        }
-        if (climate >= 6) {
-            tips.add("insulation");
-        }
-
-        return new ArrayList<>(tips).stream().limit(5).toList();
     }
 
     private static double defaultPersonas(String tipo) {
@@ -149,14 +105,18 @@ final class HeuristicPrediction {
     private static String normalizeTipo(Map<String, Object> features) {
         Object raw = features.get("tipoInmueble");
         if (raw == null) {
+            raw = features.get("tipo_inmueble");
+        }
+        if (raw == null) {
             raw = features.get("tipo");
         }
         String tipo = String.valueOf(raw != null ? raw : "CASA_UNIFAMILIAR").trim();
         return switch (tipo.toLowerCase(Locale.ROOT)) {
-            case "casa", "casa_unifamiliar" -> "CASA_UNIFAMILIAR";
+            case "casa", "casa_unifamiliar", "casa unifamiliar" -> "CASA_UNIFAMILIAR";
             case "apartamento", "departamento" -> "APARTAMENTO";
             case "pequeno_establecimiento_comercial",
                     "pequeño_establecimiento_comercial",
+                    "pequeño establecimiento comercial",
                     "comercio",
                     "local_comercial" -> "PEQUENO_ESTABLECIMIENTO_COMERCIAL";
             case "fabrica_mediana" -> "FABRICA_MEDIANA";

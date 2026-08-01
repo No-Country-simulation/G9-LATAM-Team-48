@@ -64,6 +64,10 @@ export default {
     mapWouldSelect: 'Selected: {lang}. Confirm in the panel.',
     mapWouldSelectDesktop: 'Click to choose {lang}',
     mapPending: 'Proposed language: {lang}. Tap Use this language to confirm.',
+    loginDialogOpened: 'Sign-in dialog opened',
+    googleSignInRegion: 'Sign in with Google',
+    googleSignInButton: 'Continue with Google',
+    chartDataCaption: 'Chart data as a table',
   },
   menu: {
     dashboard: 'Dashboard',
@@ -105,6 +109,10 @@ export default {
     switchToRegister: "Don't have an account? Register",
     switchToLogin: 'Already have an account? Sign in',
     orContinueWithEmail: 'or continue with email',
+    googleBlockHint:
+      'Ad blockers or privacy extensions may block Google Sign-In or stop the sign-in window from opening when you click. Disable them for this site or allow accounts.google.com, then reload. You can still sign in with email and password.',
+    googleBlockHintShort:
+      'Using an ad blocker? Google Sign-In often fails—disable the extension for this site or allow accounts.google.com. You can still use email sign-in.',
     forgotLink: 'Forgot your password?',
     forgotTitle: 'Reset password',
     forgotHint: 'We will email you a reset link.',
@@ -152,7 +160,8 @@ export default {
       loginFailed: 'Could not sign in',
       registerFailed: 'Could not register',
       googleLoginFailed: 'Could not sign in with Google',
-      googleScriptFailed: 'Could not load Google Sign-In',
+      googleScriptFailed:
+        'Could not load Google Sign-In (check ad blockers or OAuth console settings)',
       googleNoCredential: 'Google did not return a credential',
       googleNotAvailableInMock: 'Google is not available in mock mode',
       network: 'Could not connect to the backend',

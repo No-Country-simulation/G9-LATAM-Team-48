@@ -1,6 +1,8 @@
 package com.alura.user.controller;
 
+import com.alura.common.dto.PageResponse;
 import com.alura.common.response.ApiResponse;
+import com.alura.common.util.PageRequests;
 import com.alura.user.dto.AdminCreateUserRequest;
 import com.alura.user.dto.AdminUpdateUserRequest;
 import com.alura.user.dto.AdminUserCreatedResponse;
@@ -22,9 +24,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * CRUD de usuarios (solo rol ADMIN).
@@ -40,9 +41,11 @@ public class AdminUserController {
     private final AdminUserService adminUserService;
 
     @GetMapping
-    @Operation(summary = "Listar usuarios")
-    public ResponseEntity<ApiResponse<List<UserResponse>>> list() {
-        return ResponseEntity.ok(ApiResponse.ok(adminUserService.listAll()));
+    @Operation(summary = "Listar usuarios (paginado)")
+    public ResponseEntity<ApiResponse<PageResponse<UserResponse>>> list(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "" + PageRequests.DEFAULT_SIZE) int size) {
+        return ResponseEntity.ok(ApiResponse.ok(adminUserService.listPage(page, size)));
     }
 
     @GetMapping("/{id}")

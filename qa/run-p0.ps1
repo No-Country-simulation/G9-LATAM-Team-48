@@ -4,6 +4,8 @@ $Api = "https://g9-latam-team-48-production.up.railway.app"
 $Front = "https://g9-latam-team-48.vercel.app"
 $results = [ordered]@{}
 $OutDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+. (Join-Path $OutDir "load-qa-secrets.ps1")
+Require-QaDemoCredentials
 
 function Set-Result($id, $status, $note) {
     $results[$id] = @{ Status = $status; Note = $note }
@@ -152,8 +154,8 @@ Set-Result "P0-05" "MANUAL" "no mailbox access; invalid token -> code=$($verifyB
 
 # --- P0-06 Login post-verify (seed user) ---
 $loginOp = Invoke-Json -Method POST -Url "$Api/api/v1/auth/login" -Body @{
-    email    = "operador@energyai.com"
-    password = "operador123"
+    email    = $script:QaDemoOperadorEmail
+    password = $script:QaDemoOperadorPassword
 }
 $tokenUser = $null
 if ($loginOp.Ok -and $loginOp.Content) {
@@ -251,8 +253,8 @@ if ($rec.Ok -and $rec.Code -eq 200) {
 
 # --- P0-12 / P0-13 Admin ---
 $loginAdmin = Invoke-Json -Method POST -Url "$Api/api/v1/auth/login" -Body @{
-    email    = "admin@energyai.com"
-    password = "admin1234"
+    email    = $script:QaDemoAdminEmail
+    password = $script:QaDemoAdminPassword
 }
 $tokenAdmin = $null
 $roleAdmin = $null

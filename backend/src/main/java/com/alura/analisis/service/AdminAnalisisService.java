@@ -2,6 +2,8 @@ package com.alura.analisis.service;
 
 import com.alura.analisis.dto.AdminAnalisisItem;
 import com.alura.analisis.dto.AdminRecalculoResult;
+import com.alura.common.dto.PageResponse;
+import com.alura.common.util.PageRequests;
 import com.alura.analisis.persistence.AnalisisConsultaEntity;
 import com.alura.analisis.persistence.AnalisisConsultaRepository;
 import com.alura.prediction.dto.PredictionResponse;
@@ -9,6 +11,7 @@ import com.alura.prediction.service.PredictionService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,14 +26,17 @@ public class AdminAnalisisService {
     private final AnalisisConsultaRepository repository;
     private final PredictionService predictionService;
     private final ObjectMapper objectMapper;
+    private final AnalisisTipsComposer tipsComposer;
 
     public AdminAnalisisService(
             AnalisisConsultaRepository repository,
             PredictionService predictionService,
-            ObjectMapper objectMapper) {
+            ObjectMapper objectMapper,
+            AnalisisTipsComposer tipsComposer) {
         this.repository = repository;
         this.predictionService = predictionService;
         this.objectMapper = objectMapper;
+        this.tipsComposer = tipsComposer;
     }
 
     @Transactional(readOnly = true)
@@ -38,6 +44,13 @@ public class AdminAnalisisService {
         return repository.findAllByOrderByCreatedAtDesc().stream()
                 .map(this::toItem)
                 .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public PageResponse<AdminAnalisisItem> listPage(int page, int size) {
+        var springPage = repository.findAllByOrderByCreatedAtDesc(
+                PageRequests.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt")));
+        return PageResponse.from(springPage.map(this::toItem));
     }
 
     /**
@@ -58,7 +71,17 @@ public class AdminAnalisisService {
                 continue;
             }
 
-            PredictionResponse result = predictionService.analyzeHeuristic(features);
+            PredictionResponse rawResult = predictionService.analyzeHeuristic(features);
+            List<String> tips = tipsComposer.compose(
+                    rawResult, features, entity.getUserEmail());
+            PredictionResponse result = new PredictionResponse(
+                    rawResult.userId(),
+                    rawResult.category(),
+                    rawResult.nivelKey(),
+                    rawResult.confidence(),
+                    rawResult.ahorro(),
+                    tips,
+                    rawResult.benchmark());
             if (!hasChanged(entity, result)) {
                 unchanged++;
                 continue;

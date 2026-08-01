@@ -1,5 +1,6 @@
 package com.alura.user.repository;
 
+import com.alura.common.dto.PageResponse;
 import com.alura.user.model.User;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
@@ -51,6 +52,23 @@ public class InMemoryUserRepository implements UserRepository {
                         a.getId() == null ? 0L : a.getId(),
                         b.getId() == null ? 0L : b.getId()))
                 .toList();
+    }
+
+    @Override
+    public PageResponse<User> findPage(int page, int size) {
+        List<User> all = findAll();
+        int safePage = Math.max(0, page);
+        int safeSize = Math.min(100, Math.max(1, size));
+        int from = safePage * safeSize;
+        int total = all.size();
+        int totalPages = total == 0 ? 0 : (int) Math.ceil((double) total / safeSize);
+        if (from >= total && total > 0) {
+            safePage = Math.max(0, totalPages - 1);
+            from = safePage * safeSize;
+        }
+        int to = Math.min(from + safeSize, total);
+        List<User> slice = from >= total ? List.of() : all.subList(from, to);
+        return new PageResponse<>(slice, safePage, safeSize, total, totalPages);
     }
 
     @Override

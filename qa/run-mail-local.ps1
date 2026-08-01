@@ -5,7 +5,10 @@
 $ErrorActionPreference = "Continue"
 $Api = "http://localhost:8080"
 $stamp = Get-Date -Format "MMddHHmm"
-$Inbox = if ($env:QA_INBOX) { $env:QA_INBOX } else { "sandokan992000@gmail.com" }
+
+. (Join-Path $PSScriptRoot "load-qa-secrets.ps1")
+Require-QaInbox
+$Inbox = if ($env:QA_INBOX) { $env:QA_INBOX } else { $script:QaInbox }
 $local, $domain = $Inbox -split "@", 2
 $AccountA = "$local+auto$stamp@$domain"
 $AccountB = "$local+link$stamp@$domain"

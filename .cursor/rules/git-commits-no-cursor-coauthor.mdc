@@ -1,0 +1,58 @@
+---
+description: Git — sin co-autoría Cursor; revisar antes de commit y push
+alwaysApply: true
+---
+
+# Commits y push (Team 48)
+
+## Prohibido
+
+- **Nunca** dejar `Co-authored-by: Cursor <cursoragent@cursor.com>` (ni variantes) en mensajes que suban a GitHub.
+- Los commits deben figurar solo con la identidad del desarrollador del equipo.
+
+## Hooks del repo (todos en el equipo)
+
+Una vez por clon:
+
+```powershell
+.\scripts\setup-git-hooks.ps1
+```
+
+```bash
+./scripts/setup-git-hooks.sh
+```
+
+Eso configura `core.hooksPath = .githooks`:
+
+| Hook | Qué hace |
+|------|----------|
+| `prepare-commit-msg` | Quita la línea de Cursor del mensaje al commitear |
+| `commit-msg` | Rechaza el commit si la línea sigue presente |
+| `pre-push` | Bloquea `git push` si algún commit nuevo la incluye |
+
+## Checklist del agente (obligatorio)
+
+**Después de cada `git commit` o `git commit --amend`**, antes de decir que terminó:
+
+1. Ejecutar `git log -1 --format=full`
+2. Si aparece `Co-authored-by: Cursor`, **no hacer push**; reescribir el mensaje (ver abajo).
+
+**Antes de cada `git push`:**
+
+1. Repetir `git log -1 --format=full` (y si hay varios commits locales, revisar el rango `@{u}..HEAD` con `git log --format=full @{u}..HEAD`).
+2. Solo push si **ningún** mensaje incluye co-autoría de Cursor.
+
+## Cómo corregir un commit ya creado (Git Bash)
+
+Solo el último commit:
+
+```bash
+FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch -f --msg-filter 'grep -v "Co-authored-by: Cursor"' HEAD~1..HEAD
+```
+
+Luego verificar: `git log -1 --format=full`
+
+## Cursor IDE
+
+- Hook de proyecto: `.cursor/hooks.json` → bloquea `git push` si detecta la línea en commits pendientes.
+- Opcional en Cursor: desactivar inyección automática de co-autoría en ajustes de Agent / Git.
