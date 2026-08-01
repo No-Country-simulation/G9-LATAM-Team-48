@@ -194,9 +194,9 @@ Detección en cliente (`LoginModal.jsx` + `googleSignInSupport.js`):
 
 ### Login — dos estados en pantalla
 
-| Login habitual (Google + aviso corto) | Si el bloqueador traba Google (aviso ampliado) |
+| Login habitual — leyenda **corta** (`googleBlockHintShort`) | Bloqueador traba Google — leyenda **ampliada** (`googleBlockHint`) |
 |:---:|:---:|
-| ![Iniciar sesión con Google y aviso preventivo](./screenshots/login.png) | ![Login con aviso ampliado por bloqueador](./screenshots/login-bloqueador.png) |
+| ![Iniciar sesión: aviso preventivo corto](./screenshots/login.png) | ![Login: aviso largo tras clic sin popup de Google](./screenshots/login-bloqueador.png) |
 
 Archivos: `screenshots/login.png` y `screenshots/login-bloqueador.png`.
 
@@ -359,9 +359,9 @@ Formulario de 12 campos por tipo de inmueble, sección opcional legacy y placeho
 
 ### Login — Google y bloqueador de anuncios
 
-| Aviso corto (flujo normal) | Aviso ampliado (popup bloqueado) |
+| Aviso **corto** (antes / sin bloqueo) | Aviso **ampliado** (popup de Google bloqueado) |
 |:---:|:---:|
-| ![Login habitual](./screenshots/login.png) | ![Login con bloqueador](./screenshots/login-bloqueador.png) |
+| ![Login leyenda corta](./screenshots/login.png) | ![Login leyenda ampliada](./screenshots/login-bloqueador.png) |
 
 </div>
 
