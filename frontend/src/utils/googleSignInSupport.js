@@ -36,6 +36,43 @@ export function probeLikelyAdBlock() {
   })
 }
 
+/** true si el script GIS no carga (típico con uBlock / Privacy Badger). */
+export function probeGoogleIdentityScriptBlocked() {
+  if (typeof document === 'undefined') return Promise.resolve(false)
+  if (window.google?.accounts?.id) return Promise.resolve(false)
+
+  const existing = document.querySelector(`script[src^="${GIS_SCRIPT_SRC}"]`)
+  if (existing && window.google?.accounts?.id) return Promise.resolve(false)
+
+  return new Promise((resolve) => {
+    let settled = false
+    const finish = (blocked) => {
+      if (settled) return
+      settled = true
+      window.clearTimeout(timer)
+      probe.remove()
+      resolve(blocked)
+    }
+
+    const probe = document.createElement('script')
+    probe.async = true
+    probe.src = `${GIS_SCRIPT_SRC}?probe=${Date.now()}`
+    probe.onload = () => finish(!window.google?.accounts?.id)
+    probe.onerror = () => finish(true)
+
+    const timer = window.setTimeout(() => finish(true), 3500)
+    document.head.appendChild(probe)
+  })
+}
+
+export async function probeGoogleSignInEnvironment() {
+  const [adBlock, scriptBlocked] = await Promise.all([
+    probeLikelyAdBlock(),
+    probeGoogleIdentityScriptBlocked(),
+  ])
+  return adBlock || scriptBlocked
+}
+
 export function loadGoogleIdentityScript() {
   if (typeof window === 'undefined') return Promise.resolve(false)
   if (window.google?.accounts?.id) return Promise.resolve(true)
