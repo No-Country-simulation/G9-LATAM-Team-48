@@ -25,6 +25,6 @@ public class LowConsumptionRule implements RecommendationRule {
 
     @Override
     public TipKey evaluate(RecommendationRequest request) {
-        return TipKey.DEFAULT;
+        return TipKey.KEEP;
     }
 }

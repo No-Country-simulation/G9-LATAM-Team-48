@@ -29,18 +29,21 @@ public class AnalisisService {
     private final UserRepository userRepository;
     private final AnalisisEmailService emailService;
     private final ObjectMapper objectMapper;
+    private final AnalisisTipsComposer tipsComposer;
 
     public AnalisisService(
             PredictionService predictionService,
             AnalisisConsultaRepository consultaRepository,
             UserRepository userRepository,
             AnalisisEmailService emailService,
-            ObjectMapper objectMapper) {
+            ObjectMapper objectMapper,
+            AnalisisTipsComposer tipsComposer) {
         this.predictionService = predictionService;
         this.consultaRepository = consultaRepository;
         this.userRepository = userRepository;
         this.emailService = emailService;
         this.objectMapper = objectMapper;
+        this.tipsComposer = tipsComposer;
     }
 
     /**
@@ -65,7 +68,16 @@ public class AnalisisService {
         String email = currentUserEmailOrNull();
         User user = email != null ? userRepository.findByEmail(email).orElse(null) : null;
 
-        PredictionResponse result = predictionService.analyze(mlFeatures);
+        PredictionResponse rawResult = predictionService.analyze(mlFeatures);
+        List<String> tipKeys = tipsComposer.compose(rawResult, mlFeatures, email);
+        PredictionResponse result = new PredictionResponse(
+                rawResult.userId(),
+                rawResult.category(),
+                rawResult.nivelKey(),
+                rawResult.confidence(),
+                rawResult.ahorro(),
+                tipKeys,
+                rawResult.benchmark());
 
         Map<String, Object> responseMap = objectMapper.convertValue(
                 result, new TypeReference<Map<String, Object>>() {});

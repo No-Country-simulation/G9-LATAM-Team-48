@@ -13,6 +13,7 @@ import EmptyState from '../components/EmptyState'
 import GraficoHistoriaConsumo from '../components/GraficoHistoriaConsumo'
 import GraficosHistoriaExtra from '../components/GraficosHistoriaExtra'
 import AnalysisRequestFieldsTable from '../components/AnalysisRequestFieldsTable'
+import AnalysisTipsTable from '../components/AnalysisTipsTable'
 import { draftFromRequest, saveAnalisisDraft } from '../utils/analisisDraft'
 import {
   ML_REQUEST_FIELD_DEFS,
@@ -391,15 +392,7 @@ function HistoriaConsumos() {
               <AnalysisRequestFieldsTable request={request} t={t} showMlKey />
 
               <h6 className="mb-2 mt-3">{t('historiaConsumos.recommendations')}</h6>
-              {tips.length === 0 ? (
-                <p className="small text-muted mb-0">{t('historiaConsumos.noTips')}</p>
-              ) : (
-                <ul className="mb-0 small">
-                  {tips.map((key) => (
-                    <li key={key}>{t(`analysis.tipsList.${key}`, key)}</li>
-                  ))}
-                </ul>
-              )}
+              <AnalysisTipsTable tipKeys={tips} t={t} />
             </>
           )}
         </Modal.Body>

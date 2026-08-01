@@ -2,12 +2,9 @@ package com.alura.prediction.service;
 
 import com.alura.prediction.dto.PredictionResponse;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Clasificacion heuristica cuando el microservicio FastAPI no esta disponible
@@ -85,7 +82,7 @@ final class HeuristicPrediction {
             confidence = 0.68;
         }
 
-        List<String> tipKeys = tipsFor(nivelKey, tipo, usoPico, horasAlto, equipos, climate);
+        List<String> tipKeys = List.of();
 
         return new PredictionResponse(
                 null,
@@ -95,47 +92,6 @@ final class HeuristicPrediction {
                 ahorro,
                 tipKeys,
                 benchmark);
-    }
-
-    private static List<String> tipsFor(
-            String nivelKey,
-            String tipo,
-            boolean usoPico,
-            double horasAlto,
-            double equipos,
-            double climate) {
-        Set<String> tips = new LinkedHashSet<>();
-        boolean comercial = "PEQUENO_ESTABLECIMIENTO_COMERCIAL".equals(tipo);
-
-        if ("efficient".equals(nivelKey)) {
-            tips.add("keep");
-            tips.add("monitor");
-            if (climate >= 4) {
-                tips.add("ac");
-            }
-        } else if ("inefficient".equals(nivelKey)) {
-            tips.add(comercial ? "schedules" : "ac");
-            tips.add("replace");
-            tips.add("peak");
-            tips.add(comercial ? "led" : "standby");
-        } else {
-            tips.add("led");
-            tips.add("peak");
-            tips.add("appliances");
-        }
-
-        if (usoPico || horasAlto >= 5) {
-            tips.add("peak");
-            tips.add("standby");
-        }
-        if (equipos >= 10) {
-            tips.add("replace");
-        }
-        if (climate >= 6) {
-            tips.add("insulation");
-        }
-
-        return new ArrayList<>(tips).stream().limit(5).toList();
     }
 
     private static double defaultPersonas(String tipo) {
