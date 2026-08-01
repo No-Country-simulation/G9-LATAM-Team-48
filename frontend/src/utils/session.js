@@ -84,11 +84,12 @@ export function bootstrapAuthStorage() {
   if (String(token).startsWith('mock-token')) {
     return { user: getStoredUser(), token }
   }
-  if (isAccessTokenExpired(token)) {
+  if (!isSessionTokenUsable(token)) {
     clearStoredSession()
     return { user: null, token: null }
   }
-  return { user: getStoredUser(), token }
+  // Token con exp OK: no mostrar nombre hasta validar con /users/me
+  return { user: null, token }
 }
 
 export function resolveInitialPagina({
@@ -102,7 +103,7 @@ export function resolveInitialPagina({
   const token = readStoredToken()
   const sessionOk =
     token &&
-    (String(token).startsWith('mock-token') || !isAccessTokenExpired(token))
+    (String(token).startsWith('mock-token') || isSessionTokenUsable(token))
   if (!sessionOk && paginaRequiresAuth(pagina)) {
     return fallback
   }
@@ -124,9 +125,17 @@ export function getJwtExpirationMs(token) {
 }
 
 export function isAccessTokenExpired(token, skewMs = 2000) {
+  if (!token || String(token).startsWith('mock-token')) return false
   const expMs = getJwtExpirationMs(token)
-  if (expMs == null) return false
+  // Sin exp legible → no confiar en el token (fail-closed)
+  if (expMs == null) return true
   return Date.now() >= expMs - skewMs
+}
+
+export function isSessionTokenUsable(token) {
+  if (!token) return false
+  if (String(token).startsWith('mock-token')) return true
+  return !isAccessTokenExpired(token)
 }
 
 /** Páginas que no deben mostrarse sin sesión (alineado con menuItems). */

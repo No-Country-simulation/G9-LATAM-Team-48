@@ -51,6 +51,7 @@ export function AuthProvider({ children }) {
   const [error, setError] = useState(null)
   const [loginOpen, setLoginOpen] = useState(false)
   const [sessionEpoch, setSessionEpoch] = useState(0)
+  const [authReady, setAuthReady] = useState(() => !shouldHydrate(initialAuth.token))
   const sessionExpiredRef = useRef(false)
 
   const markSessionRestored = () => {
@@ -61,7 +62,8 @@ export function AuthProvider({ children }) {
     setSessionEpoch((n) => n + 1)
   }
 
-  const isAuthenticated = Boolean(user && token)
+  const isAuthenticated =
+    authReady && Boolean(user && token && !isAccessTokenExpired(token))
   const openLogin = () => setLoginOpen(true)
   const closeLogin = () => setLoginOpen(false)
 
@@ -83,6 +85,7 @@ export function AuthProvider({ children }) {
     if (sessionExpiredRef.current) return
     sessionExpiredRef.current = true
     clearSession(setUser, setToken)
+    setAuthReady(true)
     setError(null)
     setLoginOpen(false)
     bumpSessionEpoch()
@@ -127,10 +130,12 @@ export function AuthProvider({ children }) {
 
     async function hydrate() {
       const currentToken = localStorage.getItem(TOKEN_STORAGE_KEY)
-      const storedUser = getStoredUser()
 
       if (!currentToken) {
-        if (!cancelled) setHydrating(false)
+        if (!cancelled) {
+          setAuthReady(true)
+          setHydrating(false)
+        }
         return
       }
 
@@ -140,14 +145,12 @@ export function AuthProvider({ children }) {
         return
       }
 
-      // Mantener sesion visible de inmediato (evita que el menu Admin parpadee/desaparezca)
-      if (!cancelled && storedUser) {
-        setUser(storedUser)
-        setToken(currentToken)
-      }
-
       if (String(currentToken).startsWith('mock-token')) {
-        if (!cancelled) setHydrating(false)
+        if (!cancelled) {
+          setUser(getStoredUser())
+          setAuthReady(true)
+          setHydrating(false)
+        }
         return
       }
 
@@ -157,16 +160,16 @@ export function AuthProvider({ children }) {
           setUser(profile)
           setToken(currentToken)
           localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(profile))
+          setAuthReady(true)
         }
       } catch (err) {
         const status = err?.response?.status
         if (!cancelled) {
-          // Solo cerrar si el token es invalido. Si el backend falla, conservar cache.
-          if (status === 401) {
+          if (status === 401 || status === 403) {
             expireSession()
-          } else if (storedUser) {
-            setUser(storedUser)
-            setToken(currentToken)
+          } else {
+            clearSession(setUser, setToken)
+            setAuthReady(true)
           }
         }
       } finally {
@@ -187,6 +190,7 @@ export function AuthProvider({ children }) {
     try {
       const data = await loginRequest({ email, password })
       persistSession(data, setUser, setToken, markSessionRestored)
+      setAuthReady(true)
       return { ...data, user: normalizeUser(data.user) }
     } catch (err) {
       setError(err.message)
@@ -207,6 +211,7 @@ export function AuthProvider({ children }) {
         return data
       }
       persistSession(data, setUser, setToken, markSessionRestored)
+      setAuthReady(true)
       return { ...data, user: normalizeUser(data.user) }
     } catch (err) {
       setError(err.message)
@@ -222,6 +227,7 @@ export function AuthProvider({ children }) {
     try {
       const data = await loginWithGoogleRequest(credential)
       persistSession(data, setUser, setToken, markSessionRestored)
+      setAuthReady(true)
       return { ...data, user: normalizeUser(data.user) }
     } catch (err) {
       setError(err.message)
@@ -238,6 +244,7 @@ export function AuthProvider({ children }) {
       await logoutRequest()
     } finally {
       clearSession(setUser, setToken)
+      setAuthReady(true)
       bumpSessionEpoch()
       setError(null)
       setLoading(false)
