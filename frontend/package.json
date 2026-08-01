@@ -8,6 +8,7 @@
         "build": "vite build",
         "preview": "vite preview",
         "screenshots": "node scripts/capture-screenshots.mjs",
+        "screenshots:auth": "node scripts/capture-auth-screenshots.mjs",
         "bake:world-map": "node scripts/bake-world-map.mjs"
     },
     "dependencies": {
@@ -21,6 +22,7 @@
     },
     "devDependencies": {
         "@vitejs/plugin-react": "^5.0.0",
+        "playwright": "^1.52.0",
         "vite": "^7.1.0"
     }
 }
