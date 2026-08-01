@@ -10,7 +10,8 @@ import api, { setupUnauthorizedInterceptor } from '../services/api'
 import {
   TOKEN_STORAGE_KEY,
   USER_STORAGE_KEY,
-  clearStoredPagina,
+  bootstrapAuthStorage,
+  clearStoredSession,
   emitSessionExpired,
   getStoredUser,
   isAccessTokenExpired,
@@ -22,9 +23,15 @@ const AuthContext = createContext()
 function clearSession(setUser, setToken) {
   setUser(null)
   setToken(null)
-  localStorage.removeItem(USER_STORAGE_KEY)
-  localStorage.removeItem(TOKEN_STORAGE_KEY)
-  clearStoredPagina()
+  clearStoredSession()
+}
+
+const initialAuth = bootstrapAuthStorage()
+
+function shouldHydrate(token) {
+  if (!token) return false
+  if (String(token).startsWith('mock-token')) return false
+  return true
 }
 
 function persistSession(data, setUser, setToken, onRestored) {
@@ -37,12 +44,10 @@ function persistSession(data, setUser, setToken, onRestored) {
 }
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(getStoredUser)
-  const [token, setToken] = useState(() => localStorage.getItem(TOKEN_STORAGE_KEY))
+  const [user, setUser] = useState(initialAuth.user)
+  const [token, setToken] = useState(initialAuth.token)
   const [loading, setLoading] = useState(false)
-  const [hydrating, setHydrating] = useState(() =>
-    Boolean(localStorage.getItem(TOKEN_STORAGE_KEY)),
-  )
+  const [hydrating, setHydrating] = useState(() => shouldHydrate(initialAuth.token))
   const [error, setError] = useState(null)
   const [loginOpen, setLoginOpen] = useState(false)
   const [sessionEpoch, setSessionEpoch] = useState(0)
