@@ -35,14 +35,14 @@ Formato: **PNG**, viewport ~**1440×900** (o `fullPage` en páginas largas).
 | `dashboard.png` | Dashboard (KPIs, insights, gráficos) |
 | `consumos.png` | Consumos energéticos |
 | `historia-consumos.png` | Historia de consumos (análisis guardados) |
-| `analisis-ia.png` | Análisis IA (formulario casa / apartamento / comercio) |
+| `analisis-ia.png` | Análisis IA — formulario **12 campos ML** + opcionales legacy; panel derecho (gráfico y tips vacíos hasta analizar) |
 | `mapa-idiomas.png` | Modal mapa mundial de idiomas |
 | `recomendaciones.png` | Recomendaciones IA |
 | `contacto.png` | Contáctanos + Equipo 48 |
 | `admin-usuarios.png` | Panel Admin — Usuarios |
 | `admin-analisis.png` | Admin — Análisis IA (historial global) |
-| `login.png` | Modal — Entrar (email + **Continuar con Google**) |
-| `registro.png` | Modal — Crear cuenta (email + **Continuar con Google**) |
+| `login.png` | Modal **Iniciar sesión** — aviso bloqueadores / Google Sign-In, email y contraseña |
+| `registro.png` | Modal **Crear cuenta** (misma UX Google + aviso; ver `login.png` para detalle del aviso) |
 | `admin-crear-usuario.png` | Modal — Crear usuario |
 | `admin-editar-usuario.png` | Modal — Editar usuario |
 | `forgot-password.png` | Modal — Recuperar contraseña |

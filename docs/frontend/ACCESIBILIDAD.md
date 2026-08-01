@@ -38,7 +38,7 @@ Patrón gráficos Recharts:
 1. Contenedor del gráfico con **`aria-hidden="true"`**.
 2. **`ChartSrTable`**: tabla `visually-hidden` + `<caption>` (`a11y.chartDataCaption`).
 
-**Google Sign-In y bloqueadores:** aviso al usuario **solo tras un clic fallido** si el popup/script no responde (`LoginModal.jsx`, `googleSignInSupport.js`, clave `auth.googleBlockHint`).
+**Google Sign-In y bloqueadores:** aviso amarillo en el modal siempre que hay botón Google (`auth.googleBlockHintShort`); si el clic no abre popup o falla el script, texto ampliado (`auth.googleBlockHint`). Login por email sigue disponible (`LoginModal.jsx`, `googleSignInSupport.js`).
 
 ---
 
@@ -94,7 +94,7 @@ Patrón gráficos Recharts:
 ## Limitaciones conocidas
 
 - **Recharts**: solo los datos vía tabla SR; no hay sonificación del gráfico.
-- **Google GIS**: depende de Google; bloqueadores pueden impedir popup (aviso tras clic).
+- **Google GIS**: depende de Google; bloqueadores pueden impedir popup (aviso preventivo + ampliado tras clic fallido).
 - **Contraste / foco** en todos los estados hover/disabled: no auditado exhaustivamente.
 - Páginas **admin** y formularios largos: tienen algo de ARIA pero no revisión página por página.
 - Traducciones `a11y.*` completas en **ES/EN**; otros idiomas usan fallback EN vía `translate()`.
