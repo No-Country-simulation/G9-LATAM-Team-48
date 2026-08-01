@@ -12,5 +12,11 @@ public enum TipKey {
     LED,
     COMMERCIAL,
     HOUSE,
-    APARTMENT
+    APARTMENT,
+    INSULATION,
+    REPLACE,
+    APPLIANCES,
+    MONITOR,
+    KEEP,
+    SCHEDULES
 }

@@ -23,14 +23,17 @@ public class AdminAnalisisService {
     private final AnalisisConsultaRepository repository;
     private final PredictionService predictionService;
     private final ObjectMapper objectMapper;
+    private final AnalisisTipsComposer tipsComposer;
 
     public AdminAnalisisService(
             AnalisisConsultaRepository repository,
             PredictionService predictionService,
-            ObjectMapper objectMapper) {
+            ObjectMapper objectMapper,
+            AnalisisTipsComposer tipsComposer) {
         this.repository = repository;
         this.predictionService = predictionService;
         this.objectMapper = objectMapper;
+        this.tipsComposer = tipsComposer;
     }
 
     @Transactional(readOnly = true)
@@ -58,7 +61,17 @@ public class AdminAnalisisService {
                 continue;
             }
 
-            PredictionResponse result = predictionService.analyzeHeuristic(features);
+            PredictionResponse rawResult = predictionService.analyzeHeuristic(features);
+            List<String> tips = tipsComposer.compose(
+                    rawResult, features, entity.getUserEmail());
+            PredictionResponse result = new PredictionResponse(
+                    rawResult.userId(),
+                    rawResult.category(),
+                    rawResult.nivelKey(),
+                    rawResult.confidence(),
+                    rawResult.ahorro(),
+                    tips,
+                    rawResult.benchmark());
             if (!hasChanged(entity, result)) {
                 unchanged++;
                 continue;

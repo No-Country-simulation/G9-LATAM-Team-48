@@ -1,7 +1,4 @@
-/**
- * Espejo de `HeuristicPrediction.java` (backend). Si cambia una regla allá,
- * hay que replicarla acá para que el fallback local no contradiga a la API.
- */
+import { composeAnalysisTipKeys } from '../utils/analysisTipsEngine'
 
 export const INSTALLATION_TYPES = {
   APARTAMENTO: 'APARTAMENTO',
@@ -118,35 +115,6 @@ function habitScoreFor({ consumo, usoPico, horasAlto, equipos }) {
   return score
 }
 
-function tipsFor(nivelKey, { tipo, usoPico, horasAlto, equipos, climate }) {
-  const tips = new Set()
-  const comercial = tipo === COMERCIAL
-
-  if (nivelKey === 'efficient') {
-    tips.add('keep')
-    tips.add('monitor')
-    if (climate >= 4) tips.add('ac')
-  } else if (nivelKey === 'inefficient') {
-    tips.add(comercial ? 'schedules' : 'ac')
-    tips.add('replace')
-    tips.add('peak')
-    tips.add(comercial ? 'led' : 'standby')
-  } else {
-    tips.add('led')
-    tips.add('peak')
-    tips.add('appliances')
-  }
-
-  if (usoPico || horasAlto >= 5) {
-    tips.add('peak')
-    tips.add('standby')
-  }
-  if (equipos >= 10) tips.add('replace')
-  if (climate >= 6) tips.add('insulation')
-
-  return [...tips].slice(0, 5)
-}
-
 export function getBenchmark(tipoInmueble, datos = {}) {
   return benchmarkFor(readFeatures({ ...datos, tipoInmueble: tipoInmueble ?? datos.tipoInmueble }))
 }
@@ -180,7 +148,7 @@ export function analizarConsumo(datos) {
     category: nivelKey,
     ahorro,
     confidence,
-    tipKeys: tipsFor(nivelKey, features),
+    tipKeys: composeAnalysisTipKeys(nivelKey, datos),
     benchmark,
   }
 }

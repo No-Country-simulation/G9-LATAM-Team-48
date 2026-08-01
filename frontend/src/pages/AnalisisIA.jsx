@@ -8,6 +8,7 @@ import {
   ZONA_INMUEBLE,
   buildAnalisisApiPayload,
 } from '../utils/analisisMlContract'
+import AnalysisTipsTable from '../components/AnalysisTipsTable'
 import ErrorState from '../components/ErrorState'
 import GraficoAnalisisIA from '../components/GraficoAnalisisIA'
 import { useLocale } from '../context/LocaleContext'
@@ -616,11 +617,7 @@ function AnalisisIA() {
                   )}
 
                   <h6 className="mb-2 mt-3">{t('analysis.tips')}</h6>
-                  <ul className="mb-0 small">
-                    {(resultado.tipKeys || []).map((key) => (
-                      <li key={key}>{t(`analysis.tipsList.${key}`)}</li>
-                    ))}
-                  </ul>
+                  <AnalysisTipsTable tipKeys={resultado.tipKeys} t={t} />
 
                   {isAuthenticated &&
                     (resultado.emailStatus === 'SENT' ||
