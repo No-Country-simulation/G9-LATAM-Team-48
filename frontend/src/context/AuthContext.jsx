@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import {
   getCurrentUser,
   login as loginRequest,
@@ -11,7 +11,9 @@ import {
   TOKEN_STORAGE_KEY,
   USER_STORAGE_KEY,
   clearStoredPagina,
+  emitSessionExpired,
   getStoredUser,
+  isAccessTokenExpired,
   normalizeUser,
 } from '../utils/session'
 
@@ -25,12 +27,13 @@ function clearSession(setUser, setToken) {
   clearStoredPagina()
 }
 
-function persistSession(data, setUser, setToken) {
+function persistSession(data, setUser, setToken, onRestored) {
   const user = normalizeUser(data.user)
   setUser(user)
   setToken(data.token)
   localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user))
   localStorage.setItem(TOKEN_STORAGE_KEY, data.token)
+  onRestored?.()
 }
 
 export function AuthProvider({ children }) {
@@ -42,6 +45,16 @@ export function AuthProvider({ children }) {
   )
   const [error, setError] = useState(null)
   const [loginOpen, setLoginOpen] = useState(false)
+  const [sessionEpoch, setSessionEpoch] = useState(0)
+  const sessionExpiredRef = useRef(false)
+
+  const markSessionRestored = () => {
+    sessionExpiredRef.current = false
+  }
+
+  const bumpSessionEpoch = () => {
+    setSessionEpoch((n) => n + 1)
+  }
 
   const isAuthenticated = Boolean(user && token)
   const openLogin = () => setLoginOpen(true)
@@ -61,12 +74,43 @@ export function AuthProvider({ children }) {
     return profile
   }
 
-  // Sesión vencida en cualquier llamada autenticada → limpiar y abrir login
+  function expireSession() {
+    if (sessionExpiredRef.current) return
+    sessionExpiredRef.current = true
+    clearSession(setUser, setToken)
+    setError(null)
+    setLoginOpen(false)
+    bumpSessionEpoch()
+    emitSessionExpired()
+  }
+
+  function checkTokenLifetime() {
+    const currentToken = localStorage.getItem(TOKEN_STORAGE_KEY)
+    if (!currentToken) return
+    if (String(currentToken).startsWith('mock-token')) return
+    if (isAccessTokenExpired(currentToken)) {
+      expireSession()
+    }
+  }
+
+  // Sesión vencida por tiempo (JWT exp) sin esperar un 401
+  useEffect(() => {
+    checkTokenLifetime()
+    const intervalId = window.setInterval(checkTokenLifetime, 15000)
+    const onFocus = () => checkTokenLifetime()
+    window.addEventListener('focus', onFocus)
+    document.addEventListener('visibilitychange', onFocus)
+    return () => {
+      window.clearInterval(intervalId)
+      window.removeEventListener('focus', onFocus)
+      document.removeEventListener('visibilitychange', onFocus)
+    }
+  }, [])
+
+  // Sesión vencida en cualquier llamada autenticada → dashboard + remount (sin modal login)
   useEffect(() => {
     const interceptorId = setupUnauthorizedInterceptor(() => {
-      clearSession(setUser, setToken)
-      setError(null)
-      setLoginOpen(true)
+      expireSession()
     })
     return () => {
       api.interceptors.response.eject(interceptorId)
@@ -81,6 +125,12 @@ export function AuthProvider({ children }) {
       const storedUser = getStoredUser()
 
       if (!currentToken) {
+        if (!cancelled) setHydrating(false)
+        return
+      }
+
+      if (isAccessTokenExpired(currentToken)) {
+        if (!cancelled) expireSession()
         if (!cancelled) setHydrating(false)
         return
       }
@@ -108,7 +158,7 @@ export function AuthProvider({ children }) {
         if (!cancelled) {
           // Solo cerrar si el token es invalido. Si el backend falla, conservar cache.
           if (status === 401) {
-            clearSession(setUser, setToken)
+            expireSession()
           } else if (storedUser) {
             setUser(storedUser)
             setToken(currentToken)
@@ -131,7 +181,7 @@ export function AuthProvider({ children }) {
 
     try {
       const data = await loginRequest({ email, password })
-      persistSession(data, setUser, setToken)
+      persistSession(data, setUser, setToken, markSessionRestored)
       return { ...data, user: normalizeUser(data.user) }
     } catch (err) {
       setError(err.message)
@@ -151,7 +201,7 @@ export function AuthProvider({ children }) {
       if (data?.pendingVerification || !data?.token) {
         return data
       }
-      persistSession(data, setUser, setToken)
+      persistSession(data, setUser, setToken, markSessionRestored)
       return { ...data, user: normalizeUser(data.user) }
     } catch (err) {
       setError(err.message)
@@ -166,7 +216,7 @@ export function AuthProvider({ children }) {
     setError(null)
     try {
       const data = await loginWithGoogleRequest(credential)
-      persistSession(data, setUser, setToken)
+      persistSession(data, setUser, setToken, markSessionRestored)
       return { ...data, user: normalizeUser(data.user) }
     } catch (err) {
       setError(err.message)
@@ -183,6 +233,7 @@ export function AuthProvider({ children }) {
       await logoutRequest()
     } finally {
       clearSession(setUser, setToken)
+      bumpSessionEpoch()
       setError(null)
       setLoading(false)
     }
@@ -202,6 +253,7 @@ export function AuthProvider({ children }) {
         loginWithGoogle,
         logout,
         refreshUser,
+        sessionEpoch,
         loginOpen,
         openLogin,
         closeLogin,
