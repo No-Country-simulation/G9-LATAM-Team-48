@@ -1,53 +1,55 @@
 import { useEffect, useRef } from 'react'
+import { loadGoogleIdentityScript } from '../utils/googleSignInSupport'
 
-const GIS_SRC = 'https://accounts.google.com/gsi/client'
 const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || ''
+const RENDER_WATCH_MS = 2500
 
-function loadGisScript() {
-  if (typeof window === 'undefined') return Promise.resolve(false)
-  if (window.google?.accounts?.id) return Promise.resolve(true)
-  const existing = document.querySelector(`script[src="${GIS_SRC}"]`)
-  if (existing) {
-    return new Promise((resolve) => {
-      if (window.google?.accounts?.id) {
-        resolve(true)
-        return
-      }
-      existing.addEventListener('load', () => resolve(true))
-    })
-  }
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script')
-    script.src = GIS_SRC
-    script.async = true
-    script.onload = () => resolve(true)
-    script.onerror = () => reject(new Error('googleScriptFailed'))
-    document.head.appendChild(script)
-  })
+function hostHasGoogleButton(host) {
+  if (!host) return false
+  return Boolean(
+    host.querySelector('iframe') ||
+      host.querySelector('[role="button"]') ||
+      host.querySelector('div[tabindex]'),
+  )
 }
 
 /**
  * Botón oficial de Google Identity Services.
  * Visible solo si VITE_GOOGLE_CLIENT_ID está definido.
  */
-export default function GoogleSignInButton({ onCredential, onError, disabled = false }) {
+export default function GoogleSignInButton({
+  onCredential,
+  onError,
+  onBlocked,
+  disabled = false,
+}) {
   const hostRef = useRef(null)
   const onCredentialRef = useRef(onCredential)
   const onErrorRef = useRef(onError)
+  const onBlockedRef = useRef(onBlocked)
   const enabled = Boolean(CLIENT_ID?.trim())
 
   useEffect(() => {
     onCredentialRef.current = onCredential
     onErrorRef.current = onError
-  }, [onCredential, onError])
+    onBlockedRef.current = onBlocked
+  }, [onCredential, onError, onBlocked])
 
   useEffect(() => {
     if (!enabled || !hostRef.current || disabled) return undefined
     let cancelled = false
 
-    loadGisScript()
+    let renderTimer
+
+    loadGoogleIdentityScript()
       .then(() => {
-        if (cancelled || !hostRef.current || !window.google?.accounts?.id) return
+        if (cancelled || !hostRef.current || !window.google?.accounts?.id) {
+          if (!cancelled) {
+            onBlockedRef.current?.('script')
+            onErrorRef.current?.('googleScriptFailed')
+          }
+          return
+        }
         hostRef.current.innerHTML = ''
         window.google.accounts.id.initialize({
           client_id: CLIENT_ID.trim(),
@@ -70,13 +72,24 @@ export default function GoogleSignInButton({ onCredential, onError, disabled = f
           logo_alignment: 'left',
           width: 320,
         })
+        renderTimer = window.setTimeout(() => {
+          if (cancelled || !hostRef.current) return
+          if (!hostHasGoogleButton(hostRef.current)) {
+            onBlockedRef.current?.('script')
+            onErrorRef.current?.('googleScriptFailed')
+          }
+        }, RENDER_WATCH_MS)
       })
       .catch(() => {
-        if (!cancelled) onErrorRef.current?.('googleScriptFailed')
+        if (!cancelled) {
+          onBlockedRef.current?.('script')
+          onErrorRef.current?.('googleScriptFailed')
+        }
       })
 
     return () => {
       cancelled = true
+      if (renderTimer) window.clearTimeout(renderTimer)
     }
   }, [enabled, disabled])
 

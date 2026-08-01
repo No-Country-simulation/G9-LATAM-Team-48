@@ -5,6 +5,7 @@ import { useLocale } from '../context/LocaleContext'
 import GoogleSignInButton, {
   isGoogleSignInConfigured,
 } from './GoogleSignInButton'
+import { probeLikelyAdBlock } from '../utils/googleSignInSupport'
 import {
   forgotPassword,
   resendVerification,
@@ -50,6 +51,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
   const [forgotLoading, setForgotLoading] = useState(false)
   const [resendLoading, setResendLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
+  const [googleBlockHint, setGoogleBlockHint] = useState('')
   const showGoogle = isGoogleSignInConfigured() && (mode === 'login' || mode === 'register')
 
   const handleGoogleCredential = async (credential) => {
@@ -73,6 +75,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
       setInfoMessage('')
       setVerifyLink('')
       setNeedsVerification(false)
+      setGoogleBlockHint('')
       return
     }
     setFieldErrors({})
@@ -81,6 +84,22 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
       setNeedsVerification(false)
     }
   }, [show, mode])
+
+  useEffect(() => {
+    if (!show || !showGoogle) {
+      setGoogleBlockHint('')
+      return undefined
+    }
+    let cancelled = false
+    probeLikelyAdBlock().then((likely) => {
+      if (!cancelled && likely) {
+        setGoogleBlockHint(t('auth.googleBlockHint'))
+      }
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [show, showGoogle, t])
 
   const resetForm = () => {
     setName('')
@@ -91,6 +110,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
     setInfoMessage('')
     setVerifyLink('')
     setNeedsVerification(false)
+    setGoogleBlockHint('')
   }
 
   const handleForgot = async (event) => {
@@ -242,11 +262,22 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
 
         {showGoogle && (
           <div className="mb-3">
+            {googleBlockHint && (
+              <div className="alert alert-warning py-2 small mb-2" role="status">
+                {googleBlockHint}
+              </div>
+            )}
             <GoogleSignInButton
               onCredential={handleGoogleCredential}
-              onError={(code) =>
+              onBlocked={() => setGoogleBlockHint(t('auth.googleBlockHint'))}
+              onError={(code) => {
+                if (code === 'googleScriptFailed') {
+                  setGoogleBlockHint(t('auth.googleBlockHint'))
+                  setFormError('')
+                  return
+                }
                 setFormError(resolveAuthError(t, code || 'googleLoginFailed'))
-              }
+              }}
               disabled={loading || googleLoading}
             />
             <div className="auth-divider my-3 text-center text-muted small">

@@ -105,6 +105,8 @@ export default {
     switchToRegister: "Don't have an account? Register",
     switchToLogin: 'Already have an account? Sign in',
     orContinueWithEmail: 'or continue with email',
+    googleBlockHint:
+      'Ad blockers or strict privacy extensions may prevent Google Sign-In from loading. Disable them for this site or allow accounts.google.com, then reload. You can still sign in with email and password.',
     forgotLink: 'Forgot your password?',
     forgotTitle: 'Reset password',
     forgotHint: 'We will email you a reset link.',
@@ -152,7 +154,8 @@ export default {
       loginFailed: 'Could not sign in',
       registerFailed: 'Could not register',
       googleLoginFailed: 'Could not sign in with Google',
-      googleScriptFailed: 'Could not load Google Sign-In',
+      googleScriptFailed:
+        'Could not load Google Sign-In (check ad blockers or OAuth console settings)',
       googleNoCredential: 'Google did not return a credential',
       googleNotAvailableInMock: 'Google is not available in mock mode',
       network: 'Could not connect to the backend',
