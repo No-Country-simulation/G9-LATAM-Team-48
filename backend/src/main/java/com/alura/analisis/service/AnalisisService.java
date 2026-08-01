@@ -47,29 +47,38 @@ public class AnalisisService {
      * Analiza, persiste la consulta siempre y envia email solo si hay usuario autenticado.
      */
     @Transactional
-    public AnalisisApiResponse analizarYGuardar(Map<String, Object> datos) {
-        if (datos == null || datos.isEmpty()) {
+    public AnalisisApiResponse analizarYGuardar(Map<String, Object> mlFeatures, Map<String, Object> storedRequest) {
+        if (mlFeatures == null || mlFeatures.isEmpty()) {
             throw new IllegalArgumentException("El body del analisis no puede estar vacio");
         }
-        Object consumo = datos.get("consumoKwh");
+        Object consumo = mlFeatures.get("consumo_kwh_mensual");
         if (consumo == null) {
-            consumo = datos.get("consumo");
+            consumo = mlFeatures.get("consumoKwh");
         }
         if (consumo == null) {
-            throw new IllegalArgumentException("El campo 'consumoKwh' es obligatorio");
+            consumo = mlFeatures.get("consumo");
+        }
+        if (consumo == null) {
+            throw new IllegalArgumentException("El campo de consumo mensual es obligatorio");
         }
 
         String email = currentUserEmailOrNull();
         User user = email != null ? userRepository.findByEmail(email).orElse(null) : null;
 
-        PredictionResponse result = predictionService.analyze(datos);
+        PredictionResponse result = predictionService.analyze(mlFeatures);
 
         Map<String, Object> responseMap = objectMapper.convertValue(
                 result, new TypeReference<Map<String, Object>>() {});
 
-        Object tipoRaw = datos.get("tipoInmueble");
+        Map<String, Object> requestToStore =
+                storedRequest != null && !storedRequest.isEmpty() ? storedRequest : mlFeatures;
+
+        Object tipoRaw = requestToStore.get("tipoInmueble");
         if (tipoRaw == null) {
-            tipoRaw = datos.get("tipo");
+            tipoRaw = requestToStore.get("tipo_inmueble");
+        }
+        if (tipoRaw == null) {
+            tipoRaw = requestToStore.get("tipo");
         }
         String tipoInstalacion = String.valueOf(
                 tipoRaw != null ? tipoRaw : "CASA_UNIFAMILIAR");
@@ -78,7 +87,7 @@ public class AnalisisService {
                 .userId(user != null ? user.getId() : null)
                 .userEmail(email)
                 .tipoInstalacion(tipoInstalacion)
-                .requestJson(objectMapper.valueToTree(datos))
+                .requestJson(objectMapper.valueToTree(requestToStore))
                 .nivelKey(result.nivelKey())
                 .ahorro(result.ahorro())
                 .confidence(result.confidence())

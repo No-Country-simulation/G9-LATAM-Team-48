@@ -102,6 +102,30 @@ export const pagesEn = {
     devices: 'Number of devices',
     homeArea: 'Floor area (m²)',
     climateHours: 'Climate-control hours per day',
+    acHoursDay: 'A/C usage hours per day',
+    previousMonthUsage: 'Previous month usage (kWh)',
+    thermalInsulation: 'Thermal insulation',
+    ledLightingPct: 'LED lighting (%)',
+    buildingAgeYears: 'Building age (years)',
+    zone: 'Zone',
+    applianceAgeYears: 'Appliance age (years)',
+    legacyFieldsTitle: 'Optional — not used by the current model',
+    legacyFieldTag: 'not used by model',
+    aislamiento: {
+      BUENO: 'Good',
+      MALO: 'Poor',
+      REGULAR: 'Fair',
+    },
+    zona: {
+      SUBURBANA: 'Suburban',
+      URBANA_COSTERA: 'Coastal urban',
+      URBANA_INTERIOR: 'Inland urban',
+    },
+    requestTable: {
+      field: 'Field',
+      jsonKey: 'JSON key',
+      value: 'Value',
+    },
     peakUseHours: 'High-consumption hours per day',
     peakHoursUse: 'Is there consumption during peak hours?',
     area: 'Premises area (m²)',
@@ -121,7 +145,13 @@ export const pagesEn = {
       cantidadEquipos:
         'Approximate count of relevant electrical devices (fridge, washer, TVs, PCs, fryers, etc.).',
       horasClimatizacion:
-        'Hours per day that A/C or heating is typically on.',
+        'Hours per day A/C is typically on (sent to the model as horas_uso_aa_dia).',
+      consumoKwhMesAnterior: 'Previous calendar month usage in kWh (from your bill).',
+      aislamientoTermico: 'Thermal insulation quality of the property.',
+      pctIluminacionLed: 'Share of LED fixtures (0–100 percent, not 0–1).',
+      antiguedadConstruccionAnios: 'Years since construction or major renovation.',
+      zona: 'Location category used by the model.',
+      antiguedadElectrodomesticosAnios: 'Average age of major appliances in years.',
       horasAltoConsumo:
         'Hours per day with intensive energy use (cooking, laundry, work equipment, etc.).',
       usoHorarioPico:
@@ -165,8 +195,12 @@ export const pagesEn = {
       'We loaded the data from your previous query. You can edit it and analyze again.',
     validation: {
       consumoRequired: 'Enter a monthly usage greater than 0.',
+      consumoPrevRequired: 'Enter previous month usage (0 or more).',
       areaInvalid: 'Area cannot be negative.',
       peopleInvalid: 'Number of people cannot be negative.',
+      peopleMin: 'Enter at least one person.',
+      pctLedRange: 'Use a percentage between 0 and 100.',
+      ageInvalid: 'Age cannot be negative.',
       hoursRange: 'Use a value between 0 and 24.',
     },
     chart: {

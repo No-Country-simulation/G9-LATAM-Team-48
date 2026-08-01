@@ -12,7 +12,12 @@ import Loader from '../components/Loader'
 import EmptyState from '../components/EmptyState'
 import GraficoHistoriaConsumo from '../components/GraficoHistoriaConsumo'
 import GraficosHistoriaExtra from '../components/GraficosHistoriaExtra'
+import AnalysisRequestFieldsTable from '../components/AnalysisRequestFieldsTable'
 import { draftFromRequest, saveAnalisisDraft } from '../utils/analisisDraft'
+import {
+  ML_REQUEST_FIELD_DEFS,
+  pickRequestFieldValue,
+} from '../utils/analisisMlContract'
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -28,60 +33,6 @@ const LOCALE_TAGS = {
   tr: 'tr-TR',
 }
 
-const REQUEST_FIELDS = [
-  {
-    key: 'tipoInmueble',
-    labelKey: 'analysis.installationType',
-    type: 'tipo',
-    aliases: ['tipoInmueble', 'tipo_inmueble', 'tipo'],
-  },
-  {
-    key: 'consumoKwh',
-    labelKey: 'analysis.monthlyUsage',
-    type: 'number',
-    suffix: 'kWh',
-    aliases: ['consumoKwh', 'consumo_kwh', 'consumo'],
-  },
-  {
-    key: 'areaM2',
-    labelKey: 'analysis.homeArea',
-    type: 'number',
-    suffix: 'm²',
-    aliases: ['areaM2', 'area_m2', 'area'],
-  },
-  {
-    key: 'cantidadPersonas',
-    labelKey: 'analysis.people',
-    type: 'number',
-    aliases: ['cantidadPersonas', 'cantidad_personas'],
-  },
-  {
-    key: 'cantidadEquipos',
-    labelKey: 'analysis.devices',
-    type: 'number',
-    aliases: ['cantidadEquipos', 'cantidad_equipos'],
-  },
-  {
-    key: 'horasClimatizacion',
-    labelKey: 'analysis.climateHours',
-    type: 'number',
-    aliases: ['horasClimatizacion', 'horas_climatizacion'],
-  },
-  {
-    key: 'horasAltoConsumo',
-    labelKey: 'analysis.peakUseHours',
-    type: 'number',
-    aliases: ['horasAltoConsumo', 'horas_alto_consumo'],
-  },
-  {
-    key: 'usoHorarioPico',
-    labelKey: 'analysis.peakHoursUse',
-    type: 'bool',
-    aliases: ['usoHorarioPico', 'uso_horario_pico'],
-  },
-]
-
-/** El backend a veces entrega requestJson como objeto o como string JSON. */
 function normalizeRequestJson(raw) {
   if (raw == null || raw === '') return {}
   if (typeof raw === 'string') {
@@ -95,38 +46,11 @@ function normalizeRequestJson(raw) {
   return raw
 }
 
-function pickRequestValue(request, field) {
-  const keys = field.aliases || [field.key]
-  for (const key of keys) {
-    if (!Object.prototype.hasOwnProperty.call(request, key)) continue
-    const value = request[key]
-    if (value !== undefined && value !== null && value !== '') return value
-    if (value === 0 || value === false) return value
-  }
-  const wanted = String(field.key).toLowerCase().replace(/_/g, '')
-  for (const [key, value] of Object.entries(request)) {
-    if (String(key).toLowerCase().replace(/_/g, '') === wanted) {
-      if (value !== undefined && value !== null && value !== '') return value
-      if (value === 0 || value === false) return value
-    }
-  }
-  return undefined
-}
-
-function isKnownRequestKey(key) {
-  const wanted = String(key).toLowerCase().replace(/_/g, '')
-  return REQUEST_FIELDS.some((field) =>
-    (field.aliases || [field.key]).some(
-      (alias) => String(alias).toLowerCase().replace(/_/g, '') === wanted,
-    ),
-  )
-}
-
 function buildEnteredRequest(detail) {
   const request = { ...normalizeRequestJson(detail?.requestJson ?? detail?.request_json) }
   if (
     detail?.tipoInstalacion &&
-    pickRequestValue(request, REQUEST_FIELDS[0]) == null
+    pickRequestFieldValue(request, ML_REQUEST_FIELD_DEFS[0]) == null
   ) {
     request.tipoInmueble = detail.tipoInstalacion
   }
@@ -135,19 +59,10 @@ function buildEnteredRequest(detail) {
 
 function consumoFromRow(row) {
   const request = normalizeRequestJson(row?.requestJson ?? row?.request_json)
-  const field = REQUEST_FIELDS.find((item) => item.key === 'consumoKwh')
-  const value = field ? pickRequestValue(request, field) : null
+  const field = ML_REQUEST_FIELD_DEFS.find((item) => item.formKey === 'consumoKwh')
+  const value = field ? pickRequestFieldValue(request, field) : null
   const num = Number(value)
   return Number.isFinite(num) ? num : null
-}
-
-function extraRequestEntries(request) {
-  return Object.entries(request).filter(([key, value]) => {
-    if (isKnownRequestKey(key)) return false
-    if (value === undefined || value === null || value === '') return false
-    if (typeof value === 'object') return false
-    return true
-  })
 }
 
 function formatDate(value, locale) {
@@ -171,22 +86,6 @@ function labelNivel(t, nivel) {
   const key = `analysis.levels.${nivel}`
   const translated = t(key)
   return translated === key ? nivel : translated
-}
-
-function formatRequestValue(t, field, raw) {
-  if (raw == null || raw === '') return '—'
-  if (field.type === 'tipo') return labelTipo(t, String(raw))
-  if (field.type === 'bool') {
-    return raw === true || raw === 'true' || raw === 1 || raw === '1'
-      ? t('analysis.yesNo.yes')
-      : t('analysis.yesNo.no')
-  }
-  if (field.type === 'number') {
-    const num = Number(raw)
-    const text = Number.isFinite(num) ? String(num) : String(raw)
-    return field.suffix ? `${text} ${field.suffix}` : text
-  }
-  return String(raw)
 }
 
 function tipKeysFrom(detail) {
@@ -301,11 +200,6 @@ function HistoriaConsumos() {
 
   const request = buildEnteredRequest(detail)
   const tips = tipKeysFrom(detail)
-  const enteredRows = REQUEST_FIELDS.map((field) => ({
-    field,
-    value: pickRequestValue(request, field),
-  }))
-  const extraEntries = extraRequestEntries(request)
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -478,24 +372,9 @@ function HistoriaConsumos() {
               </div>
 
               <h6 className="mb-3">{t('historiaConsumos.enteredData')}</h6>
-              <div className="row g-3 mb-3">
-                {enteredRows.map(({ field, value }) => (
-                  <div className="col-12 col-sm-6" key={field.key}>
-                    <div className="small text-muted">{t(field.labelKey)}</div>
-                    <div className="fw-semibold">
-                      {formatRequestValue(t, field, value)}
-                    </div>
-                  </div>
-                ))}
-                {extraEntries.map(([key, value]) => (
-                  <div className="col-12 col-sm-6" key={key}>
-                    <div className="small text-muted">{key}</div>
-                    <div className="fw-semibold">{String(value)}</div>
-                  </div>
-                ))}
-              </div>
+              <AnalysisRequestFieldsTable request={request} t={t} showMlKey />
 
-              <h6 className="mb-2">{t('historiaConsumos.recommendations')}</h6>
+              <h6 className="mb-2 mt-3">{t('historiaConsumos.recommendations')}</h6>
               {tips.length === 0 ? (
                 <p className="small text-muted mb-0">{t('historiaConsumos.noTips')}</p>
               ) : (
