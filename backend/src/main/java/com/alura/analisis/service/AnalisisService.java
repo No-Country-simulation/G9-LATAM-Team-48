@@ -2,6 +2,9 @@ package com.alura.analisis.service;
 
 import com.alura.analisis.dto.AdminAnalisisItem;
 import com.alura.analisis.dto.AnalisisApiResponse;
+import com.alura.analisis.dto.AnalisisChartPoint;
+import com.alura.common.dto.PageResponse;
+import com.alura.common.util.PageRequests;
 import com.alura.analisis.persistence.AnalisisConsultaEntity;
 import com.alura.analisis.persistence.AnalisisConsultaRepository;
 import com.alura.common.exception.BusinessException;
@@ -12,6 +15,7 @@ import com.alura.user.repository.UserRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -122,12 +126,27 @@ public class AnalisisService {
      */
     @Transactional(readOnly = true)
     public List<AdminAnalisisItem> listarMisConsultas() {
-        String email = currentUserEmailOrNull();
-        if (email == null) {
-            throw new BusinessException("Debes iniciar sesion para ver tu historial");
-        }
+        String email = requireCurrentUserEmail();
         return consultaRepository.findByUserEmailOrderByCreatedAtDesc(email).stream()
                 .map(this::toItem)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public PageResponse<AdminAnalisisItem> listarMisConsultasPage(int page, int size) {
+        String email = requireCurrentUserEmail();
+        var springPage = consultaRepository.findByUserEmailOrderByCreatedAtDesc(
+                email,
+                PageRequests.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt")));
+        return PageResponse.from(springPage.map(this::toItem));
+    }
+
+    @Transactional(readOnly = true)
+    public List<AnalisisChartPoint> listarMisConsultasChartPoints() {
+        String email = requireCurrentUserEmail();
+        return consultaRepository.findByUserEmailOrderByCreatedAtDesc(email).stream()
+                .map(this::toChartPoint)
+                .filter(point -> point.consumoKwh() != null)
                 .toList();
     }
 
@@ -171,6 +190,37 @@ public class AnalisisService {
                 jsonToMap(entity.getResponseJson()));
     }
 
+    private AnalisisChartPoint toChartPoint(AnalisisConsultaEntity entity) {
+        Map<String, Object> request = jsonToMap(entity.getRequestJson());
+        return new AnalisisChartPoint(
+                entity.getId(),
+                entity.getCreatedAt(),
+                consumoFromRequest(request),
+                entity.getAhorro(),
+                entity.getNivelKey());
+    }
+
+    private static Double consumoFromRequest(Map<String, Object> request) {
+        if (request == null || request.isEmpty()) {
+            return null;
+        }
+        for (String key : List.of("consumoKwh", "consumo_kwh_mensual", "consumo")) {
+            Object raw = request.get(key);
+            if (raw == null) {
+                continue;
+            }
+            try {
+                double value = Double.parseDouble(String.valueOf(raw));
+                if (Double.isFinite(value)) {
+                    return value;
+                }
+            } catch (NumberFormatException ignored) {
+                // try next key
+            }
+        }
+        return null;
+    }
+
     private Map<String, Object> jsonToMap(JsonNode node) {
         if (node == null || node.isNull()) {
             return Map.of();
@@ -189,6 +239,14 @@ public class AnalisisService {
         } catch (Exception ignored) {
             return Map.of();
         }
+    }
+
+    private String requireCurrentUserEmail() {
+        String email = currentUserEmailOrNull();
+        if (email == null) {
+            throw new BusinessException("Debes iniciar sesion para ver tu historial");
+        }
+        return email;
     }
 
     /** Email del JWT si hay sesion valida; null si es consulta anonima. */

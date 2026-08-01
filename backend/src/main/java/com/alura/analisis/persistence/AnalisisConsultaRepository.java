@@ -10,6 +10,9 @@ public interface AnalisisConsultaRepository extends JpaRepository<AnalisisConsul
 
     List<AnalisisConsultaEntity> findByUserEmailOrderByCreatedAtDesc(String userEmail);
 
+    Page<AnalisisConsultaEntity> findByUserEmailOrderByCreatedAtDesc(
+            String userEmail, Pageable pageable);
+
     List<AnalisisConsultaEntity> findAllByOrderByCreatedAtDesc();
 
     Page<AnalisisConsultaEntity> findAllByOrderByCreatedAtDesc(Pageable pageable);
