@@ -41,8 +41,9 @@ Formato: **PNG**, viewport ~**1440×900** (o `fullPage` en páginas largas).
 | `contacto.png` | Contáctanos + Equipo 48 |
 | `admin-usuarios.png` | Panel Admin — Usuarios |
 | `admin-analisis.png` | Admin — Análisis IA (historial global) |
-| `login.png` | Modal **Iniciar sesión** — aviso bloqueadores / Google Sign-In, email y contraseña |
-| `registro.png` | Modal **Crear cuenta** (misma UX Google + aviso; ver `login.png` para detalle del aviso) |
+| `login.png` | Modal **Iniciar sesión** — Google Sign-In + aviso **corto** (`googleBlockHintShort`) |
+| `login-bloqueador.png` | Mismo modal con aviso **ampliado** cuando el bloqueador impide el popup (`googleBlockHint`) |
+| `registro.png` | Modal **Crear cuenta** (misma UX Google + avisos que login) |
 | `admin-crear-usuario.png` | Modal — Crear usuario |
 | `admin-editar-usuario.png` | Modal — Editar usuario |
 | `forgot-password.png` | Modal — Recuperar contraseña |
