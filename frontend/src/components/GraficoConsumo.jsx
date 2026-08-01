@@ -11,6 +11,7 @@ import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import consumoData from '../data/consumo.json'
 import { yDomainWithPadding } from '../utils/chartScale'
+import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
 
 function GraficoConsumo({ consumos = consumoData }) {
@@ -31,9 +32,9 @@ function GraficoConsumo({ consumos = consumoData }) {
   return (
     <div className="card shadow mt-4">
       <div className="card-body">
-        <h4 id="chart-consumo-title">{t('chart.title')}</h4>
+        <h3 id="chart-consumo-title">{t('chart.title')}</h3>
 
-        <div aria-hidden="true">
+        <ChartVisualShell>
           <ResponsiveContainer width="100%" height={300}>
           <LineChart data={datos}>
             <CartesianGrid stroke={gridColor} />
@@ -75,7 +76,7 @@ function GraficoConsumo({ consumos = consumoData }) {
             />
           </LineChart>
         </ResponsiveContainer>
-        </div>
+        </ChartVisualShell>
 
         <ChartSrTable
           tableId="chart-consumo-data"

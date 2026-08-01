@@ -12,6 +12,7 @@ import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { analyticsMock } from '../data/analyticsMock'
 import DemoSampleBadge from './DemoSampleBadge'
+import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
 
 function buildSeries(t) {
@@ -37,13 +38,13 @@ function GraficoRealVsPrediccion() {
   return (
     <div className="card shadow mt-4 mt-xl-0 w-100 h-100">
       <div className="card-body d-flex flex-column h-100">
-        <h4 id="chart-predict-title" className="mb-1 d-flex flex-wrap align-items-center gap-2">
+        <h3 id="chart-predict-title" className="mb-1 d-flex flex-wrap align-items-center gap-2">
           <span>{title}</span>
           <DemoSampleBadge />
-        </h4>
+        </h3>
         <p className="text-muted small mb-3">{t('chart.actualVsPredictedHint')}</p>
 
-        <div className="flex-grow-1" style={{ minHeight: 300 }} aria-hidden="true">
+        <ChartVisualShell className="flex-grow-1" style={{ minHeight: 300 }}>
           <ResponsiveContainer width="100%" height="100%" minHeight={300}>
             <BarChart data={data}>
               <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
@@ -90,7 +91,7 @@ function GraficoRealVsPrediccion() {
               />
             </BarChart>
           </ResponsiveContainer>
-        </div>
+        </ChartVisualShell>
 
         <ChartSrTable
           tableId="chart-predict-data"

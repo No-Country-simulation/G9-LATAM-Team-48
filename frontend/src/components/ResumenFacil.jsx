@@ -98,10 +98,10 @@ function ResumenFacil() {
   return (
     <div className="card shadow mt-4">
       <div className="card-body">
-        <h4 className="mb-3 d-flex flex-wrap align-items-center gap-2">
+        <h2 className="mb-3 d-flex flex-wrap align-items-center gap-2">
           <span>{t('insights.title')}</span>
           <DemoSampleBadge />
-        </h4>
+        </h2>
 
         <div className="row g-3">
           {insights.map((item) => (

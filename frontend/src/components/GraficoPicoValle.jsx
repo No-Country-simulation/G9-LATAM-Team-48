@@ -12,6 +12,7 @@ import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { analyticsMock } from '../data/analyticsMock'
 import DemoSampleBadge from './DemoSampleBadge'
+import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
 
 function buildSeries(t) {
@@ -40,10 +41,10 @@ function GraficoPicoValle() {
     <div className="card shadow mt-4 mt-xl-0 w-100 h-100">
       <div className="card-body d-flex flex-column h-100">
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-start gap-2 mb-1">
-          <h4 id="chart-peak-title" className="mb-0 d-flex flex-wrap align-items-center gap-2">
+          <h3 id="chart-peak-title" className="mb-0 d-flex flex-wrap align-items-center gap-2">
             <span>{title}</span>
             <DemoSampleBadge />
-          </h4>
+          </h3>
           <div className="d-flex flex-wrap gap-2">
             <span className="badge text-bg-primary">{categoryLabel}</span>
             <span className="badge text-bg-secondary">
@@ -53,7 +54,7 @@ function GraficoPicoValle() {
         </div>
         <p className="text-muted small mb-3">{t('chart.peakVsOffPeakHint')}</p>
 
-        <div className="flex-grow-1" style={{ minHeight: 300 }} aria-hidden="true">
+        <ChartVisualShell className="flex-grow-1" style={{ minHeight: 300 }}>
           <ResponsiveContainer width="100%" height="100%" minHeight={300}>
             <BarChart data={data}>
               <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
@@ -101,7 +102,7 @@ function GraficoPicoValle() {
               />
             </BarChart>
           </ResponsiveContainer>
-        </div>
+        </ChartVisualShell>
 
         <ChartSrTable
           tableId="chart-peak-data"
