@@ -1,11 +1,8 @@
-import { lazy, Suspense } from 'react'
 import CardConsumo from '../components/CardConsumo'
-import ChartSectionFallback from '../components/ChartSectionFallback'
+import GraficoConsumo from '../components/GraficoConsumo'
+import GraficoRealVsPrediccion from '../components/GraficoRealVsPrediccion'
+import GraficoPicoValle from '../components/GraficoPicoValle'
 import ResumenFacil from '../components/ResumenFacil'
-
-const GraficoConsumo = lazy(() => import('../components/GraficoConsumo'))
-const GraficoRealVsPrediccion = lazy(() => import('../components/GraficoRealVsPrediccion'))
-const GraficoPicoValle = lazy(() => import('../components/GraficoPicoValle'))
 import Recomendaciones from '../components/Recomendaciones'
 import Loader from '../components/Loader'
 import ErrorState from '../components/ErrorState'
@@ -67,20 +64,14 @@ function Dashboard() {
 
           <ResumenFacil />
 
-          <Suspense fallback={<ChartSectionFallback />}>
-            <GraficoConsumo consumos={consumos} />
-          </Suspense>
+          <GraficoConsumo consumos={consumos} />
 
           <div className="row g-3 mt-1 align-items-stretch">
             <div className="col-12 col-xl-6 d-flex">
-              <Suspense fallback={<ChartSectionFallback />}>
-                <GraficoRealVsPrediccion />
-              </Suspense>
+              <GraficoRealVsPrediccion />
             </div>
             <div className="col-12 col-xl-6 d-flex">
-              <Suspense fallback={<ChartSectionFallback />}>
-                <GraficoPicoValle />
-              </Suspense>
+              <GraficoPicoValle />
             </div>
           </div>
 

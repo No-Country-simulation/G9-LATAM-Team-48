@@ -12,14 +12,25 @@ export default function ChartVisualShell({ children, className, style }) {
     if (!root) return undefined
 
     const neutralize = () => {
-      root.querySelectorAll('svg[tabindex], [role="application"]').forEach((node) => {
+      root.querySelectorAll('svg[tabindex="0"]').forEach((node) => {
         node.setAttribute('tabindex', '-1')
+      })
+      root.querySelectorAll('[role="application"]').forEach((node) => {
         node.removeAttribute('role')
       })
     }
 
     neutralize()
-    const observer = new MutationObserver(neutralize)
+    const observer = new MutationObserver(() => {
+      observer.disconnect()
+      neutralize()
+      observer.observe(root, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['tabindex', 'role'],
+      })
+    })
     observer.observe(root, {
       childList: true,
       subtree: true,
