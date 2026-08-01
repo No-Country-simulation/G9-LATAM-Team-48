@@ -31,15 +31,16 @@ async function captureAuthModals(page) {
   await waitForGoogleButton(loginModal, page, 'login')
   await page.waitForTimeout(400)
   await loginModal.screenshot({ path: path.join(outDir, 'login.png') })
-  console.log('saved login.png (aviso corto)')
+  console.log('saved login.png (sin cartel)')
 
   const googleHost = loginModal.locator('.google-signin-host')
   if (await googleHost.count()) {
-    await googleHost.click({ timeout: 5000 })
-    await page.waitForTimeout(3500)
+    // Solo pointerdown en el host dispara scheduleGoogleClickWatch; sin popup → cartel ~3,2 s
+    await googleHost.dispatchEvent('pointerdown')
+    await page.waitForTimeout(3800)
   }
   await loginModal.screenshot({ path: path.join(outDir, 'login-bloqueador.png') })
-  console.log('saved login-bloqueador.png (aviso ampliado tras clic sin popup)')
+  console.log('saved login-bloqueador.png (cartel bloqueador)')
 
   await page.getByRole('button', { name: /Registrarse|Register|Sign up|Registrate|Create account|No tenés cuenta/i }).first().click()
   await page.waitForTimeout(400)

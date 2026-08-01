@@ -38,7 +38,7 @@ Patrón gráficos Recharts:
 1. Contenedor del gráfico con **`aria-hidden="true"`**.
 2. **`ChartSrTable`**: tabla `visually-hidden` + `<caption>` (`a11y.chartDataCaption`).
 
-**Google Sign-In y bloqueadores:** aviso amarillo en el modal siempre que hay botón Google (`auth.googleBlockHintShort`); si el clic no abre popup o falla el script, texto ampliado (`auth.googleBlockHint`). Login por email sigue disponible (`LoginModal.jsx`, `googleSignInSupport.js`).
+**Google Sign-In y bloqueadores:** cartel amarillo **solo** si el clic en Google no abre popup o falla GIS (`auth.googleBlockHintShort`). Login limpio al abrir el modal. Email/contraseña siempre disponible.
 
 ---
 
