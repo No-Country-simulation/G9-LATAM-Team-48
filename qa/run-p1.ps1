@@ -3,6 +3,9 @@ $ErrorActionPreference = "Continue"
 $Api = "https://g9-latam-team-48-production.up.railway.app"
 $Front = "https://g9-latam-team-48.vercel.app"
 $OutDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+. (Join-Path $OutDir "load-qa-secrets.ps1")
+Require-QaDemoCredentials
+Require-QaInbox
 $results = [ordered]@{}
 $stamp = Get-Date -Format "yyyyMMddHHmmss"
 
@@ -71,7 +74,7 @@ if ($histAnon.Code -eq 401 -or $histAnon.Code -eq 403) {
 }
 
 # --- P1-03 Historia con USER ---
-$tokenUser = Get-Token "operador@energyai.com" "operador123"
+$tokenUser = Get-Token $script:QaDemoOperadorEmail $script:QaDemoOperadorPassword
 $histUser = Call-Api GET "/api/analisis/mis" $null $tokenUser
 if ($histUser.Ok -and $histUser.Code -eq 200) {
     $n = 0
@@ -90,7 +93,7 @@ if ($adminAsUser.Code -eq 403 -or $adminAsUser.Code -eq 401) {
     Set-Result "P1-11" "FAIL" "esperaba 403/401; got=$($adminAsUser.Code)"
 }
 
-$tokenAdmin = Get-Token "admin@energyai.com" "admin1234"
+$tokenAdmin = Get-Token $script:QaDemoAdminEmail $script:QaDemoAdminPassword
 
 # --- P1-06 Admin create ---
 $qaEmail = "qa.p1+$stamp@example.com"
@@ -145,7 +148,7 @@ if ($adminAn.Ok -and $adminAn.Code -eq 200) {
 # --- P1-09 Contacto ---
 $contact = Call-Api POST "/api/v1/contact" @{
     name    = "QA P1 Contact"
-    email   = "sandokan992000@gmail.com"
+    email   = $script:QaInbox
     message = "Mensaje de prueba QA P1 automatizado. Puede ignorarse."
 } $null
 $emailStatus = $contact.Json.data.emailStatus

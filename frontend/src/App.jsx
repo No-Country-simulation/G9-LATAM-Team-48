@@ -9,12 +9,17 @@ import AdminAnalisis from './pages/AdminAnalisis'
 import ResetPassword from './pages/ResetPassword'
 import VerifyEmail from './pages/VerifyEmail'
 import MainLayout from './layouts/MainLayout'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAuth } from './context/AuthContext'
 import { useLocale } from './context/LocaleContext'
 import { NavigationProvider } from './context/NavigationContext'
 import { isAdmin } from './utils/roles'
-import { getStoredPagina, setStoredPagina } from './utils/session'
+import {
+  SESSION_EXPIRED_EVENT,
+  getStoredPagina,
+  paginaRequiresAuth,
+  setStoredPagina,
+} from './utils/session'
 
 const PAGE_TITLE_KEYS = {
   dashboard: 'menu.dashboard',
@@ -48,7 +53,7 @@ function App() {
   })
   const [resetToken, setResetToken] = useState(initialReset)
   const [verifyToken, setVerifyToken] = useState(initialVerify)
-  const { user, hydrating, isAuthenticated } = useAuth()
+  const { user, hydrating, isAuthenticated, sessionEpoch } = useAuth()
   const { t } = useLocale()
 
   const setPagina = (next) => {
@@ -59,6 +64,21 @@ function App() {
     })
   }
 
+  const setPaginaRef = useRef(setPagina)
+  setPaginaRef.current = setPagina
+
+  useEffect(() => {
+    function onSessionExpired() {
+      setPaginaRef.current((current) =>
+        current === 'verify-email' || current === 'reset-password'
+          ? current
+          : 'dashboard',
+      )
+    }
+    window.addEventListener(SESSION_EXPIRED_EVENT, onSessionExpired)
+    return () => window.removeEventListener(SESSION_EXPIRED_EVENT, onSessionExpired)
+  }, [])
+
   useEffect(() => {
     const key = PAGE_TITLE_KEYS[pagina]
     const pageLabel = key ? t(key) : t('menu.dashboard')
@@ -67,16 +87,22 @@ function App() {
 
   useEffect(() => {
     if (hydrating) return
+    if (isAuthenticated) return
+
+    const isAuthFlow =
+      pagina === 'verify-email' || pagina === 'reset-password'
+    if (isAuthFlow) return
+
+    if (paginaRequiresAuth(pagina)) {
+      setPagina('dashboard')
+    }
+  }, [pagina, hydrating, isAuthenticated])
+
+  useEffect(() => {
+    if (hydrating) return
 
     const isAdminPage =
       pagina === 'admin-usuarios' || pagina === 'admin-analisis'
-    const isAuthPage = pagina === 'historia-consumos'
-
-    // Sin sesion: no quedarse en admin ni historial personal
-    if ((isAdminPage || isAuthPage) && !isAuthenticated) {
-      setPagina('dashboard')
-      return
-    }
 
     // Con sesion no-admin: sacar de admin
     if (isAdminPage && user && !isAdmin(user)) {
@@ -137,11 +163,12 @@ function App() {
   return (
     <NavigationProvider pagina={pagina} setPagina={setPagina}>
       <MainLayout
+        key={`layout-${sessionEpoch}`}
         pagina={pagina}
         setPagina={setPagina}
         onAuthSuccess={handleAuthSuccess}
       >
-        {renderPagina()}
+        <div key={`view-${sessionEpoch}-${pagina}`}>{renderPagina()}</div>
       </MainLayout>
     </NavigationProvider>
   )

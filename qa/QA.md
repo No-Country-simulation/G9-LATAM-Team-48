@@ -11,13 +11,15 @@ Marcá **Pass / Fail / N/A** en cada fila. No hace falta cambiar código de prod
 
 Rama de deploy: **`Jorge-martinez`**.
 
-### Usuarios demo (prod / seed Flyway)
+### Usuarios demo (prod / seed Flyway V6)
 
-| Email | Password | Rol |
-|-------|----------|-----|
-| `operador@energyai.com` | `operador123` | USER |
-| `admin@energyai.com` | `admin1234` | ADMIN |
-| `team48@energyai.com` | `team48123` | USER |
+Emails públicos; contraseñas **fuera del repo** (`qa/secrets.local.ps1` o variables `QA_DEMO_*`).
+
+| Email | Rol |
+|-------|-----|
+| `operador@energyai.com` | USER |
+| `admin@energyai.com` | ADMIN |
+| `team48@energyai.com` | USER |
 
 ---
 
@@ -95,8 +97,9 @@ Corrida API: `qa/run-p1.ps1` + inspección bundle (`qa/inspect-google-i18n.ps1`)
 ## Correo — corrida local (SMTP Gmail)
 
 En prod el correo sale por **Resend en modo test**, que solo entrega a la casilla dueña
-(`sandokan992000@gmail.com`) y rechaza alias `+`. En local se puede usar el **SMTP Gmail**
-del equipo, que entrega a cualquier destinatario; así el flujo se prueba las veces que haga falta.
+configurada en Resend (variable `QA_INBOX` en scripts locales) y puede rechazar alias `+`.
+En local se puede usar el **SMTP Gmail** del equipo (`backend/.env`, gitignored), que entrega
+a cualquier destinatario; así el flujo se prueba las veces que haga falta.
 
 ```powershell
 # Terminal 1 — backend local (SMTP en vez de Resend, tokens expuestos)
@@ -120,7 +123,7 @@ del equipo, que entrega a cualquier destinatario; así el flujo se prueba las ve
 ## Límites (prueba manual obligatoria)
 
 - **Correo en prod (Resend modo test):** solo entrega a la casilla dueña de la cuenta,
-  hoy `sandokan992000@gmail.com`. Verificado el 2026-07-27: alias `+qa` → `emailStatus: FAILED`;
+  hoy la casilla dueña de Resend (`QA_INBOX`). Verificado el 2026-07-27: alias `+qa` → `emailStatus: FAILED`;
   dirección exacta → `emailStatus: SENT`. Para enviar a cualquier destinatario en prod habría que
   verificar un dominio en Resend (Railway Hobby bloquea SMTP).
 - **Ojo:** si `RESEND_API_KEY` está seteada, `UserMailService` la prioriza y el SMTP nunca se usa.

@@ -1,10 +1,15 @@
 # Dispara los mails reales que faltan para P0-05 / P1-04.
-# Buzon disponible en la demo: sandokan992000@gmail.com (Resend en modo test).
 $ErrorActionPreference = "Continue"
 $Api = "https://g9-latam-team-48-production.up.railway.app"
-$Inbox = "sandokan992000@gmail.com"
+
+. (Join-Path $PSScriptRoot "load-qa-secrets.ps1")
+Require-QaInbox
+
+$Inbox = $script:QaInbox
 $stamp = Get-Date -Format "MMddHHmm"
-$Alias = "sandokan992000+qa$stamp@gmail.com"
+$at = $Inbox.IndexOf("@")
+if ($at -lt 1) { throw "QA_INBOX invalido" }
+$Alias = $Inbox.Insert($at, "+qa$stamp")
 
 function Post-Json($url, $body) {
     try {
@@ -26,25 +31,28 @@ function Post-Json($url, $body) {
     }
 }
 
-Write-Host "=== Mails reales (revisar bandeja de $Inbox) ==="
+Write-Host "=== Mails reales (revisar bandeja configurada en QA_INBOX) ==="
 Write-Host ""
 
-# 1) P0-05: cuenta nueva con alias +qa (Gmail entrega al mismo buzon)
+$qaPass = [Environment]::GetEnvironmentVariable("QA_THROWAWAY_PASSWORD")
+if ([string]::IsNullOrWhiteSpace($qaPass)) { $qaPass = "qaTest1234" }
+
+# 1) P0-05: cuenta nueva con alias +qa (Gmail entrega al mismo buzon si el SMTP lo permite)
 $reg = Post-Json "$Api/api/v1/auth/register" @{
     name     = "QA Verify $stamp"
     email    = $Alias
-    password = "qaTest1234"
+    password = $qaPass
 }
 Write-Host "[register] $Alias -> code=$($reg.Code)"
 Write-Host "           body=$($reg.Body)"
 
 # 2) P1-04: reset password a la direccion exacta permitida por Resend
 $forgot = Post-Json "$Api/api/v1/auth/forgot-password" @{ email = $Inbox }
-Write-Host "[forgot-password] $Inbox -> code=$($forgot.Code)"
+Write-Host "[forgot-password] buzon QA -> code=$($forgot.Code)"
 Write-Host "           body=$($forgot.Body)"
 
 Write-Host ""
 Write-Host "Siguiente paso manual:"
-Write-Host " - Mail 'Verifica tu email' -> abrir link ?verifyToken= -> luego login con $Alias / qaTest1234"
+Write-Host " - Mail 'Verifica tu email' -> abrir link ?verifyToken= -> luego login con la cuenta de prueba"
 Write-Host " - Mail 'Recuperar contrasena' -> confirma que el envio real funciona (no hace falta usar el link)"
-Write-Host " - Si NO llega el de $Alias pero SI el de ${Inbox}: Resend rechaza alias +; avisar para plan B"
+Write-Host " - Si NO llega el alias + pero SI el buzon principal: Resend puede rechazar alias +; avisar para plan B"
