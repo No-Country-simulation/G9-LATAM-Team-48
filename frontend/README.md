@@ -192,22 +192,13 @@ Detección en cliente (`LoginModal.jsx` + `googleSignInSupport.js`):
 2. **Error `googleScriptFailed`** al cargar GIS → mismo aviso ampliado.
 3. **Login por email y contraseña** sigue disponible siempre.
 
-<div align="center">
+### Login — dos estados en pantalla
 
-<table>
-  <tr>
-    <td width="50%" align="center">
-      <strong>Login habitual</strong> (Google + aviso corto)<br />
-      <img src="./screenshots/login.png" alt="Iniciar sesión con Google y aviso preventivo" width="420" />
-    </td>
-    <td width="50%" align="center">
-      <strong>Si el bloqueador traba Google</strong> (aviso ampliado)<br />
-      <img src="./screenshots/login-bloqueador.png" alt="Login con aviso ampliado por bloqueador de anuncios" width="420" />
-    </td>
-  </tr>
-</table>
+| Login habitual (Google + aviso corto) | Si el bloqueador traba Google (aviso ampliado) |
+|:---:|:---:|
+| ![Iniciar sesión con Google y aviso preventivo](./screenshots/login.png) | ![Login con aviso ampliado por bloqueador](./screenshots/login-bloqueador.png) |
 
-</div>
+Archivos: `screenshots/login.png` y `screenshots/login-bloqueador.png`.
 
 **Google Cloud Console** (OAuth Web): registrar **Authorized JavaScript origins** para cada URL de prueba (ver [Configuración](#configuración)).
 
@@ -364,6 +355,16 @@ Formulario de 12 campos por tipo de inmueble, sección opcional legacy y placeho
 
 </div>
 
+<div align="center">
+
+### Login — Google y bloqueador de anuncios
+
+| Aviso corto (flujo normal) | Aviso ampliado (popup bloqueado) |
+|:---:|:---:|
+| ![Login habitual](./screenshots/login.png) | ![Login con bloqueador](./screenshots/login-bloqueador.png) |
+
+</div>
+
 <table>
   <tr>
     <td width="50%"><strong>Consumos</strong><br /><img src="./screenshots/consumos.png" alt="Consumos" /></td>
@@ -380,10 +381,6 @@ Formulario de 12 campos por tipo de inmueble, sección opcional legacy y placeho
   <tr>
     <td width="50%"><strong>Admin — Análisis</strong><br /><img src="./screenshots/admin-analisis.png" alt="Admin análisis" /></td>
     <td width="50%"><strong>Registro</strong> (email + Google)<br /><img src="./screenshots/registro.png" alt="Registro" /></td>
-  </tr>
-  <tr>
-    <td width="50%"><strong>Login</strong> (Google + aviso corto)<br /><img src="./screenshots/login.png" alt="Login habitual" /></td>
-    <td width="50%"><strong>Login — bloqueador traba Google</strong><br /><img src="./screenshots/login-bloqueador.png" alt="Login aviso ampliado" /></td>
   </tr>
   <tr>
     <td width="50%"><strong>Recuperar contraseña</strong><br /><img src="./screenshots/forgot-password.png" alt="Forgot password" /></td>
