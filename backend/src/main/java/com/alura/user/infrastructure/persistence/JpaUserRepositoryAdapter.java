@@ -1,5 +1,7 @@
 package com.alura.user.infrastructure.persistence;
 
+import com.alura.common.dto.PageResponse;
+import com.alura.common.util.PageRequests;
 import com.alura.user.model.User;
 import com.alura.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -45,6 +47,13 @@ public class JpaUserRepositoryAdapter implements UserRepository {
         return userRepositoryJpa.findAllByDeletedAtIsNullOrderByIdAsc().stream()
                 .map(this::toDomain)
                 .toList();
+    }
+
+    @Override
+    public PageResponse<User> findPage(int page, int size) {
+        var springPage = userRepositoryJpa.findAllByDeletedAtIsNullOrderByIdAsc(
+                PageRequests.of(page, size, null));
+        return PageResponse.from(springPage.map(this::toDomain));
     }
 
     @Override

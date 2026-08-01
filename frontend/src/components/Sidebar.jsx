@@ -47,6 +47,7 @@ function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
             className={`${linkClass(item.id)} sidebar-link border-0 text-start w-100 py-2 d-flex align-items-center gap-2`}
             onClick={() => handleNavigate(item.id)}
             title={label}
+            aria-label={label}
             aria-current={isActive ? 'page' : undefined}
           >
             <MenuIcon

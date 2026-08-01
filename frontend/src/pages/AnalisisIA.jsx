@@ -3,6 +3,12 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
 import { analizarConsumo, analizarConsumoLocal } from '../services/analisisService'
 import { INSTALLATION_TYPES } from '../services/iaService'
+import {
+  AISLAMIENTO_TERMICO,
+  ZONA_INMUEBLE,
+  buildAnalisisApiPayload,
+} from '../utils/analisisMlContract'
+import AnalysisTipsTable from '../components/AnalysisTipsTable'
 import ErrorState from '../components/ErrorState'
 import GraficoAnalisisIA from '../components/GraficoAnalisisIA'
 import { useLocale } from '../context/LocaleContext'
@@ -48,9 +54,11 @@ function Field({ id, label, hint, error, children }) {
 function validateForm(datos, t) {
   const errors = {}
   const consumo = Number(datos.consumoKwh)
+  const consumoPrev = Number(datos.consumoKwhMesAnterior)
   const area = Number(datos.areaM2)
   const personas = Number(datos.cantidadPersonas)
   const climate = Number(datos.horasClimatizacion)
+  const pctLed = Number(datos.pctIluminacionLed)
   const peak = Number(datos.horasAltoConsumo)
 
   if (datos.consumoKwh === '' || !Number.isFinite(consumo) || consumo <= 0) {
@@ -60,14 +68,25 @@ function validateForm(datos, t) {
     )
   }
 
-  if (datos.areaM2 !== '' && (!Number.isFinite(area) || area < 0)) {
+  if (
+    datos.consumoKwhMesAnterior === '' ||
+    !Number.isFinite(consumoPrev) ||
+    consumoPrev < 0
+  ) {
+    errors.consumoKwhMesAnterior = t(
+      'analysis.validation.consumoPrevRequired',
+      'Ingresá el consumo del mes anterior (0 o más).',
+    )
+  }
+
+  if (datos.areaM2 === '' || !Number.isFinite(area) || area < 0) {
     errors.areaM2 = t('analysis.validation.areaInvalid', 'El área no puede ser negativa.')
   }
 
-  if (datos.cantidadPersonas !== '' && (!Number.isFinite(personas) || personas < 0)) {
+  if (datos.cantidadPersonas === '' || !Number.isFinite(personas) || personas < 1) {
     errors.cantidadPersonas = t(
-      'analysis.validation.peopleInvalid',
-      'La cantidad de personas no puede ser negativa.',
+      'analysis.validation.peopleMin',
+      'Indicá al menos una persona.',
     )
   }
 
@@ -78,6 +97,42 @@ function validateForm(datos, t) {
     errors.horasClimatizacion = t(
       'analysis.validation.hoursRange',
       'Usá un valor entre 0 y 24.',
+    )
+  }
+
+  if (
+    datos.pctIluminacionLed === '' ||
+    !Number.isFinite(pctLed) ||
+    pctLed < 0 ||
+    pctLed > 100
+  ) {
+    errors.pctIluminacionLed = t(
+      'analysis.validation.pctLedRange',
+      'Usá un porcentaje entre 0 y 100.',
+    )
+  }
+
+  const antConst = Number(datos.antiguedadConstruccionAnios)
+  if (
+    datos.antiguedadConstruccionAnios === '' ||
+    !Number.isFinite(antConst) ||
+    antConst < 0
+  ) {
+    errors.antiguedadConstruccionAnios = t(
+      'analysis.validation.ageInvalid',
+      'La antigüedad no puede ser negativa.',
+    )
+  }
+
+  const antElect = Number(datos.antiguedadElectrodomesticosAnios)
+  if (
+    datos.antiguedadElectrodomesticosAnios === '' ||
+    !Number.isFinite(antElect) ||
+    antElect < 0
+  ) {
+    errors.antiguedadElectrodomesticosAnios = t(
+      'analysis.validation.ageInvalid',
+      'La antigüedad no puede ser negativa.',
     )
   }
 
@@ -130,16 +185,7 @@ function AnalisisIA() {
   }
 
   function payloadFromForm() {
-    return {
-      tipoInmueble: datos.tipoInmueble,
-      areaM2: Number(datos.areaM2) || 0,
-      consumoKwh: Number(datos.consumoKwh) || 0,
-      cantidadEquipos: Number(datos.cantidadEquipos) || 0,
-      cantidadPersonas: Number(datos.cantidadPersonas) || 0,
-      horasClimatizacion: Number(datos.horasClimatizacion) || 0,
-      horasAltoConsumo: Number(datos.horasAltoConsumo) || 0,
-      usoHorarioPico: Boolean(datos.usoHorarioPico),
-    }
+    return buildAnalisisApiPayload(datos)
   }
 
   async function analizar() {
@@ -178,7 +224,11 @@ function AnalisisIA() {
   const chartDatos = payloadFromForm()
   const isComercial =
     datos.tipoInmueble === INSTALLATION_TYPES.PEQUENO_ESTABLECIMIENTO_COMERCIAL
-  const canSubmit = !loading && String(datos.consumoKwh).trim() !== ''
+  const canSubmit =
+    !loading &&
+    String(datos.consumoKwh).trim() !== '' &&
+    String(datos.consumoKwhMesAnterior).trim() !== '' &&
+    String(datos.pctIluminacionLed).trim() !== ''
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -212,7 +262,7 @@ function AnalisisIA() {
 
       <div className="row g-3 align-items-start">
         <div className="col-12 col-lg-4">
-          <div className="card shadow-sm" style={{ maxWidth: 360 }}>
+          <div className="card shadow-sm" style={{ maxWidth: 400, maxHeight: '90vh', overflowY: 'auto' }}>
             <div className="card-body p-3">
               <Field
                 id="tipoInmueble"
@@ -259,6 +309,25 @@ function AnalisisIA() {
               </Field>
 
               <Field
+                id="consumoKwhMesAnterior"
+                label={t('analysis.previousMonthUsage')}
+                hint={t('analysis.fieldHints.consumoKwhMesAnterior')}
+                error={fieldErrors.consumoKwhMesAnterior}
+              >
+                <input
+                  id="consumoKwhMesAnterior"
+                  className={`form-control form-control-sm${fieldErrors.consumoKwhMesAnterior ? ' is-invalid' : ''}`}
+                  name="consumoKwhMesAnterior"
+                  type="number"
+                  min="0"
+                  step="0.1"
+                  aria-invalid={Boolean(fieldErrors.consumoKwhMesAnterior)}
+                  value={datos.consumoKwhMesAnterior}
+                  onChange={cambiarCampo}
+                />
+              </Field>
+
+              <Field
                 id="areaM2"
                 label={isComercial ? t('analysis.area') : t('analysis.homeArea')}
                 hint={
@@ -295,7 +364,7 @@ function AnalisisIA() {
                   className={`form-control form-control-sm${fieldErrors.cantidadPersonas ? ' is-invalid' : ''}`}
                   name="cantidadPersonas"
                   type="number"
-                  min="0"
+                  min="1"
                   aria-invalid={Boolean(fieldErrors.cantidadPersonas)}
                   value={datos.cantidadPersonas}
                   onChange={cambiarCampo}
@@ -320,7 +389,7 @@ function AnalisisIA() {
 
               <Field
                 id="horasClimatizacion"
-                label={t('analysis.climateHours')}
+                label={t('analysis.acHoursDay')}
                 hint={t('analysis.fieldHints.horasClimatizacion')}
                 error={fieldErrors.horasClimatizacion}
               >
@@ -331,11 +400,110 @@ function AnalisisIA() {
                   type="number"
                   min="0"
                   max="24"
+                  step="0.5"
                   aria-invalid={Boolean(fieldErrors.horasClimatizacion)}
                   value={datos.horasClimatizacion}
                   onChange={cambiarCampo}
                 />
               </Field>
+
+              <Field
+                id="aislamientoTermico"
+                label={t('analysis.thermalInsulation')}
+                hint={t('analysis.fieldHints.aislamientoTermico')}
+              >
+                <select
+                  id="aislamientoTermico"
+                  className="form-select form-select-sm"
+                  name="aislamientoTermico"
+                  value={datos.aislamientoTermico}
+                  onChange={cambiarCampo}
+                >
+                  {Object.keys(AISLAMIENTO_TERMICO).map((key) => (
+                    <option key={key} value={key}>
+                      {t(`analysis.aislamiento.${key}`)}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+
+              <Field
+                id="pctIluminacionLed"
+                label={t('analysis.ledLightingPct')}
+                hint={t('analysis.fieldHints.pctIluminacionLed')}
+                error={fieldErrors.pctIluminacionLed}
+              >
+                <input
+                  id="pctIluminacionLed"
+                  className={`form-control form-control-sm${fieldErrors.pctIluminacionLed ? ' is-invalid' : ''}`}
+                  name="pctIluminacionLed"
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="1"
+                  aria-invalid={Boolean(fieldErrors.pctIluminacionLed)}
+                  value={datos.pctIluminacionLed}
+                  onChange={cambiarCampo}
+                />
+              </Field>
+
+              <Field
+                id="antiguedadConstruccionAnios"
+                label={t('analysis.buildingAgeYears')}
+                hint={t('analysis.fieldHints.antiguedadConstruccionAnios')}
+                error={fieldErrors.antiguedadConstruccionAnios}
+              >
+                <input
+                  id="antiguedadConstruccionAnios"
+                  className={`form-control form-control-sm${fieldErrors.antiguedadConstruccionAnios ? ' is-invalid' : ''}`}
+                  name="antiguedadConstruccionAnios"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value={datos.antiguedadConstruccionAnios}
+                  onChange={cambiarCampo}
+                />
+              </Field>
+
+              <Field
+                id="zona"
+                label={t('analysis.zone')}
+                hint={t('analysis.fieldHints.zona')}
+              >
+                <select
+                  id="zona"
+                  className="form-select form-select-sm"
+                  name="zona"
+                  value={datos.zona}
+                  onChange={cambiarCampo}
+                >
+                  {Object.keys(ZONA_INMUEBLE).map((key) => (
+                    <option key={key} value={key}>
+                      {t(`analysis.zona.${key}`)}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+
+              <Field
+                id="antiguedadElectrodomesticosAnios"
+                label={t('analysis.applianceAgeYears')}
+                hint={t('analysis.fieldHints.antiguedadElectrodomesticosAnios')}
+                error={fieldErrors.antiguedadElectrodomesticosAnios}
+              >
+                <input
+                  id="antiguedadElectrodomesticosAnios"
+                  className={`form-control form-control-sm${fieldErrors.antiguedadElectrodomesticosAnios ? ' is-invalid' : ''}`}
+                  name="antiguedadElectrodomesticosAnios"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value={datos.antiguedadElectrodomesticosAnios}
+                  onChange={cambiarCampo}
+                />
+              </Field>
+
+              <p className="text-muted small mb-2 mt-1">{t('analysis.legacyFieldsTitle')}</p>
 
               <Field
                 id="horasAltoConsumo"
@@ -449,11 +617,7 @@ function AnalisisIA() {
                   )}
 
                   <h6 className="mb-2 mt-3">{t('analysis.tips')}</h6>
-                  <ul className="mb-0 small">
-                    {(resultado.tipKeys || []).map((key) => (
-                      <li key={key}>{t(`analysis.tipsList.${key}`)}</li>
-                    ))}
-                  </ul>
+                  <AnalysisTipsTable tipKeys={resultado.tipKeys} t={t} />
 
                   {isAuthenticated &&
                     (resultado.emailStatus === 'SENT' ||

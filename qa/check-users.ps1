@@ -2,9 +2,15 @@
 $ErrorActionPreference = "Continue"
 $Api = "https://g9-latam-team-48-production.up.railway.app"
 
+. (Join-Path $PSScriptRoot "load-qa-secrets.ps1")
+Require-QaDemoCredentials
+
 $login = Invoke-RestMethod -Uri "$Api/api/v1/auth/login" -Method POST `
     -ContentType "application/json; charset=utf-8" `
-    -Body (@{ email = "admin@energyai.com"; password = "admin1234" } | ConvertTo-Json -Compress)
+    -Body (@{
+        email    = $script:QaDemoAdminEmail
+        password = $script:QaDemoAdminPassword
+    } | ConvertTo-Json -Compress)
 
 $token = $login.data.accessToken
 if (-not $token) { Write-Host "No token"; exit 1 }

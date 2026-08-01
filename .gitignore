@@ -7,3 +7,20 @@ __pycache__/
 *.pyc
 *.joblib
 
+# Secretos locales (nunca commitear)
+.env
+.env.*
+!.env.example
+**/.env
+!**/.env.example
+qa/secrets.local.ps1
+qa/*-results.json
+
+# Node / Java build
+node_modules/
+dist/
+target/
+.vite/
+
+/docs/temp/
+

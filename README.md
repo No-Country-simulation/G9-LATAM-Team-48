@@ -22,13 +22,12 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
 | [`backend/`](./backend) | API Spring Boot (JWT, Google, email, Análisis IA, admin, contacto) |
 | [`ml-service/`](./ml-service) | Modelo ML (RandomForest + FastAPI) para Análisis IA |
 | [`datascience/`](./datascience) | Notebooks, dataset y docs de ciencia de datos (no se despliega) |
-| [`docs/`](./docs) | Documentación (arquitectura, auth, recomendaciones, deploy) |
+| [`docs/`](./docs) | Documentación (arquitectura, auth, recomendaciones, deploy, [accesibilidad frontend](./docs/frontend/ACCESIBILIDAD.md)) |
 | [`qa/`](./qa) | Checklist P0/P1, smoke scripts y notas NAS (sin tocar código de producto) |
 
 > **Rama de deploy:** `Jorge-martinez` (Vercel + Railway).  
 > La rama **`backend`** quedó **sincronizada** con `Jorge-martinez` (mismo contenido operativo; conflictos de prediction/mock resueltos a favor del flujo con `HeuristicPrediction` + `AnalisisPayload`).  
-> La rama **`develop`** está vacía a propósito (solo esqueleto de carpetas).  
-> No uses `main` para el front: ahí `frontend/` puede estar vacío.
+> La rama **`develop`** está vacía a propósito (solo esqueleto de carpetas).
 
 ---
 
@@ -104,13 +103,13 @@ VITE_GOOGLE_CLIENT_ID=tu-client-id.apps.googleusercontent.com
 ```
 
 En Railway (backend): `GOOGLE_CLIENT_ID` con el **mismo** Client ID. En Google Cloud Console → OAuth Web: origins `https://tu-app.vercel.app` y `http://localhost:5173`.
-Usuarios demo:
+Usuarios demo (emails en Flyway **V6**; contraseñas solo por canal del equipo / variables QA, **no en Git**):
 
-| Email | Contraseña | Rol |
-|-------|------------|-----|
-| `operador@energyai.com` | `operador123` | USER |
-| `admin@energyai.com` | `admin1234` | ADMIN |
-| `team48@energyai.com` | `team48123` | USER |
+| Email | Rol |
+|-------|-----|
+| `operador@energyai.com` | USER |
+| `admin@energyai.com` | ADMIN |
+| `team48@energyai.com` | USER |
 
 > Un push a `Jorge-martinez` redespliega Vercel y Railway si el auto-deploy está activo en esa rama.
 

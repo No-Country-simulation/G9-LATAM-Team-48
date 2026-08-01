@@ -1,10 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
 import GoogleSignInButton, {
   isGoogleSignInConfigured,
 } from './GoogleSignInButton'
+import {
+  GOOGLE_CLICK_WATCH_MS,
+  installGoogleSignInConsoleProbe,
+  isLikelyGoogleAuthPopupUrl,
+} from '../utils/googleSignInSupport'
 import {
   forgotPassword,
   resendVerification,
@@ -13,6 +18,7 @@ import {
   validateLogin,
   validateRegister,
 } from '../utils/authValidation'
+import { useAnnounce } from './SrAnnouncer'
 
 function fieldErrorMessage(t, code) {
   if (!code) return ''
@@ -38,6 +44,7 @@ function isEmailNotVerifiedError(message) {
 function LoginModal({ show, onHide, onAuthSuccess }) {
   const { login, register, loginWithGoogle, loading, error } = useAuth()
   const { t } = useLocale()
+  const announce = useAnnounce()
   const [mode, setMode] = useState('login')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -50,9 +57,59 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
   const [forgotLoading, setForgotLoading] = useState(false)
   const [resendLoading, setResendLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
+  const [googleBlockDetected, setGoogleBlockDetected] = useState(false)
+  const googleClickWatchRef = useRef(null)
+  const googleAuthStartedRef = useRef(false)
+  const googleBlurListenerRef = useRef(null)
+  const googleUserClickedRef = useRef(false)
   const showGoogle = isGoogleSignInConfigured() && (mode === 'login' || mode === 'register')
 
+  const showGoogleBlockAfterClick = useCallback(() => {
+    if (!googleUserClickedRef.current) return
+    setGoogleBlockDetected(true)
+  }, [])
+
+  const clearGoogleClickWatch = useCallback(() => {
+    if (googleClickWatchRef.current) {
+      window.clearTimeout(googleClickWatchRef.current)
+      googleClickWatchRef.current = null
+    }
+    if (googleBlurListenerRef.current) {
+      window.removeEventListener('blur', googleBlurListenerRef.current)
+      googleBlurListenerRef.current = null
+    }
+  }, [])
+
+  const markGoogleAuthStarted = useCallback(() => {
+    googleAuthStartedRef.current = true
+    clearGoogleClickWatch()
+  }, [clearGoogleClickWatch])
+
+  const scheduleGoogleClickWatch = useCallback(() => {
+    googleUserClickedRef.current = true
+    clearGoogleClickWatch()
+    googleAuthStartedRef.current = false
+
+    const onBlur = () => {
+      markGoogleAuthStarted()
+    }
+    googleBlurListenerRef.current = onBlur
+    window.addEventListener('blur', onBlur)
+
+    googleClickWatchRef.current = window.setTimeout(() => {
+      googleClickWatchRef.current = null
+      if (googleBlurListenerRef.current) {
+        window.removeEventListener('blur', googleBlurListenerRef.current)
+        googleBlurListenerRef.current = null
+      }
+      if (!googleAuthStartedRef.current) {
+        showGoogleBlockAfterClick()
+      }
+    }, GOOGLE_CLICK_WATCH_MS)
+  }, [clearGoogleClickWatch, markGoogleAuthStarted, showGoogleBlockAfterClick])
+
   const handleGoogleCredential = async (credential) => {
+    markGoogleAuthStarted()
     setFormError('')
     setInfoMessage('')
     setGoogleLoading(true)
@@ -73,6 +130,8 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
       setInfoMessage('')
       setVerifyLink('')
       setNeedsVerification(false)
+      setGoogleBlockDetected(false)
+      googleUserClickedRef.current = false
       return
     }
     setFieldErrors({})
@@ -81,6 +140,63 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
       setNeedsVerification(false)
     }
   }, [show, mode])
+
+  const modalTitle =
+    mode === 'forgot'
+      ? t('auth.forgotTitle')
+      : mode === 'resend'
+        ? t('auth.resendTitle')
+        : mode === 'register'
+          ? t('auth.registerTitle')
+          : t('auth.loginTitle')
+
+  useEffect(() => {
+    if (!show) return
+    announce(
+      `${t('a11y.loginDialogOpened', 'Ventana de inicio de sesión abierta')}. ${modalTitle}`,
+    )
+  }, [show, modalTitle, announce, t])
+
+  useEffect(() => {
+    if (!show || !showGoogle) {
+      clearGoogleClickWatch()
+      googleUserClickedRef.current = false
+      return undefined
+    }
+
+    const onPopupBlocked = () => {
+      showGoogleBlockAfterClick()
+      markGoogleAuthStarted()
+    }
+
+    const restoreConsole = installGoogleSignInConsoleProbe(onPopupBlocked)
+
+    const nativeOpen = window.open.bind(window)
+    window.open = (url, target, features) => {
+      const popup = nativeOpen(url, target, features)
+      if (isLikelyGoogleAuthPopupUrl(url) && googleUserClickedRef.current) {
+        if (!popup) {
+          showGoogleBlockAfterClick()
+        } else {
+          markGoogleAuthStarted()
+          window.setTimeout(() => {
+            try {
+              if (popup.closed) showGoogleBlockAfterClick()
+            } catch {
+              // cross-origin: popup abierto cuenta como progreso
+            }
+          }, 600)
+        }
+      }
+      return popup
+    }
+
+    return () => {
+      restoreConsole()
+      window.open = nativeOpen
+      clearGoogleClickWatch()
+    }
+  }, [show, showGoogle, clearGoogleClickWatch, markGoogleAuthStarted, showGoogleBlockAfterClick])
 
   const resetForm = () => {
     setName('')
@@ -91,6 +207,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
     setInfoMessage('')
     setVerifyLink('')
     setNeedsVerification(false)
+    setGoogleBlockDetected(false)
   }
 
   const handleForgot = async (event) => {
@@ -216,9 +333,16 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
   const isEmailOnly = isForgot || isResend
 
   return (
-    <Modal show={show} onHide={onHide} centered dialogClassName="login-modal-dialog" contentClassName="login-modal">
+    <Modal
+      show={show}
+      onHide={onHide}
+      centered
+      dialogClassName="login-modal-dialog"
+      contentClassName="login-modal"
+      aria-labelledby="login-modal-title"
+    >
       <Modal.Header closeButton>
-        <Modal.Title className="h5 mb-0">
+        <Modal.Title id="login-modal-title" className="h5 mb-0">
           {isForgot
             ? t('auth.forgotTitle')
             : isResend
@@ -230,7 +354,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
       </Modal.Header>
 
       <Modal.Body>
-        <p className="text-muted small mb-3">
+        <p className="text-muted small mb-3" id="login-modal-hint">
           {isForgot
             ? t('auth.forgotHint')
             : isResend
@@ -241,12 +365,35 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
         </p>
 
         {showGoogle && (
-          <div className="mb-3">
+          <div
+            className="mb-3"
+            role="group"
+            aria-label={t('a11y.googleSignInRegion', 'Inicio de sesión con Google')}
+            onPointerDownCapture={(event) => {
+              const host = event.currentTarget.querySelector('.google-signin-host')
+              if (!host) return
+              if (event.target === host || host.contains(event.target)) {
+                scheduleGoogleClickWatch()
+              }
+            }}
+          >
+            {googleBlockDetected && (
+              <div className="alert alert-warning py-2 small mb-2" role="status">
+                {t('auth.googleBlockHint')}
+              </div>
+            )}
             <GoogleSignInButton
               onCredential={handleGoogleCredential}
-              onError={(code) =>
+              onBlocked={showGoogleBlockAfterClick}
+              ariaLabel={t('a11y.googleSignInButton', 'Continuar con Google')}
+              onError={(code) => {
+                if (code === 'googleScriptFailed') {
+                  showGoogleBlockAfterClick()
+                  setFormError('')
+                  return
+                }
                 setFormError(resolveAuthError(t, code || 'googleLoginFailed'))
-              }
+              }}
               disabled={loading || googleLoading}
             />
             <div className="auth-divider my-3 text-center text-muted small">
@@ -314,7 +461,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
             </button>
           </form>
         ) : (
-          <form onSubmit={handleSubmit} noValidate>
+          <form onSubmit={handleSubmit} noValidate aria-describedby="login-modal-hint">
             {isRegister && (
               <div className="mb-3">
                 <label htmlFor="auth-name" className="form-label">

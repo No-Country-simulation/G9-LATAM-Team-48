@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import {
   getCurrentUser,
   login as loginRequest,
@@ -10,8 +10,11 @@ import api, { setupUnauthorizedInterceptor } from '../services/api'
 import {
   TOKEN_STORAGE_KEY,
   USER_STORAGE_KEY,
-  clearStoredPagina,
+  bootstrapAuthStorage,
+  clearStoredSession,
+  emitSessionExpired,
   getStoredUser,
+  isAccessTokenExpired,
   normalizeUser,
 } from '../utils/session'
 
@@ -20,30 +23,47 @@ const AuthContext = createContext()
 function clearSession(setUser, setToken) {
   setUser(null)
   setToken(null)
-  localStorage.removeItem(USER_STORAGE_KEY)
-  localStorage.removeItem(TOKEN_STORAGE_KEY)
-  clearStoredPagina()
+  clearStoredSession()
 }
 
-function persistSession(data, setUser, setToken) {
+const initialAuth = bootstrapAuthStorage()
+
+function shouldHydrate(token) {
+  if (!token) return false
+  if (String(token).startsWith('mock-token')) return false
+  return true
+}
+
+function persistSession(data, setUser, setToken, onRestored) {
   const user = normalizeUser(data.user)
   setUser(user)
   setToken(data.token)
   localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user))
   localStorage.setItem(TOKEN_STORAGE_KEY, data.token)
+  onRestored?.()
 }
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(getStoredUser)
-  const [token, setToken] = useState(() => localStorage.getItem(TOKEN_STORAGE_KEY))
+  const [user, setUser] = useState(initialAuth.user)
+  const [token, setToken] = useState(initialAuth.token)
   const [loading, setLoading] = useState(false)
-  const [hydrating, setHydrating] = useState(() =>
-    Boolean(localStorage.getItem(TOKEN_STORAGE_KEY)),
-  )
+  const [hydrating, setHydrating] = useState(() => shouldHydrate(initialAuth.token))
   const [error, setError] = useState(null)
   const [loginOpen, setLoginOpen] = useState(false)
+  const [sessionEpoch, setSessionEpoch] = useState(0)
+  const [authReady, setAuthReady] = useState(() => !shouldHydrate(initialAuth.token))
+  const sessionExpiredRef = useRef(false)
 
-  const isAuthenticated = Boolean(user && token)
+  const markSessionRestored = () => {
+    sessionExpiredRef.current = false
+  }
+
+  const bumpSessionEpoch = () => {
+    setSessionEpoch((n) => n + 1)
+  }
+
+  const isAuthenticated =
+    authReady && Boolean(user && token && !isAccessTokenExpired(token))
   const openLogin = () => setLoginOpen(true)
   const closeLogin = () => setLoginOpen(false)
 
@@ -61,12 +81,44 @@ export function AuthProvider({ children }) {
     return profile
   }
 
-  // Sesión vencida en cualquier llamada autenticada → limpiar y abrir login
+  function expireSession() {
+    if (sessionExpiredRef.current) return
+    sessionExpiredRef.current = true
+    clearSession(setUser, setToken)
+    setAuthReady(true)
+    setError(null)
+    setLoginOpen(false)
+    bumpSessionEpoch()
+    emitSessionExpired()
+  }
+
+  function checkTokenLifetime() {
+    const currentToken = localStorage.getItem(TOKEN_STORAGE_KEY)
+    if (!currentToken) return
+    if (String(currentToken).startsWith('mock-token')) return
+    if (isAccessTokenExpired(currentToken)) {
+      expireSession()
+    }
+  }
+
+  // Sesión vencida por tiempo (JWT exp) sin esperar un 401
+  useEffect(() => {
+    checkTokenLifetime()
+    const intervalId = window.setInterval(checkTokenLifetime, 15000)
+    const onFocus = () => checkTokenLifetime()
+    window.addEventListener('focus', onFocus)
+    document.addEventListener('visibilitychange', onFocus)
+    return () => {
+      window.clearInterval(intervalId)
+      window.removeEventListener('focus', onFocus)
+      document.removeEventListener('visibilitychange', onFocus)
+    }
+  }, [])
+
+  // Sesión vencida en cualquier llamada autenticada → dashboard + remount (sin modal login)
   useEffect(() => {
     const interceptorId = setupUnauthorizedInterceptor(() => {
-      clearSession(setUser, setToken)
-      setError(null)
-      setLoginOpen(true)
+      expireSession()
     })
     return () => {
       api.interceptors.response.eject(interceptorId)
@@ -78,21 +130,27 @@ export function AuthProvider({ children }) {
 
     async function hydrate() {
       const currentToken = localStorage.getItem(TOKEN_STORAGE_KEY)
-      const storedUser = getStoredUser()
 
       if (!currentToken) {
+        if (!cancelled) {
+          setAuthReady(true)
+          setHydrating(false)
+        }
+        return
+      }
+
+      if (isAccessTokenExpired(currentToken)) {
+        if (!cancelled) expireSession()
         if (!cancelled) setHydrating(false)
         return
       }
 
-      // Mantener sesion visible de inmediato (evita que el menu Admin parpadee/desaparezca)
-      if (!cancelled && storedUser) {
-        setUser(storedUser)
-        setToken(currentToken)
-      }
-
       if (String(currentToken).startsWith('mock-token')) {
-        if (!cancelled) setHydrating(false)
+        if (!cancelled) {
+          setUser(getStoredUser())
+          setAuthReady(true)
+          setHydrating(false)
+        }
         return
       }
 
@@ -102,16 +160,16 @@ export function AuthProvider({ children }) {
           setUser(profile)
           setToken(currentToken)
           localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(profile))
+          setAuthReady(true)
         }
       } catch (err) {
         const status = err?.response?.status
         if (!cancelled) {
-          // Solo cerrar si el token es invalido. Si el backend falla, conservar cache.
-          if (status === 401) {
+          if (status === 401 || status === 403) {
+            expireSession()
+          } else {
             clearSession(setUser, setToken)
-          } else if (storedUser) {
-            setUser(storedUser)
-            setToken(currentToken)
+            setAuthReady(true)
           }
         }
       } finally {
@@ -131,7 +189,8 @@ export function AuthProvider({ children }) {
 
     try {
       const data = await loginRequest({ email, password })
-      persistSession(data, setUser, setToken)
+      persistSession(data, setUser, setToken, markSessionRestored)
+      setAuthReady(true)
       return { ...data, user: normalizeUser(data.user) }
     } catch (err) {
       setError(err.message)
@@ -151,7 +210,8 @@ export function AuthProvider({ children }) {
       if (data?.pendingVerification || !data?.token) {
         return data
       }
-      persistSession(data, setUser, setToken)
+      persistSession(data, setUser, setToken, markSessionRestored)
+      setAuthReady(true)
       return { ...data, user: normalizeUser(data.user) }
     } catch (err) {
       setError(err.message)
@@ -166,7 +226,8 @@ export function AuthProvider({ children }) {
     setError(null)
     try {
       const data = await loginWithGoogleRequest(credential)
-      persistSession(data, setUser, setToken)
+      persistSession(data, setUser, setToken, markSessionRestored)
+      setAuthReady(true)
       return { ...data, user: normalizeUser(data.user) }
     } catch (err) {
       setError(err.message)
@@ -183,6 +244,8 @@ export function AuthProvider({ children }) {
       await logoutRequest()
     } finally {
       clearSession(setUser, setToken)
+      setAuthReady(true)
+      bumpSessionEpoch()
       setError(null)
       setLoading(false)
     }
@@ -202,6 +265,7 @@ export function AuthProvider({ children }) {
         loginWithGoogle,
         logout,
         refreshUser,
+        sessionEpoch,
         loginOpen,
         openLogin,
         closeLogin,

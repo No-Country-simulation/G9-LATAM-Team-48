@@ -7,6 +7,21 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const outDir = path.resolve(__dirname, '../screenshots')
 const baseURL = process.env.APP_URL || 'http://localhost:5173'
 
+async function waitForGoogleButton(modal, page, label) {
+  const iframe = modal.locator('.google-signin-host iframe')
+  try {
+    await iframe.waitFor({ state: 'visible', timeout: 20000 })
+    await page.waitForTimeout(600)
+    return true
+  } catch {
+    console.warn(
+      `[${label}] Botón Google no visible — revisá VITE_GOOGLE_CLIENT_ID o usá APP_URL=https://g9-latam-team-48.vercel.app`,
+    )
+    await page.waitForTimeout(800)
+    return false
+  }
+}
+
 async function shot(page, name, options = {}) {
   const file = path.join(outDir, name)
   await page.screenshot({
@@ -40,14 +55,15 @@ async function main() {
   // Login modal
   await page.getByRole('button', { name: /Iniciar sesión|Entrar/i }).first().click()
   await page.waitForSelector('.modal.show', { timeout: 5000 })
-  await page.waitForTimeout(400)
   const loginModal = page.locator('.modal.show .modal-content')
+  await waitForGoogleButton(loginModal, page, 'login')
   await loginModal.screenshot({ path: path.join(outDir, 'login.png') })
   console.log('saved login.png')
 
-  // Registro tab
-  await page.getByRole('button', { name: /Registrarse|Register/i }).first().click()
-  await page.waitForTimeout(300)
+  // Registro (enlace de texto en el modal, no pestaña)
+  await loginModal.getByRole('button', { name: /Registrate|Create account|No tenés cuenta|switch to register/i }).click()
+  await page.waitForTimeout(400)
+  await waitForGoogleButton(loginModal, page, 'registro')
   await loginModal.screenshot({ path: path.join(outDir, 'registro.png') })
   console.log('saved registro.png')
 
@@ -62,12 +78,15 @@ async function main() {
   // Análisis IA (casa con datos + análisis para mostrar gráfico y tips)
   await page.getByRole('button', { name: /Análisis IA|Analisis IA/i }).first().click()
   await page.waitForTimeout(500)
-  await page.locator('#consumo').fill('380')
-  await page.locator('#personas').fill('4')
-  await page.locator('#equipos').fill('8')
-  await page.locator('#area').fill('64')
-  await page.locator('#climateHours').fill('0')
-  await page.locator('#peakUseHours').fill('6')
+  await page.locator('#consumoKwh').fill('450')
+  await page.locator('#consumoKwhMesAnterior').fill('430')
+  await page.locator('#cantidadPersonas').fill('4')
+  await page.locator('#cantidadEquipos').fill('12')
+  await page.locator('#areaM2').fill('120')
+  await page.locator('#horasClimatizacion').fill('6')
+  await page.locator('#pctIluminacionLed').fill('65')
+  await page.locator('#antiguedadConstruccionAnios').fill('15')
+  await page.locator('#antiguedadElectrodomesticosAnios').fill('8')
   await page.getByRole('button', { name: /Analizar consumo|Analyze usage/i }).click()
   await page.waitForTimeout(1200)
   await shot(page, 'analisis-ia.png', { fullPage: true })

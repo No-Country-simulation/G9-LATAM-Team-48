@@ -1,5 +1,6 @@
 package com.alura.user.repository;
 
+import com.alura.common.dto.PageResponse;
 import com.alura.user.model.User;
 
 import java.util.List;
@@ -18,6 +19,9 @@ public interface UserRepository {
 
     /** Lista solo usuarios activos. */
     List<User> findAll();
+
+    /** Pagina usuarios activos (orden por id ascendente). */
+    PageResponse<User> findPage(int page, int size);
 
     User save(User user);
 

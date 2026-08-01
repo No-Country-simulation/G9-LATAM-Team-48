@@ -11,6 +11,7 @@ import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import consumoData from '../data/consumo.json'
 import { yDomainWithPadding } from '../utils/chartScale'
+import ChartSrTable from './ChartSrTable'
 
 function GraficoConsumo({ consumos = consumoData }) {
   const { theme } = useTheme()
@@ -25,13 +26,15 @@ function GraficoConsumo({ consumos = consumoData }) {
   }))
 
   const yDomain = yDomainWithPadding(datos.map((item) => item.consumo))
+  const tableCaption = `${t('chart.title')}. ${t('a11y.chartDataCaption', 'Datos del gráfico en tabla')}.`
 
   return (
     <div className="card shadow mt-4">
       <div className="card-body">
-        <h4>{t('chart.title')}</h4>
+        <h4 id="chart-consumo-title">{t('chart.title')}</h4>
 
-        <ResponsiveContainer width="100%" height={300}>
+        <div aria-hidden="true">
+          <ResponsiveContainer width="100%" height={300}>
           <LineChart data={datos}>
             <CartesianGrid stroke={gridColor} />
             <XAxis
@@ -72,6 +75,21 @@ function GraficoConsumo({ consumos = consumoData }) {
             />
           </LineChart>
         </ResponsiveContainer>
+        </div>
+
+        <ChartSrTable
+          tableId="chart-consumo-data"
+          caption={tableCaption}
+          columns={[
+            { key: 'mes', label: t('chart.axisMonth') },
+            { key: 'consumo', label: t('chart.axisKwh') },
+          ]}
+          rows={datos.map((row) => ({
+            key: row.mes,
+            mes: row.mes,
+            consumo: row.consumo,
+          }))}
+        />
       </div>
     </div>
   )

@@ -64,6 +64,10 @@ export default {
     mapWouldSelect: 'Seleccionado: {lang}. Confirmá en el panel.',
     mapWouldSelectDesktop: 'Click para elegir {lang}',
     mapPending: 'Idioma propuesto: {lang}. Tocá Usar este idioma para confirmar.',
+    loginDialogOpened: 'Ventana de inicio de sesión abierta',
+    googleSignInRegion: 'Inicio de sesión con Google',
+    googleSignInButton: 'Continuar con Google',
+    chartDataCaption: 'Datos del gráfico en tabla',
   },
   menu: {
     dashboard: 'Dashboard',
@@ -105,6 +109,10 @@ export default {
     switchToRegister: '¿No tenés cuenta? Registrate',
     switchToLogin: '¿Ya tenés cuenta? Iniciá sesión',
     orContinueWithEmail: 'o continuá con email',
+    googleBlockHint:
+      'Si usás bloqueador de anuncios o extensiones de privacidad, Google Sign-In puede no cargar o no abrir la ventana al hacer clic. Desactivá el bloqueador para este sitio o permití accounts.google.com y recargá. Podés entrar con email y contraseña.',
+    googleBlockHintShort:
+      '¿Bloqueador de anuncios? Google Sign-In suele fallar: desactivá la extensión para este sitio o permití accounts.google.com. También podés entrar con email.',
     forgotLink: '¿Olvidaste tu contraseña?',
     forgotTitle: 'Recuperar contraseña',
     forgotHint: 'Te enviaremos un enlace para restablecerla.',
@@ -152,7 +160,8 @@ export default {
       loginFailed: 'No se pudo iniciar sesión',
       registerFailed: 'No se pudo registrar',
       googleLoginFailed: 'No se pudo iniciar sesión con Google',
-      googleScriptFailed: 'No se pudo cargar Google Sign-In',
+      googleScriptFailed:
+        'No se pudo cargar Google Sign-In (revisá bloqueadores de anuncios o la consola OAuth)',
       googleNoCredential: 'Google no devolvió credenciales',
       googleNotAvailableInMock: 'Google no está disponible en modo mock',
       network: 'No se pudo conectar con el backend',

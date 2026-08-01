@@ -4,6 +4,8 @@ import com.alura.auth.service.PasswordResetService;
 import com.alura.auth.service.UserMailService;
 import com.alura.common.exception.BusinessException;
 import com.alura.common.exception.ResourceNotFoundException;
+import com.alura.common.dto.PageResponse;
+import com.alura.common.util.PageRequests;
 import com.alura.user.dto.AdminCreateUserRequest;
 import com.alura.user.dto.AdminUpdateUserRequest;
 import com.alura.user.dto.AdminUserCreatedResponse;
@@ -37,6 +39,18 @@ public class AdminUserService {
                 .sorted(Comparator.comparing(User::getId, Comparator.nullsLast(Long::compareTo)))
                 .map(this::toResponse)
                 .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public PageResponse<UserResponse> listPage(int page, int size) {
+        PageResponse<User> slice = userRepository.findPage(page, size);
+        List<UserResponse> content = slice.content().stream().map(this::toResponse).toList();
+        return new PageResponse<>(
+                content,
+                slice.page(),
+                slice.size(),
+                slice.totalElements(),
+                slice.totalPages());
     }
 
     @Transactional(readOnly = true)

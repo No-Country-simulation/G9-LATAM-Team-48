@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import { LuEye, LuMail, LuRotateCcw } from 'react-icons/lu'
 import {
   listMisAnalisis,
+  listMisAnalisisChartPoints,
   reenviarEmailAnalisis,
 } from '../services/historiaConsumosService'
 import { useAuth } from '../context/AuthContext'
@@ -12,7 +13,21 @@ import Loader from '../components/Loader'
 import EmptyState from '../components/EmptyState'
 import GraficoHistoriaConsumo from '../components/GraficoHistoriaConsumo'
 import GraficosHistoriaExtra from '../components/GraficosHistoriaExtra'
+import AnalysisRequestFieldsTable from '../components/AnalysisRequestFieldsTable'
+import AnalysisTipsTable from '../components/AnalysisTipsTable'
+import TablePagination from '../components/TablePagination'
+import { DEFAULT_PAGE_SIZE } from '../utils/pageResponse'
 import { draftFromRequest, saveAnalisisDraft } from '../utils/analisisDraft'
+import {
+  ML_REQUEST_FIELD_DEFS,
+  pickRequestFieldValue,
+} from '../utils/analisisMlContract'
+import {
+  formatKwh,
+  formatM2,
+  numericFromRow,
+  zonaLabelFromRow,
+} from '../utils/analisisRowHelpers'
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -28,60 +43,6 @@ const LOCALE_TAGS = {
   tr: 'tr-TR',
 }
 
-const REQUEST_FIELDS = [
-  {
-    key: 'tipoInmueble',
-    labelKey: 'analysis.installationType',
-    type: 'tipo',
-    aliases: ['tipoInmueble', 'tipo_inmueble', 'tipo'],
-  },
-  {
-    key: 'consumoKwh',
-    labelKey: 'analysis.monthlyUsage',
-    type: 'number',
-    suffix: 'kWh',
-    aliases: ['consumoKwh', 'consumo_kwh', 'consumo'],
-  },
-  {
-    key: 'areaM2',
-    labelKey: 'analysis.homeArea',
-    type: 'number',
-    suffix: 'm²',
-    aliases: ['areaM2', 'area_m2', 'area'],
-  },
-  {
-    key: 'cantidadPersonas',
-    labelKey: 'analysis.people',
-    type: 'number',
-    aliases: ['cantidadPersonas', 'cantidad_personas'],
-  },
-  {
-    key: 'cantidadEquipos',
-    labelKey: 'analysis.devices',
-    type: 'number',
-    aliases: ['cantidadEquipos', 'cantidad_equipos'],
-  },
-  {
-    key: 'horasClimatizacion',
-    labelKey: 'analysis.climateHours',
-    type: 'number',
-    aliases: ['horasClimatizacion', 'horas_climatizacion'],
-  },
-  {
-    key: 'horasAltoConsumo',
-    labelKey: 'analysis.peakUseHours',
-    type: 'number',
-    aliases: ['horasAltoConsumo', 'horas_alto_consumo'],
-  },
-  {
-    key: 'usoHorarioPico',
-    labelKey: 'analysis.peakHoursUse',
-    type: 'bool',
-    aliases: ['usoHorarioPico', 'uso_horario_pico'],
-  },
-]
-
-/** El backend a veces entrega requestJson como objeto o como string JSON. */
 function normalizeRequestJson(raw) {
   if (raw == null || raw === '') return {}
   if (typeof raw === 'string') {
@@ -95,38 +56,11 @@ function normalizeRequestJson(raw) {
   return raw
 }
 
-function pickRequestValue(request, field) {
-  const keys = field.aliases || [field.key]
-  for (const key of keys) {
-    if (!Object.prototype.hasOwnProperty.call(request, key)) continue
-    const value = request[key]
-    if (value !== undefined && value !== null && value !== '') return value
-    if (value === 0 || value === false) return value
-  }
-  const wanted = String(field.key).toLowerCase().replace(/_/g, '')
-  for (const [key, value] of Object.entries(request)) {
-    if (String(key).toLowerCase().replace(/_/g, '') === wanted) {
-      if (value !== undefined && value !== null && value !== '') return value
-      if (value === 0 || value === false) return value
-    }
-  }
-  return undefined
-}
-
-function isKnownRequestKey(key) {
-  const wanted = String(key).toLowerCase().replace(/_/g, '')
-  return REQUEST_FIELDS.some((field) =>
-    (field.aliases || [field.key]).some(
-      (alias) => String(alias).toLowerCase().replace(/_/g, '') === wanted,
-    ),
-  )
-}
-
 function buildEnteredRequest(detail) {
   const request = { ...normalizeRequestJson(detail?.requestJson ?? detail?.request_json) }
   if (
     detail?.tipoInstalacion &&
-    pickRequestValue(request, REQUEST_FIELDS[0]) == null
+    pickRequestFieldValue(request, ML_REQUEST_FIELD_DEFS[0]) == null
   ) {
     request.tipoInmueble = detail.tipoInstalacion
   }
@@ -134,20 +68,7 @@ function buildEnteredRequest(detail) {
 }
 
 function consumoFromRow(row) {
-  const request = normalizeRequestJson(row?.requestJson ?? row?.request_json)
-  const field = REQUEST_FIELDS.find((item) => item.key === 'consumoKwh')
-  const value = field ? pickRequestValue(request, field) : null
-  const num = Number(value)
-  return Number.isFinite(num) ? num : null
-}
-
-function extraRequestEntries(request) {
-  return Object.entries(request).filter(([key, value]) => {
-    if (isKnownRequestKey(key)) return false
-    if (value === undefined || value === null || value === '') return false
-    if (typeof value === 'object') return false
-    return true
-  })
+  return numericFromRow(row, 'consumoKwh')
 }
 
 function formatDate(value, locale) {
@@ -173,22 +94,6 @@ function labelNivel(t, nivel) {
   return translated === key ? nivel : translated
 }
 
-function formatRequestValue(t, field, raw) {
-  if (raw == null || raw === '') return '—'
-  if (field.type === 'tipo') return labelTipo(t, String(raw))
-  if (field.type === 'bool') {
-    return raw === true || raw === 'true' || raw === 1 || raw === '1'
-      ? t('analysis.yesNo.yes')
-      : t('analysis.yesNo.no')
-  }
-  if (field.type === 'number') {
-    const num = Number(raw)
-    const text = Number.isFinite(num) ? String(num) : String(raw)
-    return field.suffix ? `${text} ${field.suffix}` : text
-  }
-  return String(raw)
-}
-
 function tipKeysFrom(detail) {
   if (Array.isArray(detail?.tipKeys) && detail.tipKeys.length) return detail.tipKeys
   if (Array.isArray(detail?.responseJson?.tipKeys)) return detail.responseJson.tipKeys
@@ -197,9 +102,14 @@ function tipKeysFrom(detail) {
 
 function HistoriaConsumos() {
   const { t, locale } = useLocale()
-  const { token, openLogin, hydrating } = useAuth()
+  const { token, isAuthenticated, openLogin, hydrating } = useAuth()
   const { setPagina } = useNavigation()
   const [rows, setRows] = useState([])
+  const [chartPoints, setChartPoints] = useState([])
+  const [page, setPage] = useState(0)
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE)
+  const [totalPages, setTotalPages] = useState(0)
+  const [totalElements, setTotalElements] = useState(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [detail, setDetail] = useState(null)
@@ -217,17 +127,39 @@ function HistoriaConsumos() {
     setPagina('ia')
   }
 
-  async function load() {
+  async function loadChartPoints() {
+    try {
+      const points = await listMisAnalisisChartPoints()
+      setChartPoints(Array.isArray(points) ? points : [])
+    } catch {
+      setChartPoints([])
+    }
+  }
+
+  async function loadTable(pageIndex = page, size = pageSize) {
     setLoading(true)
     setError(null)
     try {
       if (!token || String(token).startsWith('mock-token')) {
         setError(t('historiaConsumos.sessionInvalid'))
         setRows([])
+        setTotalElements(0)
+        setTotalPages(0)
         return
       }
-      const list = await listMisAnalisis()
-      setRows(Array.isArray(list) ? list : [])
+      const result = await listMisAnalisis({ page: pageIndex, size })
+      if (
+        (!result.content || result.content.length === 0) &&
+        pageIndex > 0 &&
+        (result.totalElements ?? 0) > 0
+      ) {
+        await loadTable(pageIndex - 1, size)
+        return
+      }
+      setRows(Array.isArray(result.content) ? result.content : [])
+      setPage(result.page ?? pageIndex)
+      setTotalPages(result.totalPages ?? 0)
+      setTotalElements(result.totalElements ?? 0)
     } catch (err) {
       const status = err?.response?.status
       if (status === 401 || status === 403) {
@@ -246,16 +178,32 @@ function HistoriaConsumos() {
     }
   }
 
+  async function loadAll() {
+    void loadChartPoints()
+    await loadTable(0, pageSize)
+  }
+
+  function handlePageChange(nextPage) {
+    loadTable(nextPage, pageSize)
+  }
+
+  function handlePageSizeChange(nextSize) {
+    setPageSize(nextSize)
+    loadTable(0, nextSize)
+  }
+
   useEffect(() => {
     if (hydrating) return
-    if (!token) {
+    if (!isAuthenticated || !token) {
       setLoading(false)
       setRows([])
+      setChartPoints([])
+      setPagina('dashboard')
       return
     }
-    load()
+    loadAll()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, hydrating])
+  }, [token, hydrating, isAuthenticated])
 
   async function handleResendEmail(row) {
     if (!row?.id) return
@@ -300,11 +248,6 @@ function HistoriaConsumos() {
 
   const request = buildEnteredRequest(detail)
   const tips = tipKeysFrom(detail)
-  const enteredRows = REQUEST_FIELDS.map((field) => ({
-    field,
-    value: pickRequestValue(request, field),
-  }))
-  const extraEntries = extraRequestEntries(request)
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -316,7 +259,10 @@ function HistoriaConsumos() {
         <button
           type="button"
           className="btn btn-outline-primary btn-sm"
-          onClick={load}
+          onClick={() => {
+            loadChartPoints()
+            loadTable(page, pageSize)
+          }}
           disabled={loading}
         >
           {t('historiaConsumos.refresh')}
@@ -337,7 +283,7 @@ function HistoriaConsumos() {
         </div>
       )}
 
-      {!loading && !error && rows.length === 0 && (
+      {!loading && !error && totalElements === 0 && (
         <EmptyState
           mensaje={t('historiaConsumos.empty')}
           actionLabel={t('historiaConsumos.goToAnalysis', 'Ir a Análisis IA')}
@@ -345,23 +291,17 @@ function HistoriaConsumos() {
         />
       )}
 
-      {!loading && !error && rows.length > 0 && (
+      {!loading && !error && totalElements > 0 && (
         <>
           <GraficoHistoriaConsumo
-            points={rows
-              .map((row) => {
-                const consumo = consumoFromRow(row)
-                if (consumo == null) return null
-                return {
-                  id: row.id,
-                  createdAt: row.createdAt,
-                  consumo,
-                }
-              })
-              .filter(Boolean)}
+            points={chartPoints.map((row) => ({
+              id: row.id,
+              createdAt: row.createdAt,
+              consumo: row.consumoKwh ?? row.consumo,
+            }))}
           />
           <GraficosHistoriaExtra
-            points={rows.map((row) => ({
+            points={chartPoints.map((row) => ({
               id: row.id,
               createdAt: row.createdAt,
               ahorro: row.ahorro,
@@ -376,7 +316,14 @@ function HistoriaConsumos() {
                     <tr>
                       <th>{t('historiaConsumos.createdAt')}</th>
                       <th>{t('historiaConsumos.tipo')}</th>
-                      <th>{t('historiaConsumos.consumo')}</th>
+                      <th>{t('historiaConsumos.consumoMensual')}</th>
+                      <th className="d-none d-md-table-cell">
+                        {t('historiaConsumos.consumoAnterior')}
+                      </th>
+                      <th className="d-none d-lg-table-cell">{t('historiaConsumos.zona')}</th>
+                      <th className="d-none d-xl-table-cell">
+                        {t('historiaConsumos.superficie')}
+                      </th>
                       <th>{t('historiaConsumos.nivel')}</th>
                       <th>{t('historiaConsumos.ahorro')}</th>
                       <th className="text-end">{t('historiaConsumos.actions')}</th>
@@ -385,11 +332,18 @@ function HistoriaConsumos() {
                   <tbody>
                     {rows.map((row) => {
                       const consumo = consumoFromRow(row)
+                      const consumoPrev = numericFromRow(row, 'consumoKwhMesAnterior')
+                      const superficie = numericFromRow(row, 'areaM2')
                       return (
                       <tr key={row.id}>
                         <td className="small text-nowrap">{formatDate(row.createdAt, locale)}</td>
                         <td>{labelTipo(t, row.tipoInstalacion)}</td>
-                        <td>{consumo != null ? `${consumo} kWh` : '—'}</td>
+                        <td>{formatKwh(consumo)}</td>
+                        <td className="d-none d-md-table-cell">{formatKwh(consumoPrev)}</td>
+                        <td className="d-none d-lg-table-cell small">
+                          {zonaLabelFromRow(row, t)}
+                        </td>
+                        <td className="d-none d-xl-table-cell">{formatM2(superficie)}</td>
                         <td>{labelNivel(t, row.nivelKey)}</td>
                         <td>{row.ahorro != null ? `${row.ahorro}%` : '—'}</td>
                         <td className="text-end text-nowrap">
@@ -427,6 +381,16 @@ function HistoriaConsumos() {
                   </tbody>
                 </table>
               </div>
+              <TablePagination
+                page={page}
+                totalPages={totalPages}
+                totalElements={totalElements}
+                pageSize={pageSize}
+                onPageChange={handlePageChange}
+                onPageSizeChange={handlePageSizeChange}
+                t={t}
+                idPrefix="historia-consumos"
+              />
             </div>
           </div>
         </>
@@ -477,33 +441,10 @@ function HistoriaConsumos() {
               </div>
 
               <h6 className="mb-3">{t('historiaConsumos.enteredData')}</h6>
-              <div className="row g-3 mb-3">
-                {enteredRows.map(({ field, value }) => (
-                  <div className="col-12 col-sm-6" key={field.key}>
-                    <div className="small text-muted">{t(field.labelKey)}</div>
-                    <div className="fw-semibold">
-                      {formatRequestValue(t, field, value)}
-                    </div>
-                  </div>
-                ))}
-                {extraEntries.map(([key, value]) => (
-                  <div className="col-12 col-sm-6" key={key}>
-                    <div className="small text-muted">{key}</div>
-                    <div className="fw-semibold">{String(value)}</div>
-                  </div>
-                ))}
-              </div>
+              <AnalysisRequestFieldsTable request={request} t={t} showMlKey />
 
-              <h6 className="mb-2">{t('historiaConsumos.recommendations')}</h6>
-              {tips.length === 0 ? (
-                <p className="small text-muted mb-0">{t('historiaConsumos.noTips')}</p>
-              ) : (
-                <ul className="mb-0 small">
-                  {tips.map((key) => (
-                    <li key={key}>{t(`analysis.tipsList.${key}`, key)}</li>
-                  ))}
-                </ul>
-              )}
+              <h6 className="mb-2 mt-3">{t('historiaConsumos.recommendations')}</h6>
+              <AnalysisTipsTable tipKeys={tips} t={t} />
             </>
           )}
         </Modal.Body>
