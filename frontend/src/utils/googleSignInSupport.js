@@ -157,6 +157,40 @@ export function isLikelyGoogleAuthPopupUrl(url) {
   )
 }
 
+export function isGooglePopupBlockedLogMessage(text) {
+  const m = String(text || '').toLowerCase()
+  return (
+    m.includes('failed to open popup') ||
+    m.includes('maybe blocked by the browser') ||
+    (m.includes('gsi_logger') && m.includes('blocked'))
+  )
+}
+
+export function installGoogleSignInConsoleProbe(onPopupBlocked) {
+  const inspect = (args) => {
+    try {
+      const joined = args.map((value) => String(value)).join(' ')
+      if (isGooglePopupBlockedLogMessage(joined)) onPopupBlocked()
+    } catch {
+      /* ignore */
+    }
+  }
+  const nativeError = console.error.bind(console)
+  const nativeWarn = console.warn.bind(console)
+  console.error = (...args) => {
+    inspect(args)
+    nativeError(...args)
+  }
+  console.warn = (...args) => {
+    inspect(args)
+    nativeWarn(...args)
+  }
+  return () => {
+    console.error = nativeError
+    console.warn = nativeWarn
+  }
+}
+
 export function loadGoogleIdentityScript() {
   if (typeof window === 'undefined') return Promise.resolve(false)
   if (window.google?.accounts?.id) return Promise.resolve(true)

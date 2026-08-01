@@ -7,9 +7,8 @@ import GoogleSignInButton, {
 } from './GoogleSignInButton'
 import {
   GOOGLE_CLICK_WATCH_MS,
-  isGoogleSignInHostVisible,
+  installGoogleSignInConsoleProbe,
   isLikelyGoogleAuthPopupUrl,
-  probeGoogleSignInEnvironment,
 } from '../utils/googleSignInSupport'
 import {
   forgotPassword,
@@ -60,7 +59,13 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
   const googleClickWatchRef = useRef(null)
   const googleAuthStartedRef = useRef(false)
   const googleBlurListenerRef = useRef(null)
+  const googleUserClickedRef = useRef(false)
   const showGoogle = isGoogleSignInConfigured() && (mode === 'login' || mode === 'register')
+
+  const showGoogleBlockAfterClick = useCallback(() => {
+    if (!googleUserClickedRef.current) return
+    setGoogleBlockDetected(true)
+  }, [])
 
   const clearGoogleClickWatch = useCallback(() => {
     if (googleClickWatchRef.current) {
@@ -79,6 +84,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
   }, [clearGoogleClickWatch])
 
   const scheduleGoogleClickWatch = useCallback(() => {
+    googleUserClickedRef.current = true
     clearGoogleClickWatch()
     googleAuthStartedRef.current = false
 
@@ -95,10 +101,10 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
         googleBlurListenerRef.current = null
       }
       if (!googleAuthStartedRef.current) {
-        setGoogleBlockDetected(true)
+        showGoogleBlockAfterClick()
       }
     }, GOOGLE_CLICK_WATCH_MS)
-  }, [clearGoogleClickWatch, markGoogleAuthStarted])
+  }, [clearGoogleClickWatch, markGoogleAuthStarted, showGoogleBlockAfterClick])
 
   const handleGoogleCredential = async (credential) => {
     markGoogleAuthStarted()
@@ -123,6 +129,7 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
       setVerifyLink('')
       setNeedsVerification(false)
       setGoogleBlockDetected(false)
+      googleUserClickedRef.current = false
       return
     }
     setFieldErrors({})
@@ -134,43 +141,29 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
 
   useEffect(() => {
     if (!show || !showGoogle) {
-      setGoogleBlockDetected(false)
-      return undefined
-    }
-    let cancelled = false
-    probeGoogleSignInEnvironment().then((blocked) => {
-      if (!cancelled && blocked) setGoogleBlockDetected(true)
-    })
-    const hostTimer = window.setTimeout(() => {
-      if (cancelled) return
-      const host = document.querySelector('.google-signin-host')
-      if (host && !isGoogleSignInHostVisible(host)) {
-        setGoogleBlockDetected(true)
-      }
-    }, 2200)
-    return () => {
-      cancelled = true
-      window.clearTimeout(hostTimer)
-    }
-  }, [show, showGoogle])
-
-  useEffect(() => {
-    if (!show || !showGoogle) {
       clearGoogleClickWatch()
+      googleUserClickedRef.current = false
       return undefined
     }
+
+    const onPopupBlocked = () => {
+      showGoogleBlockAfterClick()
+      markGoogleAuthStarted()
+    }
+
+    const restoreConsole = installGoogleSignInConsoleProbe(onPopupBlocked)
 
     const nativeOpen = window.open.bind(window)
     window.open = (url, target, features) => {
       const popup = nativeOpen(url, target, features)
-      if (isLikelyGoogleAuthPopupUrl(url)) {
+      if (isLikelyGoogleAuthPopupUrl(url) && googleUserClickedRef.current) {
         if (!popup) {
-          setGoogleBlockDetected(true)
+          showGoogleBlockAfterClick()
         } else {
           markGoogleAuthStarted()
           window.setTimeout(() => {
             try {
-              if (popup.closed) setGoogleBlockDetected(true)
+              if (popup.closed) showGoogleBlockAfterClick()
             } catch {
               // cross-origin: popup abierto cuenta como progreso
             }
@@ -181,10 +174,11 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
     }
 
     return () => {
+      restoreConsole()
       window.open = nativeOpen
       clearGoogleClickWatch()
     }
-  }, [show, showGoogle, clearGoogleClickWatch, markGoogleAuthStarted])
+  }, [show, showGoogle, clearGoogleClickWatch, markGoogleAuthStarted, showGoogleBlockAfterClick])
 
   const resetForm = () => {
     setName('')
@@ -363,10 +357,10 @@ function LoginModal({ show, onHide, onAuthSuccess }) {
             )}
             <GoogleSignInButton
               onCredential={handleGoogleCredential}
-              onBlocked={() => setGoogleBlockDetected(true)}
+              onBlocked={showGoogleBlockAfterClick}
               onError={(code) => {
                 if (code === 'googleScriptFailed') {
-                  setGoogleBlockDetected(true)
+                  showGoogleBlockAfterClick()
                   setFormError('')
                   return
                 }
