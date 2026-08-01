@@ -1,7 +1,11 @@
 function CardConsumo({ titulo, valor }) {
   return (
     <div className="col-12 col-sm-6 col-lg-4">
-      <div className="card shadow mb-0 h-100">
+      <div
+        className="card shadow mb-0 h-100"
+        role="group"
+        aria-label={`${titulo}: ${valor}`}
+      >
         <div className="card-body">
           <h5 className="card-title">{titulo}</h5>
           <h2 className="mb-0">{valor}</h2>

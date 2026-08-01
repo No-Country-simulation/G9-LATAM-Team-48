@@ -30,6 +30,7 @@ export default function GoogleSignInButton({
   onError,
   onBlocked,
   disabled = false,
+  ariaLabel = '',
 }) {
   const hostRef = useRef(null)
   const onCredentialRef = useRef(onCredential)
@@ -104,6 +105,8 @@ export default function GoogleSignInButton({
       ref={hostRef}
       className="google-signin-host d-flex justify-content-center w-100"
       aria-busy={disabled || undefined}
+      aria-label={ariaLabel || undefined}
+      role={ariaLabel ? 'group' : undefined}
     />
   )
 }
