@@ -9,13 +9,14 @@ npm run dev          # en una terminal (con VITE_GOOGLE_CLIENT_ID en .env)
 npm run screenshots  # en otra
 ```
 
-Solo **login** y **registro** (recomendado, usa la demo en Vercel con Google ya configurado):
+Solo **login** (dos PNG: leyenda corta + ampliada) y **registro**:
 
 ```bash
-# PowerShell
 $env:APP_URL = "https://g9-latam-team-48.vercel.app"
 npm run screenshots:auth
 ```
+
+Genera `login.png` (aviso corto) y `login-bloqueador.png` (simula clic en Google sin popup, ~3,2 s).
 
 Solo **Análisis IA** (formulario 12 campos + resultado):
 

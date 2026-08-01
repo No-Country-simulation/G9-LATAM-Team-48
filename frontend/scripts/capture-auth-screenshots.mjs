@@ -29,8 +29,17 @@ async function captureAuthModals(page) {
   const loginModal = page.locator('.modal.show .modal-content')
 
   await waitForGoogleButton(loginModal, page, 'login')
+  await page.waitForTimeout(400)
   await loginModal.screenshot({ path: path.join(outDir, 'login.png') })
-  console.log('saved login.png')
+  console.log('saved login.png (aviso corto)')
+
+  const googleHost = loginModal.locator('.google-signin-host')
+  if (await googleHost.count()) {
+    await googleHost.click({ timeout: 5000 })
+    await page.waitForTimeout(3500)
+  }
+  await loginModal.screenshot({ path: path.join(outDir, 'login-bloqueador.png') })
+  console.log('saved login-bloqueador.png (aviso ampliado tras clic sin popup)')
 
   await page.getByRole('button', { name: /Registrarse|Register|Sign up|Registrate|Create account|No tenés cuenta/i }).first().click()
   await page.waitForTimeout(400)
