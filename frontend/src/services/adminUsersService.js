@@ -1,20 +1,15 @@
 import api from './api'
+import { DEFAULT_PAGE_SIZE, normalizePageResponse } from '../utils/pageResponse'
 
 function unwrap(payload) {
   return payload?.data ?? payload
 }
 
-function asUserList(payload) {
-  const value = unwrap(payload)
-  if (Array.isArray(value)) return value
-  if (Array.isArray(value?.content)) return value.content
-  if (Array.isArray(value?.users)) return value.users
-  return []
-}
-
-export async function listUsers() {
-  const { data } = await api.get('/api/v1/admin/users')
-  return asUserList(data)
+export async function listUsers({ page = 0, size = DEFAULT_PAGE_SIZE } = {}) {
+  const { data } = await api.get('/api/v1/admin/users', {
+    params: { page, size },
+  })
+  return normalizePageResponse(data)
 }
 
 export async function createUser(user) {
