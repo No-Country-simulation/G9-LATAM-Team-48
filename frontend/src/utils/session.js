@@ -58,7 +58,57 @@ export function clearStoredPagina() {
   }
 }
 
-/** Exp del JWT en ms (solo UX; la API sigue siendo la fuente de verdad). */
+/** Limpia credenciales locales (no dispara evento de sesión vencida). */
+export function clearStoredSession() {
+  localStorage.removeItem(USER_STORAGE_KEY)
+  localStorage.removeItem(TOKEN_STORAGE_KEY)
+  clearStoredPagina()
+}
+
+export function readStoredToken() {
+  try {
+    return localStorage.getItem(TOKEN_STORAGE_KEY)
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Al cargar la app: si el JWT ya expiró, limpiar storage antes del primer render.
+ */
+export function bootstrapAuthStorage() {
+  const token = readStoredToken()
+  if (!token) {
+    return { user: null, token: null }
+  }
+  if (String(token).startsWith('mock-token')) {
+    return { user: getStoredUser(), token }
+  }
+  if (isAccessTokenExpired(token)) {
+    clearStoredSession()
+    return { user: null, token: null }
+  }
+  return { user: getStoredUser(), token }
+}
+
+export function resolveInitialPagina({
+  fallback = 'dashboard',
+  verifyToken = null,
+  resetToken = null,
+} = {}) {
+  if (verifyToken) return 'verify-email'
+  if (resetToken) return 'reset-password'
+  const pagina = getStoredPagina(fallback)
+  const token = readStoredToken()
+  const sessionOk =
+    token &&
+    (String(token).startsWith('mock-token') || !isAccessTokenExpired(token))
+  if (!sessionOk && paginaRequiresAuth(pagina)) {
+    return fallback
+  }
+  return pagina
+}
+
 export function getJwtExpirationMs(token) {
   if (!token || String(token).startsWith('mock-token')) return null
   try {

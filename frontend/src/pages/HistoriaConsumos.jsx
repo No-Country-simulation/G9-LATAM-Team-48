@@ -197,7 +197,7 @@ function tipKeysFrom(detail) {
 
 function HistoriaConsumos() {
   const { t, locale } = useLocale()
-  const { token, openLogin, hydrating } = useAuth()
+  const { token, isAuthenticated, openLogin, hydrating } = useAuth()
   const { setPagina } = useNavigation()
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
@@ -248,14 +248,15 @@ function HistoriaConsumos() {
 
   useEffect(() => {
     if (hydrating) return
-    if (!token) {
+    if (!isAuthenticated || !token) {
       setLoading(false)
       setRows([])
+      setPagina('dashboard')
       return
     }
     load()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, hydrating])
+  }, [token, hydrating, isAuthenticated])
 
   async function handleResendEmail(row) {
     if (!row?.id) return

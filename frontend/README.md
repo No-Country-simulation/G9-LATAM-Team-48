@@ -280,7 +280,7 @@ Cuentas demo (MySQL + Flyway V6, email ya verificado). Las contraseñas **no** s
 
 **Forgot password:** solo el link del mail abre la pantalla de nueva contraseña.
 
-**Sesión vencida (JWT):** el token no se guarda en la base; vive en `localStorage` y expira según `JWT_EXPIRATION` del backend. Al vencer (por tiempo o 401), la app limpia sesión, va al **dashboard**, remonta layout/página (`sessionEpoch`) y cierra el menú móvil. No se abre el modal de login automáticamente (el usuario puede entrar desde el header). Rutas que exigen sesión: historial personal y admin (`paginaRequiresAuth` en `src/utils/session.js`).
+**Sesión vencida (JWT):** el token no se guarda en la base; vive en `localStorage` y expira según `JWT_EXPIRATION` del backend. Al vencer (por tiempo o 401), la app limpia sesión **antes del primer paint** si recargás con token viejo, va al **dashboard**, no monta Historia/Admin sin sesión válida, remonta layout (`sessionEpoch`) y cierra el menú móvil. No se abre el modal de login automáticamente.
 
 Detalle backend (SMTP, Flyway, admin): [`docs/backend/AUTH_EMAIL_ADMIN.md`](../docs/backend/AUTH_EMAIL_ADMIN.md).
 

@@ -16,10 +16,11 @@ import { NavigationProvider } from './context/NavigationContext'
 import { isAdmin } from './utils/roles'
 import {
   SESSION_EXPIRED_EVENT,
-  getStoredPagina,
   paginaRequiresAuth,
+  resolveInitialPagina,
   setStoredPagina,
 } from './utils/session'
+import Loader from './components/Loader'
 
 const PAGE_TITLE_KEYS = {
   dashboard: 'menu.dashboard',
@@ -46,11 +47,12 @@ function readQueryParam(name) {
 function App() {
   const initialReset = readQueryParam('resetToken')
   const initialVerify = readQueryParam('verifyToken')
-  const [pagina, setPaginaState] = useState(() => {
-    if (initialVerify) return 'verify-email'
-    if (initialReset) return 'reset-password'
-    return getStoredPagina('dashboard')
-  })
+  const [pagina, setPaginaState] = useState(() =>
+    resolveInitialPagina({
+      verifyToken: initialVerify,
+      resetToken: initialReset,
+    }),
+  )
   const [resetToken, setResetToken] = useState(initialReset)
   const [verifyToken, setVerifyToken] = useState(initialVerify)
   const { user, hydrating, isAuthenticated, sessionEpoch } = useAuth()
@@ -135,6 +137,15 @@ function App() {
   }
 
   const renderPagina = () => {
+    if (paginaRequiresAuth(pagina)) {
+      if (hydrating) {
+        return <Loader />
+      }
+      if (!isAuthenticated) {
+        return <Dashboard />
+      }
+    }
+
     switch (pagina) {
       case 'consumos':
         return <Consumos />
