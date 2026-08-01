@@ -265,13 +265,13 @@ El token se envía como `Authorization: Bearer <accessToken>`.
 
 ## Autenticación
 
-Cuentas demo (MySQL + Flyway V6, email ya verificado):
+Cuentas demo (MySQL + Flyway V6, email ya verificado). Las contraseñas **no** se documentan en el repo; pedilas al equipo o usá variables `QA_DEMO_*` / `qa/secrets.local.ps1` (ver [`qa/README.md`](../qa/README.md)).
 
-| Usuario | Email | Contraseña |
-|---------|-------|------------|
-| Operador | `operador@energyai.com` | `operador123` |
-| Admin | `admin@energyai.com` | `admin1234` |
-| Equipo 48 | `team48@energyai.com` | `team48123` |
+| Usuario | Email | Rol |
+|---------|-------|-----|
+| Operador | `operador@energyai.com` | USER |
+| Admin | `admin@energyai.com` | ADMIN |
+| Equipo 48 | `team48@energyai.com` | USER |
 
 **Flujo de registro real:**
 1. Registrarse → llega mail de verificación (SMTP Gmail).
@@ -279,6 +279,8 @@ Cuentas demo (MySQL + Flyway V6, email ya verificado):
 3. Recién ahí iniciar sesión.
 
 **Forgot password:** solo el link del mail abre la pantalla de nueva contraseña.
+
+**Sesión vencida (JWT):** el token no se guarda en la base; vive en `localStorage` y expira según `JWT_EXPIRATION` del backend. Al vencer (por tiempo o 401), la app limpia sesión, va al **dashboard**, remonta layout/página (`sessionEpoch`) y cierra el menú móvil. No se abre el modal de login automáticamente (el usuario puede entrar desde el header). Rutas que exigen sesión: historial personal y admin (`paginaRequiresAuth` en `src/utils/session.js`).
 
 Detalle backend (SMTP, Flyway, admin): [`docs/backend/AUTH_EMAIL_ADMIN.md`](../docs/backend/AUTH_EMAIL_ADMIN.md).
 
