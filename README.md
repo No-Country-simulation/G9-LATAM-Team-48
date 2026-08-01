@@ -62,20 +62,20 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
     <td width="50%"><strong>Admin — Análisis IA</strong><br /><img src="./frontend/screenshots/admin-analisis.png" alt="Admin Análisis IA" /></td>
   </tr>
   <tr>
-    <td width="50%"><strong>Login</strong><br /><img src="./frontend/screenshots/login.png" alt="Login" /></td>
-    <td width="50%"><strong>Registro</strong><br /><img src="./frontend/screenshots/registro.png" alt="Registro" /></td>
+    <td width="50%"><strong>Login</strong> (aviso corto)<br /><img src="./frontend/screenshots/login.png" alt="Login habitual" /></td>
+    <td width="50%"><strong>Login — bloqueador traba Google</strong><br /><img src="./frontend/screenshots/login-bloqueador.png" alt="Login bloqueador" /></td>
   </tr>
   <tr>
-    <td width="50%"><strong>Crear usuario</strong><br /><img src="./frontend/screenshots/admin-crear-usuario.png" alt="Crear usuario" /></td>
+    <td width="50%"><strong>Registro</strong><br /><img src="./frontend/screenshots/registro.png" alt="Registro" /></td>
     <td width="50%"><strong>Editar usuario</strong><br /><img src="./frontend/screenshots/admin-editar-usuario.png" alt="Editar usuario" /></td>
   </tr>
   <tr>
+    <td width="50%"><strong>Crear usuario</strong><br /><img src="./frontend/screenshots/admin-crear-usuario.png" alt="Crear usuario" /></td>
     <td width="50%"><strong>Recuperar contraseña</strong><br /><img src="./frontend/screenshots/forgot-password.png" alt="Recuperar contraseña" /></td>
-    <td width="50%"><strong>Nueva contraseña</strong> (vía link del mail)<br /><img src="./frontend/screenshots/reset-password.png" alt="Nueva contraseña" /></td>
   </tr>
   <tr>
+    <td width="50%"><strong>Nueva contraseña</strong> (vía link del mail)<br /><img src="./frontend/screenshots/reset-password.png" alt="Nueva contraseña" /></td>
     <td width="50%"><strong>Verificar email</strong> (vía link del mail)<br /><img src="./frontend/screenshots/verify-email.png" alt="Verificar email" /></td>
-    <td width="50%"></td>
   </tr>
 </table>
 
