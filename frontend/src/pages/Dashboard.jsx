@@ -1,16 +1,19 @@
 import CardConsumo from '../components/CardConsumo'
-import GraficoConsumo from '../components/GraficoConsumo'
-import GraficoRealVsPrediccion from '../components/GraficoRealVsPrediccion'
-import GraficoPicoValle from '../components/GraficoPicoValle'
+import ChartSectionFallback from '../components/ChartSectionFallback'
 import ResumenFacil from '../components/ResumenFacil'
 import Recomendaciones from '../components/Recomendaciones'
 import Loader from '../components/Loader'
 import ErrorState from '../components/ErrorState'
 import EmptyState from '../components/EmptyState'
+import { lazy, Suspense } from 'react'
 import { useFetch } from '../hooks/useFetch'
 import { getConsumos, calcularResumen } from '../services/consumoService'
 import { useLocale } from '../context/LocaleContext'
 import { useNavigation } from '../context/NavigationContext'
+
+const DashboardChartsSection = lazy(
+  () => import('../components/DashboardChartsSection'),
+)
 
 function Dashboard() {
   const { t } = useLocale()
@@ -64,16 +67,9 @@ function Dashboard() {
 
           <ResumenFacil />
 
-          <GraficoConsumo consumos={consumos} />
-
-          <div className="row g-3 mt-1 align-items-stretch">
-            <div className="col-12 col-xl-6 d-flex">
-              <GraficoRealVsPrediccion />
-            </div>
-            <div className="col-12 col-xl-6 d-flex">
-              <GraficoPicoValle />
-            </div>
-          </div>
+          <Suspense fallback={<ChartSectionFallback />}>
+            <DashboardChartsSection consumos={consumos} />
+          </Suspense>
 
           <Recomendaciones />
         </>
