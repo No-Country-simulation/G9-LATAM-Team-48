@@ -6,32 +6,39 @@ import { fileURLToPath } from 'url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const publicDir = path.resolve(__dirname, '../public')
 
-const logos = [
-  { name: 'logo-energia.png', width: 384 },
-  { name: 'logo-energia-dark.png', width: 384 },
-]
+const logos = ['logo-energia.png', 'logo-energia-dark.png']
 
-async function bakeOne(fileName, width) {
+/** Ancho ~2× del logo en navbar mobile (~96px CSS). */
+const MOBILE_WIDTH = 192
+const DESKTOP_WIDTH = 320
+
+async function bakeOne(fileName) {
   const input = path.join(publicDir, fileName)
   const base = fileName.replace(/\.png$/i, '')
-  const webpOut = path.join(publicDir, `${base}.webp`)
 
   await sharp(input)
-    .resize({ width, withoutEnlargement: true })
-    .webp({ quality: 82, effort: 4 })
-    .toFile(webpOut)
+    .resize({ width: MOBILE_WIDTH, withoutEnlargement: true })
+    .webp({ quality: 78, effort: 4 })
+    .toFile(path.join(publicDir, `${base}-sm.webp`))
 
   await sharp(input)
-    .resize({ width: 32, height: 32, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .png({ compressionLevel: 9, palette: true })
-    .toFile(path.join(publicDir, 'favicon.png'))
+    .resize({ width: DESKTOP_WIDTH, withoutEnlargement: true })
+    .webp({ quality: 80, effort: 4 })
+    .toFile(path.join(publicDir, `${base}.webp`))
 
-  console.log('ok', base, '→ webp + favicon')
+  if (fileName === 'logo-energia.png') {
+    await sharp(input)
+      .resize({ width: 32, height: 32, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .png({ compressionLevel: 9, palette: true })
+      .toFile(path.join(publicDir, 'favicon.png'))
+  }
+
+  console.log('ok', base, '→ sm + desktop webp')
 }
 
 await mkdir(publicDir, { recursive: true })
-for (const item of logos) {
-  await bakeOne(item.name, item.width)
+for (const name of logos) {
+  await bakeOne(name)
 }
 
 console.log('done')

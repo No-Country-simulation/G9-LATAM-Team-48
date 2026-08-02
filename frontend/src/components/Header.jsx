@@ -79,9 +79,10 @@ function Header({ onMenuOpen, onLoginClick }) {
                   type="image/webp"
                   srcSet={
                     theme === 'dark'
-                      ? '/logo-energia-dark.webp'
-                      : '/logo-energia.webp'
+                      ? '/logo-energia-dark-sm.webp 192w, /logo-energia-dark.webp 320w'
+                      : '/logo-energia-sm.webp 192w, /logo-energia.webp 320w'
                   }
+                  sizes="(max-width: 767px) 96px, 160px"
                 />
                 <img
                   src={
