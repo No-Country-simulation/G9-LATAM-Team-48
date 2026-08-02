@@ -18,7 +18,7 @@ async function bakeOne(fileName) {
 
   await sharp(input)
     .resize({ width: MOBILE_WIDTH, withoutEnlargement: true })
-    .webp({ quality: 78, effort: 4 })
+    .webp({ quality: 68, effort: 4 })
     .toFile(path.join(publicDir, `${base}-sm.webp`))
 
   await sharp(input)
