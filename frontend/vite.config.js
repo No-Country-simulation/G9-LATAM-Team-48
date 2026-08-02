@@ -13,7 +13,7 @@ export default defineConfig({
           if (!id.includes('node_modules')) return undefined
           if (id.includes('recharts')) return 'recharts'
           if (id.includes('react-dom') || id.includes('/react/')) return 'react-vendor'
-          if (id.includes('bootstrap')) return 'bootstrap-vendor'
+          if (id.includes('react-bootstrap')) return 'bootstrap-vendor'
           return undefined
         },
       },
