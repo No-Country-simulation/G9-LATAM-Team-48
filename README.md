@@ -2,6 +2,25 @@
 
 ## 1. Descripción general
 
+# EnergIA
+
+## 1. Descripción general
+
+**EnergIA** es un proyecto de ciencia de datos orientado al análisis y la clasificación del perfil energético de viviendas y pequeños establecimientos comerciales. Para ello, utiliza información relacionada con las características del inmueble, la cantidad de residentes, el equipamiento disponible, los patrones de uso de los espacios, las condiciones ambientales, la generación solar, los cortes eléctricos y el consumo histórico de energía.
+
+La variable dependiente del proyecto es `perfil_energetico`, utilizada para clasificar cada registro en una de las siguientes tres categorías:
+
+* **Eficiente**
+* **Moderado**
+* **Ineficiente**
+
+El repositorio contiene el flujo completo de preparación y análisis de los datos, incluyendo el análisis exploratorio inicial, la limpieza y corrección de inconsistencias, el análisis posterior a la limpieza, la imputación de valores faltantes, la codificación de variables categóricas, la ingeniería de características, el entrenamiento de modelos de clasificación, la evaluación de resultados y la exportación de los artefactos finales.
+
+Los notebooks se encuentran organizados de manera secuencial para mantener la trazabilidad y reproducibilidad del proceso. Cada etapa utiliza los resultados producidos por las fases anteriores, permitiendo observar la evolución del conjunto de datos desde su versión original hasta la base final preparada para entrenar y evaluar los modelos predictivos.
+
+Además del código, el repositorio incluye documentación técnica y metodológica sobre los datos, los análisis exploratorios, las variables creadas, el proceso de imputación, la ingeniería de características, la selección del modelo y las especificaciones necesarias para utilizar sus resultados en aplicaciones posteriores.
+
+
 ## 2. Objetivos
 
 ### 2.1. Objetivo general
