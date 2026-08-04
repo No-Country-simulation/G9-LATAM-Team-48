@@ -1,4 +1,4 @@
-# Contrato de datos — Formulario EnergIA (Modelo v3)
+# Contrato de datos — Formulario EnergIA (Modelo_v3)
 
 Especificación del payload JSON que el formulario (Frontend) debe enviar a Backend, y que Backend debe reenviar al servicio del modelo de clasificación de perfil energético.
 
