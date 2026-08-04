@@ -20,10 +20,15 @@ Los notebooks se encuentran organizados de manera secuencial para mantener la tr
 
 Además del código, el repositorio incluye documentación técnica y metodológica sobre los datos, los análisis exploratorios, las variables creadas, el proceso de imputación, la ingeniería de características, la selección del modelo y las especificaciones necesarias para utilizar sus resultados en aplicaciones posteriores.
 
-
 ## 2. Objetivos
 
 ### 2.1. Objetivo general
+
+Desarrollar un modelo de clasificación capaz de predecir el `perfil_energetico` de viviendas y pequeños establecimientos comerciales, asignando cada registro a una de las categorías **Eficiente**, **Moderado** o **Ineficiente**.
+
+Para alcanzar este objetivo, el proyecto integra un proceso completo de análisis y preparación de datos que incluye la exploración inicial del conjunto de datos, la limpieza de inconsistencias, la imputación de valores faltantes, la codificación de variables categóricas, la creación de nuevas características, el entrenamiento de diferentes modelos de aprendizaje automático y la evaluación de su capacidad predictiva.
+
+El resultado busca proporcionar una clasificación reproducible y sustentada en variables relacionadas con las características del inmueble, la ocupación, el equipamiento, los patrones de uso, las condiciones ambientales, el consumo histórico, la generación solar y la disponibilidad de fuentes de energía secundaria.
 
 ### 2.2. Objetivos específicos
 
