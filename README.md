@@ -58,6 +58,107 @@ El resultado busca proporcionar una clasificación reproducible y sustentada en 
 
 ## 3. Flujo general del proyecto
 
+El proyecto **EnergIA** sigue un flujo secuencial en el que cada etapa transforma, valida o utiliza los resultados generados por la fase anterior.
+
+```text
+Dataset original
+      ↓
+Análisis exploratorio inicial
+      ↓
+Limpieza y corrección de inconsistencias
+      ↓
+Análisis exploratorio posterior a la limpieza
+      ↓
+Imputación de valores faltantes
+      ↓
+Codificación de variables categóricas
+      ↓
+Ingeniería de características
+      ↓
+Entrenamiento y comparación de modelos
+      ↓
+Evaluación del modelo seleccionado
+      ↓
+Exportación del modelo y sus artefactos
+```
+
+### 3.1. Dataset original
+
+El proceso comienza con el conjunto de datos crudo, que contiene información sobre las características de los inmuebles, los residentes, el equipamiento, los patrones de uso y el consumo energético.
+
+### 3.2. Análisis exploratorio inicial
+
+Se estudia la estructura del conjunto de datos para identificar:
+
+* Tipos de variables.
+* Valores faltantes.
+* Distribuciones.
+* Valores atípicos.
+* Inconsistencias.
+* Relaciones entre variables.
+* Distribución de la variable objetivo `perfil_energetico`.
+
+### 3.3. Limpieza y corrección de inconsistencias
+
+Se corrigen errores de formato, valores inválidos y combinaciones que no cumplen relaciones lógicas, físicas o matemáticas.
+
+También se crean banderas para conservar la trazabilidad de los registros que fueron corregidos o que presentaron alguna incidencia.
+
+### 3.4. Análisis exploratorio posterior a la limpieza
+
+Se realiza un nuevo análisis descriptivo para evaluar el estado de las variables después de las correcciones.
+
+Esta etapa permite revisar nuevamente las medidas de tendencia central, dispersión, forma de las distribuciones, valores atípicos y frecuencias de las variables categóricas.
+
+### 3.5. Imputación de valores faltantes
+
+Los valores faltantes que no pueden completarse mediante reglas determinísticas se estiman utilizando un procedimiento de imputación multivariada.
+
+La imputación busca aprovechar las relaciones entre las variables para generar valores compatibles con la información disponible.
+
+### 3.6. Codificación de variables categóricas
+
+Las variables categóricas se transforman en representaciones numéricas para que puedan utilizarse durante el entrenamiento de los modelos.
+
+La codificación incluye una transformación temporal para la imputación y una codificación final mediante variables binarias.
+
+### 3.7. Ingeniería de características
+
+A partir de las variables originales se crean nuevas características relacionadas con:
+
+* Ocupación y superficie.
+* Uso de los espacios.
+* Aire acondicionado y temperatura.
+* Equipamiento.
+* Iluminación.
+* Consumo histórico.
+* Generación solar.
+* Cortes eléctricos y respaldo.
+* Estacionalidad.
+* Calidad y confiabilidad de los registros.
+
+El objetivo de esta etapa es proporcionar a los modelos variables con mayor capacidad para representar los patrones asociados al perfil energético.
+
+### 3.8. Entrenamiento y comparación de modelos
+
+Se entrenan diferentes algoritmos de clasificación utilizando `perfil_energetico` como variable dependiente.
+
+Los modelos buscan asignar cada registro a una de las categorías:
+
+* **Eficiente**
+* **Moderado**
+* **Ineficiente**
+
+### 3.9. Evaluación del modelo seleccionado
+
+Los modelos se comparan mediante métricas de clasificación para determinar cuál presenta el mejor rendimiento.
+
+La evaluación permite analizar tanto el desempeño general como la capacidad del modelo para reconocer correctamente cada categoría.
+
+### 3.10. Exportación
+
+Finalmente, se exportan el modelo seleccionado y los artefactos necesarios para reproducir las transformaciones realizadas sobre los datos y utilizar la solución en aplicaciones posteriores.
+
 ## 4. Estructura del repositorio
 
 ### 4.1. Directorio `datasets`
