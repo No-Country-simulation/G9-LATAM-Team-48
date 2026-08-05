@@ -32,6 +32,30 @@ El resultado busca proporcionar una clasificación reproducible y sustentada en 
 
 ### 2.2. Objetivos específicos
 
+* Analizar la estructura, calidad y distribución de los datos relacionados con el consumo energético.
+
+* Identificar valores faltantes, inconsistencias, valores atípicos y posibles errores en las variables del conjunto de datos.
+
+* Aplicar reglas de limpieza y correcciones determinísticas para mejorar la coherencia lógica, física y matemática de los registros.
+
+* Imputar los valores faltantes mediante métodos multivariados que permitan conservar las relaciones existentes entre las variables.
+
+* Transformar las variables categóricas en representaciones numéricas adecuadas para el entrenamiento de modelos de aprendizaje automático.
+
+* Crear nuevas características a partir de las variables originales, incluyendo indicadores de ocupación, superficie, equipamiento, climatización, iluminación, consumo histórico, generación solar, cortes eléctricos y calidad de los registros.
+
+* Preparar un conjunto de datos final sin valores inválidos, duplicados o inconsistencias que puedan afectar el proceso de modelado.
+
+* Entrenar y comparar diferentes modelos de clasificación para predecir la variable `perfil_energetico`.
+
+* Evaluar el rendimiento de los modelos mediante métricas apropiadas para un problema de clasificación multiclase.
+
+* Seleccionar el modelo con mejor capacidad para diferenciar entre las categorías **Eficiente**, **Moderado** e **Ineficiente**.
+
+* Documentar cada etapa del proyecto para garantizar la trazabilidad, comprensión y reproducibilidad del flujo de trabajo.
+
+* Exportar el modelo seleccionado y los artefactos necesarios para facilitar su integración en aplicaciones o sistemas posteriores.
+
 ## 3. Flujo general del proyecto
 
 ## 4. Estructura del repositorio
