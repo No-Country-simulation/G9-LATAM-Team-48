@@ -161,33 +161,172 @@ Finalmente, se exportan el modelo seleccionado y los artefactos necesarios para 
 
 ## 4. Estructura del repositorio
 
+El repositorio de **EnergIA** está organizado por etapas del flujo de ciencia de datos. Los datasets, notebooks, documentos técnicos e informes se encuentran separados en directorios específicos para facilitar la trazabilidad, la reproducción de los análisis y el mantenimiento del proyecto.
+
+```text
+.
+├── datasets/
+│   ├── external/
+│   ├── processed/
+│   └── raw/
+├── docs/
+├── notebooks/
+├── reports/
+│   └── model_selection/
+├── .gitattributes
+├── .gitignore
+├── requirements.txt
+├── test_environment.py
+└── README.md
+```
+
 ### 4.1. Directorio `datasets`
+
+Contiene los conjuntos de datos utilizados y generados durante las diferentes etapas del proyecto.
 
 #### 4.1.1. Datos originales: `datasets/raw`
 
+Almacena el conjunto de datos original antes de aplicar procesos de limpieza, imputación o transformación.
+
+```text
+datasets/raw/
+└── dataset_consumo_energetico_CRUDO.csv
+```
+
+El archivo `dataset_consumo_energetico_CRUDO.csv` representa la fuente inicial de información utilizada por el proyecto.
+
 #### 4.1.2. Datos procesados: `datasets/processed`
+
+Contiene las versiones intermedias y finales del conjunto de datos producidas durante el pipeline.
+
+```text
+datasets/processed/
+├── 01_energia_processed.csv
+├── 02_energia_imputada_ohe.csv
+└── 03_feature_engineering.csv
+```
+
+Los archivos corresponden a las siguientes etapas:
+
+* `01_energia_processed.csv`: conjunto de datos resultante del proceso de limpieza.
+* `02_energia_imputada_ohe.csv`: conjunto de datos después de la imputación y la codificación de variables categóricas.
+* `03_feature_engineering.csv`: conjunto de datos enriquecido con las variables creadas durante la ingeniería de características.
 
 #### 4.1.3. Datos externos: `datasets/external`
 
+Directorio reservado para almacenar datos provenientes de fuentes externas que puedan complementar el análisis.
+
+Actualmente contiene un archivo `.gitkeep`, utilizado para conservar el directorio dentro del repositorio aunque no tenga datasets disponibles.
+
 ### 4.2. Directorio `notebooks`
+
+Contiene los notebooks que forman el flujo principal del proyecto.
+
+```text
+notebooks/
+├── 01_EDA.ipynb
+├── 02_Limpieza.ipynb
+├── 03_EDA_post_limpieza.ipynb
+├── 04_Imputacion_Variables.ipynb
+├── 05_Feature_Engineering.ipynb
+├── 06_Modelos.ipynb
+├── 07_Evaluacion.ipynb
+└── 08_Exportacion.ipynb
+```
+
+La numeración indica el orden recomendado de ejecución.
+
+Cada notebook representa una fase específica:
+
+* Análisis exploratorio inicial.
+* Limpieza de datos.
+* Análisis exploratorio posterior a la limpieza.
+* Imputación y codificación.
+* Ingeniería de características.
+* Entrenamiento y comparación de modelos.
+* Evaluación.
+* Exportación de resultados y artefactos.
 
 ### 4.3. Directorio `docs`
 
+Contiene la documentación metodológica y técnica del proyecto.
+
+```text
+docs/
+├── Documentación_del_EDA_Incidencias_y_Variables.md
+├── Manual_Cientifico_Datos.md
+├── dataset-catalog.md
+├── diccionario_datos_y_metodologia.md
+├── diccionario_nuevas_columnas.md
+├── documentacion_tecnica_seleccion_modelo.md
+├── documentación_eda_post_limpieza.md
+└── especificacion-formulario-modelo.md
+```
+
+La documentación incluye:
+
+* Descripción y catálogo de los datasets.
+* Diccionarios de variables.
+* Metodología de limpieza e imputación.
+* Documentación de los análisis exploratorios.
+* Descripción de las variables creadas.
+* Documentación técnica de la selección del modelo.
+* Especificaciones para la integración del modelo.
+
 ### 4.4. Directorio `reports`
 
+Contiene informes relacionados con los resultados del proyecto y con el proceso de selección del modelo.
+
+```text
+reports/
+└── model_selection/
+    ├── documentacion_seleccion_modelo_v1.md
+    ├── documentacion_seleccion_modelo_v3.md
+    ├── documentacion_tecnica_seleccion_modelo.md
+    └── especificacion-formulario-modelo.md
+```
+
 #### 4.4.1. Informes de selección del modelo: `reports/model_selection`
+
+Este directorio conserva diferentes versiones de la documentación generada durante la comparación y selección de modelos.
+
+También incluye:
+
+* La documentación técnica consolidada.
+* Las especificaciones del formulario que utilizará el modelo.
+* Versiones anteriores conservadas para mantener el historial del proceso.
 
 ### 4.5. Archivos de configuración
 
 #### 4.5.1. `.gitignore`
 
+Define los archivos y directorios que Git no debe incluir en el control de versiones, como archivos temporales, entornos virtuales, cachés y otros recursos locales.
+
 #### 4.5.2. `.gitattributes`
+
+Establece configuraciones relacionadas con el tratamiento de archivos dentro del repositorio, como normalización de saltos de línea o reglas específicas de Git.
 
 #### 4.5.3. `.vscode/settings.json`
 
+Contiene configuraciones del entorno de desarrollo para Visual Studio Code.
+
+Estas configuraciones permiten mantener criterios comunes entre los integrantes que utilicen este editor.
+
 #### 4.5.4. `requirements.txt`
 
+Contiene la lista de librerías de Python necesarias para ejecutar los notebooks y scripts del proyecto.
+
+Este archivo permite instalar las dependencias utilizando un único comando.
+
 #### 4.5.5. `test_environment.py`
+
+Script destinado a comprobar que el entorno de ejecución dispone de las dependencias y configuraciones necesarias para trabajar con el proyecto.
+
+#### 4.5.6. `README.md`
+
+Documento principal del repositorio.
+
+Contiene la descripción general de **EnergIA**, sus objetivos, la estructura del proyecto, las instrucciones de instalación, el flujo de ejecución y la información necesaria para comprender y reproducir el trabajo realizado.
 
 ## 5. Pipeline de notebooks
 
