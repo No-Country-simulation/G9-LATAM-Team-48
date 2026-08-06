@@ -654,13 +654,124 @@ La exportación del pipeline, el codificador de clases, la lista de columnas y l
 
 ## 6. Evolución de los datasets
 
+El conjunto de datos utilizado por **EnergIA** atraviesa diferentes etapas de procesamiento antes de ser utilizado para entrenar los modelos de clasificación.
+
+Cada archivo almacenado en `datasets/processed/` representa el resultado de una fase específica del pipeline. Esta organización permite conservar la trazabilidad de las transformaciones y evita modificar directamente el dataset original.
+
+```text
+dataset_consumo_energetico_CRUDO.csv
+                ↓
+01_energia_processed.csv
+                ↓
+02_energia_imputada_ohe.csv
+                ↓
+03_feature_engineering.csv
+```
+
 ### 6.1. Dataset original
+
+**Archivo:** `datasets/raw/dataset_consumo_energetico_CRUDO.csv`
+
+Corresponde al conjunto de datos inicial del proyecto, antes de aplicar procesos de limpieza, imputación o transformación.
+
+Este archivo contiene las variables originales relacionadas con:
+
+* Características de los inmuebles.
+* Número de personas.
+* Superficie.
+* Equipamiento disponible.
+* Uso de iluminación y aire acondicionado.
+* Consumo energético.
+* Generación solar.
+* Cortes eléctricos.
+* Sistemas de respaldo.
+* Condiciones ambientales.
+* Variable dependiente `perfil_energetico`.
+
+El dataset original se conserva sin modificaciones dentro del directorio `datasets/raw/`, de manera que siempre sea posible reproducir el procesamiento desde su punto de partida.
 
 ### 6.2. Dataset procesado después de la limpieza
 
+**Archivo:** `datasets/processed/01_energia_processed.csv`
+
+Este archivo es generado por el notebook:
+
+`notebooks/02_Limpieza.ipynb`
+
+Contiene el conjunto de datos después de aplicar las operaciones iniciales de limpieza, entre ellas:
+
+* Corrección de tipos de datos.
+* Estandarización de valores categóricos.
+* Tratamiento de formatos inconsistentes.
+* Eliminación de filas completamente nulas.
+* Eliminación de registros duplicados.
+
+En esta etapa todavía pueden permanecer valores faltantes que no pueden resolverse mediante operaciones directas de limpieza.
+
+El archivo resultante sirve como entrada para el análisis exploratorio posterior a la limpieza y para el proceso de imputación.
+
 ### 6.3. Dataset imputado y codificado
 
+**Archivo:** `datasets/processed/02_energia_imputada_ohe.csv`
+
+Este archivo es generado por el notebook:
+
+`notebooks/04_Imputacion_Variables.ipynb`
+
+Contiene el conjunto de datos después de completar los valores faltantes y preparar las variables categóricas para su utilización en modelos de aprendizaje automático.
+
+Las principales transformaciones aplicadas en esta etapa son:
+
+* Correcciones determinísticas previas a la imputación.
+* Codificación ordinal temporal de variables categóricas.
+* Imputación multivariada mediante MICE.
+* Uso de `RandomForestRegressor` como estimador interno.
+* Redondeo y corrección de variables imputadas.
+* Recálculo de variables dependientes.
+* Recuperación de las categorías originales.
+* Codificación final mediante One-Hot Encoding.
+* Validación de valores nulos y banderas de calidad.
+
+Como resultado, las categorías se representan mediante columnas binarias y el dataset queda preparado para la creación de nuevas características.
+
 ### 6.4. Dataset con ingeniería de características
+
+**Archivo:** `datasets/processed/03_feature_engineering.csv`
+
+Este archivo es generado por el notebook:
+
+`notebooks/05_Feature_Engineering.ipynb`
+
+Representa la versión del dataset enriquecida con nuevas variables construidas a partir de la información original y procesada.
+
+Las características creadas incluyen indicadores asociados con:
+
+* Consumo por persona.
+* Consumo por superficie.
+* Densidad de ocupación.
+* Intensidad de uso de espacios.
+* Uso de aire acondicionado.
+* Cantidad y antigüedad del equipamiento.
+* Eficiencia de la iluminación.
+* Variación del consumo histórico.
+* Generación solar.
+* Cortes eléctricos.
+* Sistemas de respaldo.
+* Antigüedad y aislamiento del inmueble.
+* Estacionalidad.
+* Horarios de mayor consumo.
+* Calidad y consistencia de los registros.
+
+También se incorporan banderas que permiten identificar operaciones no calculables, como divisiones con denominadores iguales a cero.
+
+Este archivo constituye la fuente principal utilizada durante el entrenamiento, comparación y selección de los modelos de clasificación.
+
+| Etapa                            | Archivo                                | Notebook que lo genera          |
+| -------------------------------- | -------------------------------------- | ------------------------------- |
+| Datos originales                 | `dataset_consumo_energetico_CRUDO.csv` | Fuente inicial                  |
+| Datos limpios                    | `01_energia_processed.csv`             | `02_Limpieza.ipynb`             |
+| Datos imputados y codificados    | `02_energia_imputada_ohe.csv`          | `04_Imputacion_Variables.ipynb` |
+| Datos con nuevas características | `03_feature_engineering.csv`           | `05_Feature_Engineering.ipynb`  |
 
 ## 7. Documentación disponible
 
