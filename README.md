@@ -330,21 +330,327 @@ Contiene la descripción general de **EnergIA**, sus objetivos, la estructura de
 
 ## 5. Pipeline de notebooks
 
+El proyecto **EnergIA** se organiza mediante una secuencia de ocho notebooks que cubren las principales etapas del flujo de ciencia de datos. La numeración de los archivos indica el orden recomendado de ejecución.
+
+Cada notebook utiliza como entrada los datos originales o los resultados generados por las etapas anteriores. Esta organización permite mantener la trazabilidad de las transformaciones y reproducir el proceso completo desde el análisis inicial hasta la exportación del modelo.
+
 ### 5.1. Análisis exploratorio inicial
+
+**Notebook:** `notebooks/01_EDA.ipynb`
+
+Esta etapa realiza la primera revisión del conjunto de datos original.
+
+Su propósito es conocer la estructura y las características principales de la información disponible antes de aplicar modificaciones. El análisis permite identificar:
+
+* Tipos de variables.
+* Valores faltantes.
+* Distribuciones numéricas y categóricas.
+* Posibles valores atípicos.
+* Inconsistencias entre variables.
+* Relaciones relevantes para el análisis energético.
+* Distribución inicial de la variable dependiente `perfil_energetico`.
+
+Los resultados obtenidos sirven como base para definir las reglas de limpieza y preparación de los datos.
 
 ### 5.2. Limpieza de datos
 
+**Notebook:** `notebooks/02_Limpieza.ipynb`
+
+Esta etapa corrige problemas detectados durante el análisis exploratorio inicial.
+
+El notebook aplica transformaciones orientadas a mejorar la calidad del conjunto de datos, incluyendo:
+
+* Corrección de tipos de datos.
+* Estandarización de valores categóricos.
+* Tratamiento de formatos inconsistentes.
+* Eliminación de filas completamente nulas y duplicadas.
+* Preparación de la primera versión procesada del dataset.
+
+El resultado de esta fase se almacena en:
+
+`datasets/processed/01_energia_processed.csv`
+
 ### 5.3. Análisis exploratorio posterior a la limpieza
+
+**Notebook:** `notebooks/03_EDA_post_limpieza.ipynb`
+
+Esta etapa evalúa nuevamente el conjunto de datos después de aplicar la limpieza.
+
+El notebook analiza:
+
+* Medidas de tendencia central.
+* Medidas de dispersión.
+* Cuartiles y rangos.
+* Asimetría y curtosis.
+* Histogramas.
+* Diagramas de caja.
+* Valores atípicos.
+* Frecuencias de variables categóricas.
+* Distribución de `perfil_energetico`.
+
+Este análisis permite comprobar los efectos de la limpieza y conocer el estado de los datos antes de la imputación.
 
 ### 5.4. Imputación y codificación de variables
 
+**Notebook:** `notebooks/04_Imputacion_Variables.ipynb`
+
+Esta fase completa los valores faltantes y prepara las variables categóricas para su uso en modelos de aprendizaje automático.
+
+El proceso incluye:
+
+* Correcciones determinísticas previas a la imputación.
+* Codificación ordinal temporal de variables categóricas.
+* Imputación multivariada con MICE.
+* Uso de `RandomForestRegressor` como estimador interno.
+* Aplicación de límites mínimos y máximos.
+* Correcciones posteriores a la imputación.
+* Recálculo de variables derivadas.
+* Restauración de las categorías originales.
+* Codificación final mediante One-Hot Encoding.
+* Validación de valores nulos, infinitos y banderas.
+
+El resultado de esta etapa se almacena en:
+
+`datasets/processed/02_energia_imputada_ohe.csv`
+
 ### 5.5. Ingeniería de características
+
+**Notebook:** `notebooks/05_Feature_Engineering.ipynb`
+
+Esta etapa crea nuevas variables a partir de las características originales y procesadas.
+
+Las variables generadas representan relaciones asociadas con:
+
+* Ocupación y superficie.
+* Uso de los espacios.
+* Temperatura y aire acondicionado.
+* Equipamiento tecnológico.
+* Iluminación.
+* Consumo energético histórico.
+* Generación solar.
+* Cortes eléctricos y sistemas de respaldo.
+* Tipo de inmueble.
+* Aislamiento y antigüedad.
+* Estacionalidad.
+* Horarios de mayor uso.
+* Zona geográfica.
+* Nivel socioeconómico.
+* Certificación energética.
+* Calidad y confiabilidad de los registros.
+
+También se crean banderas para identificar divisiones no calculables y se validan los valores nulos, infinitos y constantes.
+
+El resultado de esta etapa se almacena en:
+
+`datasets/processed/03_feature_engineering.csv`
 
 ### 5.6. Entrenamiento y selección de modelos
 
+**Notebook:** `notebooks/06_Modelos.ipynb`
+
+Esta etapa utiliza el archivo `datasets/processed/03_feature_engineering.csv` para entrenar y comparar diferentes algoritmos de clasificación multiclase.
+
+El conjunto de datos utilizado contiene **94 537 registros y 238 columnas**. Antes del entrenamiento se excluyen `id_registro` y la variable dependiente `perfil_energetico`, por lo que el modelo completo parte de **236 características predictoras**.
+
+La variable dependiente se codifica numéricamente de la siguiente manera:
+
+* **Eficiente:** 0.
+* **Ineficiente:** 1.
+* **Moderado:** 2.
+
+El preprocesamiento se implementa mediante un pipeline que aplica:
+
+* Imputación de posibles valores faltantes mediante la mediana.
+* Estandarización de las variables con `StandardScaler`.
+* Eliminación de columnas no incluidas explícitamente en el transformador.
+
+Posteriormente, los datos se dividen de forma estratificada en:
+
+* **80 % para entrenamiento:** 75 629 registros.
+* **20 % para prueba:** 18 908 registros.
+
+La estratificación conserva la proporción original de las tres clases y se utiliza `random_state = 42` para garantizar la reproducibilidad. El preprocesador se ajusta exclusivamente con los datos de entrenamiento para evitar fugas de información hacia el conjunto de prueba.
+
+Los seis modelos candidatos evaluados son:
+
+* Logistic Regression.
+* Decision Tree.
+* Random Forest.
+* Gradient Boosting.
+* XGBoost.
+* LightGBM.
+
+La comparación se realiza mediante validación cruzada estratificada de cinco particiones. Para cada modelo se calculan:
+
+* Accuracy.
+* Precision macro.
+* Recall macro.
+* F1-score macro.
+* Desviación estándar del F1 entre particiones.
+* F1 obtenido sobre entrenamiento.
+* Brecha entre el F1 de entrenamiento y validación.
+* Tiempo promedio de entrenamiento.
+* Tiempo promedio de evaluación.
+
+Para identificar posibles problemas de sobreajuste, se considera riesgoso un modelo cuando la brecha entre entrenamiento y validación supera `0.05` o cuando el F1 de entrenamiento es igual o superior a `0.999`.
+
+Bajo este criterio se descartan:
+
+* **XGBoost:** brecha de 0.0548.
+* **Random Forest:** brecha de 0.0990 y F1 de entrenamiento igual a 1.
+* **Decision Tree:** brecha de 0.1529 y F1 de entrenamiento igual a 1.
+
+Los candidatos que no presentan evidencia de sobreajuste son:
+
+* LightGBM.
+* Gradient Boosting.
+* Logistic Regression.
+
+El modelo con mejor desempeño es **LightGBM**, con los siguientes resultados promedio durante la validación cruzada:
+
+| Métrica                         | Resultado |
+| ------------------------------- | --------: |
+| Accuracy                        |    0.9164 |
+| Precision macro                 |    0.9177 |
+| Recall macro                    |    0.9173 |
+| F1 macro                        |    0.9175 |
+| Desviación estándar del F1      |    0.0026 |
+| F1 de entrenamiento             |    0.9413 |
+| Brecha entrenamiento-validación |    0.0238 |
+
+LightGBM supera al segundo candidato válido, Gradient Boosting, por una diferencia de `0.0151` en F1 macro, por lo que no se considera un empate técnico.
+
+Después de seleccionar el algoritmo, se evalúan tres versiones del modelo:
+
+| Versión         | Columnas | F1 macro | Estado                            |
+| --------------- | -------: | -------: | --------------------------------- |
+| Modelo completo |      236 |     0.92 | No desplegable                    |
+| Modelo v2       |      103 |     0.92 | Descartado por error metodológico |
+| Modelo v3       |       55 |     0.91 | Modelo final desplegable          |
+
+El modelo completo alcanza un F1 macro de 0.92, pero depende de variables que no pueden capturarse directamente mediante el formulario de la aplicación.
+
+La versión v2 conserva 103 columnas seleccionadas mediante coincidencias en los nombres de las variables. Esta versión se descarta porque algunas características derivadas utilizan en sus fórmulas variables que no están disponibles en producción, aunque sus nombres coincidan con dominios capturados por el formulario.
+
+Para corregir este problema, las dependencias de las variables creadas durante la ingeniería de características se verifican directamente contra sus fórmulas. Como resultado, se identifican:
+
+* **37 variables derivadas** que pueden calcularse realmente con los datos disponibles.
+* **18 variables originales o codificadas** que entran directamente al modelo.
+* **55 columnas verificadas** en total.
+
+La versión final utiliza **LightGBM sobre 55 columnas**, debido a que ofrece el mejor equilibrio entre rendimiento predictivo, capacidad de generalización y viabilidad de integración en producción.
+
 ### 5.7. Evaluación del modelo
 
+La evaluación final se realiza sobre el conjunto de prueba estratificado, compuesto por **18 908 registros** que no fueron utilizados durante el entrenamiento.
+
+El modelo completo de 236 características alcanza un F1 macro aproximado de 0.92. Sin embargo, debido a que no puede reproducirse completamente con los datos disponibles en producción, la evaluación definitiva se concentra en el modelo v3 de 55 columnas verificadas.
+
+Los resultados del modelo final son:
+
+| Clase                | Precision |   Recall | F1-score |  Registros |
+| -------------------- | --------: | -------: | -------: | ---------: |
+| Eficiente            |      0.93 |     0.93 |     0.93 |      6 611 |
+| Ineficiente          |      0.94 |     0.93 |     0.94 |      5 703 |
+| Moderado             |      0.87 |     0.88 |     0.88 |      6 594 |
+| **Resultado global** |  **0.91** | **0.91** | **0.91** | **18 908** |
+
+La matriz de confusión obtenida es:
+
+```text
+[[6128,    7,  476],
+ [   8, 5331,  364],
+ [ 449,  348, 5797]]
+```
+
+Los resultados muestran que las categorías extremas, **Eficiente** e **Ineficiente**, presentan muy poca confusión directa entre sí. La mayor parte de los errores se concentra en la categoría **Moderado**, debido a su posición intermedia entre los otros dos perfiles energéticos.
+
+La reducción desde 236 hasta 55 columnas genera una disminución aproximada de un punto en el F1 macro, pasando de 0.92 a 0.91. Esta pérdida se considera aceptable porque permite utilizar únicamente variables que pueden obtenerse o calcularse en el entorno real de producción.
+
+La versión final excluye deliberadamente dominios que no pueden capturarse sin ampliar considerablemente el formulario, entre ellos:
+
+* Temperatura promedio.
+* Cantidad de unidades de aire acondicionado.
+* Información detallada de focos y horas de iluminación.
+* Generación solar.
+* Cortes eléctricos y sistemas de respaldo.
+* Nivel socioeconómico.
+* Certificación energética previa.
+
+El modelo final mantiene un rendimiento equilibrado entre las tres clases y conserva la mayor parte de la capacidad predictiva del modelo completo, utilizando una cantidad considerablemente menor de variables.
+
 ### 5.8. Exportación del modelo y sus artefactos
+
+La versión final se construye como un pipeline que integra el preprocesamiento y el clasificador LightGBM.
+
+El pipeline incluye:
+
+* Imputación por mediana.
+* Estandarización con `StandardScaler`.
+* Selección de las 55 columnas verificadas.
+* Clasificador `LGBMClassifier`.
+* Configuración reproducible mediante `random_state = 42`.
+
+Los artefactos finales se serializan mediante Joblib:
+
+```text
+models/
+├── modelo_perfil_energetico_final_v3.joblib
+├── label_encoder_v3.joblib
+└── columnas_requeridas_final_v3.joblib
+```
+
+Cada archivo tiene la siguiente función:
+
+* `modelo_perfil_energetico_final_v3.joblib`: contiene el pipeline completo de preprocesamiento y clasificación.
+* `label_encoder_v3.joblib`: conserva la correspondencia entre las clases numéricas y las categorías Eficiente, Ineficiente y Moderado.
+* `columnas_requeridas_final_v3.joblib`: contiene la lista y el orden exacto de las 55 columnas que espera el modelo.
+
+El servicio de predicción no necesita recibir directamente las 55 columnas. El contrato de integración consume **12 campos proporcionados por el formulario**, a partir de los cuales deben construirse las variables originales, derivadas y codificadas requeridas por el pipeline:
+
+* Tipo de inmueble.
+* Superficie en metros cuadrados.
+* Número de personas.
+* Cantidad total de equipos.
+* Horas diarias de uso del aire acondicionado.
+* Consumo energético mensual.
+* Consumo energético del mes anterior.
+* Nivel de aislamiento térmico.
+* Porcentaje de iluminación LED.
+* Antigüedad de la construcción.
+* Zona geográfica.
+* Antigüedad de los electrodomésticos.
+
+El formulario puede conservar otros campos existentes, pero aquellos que no formen parte de este contrato no afectan las predicciones de la versión final.
+
+También se generan documentos técnicos relacionados con la selección y la integración del modelo:
+
+```text
+reports/model_selection/
+├── documentacion_seleccion_modelo_v1.md
+├── documentacion_seleccion_modelo_v3.md
+└── documentacion_tecnica_seleccion_modelo.md
+```
+
+La documentación técnica consolidada también se almacena en:
+
+```text
+docs/documentacion_tecnica_seleccion_modelo.md
+```
+
+Estos documentos registran:
+
+* Modelos candidatos evaluados.
+* Resultados de validación cruzada.
+* Análisis de sobreajuste.
+* Justificación de la selección de LightGBM.
+* Evolución de las versiones del modelo.
+* Métricas finales.
+* Variables requeridas.
+* Limitaciones conocidas.
+* Contrato de integración con Backend y Frontend.
+
+La exportación del pipeline, el codificador de clases, la lista de columnas y la documentación técnica permite reproducir el proceso de inferencia y utilizar el modelo fuera del entorno donde fue entrenado.
 
 ## 6. Evolución de los datasets
 
