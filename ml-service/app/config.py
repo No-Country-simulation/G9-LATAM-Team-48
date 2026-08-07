@@ -14,14 +14,12 @@ def resolve_model_path() -> Path:
         return Path(explicit).expanduser().resolve()
 
     candidates = (
-        MODELS_DIR / "modelo_v3.joblib",
         MODELS_DIR / "model.joblib",
         MODELS_DIR / "modelo.joblib",
+        MODELS_DIR / "modelo_v3.joblib",
         BASE_DIR / "artifacts" / "energy_classifier.joblib",
-        BASE_DIR.parent / "datascience" / "models" / "modelo_v3.joblib",
-        BASE_DIR.parent / "datascience" / "models" / "model.joblib",
     )
     for path in candidates:
         if path.is_file():
             return path.resolve()
-    return (MODELS_DIR / "modelo_v3.joblib").resolve()
+    return (MODELS_DIR / "model.joblib").resolve()

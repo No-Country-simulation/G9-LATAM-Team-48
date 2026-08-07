@@ -27,6 +27,7 @@ security:
 prediction:
   api:
     base-url: ${PREDICTION_API_BASE_URL}
+    timeout: ${PREDICTION_API_TIMEOUT:60000}
 
 # Persistencia MySQL obligatoria en produccion
 spring:

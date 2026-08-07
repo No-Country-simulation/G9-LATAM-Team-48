@@ -1,0 +1,12 @@
+# Blueprint Render — solo el microservicio ML (backend sigue en Railway/Vercel).
+services:
+  - type: web
+    name: g9-latam-ml
+    rootDir: ml-service
+    runtime: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: MODEL_PATH
+        value: /app/models/model.joblib
