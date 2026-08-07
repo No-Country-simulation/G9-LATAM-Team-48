@@ -2,7 +2,7 @@ import GraficoConsumo from './GraficoConsumo'
 import GraficoRealVsPrediccion from './GraficoRealVsPrediccion'
 import GraficoPicoValle from './GraficoPicoValle'
 
-/** Bloque con Recharts — un solo import dinámico desde Dashboard (mobile / LCP). */
+/** Bloque Recharts del dashboard (import estático: evita chunk lazy desactualizado en CDN). */
 export default function DashboardChartsSection({ consumos, analytics, chartBadgeVariant = 'demo' }) {
   return (
     <>
