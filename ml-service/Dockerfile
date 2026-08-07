@@ -4,7 +4,7 @@ WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    MODEL_PATH=/app/models/modelo_v3.joblib
+    MODEL_PATH=/app/models/model.joblib
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
