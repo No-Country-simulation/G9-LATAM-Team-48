@@ -1,21 +1,17 @@
 import CardConsumo from '../components/CardConsumo'
 import ChartSectionFallback from '../components/ChartSectionFallback'
+import DashboardChartsSection from '../components/DashboardChartsSection'
 import ResumenFacil from '../components/ResumenFacil'
 import Recomendaciones from '../components/Recomendaciones'
 import Loader from '../components/Loader'
 import ErrorState from '../components/ErrorState'
 import EmptyState from '../components/EmptyState'
-import { lazy, Suspense } from 'react'
 import { useFetch } from '../hooks/useFetch'
 import { getConsumos, calcularResumen } from '../services/consumoService'
 import { getAnalyticsOverview } from '../services/analyticsService'
 import { useLocale } from '../context/LocaleContext'
 import { useNavigation } from '../context/NavigationContext'
 import { resolveChartBadgeVariant } from '../utils/chartDataSource'
-
-const DashboardChartsSection = lazy(
-  () => import('../components/DashboardChartsSection'),
-)
 
 function Dashboard() {
   const { t } = useLocale()
@@ -93,17 +89,15 @@ function Dashboard() {
 
           <ResumenFacil analytics={analytics} chartBadgeVariant={chartBadgeVariant} />
 
-          <Suspense fallback={<ChartSectionFallback />}>
-            {chartsReady ? (
-              <DashboardChartsSection
-                consumos={consumos}
-                analytics={analytics}
-                chartBadgeVariant={chartBadgeVariant}
-              />
-            ) : (
-              <ChartSectionFallback />
-            )}
-          </Suspense>
+          {chartsReady ? (
+            <DashboardChartsSection
+              consumos={consumos}
+              analytics={analytics}
+              chartBadgeVariant={chartBadgeVariant}
+            />
+          ) : (
+            <ChartSectionFallback />
+          )}
 
           <Recomendaciones />
         </>
