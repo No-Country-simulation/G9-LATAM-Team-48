@@ -1,7 +1,6 @@
 -- Dataset historico de Data Science. No representa consultas de usuarios.
 CREATE TABLE dataset_consumo_energetico (
-    source_row_number                  INT           NOT NULL,
-    id_registro                        VARCHAR(32)   NULL,
+    id                                 BIGINT        NOT NULL AUTO_INCREMENT,
     tipo_inmueble                      VARCHAR(100)  NULL,
     zona                               VARCHAR(100)  NULL,
     nivel_socioeconomico               VARCHAR(50)   NULL,
@@ -44,5 +43,5 @@ CREATE TABLE dataset_consumo_energetico (
     consumo_kwh_por_m2                 DECIMAL(12,4) NULL,
     consumo_kwh_por_persona            DECIMAL(12,4) NULL,
     perfil_energetico                  VARCHAR(50)   NULL,
-    PRIMARY KEY (source_row_number)
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
