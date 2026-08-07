@@ -5,13 +5,17 @@ import ErrorState from '../components/ErrorState'
 import EmptyState from '../components/EmptyState'
 import { useFetch } from '../hooks/useFetch'
 import { getConsumos, calcularResumen } from '../services/consumoService'
+import { getAnalyticsOverview } from '../services/analyticsService'
 import { useLocale } from '../context/LocaleContext'
 
 function Consumos() {
   const { t } = useLocale()
   const { data: consumos, loading, error, refetch } = useFetch(getConsumos)
+  const { data: analytics } = useFetch(getAnalyticsOverview)
 
   const resumen = calcularResumen(consumos || [])
+  const fromDataset = Boolean(analytics?.fromDataset)
+  const chartBadgeVariant = fromDataset ? 'dataset' : 'demo'
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -39,6 +43,15 @@ function Consumos() {
               titulo={t('consumos.monthlyAverage')}
               valor={`${resumen.promedio} kWh`}
             />
+          </div>
+
+          <div
+            className="alert alert-secondary border-0 py-2 small mb-0"
+            role="note"
+          >
+            {t(
+              fromDataset ? 'dashboard.datasetSampleHint' : 'dashboard.demoSampleHint',
+            )}
           </div>
 
           <div className="card shadow mb-4 mt-4">
@@ -90,7 +103,7 @@ function Consumos() {
             </div>
           </div>
 
-          <GraficoConsumo consumos={consumos} />
+          <GraficoConsumo consumos={consumos} chartBadgeVariant={chartBadgeVariant} />
         </>
       )}
     </div>

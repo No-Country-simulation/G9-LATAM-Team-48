@@ -26,10 +26,14 @@ Migraciones Flyway:
 - `V7` — consultas anónimas (`user_email` nullable)
 - `V8` — tabla `dataset_feature_engineering` (dataset procesado DS para gráficos agregados)
 
-Tras el deploy, cargá filas una sola vez con `scripts/import-feature-engineering-dataset.ps1`
-(CSV `03_feature_engineering.csv`, 238 columnas). Si no tenés el archivo local:
-`scripts/fetch-feature-engineering-csv.ps1` lo baja desde GitHub LFS (~150 MB).
-Sin import, `/api/consumos` y `/api/analytics/overview` devuelven fallback de demo.
+Tras el deploy, cargá filas una sola vez:
+
+| Entorno | Script |
+|---------|--------|
+| **Local (Laragon)** | `scripts/import-feature-engineering-dataset.ps1` (`LOAD DATA`, rápido) |
+| **Railway** | `pip install pymysql` + `scripts/import-feature-engineering-dataset-remote.ps1` (`-Replace` si reimportás). Railway **no** permite `LOAD DATA LOCAL`; el disco del plan puede limitar el import completo (~88k filas suele alcanzar para gráficos). |
+
+CSV: `scripts/fetch-feature-engineering-csv.ps1` (~150 MB). Sin filas en la tabla, `/api/consumos` y `/api/analytics/overview` usan fallback de demo. Con datos, responden `fromDataset: true` en analytics.
 
 `POST /api/analisis` es **público** (anonymous ok): guarda la consulta y deja el email en `PENDING` si se envía.
 `GET /api/analisis/mis` (y reenvío de email) **requieren login** (JWT).
