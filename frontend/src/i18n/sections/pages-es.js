@@ -1,4 +1,6 @@
 /** UI strings shared across pages — Spanish */
+import { monthsFull, monthsShort } from '../shared/monthsCalendar.js'
+
 export const pagesEs = {
   states: {
     loading: 'Cargando...',
@@ -60,9 +62,9 @@ export const pagesEs = {
     axisKwh: 'kWh',
     confidence: 'Confianza del modelo',
     categories: {
-      LOW_CONSUMPTION: 'Consumo bajo',
-      MEDIUM_CONSUMPTION: 'Consumo medio',
-      HIGH_CONSUMPTION: 'Consumo alto',
+      LOW_CONSUMPTION: 'Eficiente',
+      MEDIUM_CONSUMPTION: 'Moderado',
+      HIGH_CONSUMPTION: 'Ineficiente',
     },
   },
   insights: {
@@ -335,14 +337,8 @@ export const pagesEs = {
       },
     },
   },
-  months: {
-    january: 'Enero',
-    february: 'Febrero',
-    march: 'Marzo',
-    april: 'Abril',
-    may: 'Mayo',
-    june: 'Junio',
-  },
+  months: monthsFull.es,
+  monthsShort: monthsShort.es,
   adminUsers: {
     title: 'Usuarios — administración',
     subtitle: 'Creá, editá o desactivá cuentas del sistema.',

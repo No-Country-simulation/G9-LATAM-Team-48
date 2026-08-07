@@ -1,3 +1,5 @@
+import { monthsFull, monthsShort } from '../shared/monthsCalendar.js'
+
 export const pagesIt = {
   "states": {
     "loading": "Caricamento...",
@@ -193,14 +195,8 @@ export const pagesIt = {
       }
     }
   },
-  "months": {
-    "january": "Gennaio",
-    "february": "Febbraio",
-    "march": "Marzo",
-    "april": "Aprile",
-    "may": "Maggio",
-    "june": "Giugno"
-  },
+  "months": monthsFull.it,
+  "monthsShort": monthsShort.it,
   "insights": {
     "title": "Come va il tuo consumo?",
     "subtitle": "Riassunto chiaro, pensato per chiunque in casa o in azienda.",
