@@ -13,8 +13,9 @@ import consumoData from '../data/consumo.json'
 import { yDomainWithPadding } from '../utils/chartScale'
 import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
+import DemoSampleBadge from './DemoSampleBadge'
 
-function GraficoConsumo({ consumos = consumoData }) {
+function GraficoConsumo({ consumos = consumoData, chartBadgeVariant = 'demo' }) {
   const { theme } = useTheme()
   const { t } = useLocale()
   const gridColor = theme === 'dark' ? '#444' : '#ccc'
@@ -32,7 +33,10 @@ function GraficoConsumo({ consumos = consumoData }) {
   return (
     <div className="card shadow mt-4">
       <div className="card-body">
-        <h3 id="chart-consumo-title">{t('chart.title')}</h3>
+        <h3 id="chart-consumo-title" className="d-flex flex-wrap align-items-center gap-2">
+          <span>{t('chart.title')}</span>
+          <DemoSampleBadge variant={chartBadgeVariant} />
+        </h3>
 
         <ChartVisualShell>
           <ResponsiveContainer width="100%" height={300}>
