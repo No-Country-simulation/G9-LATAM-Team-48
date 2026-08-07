@@ -1,6 +1,6 @@
-import { analyticsMock } from '../data/analyticsMock'
 import { useLocale } from '../context/LocaleContext'
 import DemoSampleBadge from './DemoSampleBadge'
+import { resolveAnalyticsOverview } from '../utils/analyticsSeries'
 
 function fill(template, values) {
   return Object.entries(values).reduce(
@@ -9,17 +9,21 @@ function fill(template, values) {
   )
 }
 
-function buildInsights(t) {
-  const { actualKwh, peakKwh, cost, category, months } = analyticsMock
+function buildInsights(t, analytics) {
+  const overview = resolveAnalyticsOverview(analytics)
+  const { actualKwh, peakKwh, cost, category, months } = overview
   const last = actualKwh.length - 1
+  if (last < 1) {
+    return []
+  }
   const current = actualKwh[last]
   const previous = actualKwh[last - 1]
   const diff = current - previous
-  const diffPct = Math.round((Math.abs(diff) / previous) * 100)
+  const diffPct = previous ? Math.round((Math.abs(diff) / previous) * 100) : 0
   const monthName = t(`months.${months[last]}`)
   const prevMonthName = t(`months.${months[last - 1]}`)
 
-  const peakShare = Math.round((peakKwh[last] / current) * 100)
+  const peakShare = current ? Math.round((peakKwh[last] / current) * 100) : 0
   const bill = cost[last]
   const billDiff = bill - cost[last - 1]
 
@@ -91,16 +95,20 @@ const toneClass = {
   primary: 'border-primary',
 }
 
-function ResumenFacil() {
+function ResumenFacil({ analytics, chartBadgeVariant = 'demo' }) {
   const { t } = useLocale()
-  const insights = buildInsights(t)
+  const insights = buildInsights(t, analytics)
+
+  if (!insights.length) {
+    return null
+  }
 
   return (
     <div className="card shadow mt-4">
       <div className="card-body">
         <h2 className="mb-3 d-flex flex-wrap align-items-center gap-2">
           <span>{t('insights.title')}</span>
-          <DemoSampleBadge />
+          <DemoSampleBadge variant={chartBadgeVariant} />
         </h2>
 
         <div className="row g-3">

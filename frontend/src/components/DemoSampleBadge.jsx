@@ -1,24 +1,27 @@
 import { useLocale } from '../context/LocaleContext'
 
-/** Badge cuando los gráficos usan mock o dataset agregado de DS (no análisis del usuario). */
+/** Badge: dataset agregado DS o fallback demo local (no análisis del usuario). */
 function DemoSampleBadge({ className = '', variant = 'demo' }) {
   const { t } = useLocale()
   const isDataset = variant === 'dataset'
 
+  if (isDataset) {
+    return (
+      <span
+        className={`badge text-bg-info fw-normal align-middle ${className}`.trim()}
+        title={t('dashboard.datasetSampleHint')}
+      >
+        {t('dashboard.datasetSample', 'Dataset DS')}
+      </span>
+    )
+  }
+
   return (
     <span
       className={`badge text-bg-secondary fw-normal align-middle ${className}`.trim()}
-      title={t(
-        isDataset ? 'dashboard.datasetSampleHint' : 'dashboard.demoSampleHint',
-        isDataset
-          ? 'Promedios agregados del dataset de feature engineering (Data Science).'
-          : 'Datos de ejemplo para la demo.',
-      )}
+      title={t('dashboard.demoSampleHint')}
     >
-      {t(
-        isDataset ? 'dashboard.datasetSample' : 'dashboard.demoSample',
-        isDataset ? 'Dataset DS' : 'Ejemplo',
-      )}
+      {t('dashboard.demoSample')}
     </span>
   )
 }

@@ -48,10 +48,10 @@ export const pagesEs = {
     title: 'Consumo energético mensual (kWh)',
     actualVsPredicted: 'Real vs predicción (kWh)',
     actualVsPredictedHint:
-      'Mock para Data Analysis: comparar consumo medido con el forecast del modelo.',
+      'Promedios del dataset: consumo mensual vs. mes anterior (proxy de tendencia).',
     peakVsOffPeak: 'Pico vs valle (kWh)',
     peakVsOffPeakHint:
-      'Mock para Data Analysis: desglose de consumo en horario pico y fuera de pico.',
+      'Promedios del dataset: reparto estimado entre horario pico y valle.',
     seriesActual: 'Real',
     seriesPredicted: 'Predicho',
     seriesPeak: 'Pico',

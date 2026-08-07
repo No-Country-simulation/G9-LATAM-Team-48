@@ -48,10 +48,10 @@ export const pagesEn = {
     title: 'Monthly energy usage (kWh)',
     actualVsPredicted: 'Actual vs predicted (kWh)',
     actualVsPredictedHint:
-      'Mock for Data Analysis: compare measured usage with the model forecast.',
+      'Dataset averages: monthly usage vs. previous month (trend proxy).',
     peakVsOffPeak: 'Peak vs off-peak (kWh)',
     peakVsOffPeakHint:
-      'Mock for Data Analysis: split usage into peak and off-peak hours.',
+      'Dataset averages: estimated split between peak and off-peak hours.',
     seriesActual: 'Actual',
     seriesPredicted: 'Predicted',
     seriesPeak: 'Peak',
