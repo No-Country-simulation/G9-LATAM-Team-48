@@ -2,6 +2,8 @@
 
 FastAPI (`POST /predict`) consumido por Spring vía `PREDICTION_API_BASE_URL`.
 
+**Deploy en producción:** [`../docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md) · [`DEPLOY.md`](./DEPLOY.md)
+
 ## Modelo de producción
 
 Artefacto definitivo versionado en Git:

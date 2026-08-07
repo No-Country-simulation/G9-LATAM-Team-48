@@ -22,12 +22,11 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
 | [`backend/`](./backend) | API Spring Boot (JWT, Google, email, Análisis IA, admin, contacto) |
 | [`ml-service/`](./ml-service) | Modelo ML (RandomForest + FastAPI) para Análisis IA |
 | [`datascience/`](./datascience) | Notebooks, dataset y docs de ciencia de datos (no se despliega) |
-| [`docs/`](./docs) | Documentación (arquitectura, auth, recomendaciones, deploy, [accesibilidad frontend](./docs/frontend/ACCESIBILIDAD.md)) |
+| [`docs/`](./docs) | Documentación — índice en [`docs/README.md`](./docs/README.md); **prod:** [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md) |
 | [`qa/`](./qa) | Checklist P0/P1, smoke scripts y notas NAS (sin tocar código de producto) |
 
-> **Rama de deploy:** `Jorge-martinez` (Vercel + Railway).  
-> La rama **`backend`** quedó **sincronizada** con `Jorge-martinez` (mismo contenido operativo; conflictos de prediction/mock resueltos a favor del flujo con `HeuristicPrediction` + `AnalisisPayload`).  
-> La rama **`develop`** está vacía a propósito (solo esqueleto de carpetas).
+> **Rama de deploy:** `Jorge-martinez` (Vercel + Railway + Render).  
+> **Documentación de prod completa:** [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md) (servicios, URLs, env vars, ML, troubleshooting).
 
 ---
 
@@ -89,20 +88,25 @@ Documentación de auth, email y admin: [`docs/backend/AUTH_EMAIL_ADMIN.md`](./do
 
 | Capa | Plataforma | URL / notas |
 |------|------------|-------------|
-| **Frontend** | [Vercel](https://vercel.com) | App pública (Root Directory `frontend`, rama `Jorge-martinez`) |
-| **Backend** | [Railway](https://railway.app) | https://g9-latam-team-48-production.up.railway.app |
-| **Base de datos** | Railway MySQL | Flyway crea tablas y usuarios demo al arrancar |
+| **Frontend** | [Vercel](https://vercel.com) | https://g9-latam-team-48.vercel.app — Root `frontend`, rama `Jorge-martinez` |
+| **Backend** | [Railway](https://railway.app) | https://g9-latam-team-48-production-f9a0.up.railway.app — Root `backend` |
+| **ML (Análisis IA)** | [Render](https://render.com) | https://ml-service-lbfk.onrender.com — Root `ml-service`, Docker, plan Free |
+| **Base de datos** | Railway MySQL | Mismo proyecto Railway; Flyway al arrancar el backend |
 
-Variables del front en Vercel (Production / Preview):
+Detalle, variables `.env` completas y cambios técnicos: **[`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md)**.
+
+Variables mínimas del front en Vercel (Production):
 
 ```env
-VITE_API_URL=https://g9-latam-team-48-production.up.railway.app
+VITE_API_URL=https://g9-latam-team-48-production-f9a0.up.railway.app
 VITE_USE_MOCK_AUTH=false
 VITE_USE_MOCK_API=false
 VITE_GOOGLE_CLIENT_ID=tu-client-id.apps.googleusercontent.com
 ```
 
-En Railway (backend): `GOOGLE_CLIENT_ID` con el **mismo** Client ID. En Google Cloud Console → OAuth Web: origins `https://tu-app.vercel.app` y `http://localhost:5173`.
+Backend (Railway): `DB_*`, `JWT_SECRET`, `GOOGLE_CLIENT_ID`, `PREDICTION_API_BASE_URL=https://ml-service-lbfk.onrender.com`, `PREDICTION_API_TIMEOUT=60000`. Plantilla completa en [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md).
+
+En Google Cloud Console → OAuth Web: origins `https://g9-latam-team-48.vercel.app` y `http://localhost:5173`.
 Usuarios demo (emails en Flyway **V6**; contraseñas solo por canal del equipo / variables QA, **no en Git**):
 
 | Email | Rol |
@@ -117,15 +121,14 @@ Usuarios demo (emails en Flyway **V6**; contraseñas solo por canal del equipo /
 
 ## Highlights recientes
 
+- **Deploy prod:** Vercel + Railway (API/MySQL) + **Render (ml-service)** — ver [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md)
+- **ml-service:** FastAPI, `model.joblib`, integración `PREDICTION_API_BASE_URL`
 - **Google Sign-In**
 - **Auth por email** (registro/verify/login, forgot/reset, admin CRUD)
-- **Análisis IA** with `AnalisisPayload`, historial, V7 anonymous, result email
-- **`HeuristicPrediction` fallback**
-- **Recomendaciones** tip keys + i18n
-- **Contáctanos** + Equipo 48; **Admin**
-- **Mapa idiomas** / i18n / a11y
-- **QA cerrado** in [`qa/`](./qa)
-- Rama **`backend`** alineada with `Jorge-martinez`
+- **Análisis IA** con `AnalisisPayload`, ML + fallback `HeuristicPrediction`, historial, email
+- **Dashboard** datos dataset (Flyway V8), badge Dataset DS
+- **Recomendaciones** tip keys + i18n; **Contáctanos** + **Admin**
+- **Mapa idiomas** / i18n / a11y; **QA** en [`qa/`](./qa)
 
 ---
 

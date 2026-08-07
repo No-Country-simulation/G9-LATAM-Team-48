@@ -53,7 +53,8 @@ Hackathon ONE G9 · Team 48
 | Componente | URL / ubicación |
 |------------|-----------------|
 | **Frontend** | [g9-latam-team-48.vercel.app](https://g9-latam-team-48.vercel.app) |
-| **API (Railway)** | `https://g9-latam-team-48-production.up.railway.app` |
+| **API (Railway)** | `https://g9-latam-team-48-production-f9a0.up.railway.app` |
+| **ML (Render)** | `https://ml-service-lbfk.onrender.com` (solo backend; ver [`docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md)) |
 | **Deploy Git** | Rama **`Jorge-martinez`** · Vercel **Root Directory:** `frontend` |
 
 La URL de Railway es **solo API**; abrir `/` en el navegador puede responder 403. Usá siempre la app en Vercel.

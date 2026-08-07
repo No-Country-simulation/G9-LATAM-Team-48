@@ -92,7 +92,7 @@ curl -X POST http://localhost:8080/api/analisis ^
 Guía completa de contrato e integración:
 [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md).
 
-Microservicio Python: [`ml-service/README.md`](../ml-service/README.md).
+Microservicio Python: [`ml-service/README.md`](../ml-service/README.md) · Deploy prod: [`docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md).
 
 Material de notebooks y datasets: carpeta hermana [`datascience/`](../datascience/).
 
@@ -178,7 +178,8 @@ defecto para desarrollo). Los perfiles disponibles son:
 | `SERVER_PORT`             | Puerto HTTP                              | `8080`                   |
 | `JWT_SECRET`              | Secreto de firma del JWT                 | *(placeholder inseguro)* |
 | `JWT_EXPIRATION`          | Expiracion del token (ms)                | `86400000`               |
-| `PREDICTION_API_BASE_URL` | URL base del servicio FastAPI            | `http://localhost:8000`  |
+| `PREDICTION_API_BASE_URL` | URL base del servicio FastAPI            | `http://localhost:8000` (prod: Render, ver [`docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md)) |
+| `PREDICTION_API_TIMEOUT`  | Timeout cliente ML (ms)                  | `60000` en prod (cold start Render) |
 | `FRONTEND_BASE_URL`       | Base URL del front (links en mails)      | `http://localhost:5173`  |
 | `MAIL_ENABLED`            | Activa envío de correo                   | `true`                   |
 | `MAIL_HOST`               | Host SMTP (local)                        | `smtp.gmail.com`         |
