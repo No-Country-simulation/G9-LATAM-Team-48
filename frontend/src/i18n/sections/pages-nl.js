@@ -1,3 +1,5 @@
+import { monthsFull, monthsShort } from '../shared/monthsCalendar.js'
+
 export const pagesNl = {
   "states": {
     "loading": "Laden...",
@@ -193,14 +195,8 @@ export const pagesNl = {
       }
     }
   },
-  "months": {
-    "january": "Januari",
-    "february": "Februari",
-    "march": "Maart",
-    "april": "April",
-    "may": "Mei",
-    "june": "Juni"
-  },
+  "months": monthsFull.nl,
+  "monthsShort": monthsShort.nl,
   "insights": {
     "title": "Hoe staat je verbruik?",
     "subtitle": "Duidelijke samenvatting voor iedereen thuis of op het werk.",

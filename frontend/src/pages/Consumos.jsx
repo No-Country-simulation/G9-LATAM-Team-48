@@ -5,13 +5,19 @@ import ErrorState from '../components/ErrorState'
 import EmptyState from '../components/EmptyState'
 import { useFetch } from '../hooks/useFetch'
 import { getConsumos, calcularResumen } from '../services/consumoService'
+import { getAnalyticsOverview } from '../services/analyticsService'
 import { useLocale } from '../context/LocaleContext'
+import { resolveChartBadgeVariant } from '../utils/chartDataSource'
+import { formatMonthLabel } from '../utils/monthLabels'
 
 function Consumos() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const { data: consumos, loading, error, refetch } = useFetch(getConsumos)
+  const { data: analytics } = useFetch(getAnalyticsOverview)
 
   const resumen = calcularResumen(consumos || [])
+  const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos)
+  const fromDataset = chartBadgeVariant === 'dataset'
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -41,12 +47,21 @@ function Consumos() {
             />
           </div>
 
+          <div
+            className="alert alert-secondary border-0 py-2 small mb-0"
+            role="note"
+          >
+            {t(
+              fromDataset ? 'dashboard.datasetSampleHint' : 'dashboard.demoSampleHint',
+            )}
+          </div>
+
           <div className="card shadow mb-4 mt-4">
             <div className="card-body">
               <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2 mb-3">
                 <h4 className="mb-0">{t('consumos.history')}</h4>
                 <span className="badge text-bg-warning text-wrap">
-                  {t('consumos.peak')}: {t(`months.${resumen.mesMayor.mes}`)} (
+                  {t('consumos.peak')}: {formatMonthLabel(t, resumen.mesMayor.mes, 'full', locale)} (
                   {resumen.mesMayor.consumo} kWh)
                 </span>
               </div>
@@ -67,7 +82,7 @@ function Consumos() {
 
                       return (
                         <tr key={item.mes}>
-                          <td>{t(`months.${item.mes}`)}</td>
+                          <td>{formatMonthLabel(t, item.mes, 'full', locale)}</td>
                           <td>{item.consumo}</td>
                           <td>${item.costo}</td>
                           <td>
@@ -90,7 +105,7 @@ function Consumos() {
             </div>
           </div>
 
-          <GraficoConsumo consumos={consumos} />
+          <GraficoConsumo consumos={consumos} chartBadgeVariant={chartBadgeVariant} />
         </>
       )}
     </div>

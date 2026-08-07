@@ -1,7 +1,6 @@
 import CardConsumo from '../components/CardConsumo'
-import GraficoConsumo from '../components/GraficoConsumo'
-import GraficoRealVsPrediccion from '../components/GraficoRealVsPrediccion'
-import GraficoPicoValle from '../components/GraficoPicoValle'
+import ChartSectionFallback from '../components/ChartSectionFallback'
+import DashboardChartsSection from '../components/DashboardChartsSection'
 import ResumenFacil from '../components/ResumenFacil'
 import Recomendaciones from '../components/Recomendaciones'
 import Loader from '../components/Loader'
@@ -9,15 +8,26 @@ import ErrorState from '../components/ErrorState'
 import EmptyState from '../components/EmptyState'
 import { useFetch } from '../hooks/useFetch'
 import { getConsumos, calcularResumen } from '../services/consumoService'
+import { getAnalyticsOverview } from '../services/analyticsService'
 import { useLocale } from '../context/LocaleContext'
 import { useNavigation } from '../context/NavigationContext'
+import { resolveChartBadgeVariant } from '../utils/chartDataSource'
 
 function Dashboard() {
   const { t } = useLocale()
   const { setPagina } = useNavigation()
   const { data: consumos, loading, error, refetch } = useFetch(getConsumos)
+  const {
+    data: analytics,
+    loading: loadingAnalytics,
+    error: analyticsError,
+    refetch: refetchAnalytics,
+  } = useFetch(getAnalyticsOverview)
 
   const resumen = calcularResumen(consumos || [])
+  const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos)
+  const fromDataset = chartBadgeVariant === 'dataset'
+  const chartsReady = !loadingAnalytics && !analyticsError
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -57,23 +67,37 @@ function Dashboard() {
             role="note"
           >
             {t(
-              'dashboard.demoSampleHint',
-              'Datos de ejemplo para la demo. No provienen de tus análisis reales.',
+              fromDataset ? 'dashboard.datasetSampleHint' : 'dashboard.demoSampleHint',
+              fromDataset
+                ? 'Promedios agregados del dataset de feature engineering (Data Science).'
+                : 'Datos de ejemplo para la demo. No provienen de tus análisis reales.',
             )}
           </div>
 
-          <ResumenFacil />
-
-          <GraficoConsumo consumos={consumos} />
-
-          <div className="row g-3 mt-1 align-items-stretch">
-            <div className="col-12 col-xl-6 d-flex">
-              <GraficoRealVsPrediccion />
+          {analyticsError && (
+            <div className="alert alert-warning border-0 py-2 small mt-2 mb-0" role="alert">
+              {t('states.error')}
+              <button
+                type="button"
+                className="btn btn-link btn-sm p-0 ms-2 align-baseline"
+                onClick={refetchAnalytics}
+              >
+                {t('states.retry')}
+              </button>
             </div>
-            <div className="col-12 col-xl-6 d-flex">
-              <GraficoPicoValle />
-            </div>
-          </div>
+          )}
+
+          <ResumenFacil analytics={analytics} chartBadgeVariant={chartBadgeVariant} />
+
+          {chartsReady ? (
+            <DashboardChartsSection
+              consumos={consumos}
+              analytics={analytics}
+              chartBadgeVariant={chartBadgeVariant}
+            />
+          ) : (
+            <ChartSectionFallback />
+          )}
 
           <Recomendaciones />
         </>

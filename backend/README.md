@@ -24,6 +24,16 @@ Migraciones Flyway:
 - `V5` — verificación de email
 - `V6` — seed usuarios demo
 - `V7` — consultas anónimas (`user_email` nullable)
+- `V8` — tabla `dataset_feature_engineering` (dataset procesado DS para gráficos agregados)
+
+Tras el deploy, cargá filas una sola vez:
+
+| Entorno | Script |
+|---------|--------|
+| **Local (Laragon)** | `scripts/import-feature-engineering-dataset.ps1` (`LOAD DATA`, rápido) |
+| **Railway** | `pip install pymysql` + `scripts/import-feature-engineering-dataset-remote.ps1` (`-Replace` si reimportás). Railway **no** permite `LOAD DATA LOCAL`; el disco del plan puede limitar el import completo (~88k filas suele alcanzar para gráficos). |
+
+CSV: `scripts/fetch-feature-engineering-csv.ps1` (~150 MB). Sin filas en la tabla, `/api/consumos` y `/api/analytics/overview` usan fallback de demo. Con datos, responden `fromDataset: true` en analytics.
 
 `POST /api/analisis` es **público** (anonymous ok): guarda la consulta y deja el email en `PENDING` si se envía.
 `GET /api/analisis/mis` (y reenvío de email) **requieren login** (JWT).
@@ -82,7 +92,7 @@ curl -X POST http://localhost:8080/api/analisis ^
 Guía completa de contrato e integración:
 [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md).
 
-Microservicio Python: [`ml-service/README.md`](../ml-service/README.md).
+Microservicio Python: [`ml-service/README.md`](../ml-service/README.md) · Deploy prod: [`docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md).
 
 Material de notebooks y datasets: carpeta hermana [`datascience/`](../datascience/).
 
@@ -168,7 +178,8 @@ defecto para desarrollo). Los perfiles disponibles son:
 | `SERVER_PORT`             | Puerto HTTP                              | `8080`                   |
 | `JWT_SECRET`              | Secreto de firma del JWT                 | *(placeholder inseguro)* |
 | `JWT_EXPIRATION`          | Expiracion del token (ms)                | `86400000`               |
-| `PREDICTION_API_BASE_URL` | URL base del servicio FastAPI            | `http://localhost:8000`  |
+| `PREDICTION_API_BASE_URL` | URL base del servicio FastAPI            | `http://localhost:8000` (prod: Render, ver [`docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md)) |
+| `PREDICTION_API_TIMEOUT`  | Timeout cliente ML (ms)                  | `60000` en prod (cold start Render) |
 | `FRONTEND_BASE_URL`       | Base URL del front (links en mails)      | `http://localhost:5173`  |
 | `MAIL_ENABLED`            | Activa envío de correo                   | `true`                   |
 | `MAIL_HOST`               | Host SMTP (local)                        | `smtp.gmail.com`         |

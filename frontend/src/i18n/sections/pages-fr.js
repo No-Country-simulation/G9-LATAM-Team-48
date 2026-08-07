@@ -1,3 +1,5 @@
+import { monthsFull, monthsShort } from '../shared/monthsCalendar.js'
+
 export const pagesFr = {
   "states": {
     "loading": "Chargement...",
@@ -193,14 +195,8 @@ export const pagesFr = {
       }
     }
   },
-  "months": {
-    "january": "Janvier",
-    "february": "Février",
-    "march": "Mars",
-    "april": "Avril",
-    "may": "Mai",
-    "june": "Juin"
-  },
+  "months": monthsFull.fr,
+  "monthsShort": monthsShort.fr,
   "insights": {
     "title": "Comment va votre consommation ?",
     "subtitle": "Résumé simple, compréhensible par toute personne à la maison ou au travail.",

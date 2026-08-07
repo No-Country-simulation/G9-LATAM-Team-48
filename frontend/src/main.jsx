@@ -8,8 +8,9 @@ import { SrAnnouncerProvider } from './components/SrAnnouncer.jsx'
 import ErrorBoundary from './components/ErrorBoundary.jsx'
 import { detectLocale, translate } from './i18n'
 
-import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
+
+void import('./bootstrapStyles.js')
 
 const root = document.getElementById('root')
 

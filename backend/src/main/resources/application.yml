@@ -16,7 +16,8 @@ spring:
 
 server:
   # Puerto de la aplicacion. Ajustable por entorno.
-  port: ${SERVER_PORT:8080}
+  # Railway/Render inyectan PORT; local y Docker suelen usar SERVER_PORT o 8080.
+  port: ${SERVER_PORT:${PORT:8080}}
 
 # ----------------------------------------------------------------------------
 # Configuracion de seguridad / JWT

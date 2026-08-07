@@ -9,19 +9,27 @@ import {
 } from 'recharts'
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
-import consumoData from '../data/consumo.json'
+import { formatMonthLabel } from '../utils/monthLabels'
 import { yDomainWithPadding } from '../utils/chartScale'
+import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
+import DemoSampleBadge from './DemoSampleBadge'
 
-function GraficoConsumo({ consumos = consumoData }) {
+function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo' }) {
   const { theme } = useTheme()
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const gridColor = theme === 'dark' ? '#444' : '#ccc'
   const textColor = theme === 'dark' ? '#ccc' : '#333'
   const lineColor = theme === 'dark' ? '#6ea8fe' : '#0d6efd'
 
+  if (!consumos?.length) {
+    return null
+  }
+
   const datos = consumos.map((item) => ({
-    mes: t(`months.${item.mes}`).slice(0, 3),
+    mesKey: item.mes,
+    mes: formatMonthLabel(t, item.mes, 'short', locale),
+    mesFull: formatMonthLabel(t, item.mes, 'full', locale),
     consumo: Number(item.consumo),
   }))
 
@@ -31,9 +39,12 @@ function GraficoConsumo({ consumos = consumoData }) {
   return (
     <div className="card shadow mt-4">
       <div className="card-body">
-        <h4 id="chart-consumo-title">{t('chart.title')}</h4>
+        <h3 id="chart-consumo-title" className="d-flex flex-wrap align-items-center gap-2">
+          <span>{t('chart.title')}</span>
+          <DemoSampleBadge variant={chartBadgeVariant} />
+        </h3>
 
-        <div aria-hidden="true">
+        <ChartVisualShell>
           <ResponsiveContainer width="100%" height={300}>
           <LineChart data={datos}>
             <CartesianGrid stroke={gridColor} />
@@ -75,7 +86,7 @@ function GraficoConsumo({ consumos = consumoData }) {
             />
           </LineChart>
         </ResponsiveContainer>
-        </div>
+        </ChartVisualShell>
 
         <ChartSrTable
           tableId="chart-consumo-data"
@@ -85,8 +96,8 @@ function GraficoConsumo({ consumos = consumoData }) {
             { key: 'consumo', label: t('chart.axisKwh') },
           ]}
           rows={datos.map((row) => ({
-            key: row.mes,
-            mes: row.mes,
+            key: row.mesKey,
+            mes: row.mesFull,
             consumo: row.consumo,
           }))}
         />

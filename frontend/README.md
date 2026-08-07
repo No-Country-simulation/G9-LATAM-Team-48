@@ -53,7 +53,8 @@ Hackathon ONE G9 · Team 48
 | Componente | URL / ubicación |
 |------------|-----------------|
 | **Frontend** | [g9-latam-team-48.vercel.app](https://g9-latam-team-48.vercel.app) |
-| **API (Railway)** | `https://g9-latam-team-48-production.up.railway.app` |
+| **API (Railway)** | `https://g9-latam-team-48-production-f9a0.up.railway.app` |
+| **ML (Render)** | `https://ml-service-lbfk.onrender.com` (solo backend; ver [`docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md)) |
 | **Deploy Git** | Rama **`Jorge-martinez`** · Vercel **Root Directory:** `frontend` |
 
 La URL de Railway es **solo API**; abrir `/` en el navegador puede responder 403. Usá siempre la app en Vercel.
@@ -179,12 +180,15 @@ Recuperación: **olvidé contraseña** envía link; **reset** solo con `resetTok
 
 Extensiones (uBlock, Privacy Badger, etc.) pueden **bloquear el script de Google** o **impedir que abra la ventana** al hacer clic en “Continuar con Google”.
 
-En el modal se muestra un **aviso amarillo** (`alert-warning`):
+En el modal se muestra un **cartel amarillo** solo si Google no responde (`alert-warning`, clave `auth.googleBlockHintShort`):
 
-| Momento | Texto (clave i18n) |
-|---------|---------------------|
-| Siempre que hay botón Google | `auth.googleBlockHintShort` — aviso preventivo |
-| Tras clic sin popup / script fallido | `auth.googleBlockHint` — instrucciones completas (permitir `accounts.google.com`, recargar) |
+- **Sin cartel:** login normal con botón Google y email.
+- **Con cartel:** tras clic en Google sin popup (~3,2 s) o si falla el script GIS — mensaje corto: *«Deshabilitá el bloqueador de anuncios para ingresar con Google…»*
+
+| Momento | UI |
+|---------|-----|
+| Apertura del modal | Sin aviso (login limpio) |
+| Bloqueador / popup bloqueado | Cartel amarillo con texto corto |
 
 Detección en cliente (`LoginModal.jsx` + `googleSignInSupport.js`):
 
@@ -194,9 +198,9 @@ Detección en cliente (`LoginModal.jsx` + `googleSignInSupport.js`):
 
 ### Login — dos estados en pantalla
 
-| Login habitual — leyenda **corta** (`googleBlockHintShort`) | Bloqueador traba Google — leyenda **ampliada** (`googleBlockHint`) |
+| Login **sin cartel** | **Con cartel** (bloqueador traba Google) |
 |:---:|:---:|
-| ![Iniciar sesión: aviso preventivo corto](./screenshots/login.png) | ![Login: aviso largo tras clic sin popup de Google](./screenshots/login-bloqueador.png) |
+| ![Login limpio: Google y email](./screenshots/login.png) | ![Login: deshabilitá el bloqueador para Google](./screenshots/login-bloqueador.png) |
 
 Archivos: `screenshots/login.png` y `screenshots/login-bloqueador.png`.
 
@@ -359,9 +363,9 @@ Formulario de 12 campos por tipo de inmueble, sección opcional legacy y placeho
 
 ### Login — Google y bloqueador de anuncios
 
-| Aviso **corto** (antes / sin bloqueo) | Aviso **ampliado** (popup de Google bloqueado) |
+| Sin cartel | Cartel amarillo (texto corto) |
 |:---:|:---:|
-| ![Login leyenda corta](./screenshots/login.png) | ![Login leyenda ampliada](./screenshots/login-bloqueador.png) |
+| ![Login limpio](./screenshots/login.png) | ![Login con aviso bloqueador](./screenshots/login-bloqueador.png) |
 
 </div>
 

@@ -1,4 +1,6 @@
 /** UI strings shared across pages — Spanish */
+import { monthsFull, monthsShort } from '../shared/monthsCalendar.js'
+
 export const pagesEs = {
   states: {
     loading: 'Cargando...',
@@ -25,6 +27,9 @@ export const pagesEs = {
     demoSample: 'Ejemplo',
     demoSampleHint:
       'Datos de ejemplo para la demo. No provienen de tus análisis reales.',
+    datasetSample: 'Dataset DS',
+    datasetSampleHint:
+      'Promedios agregados del dataset de feature engineering (Data Science). No son tus análisis personales.',
   },
   consumos: {
     title: 'Consumos energéticos',
@@ -45,10 +50,10 @@ export const pagesEs = {
     title: 'Consumo energético mensual (kWh)',
     actualVsPredicted: 'Real vs predicción (kWh)',
     actualVsPredictedHint:
-      'Mock para Data Analysis: comparar consumo medido con el forecast del modelo.',
+      'Promedios del dataset: consumo mensual vs. mes anterior (proxy de tendencia).',
     peakVsOffPeak: 'Pico vs valle (kWh)',
     peakVsOffPeakHint:
-      'Mock para Data Analysis: desglose de consumo en horario pico y fuera de pico.',
+      'Promedios del dataset: reparto estimado entre horario pico y valle.',
     seriesActual: 'Real',
     seriesPredicted: 'Predicho',
     seriesPeak: 'Pico',
@@ -57,9 +62,9 @@ export const pagesEs = {
     axisKwh: 'kWh',
     confidence: 'Confianza del modelo',
     categories: {
-      LOW_CONSUMPTION: 'Consumo bajo',
-      MEDIUM_CONSUMPTION: 'Consumo medio',
-      HIGH_CONSUMPTION: 'Consumo alto',
+      LOW_CONSUMPTION: 'Eficiente',
+      MEDIUM_CONSUMPTION: 'Moderado',
+      HIGH_CONSUMPTION: 'Ineficiente',
     },
   },
   insights: {
@@ -332,14 +337,8 @@ export const pagesEs = {
       },
     },
   },
-  months: {
-    january: 'Enero',
-    february: 'Febrero',
-    march: 'Marzo',
-    april: 'Abril',
-    may: 'Mayo',
-    june: 'Junio',
-  },
+  months: monthsFull.es,
+  monthsShort: monthsShort.es,
   adminUsers: {
     title: 'Usuarios — administración',
     subtitle: 'Creá, editá o desactivá cuentas del sistema.',

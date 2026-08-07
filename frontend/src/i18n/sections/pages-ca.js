@@ -1,3 +1,5 @@
+import { monthsFull, monthsShort } from '../shared/monthsCalendar.js'
+
 export const pagesCa = {
   "states": {
     "loading": "Carregant...",
@@ -193,14 +195,8 @@ export const pagesCa = {
       }
     }
   },
-  "months": {
-    "january": "Gener",
-    "february": "Febrer",
-    "march": "Març",
-    "april": "Abril",
-    "may": "Maig",
-    "june": "Juny"
-  },
+  "months": monthsFull.ca,
+  "monthsShort": monthsShort.ca,
   "insights": {
     "title": "Com va el teu consum?",
     "subtitle": "Resum clar perquè qualsevol persona a casa o a l’empresa l’entengui.",

@@ -4,6 +4,8 @@
 > (Alura + Oracle). Su objetivo es que **cualquier desarrollador nuevo**
 > comprenda por que la arquitectura esta organizada de esta forma y como
 > extenderla sin romper los principios de diseno.
+>
+> **Despliegue en produccion (Vercel + Railway + Render):** [`../DEPLOY_PRODUCCION.md`](../DEPLOY_PRODUCCION.md).
 
 ---
 
