@@ -915,16 +915,72 @@ El intérprete mostrado debería corresponder al entorno virtual creado para el 
 
 Una vez completada correctamente la preparación del entorno, puede continuarse con la ejecución secuencial de los notebooks descrita en la siguiente sección.
 
-## 10. Verificación del entorno
+## 10. Ejecución del proyecto
 
-## 11. Ejecución del proyecto
+El flujo de **EnergIA** está organizado mediante notebooks numerados de forma secuencial. Para reproducir completamente el proceso de ciencia de datos, se recomienda ejecutarlos respetando este orden, ya que varias etapas utilizan como entrada los resultados generados por notebooks anteriores.
 
-### 11.1. Orden de ejecución de los notebooks
+### 10.1. Orden de ejecución de los notebooks
 
-### 11.2. Archivos de entrada y salida
+Los notebooks deben ejecutarse en el siguiente orden:
 
-### 11.3. Dependencias entre las etapas
+```text
+01_EDA.ipynb
+      ↓
+02_Limpieza.ipynb
+      ↓
+03_EDA_post_limpieza.ipynb
+      ↓
+04_Imputacion_Variables.ipynb
+      ↓
+05_Feature_Engineering.ipynb
+      ↓
+06_Modelos.ipynb
+      ↓
+07_Evaluacion.ipynb
+      ↓
+08_Exportacion.ipynb
+```
 
+| Orden | Notebook | Etapa |
+|---:|---|---|
+| 1 | `notebooks/01_EDA.ipynb` | Análisis exploratorio inicial |
+| 2 | `notebooks/02_Limpieza.ipynb` | Limpieza de datos |
+| 3 | `notebooks/03_EDA_post_limpieza.ipynb` | Análisis exploratorio posterior a la limpieza |
+| 4 | `notebooks/04_Imputacion_Variables.ipynb` | Imputación y codificación de variables |
+| 5 | `notebooks/05_Feature_Engineering.ipynb` | Ingeniería de características |
+| 6 | `notebooks/06_Modelos.ipynb` | Entrenamiento y selección de modelos |
+| 7 | `notebooks/07_Evaluacion.ipynb` | Evaluación del modelo |
+| 8 | `notebooks/08_Exportacion.ipynb` | Exportación del modelo y sus artefactos |
+
+### 10.2. Archivos de entrada y salida
+
+El pipeline comienza utilizando el dataset original almacenado en:
+
+```text
+datasets/raw/dataset_consumo_energetico_CRUDO.csv
+```
+
+A medida que avanza el procesamiento se generan diferentes versiones del conjunto de datos:
+
+| Etapa | Entrada principal | Salida principal |
+|---|---|---|
+| EDA inicial | `dataset_consumo_energetico_CRUDO.csv` | Resultados exploratorios |
+| Limpieza | `dataset_consumo_energetico_CRUDO.csv` | `01_energia_processed.csv` |
+| EDA post-limpieza | `01_energia_processed.csv` | Resultados exploratorios posteriores a la limpieza |
+| Imputación y codificación | `01_energia_processed.csv` | `02_energia_imputada_ohe.csv` |
+| Ingeniería de características | `02_energia_imputada_ohe.csv` | `03_feature_engineering.csv` |
+| Modelado | `03_feature_engineering.csv` | Modelo seleccionado y resultados de comparación |
+| Evaluación | Modelo seleccionado y conjunto de prueba | Métricas y resultados de evaluación |
+| Exportación | Modelo final y configuración requerida | Artefactos necesarios para la integración |
+
+Los datasets generados y versionados en el repositorio se encuentran en:
+
+```text
+datasets/processed/
+├── 01_energia_processed.csv
+├── 02_energia_imputada_ohe.csv
+└── 03_feature_engineering.csv
+```
 ## 12. Resultados principales
 
 ### 12.1. Modelo seleccionado
