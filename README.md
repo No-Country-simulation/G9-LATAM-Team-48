@@ -775,15 +775,25 @@ Este archivo constituye la fuente principal utilizada durante el entrenamiento, 
 
 ## 7. Documentación disponible
 
-### 7.1. Documentación de los datos
+La documentación complementaria del proyecto **EnergIA** se encuentra principalmente en los directorios `docs/` y `reports/model_selection/`.
 
-### 7.2. Documentación del análisis exploratorio
+### 7.1. Documentación general
 
-### 7.3. Documentación de la imputación y la ingeniería de características
+- [`dataset-catalog.md`](docs/dataset-catalog.md)
+- [`diccionario_datos_y_metodologia.md`](docs/diccionario_datos_y_metodologia.md)
+- [`diccionario_nuevas_columnas.md`](docs/diccionario_nuevas_columnas.md)
+- [`Documentación_del_EDA_Incidencias_y_Variables.md`](docs/Documentación_del_EDA_Incidencias_y_Variables.md)
+- [`documentación_eda_post_limpieza.md`](docs/documentación_eda_post_limpieza.md)
+- [`documentacion_tecnica_seleccion_modelo.md`](docs/documentacion_tecnica_seleccion_modelo.md)
+- [`especificacion-formulario-modelo.md`](docs/especificacion-formulario-modelo.md)
+- [`Manual_Cientifico_Datos.md`](docs/Manual_Cientifico_Datos.md)
 
-### 7.4. Documentación del modelo
+### 7.2. Informes de selección del modelo
 
-### 7.5. Manuales del proyecto
+- [`documentacion_seleccion_modelo_v1.md`](reports/model_selection/documentacion_seleccion_modelo_v1.md)
+- [`documentacion_seleccion_modelo_v3.md`](reports/model_selection/documentacion_seleccion_modelo_v3.md)
+- [`documentacion_tecnica_seleccion_modelo.md`](reports/model_selection/documentacion_tecnica_seleccion_modelo.md)
+- [`especificacion-formulario-modelo.md`](reports/model_selection/especificacion-formulario-modelo.md)
 
 ## 8. Selección y evaluación del modelo
 
