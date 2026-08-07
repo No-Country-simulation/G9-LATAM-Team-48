@@ -56,5 +56,9 @@ SELECT COUNT(*) AS dataset_rows FROM dataset_feature_engineering;
 
 $sql | & mysql --local-infile=1 --host=$MySqlHost --port=$MySqlPort --user=$Username --database=$Database
 if ($LASTEXITCODE -ne 0) {
+    Write-Host ""
+    Write-Host "Si el error es 3948 (local data disabled), en Railway usa:" -ForegroundColor Yellow
+    Write-Host "  pip install pymysql" -ForegroundColor Yellow
+    Write-Host "  .\import-feature-engineering-dataset-remote.ps1 -DatasetPath ... -MySqlHost ... -Replace" -ForegroundColor Yellow
     throw "La importacion del dataset procesado fallo."
 }
