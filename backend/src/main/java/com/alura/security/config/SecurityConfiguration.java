@@ -46,6 +46,8 @@ public class SecurityConfiguration {
             "/api/v1/recommendations/**",
             "/api/consumos",
             "/api/consumos/**",
+            "/api/analytics",
+            "/api/analytics/**",
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/swagger-ui.html",

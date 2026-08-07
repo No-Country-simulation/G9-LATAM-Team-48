@@ -1,18 +1,24 @@
 import { useLocale } from '../context/LocaleContext'
 
-/** Badge para datos de demostración (mock) hasta que llegue el ML real. */
-function DemoSampleBadge({ className = '' }) {
+/** Badge cuando los gráficos usan mock o dataset agregado de DS (no análisis del usuario). */
+function DemoSampleBadge({ className = '', variant = 'demo' }) {
   const { t } = useLocale()
+  const isDataset = variant === 'dataset'
 
   return (
     <span
       className={`badge text-bg-secondary fw-normal align-middle ${className}`.trim()}
       title={t(
-        'dashboard.demoSampleHint',
-        'Datos de ejemplo para la demo. No provienen de tus análisis reales.',
+        isDataset ? 'dashboard.datasetSampleHint' : 'dashboard.demoSampleHint',
+        isDataset
+          ? 'Promedios agregados del dataset de feature engineering (Data Science).'
+          : 'Datos de ejemplo para la demo.',
       )}
     >
-      {t('dashboard.demoSample', 'Ejemplo')}
+      {t(
+        isDataset ? 'dashboard.datasetSample' : 'dashboard.demoSample',
+        isDataset ? 'Dataset DS' : 'Ejemplo',
+      )}
     </span>
   )
 }

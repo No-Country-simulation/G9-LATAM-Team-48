@@ -10,20 +10,12 @@ import {
 } from 'recharts'
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
-import { analyticsMock } from '../data/analyticsMock'
+import { buildActualVsPredictedSeries } from '../utils/analyticsSeries'
 import DemoSampleBadge from './DemoSampleBadge'
 import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
 
-function buildSeries(t) {
-  return analyticsMock.months.map((month, index) => ({
-    mes: t(`months.${month}`).slice(0, 3),
-    actual: analyticsMock.actualKwh[index],
-    predicted: analyticsMock.predictedKwh[index],
-  }))
-}
-
-function GraficoRealVsPrediccion() {
+function GraficoRealVsPrediccion({ analytics, chartBadgeVariant = 'demo' }) {
   const { theme } = useTheme()
   const { t } = useLocale()
   const gridColor = theme === 'dark' ? '#444' : '#ccc'
@@ -31,7 +23,7 @@ function GraficoRealVsPrediccion() {
   const actualColor = theme === 'dark' ? '#6ea8fe' : '#0d6efd'
   const predictedColor = theme === 'dark' ? '#75b798' : '#198754'
 
-  const data = buildSeries(t)
+  const data = buildActualVsPredictedSeries(t, analytics)
   const title = t('chart.actualVsPredicted')
   const tableCaption = `${title}. ${t('a11y.chartDataCaption', 'Datos del gráfico en tabla')}.`
 
@@ -40,7 +32,7 @@ function GraficoRealVsPrediccion() {
       <div className="card-body d-flex flex-column h-100">
         <h3 id="chart-predict-title" className="mb-1 d-flex flex-wrap align-items-center gap-2">
           <span>{title}</span>
-          <DemoSampleBadge />
+          <DemoSampleBadge variant={chartBadgeVariant} />
         </h3>
         <p className="text-muted small mb-3">{t('chart.actualVsPredictedHint')}</p>
 

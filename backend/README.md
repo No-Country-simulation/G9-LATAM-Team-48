@@ -24,6 +24,12 @@ Migraciones Flyway:
 - `V5` — verificación de email
 - `V6` — seed usuarios demo
 - `V7` — consultas anónimas (`user_email` nullable)
+- `V8` — tabla `dataset_feature_engineering` (dataset procesado DS para gráficos agregados)
+
+Tras el deploy, cargá filas una sola vez con `scripts/import-feature-engineering-dataset.ps1`
+(CSV `03_feature_engineering.csv`, 238 columnas). Si no tenés el archivo local:
+`scripts/fetch-feature-engineering-csv.ps1` lo baja desde GitHub LFS (~150 MB).
+Sin import, `/api/consumos` y `/api/analytics/overview` devuelven fallback de demo.
 
 `POST /api/analisis` es **público** (anonymous ok): guarda la consulta y deja el email en `PENDING` si se envía.
 `GET /api/analisis/mis` (y reenvío de email) **requieren login** (JWT).

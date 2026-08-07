@@ -25,6 +25,9 @@ export const pagesEs = {
     demoSample: 'Ejemplo',
     demoSampleHint:
       'Datos de ejemplo para la demo. No provienen de tus análisis reales.',
+    datasetSample: 'Dataset DS',
+    datasetSampleHint:
+      'Promedios agregados del dataset de feature engineering (Data Science). No son tus análisis personales.',
   },
   consumos: {
     title: 'Consumos energéticos',
