@@ -1,7 +1,8 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "headers": [
     {
-      "source": "/assets/(.*)",
+      "source": "/assets/:path*",
       "headers": [
         {
           "key": "Cache-Control",
@@ -10,7 +11,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(webp|png|ico|svg|woff2))",
+      "source": "/:file.:ext(png|webp|ico|svg|woff2)",
       "headers": [
         {
           "key": "Cache-Control",
