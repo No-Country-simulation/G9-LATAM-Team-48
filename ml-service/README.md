@@ -1,30 +1,20 @@
 # Microservicio ML — EnergIA
 
-FastAPI que expone `POST /predict` para el backend Spring (`PREDICTION_API_BASE_URL`).
+FastAPI (`POST /predict`) consumido por Spring vía `PREDICTION_API_BASE_URL`.
 
-## Modelo (.joblib)
+## Modelo de producción
 
-El artefacto **no va en Git** (ver `datascience/.gitignore`). Copialo antes de levantar el servicio:
+Artefacto definitivo versionado en Git:
 
-```powershell
-# Desde la raíz del repo (ajustá el nombre del archivo exportado)
-Copy-Item ".\datascience\models\modelo_v3.joblib" ".\ml-service\models\modelo_v3.joblib"
-```
+**`models/model.joblib`**
 
-O definí la ruta absoluta:
+- Carga por defecto (`MODEL_PATH=/app/models/model.joblib` en Docker).
+- El backend envía **12 features** (`AnalisisPayload.toMlFeatureMap()`); el servicio las adapta al pipeline interno del joblib.
+- Salidas: `nivelKey` / `category` (`efficient` | `moderate` | `inefficient`), `confidence`, `ahorro`, `benchmark`.
 
-```powershell
-$env:MODEL_PATH = "F:\ruta\al\modelo_v3.joblib"
-```
+Sustituir el modelo: reemplazá `models/model.joblib` y redeploy (o `MODEL_URL` + `MODEL_PATH`).
 
-Candidatos automáticos si no hay `MODEL_PATH`:
-
-1. `ml-service/models/modelo_v3.joblib` (modelo DS de 12 features — **recomendado en prod**)
-2. `ml-service/models/model.joblib`
-3. `ml-service/artifacts/energy_classifier.joblib` (RandomForest legacy del hackathon; sirve para probar la integración)
-4. `datascience/models/modelo_v3.joblib`
-
-## Local (Windows)
+## Local
 
 ```powershell
 cd ml-service
@@ -34,8 +24,38 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8000
 ```
 
-- Salud: `GET http://localhost:8000/health` → `modelLoaded: true`
-- Inferencia: `POST http://localhost:8000/predict`
+Smoke test:
+
+```powershell
+$env:PYTHONPATH="."
+python scripts/smoke_predict.py
+python scripts/inspect_model.py
+```
+
+## Docker / compose
+
+```bash
+docker compose up -d --build ml
+```
+
+Backend: `PREDICTION_API_BASE_URL=http://ml:8000`
+
+## Deploy gratis (Render) — recomendado si Railway no da cupo
+
+1. [render.com](https://render.com) → **New → Blueprint** → repo `G9-LATAM-Team-48` (usa `render.yaml` en la raíz).
+   - O **Web Service** → repo → **Root Directory:** `ml-service` → Docker.
+2. Tras el deploy, URL tipo `https://g9-latam-ml.onrender.com`.
+3. Railway backend → Variables:
+   - `PREDICTION_API_BASE_URL=https://g9-latam-ml.onrender.com`
+   - `PREDICTION_API_TIMEOUT=60000` (cold start Render free)
+
+Ver también `DEPLOY.md`.
+
+## Railway (alternativa)
+
+Segundo servicio en el mismo proyecto, **Root Directory** `ml-service`. Ver `DEPLOY.md`.
+
+## Contrato `POST /predict`
 
 ```json
 {
@@ -57,31 +77,4 @@ uvicorn app.main:app --reload --port 8000
 }
 ```
 
-Respuesta (compatible con `PredictionResponse` Java): `nivelKey`, `category`, `confidence`, `ahorro`, `benchmark`, `tipKeys` (vacío; Spring completa tips).
-
-## Inspeccionar pipeline
-
-```powershell
-python scripts/inspect_model.py
-```
-
-## Docker / compose
-
-Desde la raíz del repo (con el `.joblib` en `ml-service/models/`):
-
-```bash
-docker compose up -d --build ml
-```
-
-Backend en compose ya usa `PREDICTION_API_BASE_URL=http://ml:8000`.
-
-## Railway (servicio aparte)
-
-1. Nuevo servicio desde `ml-service/` (Dockerfile).
-2. Subí el `.joblib` en el build (COPY en imagen, volumen, o URL + descarga en deploy).
-3. Variable `MODEL_PATH=/app/models/modelo_v3.joblib` si aplica.
-4. En el backend Spring: `PREDICTION_API_BASE_URL=https://<tu-ml>.up.railway.app` (sin barra final).
-
-## Contrato
-
-Las 12 features en snake_case deben coincidir con `AnalisisPayload.toMlFeatureMap()` en el backend y con el notebook de exportación del equipo DS.
+Respuesta alineada con `PredictionResponse` (Java). `tipKeys` vacío; Spring completa tips.
