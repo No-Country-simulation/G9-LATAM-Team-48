@@ -90,7 +90,7 @@ function Dashboard() {
             </div>
           )}
 
-          <ResumenFacil />
+          <ResumenFacil analytics={analytics} chartBadgeVariant={chartBadgeVariant} />
 
           <Suspense fallback={<ChartSectionFallback />}>
             {chartsReady ? (

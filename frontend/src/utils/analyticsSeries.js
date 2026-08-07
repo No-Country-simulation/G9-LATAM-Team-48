@@ -1,10 +1,26 @@
 import { analyticsMock } from '../data/analyticsMock'
 
+const USE_MOCK = import.meta.env.VITE_USE_MOCK_API === 'true'
+
+const EMPTY_OVERVIEW = {
+  months: [],
+  actualKwh: [],
+  predictedKwh: [],
+  peakKwh: [],
+  offPeakKwh: [],
+  cost: [],
+  category: 'MEDIUM_CONSUMPTION',
+  fromDataset: false,
+}
+
 export function resolveAnalyticsOverview(analytics) {
   if (analytics?.months?.length) {
     return analytics
   }
-  return { ...analyticsMock, fromDataset: false }
+  if (USE_MOCK) {
+    return { ...analyticsMock, fromDataset: false }
+  }
+  return EMPTY_OVERVIEW
 }
 
 export function buildActualVsPredictedSeries(t, analytics) {

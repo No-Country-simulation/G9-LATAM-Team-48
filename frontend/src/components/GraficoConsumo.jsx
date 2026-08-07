@@ -9,18 +9,21 @@ import {
 } from 'recharts'
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
-import consumoData from '../data/consumo.json'
 import { yDomainWithPadding } from '../utils/chartScale'
 import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
 import DemoSampleBadge from './DemoSampleBadge'
 
-function GraficoConsumo({ consumos = consumoData, chartBadgeVariant = 'demo' }) {
+function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo' }) {
   const { theme } = useTheme()
   const { t } = useLocale()
   const gridColor = theme === 'dark' ? '#444' : '#ccc'
   const textColor = theme === 'dark' ? '#ccc' : '#333'
   const lineColor = theme === 'dark' ? '#6ea8fe' : '#0d6efd'
+
+  if (!consumos?.length) {
+    return null
+  }
 
   const datos = consumos.map((item) => ({
     mes: t(`months.${item.mes}`).slice(0, 3),
