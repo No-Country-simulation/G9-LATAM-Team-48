@@ -795,13 +795,71 @@ La documentación complementaria del proyecto **EnergIA** se encuentra principal
 - [`documentacion_tecnica_seleccion_modelo.md`](reports/model_selection/documentacion_tecnica_seleccion_modelo.md)
 - [`especificacion-formulario-modelo.md`](reports/model_selection/especificacion-formulario-modelo.md)
 
-## 8. Selección y evaluación del modelo
+## 8. Instalación
 
-### 8.1. Informes de selección del modelo
+Para ejecutar el proyecto **EnergIA** en un entorno local, se recomienda clonar el repositorio, crear un entorno virtual e instalar las dependencias definidas en `requirements.txt`.
 
-### 8.2. Documentación técnica consolidada
+### 8.1. Clonación del repositorio
 
-### 8.3. Especificación del formulario del modelo
+Clonar el repositorio desde GitHub:
+
+```bash
+git clone <URL_DEL_REPOSITORIO>
+```
+
+Acceder al directorio del proyecto:
+
+```bash
+cd G9-LATAM-Team-48
+```
+
+> Sustituir `<URL_DEL_REPOSITORIO>` por la URL correspondiente al repositorio de **EnergIA**.
+
+### 8.2. Creación del entorno virtual
+
+Desde la raíz del proyecto, crear un entorno virtual de Python:
+
+```bash
+python -m venv .venv
+```
+
+El entorno virtual permite mantener las dependencias del proyecto aisladas de las instalaciones globales de Python.
+
+### 8.3. Activación del entorno virtual
+
+#### Windows
+
+En PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+En Git Bash:
+
+```bash
+source .venv/Scripts/activate
+```
+
+#### Linux / macOS
+
+```bash
+source .venv/bin/activate
+```
+
+Una vez activado correctamente, el nombre del entorno debería aparecer al inicio de la terminal.
+
+### 8.4. Instalación de dependencias
+
+Con el entorno virtual activo, instalar las librerías requeridas por el proyecto:
+
+```bash
+pip install -r requirements.txt
+```
+
+El archivo [`requirements.txt`](requirements.txt) contiene las dependencias necesarias para ejecutar los notebooks, scripts y procesos de ciencia de datos utilizados en **EnergIA**.
+
+Una vez completada la instalación, el entorno puede verificarse mediante el script `test_environment.py`, cuyo uso se describe en la siguiente sección.
 
 ## 9. Instalación
 
