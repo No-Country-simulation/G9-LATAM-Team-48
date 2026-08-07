@@ -5,6 +5,7 @@ import logging
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 
+from app.model_bootstrap import ensure_model_file
 from app.model_service import ModelNotLoadedError, model_service
 from app.schemas import PredictRequest, PredictionResponse
 
@@ -20,6 +21,7 @@ app = FastAPI(
 
 @app.on_event("startup")
 def _load_model() -> None:
+    ensure_model_file()
     model_service.load()
 
 
