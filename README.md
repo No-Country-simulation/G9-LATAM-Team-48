@@ -861,15 +861,59 @@ El archivo [`requirements.txt`](requirements.txt) contiene las dependencias nece
 
 Una vez completada la instalación, el entorno puede verificarse mediante el script `test_environment.py`, cuyo uso se describe en la siguiente sección.
 
-## 9. Instalación
+## 9. Verificación del entorno
 
-### 9.1. Clonación del repositorio
+Una vez instaladas las dependencias del proyecto, se recomienda verificar que el entorno de Python esté correctamente preparado antes de ejecutar los notebooks de **EnergIA**.
 
-### 9.2. Creación del entorno virtual
+El repositorio incluye el script:
 
-### 9.3. Activación del entorno virtual
+```text
+test_environment.py
+```
 
-### 9.4. Instalación de dependencias
+Este archivo está destinado a comprobar que el entorno de ejecución dispone de las dependencias y configuraciones necesarias para trabajar con el proyecto.
+
+### 9.1. Ejecución de la verificación
+
+Con el entorno virtual activado y desde la raíz del repositorio, ejecutar:
+
+```bash
+python test_environment.py
+```
+
+La verificación debe realizarse después de instalar las dependencias mediante:
+
+```bash
+pip install -r requirements.txt
+```
+
+y antes de comenzar la ejecución del pipeline de notebooks.
+
+### 9.2. Resolución de problemas
+
+Si la verificación del entorno indica que falta alguna dependencia, se recomienda comprobar que el entorno virtual esté activo y volver a instalar los paquetes definidos en `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
+
+También puede comprobarse qué intérprete de Python está siendo utilizado:
+
+#### Windows
+
+```bash
+where python
+```
+
+#### Linux / macOS
+
+```bash
+which python
+```
+
+El intérprete mostrado debería corresponder al entorno virtual creado para el proyecto.
+
+Una vez completada correctamente la preparación del entorno, puede continuarse con la ejecución secuencial de los notebooks descrita en la siguiente sección.
 
 ## 10. Verificación del entorno
 
