@@ -1,7 +1,9 @@
 # Smoke API de solo lectura — EnergIA (Railway)
 # No muta datos. No toca frontend/backend/datascience.
 $ErrorActionPreference = "Continue"
-$Base = if ($env:ENERGY_API_URL) { $env:ENERGY_API_URL.TrimEnd("/") } else { "https://g9-latam-team-48-production.up.railway.app" }
+$OutDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+. (Join-Path $OutDir "api-url.ps1")
+$Base = $EnergyApiUrl
 
 function Invoke-Probe {
     param(
@@ -57,7 +59,8 @@ if (-not $r.Ok) { $criticalFail++ }
 $r = Invoke-Probe -Name "GET /api/v1/users/me (sin JWT)" -Url "$Base/api/v1/users/me" -Accept @(401, 403)
 if (-not $r.Ok) { $criticalFail++ }
 
-$r = Invoke-Probe -Name "GET /swagger-ui.html" -Url "$Base/swagger-ui.html" -Accept @(200, 302) -Optional
+# Prod: UI deshabilitada → 404 (500 en deploys anteriores sin ProdSwaggerDisabledController).
+$r = Invoke-Probe -Name "GET /swagger-ui.html" -Url "$Base/swagger-ui.html" -Accept @(200, 302, 404, 500) -Optional
 if ($r.Warned) { $warns++ }
 
 $r = Invoke-Probe -Name "GET /actuator/health" -Url "$Base/actuator/health" -Accept @(200) -Optional

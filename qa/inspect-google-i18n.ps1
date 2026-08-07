@@ -43,7 +43,9 @@ if (Test-Path $localEnv) {
 }
 
 # Google API behavior on prod
-$Api = "https://g9-latam-team-48-production.up.railway.app"
+$OutDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+. (Join-Path $OutDir "api-url.ps1")
+$Api = $EnergyApiUrl
 try {
     $resp = Invoke-WebRequest -Uri "$Api/api/v1/auth/google" -Method POST -UseBasicParsing -TimeoutSec 30 `
         -ContentType "application/json" -Body '{"credential":"invalid.jwt.qa"}'

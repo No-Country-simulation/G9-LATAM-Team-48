@@ -1,9 +1,10 @@
 # QA P0 probes - EnergIA (prod)
 $ErrorActionPreference = "Continue"
-$Api = "https://g9-latam-team-48-production.up.railway.app"
+$OutDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+. (Join-Path $OutDir "api-url.ps1")
+$Api = $EnergyApiUrl
 $Front = "https://g9-latam-team-48.vercel.app"
 $results = [ordered]@{}
-$OutDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 . (Join-Path $OutDir "load-qa-secrets.ps1")
 Require-QaDemoCredentials
 

@@ -1,6 +1,8 @@
 # Dispara los mails reales que faltan para P0-05 / P1-04.
 $ErrorActionPreference = "Continue"
-$Api = "https://g9-latam-team-48-production.up.railway.app"
+$OutDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+. (Join-Path $OutDir "api-url.ps1")
+$Api = $EnergyApiUrl
 
 . (Join-Path $PSScriptRoot "load-qa-secrets.ps1")
 Require-QaInbox

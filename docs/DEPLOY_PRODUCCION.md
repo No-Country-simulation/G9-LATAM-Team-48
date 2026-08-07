@@ -171,7 +171,8 @@ python scripts/smoke_predict.py https://ml-service-lbfk.onrender.com
 
 | Síntoma | Causa habitual | Acción |
 |---------|----------------|--------|
-| `/actuator/health` → `"DOWN"` pero `/api/consumos` OK | Health de **mail** (SMTP en Railway) | `MAIL_ENABLED=false`; fix en `application-prod.yml` (`management.health.mail.enabled=false`); redeploy |
+| `/actuator/health` → `"DOWN"` pero `/api/consumos` OK | Health de **mail** (SMTP en Railway) en deploys viejos | `MAIL_ENABLED=false`; `management.health.mail.enabled=false` en prod; redeploy. En f9a0 suele responder **UP** |
+| `/swagger-ui.html` → 500 en prod | UI deshabilitada (`springdoc.swagger-ui.enabled=false`) | Esperado **404** tras `ProdSwaggerDisabledController`; OpenAPI JSON sigue en `/v3/api-docs` |
 | Backend “failed to respond” | Puerto distinto de `PORT` | `SERVER_PORT=${{PORT}}` o commit que usa `${PORT}` en `server.port` |
 | Análisis solo heurístico | ML caído o timeout | Probar `/health` en Render; revisar `PREDICTION_API_BASE_URL` |
 | ML `/` → 404 | Normal | Usar `/health` o `/docs` |
@@ -232,11 +233,15 @@ python scripts/smoke_predict.py https://ml-service-lbfk.onrender.com
 
 ## 10. Checklist post-deploy
 
-- [ ] Render `/health` → `modelLoaded: true`
-- [ ] Railway `/api/consumos` → 200
-- [ ] Vercel Análisis IA → nivel + confianza + sugerencias
-- [ ] `PREDICTION_API_BASE_URL` apunta a Render (no `127.0.0.1` ni `http://ml:8000`)
-- [ ] Google OAuth: origin Vercel en Cloud Console
+Verificado en prod (2026-08-07):
+
+- [x] Render `/health` → `modelLoaded: true` (`schema: legacy`)
+- [x] Railway `/api/consumos` → 200 (`…-production-f9a0…`)
+- [x] Vercel Análisis IA → nivel + confianza + sugerencias (validado en corridas P0 previas)
+- [x] `PREDICTION_API_BASE_URL` apunta a Render (no `127.0.0.1` ni `http://ml:8000`)
+- [x] Google OAuth: origin Vercel en Cloud Console (P0-08 Pass 2026-07-28)
+
+Smoke automatizado: `qa/smoke-api.ps1` (usa `qa/api-url.ps1` o `ENERGY_API_URL`).
 
 ---
 

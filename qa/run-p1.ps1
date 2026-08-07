@@ -1,8 +1,9 @@
 # QA P1 pendientes - EnergIA (prod). Admin CRUD crea/edita/borra un usuario QA.
 $ErrorActionPreference = "Continue"
-$Api = "https://g9-latam-team-48-production.up.railway.app"
-$Front = "https://g9-latam-team-48.vercel.app"
 $OutDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+. (Join-Path $OutDir "api-url.ps1")
+$Api = $EnergyApiUrl
+$Front = "https://g9-latam-team-48.vercel.app"
 . (Join-Path $OutDir "load-qa-secrets.ps1")
 Require-QaDemoCredentials
 Require-QaInbox

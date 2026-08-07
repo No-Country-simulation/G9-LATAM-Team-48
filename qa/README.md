@@ -6,6 +6,7 @@ Aquí vive la checklist de pruebas y scripts de smoke; no modifica el código de
 | Archivo | Uso |
 |---------|-----|
 | [QA.md](./QA.md) | Checklist manual P0/P1 + cómo correr tests existentes |
+| [api-url.ps1](./api-url.ps1) | URL canónica Railway prod (`ENERGY_API_URL` opcional) |
 | [smoke-api.ps1](./smoke-api.ps1) | Probes HTTP de solo lectura contra Railway |
 | [run-p0.ps1](./run-p0.ps1) | Corrida P0 contra prod (registro/login/análisis/admin; escribe `*-results.json` local, gitignored) |
 | [check-users.ps1](./check-users.ps1) | Padrón de usuarios en prod vía admin (solo GET) |

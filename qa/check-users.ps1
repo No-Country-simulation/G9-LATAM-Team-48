@@ -1,6 +1,8 @@
 # Lectura del padron de usuarios en prod (requiere admin). Solo GET.
 $ErrorActionPreference = "Continue"
-$Api = "https://g9-latam-team-48-production.up.railway.app"
+$OutDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+. (Join-Path $OutDir "api-url.ps1")
+$Api = $EnergyApiUrl
 
 . (Join-Path $PSScriptRoot "load-qa-secrets.ps1")
 Require-QaDemoCredentials
