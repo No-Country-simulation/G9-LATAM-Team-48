@@ -16,7 +16,7 @@ $env:APP_URL = "https://g9-latam-team-48.vercel.app"
 npm run screenshots:auth
 ```
 
-Genera `login.png` (aviso corto) y `login-bloqueador.png` (simula clic en Google sin popup, ~3,2 s).
+Genera `login.png` (sin cartel) y `login-bloqueador.png` (clic en Google sin popup → cartel corto).
 
 Solo **Análisis IA** (formulario 12 campos + resultado):
 
@@ -42,8 +42,8 @@ Formato: **PNG**, viewport ~**1440×900** (o `fullPage` en páginas largas).
 | `contacto.png` | Contáctanos + Equipo 48 |
 | `admin-usuarios.png` | Panel Admin — Usuarios |
 | `admin-analisis.png` | Admin — Análisis IA (historial global) |
-| `login.png` | Modal **Iniciar sesión** — Google Sign-In + aviso **corto** (`googleBlockHintShort`) |
-| `login-bloqueador.png` | Mismo modal con aviso **ampliado** cuando el bloqueador impide el popup (`googleBlockHint`) |
+| `login.png` | **Iniciar sesión** sin cartel (Google + email) |
+| `login-bloqueador.png` | Mismo modal **con cartel** amarillo (bloqueador / popup bloqueado) |
 | `registro.png` | Modal **Crear cuenta** (misma UX Google + avisos que login) |
 | `admin-crear-usuario.png` | Modal — Crear usuario |
 | `admin-editar-usuario.png` | Modal — Editar usuario |

@@ -1,4 +1,6 @@
 /** UI strings shared across pages — English */
+import { monthsFull, monthsShort } from '../shared/monthsCalendar.js'
+
 export const pagesEn = {
   states: {
     loading: 'Loading...',
@@ -25,6 +27,9 @@ export const pagesEn = {
     demoSample: 'Sample',
     demoSampleHint:
       'Sample data for the demo. It does not come from your real analyses.',
+    datasetSample: 'DS dataset',
+    datasetSampleHint:
+      'Aggregated averages from the Data Science feature-engineering dataset. Not your personal analyses.',
   },
   consumos: {
     title: 'Energy usage',
@@ -45,10 +50,10 @@ export const pagesEn = {
     title: 'Monthly energy usage (kWh)',
     actualVsPredicted: 'Actual vs predicted (kWh)',
     actualVsPredictedHint:
-      'Mock for Data Analysis: compare measured usage with the model forecast.',
+      'Dataset averages: monthly usage vs. previous month (trend proxy).',
     peakVsOffPeak: 'Peak vs off-peak (kWh)',
     peakVsOffPeakHint:
-      'Mock for Data Analysis: split usage into peak and off-peak hours.',
+      'Dataset averages: estimated split between peak and off-peak hours.',
     seriesActual: 'Actual',
     seriesPredicted: 'Predicted',
     seriesPeak: 'Peak',
@@ -57,9 +62,9 @@ export const pagesEn = {
     axisKwh: 'kWh',
     confidence: 'Model confidence',
     categories: {
-      LOW_CONSUMPTION: 'Low consumption',
-      MEDIUM_CONSUMPTION: 'Medium consumption',
-      HIGH_CONSUMPTION: 'High consumption',
+      LOW_CONSUMPTION: 'Efficient',
+      MEDIUM_CONSUMPTION: 'Moderate',
+      HIGH_CONSUMPTION: 'Inefficient',
     },
   },
   insights: {
@@ -329,14 +334,8 @@ export const pagesEn = {
       },
     },
   },
-  months: {
-    january: 'January',
-    february: 'February',
-    march: 'March',
-    april: 'April',
-    may: 'May',
-    june: 'June',
-  },
+  months: monthsFull.en,
+  monthsShort: monthsShort.en,
   adminUsers: {
     title: 'Users — administration',
     subtitle: 'Create, edit or deactivate system accounts.',

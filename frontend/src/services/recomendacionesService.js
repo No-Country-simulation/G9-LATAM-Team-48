@@ -7,6 +7,10 @@ export async function getRecomendaciones() {
     return mockResponse(recomendaciones)
   }
 
-  const { data } = await api.get('/api/recomendaciones')
-  return data
+  try {
+    const { data } = await api.get('/api/recomendaciones', { timeout: 12_000 })
+    return data
+  } catch {
+    return recomendaciones
+  }
 }

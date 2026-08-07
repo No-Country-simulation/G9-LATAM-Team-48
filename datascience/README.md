@@ -30,6 +30,6 @@ Abrí los notebooks con Jupyter / VS Code desde esta carpeta.
 
 ## Relación con el backend
 
-El servicio ML (`ml-service`) y el fallback heurístico del backend Spring
-consumen ideas y features alineadas a este trabajo. El contrato de categorías
-(`ALTO` / `MODERADO` / `BAJO`) está documentado en `docs/backend/RECOMMENDATION.md`.
+El servicio ML (`ml-service`) carga el artefacto de producción en
+[`../ml-service/models/model.joblib`](../ml-service/models/model.joblib).
+El fallback heurístico del backend Spring aplica si FastAPI no responde.

@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: g9-latam-ml
+    runtime: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: MODEL_PATH
+        value: /app/models/model.joblib
+      - key: PYTHONUNBUFFERED
+        value: "1"

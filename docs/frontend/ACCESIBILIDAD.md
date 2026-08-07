@@ -35,10 +35,10 @@ No sustituye una auditoría WCAG 2.2 AA completa; es una base sólida para demo/
 
 Patrón gráficos Recharts:
 
-1. Contenedor del gráfico con **`aria-hidden="true"`**.
+1. **`ChartVisualShell`**: contenedor con **`aria-hidden="true"`** y anula `tabindex="0"` del SVG (Recharts).
 2. **`ChartSrTable`**: tabla `visually-hidden` + `<caption>` (`a11y.chartDataCaption`).
 
-**Google Sign-In y bloqueadores:** aviso amarillo en el modal siempre que hay botón Google (`auth.googleBlockHintShort`); si el clic no abre popup o falla el script, texto ampliado (`auth.googleBlockHint`). Login por email sigue disponible (`LoginModal.jsx`, `googleSignInSupport.js`).
+**Google Sign-In y bloqueadores:** cartel amarillo **solo** si el clic en Google no abre popup o falla GIS (`auth.googleBlockHintShort`). Login limpio al abrir el modal. Email/contraseña siempre disponible.
 
 ---
 

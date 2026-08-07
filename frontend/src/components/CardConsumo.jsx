@@ -7,8 +7,8 @@ function CardConsumo({ titulo, valor }) {
         aria-label={`${titulo}: ${valor}`}
       >
         <div className="card-body">
-          <h5 className="card-title">{titulo}</h5>
-          <h2 className="mb-0">{valor}</h2>
+          <p className="card-title mb-1">{titulo}</p>
+          <p className="fs-2 fw-semibold mb-0">{valor}</p>
         </div>
       </div>
     </div>

@@ -4,5 +4,6 @@ __pycache__/
 *.pyc
 *.pkl
 *.joblib
+datasets/processed/*.csv
 .env
 .DS_Store

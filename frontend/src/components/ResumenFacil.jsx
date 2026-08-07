@@ -1,6 +1,12 @@
-import { analyticsMock } from '../data/analyticsMock'
 import { useLocale } from '../context/LocaleContext'
 import DemoSampleBadge from './DemoSampleBadge'
+import { resolveAnalyticsOverview } from '../utils/analyticsSeries'
+import { formatMonthLabel } from '../utils/monthLabels'
+import {
+  categoryToInsightLevelKey,
+  categoryToTipKey,
+  formatConsumptionProfile,
+} from '../utils/consumptionProfile'
 
 function fill(template, values) {
   return Object.entries(values).reduce(
@@ -9,28 +15,28 @@ function fill(template, values) {
   )
 }
 
-function buildInsights(t) {
-  const { actualKwh, peakKwh, cost, category, months } = analyticsMock
+function buildInsights(t, analytics, locale) {
+  const overview = resolveAnalyticsOverview(analytics)
+  const { actualKwh, peakKwh, cost, category, months } = overview
   const last = actualKwh.length - 1
+  if (last < 1) {
+    return []
+  }
   const current = actualKwh[last]
   const previous = actualKwh[last - 1]
   const diff = current - previous
-  const diffPct = Math.round((Math.abs(diff) / previous) * 100)
-  const monthName = t(`months.${months[last]}`)
-  const prevMonthName = t(`months.${months[last - 1]}`)
+  const diffPct = previous ? Math.round((Math.abs(diff) / previous) * 100) : 0
+  const monthName = formatMonthLabel(t, months[last], 'full', locale)
+  const prevMonthName = formatMonthLabel(t, months[last - 1], 'full', locale)
 
-  const peakShare = Math.round((peakKwh[last] / current) * 100)
+  const peakShare = current ? Math.round((peakKwh[last] / current) * 100) : 0
   const bill = cost[last]
   const billDiff = bill - cost[last - 1]
 
   const trendKey = diff > 0 ? 'up' : diff < 0 ? 'down' : 'flat'
   const billKey = billDiff > 0 ? 'up' : billDiff < 0 ? 'down' : 'flat'
-  const levelKey =
-    category === 'LOW_CONSUMPTION'
-      ? 'good'
-      : category === 'HIGH_CONSUMPTION'
-        ? 'high'
-        : 'ok'
+  const levelKey = categoryToInsightLevelKey(category)
+  const profileLabel = formatConsumptionProfile(t, category)
 
   return [
     {
@@ -72,13 +78,13 @@ function buildInsights(t) {
           : levelKey === 'high'
             ? 'danger'
             : 'info',
-      text: t(`insights.level.${levelKey}`),
+      text: `${profileLabel}: ${t(`insights.level.${levelKey}`)}`,
     },
     {
       id: 'tip',
       icon: '💡',
       tone: 'primary',
-      text: t(`insights.tip.${levelKey}`),
+      text: t(`insights.tip.${categoryToTipKey(category)}`),
     },
   ]
 }
@@ -91,17 +97,21 @@ const toneClass = {
   primary: 'border-primary',
 }
 
-function ResumenFacil() {
-  const { t } = useLocale()
-  const insights = buildInsights(t)
+function ResumenFacil({ analytics, chartBadgeVariant = 'demo' }) {
+  const { t, locale } = useLocale()
+  const insights = buildInsights(t, analytics, locale)
+
+  if (!insights.length) {
+    return null
+  }
 
   return (
     <div className="card shadow mt-4">
       <div className="card-body">
-        <h4 className="mb-3 d-flex flex-wrap align-items-center gap-2">
+        <h2 className="mb-3 d-flex flex-wrap align-items-center gap-2">
           <span>{t('insights.title')}</span>
-          <DemoSampleBadge />
-        </h4>
+          <DemoSampleBadge variant={chartBadgeVariant} />
+        </h2>
 
         <div className="row g-3">
           {insights.map((item) => (
