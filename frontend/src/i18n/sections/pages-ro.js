@@ -1,3 +1,5 @@
+import { monthsFull, monthsShort } from '../shared/monthsCalendar.js'
+
 export const pagesRo = {
   "states": {
     "loading": "Se încarcă...",
@@ -193,14 +195,8 @@ export const pagesRo = {
       }
     }
   },
-  "months": {
-    "january": "Ianuarie",
-    "february": "Februarie",
-    "march": "Martie",
-    "april": "Aprilie",
-    "may": "Mai",
-    "june": "Iunie"
-  },
+  "months": monthsFull.ro,
+  "monthsShort": monthsShort.ro,
   "insights": {
     "title": "Cum arată consumul tău?",
     "subtitle": "Rezumat clar, ușor de înțeles acasă sau la firmă.",

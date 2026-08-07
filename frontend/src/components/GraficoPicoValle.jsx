@@ -11,21 +11,22 @@ import {
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { buildPeakOffPeakSeries, resolveAnalyticsOverview } from '../utils/analyticsSeries'
+import { formatConsumptionProfile } from '../utils/consumptionProfile'
 import DemoSampleBadge from './DemoSampleBadge'
 import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
 
 function GraficoPicoValle({ analytics, chartBadgeVariant = 'demo' }) {
   const { theme } = useTheme()
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const gridColor = theme === 'dark' ? '#444' : '#ccc'
   const textColor = theme === 'dark' ? '#ccc' : '#333'
   const peakColor = theme === 'dark' ? '#e35d6a' : '#dc3545'
   const offPeakColor = theme === 'dark' ? '#ffc107' : '#fd7e14'
 
   const overview = resolveAnalyticsOverview(analytics)
-  const data = buildPeakOffPeakSeries(t, analytics)
-  const categoryLabel = t(`chart.categories.${overview.category}`)
+  const data = buildPeakOffPeakSeries(t, analytics, locale)
+  const categoryLabel = formatConsumptionProfile(t, overview.category)
   const confidencePct = Math.round((overview.confidence ?? 0.87) * 100)
   const title = t('chart.peakVsOffPeak')
   const tableCaption = `${title}. ${t('a11y.chartDataCaption', 'Datos del gráfico en tabla')}.`

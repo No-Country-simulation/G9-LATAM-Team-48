@@ -1,3 +1,5 @@
+import { monthsFull, monthsShort } from '../shared/monthsCalendar.js'
+
 export const pagesTr = {
   "states": {
     "loading": "Yükleniyor...",
@@ -193,14 +195,8 @@ export const pagesTr = {
       }
     }
   },
-  "months": {
-    "january": "Ocak",
-    "february": "Şubat",
-    "march": "Mart",
-    "april": "Nisan",
-    "may": "Mayıs",
-    "june": "Haziran"
-  },
+  "months": monthsFull.tr,
+  "monthsShort": monthsShort.tr,
   "insights": {
     "title": "Tüketimin nasıl?",
     "subtitle": "Evde veya işte herkesin anlayacağı net bir özet.",

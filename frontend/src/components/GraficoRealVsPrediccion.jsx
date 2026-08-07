@@ -17,13 +17,13 @@ import ChartSrTable from './ChartSrTable'
 
 function GraficoRealVsPrediccion({ analytics, chartBadgeVariant = 'demo' }) {
   const { theme } = useTheme()
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const gridColor = theme === 'dark' ? '#444' : '#ccc'
   const textColor = theme === 'dark' ? '#ccc' : '#333'
   const actualColor = theme === 'dark' ? '#6ea8fe' : '#0d6efd'
   const predictedColor = theme === 'dark' ? '#75b798' : '#198754'
 
-  const data = buildActualVsPredictedSeries(t, analytics)
+  const data = buildActualVsPredictedSeries(t, analytics, locale)
   const title = t('chart.actualVsPredicted')
   const tableCaption = `${title}. ${t('a11y.chartDataCaption', 'Datos del gráfico en tabla')}.`
 

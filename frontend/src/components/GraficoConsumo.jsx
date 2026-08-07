@@ -9,14 +9,14 @@ import {
 } from 'recharts'
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
-import { yDomainWithPadding } from '../utils/chartScale'
+import { formatMonthLabel } from '../utils/monthLabels'
 import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
 import DemoSampleBadge from './DemoSampleBadge'
 
 function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo' }) {
   const { theme } = useTheme()
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const gridColor = theme === 'dark' ? '#444' : '#ccc'
   const textColor = theme === 'dark' ? '#ccc' : '#333'
   const lineColor = theme === 'dark' ? '#6ea8fe' : '#0d6efd'
@@ -26,7 +26,9 @@ function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo' }) {
   }
 
   const datos = consumos.map((item) => ({
-    mes: t(`months.${item.mes}`).slice(0, 3),
+    mesKey: item.mes,
+    mes: formatMonthLabel(t, item.mes, 'short', locale),
+    mesFull: formatMonthLabel(t, item.mes, 'full', locale),
     consumo: Number(item.consumo),
   }))
 
@@ -93,8 +95,8 @@ function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo' }) {
             { key: 'consumo', label: t('chart.axisKwh') },
           ]}
           rows={datos.map((row) => ({
-            key: row.mes,
-            mes: row.mes,
+            key: row.mesKey,
+            mes: row.mesFull,
             consumo: row.consumo,
           }))}
         />

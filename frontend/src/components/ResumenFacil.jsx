@@ -1,6 +1,12 @@
 import { useLocale } from '../context/LocaleContext'
 import DemoSampleBadge from './DemoSampleBadge'
 import { resolveAnalyticsOverview } from '../utils/analyticsSeries'
+import { formatMonthLabel } from '../utils/monthLabels'
+import {
+  categoryToInsightLevelKey,
+  categoryToTipKey,
+  formatConsumptionProfile,
+} from '../utils/consumptionProfile'
 
 function fill(template, values) {
   return Object.entries(values).reduce(
@@ -9,7 +15,7 @@ function fill(template, values) {
   )
 }
 
-function buildInsights(t, analytics) {
+function buildInsights(t, analytics, locale) {
   const overview = resolveAnalyticsOverview(analytics)
   const { actualKwh, peakKwh, cost, category, months } = overview
   const last = actualKwh.length - 1
@@ -20,8 +26,8 @@ function buildInsights(t, analytics) {
   const previous = actualKwh[last - 1]
   const diff = current - previous
   const diffPct = previous ? Math.round((Math.abs(diff) / previous) * 100) : 0
-  const monthName = t(`months.${months[last]}`)
-  const prevMonthName = t(`months.${months[last - 1]}`)
+  const monthName = formatMonthLabel(t, months[last], 'full', locale)
+  const prevMonthName = formatMonthLabel(t, months[last - 1], 'full', locale)
 
   const peakShare = current ? Math.round((peakKwh[last] / current) * 100) : 0
   const bill = cost[last]
@@ -29,12 +35,8 @@ function buildInsights(t, analytics) {
 
   const trendKey = diff > 0 ? 'up' : diff < 0 ? 'down' : 'flat'
   const billKey = billDiff > 0 ? 'up' : billDiff < 0 ? 'down' : 'flat'
-  const levelKey =
-    category === 'LOW_CONSUMPTION'
-      ? 'good'
-      : category === 'HIGH_CONSUMPTION'
-        ? 'high'
-        : 'ok'
+  const levelKey = categoryToInsightLevelKey(category)
+  const profileLabel = formatConsumptionProfile(t, category)
 
   return [
     {
@@ -76,13 +78,13 @@ function buildInsights(t, analytics) {
           : levelKey === 'high'
             ? 'danger'
             : 'info',
-      text: t(`insights.level.${levelKey}`),
+      text: `${profileLabel}: ${t(`insights.level.${levelKey}`)}`,
     },
     {
       id: 'tip',
       icon: '💡',
       tone: 'primary',
-      text: t(`insights.tip.${levelKey}`),
+      text: t(`insights.tip.${categoryToTipKey(category)}`),
     },
   ]
 }
@@ -96,8 +98,8 @@ const toneClass = {
 }
 
 function ResumenFacil({ analytics, chartBadgeVariant = 'demo' }) {
-  const { t } = useLocale()
-  const insights = buildInsights(t, analytics)
+  const { t, locale } = useLocale()
+  const insights = buildInsights(t, analytics, locale)
 
   if (!insights.length) {
     return null
