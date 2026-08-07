@@ -30,6 +30,11 @@ Abrí los notebooks con Jupyter / VS Code desde esta carpeta.
 
 ## Relación con el backend
 
-El servicio ML (`ml-service`) carga el artefacto de producción en
-[`../ml-service/models/model.joblib`](../ml-service/models/model.joblib).
+El servicio ML (`ml-service`) carga el **artefacto de producción definitivo** en
+[`../ml-service/models/model.joblib`](../ml-service/models/model.joblib) (commiteado en el monorepo).
+Ese `.joblib` es el export del pipeline entrenado en notebooks; **no** hay otro modelo pendiente de subir para la demo.
+
+- FastAPI recibe las **12 features** del formulario y las adapta a las columnas internas del pipeline.
+- Perfil energético → ML; sugerencias en la UI → reglas Spring + i18n frontend.
+
 El fallback heurístico del backend Spring aplica si FastAPI no responde.

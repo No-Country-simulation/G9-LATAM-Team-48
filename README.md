@@ -122,7 +122,7 @@ Usuarios demo (emails en Flyway **V6**; contraseñas solo por canal del equipo /
 ## Highlights recientes
 
 - **Deploy prod:** Vercel + Railway (API/MySQL) + **Render (ml-service)** — ver [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md)
-- **ml-service:** FastAPI, `model.joblib`, integración `PREDICTION_API_BASE_URL`
+- **ml-service:** FastAPI + **`models/model.joblib`** (artefacto DS definitivo); formulario **12 campos** → perfil ML; **sugerencias** vía Spring — [`docs/backend/ANALISIS_IA.md`](./docs/backend/ANALISIS_IA.md)
 - **Google Sign-In**
 - **Auth por email** (registro/verify/login, forgot/reset, admin CRUD)
 - **Análisis IA** con `AnalisisPayload`, ML + fallback `HeuristicPrediction`, historial, email

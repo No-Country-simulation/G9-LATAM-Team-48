@@ -27,8 +27,9 @@
 
 | Documento | Descripción |
 |-----------|-------------|
-| [../ml-service/README.md](../ml-service/README.md) | Contrato FastAPI |
+| [../ml-service/README.md](../ml-service/README.md) | Contrato FastAPI, `model.joblib` definitivo, adaptador 12 → pipeline |
 | [../ml-service/DEPLOY.md](../ml-service/DEPLOY.md) | Deploy Render / Railway |
+| [backend/ANALISIS_IA.md](./backend/ANALISIS_IA.md) | Flujo formulario → ML → tips → front |
 
 ## Ciencia de datos
 

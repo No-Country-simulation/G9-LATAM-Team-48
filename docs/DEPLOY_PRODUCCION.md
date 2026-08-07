@@ -117,11 +117,13 @@ Blueprint en repo: [`render.yaml`](../render.yaml) (raíz) y [`ml-service/render
 
 ## 4. ml-service (FastAPI)
 
-### Artefacto
+### Artefacto (definitivo)
 
-- **Producción:** [`ml-service/models/model.joblib`](../ml-service/models/model.joblib) (versionado con `git add -f`; ~15 MB).
-- **Schema interno:** `legacy` (pipeline con `tipo_code`, `consumo`, …); el servicio **adapta** las 12 features de `AnalisisPayload.toMlFeatureMap()`.
-- Sustitución futura: reemplazar `model.joblib` o usar `MODEL_URL` al arrancar.
+- **Producción:** [`ml-service/models/model.joblib`](../ml-service/models/model.joblib) — export final del pipeline DS, versionado en Git (`git add -f`; ~15 MB). **No** hay un segundo `.joblib` “v3” pendiente para prod.
+- **Entrada HTTP:** 12 features del formulario (`AnalisisPayload.toMlFeatureMap()`).
+- **Pipeline interno:** columnas con las que se entrenó el modelo (`tipo_code`, `consumo`, `personas`, …). `/health` expone `"schema": "legacy"` = adaptador Python hacia esas columnas (no significa reemplazar el modelo).
+- **Sugerencias en la app:** el clasificador devuelve perfil/ahorro/benchmark; **`tipKeys` los arma Spring** con reglas + formulario completo (ver §5).
+- Sustitución excepcional (nuevo hackathon): reemplazar `model.joblib` o `MODEL_URL` al arrancar + redeploy Render.
 
 ### Endpoints
 
@@ -150,10 +152,10 @@ python scripts/smoke_predict.py https://ml-service-lbfk.onrender.com
 ## 5. Flujo Análisis IA (prod)
 
 1. Usuario completa formulario en Vercel → `POST /api/analisis` (público; email opcional con login).
-2. Spring valida `AnalisisPayload` (@Valid) y arma `toMlFeatureMap()` (12 features normalizadas).
-3. `PredictionServiceImpl` → `FastApiPredictionClient` → Render `/predict`.
+2. Spring valida `AnalisisPayload` (@Valid) y arma `toMlFeatureMap()` (**12 features**).
+3. `PredictionServiceImpl` → `FastApiPredictionClient` → Render `/predict` → **`model.joblib`** → `nivelKey`, `confidence`, `ahorro`, `benchmark` (`tipKeys` vacío desde Python).
 4. Si Render no responde (timeout, cold start, error): **fallback** `HeuristicPrediction` (log en backend).
-5. `AnalisisTipsComposer` agrega `tipKeys`; persiste en `analisis_consultas`; respuesta al front.
+5. `AnalisisTipsComposer` combina reglas de recomendación + tips base por `nivelKey` (usa **todo** el mapa del formulario); persiste en `analisis_consultas`; respuesta al front (perfil + tabla de sugerencias i18n).
 
 **Render Free:** instancia duerme; primera petición puede tardar ~30–60 s → `PREDICTION_API_TIMEOUT=60000`.
 
@@ -172,7 +174,7 @@ python scripts/smoke_predict.py https://ml-service-lbfk.onrender.com
 | Síntoma | Causa habitual | Acción |
 |---------|----------------|--------|
 | `/actuator/health` → `"DOWN"` pero `/api/consumos` OK | Health de **mail** (SMTP en Railway) en deploys viejos | `MAIL_ENABLED=false`; `management.health.mail.enabled=false` en prod; redeploy. En f9a0 suele responder **UP** |
-| `/swagger-ui.html` → 500 en prod | UI deshabilitada (`springdoc.swagger-ui.enabled=false`) | Esperado **404** tras `ProdSwaggerDisabledController`; OpenAPI JSON sigue en `/v3/api-docs` |
+| `/swagger-ui.html` → 404 en prod | UI deshabilitada (`springdoc.swagger-ui.enabled=false`) | Normal; OpenAPI JSON en `/v3/api-docs` |
 | Backend “failed to respond” | Puerto distinto de `PORT` | `SERVER_PORT=${{PORT}}` o commit que usa `${PORT}` en `server.port` |
 | Análisis solo heurístico | ML caído o timeout | Probar `/health` en Render; revisar `PREDICTION_API_BASE_URL` |
 | ML `/` → 404 | Normal | Usar `/health` o `/docs` |
@@ -184,7 +186,7 @@ python scripts/smoke_predict.py https://ml-service-lbfk.onrender.com
 
 ### Nuevo: `ml-service/`
 
-- FastAPI: `app/main.py`, carga joblib, adaptador legacy/v3, benchmark alineado a heurística Java.
+- FastAPI: `app/main.py`, carga `model.joblib`, adaptador 12 features → pipeline DS, benchmark alineado a heurística Java.
 - Docker, `render.yaml`, scripts `inspect_model.py`, `smoke_predict.py`.
 - `model_bootstrap.py` opcional (`MODEL_URL`).
 

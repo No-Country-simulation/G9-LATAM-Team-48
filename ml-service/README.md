@@ -6,15 +6,29 @@ FastAPI (`POST /predict`) consumido por Spring vía `PREDICTION_API_BASE_URL`.
 
 ## Modelo de producción
 
-Artefacto definitivo versionado en Git:
+Artefacto **definitivo** versionado en Git (export del pipeline de datascience):
 
 **`models/model.joblib`**
 
 - Carga por defecto (`MODEL_PATH=/app/models/model.joblib` en Docker).
-- El backend envía **12 features** (`AnalisisPayload.toMlFeatureMap()`); el servicio las adapta al pipeline interno del joblib.
-- Salidas: `nivelKey` / `category` (`efficient` | `moderate` | `inefficient`), `confidence`, `ahorro`, `benchmark`.
+- **Entrada:** el backend envía **12 features** (`AnalisisPayload.toMlFeatureMap()`), mismas claves que el formulario Análisis IA.
+- **Interno:** el pipeline fue entrenado con columnas propias del notebook (`tipo_code`, `consumo`, `personas`, `equipos`, `area`, `climateHours`, …). `GET /health` reporta `"schema": "legacy"` cuando detecta esas columnas — es el comportamiento **esperado** en prod, no un placeholder.
+- **Adaptador:** `app/feature_adapters.py` → `legacy_row_from_features` construye la fila para `predict`.
+- **Salidas ML:** `nivelKey` / `category` (`efficient` | `moderate` | `inefficient`), `confidence`, `ahorro`, `benchmark`.
+- **`tipKeys`:** siempre `[]` aquí; Spring (`AnalisisTipsComposer`) genera sugerencias con reglas + formulario completo + `nivelKey`.
 
-Sustituir el modelo: reemplazá `models/model.joblib` y redeploy (o `MODEL_URL` + `MODEL_PATH`).
+Si en el futuro el artefacto exportara directamente las 12 columnas snake_case, el servicio auto-detecta schema `v3` y omite el adaptador legacy (mismo archivo de reemplazo + redeploy).
+
+Sustituir el artefacto: reemplazá `models/model.joblib` y redeploy (o `MODEL_URL` + `MODEL_PATH`).
+
+### Qué usa el clasificador vs las reglas Spring
+
+| Origen formulario | Uso típico |
+|-------------------|------------|
+| tipo, consumo, personas, equipos, m², horas AA | Adaptador → pipeline → **perfil** |
+| aislamiento, % LED, zona, antigüedades, consumo mes anterior | Sobre todo **reglas de tips** en el backend (junto con el perfil ML) |
+
+Ver [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md) y [`docs/backend/RECOMMENDATION.md`](../docs/backend/RECOMMENDATION.md).
 
 ## Local
 
