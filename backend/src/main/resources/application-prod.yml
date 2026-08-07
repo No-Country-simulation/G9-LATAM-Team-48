@@ -69,3 +69,9 @@ app:
     resend-api-key: ${RESEND_API_KEY:}
   google:
     client-id: ${GOOGLE_CLIENT_ID:}
+
+# Actuator: SMTP suele marcar DOWN en Railway aunque la API funcione.
+management:
+  health:
+    mail:
+      enabled: false
