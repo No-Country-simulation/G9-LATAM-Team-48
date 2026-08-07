@@ -47,7 +47,7 @@ cd ../qa
 | A2 | `mvn test` — RecommendationServiceImplTest | tipKeys según reglas | **Pass** (incluido en `mvn test`) |
 | A3 | `mvn test` — EnergyApplicationTests | Context carga (perfil `test`) | **Pass** |
 | A4 | `npm run build` (frontend) | Build Vite OK | **Pass** |
-| A5 | Smoke Railway (`smoke-api.ps1`) | Críticos 2xx/401-403; opcionales pueden WARN | **Pass** (2026-08-07; URL `…-f9a0…`; health 200; Swagger UI off en prod) |
+| A5 | Smoke Railway (`smoke-api.ps1`) | Críticos 2xx/401-403; Swagger UI 404 en prod (deshabilitada) | **Pass** (2026-08-07; f9a0; health 200; swagger 404; `RESULT: PASS`) |
 
 ---
 
@@ -135,7 +135,7 @@ a cualquier destinatario; así el flujo se prueba las veces que haga falta.
 
 | Fecha | Ambiente | Quién | A1–A5 | P0 fallidos | Notas |
 |-------|----------|-------|-------|-------------|-------|
-| 2026-08-07 | prod smoke | agente | A5 Pass | — | URL Railway f9a0; ML health OK; actuator UP |
+| 2026-08-07 | prod smoke | agente | A5 Pass | — | f9a0; consumos/recomendaciones/docs 200; actuator UP; swagger 404; ML `/health` OK (Render) |
 | 2026-07-27 | prod (Vercel+Railway) | agente | — | ninguno (P0-05/08 Manual) | `run-p0.ps1`: 11 Pass API; falta verify por mail + Google UI |
 | 2026-07-27 | local (SMTP Gmail) | agente | — | ninguno | `run-mail-local.ps1`: L-01…L-08 Pass; queda P0-08 (Google UI) |
 | 2026-07-27 | prod (mail real) | equipo | — | — | Forgot/reset ya OK con mail de Germán; P1-04/05 Pass |
