@@ -10,6 +10,7 @@ import {
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { formatMonthLabel } from '../utils/monthLabels'
+import { yDomainWithPadding } from '../utils/chartScale'
 import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
 import DemoSampleBadge from './DemoSampleBadge'
