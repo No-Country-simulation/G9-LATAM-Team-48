@@ -7,7 +7,7 @@ Modelo: **`ml-service/models/model.joblib`** (incluido en la imagen Docker).
 1. Cuenta en [render.com](https://render.com) → conectar GitHub.
 2. **New → Blueprint** → repo `G9-LATAM-Team-48`, rama `Jorge-martinez`.
    - Usa el `render.yaml` de la raíz (servicio `g9-latam-ml`, rootDir `ml-service`).
-3. Tras **Live**, copiá la URL (`https://….onrender.com`).
+3. Tras **Live**, URL prod ejemplo: `https://ml-service-lbfk.onrender.com`.
 4. Probar:
    - `GET https://….onrender.com/health` → `modelLoaded: true`
    - `python ml-service/scripts/smoke_predict.py https://….onrender.com`
@@ -16,7 +16,7 @@ Modelo: **`ml-service/models/model.joblib`** (incluido en la imagen Docker).
 
 | Variable | Valor |
 |----------|--------|
-| `PREDICTION_API_BASE_URL` | `https://….onrender.com` (sin `/`) |
+| `PREDICTION_API_BASE_URL` | `https://ml-service-lbfk.onrender.com` (sin `/`) |
 | `PREDICTION_API_TIMEOUT` | `60000` |
 
 Redeploy backend. Análisis IA debe dejar de usar solo heurística.
