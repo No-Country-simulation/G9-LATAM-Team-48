@@ -7,6 +7,7 @@ import { useFetch } from '../hooks/useFetch'
 import { getConsumos, calcularResumen } from '../services/consumoService'
 import { getAnalyticsOverview } from '../services/analyticsService'
 import { useLocale } from '../context/LocaleContext'
+import { resolveChartBadgeVariant } from '../utils/chartDataSource'
 
 function Consumos() {
   const { t } = useLocale()
@@ -14,8 +15,8 @@ function Consumos() {
   const { data: analytics } = useFetch(getAnalyticsOverview)
 
   const resumen = calcularResumen(consumos || [])
-  const fromDataset = Boolean(analytics?.fromDataset)
-  const chartBadgeVariant = fromDataset ? 'dataset' : 'demo'
+  const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos)
+  const fromDataset = chartBadgeVariant === 'dataset'
 
   return (
     <div className="container-fluid px-0 px-sm-2">
