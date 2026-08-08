@@ -1121,4 +1121,29 @@ Estos archivos cumplen las siguientes funciones:
 
 > **Nota:** el directorio `models/` y estos archivos son generados por el proceso de modelado, pero actualmente no aparecen entre los archivos versionados mostrados por `git ls-files`.
 
+## 12. Reproducibilidad
+
+
+El proyecto **EnergIA** está organizado para que el flujo de ciencia de datos pueda reproducirse desde el dataset original hasta la obtención del modelo final.
+
+
+La reproducibilidad se apoya en la conservación de los datos originales, el versionado de los datasets intermedios, la ejecución secuencial de los notebooks, el uso de semillas aleatorias en las etapas de modelado y la definición de las dependencias del entorno mediante `requirements.txt`.
+
+### 12.1. Semillas aleatorias
+
+En las etapas de entrenamiento y evaluación se utiliza:
+
+```python
+random_state = 42
+```
+
+Esta configuración permite mantener resultados consistentes en operaciones que incorporan aleatoriedad, como:
+
+- División del conjunto de datos en entrenamiento y prueba.
+- Entrenamiento de algoritmos que utilizan procesos aleatorios.
+- Comparación reproducible entre diferentes modelos.
+- Construcción de la versión final de LightGBM.
+
+
+
 
