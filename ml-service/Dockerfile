@@ -3,13 +3,13 @@ FROM python:3.12-slim
 WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    MODEL_PATH=/app/models/model.joblib
+    PYTHONUNBUFFERED=1
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app ./app
+# Artefactos: trio v3 y/o model.joblib (local build o descarga MODEL_V3_* al arrancar)
 COPY models ./models
 
 EXPOSE 8000

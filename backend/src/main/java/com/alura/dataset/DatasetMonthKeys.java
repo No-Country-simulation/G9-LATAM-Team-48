@@ -19,4 +19,18 @@ public final class DatasetMonthKeys {
         }
         return KEYS[mesNumero - 1];
     }
+
+    /** Convierte clave i18n ({@code january}…) a número de mes 1–12. */
+    public static java.util.OptionalInt mesNumeroFromKey(String monthKey) {
+        if (monthKey == null || monthKey.isBlank()) {
+            return java.util.OptionalInt.empty();
+        }
+        String normalized = monthKey.trim().toLowerCase(java.util.Locale.ROOT);
+        for (int i = 0; i < KEYS.length; i++) {
+            if (KEYS[i].equals(normalized)) {
+                return java.util.OptionalInt.of(i + 1);
+            }
+        }
+        return java.util.OptionalInt.empty();
+    }
 }

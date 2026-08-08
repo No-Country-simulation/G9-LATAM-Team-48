@@ -26,3 +26,17 @@ export function calcularResumen(consumos) {
 
   return { total, costo, promedio, mesMayor, ultimo }
 }
+
+/** Totales del rango visible (p. ej. KPIs con filtro de periodo). */
+export function calcularResumenPeriodo(consumos) {
+  const base = calcularResumen(consumos)
+  if (!consumos?.length) {
+    return { ...base, totalCosto: 0, mesesEnPeriodo: 0 }
+  }
+  const totalCosto = consumos.reduce((sum, item) => sum + Number(item.costo ?? 0), 0)
+  return {
+    ...base,
+    totalCosto,
+    mesesEnPeriodo: consumos.length,
+  }
+}

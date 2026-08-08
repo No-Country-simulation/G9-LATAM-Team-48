@@ -11,11 +11,12 @@ import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { formatMonthLabel } from '../utils/monthLabels'
 import { yDomainWithPadding } from '../utils/chartScale'
+import { chartTooltipProps } from '../utils/chartInteractivity'
 import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
 import DemoSampleBadge from './DemoSampleBadge'
 
-function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo' }) {
+function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo', syncId }) {
   const { theme } = useTheme()
   const { t, locale } = useLocale()
   const gridColor = theme === 'dark' ? '#444' : '#ccc'
@@ -46,8 +47,8 @@ function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo' }) {
 
         <ChartVisualShell>
           <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={datos}>
-            <CartesianGrid stroke={gridColor} />
+          <LineChart data={datos} syncId={syncId} margin={{ top: 8, right: 12, left: 4, bottom: 4 }}>
+            <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
             <XAxis
               dataKey="mes"
               stroke={textColor}
@@ -72,17 +73,20 @@ function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo' }) {
               }}
             />
             <Tooltip
-              contentStyle={{
-                backgroundColor: theme === 'dark' ? '#212529' : '#fff',
-                borderColor: gridColor,
-                color: textColor,
-              }}
+              {...chartTooltipProps(theme, { locale })}
+              labelFormatter={(_label, payload) =>
+                payload?.[0]?.payload?.mesFull ?? _label
+              }
             />
             <Line
               type="monotone"
               dataKey="consumo"
+              name={t('chart.title')}
               stroke={lineColor}
               strokeWidth={2}
+              dot={{ r: 4, fill: lineColor, strokeWidth: 0 }}
+              activeDot={{ r: 6, stroke: lineColor, strokeWidth: 2 }}
+              isAnimationActive
             />
           </LineChart>
         </ResponsiveContainer>

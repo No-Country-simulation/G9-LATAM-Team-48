@@ -5,7 +5,7 @@ import logging
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 
-from app.model_bootstrap import ensure_model_file
+from app.model_bootstrap import ensure_model_artifacts
 from app.model_service import ModelNotLoadedError, model_service
 from app.schemas import PredictRequest, PredictionResponse
 
@@ -21,7 +21,7 @@ app = FastAPI(
 
 @app.on_event("startup")
 def _load_model() -> None:
-    ensure_model_file()
+    ensure_model_artifacts()
     model_service.load()
 
 
@@ -33,6 +33,7 @@ def health() -> dict:
         "modelLoaded": loaded,
         "modelPath": str(model_service.model_path) if model_service.model_path else None,
         "schema": model_service.schema if loaded else None,
+        "v3Bundle": model_service.schema == "v3_bundle",
     }
     if not loaded:
         return JSONResponse(status_code=503, content=body)

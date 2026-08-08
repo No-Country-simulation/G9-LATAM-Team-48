@@ -12,7 +12,7 @@ Persiste cada consulta y deja el envío por email en cola (`PENDING`).
 | API frontend | `com.alura.analisis` → `POST /api/analisis` | Fachada (público; login opcional para email) |
 | Persistencia | tabla `analisis_consultas` (Flyway V2) | Historial + email |
 | Predicción | `com.alura.prediction` → FastAPI | Cliente ML |
-| Modelo | `ml-service/` (Python) | `model.joblib` + FastAPI |
+| Modelo | `ml-service/` (Python) | Trio v3 o `model.joblib` + FastAPI |
 | Config | `prediction.api.base-url` | `PREDICTION_API_BASE_URL` |
 
 ```text
@@ -28,28 +28,37 @@ Frontend (Vercel)
 
 El frontend **no** llama a Render; solo al backend.
 
-## Modelo de producción (`model.joblib`)
+## Modelo ML (v3 datascience)
 
-Artefacto **definitivo** del equipo DS, versionado en Git:
+**Objetivo prod/local:** trio en `ml-service/models/`:
 
-[`ml-service/models/model.joblib`](../../ml-service/models/model.joblib)
+- `columnas_requeridas_final_v3.joblib`
+- `label_encoder_v3.joblib`
+- `modelo_perfil_energetico_final_v3.joblib`
 
-No hay otro export pendiente ni reentrenamiento planificado para prod. Render carga ese archivo en cada deploy.
+FastAPI arma la fila según columnas + encoders y predice perfil. `/health` → `"schema": "v3_bundle"`.
+
+Copia local: `ml-service/scripts/copy-v3-models.ps1`. Render: imagen Docker con los 3 archivos o `MODEL_V3_*` (ver [`../DEPLOY_PRODUCCION.md`](../DEPLOY_PRODUCCION.md)).
 
 | Capa | Rol |
 |------|-----|
-| **Entrada API** | Siempre las **12 features** del formulario (`AnalisisPayload.toMlFeatureMap()`). |
-| **Pipeline joblib** | Columnas internas del entrenamiento (`tipo_code`, `consumo`, `personas`, `equipos`, `area`, `climateHours`, …). En `/health` aparece como `"schema": "legacy"` (nombre técnico del adaptador, **no** “modelo obsoleto”). |
-| **Adaptador Python** | `legacy_row_from_features` en `ml-service` traduce las 12 claves al frame que espera el pipeline. |
-| **Salida ML** | Clasificación de perfil (`efficient` \| `moderate` \| `inefficient`), confianza, ahorro %, benchmark. **`tipKeys` vacío** en FastAPI. |
-| **Sugerencias en UI** | `AnalisisTipsComposer` + reglas `RecommendationRule` usan **todo el formulario** (aislamiento, % LED, zona, antigüedades, etc.) y el `nivelKey` del ML. Ver [RECOMMENDATION.md](./RECOMMENDATION.md). |
+| **Entrada API** | **12 features** (`AnalisisPayload.toMlFeatureMap()`). |
+| **Bundle v3** | Columnas en orden del DS + `label_encoder_v3` + clasificador. |
+| **Fallback** | [`model.joblib`](../../ml-service/models/model.joblib) → `"schema": "legacy"` + adaptador `legacy_row_from_features`. |
+| **Salida ML** | `nivelKey`, confianza, ahorro, benchmark. **`tipKeys` vacío** en FastAPI. |
+| **Tips UI** | `AnalisisTipsComposer` + formulario completo. Ver [RECOMMENDATION.md](./RECOMMENDATION.md). |
 
-Campos del formulario que alimentan sobre todo las **reglas de tips** (no las columnas internas del clasificador): aislamiento térmico, % iluminación LED, zona, antigüedad de construcción/electrodomésticos, consumo mes anterior. El perfil energético sí depende del joblib vía el adaptador (tipo, consumo, personas, equipos, m², horas AA, …).
-
-Inspección local de columnas del pipeline:
+Inspección:
 
 ```bash
-cd ml-service && PYTHONPATH=. python scripts/inspect_model.py
+cd ml-service && PYTHONPATH=. python scripts/inspect_v3_bundle.py
+# legacy: python scripts/inspect_model.py
+```
+
+Smoke:
+
+```powershell
+.\qa\smoke-ml.ps1 -BaseUrl http://127.0.0.1:8000
 ```
 
 ## Base de datos

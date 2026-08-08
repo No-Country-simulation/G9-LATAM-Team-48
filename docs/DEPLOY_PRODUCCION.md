@@ -28,7 +28,7 @@ Usuario
 │ Railway MySQL   │  │  Render — ml-service (FastAPI)       │
 │ energia_ia      │  │  Root: ml-service/                   │
 │ Flyway V1–V8…   │  │  https://ml-service-lbfk.onrender.com │
-└─────────────────┘  │  model.joblib en imagen Docker        │
+└─────────────────┘  │  Trio v3 .joblib (imagen o MODEL_V3_*) │
                      └─────────────────────────────────────┘
 ```
 
@@ -52,7 +52,7 @@ El frontend **nunca** llama a Render; solo al backend. Spring llama al ML con `P
 |----------|-----|-----------------|
 | Frontend | https://g9-latam-team-48.vercel.app | App en navegador |
 | Backend | https://g9-latam-team-48-production-f9a0.up.railway.app | `/actuator/health` (ver §7) |
-| ML | https://ml-service-lbfk.onrender.com | `/health` → `modelLoaded: true` |
+| ML | https://ml-service-lbfk.onrender.com | `/health` → `modelLoaded: true`, `schema: v3_bundle` |
 
 Si Railway regenera dominio, actualizá `VITE_API_URL` en Vercel y `FRONTEND_BASE_URL` en el backend.
 
@@ -105,25 +105,77 @@ MAIL_ENABLED=false
 
 ### 3.3 Render — ml-service
 
-Opcional (defaults en Dockerfile):
+**Prioridad:** trio v3 (mismo que datascience en local):
 
-```env
-MODEL_PATH=/app/models/model.joblib
+- `columnas_requeridas_final_v3.joblib`
+- `label_encoder_v3.joblib`
+- `modelo_perfil_energetico_final_v3.joblib`
+
+**Opción A — en la imagen Docker (recomendado si caben en Git):**
+
+```powershell
+cd ml-service
+.\scripts\copy-v3-models.ps1 -SourceDir "C:\ruta\a\tu\carpeta\models"
+git add -f models/columnas_requeridas_final_v3.joblib models/label_encoder_v3.joblib models/modelo_perfil_energetico_final_v3.joblib
+git commit -m "chore(ml): artefactos v3 para Render"
+git push
 ```
 
-Blueprint en repo: [`render.yaml`](../render.yaml) (raíz) y [`ml-service/render.yaml`](../ml-service/render.yaml).
+Redeploy en Render (Docker build incluye `COPY models`).
+
+**Opción B — descarga al arrancar (sin commitear .joblib):**
+
+En Render → Environment:
+
+```env
+MODEL_V3_BASE_URL=https://URL-publica-que-sirva-los-3-archivos-por-nombre
+```
+
+O URLs individuales:
+
+```env
+MODEL_V3_COLUMNS_URL=https://.../columnas_requeridas_final_v3.joblib
+MODEL_V3_ENCODER_URL=https://.../label_encoder_v3.joblib
+MODEL_V3_MODEL_URL=https://.../modelo_perfil_energetico_final_v3.joblib
+```
+
+Al startup, `model_bootstrap` descarga lo que falte y carga `schema=v3_bundle`.
+
+**Fallback:** si no hay trio, usa `model.joblib` en la imagen o `MODEL_URL` (legacy).
+
+Blueprint: [`render.yaml`](../render.yaml) y [`ml-service/render.yaml`](../ml-service/render.yaml).
+
+Smoke:
+
+```powershell
+.\qa\smoke-ml.ps1 -BaseUrl https://ml-service-lbfk.onrender.com
+```
+
+### 3.4 Desarrollo local (alineado con prod)
+
+| Terminal | Comando | Notas |
+|----------|---------|--------|
+| ML | `.\qa\start-local-ml.ps1` | Puerto 8000; copiar trio con `ml-service\scripts\copy-v3-models.ps1` |
+| Backend | `backend\.env` + `mvn spring-boot:run` | `PREDICTION_API_BASE_URL=http://localhost:8000` |
+| Frontend | `npm run dev` en `frontend/` | `VITE_API_URL=http://localhost:8080` (ver `frontend/.env.example`) |
+| Stack Docker | `docker compose up -d --build` | Monta `./ml-service/models`; mismo trio v3 en esa carpeta |
+
+Verificación ML local: `.\qa\smoke-ml.ps1`
 
 ---
 
 ## 4. ml-service (FastAPI)
 
-### Artefacto (definitivo)
+### Artefacto v3 (Análisis IA — perfil energético)
 
-- **Producción:** [`ml-service/models/model.joblib`](../ml-service/models/model.joblib) — export final del pipeline DS, versionado en Git (`git add -f`; ~15 MB). **No** hay un segundo `.joblib` “v3” pendiente para prod.
-- **Entrada HTTP:** 12 features del formulario (`AnalisisPayload.toMlFeatureMap()`).
-- **Pipeline interno:** columnas con las que se entrenó el modelo (`tipo_code`, `consumo`, `personas`, …). `/health` expone `"schema": "legacy"` = adaptador Python hacia esas columnas (no significa reemplazar el modelo).
-- **Sugerencias en la app:** el clasificador devuelve perfil/ahorro/benchmark; **`tipKeys` los arma Spring** con reglas + formulario completo (ver §5).
-- Sustitución excepcional (nuevo hackathon): reemplazar `model.joblib` o `MODEL_URL` al arrancar + redeploy Render.
+- **Producción / local:** trio en `ml-service/models/` (ver §3.3 y §3.4).
+- **Entrada HTTP:** 12 features (`AnalisisPayload.toMlFeatureMap()`).
+- **`/health`:** `"schema": "v3_bundle"` cuando cargó los 3 archivos; `"legacy"` si solo `model.joblib`.
+- **Sugerencias:** clasificador → perfil/ahorro/benchmark; **`tipKeys` en Spring** (`AnalisisTipsComposer`).
+
+### Legacy (`model.joblib`)
+
+Respaldo en repo (~15 MB). Se usa **solo** si el trio v3 no está presente ni descargable.
 
 ### Endpoints
 

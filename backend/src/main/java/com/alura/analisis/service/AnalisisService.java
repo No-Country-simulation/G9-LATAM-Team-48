@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @Service
@@ -196,8 +197,11 @@ public class AnalisisService {
                 entity.getId(),
                 entity.getCreatedAt(),
                 consumoFromRequest(request),
+                consumoMesAnteriorFromRequest(request),
                 entity.getAhorro(),
-                entity.getNivelKey());
+                entity.getNivelKey(),
+                entity.getTipoInstalacion(),
+                zonaFromRequest(request));
     }
 
     private static Double consumoFromRequest(Map<String, Object> request) {
@@ -219,6 +223,47 @@ public class AnalisisService {
             }
         }
         return null;
+    }
+
+    private static Double consumoMesAnteriorFromRequest(Map<String, Object> request) {
+        if (request == null || request.isEmpty()) {
+            return null;
+        }
+        for (String key : List.of("consumoKwhMesAnterior", "consumo_kwh_mes_anterior")) {
+            Object raw = request.get(key);
+            if (raw == null) {
+                continue;
+            }
+            try {
+                double value = Double.parseDouble(String.valueOf(raw));
+                if (Double.isFinite(value)) {
+                    return value;
+                }
+            } catch (NumberFormatException ignored) {
+                // try next key
+            }
+        }
+        return null;
+    }
+
+    private static String zonaFromRequest(Map<String, Object> request) {
+        if (request == null || request.isEmpty()) {
+            return null;
+        }
+        Object raw = request.get("zona");
+        if (raw == null) {
+            return null;
+        }
+        String text = String.valueOf(raw).trim();
+        if (text.isEmpty()) {
+            return null;
+        }
+        return switch (text.toUpperCase(Locale.ROOT)) {
+            case "SUBURBANA" -> "Suburbana";
+            case "URBANA_COSTERA" -> "Urbana Costera";
+            case "URBANA_INTERIOR" -> "Urbana Interior";
+            default -> text;
+        };
     }
 
     private Map<String, Object> jsonToMap(JsonNode node) {

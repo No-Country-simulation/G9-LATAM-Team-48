@@ -112,4 +112,40 @@ public class DatasetFeatureEngineeringDao {
             return Optional.empty();
         }
     }
+
+    /**
+     * Promedio de kWh por tipo de inmueble (one-hot del dataset). {@code mesNumeros} vacío = sin filtro de mes.
+     */
+    public List<Map<String, Object>> avgConsumoByTipoInmueble(List<Integer> mesNumeros) {
+        String mesClause = "";
+        if (mesNumeros != null && !mesNumeros.isEmpty()) {
+            String inList = mesNumeros.stream().map(String::valueOf).reduce((a, b) -> a + "," + b).orElse("");
+            mesClause = " AND mes_numero IN (" + inList + ") ";
+        }
+        String sql = """
+                SELECT segment, AVG(consumo_kwh_mensual) AS avg_kwh, COUNT(*) AS samples
+                FROM (
+                    SELECT consumo_kwh_mensual,
+                           CASE
+                               WHEN COALESCE(tipo_inmueble_apartamento, 0)
+                                    >= COALESCE(tipo_inmueble_casa_unifamiliar, 0)
+                                AND COALESCE(tipo_inmueble_apartamento, 0)
+                                    >= COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0)
+                                AND COALESCE(tipo_inmueble_apartamento, 0) > 0
+                                   THEN 'Apartamento'
+                               WHEN COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0)
+                                    >= COALESCE(tipo_inmueble_casa_unifamiliar, 0)
+                                AND COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0) > 0
+                                   THEN 'Pequeño Establecimiento Comercial'
+                               ELSE 'Casa Unifamiliar'
+                           END AS segment
+                    FROM dataset_feature_engineering
+                    WHERE consumo_kwh_mensual IS NOT NULL
+                    %s
+                ) typed
+                GROUP BY segment
+                ORDER BY avg_kwh DESC
+                """.formatted(mesClause);
+        return jdbcTemplate.queryForList(sql);
+    }
 }

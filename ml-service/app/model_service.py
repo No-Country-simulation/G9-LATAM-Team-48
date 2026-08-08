@@ -9,11 +9,20 @@ import numpy as np
 import pandas as pd
 
 from app.benchmark import compute_benchmark
-from app.config import resolve_model_path
+from app.config import MODELS_DIR, resolve_model_path
 from app.feature_adapters import legacy_row_from_features, schema_from_column_names
 from app.features import FEATURE_KEYS, NUMERIC_KEYS
 from app.mapping import map_prediction_to_nivel
 from app.schemas import PredictionResponse
+from app.v3_bundle import (
+    V3Bundle,
+    build_v3_input_frame,
+    decode_v3_label,
+    load_v3_bundle,
+    transform_v3_features,
+    v3_bundle_paths,
+    v3_predict_proba,
+)
 
 log = logging.getLogger(__name__)
 
@@ -77,6 +86,7 @@ class EnergyModelService:
         self._model_path: Path | None = None
         self._classes: list[Any] | None = None
         self._schema: str = "v3"
+        self._v3: V3Bundle | None = None
 
     @property
     def model_path(self) -> Path | None:
@@ -91,6 +101,26 @@ class EnergyModelService:
         return self._schema
 
     def load(self) -> None:
+        bundle_paths = v3_bundle_paths(MODELS_DIR)
+        if bundle_paths is not None:
+            cols_p, enc_p, model_p = bundle_paths
+            self._model_path = model_p
+            try:
+                self._v3 = load_v3_bundle(cols_p, enc_p, model_p)
+                self._pipeline = self._v3.model
+                self._feature_columns = list(self._v3.feature_columns)
+                self._classes = getattr(self._pipeline, "classes_", None)
+                self._schema = "v3_bundle"
+                log.info(
+                    "Modelo v3 (3 artefactos) cargado desde %s (%s columnas)",
+                    MODELS_DIR,
+                    len(self._feature_columns),
+                )
+                return
+            except Exception:
+                log.exception("Falló la carga del bundle v3; se intentará model.joblib")
+                self._v3 = None
+
         path = resolve_model_path()
         self._model_path = path
         if not path.is_file():
@@ -117,6 +147,9 @@ class EnergyModelService:
                 f"Modelo no cargado. Esperado en: {self._model_path}"
             )
 
+        if self._schema == "v3_bundle" and self._v3 is not None:
+            return self._predict_v3_bundle(user_id, features)
+
         row = _coerce_row(features) if self._schema == "v3" else legacy_row_from_features(features)
         frame = _frame_for_model(row, self._pipeline, self._feature_columns, self._schema)
 
@@ -128,6 +161,34 @@ class EnergyModelService:
             _, _, ahorro = map_prediction_to_nivel(nivel_key)
         else:
             nivel_key, category, ahorro = map_prediction_to_nivel(raw_label)
+        benchmark = compute_benchmark(features)
+
+        return PredictionResponse(
+            userId=user_id,
+            category=category,
+            nivelKey=nivel_key,
+            confidence=round(confidence, 4),
+            ahorro=ahorro,
+            tipKeys=[],
+            benchmark=float(benchmark),
+        )
+
+    def _predict_v3_bundle(
+        self, user_id: str | None, features: dict[str, Any]
+    ) -> PredictionResponse:
+        assert self._v3 is not None
+        bundle = self._v3
+        frame = build_v3_input_frame(features, bundle)
+        X = transform_v3_features(frame, bundle)
+        raw_label = bundle.model.predict(X)[0]
+        decoded = decode_v3_label(raw_label, bundle)
+        confidence = v3_predict_proba(bundle.model, X, raw_label, bundle.y_encoder)
+
+        if str(decoded) in ("efficient", "moderate", "inefficient"):
+            nivel_key = category = str(decoded)
+            _, _, ahorro = map_prediction_to_nivel(nivel_key)
+        else:
+            nivel_key, category, ahorro = map_prediction_to_nivel(decoded)
         benchmark = compute_benchmark(features)
 
         return PredictionResponse(

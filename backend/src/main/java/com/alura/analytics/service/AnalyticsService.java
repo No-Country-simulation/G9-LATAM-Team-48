@@ -1,5 +1,7 @@
 package com.alura.analytics.service;
 
+import com.alura.analytics.dto.AnalyticsBreakdownDto;
+import com.alura.analytics.dto.AnalyticsBreakdownItem;
 import com.alura.analytics.dto.AnalyticsOverviewDto;
 import com.alura.dataset.DatasetFeatureEngineeringDao;
 import com.alura.dataset.DatasetMonthKeys;
@@ -23,6 +25,16 @@ public class AnalyticsService {
             "MEDIUM_CONSUMPTION",
             0.87,
             List.of(240, 255, 232, 270, 262, 285),
+            false
+    );
+
+    private static final AnalyticsBreakdownDto FALLBACK_BREAKDOWN = new AnalyticsBreakdownDto(
+            "tipo_inmueble",
+            List.of(
+                    new AnalyticsBreakdownItem("Casa Unifamiliar", 350, 120),
+                    new AnalyticsBreakdownItem("Apartamento", 285, 95),
+                    new AnalyticsBreakdownItem("Pequeño Establecimiento Comercial", 410, 60)
+            ),
             false
     );
 
@@ -85,6 +97,43 @@ public class AnalyticsService {
                 List.copyOf(cost),
                 true
         );
+    }
+
+    public AnalyticsBreakdownDto breakdownByTipoInmueble(List<String> monthKeys) {
+        if (!datasetDao.hasRows()) {
+            return FALLBACK_BREAKDOWN;
+        }
+        List<Integer> mesNumeros = parseMesNumeros(monthKeys);
+        List<Map<String, Object>> rows = datasetDao.avgConsumoByTipoInmueble(mesNumeros);
+        if (rows.isEmpty()) {
+            return FALLBACK_BREAKDOWN;
+        }
+        List<AnalyticsBreakdownItem> items = new ArrayList<>();
+        for (Map<String, Object> row : rows) {
+            String segment = String.valueOf(row.get("segment"));
+            int avg = round(row.get("avg_kwh"));
+            long samples = longValue(row.get("samples"));
+            items.add(new AnalyticsBreakdownItem(segment, avg, samples));
+        }
+        return new AnalyticsBreakdownDto("tipo_inmueble", List.copyOf(items), true);
+    }
+
+    private static List<Integer> parseMesNumeros(List<String> monthKeys) {
+        if (monthKeys == null || monthKeys.isEmpty()) {
+            return List.of();
+        }
+        List<Integer> mesNumeros = new ArrayList<>();
+        for (String key : monthKeys) {
+            DatasetMonthKeys.mesNumeroFromKey(key).ifPresent(mesNumeros::add);
+        }
+        return mesNumeros;
+    }
+
+    private static long longValue(Object value) {
+        if (value instanceof Number number) {
+            return number.longValue();
+        }
+        return 0L;
     }
 
     private static Map<Integer, Map<String, Object>> indexByMes(List<Map<String, Object>> rows) {

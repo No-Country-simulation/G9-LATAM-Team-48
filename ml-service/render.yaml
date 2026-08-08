@@ -6,7 +6,17 @@ services:
     plan: free
     healthCheckPath: /health
     envVars:
-      - key: MODEL_PATH
-        value: /app/models/model.joblib
       - key: PYTHONUNBUFFERED
         value: "1"
+      # Trio v3: incluir los 3 .joblib en la imagen (git add -f) O definir en el dashboard:
+      # - key: MODEL_V3_BASE_URL
+      #   sync: false
+      # - key: MODEL_V3_COLUMNS_URL
+      #   sync: false
+      # - key: MODEL_V3_ENCODER_URL
+      #   sync: false
+      # - key: MODEL_V3_MODEL_URL
+      #   sync: false
+      # Legacy (solo si no hay v3):
+      # - key: MODEL_URL
+      #   sync: false

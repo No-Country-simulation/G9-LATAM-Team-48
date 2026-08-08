@@ -13,6 +13,11 @@ def resolve_model_path() -> Path:
     if explicit:
         return Path(explicit).expanduser().resolve()
 
+    from app.v3_bundle import v3_bundle_paths
+
+    if v3_bundle_paths(MODELS_DIR) is not None:
+        return (MODELS_DIR / "modelo_perfil_energetico_final_v3.joblib").resolve()
+
     candidates = (
         MODELS_DIR / "model.joblib",
         MODELS_DIR / "modelo.joblib",

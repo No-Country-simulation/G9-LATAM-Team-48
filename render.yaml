@@ -1,4 +1,4 @@
-# Blueprint Render — solo el microservicio ML (backend sigue en Railway/Vercel).
+# Blueprint Render — solo el microservicio ML (backend Railway, front Vercel).
 services:
   - type: web
     name: g9-latam-ml
@@ -8,5 +8,5 @@ services:
     plan: free
     healthCheckPath: /health
     envVars:
-      - key: MODEL_PATH
-        value: /app/models/model.joblib
+      - key: PYTHONUNBUFFERED
+        value: "1"

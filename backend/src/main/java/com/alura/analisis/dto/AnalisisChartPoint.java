@@ -9,7 +9,10 @@ public record AnalisisChartPoint(
         Long id,
         LocalDateTime createdAt,
         Double consumoKwh,
+        Double consumoKwhMesAnterior,
         Integer ahorro,
-        String nivelKey
+        String nivelKey,
+        String tipoInstalacion,
+        String zona
 ) {
 }

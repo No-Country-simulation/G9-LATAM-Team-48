@@ -8,16 +8,22 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
+import { useState } from 'react'
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { buildActualVsPredictedSeries } from '../utils/analyticsSeries'
+import {
+  chartTooltipProps,
+  toggleSeriesVisibility,
+} from '../utils/chartInteractivity'
 import DemoSampleBadge from './DemoSampleBadge'
 import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
 
-function GraficoRealVsPrediccion({ analytics, chartBadgeVariant = 'demo' }) {
+function GraficoRealVsPrediccion({ analytics, chartBadgeVariant = 'demo', syncId }) {
   const { theme } = useTheme()
   const { t, locale } = useLocale()
+  const [hidden, setHidden] = useState({})
   const gridColor = theme === 'dark' ? '#444' : '#ccc'
   const textColor = theme === 'dark' ? '#ccc' : '#333'
   const actualColor = theme === 'dark' ? '#6ea8fe' : '#0d6efd'
@@ -42,7 +48,7 @@ function GraficoRealVsPrediccion({ analytics, chartBadgeVariant = 'demo' }) {
 
         <ChartVisualShell className="flex-grow-1" style={{ minHeight: 300 }}>
           <ResponsiveContainer width="100%" height="100%" minHeight={300}>
-            <BarChart data={data}>
+            <BarChart data={data} syncId={syncId} margin={{ top: 8, right: 12, left: 4, bottom: 4 }}>
               <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
               <XAxis
                 dataKey="mes"
@@ -66,24 +72,28 @@ function GraficoRealVsPrediccion({ analytics, chartBadgeVariant = 'demo' }) {
                 }}
               />
               <Tooltip
-                contentStyle={{
-                  backgroundColor: theme === 'dark' ? '#212529' : '#fff',
-                  borderColor: gridColor,
-                  color: textColor,
-                }}
+                {...chartTooltipProps(theme, { locale })}
+                labelFormatter={(_label, payload) =>
+                  payload?.[0]?.payload?.mesFull ?? _label
+                }
               />
-              <Legend />
+              <Legend
+                onClick={(entry) => toggleSeriesVisibility(entry.dataKey, setHidden)}
+                wrapperStyle={{ cursor: 'pointer' }}
+              />
               <Bar
                 dataKey="actual"
                 name={t('chart.seriesActual')}
                 fill={actualColor}
                 radius={[4, 4, 0, 0]}
+                hide={Boolean(hidden.actual)}
               />
               <Bar
                 dataKey="predicted"
                 name={t('chart.seriesPredicted')}
                 fill={predictedColor}
                 radius={[4, 4, 0, 0]}
+                hide={Boolean(hidden.predicted)}
               />
             </BarChart>
           </ResponsiveContainer>

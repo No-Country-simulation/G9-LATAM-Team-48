@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { LuEye, LuMail, LuRotateCcw } from 'react-icons/lu'
 import {
@@ -16,6 +16,8 @@ import GraficosHistoriaExtra from '../components/GraficosHistoriaExtra'
 import AnalysisRequestFieldsTable from '../components/AnalysisRequestFieldsTable'
 import AnalysisTipsTable from '../components/AnalysisTipsTable'
 import TablePagination from '../components/TablePagination'
+import CardConsumo from '../components/CardConsumo'
+import HistoriaConsumosFilters from '../components/HistoriaConsumosFilters'
 import { DEFAULT_PAGE_SIZE } from '../utils/pageResponse'
 import { draftFromRequest, saveAnalisisDraft } from '../utils/analisisDraft'
 import {
@@ -23,11 +25,20 @@ import {
   pickRequestFieldValue,
 } from '../utils/analisisMlContract'
 import {
+  calcHistoriaKpis,
+  consumoFromHistoriaItem,
+  DEFAULT_HISTORIA_FILTERS,
+  filterHistoriaItems,
+  hasActiveHistoriaFilters,
+} from '../utils/historiaConsumoFilters'
+import {
   formatKwh,
   formatM2,
   numericFromRow,
   zonaLabelFromRow,
 } from '../utils/analisisRowHelpers'
+
+const MAX_HISTORIA_ROWS = 500
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -68,7 +79,21 @@ function buildEnteredRequest(detail) {
 }
 
 function consumoFromRow(row) {
-  return numericFromRow(row, 'consumoKwh')
+  return consumoFromHistoriaItem(row)
+}
+
+function toChartPointRow(row) {
+  return {
+    id: row.id,
+    createdAt: row.createdAt,
+    consumo: row.consumoKwh ?? consumoFromHistoriaItem(row),
+    consumoKwh: row.consumoKwh ?? consumoFromHistoriaItem(row),
+    ahorro: row.ahorro,
+    nivelKey: row.nivelKey,
+    tipoInstalacion: row.tipoInstalacion,
+    zona: row.zona,
+    requestJson: row.requestJson,
+  }
 }
 
 function formatDate(value, locale) {
@@ -106,9 +131,9 @@ function HistoriaConsumos() {
   const { setPagina } = useNavigation()
   const [rows, setRows] = useState([])
   const [chartPoints, setChartPoints] = useState([])
+  const [filters, setFilters] = useState(DEFAULT_HISTORIA_FILTERS)
   const [page, setPage] = useState(0)
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE)
-  const [totalPages, setTotalPages] = useState(0)
   const [totalElements, setTotalElements] = useState(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -136,7 +161,7 @@ function HistoriaConsumos() {
     }
   }
 
-  async function loadTable(pageIndex = page, size = pageSize) {
+  async function loadTable() {
     setLoading(true)
     setError(null)
     try {
@@ -144,22 +169,11 @@ function HistoriaConsumos() {
         setError(t('historiaConsumos.sessionInvalid'))
         setRows([])
         setTotalElements(0)
-        setTotalPages(0)
         return
       }
-      const result = await listMisAnalisis({ page: pageIndex, size })
-      if (
-        (!result.content || result.content.length === 0) &&
-        pageIndex > 0 &&
-        (result.totalElements ?? 0) > 0
-      ) {
-        await loadTable(pageIndex - 1, size)
-        return
-      }
+      const result = await listMisAnalisis({ page: 0, size: MAX_HISTORIA_ROWS })
       setRows(Array.isArray(result.content) ? result.content : [])
-      setPage(result.page ?? pageIndex)
-      setTotalPages(result.totalPages ?? 0)
-      setTotalElements(result.totalElements ?? 0)
+      setTotalElements(result.totalElements ?? result.content?.length ?? 0)
     } catch (err) {
       const status = err?.response?.status
       if (status === 401 || status === 403) {
@@ -180,17 +194,67 @@ function HistoriaConsumos() {
 
   async function loadAll() {
     void loadChartPoints()
-    await loadTable(0, pageSize)
+    await loadTable()
   }
 
   function handlePageChange(nextPage) {
-    loadTable(nextPage, pageSize)
+    setPage(nextPage)
   }
 
   function handlePageSizeChange(nextSize) {
     setPageSize(nextSize)
-    loadTable(0, nextSize)
+    setPage(0)
   }
+
+  function handleFiltersChange(next) {
+    setFilters(next)
+    setPage(0)
+  }
+
+  const seriesSource = useMemo(() => {
+    if (chartPoints.length > 0) {
+      return chartPoints.map((row) => ({
+        id: row.id,
+        createdAt: row.createdAt,
+        consumo: row.consumoKwh ?? row.consumo,
+        consumoKwh: row.consumoKwh,
+        ahorro: row.ahorro,
+        nivelKey: row.nivelKey,
+        tipoInstalacion: row.tipoInstalacion,
+        zona: row.zona,
+      }))
+    }
+    return rows.map(toChartPointRow)
+  }, [chartPoints, rows])
+
+  const filteredSeries = useMemo(
+    () => filterHistoriaItems(seriesSource, filters),
+    [seriesSource, filters],
+  )
+
+  const filteredRows = useMemo(
+    () => filterHistoriaItems(rows, filters),
+    [rows, filters],
+  )
+
+  const kpis = useMemo(() => calcHistoriaKpis(filteredSeries), [filteredSeries])
+
+  const pagedRows = useMemo(() => {
+    const start = page * pageSize
+    return filteredRows.slice(start, start + pageSize)
+  }, [filteredRows, page, pageSize])
+
+  const filteredTotalPages = Math.max(1, Math.ceil(filteredRows.length / pageSize) || 1)
+
+  const filtersActive = hasActiveHistoriaFilters(filters)
+  const showHistoriaFilters = totalElements > 1
+
+  useEffect(() => {
+    if (totalElements <= 1) {
+      setFilters(DEFAULT_HISTORIA_FILTERS)
+      setPage(0)
+    }
+  }, [totalElements])
 
   useEffect(() => {
     if (hydrating) return
@@ -261,7 +325,7 @@ function HistoriaConsumos() {
           className="btn btn-outline-primary btn-sm"
           onClick={() => {
             loadChartPoints()
-            loadTable(page, pageSize)
+            loadTable()
           }}
           disabled={loading}
         >
@@ -293,21 +357,72 @@ function HistoriaConsumos() {
 
       {!loading && !error && totalElements > 0 && (
         <>
-          <GraficoHistoriaConsumo
-            points={chartPoints.map((row) => ({
-              id: row.id,
-              createdAt: row.createdAt,
-              consumo: row.consumoKwh ?? row.consumo,
-            }))}
-          />
-          <GraficosHistoriaExtra
-            points={chartPoints.map((row) => ({
-              id: row.id,
-              createdAt: row.createdAt,
-              ahorro: row.ahorro,
-              nivelKey: row.nivelKey,
-            }))}
-          />
+          {showHistoriaFilters && (
+            <HistoriaConsumosFilters
+              filters={filters}
+              onChange={handleFiltersChange}
+              onReset={() => handleFiltersChange(DEFAULT_HISTORIA_FILTERS)}
+            />
+          )}
+
+          <div className="row g-3 mb-3">
+            <CardConsumo
+              titulo={t('historiaConsumos.kpiCount', 'Consultas')}
+              valor={String(kpis.count)}
+            />
+            <CardConsumo
+              titulo={t('historiaConsumos.kpiAvgKwh', 'Promedio kWh')}
+              valor={kpis.avgKwh != null ? `${kpis.avgKwh} kWh` : '—'}
+            />
+            <CardConsumo
+              titulo={t('historiaConsumos.kpiAvgSavings', 'Ahorro promedio')}
+              valor={kpis.avgAhorro != null ? `${kpis.avgAhorro}%` : '—'}
+            />
+          </div>
+
+          {filtersActive && (
+            <p className="text-muted small mb-3" role="note">
+              {t(
+                'historiaConsumos.filtersHint',
+                'Gráficos, KPIs y tabla usan los mismos filtros ({count} consultas).',
+              ).replace('{count}', String(filteredRows.length))}
+            </p>
+          )}
+
+          <p className="text-muted small mb-3" role="note">
+            {t(
+              'historiaConsumos.seriesHint',
+              'Cada punto es una consulta de Análisis IA (fecha de guardado), no un mes del medidor.',
+            )}
+          </p>
+
+          {filteredSeries.length === 0 ? (
+            <div className="alert alert-secondary border-0 py-2 small mb-4" role="status">
+              {t(
+                'historiaConsumos.filtersEmpty',
+                'Ninguna consulta coincide con los filtros. Probá ampliar el periodo o limpiar filtros.',
+              )}
+            </div>
+          ) : (
+            <>
+              <GraficoHistoriaConsumo
+                points={filteredSeries.map((row) => ({
+                  id: row.id,
+                  createdAt: row.createdAt,
+                  consumo: row.consumo ?? row.consumoKwh,
+                }))}
+              />
+              <GraficosHistoriaExtra
+                points={filteredSeries.map((row) => ({
+                  id: row.id,
+                  createdAt: row.createdAt,
+                  ahorro: row.ahorro,
+                  nivelKey: row.nivelKey,
+                }))}
+              />
+            </>
+          )}
+
           <div className="card shadow-sm">
             <div className="card-body p-0">
               <div className="table-responsive">
@@ -330,7 +445,17 @@ function HistoriaConsumos() {
                     </tr>
                   </thead>
                   <tbody>
-                    {rows.map((row) => {
+                    {pagedRows.length === 0 ? (
+                      <tr>
+                        <td colSpan={9} className="text-muted text-center py-4 small">
+                          {t(
+                            'historiaConsumos.filtersEmptyTable',
+                            'Sin filas para mostrar con estos filtros.',
+                          )}
+                        </td>
+                      </tr>
+                    ) : (
+                      pagedRows.map((row) => {
                       const consumo = consumoFromRow(row)
                       const consumoPrev = numericFromRow(row, 'consumoKwhMesAnterior')
                       const superficie = numericFromRow(row, 'areaM2')
@@ -377,14 +502,15 @@ function HistoriaConsumos() {
                         </td>
                       </tr>
                       )
-                    })}
+                    })
+                    )}
                   </tbody>
                 </table>
               </div>
               <TablePagination
                 page={page}
-                totalPages={totalPages}
-                totalElements={totalElements}
+                totalPages={filteredTotalPages}
+                totalElements={filteredRows.length}
                 pageSize={pageSize}
                 onPageChange={handlePageChange}
                 onPageSizeChange={handlePageSizeChange}

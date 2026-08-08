@@ -33,6 +33,14 @@ services:
     restart: unless-stopped
     ports:
       - "${ML_PORT:-8000}:8000"
+    environment:
+      MODEL_V3_BASE_URL: ${MODEL_V3_BASE_URL:-}
+      MODEL_V3_COLUMNS_URL: ${MODEL_V3_COLUMNS_URL:-}
+      MODEL_V3_ENCODER_URL: ${MODEL_V3_ENCODER_URL:-}
+      MODEL_V3_MODEL_URL: ${MODEL_V3_MODEL_URL:-}
+      MODEL_URL: ${MODEL_URL:-}
+    volumes:
+      - ./ml-service/models:/app/models
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
       interval: 30s

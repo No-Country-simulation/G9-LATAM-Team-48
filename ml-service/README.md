@@ -6,20 +6,40 @@ FastAPI (`POST /predict`) consumido por Spring vía `PREDICTION_API_BASE_URL`.
 
 ## Modelo de producción
 
-Artefacto **definitivo** versionado en Git (export del pipeline de datascience):
+### Opción A — trio v3 (recomendado, datascience)
+
+Copiá los **tres** `.joblib` en `ml-service/models/`:
+
+| Archivo | Rol |
+|---------|-----|
+| `columnas_requeridas_final_v3.joblib` | Orden/nombres de columnas de entrada |
+| `label_encoder_v3.joblib` | Encoder(s) de categorías y/o objetivo `perfil_energetico` |
+| `modelo_perfil_energetico_final_v3.joblib` | Clasificador entrenado |
+
+Si los tres existen, FastAPI los carga con **prioridad** (`GET /health` → `"schema": "v3_bundle"`).  
+El backend sigue enviando las **12 features** del formulario (`AnalisisPayload.toMlFeatureMap()`); el servicio arma la fila según `columnas_requeridas` y aplica los encoders antes de `predict`.
+
+Inspección local:
+
+```powershell
+cd ml-service
+$env:PYTHONPATH="."
+python scripts/inspect_v3_bundle.py
+python scripts/smoke_predict.py
+```
+
+### Opción B — pipeline único (`model.joblib`)
+
+Artefacto versionado en Git (export anterior del pipeline):
 
 **`models/model.joblib`**
 
-- Carga por defecto (`MODEL_PATH=/app/models/model.joblib` en Docker).
-- **Entrada:** el backend envía **12 features** (`AnalisisPayload.toMlFeatureMap()`), mismas claves que el formulario Análisis IA.
-- **Interno:** el pipeline fue entrenado con columnas propias del notebook (`tipo_code`, `consumo`, `personas`, `equipos`, `area`, `climateHours`, …). `GET /health` reporta `"schema": "legacy"` cuando detecta esas columnas — es el comportamiento **esperado** en prod, no un placeholder.
-- **Adaptador:** `app/feature_adapters.py` → `legacy_row_from_features` construye la fila para `predict`.
-- **Salidas ML:** `nivelKey` / `category` (`efficient` | `moderate` | `inefficient`), `confidence`, `ahorro`, `benchmark`.
-- **`tipKeys`:** siempre `[]` aquí; Spring (`AnalisisTipsComposer`) genera sugerencias con reglas + formulario completo + `nivelKey`.
+- Se usa solo si **no** está el trio v3.
+- **Entrada:** 12 features del formulario.
+- **Interno:** columnas legacy (`tipo_code`, `consumo`, `personas`, …). `GET /health` → `"schema": "legacy"`.
+- **Adaptador:** `app/feature_adapters.py` → `legacy_row_from_features`.
 
-Si en el futuro el artefacto exportara directamente las 12 columnas snake_case, el servicio auto-detecta schema `v3` y omite el adaptador legacy (mismo archivo de reemplazo + redeploy).
-
-Sustituir el artefacto: reemplazá `models/model.joblib` y redeploy (o `MODEL_URL` + `MODEL_PATH`).
+Sustituir artefactos: copiar los `.joblib` en `models/` y redeploy (o `MODEL_URL` + `MODEL_PATH`).
 
 ### Qué usa el clasificador vs las reglas Spring
 
@@ -30,7 +50,25 @@ Sustituir el artefacto: reemplazá `models/model.joblib` y redeploy (o `MODEL_UR
 
 Ver [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md) y [`docs/backend/RECOMMENDATION.md`](../docs/backend/RECOMMENDATION.md).
 
-## Local
+## Local y Docker Compose
+
+```powershell
+# 1) Copiar trio v3
+cd ml-service
+.\scripts\copy-v3-models.ps1
+
+# 2) ML
+..\qa\start-local-ml.ps1
+
+# 3) Backend (otra terminal): PREDICTION_API_BASE_URL=http://localhost:8000
+# 4) Front: VITE_API_URL=http://localhost:8080 → npm run dev
+```
+
+Stack completo: desde la raíz, `docker compose up -d --build` (monta `ml-service/models`).
+
+Despliegue Render / Railway / Vercel: [`DEPLOY.md`](./DEPLOY.md) y [`../docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md).
+
+## Local (solo uvicorn)
 
 ```powershell
 cd ml-service

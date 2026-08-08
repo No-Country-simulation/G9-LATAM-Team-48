@@ -8,17 +8,23 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
+import { useState } from 'react'
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { buildPeakOffPeakSeries, resolveAnalyticsOverview } from '../utils/analyticsSeries'
 import { formatConsumptionProfile } from '../utils/consumptionProfile'
+import {
+  chartTooltipProps,
+  toggleSeriesVisibility,
+} from '../utils/chartInteractivity'
 import DemoSampleBadge from './DemoSampleBadge'
 import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
 
-function GraficoPicoValle({ analytics, chartBadgeVariant = 'demo' }) {
+function GraficoPicoValle({ analytics, chartBadgeVariant = 'demo', syncId }) {
   const { theme } = useTheme()
   const { t, locale } = useLocale()
+  const [hidden, setHidden] = useState({})
   const gridColor = theme === 'dark' ? '#444' : '#ccc'
   const textColor = theme === 'dark' ? '#ccc' : '#333'
   const peakColor = theme === 'dark' ? '#e35d6a' : '#dc3545'
@@ -54,7 +60,7 @@ function GraficoPicoValle({ analytics, chartBadgeVariant = 'demo' }) {
 
         <ChartVisualShell className="flex-grow-1" style={{ minHeight: 300 }}>
           <ResponsiveContainer width="100%" height="100%" minHeight={300}>
-            <BarChart data={data}>
+            <BarChart data={data} syncId={syncId} margin={{ top: 8, right: 12, left: 4, bottom: 4 }}>
               <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
               <XAxis
                 dataKey="mes"
@@ -78,18 +84,21 @@ function GraficoPicoValle({ analytics, chartBadgeVariant = 'demo' }) {
                 }}
               />
               <Tooltip
-                contentStyle={{
-                  backgroundColor: theme === 'dark' ? '#212529' : '#fff',
-                  borderColor: gridColor,
-                  color: textColor,
-                }}
+                {...chartTooltipProps(theme, { locale })}
+                labelFormatter={(_label, payload) =>
+                  payload?.[0]?.payload?.mesFull ?? _label
+                }
               />
-              <Legend />
+              <Legend
+                onClick={(entry) => toggleSeriesVisibility(entry.dataKey, setHidden)}
+                wrapperStyle={{ cursor: 'pointer' }}
+              />
               <Bar
                 dataKey="peak"
                 stackId="usage"
                 name={t('chart.seriesPeak')}
                 fill={peakColor}
+                hide={Boolean(hidden.peak)}
               />
               <Bar
                 dataKey="offPeak"
@@ -97,6 +106,7 @@ function GraficoPicoValle({ analytics, chartBadgeVariant = 'demo' }) {
                 name={t('chart.seriesOffPeak')}
                 fill={offPeakColor}
                 radius={[4, 4, 0, 0]}
+                hide={Boolean(hidden.offPeak)}
               />
             </BarChart>
           </ResponsiveContainer>
