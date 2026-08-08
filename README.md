@@ -981,36 +981,144 @@ datasets/processed/
 ├── 02_energia_imputada_ohe.csv
 └── 03_feature_engineering.csv
 ```
-## 12. Resultados principales
 
-### 12.1. Modelo seleccionado
+### 10.3. Dependencias entre las etapas
 
-### 12.2. Métricas de evaluación
+Las principales dependencias del pipeline son:
 
-### 12.3. Variables más relevantes
+- `01_EDA.ipynb` analiza directamente el dataset original.
+- `02_Limpieza.ipynb` transforma el dataset original y genera `01_energia_processed.csv`.
+- `03_EDA_post_limpieza.ipynb` analiza el dataset después de la limpieza.
+- `04_Imputacion_Variables.ipynb` utiliza los datos limpios y genera `02_energia_imputada_ohe.csv`.
+- `05_Feature_Engineering.ipynb` utiliza los datos imputados y codificados para generar `03_feature_engineering.csv`.
+- `06_Modelos.ipynb` utiliza `03_feature_engineering.csv` para entrenar, comparar y seleccionar los modelos de clasificación.
+- `07_Evaluacion.ipynb` utiliza el modelo seleccionado para analizar su rendimiento predictivo.
+- `08_Exportacion.ipynb` utiliza la versión final del modelo y prepara los elementos necesarios para su integración en la aplicación.
 
-### 12.4. Principales hallazgos
+Debido a estas dependencias, modificar una etapa intermedia puede afectar los resultados de todas las fases posteriores. Por este motivo, cuando se realizan cambios en la limpieza, imputación o ingeniería de características, se recomienda volver a ejecutar las etapas dependientes para mantener la consistencia del pipeline.
 
-### 12.5. Artefactos exportados
+```python
+random_state = 42
+```
 
-## 13. Reproducibilidad
+Esta configuración permite mantener resultados consistentes en operaciones que incorporan aleatoriedad, como:
 
-### 13.1. Semillas aleatorias
+- División del conjunto de datos en entrenamiento y prueba.
+- Entrenamiento de algoritmos que utilizan procesos aleatorios.
+- Comparación reproducible entre diferentes modelos.
+- Construcción de la versión final de LightGBM.
 
-### 13.2. Versiones de las dependencias
+El uso de una semilla fija reduce las variaciones entre ejecuciones realizadas bajo las mismas condiciones.
 
-### 13.3. Orden de ejecución
+> La reproducibilidad exacta también depende de utilizar las mismas versiones de Python, librerías, datos y parámetros de entrenamiento.
 
-### 13.4. Ubicación de los datasets
+## 11. Resultados principales
 
-### 13.5. Archivos generados en cada etapa
+El desarrollo de **EnergIA** permitió construir y validar un modelo de clasificación multiclase capaz de predecir el `perfil_energetico` en las categorías **Eficiente**, **Moderado** e **Ineficiente**.
 
-## 14. Estado del proyecto
+El proceso de modelado comenzó con 236 características predictoras y finalizó con una versión desplegable de 55 columnas verificadas, manteniendo la mayor parte del rendimiento obtenido por el modelo completo.
 
-## 15. Equipo
+### 11.1. Modelo seleccionado
 
-### 15.1. Integrantes
+Después de comparar seis algoritmos de clasificación:
 
-### 15.2. Roles y contribuciones
+- Logistic Regression.
+- Decision Tree.
+- Random Forest.
+- Gradient Boosting.
+- XGBoost.
+- LightGBM.
 
-## 16. Licencia
+se seleccionó **LightGBM Classifier** como algoritmo principal.
+
+Durante la validación cruzada estratificada de 5 particiones, LightGBM obtuvo un **F1 macro promedio de 0.9175**, superior al resto de los candidatos que no presentaron evidencia significativa de sobreajuste.
+
+Posteriormente se desarrollaron tres versiones:
+
+| Versión | Columnas | F1 macro | Estado |
+|---|---:|---:|---|
+| Modelo completo | 236 | 0.92 | No desplegable |
+| Modelo v2 | 103 | 0.92 | Descartado por error metodológico |
+| **Modelo v3** | **55** | **0.91** | **Modelo final desplegable** |
+
+La versión v3 fue seleccionada como modelo definitivo debido a que utiliza únicamente variables que pueden obtenerse o calcularse con la información disponible en producción.
+
+### 11.2. Métricas de evaluación
+
+El modelo final fue evaluado sobre un conjunto de prueba independiente de **18 908 registros**.
+
+| Clase | Precision | Recall | F1-score |
+|---|---:|---:|---:|
+| Eficiente | 0.93 | 0.93 | 0.93 |
+| Ineficiente | 0.94 | 0.93 | 0.94 |
+| Moderado | 0.87 | 0.88 | 0.88 |
+| **Resultado global** | **0.91** | **0.91** | **0.91** |
+
+El modelo final alcanza:
+
+- **Accuracy:** 0.91.
+- **F1 macro:** 0.91.
+- **F1 Eficiente:** 0.93.
+- **F1 Ineficiente:** 0.94.
+- **F1 Moderado:** 0.88.
+
+La reducción de 236 a 55 características produjo una disminución aproximada de **1 punto porcentual en F1 macro**, pasando de 0.92 a 0.91, a cambio de disponer de un modelo compatible con las condiciones reales de inferencia.
+
+### 11.3. Variables más relevantes
+
+El análisis de importancia realizado sobre el modelo LightGBM completo mostró que la capacidad predictiva se distribuye entre múltiples características: fueron necesarias aproximadamente **78 variables para acumular el 85 % de la importancia total**.
+
+Entre los dominios con mayor aporte identificados durante el análisis se encuentran:
+
+| Dominio | Importancia aproximada identificada |
+|---|---:|
+| Consumo energético del mes anterior | ~16.0 % |
+| Nivel de aislamiento térmico | ~7.3 % |
+| Porcentaje de iluminación LED | ~5.5 % |
+
+También se identificaron como dominios relevantes:
+
+- Antigüedad de la construcción.
+- Zona geográfica.
+- Antigüedad de los electrodomésticos.
+- Superficie del inmueble.
+- Número de personas.
+- Cantidad de equipos.
+- Consumo energético histórico.
+
+Este análisis también fue utilizado para determinar qué información adicional resultaba conveniente incorporar al formulario de la aplicación.
+
+### 11.4. Principales hallazgos
+
+Los principales resultados obtenidos durante el desarrollo del modelo son:
+
+- **LightGBM presentó el mejor equilibrio entre rendimiento y capacidad de generalización** entre los algoritmos evaluados.
+- El modelo completo alcanzó un **F1 macro de 0.92**, mientras que la versión final desplegable obtuvo **0.91**.
+- Fue posible reducir el modelo de **236 a 55 columnas** manteniendo prácticamente todo su rendimiento predictivo.
+- De las características creadas durante la ingeniería de variables, **37 pueden calcularse utilizando únicamente los datos disponibles para producción**.
+- Las clases **Eficiente** e **Ineficiente** presentan muy poca confusión directa entre ellas.
+- La mayor parte de los errores de clasificación se concentra en la categoría **Moderado**, que representa el perfil intermedio.
+- La selección de características únicamente mediante coincidencias en los nombres de las columnas resultó insuficiente. Para construir la versión final fue necesario verificar las dependencias reales de cada característica contra las fórmulas utilizadas durante la ingeniería de variables.
+- La reducción del modelo permite evitar diferencias entre las variables disponibles durante el entrenamiento y aquellas que realmente pueden generarse durante la inferencia.
+- La versión final ofrece un equilibrio entre **rendimiento predictivo, reproducibilidad y viabilidad de integración** con la aplicación.
+
+### 11.5. Artefactos exportados
+
+El proceso de modelado contempla la serialización mediante Joblib de los siguientes artefactos:
+
+```text
+models/
+├── modelo_perfil_energetico_final_v3.joblib
+├── label_encoder_v3.joblib
+└── columnas_requeridas_final_v3.joblib
+```
+
+Estos archivos cumplen las siguientes funciones:
+
+- `modelo_perfil_energetico_final_v3.joblib`: contiene el pipeline de preprocesamiento y el clasificador LightGBM.
+- `label_encoder_v3.joblib`: conserva la correspondencia entre las clases numéricas y las categorías de `perfil_energetico`.
+- `columnas_requeridas_final_v3.joblib`: almacena las 55 columnas y el orden esperado por el modelo.
+
+> **Nota:** el directorio `models/` y estos archivos son generados por el proceso de modelado, pero actualmente no aparecen entre los archivos versionados mostrados por `git ls-files`.
+
+
