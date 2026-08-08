@@ -1,0 +1,56 @@
+﻿feature,importancia_shap,ranking
+consumo_anterior_por_persona,0.9156218507229598,1
+consumo_anterior_por_m2,0.7423707624983856,2
+consumo_kwh_mensual,0.5251285976220857,3
+factor_aislamiento,0.21734828378725238,4
+consumo_kwh_mes_anterior,0.1385099993394163,5
+proporcion_iluminacion_led,0.13231780454704772,6
+equipos_casa,0.11371129029395115,7
+horas_aa_por_persona,0.07517076782073363,8
+superficie_apartamento,0.05920581533284008,9
+superficie_m2,0.05249411928968247,10
+superficie_comercial,0.046445129749111545,11
+superficie_casa,0.03528495853949555,12
+equipos_por_persona,0.034083144597906866,13
+consumo_anterior_comercial,0.02736493966251391,14
+horas_uso_aa_dia,0.025927326560180187,15
+equipos_por_m2,0.02436694403596652,16
+antiguedad_aislamiento_malo,0.023588442555249726,17
+superficie_por_equipo,0.022751964321127142,18
+antiguedad_aislamiento_bueno,0.020114055561243523,19
+ocupacion_casa,0.019104651636578252,20
+ocupacion_comercial,0.01817479957314017,21
+equipos_comercial,0.015228290276023898,22
+consumo_anterior_estacional,0.014926968109288261,23
+superficie_por_persona,0.013283464752102684,24
+carga_equipos_antiguos_por_persona,0.01185723650043899,25
+consumo_anterior_por_equipo,0.010306535853855976,26
+densidad_habitacional,0.010056530612771408,27
+indice_obsolescencia_equipos,0.009983344561042289,28
+num_personas,0.008605965485846035,29
+antiguedad_aislamiento_regular,0.007259672379141677,30
+carga_equipos_antiguos,0.006679124708619667,31
+brecha_antiguedad_inmueble_equipos,0.006240289415128776,32
+indice_ineficiencia_constructiva,0.005758251841549636,33
+equipos_apartamento,0.00571907091365748,34
+personas_por_equipo,0.005405243296364361,35
+ocupacion_apartamento,0.0044873795545711135,36
+antiguedad_construccion_anios,0.0036158927440249956,37
+mes_cos,0.003491327224704758,38
+mes_numero,0.0031968939880950877,39
+cantidad_equipos_total,0.0025513186296036413,40
+antiguedad_electrodomesticos_anios,0.0025174945840336495,41
+zona_Urbana Interior,0.00177213541334574,42
+zona_Urbana Costera,0.0011848940113494218,43
+mes_sin,0.0008923379540861964,44
+zona_Suburbana,0.0006768859819891849,45
+aislamiento_termico_Regular,0.00018756719919900828,46
+inmueble_y_equipos_antiguos,9.269605987270775e-05,47
+inmueble_antiguo,0.0,48
+electrodomesticos_antiguos,0.0,49
+tipo_inmueble_Apartamento,0.0,50
+pct_iluminacion_led,0.0,51
+tipo_inmueble_Casa Unifamiliar,0.0,52
+tipo_inmueble_Pequeño Establecimiento Comercial,0.0,53
+aislamiento_termico_Bueno,0.0,54
+aislamiento_termico_Malo,0.0,55
