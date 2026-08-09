@@ -1,3 +1,5 @@
+package com.alura.recommendation.model;
+
 import com.alura.recommendation.dto.TipKey;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,7 +25,7 @@ public class RecommendationEntity {
     private String title;
 
     @Column(nullable = false)
-    private String type;
+    private String type; // ALERTA, OPORTUNIDAD, INFO
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
