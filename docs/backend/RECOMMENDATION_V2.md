@@ -1,6 +1,6 @@
 # Motor de Recomendaciones V2 (Persistencia y Antiduplicados) — Energy Backend
 
-> Guía actualizada del feature de recomendaciones energéticas. Explica la evolución de la arquitectura para incorporar la persistencia de datos, la integración con las variables SHAP del modelo ML (v3) y la nueva lógica de prevención de duplicados (Historial por Usuario). Complementa a `ARCHITECTURE.md` y `RECOMMENDATION.md`.
+> Guía actualizada del feature de recomendaciones energéticas. Explica la evolución de la arquitectura para incorporar la persistencia de datos, el patrón Strategy, la integración con las variables predictivas del modelo ML (valores SHAP) y la nueva lógica de prevención de duplicados (Historial por Usuario). Complementa a `ARCHITECTURE.md`.
 
 ---
 
@@ -9,7 +9,7 @@
 1. [Evolución de la Arquitectura](#1-evolución-de-la-arquitectura)
 2. [Diseño de Base de Datos (Flyway & JPA)](#2-diseño-de-base-de-datos-flyway--jpa)
 3. [Flujo de Persistencia y Antiduplicados](#3-flujo-de-persistencia-y-antiduplicados)
-4. [Integración con ML y SHAP](#4-integración-con-ml-y-shap)
+4. [Integración con ML y Análisis SHAP](#4-integración-con-ml-y-análisis-shap)
 5. [Administración por Terminal (CLI)](#5-administración-por-terminal-cli)
 6. [Pruebas y Validaciones](#6-pruebas-y-validaciones)
 
@@ -17,80 +17,76 @@
 
 ## 1. Evolución de la Arquitectura
 
-La versión inicial del motor de recomendaciones operaba completamente en memoria de forma transaccional. Con los nuevos requerimientos de negocio, la arquitectura ha evolucionado hacia un modelo persistente que separa el **Catálogo Maestro** del **Historial del Usuario**.
+La versión inicial del motor de recomendaciones operaba completamente en memoria de forma transaccional. Con los nuevos requerimientos de negocio, la arquitectura ha evolucionado hacia un modelo persistente, robusto y fuertemente tipado aplicando principios **SOLID** y Clean Code (SRP, Polimorfismo).
 
-### Nuevas Responsabilidades:
-*   **Catálogo de Recomendaciones (Staging):** Diccionario estático de recomendaciones disponibles (`TipKey`, tipo de mensaje, título interna).
-*   **Historial Antiduplicados:** Tabla relacional que asocia a un usuario con las recomendaciones que ya se le han emitido y continúan activas, evitando saturar la interfaz con mensajes repetidos.
-*   **Orquestación en Dos Niveles:**
-    *   Nivel 1: Recomendaciones basadas en umbrales fijos (Alertas para categoría `INEFICIENTE`).
-    *   Nivel 2: Recomendaciones basadas en variables dinámicas o *fallback* SHAP (Oportunidades para categoría `MODERADO`).
+### Nuevos Componentes Clave:
+*   **`RecommendationRule` (Strategy Pattern):** Interfaz base que define la firma de evaluación para cada regla de negocio. Permite agregar nuevos criterios sin alterar el orquestador principal.
+*   **Catálogo de Recomendaciones (Staging):** Diccionario estático poblado por Flyway con las recomendaciones maestras (enum `TipKey`, tipo de mensaje `INFO/ALERTA/OPORTUNIDAD`, y título).
+*   **Historial Antiduplicados:** Tabla relacional que asocia a un usuario con las recomendaciones que ya se le han emitido y continúan activas, evitando fatiga de notificaciones.
+*   **DTOs Tipados:** Uso de `RecommendationRequest` (vía patrón Builder) y `RecommendationResponse` para asegurar un contrato estricto con el frontend.
 
 ---
 
 ## 2. Diseño de Base de Datos (Flyway & JPA)
 
-Se implementó un esquema relacional estructurado mediante migraciones Flyway (`V9__...`):
+Se implementó un esquema relacional estructurado mediante migraciones Flyway:
 
-### 2.1. Tabla `recommendations` (Catálogo Maestro)
-Contiene la definición base de las estrategias.
-*   `id` (PK, UUID)
-*   `tip_key` (VARCHAR, UNIQUE) - Identificador corto enviado al Frontend (ej. `AC`, `COMMERCIAL`).
-*   `title` (VARCHAR) - Referencia interna para administración.
-*   `type` (VARCHAR) - `ALERTA` (crítico) u `OPORTUNIDAD` (mejora).
+### 2.1. Migración V9 (`V9__create_recommendations_tables.sql`)
+Crea la infraestructura relacional base:
+*   `recommendation_catalog`: Contiene la definición base de las estrategias.
+    *   `tip_key` (VARCHAR, PK) - Identificador fuerte (ej. `LOW_CONSUMPTION_BASE`, `INSULATION_DEFICIENT`).
+    *   `title` (VARCHAR) - Referencia interna y texto a mostrar.
+    *   `type` (VARCHAR) - Nivel de urgencia (`INFO`, `ALERTA`, `OPORTUNIDAD`).
+*   `user_recommendations`: Registra el ciclo de vida de la sugerencia.
+    *   `id` (PK, UUID)
+    *   `user_id` (FK -> `users.id`)
+    *   `tip_key` (FK -> `recommendation_catalog.tip_key`)
+    *   `status` (VARCHAR) - `ACTIVE` (activa en el front), `DISMISSED` (descartada/resuelta).
 
-### 2.2. Tabla `user_recommendations` (Historial)
-Registra el ciclo de vida de la recomendación para un usuario.
-*   `id` (PK, UUID)
-*   `user_id` (FK -> `users.id`)
-*   `recommendation_id` (FK -> `recommendations.id`)
-*   `status` (VARCHAR) - `ACTIVE` (enviada al front), `DISMISSED` (descartada/comprendida).
-*   `created_at` (TIMESTAMP)
-
-*Restricción:* Índice único compuesto o restricción lógica a nivel de servicio para garantizar que un mismo `user_id` no tenga dos veces la misma `recommendation_id` en estado `ACTIVE`.
+### 2.2. Migración V10 (`V10__seed_recommendations_catalog.sql`)
+Puebla la tabla `recommendation_catalog` con 33 recomendaciones exhaustivas que cubren los 8 dominios de análisis SHAP del modelo (Perfiles de consumo, Climatización, Aislamiento Térmico, Iluminación, Consumo Standby, Densidad de Equipos, Horarios Comerciales y Hábitos Per Cápita).
 
 ---
 
 ## 3. Flujo de Persistencia y Antiduplicados
 
-El flujo en `PredictionServiceImpl` y `RecommendationServiceImpl` fue refactorizado para interactuar con la base de datos:
+El flujo dentro de `RecommendationServiceImpl` fue rediseñado para interactuar con la base de datos de forma eficiente:
 
-1.  **Inferencia:** El usuario envía su formulario. Se consulta al modelo ML (FastAPI) y se obtiene la categoría (Ej: `MODERADO`).
-2.  **Registro Inicial:** Se persiste el resultado de la consulta (`AnalisisConsultaEntity`) asociado al `userId`.
-3.  **Evaluación Strategy:** El motor de reglas evalúa las variables del usuario y selecciona las estrategias aplicables (ej. `TipKey.AC`, `TipKey.LED`).
-4.  **Filtro Antiduplicados:**
-    *   El servicio consulta `UserRecommendationRepository` buscando las recomendaciones activas del `userId`.
-    *   Filtra las `TipKey` obtenidas en el paso 3 que *ya existen* en el historial activo del usuario.
-5.  **Persistencia:** Las `TipKey` nuevas y válidas se asocian en la tabla `user_recommendations`.
-6.  **Respuesta al Cliente:** Solo se devuelven al Frontend las recomendaciones novedosas.
+1.  **Evaluación Strategy:** El motor mapea los datos de entrada a un `RecommendationRequest` y ejecuta todas las clases que implementan `RecommendationRule` (ej. `HighOccupantConsumptionRule`).
+2.  **Consulta de Historial:** Se lanza una consulta JPQL optimizada al `UserRecommendationRepository` para obtener una lista (Set) con todas las `TipKey` en estado `ACTIVE` para ese `userId`.
+3.  **Filtro Antiduplicados:** Se descartan de la lista recién evaluada todas las reglas que ya existen en el historial activo del usuario.
+4.  **Persistencia de Novedades:** Las reglas verdaderamente nuevas se insertan en `user_recommendations` con estado `ACTIVE`.
+5.  **Respuesta al Cliente:** El objeto `RecommendationResponse` retorna únicamente las recomendaciones novedosas y enriquecidas con el texto del catálogo.
 
 ---
 
-## 4. Integración con ML y SHAP
+## 4. Integración con ML y Análisis SHAP
 
-El modelo de Machine Learning (LightGBM, v3) fue auditado mediante valores SHAP, revelando que el percentil global de corte dejaba a la clase `MODERADO` sin recomendaciones.
+Las reglas de negocio (`RecommendationRule`) están directamente correlacionadas con el análisis de importancia de características (SHAP) del modelo LightGBM.
 
-**Solución adoptada en el Backend:**
-Se diseñó un disparador por categoría (`ConsumptionCategory`):
-*   `EFICIENTE`: Genera un mensaje base positivo, sin recomendaciones de corrección.
-*   `INEFICIENTE`: Activa el **Nivel 1** (Alertas). Evalúa reglas con umbrales fijos rígidos (Ej. falta de aislamiento, alto consumo por ocupante).
-*   `MODERADO`: Activa el **Nivel 2** (Oportunidades). Si no aplican alertas, aplica un *fallback* evaluando la variable específica del request (equivalente a la de mayor peso SHAP positivo) que tenga mayor margen de mejora.
+*   `EFICIENTE`: Genera un mensaje base positivo (`LOW_CONSUMPTION_BASE`), omitiendo reglas correctivas restrictivas.
+*   `INEFICIENTE`: Activa validaciones de **Nivel 1 (Alertas)** basadas en variables críticas SHAP (ej. `consumoAnteriorPorPersona`, `factorAislamiento`).
+*   `MODERADO`: Activa validaciones de **Nivel 2 (Oportunidades)**, sugiriendo mejoras de eficiencia (ej. migraciones LED o gestión de consumo Standby).
 
 ---
 
 ## 5. Administración por Terminal (CLI)
 
-Para facilitar la gestión del Catálogo Maestro (`recommendations`), se incorporó un servicio administrativo de línea de comandos.
+Para facilitar la gestión y auditoría del Catálogo Maestro durante el desarrollo, se incorporó un servicio administrativo de línea de comandos.
 
-*   **Componente:** `RecommendationAdminService` (Capa de servicio CRUD).
-*   **Mecanismo:** Un `CommandLineRunner` condicional (o perfil específico de Spring Boot) que se activa por terminal.
-*   **Funcionalidad:** Permite a los desarrolladores y administradores crear nuevas claves `TipKey`, actualizar el tipo (`ALERTA`/`OPORTUNIDAD`) o aplicar bajas lógicas sin requerir una interfaz gráfica de administración en el MVP.
+*   **Componente:** `RecommendationCliRunner` y `RecommendationAdminService`.
+*   **Activación:** Se controla vía la propiedad `app.cli.enabled=true` en `application-dev.yml`.
+*   **Funcionalidad:** Al levantar Spring Boot, pausa la carga y despliega un menú interactivo en la terminal para listar las recomendaciones actualmente cargadas en base de datos. Se manejan los recursos adecuadamente (`try-with-resources`) para evitar fugas de memoria (`Resource leak`).
 
 ---
 
 ## 6. Pruebas y Validaciones
 
-El refactor incluyó la actualización de la suite de pruebas unitarias (`RecommendationServiceImplTest`):
-*   **Validación de Historial:** Mocks en `UserRecommendationRepository` para asegurar que el motor ignora reglas ya asignadas al usuario.
-*   **Persistencia:** Verificación del correcto guardado de las entidades en la BD al finalizar el flujo.
-*   **Reglas SHAP:** Tests específicos que validan la transición de umbrales entre clase `MODERADO` y clase `INEFICIENTE` según las variables clave analizadas en el informe SHAP.
+Se rediseñó la suite de testing para garantizar la seguridad de tipos, el manejo de dependencias nulas (Null Safety) y la robustez lógica:
+
+*   **`RecommendationServiceImplTest`:** Valida que el pipeline orqueste las clases `RecommendationRule` y asigne correctamente las categorías (Frontend Keys).
+*   **`RecommendationAntiduplicateTest`:** Prueba de integración de la lógica de negocio simulando un historial activo en el repositorio. Garantiza que si el modelo dispara una recomendación ya presente, esta se omita y solo las claves nuevas (`TipKey`) lleguen a la respuesta final.
+
+**Cómo ejecutar la verificación total por terminal:**
+```bash
+mvn clean test

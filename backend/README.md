@@ -25,6 +25,8 @@ Migraciones Flyway:
 - `V6` — seed usuarios demo
 - `V7` — consultas anónimas (`user_email` nullable)
 - `V8` — tabla `dataset_feature_engineering` (dataset procesado DS para gráficos agregados)
+- `V9` — tablas del motor de recomendaciones (`recommendation_catalog` y `user_recommendations`)
+- `V10` — seed del catálogo maestro de recomendaciones ampliado (33 sugerencias base cubriendo dominios SHAP)[cite: 1]
 
 Tras el deploy, cargá filas una sola vez:
 
@@ -189,6 +191,7 @@ defecto para desarrollo). Los perfiles disponibles son:
 | `MAIL_FROM`               | Remitente (`From:`)                      | —                        |
 | `RESEND_API_KEY`          | API key Resend (prod)                    | —                        |
 | `GOOGLE_CLIENT_ID`        | Client ID OAuth Google (mismo que front) | —                        |
+| `APP_CLI_ENABLED`         | Activa consola terminal de admin (Catálogo) | `true` en dev            |
 
 > Si `RESEND_API_KEY` está definida, **Resend tiene prioridad** sobre SMTP.
 > En `prod`, `JWT_SECRET` y `PREDICTION_API_BASE_URL` **no** tienen valor por
@@ -249,6 +252,8 @@ Cada modulo sigue una **arquitectura por capas** (`controller` -> `service` ->
   verificacion de email, SMTP, reset password, soft delete y Panel Admin.
 - [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md) —
   modulo Analisis IA (Spring + FastAPI): contrato, env y como integrarlo.
+- [`docs/backend/RECOMMENDATION_V2.md`](../docs/backend/RECOMMENDATION_V2.md) —
+  Motor de Recomendaciones V2: Patrón Strategy, persistencia, lógica antiduplicados y catálogo maestro[cite: 1].
 
 ---
 

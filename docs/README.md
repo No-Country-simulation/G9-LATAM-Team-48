@@ -14,7 +14,7 @@
 | [backend/ANALISIS_IA.md](./backend/ANALISIS_IA.md) | Análisis IA y integración ML |
 | [backend/AUTH_EMAIL_ADMIN.md](./backend/AUTH_EMAIL_ADMIN.md) | Auth, email, admin |
 | [backend/JWT_AUTHENTICATION.md](./backend/JWT_AUTHENTICATION.md) | JWT |
-| [backend/RECOMMENDATION.md](./backend/RECOMMENDATION.md) | Recomendaciones |
+| [backend/RECOMMENDATION_V2.md](./backend/RECOMMENDATION_V2.md) | Motor de Recomendaciones V2 (Persistencia, SHAP y Antiduplicados) |
 | [backend/I18N.md](./backend/I18N.md) | Internacionalización backend |
 
 ## Frontend

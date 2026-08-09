@@ -127,7 +127,7 @@ Usuarios demo (emails en Flyway **V6**; contraseñas solo por canal del equipo /
 - **Auth por email** (registro/verify/login, forgot/reset, admin CRUD)
 - **Análisis IA** con `AnalisisPayload`, ML + fallback `HeuristicPrediction`, historial, email
 - **Dashboard** datos dataset (Flyway V8), badge Dataset DS
-- **Recomendaciones** tip keys + i18n; **Contáctanos** + **Admin**
+- **Recomendaciones V2** con persistencia (Flyway V9/V10), prevención de duplicados y reglas SHAP; **Contáctanos** + **Admin**
 - **Mapa idiomas** / i18n / a11y; **QA** en [`qa/`](./qa)
 
 ---
