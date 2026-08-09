@@ -1,4 +1,15 @@
 import { deepMerge } from './deepMerge'
+import { loadEnPagesBase, mergeLocaleLayers } from './localeMerge'
+import { getUiExtendedPatch } from './sections/uiExtended.js'
+
+async function loadRegional(code, localeImport, pagesImport, pagesKey) {
+  const [baseEn, locMod, pagesMod] = await Promise.all([
+    loadEnPagesBase(),
+    localeImport(),
+    pagesImport(),
+  ])
+  return mergeLocaleLayers(baseEn, locMod, pagesMod[pagesKey], getUiExtendedPatch(code))
+}
 
 /** Carga bajo demanda de diccionarios (no van en el bundle inicial salvo es/en). */
 export async function loadLocaleDictionary(code) {
@@ -11,106 +22,97 @@ export async function loadLocaleDictionary(code) {
       return { ...esMod.default, ...pagesMod.pagesEs }
     }
     case 'en': {
-      const [enMod, pagesMod] = await Promise.all([
-        import('./locales/en.js'),
-        import('./sections/pages-en.js'),
-      ])
-      return { ...enMod.default, ...pagesMod.pagesEn }
+      return loadEnPagesBase()
     }
-    case 'pt': {
-      const [loc, pagesMod] = await Promise.all([
-        import('./locales/pt.js'),
-        import('./sections/pages-pt.js'),
-      ])
-      return { ...loc.default, ...pagesMod.pagesPt }
-    }
-    case 'fr': {
-      const [loc, pagesMod] = await Promise.all([
-        import('./locales/fr.js'),
-        import('./sections/pages-fr.js'),
-      ])
-      return { ...loc.default, ...pagesMod.pagesFr }
-    }
-    case 'it': {
-      const [loc, pagesMod] = await Promise.all([
-        import('./locales/it.js'),
-        import('./sections/pages-it.js'),
-      ])
-      return { ...loc.default, ...pagesMod.pagesIt }
-    }
-    case 'de': {
-      const [loc, pagesMod] = await Promise.all([
-        import('./locales/de.js'),
-        import('./sections/pages-de.js'),
-      ])
-      return { ...loc.default, ...pagesMod.pagesDe }
-    }
-    case 'nl': {
-      const [loc, pagesMod] = await Promise.all([
-        import('./locales/nl.js'),
-        import('./sections/pages-nl.js'),
-      ])
-      return { ...loc.default, ...pagesMod.pagesNl }
-    }
-    case 'pl': {
-      const [loc, pagesMod] = await Promise.all([
-        import('./locales/pl.js'),
-        import('./sections/pages-pl.js'),
-      ])
-      return { ...loc.default, ...pagesMod.pagesPl }
-    }
-    case 'ro': {
-      const [loc, pagesMod] = await Promise.all([
-        import('./locales/ro.js'),
-        import('./sections/pages-ro.js'),
-      ])
-      return { ...loc.default, ...pagesMod.pagesRo }
-    }
-    case 'ca': {
-      const [loc, pagesMod] = await Promise.all([
-        import('./locales/ca.js'),
-        import('./sections/pages-ca.js'),
-      ])
-      return { ...loc.default, ...pagesMod.pagesCa }
-    }
-    case 'tr': {
-      const [loc, pagesMod] = await Promise.all([
-        import('./locales/tr.js'),
-        import('./sections/pages-tr.js'),
-      ])
-      return { ...loc.default, ...pagesMod.pagesTr }
-    }
+    case 'pt':
+      return loadRegional(
+        'pt',
+        () => import('./locales/pt.js'),
+        () => import('./sections/pages-pt.js'),
+        'pagesPt',
+      )
+    case 'fr':
+      return loadRegional(
+        'fr',
+        () => import('./locales/fr.js'),
+        () => import('./sections/pages-fr.js'),
+        'pagesFr',
+      )
+    case 'it':
+      return loadRegional(
+        'it',
+        () => import('./locales/it.js'),
+        () => import('./sections/pages-it.js'),
+        'pagesIt',
+      )
+    case 'de':
+      return loadRegional(
+        'de',
+        () => import('./locales/de.js'),
+        () => import('./sections/pages-de.js'),
+        'pagesDe',
+      )
+    case 'nl':
+      return loadRegional(
+        'nl',
+        () => import('./locales/nl.js'),
+        () => import('./sections/pages-nl.js'),
+        'pagesNl',
+      )
+    case 'pl':
+      return loadRegional(
+        'pl',
+        () => import('./locales/pl.js'),
+        () => import('./sections/pages-pl.js'),
+        'pagesPl',
+      )
+    case 'ro':
+      return loadRegional(
+        'ro',
+        () => import('./locales/ro.js'),
+        () => import('./sections/pages-ro.js'),
+        'pagesRo',
+      )
+    case 'ca':
+      return loadRegional(
+        'ca',
+        () => import('./locales/ca.js'),
+        () => import('./sections/pages-ca.js'),
+        'pagesCa',
+      )
+    case 'tr':
+      return loadRegional(
+        'tr',
+        () => import('./locales/tr.js'),
+        () => import('./sections/pages-tr.js'),
+        'pagesTr',
+      )
     case 'ar':
-      return mergePack(() => import('./packs/ar.js'))
+      return mergePack('ar', () => import('./packs/ar.js'))
     case 'zh':
-      return mergePack(() => import('./packs/zh.js'))
+      return mergePack('zh', () => import('./packs/zh.js'))
     case 'ja':
-      return mergePack(() => import('./packs/ja.js'))
+      return mergePack('ja', () => import('./packs/ja.js'))
     case 'ru':
-      return mergePack(() => import('./packs/ru.js'))
+      return mergePack('ru', () => import('./packs/ru.js'))
     case 'hi':
-      return mergePack(() => import('./packs/hi.js'))
+      return mergePack('hi', () => import('./packs/hi.js'))
     case 'uk':
-      return mergePack(() => import('./packs/uk.js'))
+      return mergePack('uk', () => import('./packs/uk.js'))
     case 'vi':
-      return mergePack(() => import('./packs/vi.js'))
+      return mergePack('vi', () => import('./packs/vi.js'))
     case 'id':
-      return mergePack(() => import('./packs/id.js'))
+      return mergePack('id', () => import('./packs/id.js'))
     case 'ko':
-      return mergePack(() => import('./packs/ko.js'))
+      return mergePack('ko', () => import('./packs/ko.js'))
     case 'sv':
-      return mergePack(() => import('./packs/sv.js'))
+      return mergePack('sv', () => import('./packs/sv.js'))
     default:
       return null
   }
 }
 
-async function mergePack(importPack) {
-  const [enMod, pagesMod, packMod] = await Promise.all([
-    import('./locales/en.js'),
-    import('./sections/pages-en.js'),
-    importPack(),
-  ])
-  const enDict = { ...enMod.default, ...pagesMod.pagesEn }
-  return deepMerge(enDict, packMod.default)
+async function mergePack(code, importPack) {
+  const [baseEn, packMod] = await Promise.all([loadEnPagesBase(), importPack()])
+  return deepMerge(deepMerge(baseEn, packMod.default), getUiExtendedPatch(code))
 }

@@ -33,13 +33,13 @@ export default function DashboardChartFilters({ filters, onChange, layout = 'mai
 
   const inner = (
     <>
-      <h2 className={`h6 ${isSidebar ? 'mb-2 px-1' : 'mb-3'}`}>
-        {t('chart.filters.title', 'Filtros del dashboard')}
+        <h2 className={`h6 ${isSidebar ? 'mb-2 px-1' : 'mb-3'}`}>
+        {t('chart.filters.title')}
       </h2>
       <div className={isSidebar ? 'd-flex flex-column gap-2' : 'row g-3 align-items-end'}>
         <div className={isSidebar ? '' : 'col-12 col-md-6 col-lg-4'}>
           <label htmlFor={`${idPrefix}-filter-tipo`} className="form-label small mb-1">
-            {t('chart.filters.tipoInmueble', 'Tipo de inmueble')}
+            {t('chart.filters.tipoInmueble')}
           </label>
           <select
             id={`${idPrefix}-filter-tipo`}
@@ -57,15 +57,12 @@ export default function DashboardChartFilters({ filters, onChange, layout = 'mai
             ))}
           </select>
           <p id={`${idPrefix}-filter-tipo-hint`} className="text-muted small mb-0 mt-1">
-            {t(
-              'chart.filters.tiposListHint',
-              'Ctrl+clic (Mac: ⌘) para elegir varios en la lista. Sin selección = todos.',
-            )}
+            {t('chart.filters.tiposListHint')}
           </p>
         </div>
         <div className={isSidebar ? '' : 'col-12 col-md-6 col-lg-4'}>
           <label htmlFor={`${idPrefix}-filter-period`} className="form-label small mb-1">
-            {t('chart.filters.period', 'Periodo')}
+              {t('chart.filters.period')}
           </label>
           <select
             id={`${idPrefix}-filter-period`}
@@ -73,14 +70,14 @@ export default function DashboardChartFilters({ filters, onChange, layout = 'mai
             value={value.period}
             onChange={(e) => setField('period', e.target.value)}
           >
-            <option value={PERIOD_ALL}>{t('chart.filters.periodAll', 'Todos los meses')}</option>
-            <option value={PERIOD_LAST_6}>{t('chart.filters.periodLast6', 'Últimos 6 meses')}</option>
-            <option value={PERIOD_LAST_3}>{t('chart.filters.periodLast3', 'Últimos 3 meses')}</option>
+              <option value={PERIOD_ALL}>{t('chart.filters.periodAll')}</option>
+              <option value={PERIOD_LAST_6}>{t('chart.filters.periodLast6')}</option>
+              <option value={PERIOD_LAST_3}>{t('chart.filters.periodLast3')}</option>
           </select>
         </div>
         <div className={isSidebar ? '' : 'col-12 col-md-6 col-lg-4'}>
           <label htmlFor={`${idPrefix}-filter-metric`} className="form-label small mb-1">
-            {t('chart.filters.metric', 'Métrica')}
+              {t('chart.filters.metric')}
           </label>
           <select
             id={`${idPrefix}-filter-metric`}
@@ -88,9 +85,9 @@ export default function DashboardChartFilters({ filters, onChange, layout = 'mai
             value={value.metric}
             onChange={(e) => setField('metric', e.target.value)}
           >
-            <option value={METRIC_BOTH}>{t('chart.filters.metricBoth', 'kWh y costo')}</option>
-            <option value={METRIC_KWH}>{t('chart.filters.metricKwh', 'Solo kWh')}</option>
-            <option value={METRIC_COST}>{t('chart.filters.metricCost', 'Solo costo')}</option>
+              <option value={METRIC_BOTH}>{t('chart.filters.metricBoth')}</option>
+              <option value={METRIC_KWH}>{t('chart.filters.metricKwh')}</option>
+              <option value={METRIC_COST}>{t('chart.filters.metricCost')}</option>
           </select>
         </div>
       </div>

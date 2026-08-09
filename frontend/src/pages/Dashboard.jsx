@@ -58,20 +58,20 @@ function Dashboard() {
   const kpiCards = [
     {
       titulo: periodFiltered
-        ? t('dashboard.kpiTotalUsage', 'Total consumo (periodo)')
-        : t('dashboard.kpiTotalUsageYear', 'Total consumo (año)'),
+        ? t('dashboard.kpiTotalUsage')
+        : t('dashboard.kpiTotalUsageYear'),
       valor: `${resumen.total} kWh`,
     },
     {
       titulo: periodFiltered
-        ? t('dashboard.kpiTotalCost', 'Total costo (periodo)')
-        : t('dashboard.kpiTotalCostYear', 'Total costo (año)'),
+        ? t('dashboard.kpiTotalCost')
+        : t('dashboard.kpiTotalCostYear'),
       valor: `$${resumen.totalCosto}`,
     },
     {
       titulo: periodFiltered
-        ? t('dashboard.kpiAvgUsage', 'Promedio mensual (periodo)')
-        : t('dashboard.monthlyAverage', 'Promedio mensual'),
+        ? t('dashboard.kpiAvgUsage')
+        : t('dashboard.monthlyAverage'),
       valor: `${resumen.promedio} kWh`,
     },
   ]
@@ -127,7 +127,7 @@ function Dashboard() {
         <>
           {refreshingCharts && (
             <p className="text-muted small mt-2 mb-0" role="status" aria-live="polite">
-              {t('chart.filters.updating', 'Actualizando gráficos…')}
+              {t('chart.filters.updating')}
             </p>
           )}
 
@@ -143,7 +143,7 @@ function Dashboard() {
           )}
           {tipoFiltered && (
             <p className="text-muted small mt-1 mb-0" role="note">
-              {t('chart.filters.tipoActiveHint', 'Gráficos y KPIs filtrados por: {tipo}').replace(
+              {t('chart.filters.tipoActiveHint').replace(
                 '{tipo}',
                 tiposLabel,
               )}
