@@ -37,7 +37,7 @@ public class RecommendationHistoryService {
      * Filtra los candidatos para descartar los ya activos y persiste las novedades.
      */
     @Transactional
-    public List<RecommendationItem> filterAndPersistNovedades(Long userId, Set<TipKey> candidateKeys, ConsumptionCategory category) {
+    public List<RecommendationEntity> filterAndPersistNovedades(Long userId, Set<TipKey> candidateKeys) {
         
         // 1. CONSULTA BDD: Buscamos qué recomendaciones ya tiene ACTIVAS este usuario
         List<TipKey> activeUserKeys = userRecRepository.findTipKeysByUserIdAndStatus(userId, RecommendationStatus.ACTIVE);
@@ -47,7 +47,7 @@ public class RecommendationHistoryService {
                 .filter(key -> !activeUserKeys.contains(key))
                 .toList();
 
-        List<RecommendationItem> finalItems = new ArrayList<>();
+        List<RecommendationEntity> finalEntities = new ArrayList<>();
 
         // 3. PERSISTENCIA: Si hay novedades, buscamos su definición en el catálogo y las guardamos
         if (!newKeys.isEmpty()) {
@@ -63,11 +63,7 @@ public class RecommendationHistoryService {
                 RecommendationEntity catalogEntity = catalogMap.get(key);
                 if (catalogEntity != null) {
                     
-                    finalItems.add(RecommendationItem.builder()
-                            .tipKey(key)
-                            .type(catalogEntity.getType())
-                            .priority(determinePriority(key, category))
-                            .build());
+                    finalEntities.add(catalogEntity);
 
                     newRecords.add(UserRecommendationEntity.builder()
                             .userId(userId)
@@ -80,12 +76,6 @@ public class RecommendationHistoryService {
             userRecRepository.saveAll(newRecords);
         }
 
-        return finalItems;
-    }
-
-    private String determinePriority(TipKey key, ConsumptionCategory category) {
-        if (category == ConsumptionCategory.INEFICIENTE) return "HIGH";
-        if (category == ConsumptionCategory.EFICIENTE) return "LOW";
-        return "MEDIUM";
+        return finalEntities;
     }
 }

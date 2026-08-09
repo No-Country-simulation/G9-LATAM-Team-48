@@ -5,6 +5,7 @@ import com.alura.recommendation.dto.RecommendationItem;
 import com.alura.recommendation.dto.RecommendationRequest;
 import com.alura.recommendation.dto.RecommendationResponse;
 import com.alura.recommendation.dto.TipKey;
+import com.alura.recommendation.model.RecommendationEntity;
 import com.alura.recommendation.rules.HighOccupantConsumptionRule;
 import com.alura.recommendation.rules.InsulationFromFormRule;
 import com.alura.recommendation.rules.LedUpgradeRule;
@@ -39,11 +40,10 @@ class RecommendationServiceImplTest {
 
         recommendationService = new RecommendationServiceImpl(rules, historyService);
 
-        // Mockeamos el Historial para que devuelva los candidatos tal cual, 
-        // ya que aquí solo queremos validar que la orquestación dispare las reglas correctas.
-        when(historyService.filterAndPersistNovedades(any(), any(), any())).thenAnswer(invocation -> {
+        // Mockeamos el Historial para que devuelva entidades simuladas en base a las keys
+        when(historyService.filterAndPersistNovedades(any(), any())).thenAnswer(invocation -> {
             Set<TipKey> keys = invocation.getArgument(1);
-            return keys.stream().map(key -> RecommendationItem.builder().tipKey(key).build()).toList();
+            return keys.stream().map(key -> RecommendationEntity.builder().tipKey(key).type("INFO").build()).toList();
         });
     }
 

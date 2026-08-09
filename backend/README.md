@@ -26,7 +26,7 @@ Migraciones Flyway:
 - `V7` — consultas anónimas (`user_email` nullable)
 - `V8` — tabla `dataset_feature_engineering` (dataset procesado DS para gráficos agregados)
 - `V9` — tablas del motor de recomendaciones (`recommendation_catalog` y `user_recommendations`)
-- `V10` — seed del catálogo maestro de recomendaciones ampliado (33 sugerencias base cubriendo dominios SHAP)[cite: 1]
+- `V10` — seed del catálogo maestro de recomendaciones ampliado (33 sugerencias base cubriendo dominios SHAP)
 
 Tras el deploy, cargá filas una sola vez:
 

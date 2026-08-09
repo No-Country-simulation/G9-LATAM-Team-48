@@ -5,6 +5,7 @@ import com.alura.recommendation.dto.RecommendationItem;
 import com.alura.recommendation.dto.RecommendationRequest;
 import com.alura.recommendation.dto.RecommendationResponse;
 import com.alura.recommendation.dto.TipKey;
+import com.alura.recommendation.model.RecommendationEntity;
 import com.alura.recommendation.rules.RecommendationRule;
 
 import org.springframework.stereotype.Service;
@@ -50,9 +51,18 @@ public class RecommendationServiceImpl implements RecommendationService {
             }
         }
 
-        // 3. Delegamos el cruce antiduplicados y la persistencia (Clean Code - SRP)
-        List<RecommendationItem> finalItems = historyService.filterAndPersistNovedades(
-                request.getUserId(), candidateKeys, category);
+        // 3. Delegamos el cruce antiduplicados y la persistencia (SRP puro)
+        List<RecommendationEntity> newEntities = historyService.filterAndPersistNovedades(
+                request.getUserId(), candidateKeys);
+
+        // 4. Mapeo a DTO y Enriquecimiento de Negocio (Prioridad)
+        List<RecommendationItem> finalItems = newEntities.stream()
+                .map(entity -> RecommendationItem.builder()
+                        .tipKey(entity.getTipKey())
+                        .type(entity.getType())
+                        .priority(determinePriority(entity.getTipKey(), category))
+                        .build())
+                .toList();
 
         return RecommendationResponse.builder()
                 .userId(request.getUserId())
@@ -60,5 +70,11 @@ public class RecommendationServiceImpl implements RecommendationService {
                 .categoryFrontendKey(category.getFrontendKey())
                 .recommendations(finalItems)
                 .build();
+    }
+
+    private String determinePriority(TipKey key, ConsumptionCategory category) {
+        if (category == ConsumptionCategory.INEFICIENTE) return "HIGH";
+        if (category == ConsumptionCategory.EFICIENTE) return "LOW";
+        return "MEDIUM";
     }
 }
