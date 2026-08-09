@@ -466,6 +466,7 @@ export const pagesEs = {
     subtitle: 'Tus análisis de consumo guardados (Análisis IA).',
     refresh: 'Actualizar',
     tipo: 'Tipo',
+    tipoInmueble: 'Tipo de inmueble',
     consumo: 'Consumo',
     consumoMensual: 'Consumo mes (kWh)',
     consumoAnterior: 'Mes ant. (kWh)',

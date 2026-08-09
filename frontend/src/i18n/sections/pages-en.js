@@ -463,6 +463,7 @@ export const pagesEn = {
     subtitle: 'Your saved consumption analyses (AI Analysis).',
     refresh: 'Refresh',
     tipo: 'Type',
+    tipoInmueble: 'Property type',
     consumo: 'Usage',
     consumoMensual: 'Monthly kWh',
     consumoAnterior: 'Prev. month kWh',
