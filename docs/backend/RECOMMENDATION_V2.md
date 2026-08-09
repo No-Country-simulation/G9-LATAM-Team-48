@@ -32,18 +32,21 @@ La versión inicial del motor de recomendaciones operaba completamente en memori
 Se implementó un esquema relacional estructurado mediante migraciones Flyway:
 
 ### 2.1. Migración V9 (`V9__create_recommendations_tables.sql`)
+
 Crea la infraestructura relacional base:
+
 *   `recommendation_catalog`: Contiene la definición base de las estrategias.
-    *   `tip_key` (VARCHAR, PK) - Identificador fuerte (ej. `LOW_CONSUMPTION_BASE`, `INSULATION_DEFICIENT`).
+    *   `id` (BIGINT, PK) - Llave primaria autoincremental.
+    *   `tip_key` (VARCHAR, UNIQUE) - Identificador fuerte (ej. `LOW_CONSUMPTION_BASE`, `INSULATION_DEFICIENT`).
     *   `title` (VARCHAR) - Referencia interna y texto a mostrar.
     *   `type` (VARCHAR) - Nivel de urgencia (`INFO`, `ALERTA`, `OPORTUNIDAD`).
 *   `user_recommendations`: Registra el ciclo de vida de la sugerencia.
-    *   `id` (PK, UUID)
-    *   `user_id` (FK -> `users.id`)
-    *   `tip_key` (FK -> `recommendation_catalog.tip_key`)
+    *   `id` (BIGINT, PK) - Llave primaria autoincremental.
+    *   `user_id` (BIGINT, FK -> `users.id`) - Usuario dueño de la recomendación.
+    *   `recommendation_id` (BIGINT, FK -> `recommendation_catalog.id`) - Referencia al catálogo.
     *   `status` (VARCHAR) - `ACTIVE` (activa en el front), `DISMISSED` (descartada/resuelta).
 
-### 2.2. Migración V10 (`V10__seed_recommendations_catalog.sql`)
+### 2.2. Migración V10 (`V10__insert_recommendation_catalog.sql`)
 Puebla la tabla `recommendation_catalog` con 33 recomendaciones exhaustivas que cubren los 8 dominios de análisis SHAP del modelo (Perfiles de consumo, Climatización, Aislamiento Térmico, Iluminación, Consumo Standby, Densidad de Equipos, Horarios Comerciales y Hábitos Per Cápita).
 
 ---
