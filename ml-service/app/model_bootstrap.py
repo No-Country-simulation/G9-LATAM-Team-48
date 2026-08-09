@@ -2,11 +2,12 @@ from __future__ import annotations
 
 import logging
 import os
+import shutil
 import urllib.error
 import urllib.request
 from pathlib import Path
 
-from app.config import MODELS_DIR, resolve_model_path
+from app.config import DATASCIENCE_MODELS_DIR, MODELS_DIR, resolve_model_path
 from app.v3_bundle import (
     V3_COLUMNS_FILE,
     V3_ENCODER_FILE,
@@ -35,7 +36,6 @@ def _download(url: str, dest: Path, timeout: int = 180) -> bool:
 
 
 def _url_for(filename: str) -> str:
-    """URL explícita por archivo o MODEL_V3_BASE_URL + nombre."""
     env_key = {
         V3_COLUMNS_FILE: "MODEL_V3_COLUMNS_URL",
         V3_ENCODER_FILE: "MODEL_V3_ENCODER_URL",
@@ -50,19 +50,32 @@ def _url_for(filename: str) -> str:
     return ""
 
 
+def sync_v3_from_datascience() -> bool:
+    """Copia trio v3 desde datascience/models → ml-service/models (local/dev)."""
+    if v3_bundle_paths(MODELS_DIR) is not None:
+        return True
+    if v3_bundle_paths(DATASCIENCE_MODELS_DIR) is None:
+        return False
+    MODELS_DIR.mkdir(parents=True, exist_ok=True)
+    for name in (V3_COLUMNS_FILE, V3_ENCODER_FILE, V3_MODEL_FILE):
+        src = DATASCIENCE_MODELS_DIR / name
+        dst = MODELS_DIR / name
+        if src.is_file():
+            shutil.copy2(src, dst)
+            log.info("Copiado %s desde datascience/models", name)
+    return v3_bundle_paths(MODELS_DIR) is not None
+
+
 def ensure_v3_bundle(models_dir: Path | None = None) -> bool:
-    """
-    Descarga los 3 .joblib v3 si faltan y hay URLs configuradas.
-    Returns True si el trio queda completo en disco.
-    """
     directory = models_dir or MODELS_DIR
     if v3_bundle_paths(directory) is not None:
         return True
 
-    pending = [name for name in (V3_COLUMNS_FILE, V3_ENCODER_FILE, V3_MODEL_FILE) if not (directory / name).is_file()]
-    if not pending:
-        return v3_bundle_paths(directory) is not None
-
+    pending = [
+        name
+        for name in (V3_COLUMNS_FILE, V3_ENCODER_FILE, V3_MODEL_FILE)
+        if not (directory / name).is_file()
+    ]
     for filename in pending:
         url = _url_for(filename)
         if not url:
@@ -73,8 +86,7 @@ def ensure_v3_bundle(models_dir: Path | None = None) -> bool:
 
 
 def ensure_legacy_model_file() -> None:
-    """MODEL_URL → un solo pipeline (model.joblib) si no hay bundle v3."""
-    if v3_bundle_paths(MODELS_DIR) is not None:
+    if v3_bundle_paths() is not None:
         return
 
     path = resolve_model_path()
@@ -89,9 +101,16 @@ def ensure_legacy_model_file() -> None:
 
 
 def ensure_model_artifacts() -> None:
-    """Arranque: v3 (prioridad) → legacy MODEL_URL."""
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
+    sync_v3_from_datascience()
+    if v3_bundle_paths() is not None:
+        log.info(
+            "Artefactos v3 disponibles (ml-service/models=%s, datascience/models=%s)",
+            v3_bundle_paths(MODELS_DIR) is not None,
+            v3_bundle_paths(DATASCIENCE_MODELS_DIR) is not None,
+        )
+        return
     if ensure_v3_bundle():
-        log.info("Artefactos v3 listos en %s", MODELS_DIR)
+        log.info("Artefactos v3 descargados en %s", MODELS_DIR)
         return
     ensure_legacy_model_file()

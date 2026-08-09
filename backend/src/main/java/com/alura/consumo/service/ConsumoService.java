@@ -3,6 +3,7 @@ package com.alura.consumo.service;
 import com.alura.consumo.dto.ConsumoMensual;
 import com.alura.dataset.DatasetFeatureEngineeringDao;
 import com.alura.dataset.DatasetMonthKeys;
+import com.alura.dataset.DatasetTipoInmuebleFilter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,13 +27,13 @@ public class ConsumoService {
         this.datasetDao = datasetDao;
     }
 
-    public List<ConsumoMensual> listar() {
+    public List<ConsumoMensual> listar(String tipoInmueble) {
         if (!datasetDao.hasRows()) {
-            return FALLBACK;
+            return scaleFallback(tipoInmueble);
         }
-        List<Map<String, Object>> rows = datasetDao.avgConsumoByMesNumero();
+        List<Map<String, Object>> rows = datasetDao.avgConsumoByMesNumero(tipoInmueble);
         if (rows.isEmpty()) {
-            return FALLBACK;
+            return scaleFallback(tipoInmueble);
         }
         return rows.stream()
                 .map(row -> new ConsumoMensual(
@@ -44,6 +45,19 @@ public class ConsumoService {
 
     public boolean isServingDataset() {
         return datasetDao.hasRows();
+    }
+
+    private List<ConsumoMensual> scaleFallback(String tipoInmueble) {
+        double factor = DatasetTipoInmuebleFilter.demoScaleFactor(tipoInmueble);
+        if (factor == 1.0) {
+            return FALLBACK;
+        }
+        return FALLBACK.stream()
+                .map(c -> new ConsumoMensual(
+                        c.mes(),
+                        (int) Math.round(c.consumo() * factor),
+                        (int) Math.round(c.costo() * factor)))
+                .toList();
     }
 
     private static int intValue(Object value) {

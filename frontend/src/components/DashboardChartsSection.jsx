@@ -13,6 +13,7 @@ import {
   monthKeysFromConsumos,
   showCostCharts,
   showKwhCharts,
+  TIPO_INMUEBLE_ALL,
   variationValueKey,
 } from '../utils/dashboardChartFilters'
 import { getAnalyticsBreakdown } from '../services/analyticsService'
@@ -44,7 +45,11 @@ export default function DashboardChartsSection({
 
   useEffect(() => {
     let cancelled = false
-    getAnalyticsBreakdown(monthKeys)
+    const tipoInmueble =
+      filters.tipoInmueble && filters.tipoInmueble !== TIPO_INMUEBLE_ALL
+        ? filters.tipoInmueble
+        : undefined
+    getAnalyticsBreakdown(monthKeys, { tipoInmueble })
       .then((data) => {
         if (!cancelled) setBreakdown(data)
       })
@@ -54,7 +59,7 @@ export default function DashboardChartsSection({
     return () => {
       cancelled = true
     }
-  }, [monthKeys.join(',')])
+  }, [monthKeys.join(','), filters.tipoInmueble])
 
   const kwhVisible = showKwhCharts(filters.metric)
   const costVisible = showCostCharts(filters.metric)

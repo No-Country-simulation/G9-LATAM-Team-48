@@ -81,7 +81,7 @@ export default function HistoriaConsumosFilters({ filters, onChange, onReset }) 
           </div>
           <div className="col-12 col-md-6 col-lg-3">
             <label htmlFor="historia-filter-tipo" className="form-label small mb-1">
-              {t('historiaConsumos.tipo', 'Tipo')}
+              {t('historiaConsumos.tipoInmueble', 'Tipo de inmueble')}
             </label>
             <select
               id="historia-filter-tipo"

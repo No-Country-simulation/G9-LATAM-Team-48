@@ -5,6 +5,8 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODELS_DIR = BASE_DIR / "models"
+REPO_ROOT = BASE_DIR.parent
+DATASCIENCE_MODELS_DIR = REPO_ROOT / "datascience" / "models"
 
 
 def resolve_model_path() -> Path:
@@ -15,7 +17,7 @@ def resolve_model_path() -> Path:
 
     from app.v3_bundle import v3_bundle_paths
 
-    if v3_bundle_paths(MODELS_DIR) is not None:
+    if v3_bundle_paths() is not None:
         return (MODELS_DIR / "modelo_perfil_energetico_final_v3.joblib").resolve()
 
     candidates = (

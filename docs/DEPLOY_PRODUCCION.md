@@ -111,17 +111,16 @@ MAIL_ENABLED=false
 - `label_encoder_v3.joblib`
 - `modelo_perfil_energetico_final_v3.joblib`
 
-**Opción A — en la imagen Docker (recomendado si caben en Git):**
+**Opción A — en la imagen Docker (recomendado):** versionar en Git bajo **`datascience/models/`** (export del notebook):
 
 ```powershell
-cd ml-service
-.\scripts\copy-v3-models.ps1 -SourceDir "C:\ruta\a\tu\carpeta\models"
-git add -f models/columnas_requeridas_final_v3.joblib models/label_encoder_v3.joblib models/modelo_perfil_energetico_final_v3.joblib
-git commit -m "chore(ml): artefactos v3 para Render"
+# Copiar los 3 .joblib a datascience/models/ (ruta del notebook ..\models\)
+.\scripts\add-datascience-v3-models.ps1
+git commit -m "chore(ml): artefactos v3 datascience/models"
 git push
 ```
 
-Redeploy en Render (Docker build incluye `COPY models`).
+Render usa `Dockerfile.monorepo` (`rootDir: .`) y copia automáticamente `datascience/models/*v3*.joblib` → `/app/models/`.
 
 **Opción B — descarga al arrancar (sin commitear .joblib):**
 

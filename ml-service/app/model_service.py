@@ -101,7 +101,7 @@ class EnergyModelService:
         return self._schema
 
     def load(self) -> None:
-        bundle_paths = v3_bundle_paths(MODELS_DIR)
+        bundle_paths = v3_bundle_paths()
         if bundle_paths is not None:
             cols_p, enc_p, model_p = bundle_paths
             self._model_path = model_p
@@ -113,7 +113,7 @@ class EnergyModelService:
                 self._schema = "v3_bundle"
                 log.info(
                     "Modelo v3 (3 artefactos) cargado desde %s (%s columnas)",
-                    MODELS_DIR,
+                    model_p.parent,
                     len(self._feature_columns),
                 )
                 return

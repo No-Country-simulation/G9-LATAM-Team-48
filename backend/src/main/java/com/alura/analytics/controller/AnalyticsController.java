@@ -27,21 +27,23 @@ public class AnalyticsController {
 
     @GetMapping("/overview")
     @Operation(summary = "Overview para gráficos Real vs predicción y pico/valle")
-    public ResponseEntity<AnalyticsOverviewDto> overview() {
-        return ResponseEntity.ok(analyticsService.overview());
+    public ResponseEntity<AnalyticsOverviewDto> overview(
+            @RequestParam(required = false) String tipoInmueble) {
+        return ResponseEntity.ok(analyticsService.overview(tipoInmueble));
     }
 
     @GetMapping("/breakdown")
     @Operation(summary = "Promedio de kWh por segmento del dataset (tipo de inmueble)")
     public ResponseEntity<AnalyticsBreakdownDto> breakdown(
             @RequestParam(defaultValue = "tipo_inmueble") String dimension,
-            @RequestParam(required = false) String months) {
+            @RequestParam(required = false) String months,
+            @RequestParam(required = false) String tipoInmueble) {
         if (!"tipo_inmueble".equalsIgnoreCase(dimension)) {
             return ResponseEntity.badRequest().build();
         }
         List<String> monthKeys = months == null || months.isBlank()
                 ? List.of()
                 : Arrays.stream(months.split(",")).map(String::trim).filter(s -> !s.isEmpty()).toList();
-        return ResponseEntity.ok(analyticsService.breakdownByTipoInmueble(monthKeys));
+        return ResponseEntity.ok(analyticsService.breakdownByTipoInmueble(monthKeys, tipoInmueble));
     }
 }

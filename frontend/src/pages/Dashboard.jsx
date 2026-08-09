@@ -14,20 +14,31 @@ import { getAnalyticsOverview } from '../services/analyticsService'
 import { useLocale } from '../context/LocaleContext'
 import { useNavigation } from '../context/NavigationContext'
 import { resolveChartBadgeVariant } from '../utils/chartDataSource'
-import { DEFAULT_DASHBOARD_FILTERS, filterConsumos, PERIOD_ALL } from '../utils/dashboardChartFilters'
+import { DEFAULT_DASHBOARD_FILTERS, filterConsumos, PERIOD_ALL, TIPO_INMUEBLE_ALL } from '../utils/dashboardChartFilters'
 import DashboardChartFilters from '../components/DashboardChartFilters'
 
 function Dashboard() {
   const { t } = useLocale()
   const { setPagina } = useNavigation()
   const [chartFilters, setChartFilters] = useState(DEFAULT_DASHBOARD_FILTERS)
-  const { data: consumos, loading, error, refetch } = useFetch(getConsumos)
+  const tipoFetchKey =
+    chartFilters.tipoInmueble && chartFilters.tipoInmueble !== TIPO_INMUEBLE_ALL
+      ? chartFilters.tipoInmueble
+      : null
+  const fetchConsumoOpts = useMemo(
+    () => (tipoFetchKey ? { tipoInmueble: tipoFetchKey } : {}),
+    [tipoFetchKey],
+  )
+  const { data: consumos, loading, error, refetch } = useFetch(
+    () => getConsumos(fetchConsumoOpts),
+    [tipoFetchKey],
+  )
   const {
     data: analytics,
     loading: loadingAnalytics,
     error: analyticsError,
     refetch: refetchAnalytics,
-  } = useFetch(getAnalyticsOverview)
+  } = useFetch(() => getAnalyticsOverview(fetchConsumoOpts), [tipoFetchKey])
 
   const filteredConsumos = useMemo(
     () => filterConsumos(consumos, chartFilters.period),
@@ -75,8 +86,13 @@ function Dashboard() {
       : null
   const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos)
   const fromDataset = chartBadgeVariant === 'dataset'
-  const chartsReady = !loadingAnalytics && !analyticsError
-  const showChartFilters = (consumos?.length ?? 0) > 1
+  const chartsReady = Boolean(analytics) && !analyticsError
+  const showChartFilters = (consumos?.length ?? 0) >= 1
+  const initialLoad = loading && !consumos?.length
+  const refreshingCharts = loading || loadingAnalytics
+  const chartsLoading = loadingAnalytics && !analytics
+  const tipoFiltered =
+    chartFilters.tipoInmueble && chartFilters.tipoInmueble !== TIPO_INMUEBLE_ALL
 
   useEffect(() => {
     if (!showChartFilters) {
@@ -88,11 +104,11 @@ function Dashboard() {
     <div className="container-fluid px-0 px-sm-2">
       <h1 className="mb-4 fs-3 fs-md-2">{t('dashboard.title')}</h1>
 
-      {loading && <Loader mensaje={t('states.loadingConsumo')} />}
+      {initialLoad && <Loader mensaje={t('states.loadingConsumo')} />}
 
-      {!loading && error && <ErrorState mensaje={error} onRetry={refetch} />}
+      {!initialLoad && error && <ErrorState mensaje={error} onRetry={refetch} />}
 
-      {!loading && !error && !consumos?.length && (
+      {!initialLoad && !error && !consumos?.length && (
         <EmptyState
           mensaje={t('states.empty')}
           actionLabel={t('historiaConsumos.goToAnalysis', 'Ir a Análisis IA')}
@@ -100,10 +116,16 @@ function Dashboard() {
         />
       )}
 
-      {!loading && !error && consumos?.length > 0 && (
+      {!initialLoad && !error && consumos?.length > 0 && (
         <>
           {showChartFilters && (
             <DashboardChartFilters filters={chartFilters} onChange={setChartFilters} />
+          )}
+
+          {refreshingCharts && (
+            <p className="text-muted small mt-2 mb-0" role="status" aria-live="polite">
+              {t('chart.filters.updating', 'Actualizando gráficos…')}
+            </p>
           )}
 
           <div className={`row ${showChartFilters ? 'mt-3' : ''}`}>
@@ -114,6 +136,14 @@ function Dashboard() {
           {kpiHint && (
             <p className="text-muted small mt-2 mb-0" role="note">
               {kpiHint}
+            </p>
+          )}
+          {tipoFiltered && (
+            <p className="text-muted small mt-1 mb-0" role="note">
+              {t('chart.filters.tipoActiveHint', 'Gráficos y KPIs filtrados por: {tipo}').replace(
+                '{tipo}',
+                t(`analysis.types.${chartFilters.tipoInmueble}`, chartFilters.tipoInmueble),
+              )}
             </p>
           )}
 
@@ -146,13 +176,14 @@ function Dashboard() {
 
           {chartsReady ? (
             <DashboardChartsSection
+              key={`${chartFilters.period}-${chartFilters.metric}-${chartFilters.tipoInmueble}`}
               consumos={consumos}
               analytics={analytics}
               chartBadgeVariant={chartBadgeVariant}
               chartFilters={chartFilters}
             />
           ) : (
-            <ChartSectionFallback />
+            chartsLoading && <ChartSectionFallback />
           )}
 
           <DashboardMisAnalisisSection />

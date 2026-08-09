@@ -27,8 +27,8 @@ services:
 
   ml:
     build:
-      context: ./ml-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ml-service/Dockerfile.monorepo
     container_name: energyai-ml
     restart: unless-stopped
     ports:

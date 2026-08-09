@@ -1,13 +1,23 @@
 import api from './api'
 import consumoData from '../data/consumo.json'
 import { USE_MOCK_API, mockResponse } from './mock'
+import { TIPO_INMUEBLE_ALL } from '../utils/dashboardChartFilters'
+import { scaleConsumosByTipo } from '../utils/dashboardTipoScale'
 
-export async function getConsumos() {
+function tipoQueryParam(tipoInmueble) {
+  if (!tipoInmueble || tipoInmueble === TIPO_INMUEBLE_ALL) return {}
+  return { tipoInmueble }
+}
+
+export async function getConsumos(options = {}) {
+  const tipoInmueble = options.tipoInmueble
   if (USE_MOCK_API) {
-    return mockResponse(consumoData)
+    return mockResponse(scaleConsumosByTipo(consumoData, tipoInmueble))
   }
 
-  const { data } = await api.get('/api/consumos')
+  const { data } = await api.get('/api/consumos', {
+    params: tipoQueryParam(tipoInmueble),
+  })
   return data
 }
 

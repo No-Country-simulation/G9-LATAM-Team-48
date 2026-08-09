@@ -6,6 +6,8 @@
 __pycache__/
 *.pyc
 *.joblib
+!datascience/models/*.joblib
+!ml-service/models/model.joblib
 
 # Secretos locales (nunca commitear)
 .env

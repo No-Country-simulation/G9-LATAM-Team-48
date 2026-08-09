@@ -37,12 +37,16 @@ class V3Bundle:
     x_preprocessor: Any | None
 
 
-def v3_bundle_paths(models_dir: Path) -> tuple[Path, Path, Path] | None:
-    cols = models_dir / V3_COLUMNS_FILE
-    enc = models_dir / V3_ENCODER_FILE
-    model = models_dir / V3_MODEL_FILE
-    if cols.is_file() and enc.is_file() and model.is_file():
-        return cols, enc, model
+def v3_bundle_paths(models_dir: Path | None = None) -> tuple[Path, Path, Path] | None:
+    from app.config import DATASCIENCE_MODELS_DIR, MODELS_DIR
+
+    directories = [models_dir] if models_dir is not None else [MODELS_DIR, DATASCIENCE_MODELS_DIR]
+    for directory in directories:
+        cols = directory / V3_COLUMNS_FILE
+        enc = directory / V3_ENCODER_FILE
+        model = directory / V3_MODEL_FILE
+        if cols.is_file() and enc.is_file() and model.is_file():
+            return cols, enc, model
     return None
 
 
@@ -129,7 +133,10 @@ def load_v3_bundle(cols_path: Path, encoder_path: Path, model_path: Path) -> V3B
 
     feature_columns = _as_column_list(columns_raw)
     feature_columns = [c for c in feature_columns if c != "perfil_energetico"]
-    if not feature_columns:
+    names_in = getattr(model, "feature_names_in_", None)
+    if names_in is not None:
+        feature_columns = list(names_in)
+    elif not feature_columns:
         feature_columns = list(FEATURE_KEYS)
 
     x_encoders, y_encoder, x_preprocessor = _parse_encoder_artifact(encoder_raw)

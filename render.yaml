@@ -1,10 +1,10 @@
-# Blueprint Render — solo el microservicio ML (backend Railway, front Vercel).
+# Blueprint Render — ML desde monorepo (incluye datascience/models → v3)
 services:
   - type: web
     name: g9-latam-ml
-    rootDir: ml-service
+    rootDir: .
     runtime: docker
-    dockerfilePath: Dockerfile
+    dockerfilePath: ml-service/Dockerfile.monorepo
     plan: free
     healthCheckPath: /health
     envVars:

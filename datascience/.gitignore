@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 *.pkl
 *.joblib
+!models/*.joblib
 datasets/processed/*.csv
 .env
 .DS_Store

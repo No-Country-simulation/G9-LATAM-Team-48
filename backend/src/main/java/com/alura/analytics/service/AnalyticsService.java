@@ -5,6 +5,7 @@ import com.alura.analytics.dto.AnalyticsBreakdownItem;
 import com.alura.analytics.dto.AnalyticsOverviewDto;
 import com.alura.dataset.DatasetFeatureEngineeringDao;
 import com.alura.dataset.DatasetMonthKeys;
+import com.alura.dataset.DatasetTipoInmuebleFilter;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class AnalyticsService {
@@ -44,15 +46,15 @@ public class AnalyticsService {
         this.datasetDao = datasetDao;
     }
 
-    public AnalyticsOverviewDto overview() {
+    public AnalyticsOverviewDto overview(String tipoInmueble) {
         if (!datasetDao.hasRows()) {
-            return FALLBACK;
+            return scaleOverviewFallback(tipoInmueble);
         }
 
-        List<Map<String, Object>> actualRows = datasetDao.avgActualVsAnteriorByMesNumero();
-        List<Map<String, Object>> peakRows = datasetDao.avgPeakOffPeakByMesNumero();
+        List<Map<String, Object>> actualRows = datasetDao.avgActualVsAnteriorByMesNumero(tipoInmueble);
+        List<Map<String, Object>> peakRows = datasetDao.avgPeakOffPeakByMesNumero(tipoInmueble);
         if (actualRows.isEmpty()) {
-            return FALLBACK;
+            return scaleOverviewFallback(tipoInmueble);
         }
 
         Map<Integer, Map<String, Object>> peakByMes = indexByMes(peakRows);
@@ -99,14 +101,14 @@ public class AnalyticsService {
         );
     }
 
-    public AnalyticsBreakdownDto breakdownByTipoInmueble(List<String> monthKeys) {
+    public AnalyticsBreakdownDto breakdownByTipoInmueble(List<String> monthKeys, String tipoInmueble) {
         if (!datasetDao.hasRows()) {
-            return FALLBACK_BREAKDOWN;
+            return filterBreakdownFallback(tipoInmueble);
         }
         List<Integer> mesNumeros = parseMesNumeros(monthKeys);
-        List<Map<String, Object>> rows = datasetDao.avgConsumoByTipoInmueble(mesNumeros);
+        List<Map<String, Object>> rows = datasetDao.avgConsumoByTipoInmueble(mesNumeros, tipoInmueble);
         if (rows.isEmpty()) {
-            return FALLBACK_BREAKDOWN;
+            return filterBreakdownFallback(tipoInmueble);
         }
         List<AnalyticsBreakdownItem> items = new ArrayList<>();
         for (Map<String, Object> row : rows) {
@@ -116,6 +118,47 @@ public class AnalyticsService {
             items.add(new AnalyticsBreakdownItem(segment, avg, samples));
         }
         return new AnalyticsBreakdownDto("tipo_inmueble", List.copyOf(items), true);
+    }
+
+    private static AnalyticsOverviewDto scaleOverviewFallback(String tipoInmueble) {
+        double factor = DatasetTipoInmuebleFilter.demoScaleFactor(tipoInmueble);
+        if (factor == 1.0) {
+            return FALLBACK;
+        }
+        return new AnalyticsOverviewDto(
+                FALLBACK.months(),
+                scaleInts(FALLBACK.actualKwh(), factor),
+                scaleInts(FALLBACK.predictedKwh(), factor),
+                scaleInts(FALLBACK.peakKwh(), factor),
+                scaleInts(FALLBACK.offPeakKwh(), factor),
+                FALLBACK.category(),
+                FALLBACK.confidence(),
+                scaleInts(FALLBACK.cost(), factor),
+                false);
+    }
+
+    private static AnalyticsBreakdownDto filterBreakdownFallback(String tipoInmueble) {
+        Optional<String> key = DatasetTipoInmuebleFilter.normalizeKey(tipoInmueble);
+        if (key.isEmpty()) {
+            return FALLBACK_BREAKDOWN;
+        }
+        String segment =
+                switch (key.get()) {
+                    case "APARTAMENTO" -> "Apartamento";
+                    case "PEQUENO_ESTABLECIMIENTO_COMERCIAL" -> "Pequeño Establecimiento Comercial";
+                    default -> "Casa Unifamiliar";
+                };
+        List<AnalyticsBreakdownItem> filtered = FALLBACK_BREAKDOWN.items().stream()
+                .filter(item -> segment.equals(item.segment()))
+                .toList();
+        if (filtered.isEmpty()) {
+            return FALLBACK_BREAKDOWN;
+        }
+        return new AnalyticsBreakdownDto(FALLBACK_BREAKDOWN.dimension(), filtered, false);
+    }
+
+    private static List<Integer> scaleInts(List<Integer> values, double factor) {
+        return values.stream().map(v -> (int) Math.round(v * factor)).toList();
     }
 
     private static List<Integer> parseMesNumeros(List<String> monthKeys) {

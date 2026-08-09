@@ -1,4 +1,5 @@
 import { useLocale } from '../context/LocaleContext'
+import { INSTALLATION_TYPES } from '../services/iaService'
 import {
   DEFAULT_DASHBOARD_FILTERS,
   METRIC_BOTH,
@@ -7,7 +8,10 @@ import {
   PERIOD_ALL,
   PERIOD_LAST_3,
   PERIOD_LAST_6,
+  TIPO_INMUEBLE_ALL,
 } from '../utils/dashboardChartFilters'
+
+const TIPO_OPTIONS = Object.values(INSTALLATION_TYPES)
 
 export default function DashboardChartFilters({ filters, onChange }) {
   const { t } = useLocale()
@@ -22,6 +26,26 @@ export default function DashboardChartFilters({ filters, onChange }) {
       <div className="card-body py-3">
         <h2 className="h6 mb-3">{t('chart.filters.title', 'Filtros del dashboard')}</h2>
         <div className="row g-3 align-items-end">
+          <div className="col-12 col-md-6 col-lg-4">
+            <label htmlFor="dashboard-filter-tipo" className="form-label small mb-1">
+              {t('chart.filters.tipoInmueble', 'Tipo de inmueble')}
+            </label>
+            <select
+              id="dashboard-filter-tipo"
+              className="form-select form-select-sm"
+              value={value.tipoInmueble ?? TIPO_INMUEBLE_ALL}
+              onChange={(e) => setField('tipoInmueble', e.target.value)}
+            >
+              <option value={TIPO_INMUEBLE_ALL}>
+                {t('chart.filters.tipoInmuebleAll', 'Todos los tipos')}
+              </option>
+              {TIPO_OPTIONS.map((key) => (
+                <option key={key} value={key}>
+                  {t(`analysis.types.${key}`, key)}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className="col-12 col-md-6 col-lg-4">
             <label htmlFor="dashboard-filter-period" className="form-label small mb-1">
               {t('chart.filters.period', 'Periodo')}

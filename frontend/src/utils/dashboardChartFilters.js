@@ -8,9 +8,12 @@ export const METRIC_KWH = 'kwh'
 export const METRIC_COST = 'cost'
 export const METRIC_BOTH = 'both'
 
+export const TIPO_INMUEBLE_ALL = 'all'
+
 export const DEFAULT_DASHBOARD_FILTERS = {
   period: PERIOD_ALL,
   metric: METRIC_BOTH,
+  tipoInmueble: TIPO_INMUEBLE_ALL,
 }
 
 export function sliceByPeriod(items, period) {
