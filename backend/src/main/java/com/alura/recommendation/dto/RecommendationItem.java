@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RecommendationItem {
     private TipKey tipKey;
-    private String type;     // "ALTA", "OPORTUNIDAD", "INFO"
+    private String type;     // "ALERTA", "OPORTUNIDAD", "INFO"
     private String priority; // "HIGH", "MEDIUM", "LOW"
 }

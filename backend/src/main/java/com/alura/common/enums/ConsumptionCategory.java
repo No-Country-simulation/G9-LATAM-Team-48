@@ -24,13 +24,23 @@ public enum ConsumptionCategory {
         this.requiresDetailedAnalysis = requiresDetailedAnalysis;
     }
 
+    /**
+     * Convierte un valor del modelo en una categoría de consumo.
+     *
+     * @param rawValue El valor del modelo a convertir.
+     * @return La categoría de consumo correspondiente, o MODERADO si no se encuentra.
+     */
     public static ConsumptionCategory fromModelValue(String rawValue) {
         if (rawValue == null || rawValue.isBlank()) {
             return MODERADO;
         }
-        String normalized = rawValue.trim().toUpperCase();
+        
+        String normalized = rawValue.trim();
+        
         return Arrays.stream(values())
-                .filter(cat -> cat.modelValue.equalsIgnoreCase(normalized))
+                .filter(cat -> cat.modelValue.equalsIgnoreCase(normalized) || 
+                               cat.frontendKey.equalsIgnoreCase(normalized) ||
+                               cat.name().equalsIgnoreCase(normalized))
                 .findFirst()
                 .orElse(MODERADO);
     }

@@ -253,7 +253,7 @@ Cada modulo sigue una **arquitectura por capas** (`controller` -> `service` ->
 - [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md) —
   modulo Analisis IA (Spring + FastAPI): contrato, env y como integrarlo.
 - [`docs/backend/RECOMMENDATION_V2.md`](../docs/backend/RECOMMENDATION_V2.md) —
-  Motor de Recomendaciones V2: Patrón Strategy, persistencia, lógica antiduplicados y catálogo maestro[cite: 1].
+  Motor de Recomendaciones V2: Patrón Strategy, persistencia, lógica antiduplicados y catálogo maestro.
 
 ---
 
