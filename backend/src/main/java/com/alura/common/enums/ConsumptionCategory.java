@@ -1,51 +1,37 @@
 package com.alura.common.enums;
 
-/**
- * Enum que centraliza el mapeo entre los contratos del modelo ML (Python)
- * y las claves visuales del frontend.
- */
+import com.alura.recommendation.dto.TipKey;
+import lombok.Getter;
+
+import java.util.Arrays;
+
+@Getter
 public enum ConsumptionCategory {
 
-    // Definimos constantes autoexplicativas para los valores que emite el modelo
-    HIGH(ModelValues.HIGH_CONSUMPTION, "inefficient"),
-    MEDIUM(ModelValues.MODERADO_CONSUMPTION, "moderate"),
-    LOW(ModelValues.LOW_CONSUMPTION, "efficient");
-
-    /**
-     * Contratos esperados desde el servicio de Machine Learning (Python).
-     * Si el modelo cambia su salida, solo se actualiza aquí.
-     */
-    public static final class ModelValues {
-        private ModelValues() {}
-        public static final String HIGH_CONSUMPTION = "ALTO";
-        public static final String MODERADO_CONSUMPTION = "MODERADO";
-        public static final String LOW_CONSUMPTION = "BAJO";
-    }
+    INEFICIENTE("ALTO", "inefficient", TipKey.HIGH_CONSUMPTION_BASE, true),
+    MODERADO("MODERADO", "moderate", TipKey.MEDIUM_CONSUMPTION_BASE, true),
+    EFICIENTE("BAJO", "efficient", TipKey.LOW_CONSUMPTION_BASE, false);
 
     private final String modelValue;
     private final String frontendKey;
+    private final TipKey baseTipKey;
+    private final boolean requiresDetailedAnalysis;
 
-    ConsumptionCategory(String modelValue, String frontendKey) {
+    ConsumptionCategory(String modelValue, String frontendKey, TipKey baseTipKey, boolean requiresDetailedAnalysis) {
         this.modelValue = modelValue;
         this.frontendKey = frontendKey;
+        this.baseTipKey = baseTipKey;
+        this.requiresDetailedAnalysis = requiresDetailedAnalysis;
     }
 
-    public String getModelValue() {
-        return modelValue;
-    }
-
-    public String getFrontendKey() {
-        return frontendKey;
-    }
-
-    public static String getFrontendKeyFor(String modelValue) {
-        if (modelValue == null) return "unknown";
-
-        for (ConsumptionCategory category : values()) {
-            if (category.modelValue.equalsIgnoreCase(modelValue)) {
-                return category.frontendKey;
-            }
+    public static ConsumptionCategory fromModelValue(String rawValue) {
+        if (rawValue == null || rawValue.isBlank()) {
+            return MODERADO;
         }
-        return "unknown";
+        String normalized = rawValue.trim().toUpperCase();
+        return Arrays.stream(values())
+                .filter(cat -> cat.modelValue.equalsIgnoreCase(normalized))
+                .findFirst()
+                .orElse(MODERADO);
     }
 }
