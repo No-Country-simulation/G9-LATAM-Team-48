@@ -5,41 +5,31 @@ import com.alura.recommendation.dto.RecommendationItem;
 import com.alura.recommendation.dto.RecommendationRequest;
 import com.alura.recommendation.dto.RecommendationResponse;
 import com.alura.recommendation.dto.TipKey;
-import com.alura.recommendation.model.RecommendationEntity;
-import com.alura.recommendation.model.RecommendationStatus;
-import com.alura.recommendation.model.UserRecommendationEntity;
-import com.alura.recommendation.repository.RecommendationRepository;
-import com.alura.recommendation.repository.UserRecommendationRepository;
 import com.alura.recommendation.rules.RecommendationRule;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
- * Servicio principal del motor de recomendaciones con lógica antiduplicados y soporte SHAP.
+ * Servicio principal (Orquestador) del motor de recomendaciones.
+ * Evalúa las reglas dinámicas y delega la persistencia al HistoryService (SRP).
  */
 @Service
 public class RecommendationServiceImpl implements RecommendationService {
 
     private final List<RecommendationRule> rules;
-    private final RecommendationRepository catalogRepository;
-    private final UserRecommendationRepository userRecRepository;
+    private final RecommendationHistoryService historyService;
 
     public RecommendationServiceImpl(List<RecommendationRule> rules,
-                                     RecommendationRepository catalogRepository,
-                                     UserRecommendationRepository userRecRepository) {
+                                     RecommendationHistoryService historyService) {
         this.rules = rules.stream()
                 .sorted(Comparator.comparingInt((RecommendationRule r) -> r.getOrder()))
                 .toList();
-        this.catalogRepository = catalogRepository;
-        this.userRecRepository = userRecRepository;
+        this.historyService = historyService;
     }
 
     @Override
-    @Transactional
     public RecommendationResponse generateRecommendations(RecommendationRequest request) {
         if (request == null || request.getCategory() == null || request.getUserId() == null) {
             throw new IllegalArgumentException("El request, userId y la categoría son obligatorios");
@@ -60,47 +50,9 @@ public class RecommendationServiceImpl implements RecommendationService {
             }
         }
 
-        // 3. CONSULTA BDD: Buscamos qué recomendaciones ya tiene ACTIVAS este usuario
-        List<TipKey> activeUserKeys = userRecRepository.findTipKeysByUserIdAndStatus(
-                request.getUserId(), RecommendationStatus.ACTIVE);
-
-        // 4. FILTRO ANTIDUPLICADOS: Dejamos solo los candidatos que NO están activos en la BDD
-        List<TipKey> newKeys = candidateKeys.stream()
-                .filter(key -> !activeUserKeys.contains(key))
-                .toList();
-
-        List<RecommendationItem> finalItems = new ArrayList<>();
-
-        // 5. PERSISTENCIA: Si hay novedades, buscamos su definición en el catálogo y las guardamos
-        if (!newKeys.isEmpty()) {
-            Map<TipKey, RecommendationEntity> catalogMap = catalogRepository.findByTipKeyIn(newKeys).stream()
-                    .collect(Collectors.toMap(
-                            (RecommendationEntity entity) -> entity.getTipKey(), 
-                            entity -> entity
-                    ));
-
-            List<UserRecommendationEntity> newRecords = new ArrayList<>();
-
-            for (TipKey key : newKeys) {
-                RecommendationEntity catalogEntity = catalogMap.get(key);
-                if (catalogEntity != null) {
-                    
-                    finalItems.add(RecommendationItem.builder()
-                            .tipKey(key)
-                            .type(catalogEntity.getType())
-                            .priority(determinePriority(key, category))
-                            .build());
-
-                    newRecords.add(UserRecommendationEntity.builder()
-                            .userId(request.getUserId())
-                            .recommendation(catalogEntity)
-                            .status(RecommendationStatus.ACTIVE)
-                            .build());
-                }
-            }
-            
-            userRecRepository.saveAll(newRecords);
-        }
+        // 3. Delegamos el cruce antiduplicados y la persistencia (Clean Code - SRP)
+        List<RecommendationItem> finalItems = historyService.filterAndPersistNovedades(
+                request.getUserId(), candidateKeys, category);
 
         return RecommendationResponse.builder()
                 .userId(request.getUserId())
@@ -108,11 +60,5 @@ public class RecommendationServiceImpl implements RecommendationService {
                 .categoryFrontendKey(category.getFrontendKey())
                 .recommendations(finalItems)
                 .build();
-    }
-
-    private String determinePriority(TipKey key, ConsumptionCategory category) {
-        if (category == ConsumptionCategory.INEFICIENTE) return "HIGH";
-        if (category == ConsumptionCategory.EFICIENTE) return "LOW";
-        return "MEDIUM";
     }
 }
