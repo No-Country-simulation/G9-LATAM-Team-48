@@ -1,15 +1,23 @@
 package com.alura.recommendation.dto;
 
+import com.alura.common.enums.ConsumptionCategory;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 /**
- * Contrato de salida del modulo de recomendaciones.
- *
- * @param userId          identificador del usuario
- * @param recommendations lista de recomendaciones generadas por el motor de reglas
+ * DTO de respuesta que contiene las recomendaciones activas para el frontend.
  */
-public record RecommendationResponse(
-        String userId,
-        List<String> recommendations
-) {
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class RecommendationResponse {
+    private Long userId;
+    private ConsumptionCategory category;
+    private String categoryFrontendKey;
+    private List<RecommendationItem> recommendations;
 }

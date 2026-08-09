@@ -1,23 +1,17 @@
 package com.alura.recommendation.rules;
 
+import com.alura.recommendation.dto.RecommendationItem;
 import com.alura.recommendation.dto.RecommendationRequest;
-import com.alura.recommendation.dto.TipKey;
 
-/**
- * Interfaz para las reglas de recomendación.
- */
+import java.util.Optional;
+
 public interface RecommendationRule {
 
-    /**
-     * Evalúa si la regla aplica para el consumo dado.
-     */
     boolean applies(RecommendationRequest request);
 
-    /**
-     * Devuelve la clave corta de recomendación.
-     *
-     * @param request contexto de evaluación
-     * @return identificador tipado de la recomendación
-     */
-    TipKey evaluate(RecommendationRequest request);
+    Optional<RecommendationItem> evaluate(RecommendationRequest request);
+
+    default int getOrder() {
+        return 100;
+    }
 }

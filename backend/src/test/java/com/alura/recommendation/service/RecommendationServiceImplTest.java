@@ -1,113 +1,111 @@
 package com.alura.recommendation.service;
 
 import com.alura.common.enums.ConsumptionCategory;
-import com.alura.common.constants.PropertyTypeConstants;
 import com.alura.recommendation.dto.RecommendationRequest;
 import com.alura.recommendation.dto.RecommendationResponse;
-import com.alura.recommendation.rules.*;
+import com.alura.recommendation.dto.TipKey;
+import com.alura.recommendation.model.RecommendationEntity;
+import com.alura.recommendation.model.RecommendationStatus;
+import com.alura.recommendation.repository.RecommendationRepository;
+import com.alura.recommendation.repository.UserRecommendationRepository;
+import com.alura.recommendation.rules.HighOccupantConsumptionRule;
+import com.alura.recommendation.rules.InsulationFromFormRule;
+import com.alura.recommendation.rules.LedUpgradeRule;
+import com.alura.recommendation.rules.RecommendationRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.when;
 
-/**
- * Pruebas unitarias para el servicio de recomendaciones y su motor de reglas.
- *
- * <p>Verifica que el orquestador evalúe correctamente el contrato de entrada
- * enriquecido (7 parámetros) y retorne las claves cortas (tipKeys) adecuadas.</p>
- *
- * @version 3.0
- */
 class RecommendationServiceImplTest {
 
-    private RecommendationService recommendationService;
+    private RecommendationServiceImpl recommendationService;
+    private RecommendationRepository recommendationRepository;
+    private UserRecommendationRepository userRecommendationRepository;
 
     @BeforeEach
     void setUp() {
-        // Registramos TODAS las reglas de negocio y de inmueble creadas
+        recommendationRepository = Mockito.mock(RecommendationRepository.class);
+        userRecommendationRepository = Mockito.mock(UserRecommendationRepository.class);
+
         List<RecommendationRule> rules = List.of(
-                new HighConsumptionRule(),
-                new MediumConsumptionRule(),
-                new LowConsumptionRule(),
-                new PeakHourUsageRule(),
-                new AirConditioningRule(),
-                new StandbyPowerRule(),
-                new HighConsumptionDurationRule(),
-                new CommercialOptimizationRule(),
-                new HouseEfficiencyRule(),
-                new ApartmentEfficiencyRule()
+                new HighOccupantConsumptionRule(),
+                new InsulationFromFormRule(),
+                new LedUpgradeRule()
         );
 
-        recommendationService = new RecommendationServiceImpl(rules);
+        recommendationService = new RecommendationServiceImpl(
+                rules,
+                recommendationRepository,
+                userRecommendationRepository
+        );
+
+        when(recommendationRepository.findByTipKeyIn(any())).thenAnswer(invocation -> {
+            List<TipKey> keys = invocation.getArgument(0);
+            return keys.stream().map(key -> RecommendationEntity.builder()
+                    .tipKey(key)
+                    .title("Título de prueba para " + key.name())
+                    .type("ALERTA")
+                    .build()).toList();
+        });
     }
 
     @Test
-    @DisplayName("Debería retornar la clave 'ac' para perfiles de alto consumo genérico")
-    void shouldGenerateHighConsumptionRecommendation() {
-        // Pasamos los 7 parámetros: userId, category, tipoInmueble, cantidadEquipos, horasClima, horasAltoConsumo, usoPico
-        RecommendationRequest request = new RecommendationRequest(
-                "user-123", ConsumptionCategory.HIGH.getModelValue(), null, null, null, null, false,
-                null, null, null);
+    @DisplayName("Debe retornar únicamente recomendación base para categoría EFICIENTE")
+    void testEficienteCategory_OnlyBaseTip() {
+        when(userRecommendationRepository.findTipKeysByUserIdAndStatus(eq(1L), eq(RecommendationStatus.ACTIVE)))
+                .thenReturn(List.of());
 
-        RecommendationResponse response = recommendationService.generate(request);
-        assertTrue(response.recommendations().contains("ac"), "Debería sugerir la clave 'ac'");
+        RecommendationRequest request = RecommendationRequest.builder()
+                .userId(1L)
+                .category(ConsumptionCategory.EFICIENTE)
+                .consumoAnteriorPorPersona(new BigDecimal("200.0"))
+                .factorAislamiento(new BigDecimal("1.3"))
+                .build();
+
+        RecommendationResponse response = recommendationService.generateRecommendations(request);
+
+        assertNotNull(response);
+        assertEquals(ConsumptionCategory.EFICIENTE, response.getCategory());
+        assertEquals("efficient", response.getCategoryFrontendKey());
+        assertEquals(1, response.getRecommendations().size());
+        assertEquals(TipKey.LOW_CONSUMPTION_BASE, response.getRecommendations().get(0).getTipKey());
     }
 
     @Test
-    @DisplayName("Debería retornar la clave 'shifts' para perfiles de consumo medio")
-    void shouldGenerateMediumConsumptionRecommendation() {
-        RecommendationRequest request = new RecommendationRequest(
-                "user-456", ConsumptionCategory.MEDIUM.getModelValue(), null, null, null, null, false,
-                null, null, null);
+    @DisplayName("Debe evaluar y disparar reglas específicas para categoría MODERADO")
+    void testModeradoCategory_TriggersSpecificRules() {
+        when(userRecommendationRepository.findTipKeysByUserIdAndStatus(eq(2L), eq(RecommendationStatus.ACTIVE)))
+                .thenReturn(List.of());
 
-        RecommendationResponse response = recommendationService.generate(request);
-        assertTrue(response.recommendations().contains("shifts"), "Debería sugerir la clave 'shifts'");
-    }
+        RecommendationRequest request = RecommendationRequest.builder()
+                .userId(2L)
+                .category(ConsumptionCategory.MODERADO)
+                .consumoAnteriorPorPersona(new BigDecimal("180.0"))
+                .proporcionIluminacionLed(new BigDecimal("0.20"))
+                .factorAislamiento(new BigDecimal("0.7"))
+                .build();
 
-    @Test
-    @DisplayName("Debería combinar claves cuando aplican múltiples reglas (Casa + Horario Pico + Standby)")
-    void shouldCombineKeysForMultipleRules() {
-        // Given: Casa, 20 equipos (activa Standby), usa horario pico (activa Peak) y consumo Medio (activa Shifts)
-        RecommendationRequest request = new RecommendationRequest(
-                "user-789", ConsumptionCategory.MEDIUM.getModelValue(), PropertyTypeConstants.HOUSE, 20, 2, 2, true,
-                null, null, null);
+        RecommendationResponse response = recommendationService.generateRecommendations(request);
 
-        RecommendationResponse response = recommendationService.generate(request);
+        assertNotNull(response);
+        assertEquals(3, response.getRecommendations().size());
 
-        // Validamos que todas las reglas aplicables devuelvan su clave
-        assertTrue(response.recommendations().contains("house"));
-        assertTrue(response.recommendations().contains("peak"));
-        assertTrue(response.recommendations().contains("standby"));
-        assertTrue(response.recommendations().contains("shifts"));
-    }
+        List<TipKey> tipKeys = response.getRecommendations().stream()
+                .map(item -> item.getTipKey())
+                .toList();
 
-    @Test
-    @DisplayName("Debería activar regla específica de Comercio y Aire Acondicionado")
-    void shouldTriggerCommercialAndAcRules() {
-        // Given: Comercio con 10 horas de climatización
-        RecommendationRequest request = new RecommendationRequest(
-                "user-333", ConsumptionCategory.HIGH.getModelValue(), PropertyTypeConstants.COMMERCIAL, 5, 10, 5, false,
-                null, null, null);
-
-        RecommendationResponse response = recommendationService.generate(request);
-
-        assertTrue(response.recommendations().contains("commercial"));
-        assertTrue(response.recommendations().contains("ac"));
-    }
-
-    @Test
-    @DisplayName("Debería retornar clave 'default' como contingencia ante categoría desconocida y sin variables")
-    void shouldProvideDefaultFallbackForUnknownCategory() {
-        RecommendationRequest request = new RecommendationRequest(
-                "user-999", "DESCONOCIDA", null, null, null, null, null,
-                null, null, null);
-
-        RecommendationResponse response = recommendationService.generate(request);
-
-        assertEquals(1, response.recommendations().size());
-        assertTrue(response.recommendations().contains("default"));
+        assertTrue(tipKeys.contains(TipKey.MEDIUM_CONSUMPTION_BASE));
+        assertTrue(tipKeys.contains(TipKey.HIGH_CONSUMPTION_PER_PERSON));
+        assertTrue(tipKeys.contains(TipKey.LED_UPGRADE_NEEDED));
+        assertFalse(tipKeys.contains(TipKey.INSULATION_DEFICIENT));
     }
 }

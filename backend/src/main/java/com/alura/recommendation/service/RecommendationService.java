@@ -3,19 +3,14 @@ package com.alura.recommendation.service;
 import com.alura.recommendation.dto.RecommendationRequest;
 import com.alura.recommendation.dto.RecommendationResponse;
 
-/**
- * Orquesta la generacion de recomendaciones evaluando el conjunto de reglas
- * ({@code RecommendationRule}) aplicables al usuario.
- *
- * <p>Implementacion: {@code RecommendationServiceImpl}.</p>
- */
 public interface RecommendationService {
 
     /**
-     * Genera las recomendaciones para el usuario segun su categoria de consumo.
-     *
-     * @param request contexto de evaluacion
-     * @return recomendaciones generadas
+     * Generates and persists personalized energy recommendations for a given request,
+     * ensuring duplicate prevention against active user history.
+     * 
+     * @param request RecommendationRequest containing user ID, category, and SHAP metrics.
+     * @return RecommendationResponse containing active recommendations for the frontend.
      */
-    RecommendationResponse generate(RecommendationRequest request);
+    RecommendationResponse generateRecommendations(RecommendationRequest request);
 }
