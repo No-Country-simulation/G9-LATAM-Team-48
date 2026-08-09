@@ -1144,6 +1144,16 @@ Esta configuración permite mantener resultados consistentes en operaciones que 
 - Comparación reproducible entre diferentes modelos.
 - Construcción de la versión final de LightGBM.
 
+## 13. Equipo
 
+El proyecto **EnergIA** fue desarrollado como un trabajo colaborativo, distribuyendo las actividades entre las diferentes etapas necesarias para construir la solución de ciencia de datos.
+
+### 13.1. Integrantes
+
+| Integrante | Rol |
+|---|---|
+| Ricardo Chirinos | Data Analyst |
+| Elizabeth Díaz Familia | Data Scientist |
+| Jharle Compres | Data Analyst |
 
 
