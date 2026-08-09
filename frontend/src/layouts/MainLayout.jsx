@@ -3,6 +3,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import LoginModal from '../components/LoginModal'
+import { DashboardFiltersMainSlot } from '../components/DashboardFiltersSlot'
 import { useLocale } from '../context/LocaleContext'
 import { useAuth } from '../context/AuthContext'
 import { useAnnounce } from '../components/SrAnnouncer'
@@ -108,6 +109,7 @@ function MainLayout({ children, pagina, setPagina, onAuthSuccess }) {
         </aside>
 
         <main id="main-content" className="app-main p-3 p-md-4" tabIndex={-1}>
+          <DashboardFiltersMainSlot />
           {children}
         </main>
       </div>

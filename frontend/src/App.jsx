@@ -4,6 +4,7 @@ import MainLayout from './layouts/MainLayout'
 import { useAuth } from './context/AuthContext'
 import { useLocale } from './context/LocaleContext'
 import { NavigationProvider } from './context/NavigationContext'
+import { DashboardFiltersProvider } from './context/DashboardFiltersContext'
 import { isAdmin } from './utils/roles'
 import {
   SESSION_EXPIRED_EVENT,
@@ -190,14 +191,16 @@ function App() {
 
   return (
     <NavigationProvider pagina={pagina} setPagina={setPagina}>
-      <MainLayout
-        key={`layout-${sessionEpoch}`}
-        pagina={pagina}
-        setPagina={setPagina}
-        onAuthSuccess={handleAuthSuccess}
-      >
-        <div key={`view-${sessionEpoch}-${pagina}`}>{renderPagina()}</div>
-      </MainLayout>
+      <DashboardFiltersProvider>
+        <MainLayout
+          key={`layout-${sessionEpoch}`}
+          pagina={pagina}
+          setPagina={setPagina}
+          onAuthSuccess={handleAuthSuccess}
+        >
+          <div key={`view-${sessionEpoch}-${pagina}`}>{renderPagina()}</div>
+        </MainLayout>
+      </DashboardFiltersProvider>
     </NavigationProvider>
   )
 }

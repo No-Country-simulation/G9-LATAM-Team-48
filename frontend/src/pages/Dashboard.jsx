@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo } from 'react'
 import CardConsumo from '../components/CardConsumo'
 import ChartSectionFallback from '../components/ChartSectionFallback'
 import DashboardChartsSection from '../components/DashboardChartsSection'
@@ -22,12 +22,12 @@ import {
   PERIOD_ALL,
   tiposInmuebleFetchKey,
 } from '../utils/dashboardChartFilters'
-import DashboardChartFilters from '../components/DashboardChartFilters'
+import { useDashboardFilters } from '../context/DashboardFiltersContext'
 
 function Dashboard() {
   const { t } = useLocale()
   const { setPagina } = useNavigation()
-  const [chartFilters, setChartFilters] = useState(DEFAULT_DASHBOARD_FILTERS)
+  const { chartFilters, setChartFilters, setFiltersVisible } = useDashboardFilters()
   const tipoFetchKey = tiposInmuebleFetchKey(chartFilters)
   const fetchConsumoOpts = useMemo(
     () => (tipoFetchKey ? { tiposInmueble: chartFilters.tiposInmueble } : {}),
@@ -101,10 +101,11 @@ function Dashboard() {
     .join(', ')
 
   useEffect(() => {
+    setFiltersVisible(showChartFilters)
     if (!showChartFilters) {
       setChartFilters(DEFAULT_DASHBOARD_FILTERS)
     }
-  }, [showChartFilters])
+  }, [showChartFilters, setChartFilters, setFiltersVisible])
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -124,17 +125,13 @@ function Dashboard() {
 
       {!initialLoad && !error && consumos?.length > 0 && (
         <>
-          {showChartFilters && (
-            <DashboardChartFilters filters={chartFilters} onChange={setChartFilters} />
-          )}
-
           {refreshingCharts && (
             <p className="text-muted small mt-2 mb-0" role="status" aria-live="polite">
               {t('chart.filters.updating', 'Actualizando gráficos…')}
             </p>
           )}
 
-          <div className={`row ${showChartFilters ? 'mt-3' : ''}`}>
+          <div className="row mt-3">
             {kpiCards.map((card) => (
               <CardConsumo key={card.titulo} titulo={card.titulo} valor={card.valor} />
             ))}

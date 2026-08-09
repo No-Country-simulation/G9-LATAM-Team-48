@@ -407,6 +407,26 @@ html[data-bs-theme='light'] body {
   margin-bottom: 0.35rem;
 }
 
+.sidebar-filters {
+  padding-top: 0.25rem;
+}
+
+.dashboard-chart-filters--sidebar .form-label {
+  font-size: 0.75rem;
+}
+
+[data-bs-theme='dark'] .dashboard-chart-filters--sidebar {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+@media (min-width: 992px) {
+  .app-sidebar .sidebar-filters .sidebar-label,
+  .app-sidebar .sidebar-filters .h6 {
+    font-size: 0.8rem;
+  }
+}
+
+
 [data-bs-theme='dark'] .sidebar-link:hover {
   background-color: rgba(255, 255, 255, 0.08);
 }

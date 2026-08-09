@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext'
 import { MENU_ITEMS } from '../data/menuItems'
 import { isAdmin } from '../utils/roles'
 import MenuIcon from './MenuIcon'
+import { DashboardFiltersSidebarSlot } from './DashboardFiltersSlot'
 
 function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
   const { theme } = useTheme()
@@ -64,7 +65,7 @@ function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
 
   return (
     <nav
-      className={`sidebar ${sidebarClass} p-3 ${isMobile ? '' : 'h-100'}`}
+      className={`sidebar ${sidebarClass} p-3 d-flex flex-column ${isMobile ? '' : 'h-100'}`}
       aria-label={t('a11y.mainNav', 'Menú principal')}
     >
       {!isMobile && (
@@ -87,6 +88,8 @@ function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
           </ul>
         </>
       )}
+
+      <DashboardFiltersSidebarSlot />
     </nav>
   )
 }
