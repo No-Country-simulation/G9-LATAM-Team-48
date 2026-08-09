@@ -1,12 +1,20 @@
 package com.alura.dataset;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Filtro por tipo de inmueble (one-hot del dataset), alineado con {@code AnalisisPayload} / frontend.
  */
 public final class DatasetTipoInmuebleFilter {
+
+    private static final List<String> ALL_KEYS =
+            List.of("APARTAMENTO", "CASA_UNIFAMILIAR", "PEQUENO_ESTABLECIMIENTO_COMERCIAL");
 
     private DatasetTipoInmuebleFilter() {}
 
@@ -40,57 +48,95 @@ public final class DatasetTipoInmuebleFilter {
         };
     }
 
-    /** Fragmento SQL {@code AND ...} para restringir filas al segmento dominante. */
-    public static String sqlAndClause(String tipoKey) {
-        Optional<String> key = normalizeKey(tipoKey);
-        if (key.isEmpty()) {
+    /** CSV o valor único desde query {@code tipoInmueble=APARTAMENTO,CASA_UNIFAMILIAR}. */
+    public static List<String> parseParam(String raw) {
+        if (raw == null || raw.isBlank()) {
+            return List.of();
+        }
+        Set<String> keys = new LinkedHashSet<>();
+        for (String part : raw.split(",")) {
+            normalizeKey(part).ifPresent(keys::add);
+        }
+        return List.copyOf(keys);
+    }
+
+    /** Fragmento SQL {@code AND (...)} — vacío si no hay filtro o están los 3 tipos. */
+    public static String sqlOrClause(List<String> tipos) {
+        if (tipos == null || tipos.isEmpty() || tipos.size() >= ALL_KEYS.size()) {
             return "";
         }
-        return switch (key.get()) {
+        if (tipos.size() == 1) {
+            return " AND (" + segmentPredicate(tipos.getFirst()) + ") ";
+        }
+        List<String> parts = new ArrayList<>();
+        for (String key : tipos) {
+            parts.add("(" + segmentPredicate(key) + ")");
+        }
+        return " AND (" + String.join(" OR ", parts) + ") ";
+    }
+
+    private static String segmentPredicate(String key) {
+        return switch (key) {
             case "APARTAMENTO" ->
                     """
-                     AND COALESCE(tipo_inmueble_apartamento, 0)
-                         >= COALESCE(tipo_inmueble_casa_unifamiliar, 0)
-                     AND COALESCE(tipo_inmueble_apartamento, 0)
-                         >= COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0)
-                     AND COALESCE(tipo_inmueble_apartamento, 0) > 0
+                    COALESCE(tipo_inmueble_apartamento, 0)
+                        >= COALESCE(tipo_inmueble_casa_unifamiliar, 0)
+                    AND COALESCE(tipo_inmueble_apartamento, 0)
+                        >= COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0)
+                    AND COALESCE(tipo_inmueble_apartamento, 0) > 0
                     """;
             case "PEQUENO_ESTABLECIMIENTO_COMERCIAL" ->
                     """
-                     AND COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0)
-                         >= COALESCE(tipo_inmueble_casa_unifamiliar, 0)
-                     AND COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0)
-                         >= COALESCE(tipo_inmueble_apartamento, 0)
-                     AND COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0) > 0
+                    COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0)
+                        >= COALESCE(tipo_inmueble_casa_unifamiliar, 0)
+                    AND COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0)
+                        >= COALESCE(tipo_inmueble_apartamento, 0)
+                    AND COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0) > 0
                     """;
             default ->
                     """
-                     AND NOT (
-                         COALESCE(tipo_inmueble_apartamento, 0)
-                             >= COALESCE(tipo_inmueble_casa_unifamiliar, 0)
-                         AND COALESCE(tipo_inmueble_apartamento, 0)
-                             >= COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0)
-                         AND COALESCE(tipo_inmueble_apartamento, 0) > 0
-                     )
-                     AND NOT (
-                         COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0)
-                             >= COALESCE(tipo_inmueble_casa_unifamiliar, 0)
-                         AND COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0) > 0
-                     )
+                    NOT (
+                        COALESCE(tipo_inmueble_apartamento, 0)
+                            >= COALESCE(tipo_inmueble_casa_unifamiliar, 0)
+                        AND COALESCE(tipo_inmueble_apartamento, 0)
+                            >= COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0)
+                        AND COALESCE(tipo_inmueble_apartamento, 0) > 0
+                    )
+                    AND NOT (
+                        COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0)
+                            >= COALESCE(tipo_inmueble_casa_unifamiliar, 0)
+                        AND COALESCE(tipo_inmueble_pequeno_establecimiento_comercial, 0) > 0
+                    )
                     """;
         };
     }
 
-    /** Escala demo/fallback cuando no hay filas del dataset en DB. */
-    public static double demoScaleFactor(String raw) {
-        Optional<String> key = normalizeKey(raw);
-        if (key.isEmpty()) {
+    /** Escala demo/fallback cuando no hay filas del dataset en DB (promedio si hay varios tipos). */
+    public static double demoScaleFactor(String rawParam) {
+        List<String> tipos = parseParam(rawParam);
+        if (tipos.isEmpty() || tipos.size() >= ALL_KEYS.size()) {
             return 1.0;
         }
-        return switch (key.get()) {
-            case "APARTAMENTO" -> 220.0 / 300.0;
-            case "PEQUENO_ESTABLECIMIENTO_COMERCIAL" -> 650.0 / 300.0;
-            default -> 1.0;
+        double sum = 0;
+        for (String key : tipos) {
+            sum += switch (key) {
+                case "APARTAMENTO" -> 220.0 / 300.0;
+                case "PEQUENO_ESTABLECIMIENTO_COMERCIAL" -> 650.0 / 300.0;
+                default -> 1.0;
+            };
+        }
+        return sum / tipos.size();
+    }
+
+    public static String segmentLabel(String key) {
+        return switch (key) {
+            case "APARTAMENTO" -> "Apartamento";
+            case "PEQUENO_ESTABLECIMIENTO_COMERCIAL" -> "Pequeño Establecimiento Comercial";
+            default -> "Casa Unifamiliar";
         };
+    }
+
+    public static List<String> allKeys() {
+        return ALL_KEYS;
     }
 }

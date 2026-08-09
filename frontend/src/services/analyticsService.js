@@ -1,27 +1,28 @@
 import api from './api'
 import { analyticsMock } from '../data/analyticsMock'
 import { USE_MOCK_API, mockResponse } from './mock'
-import { TIPO_INMUEBLE_ALL } from '../utils/dashboardChartFilters'
 import {
   filterBreakdownByTipo,
   scaleAnalyticsByTipo,
   scaleConsumosByTipo,
 } from '../utils/dashboardTipoScale'
+import { tiposInmuebleQueryValue } from '../utils/dashboardChartFilters'
 
-function tipoQueryParam(tipoInmueble) {
-  if (!tipoInmueble || tipoInmueble === TIPO_INMUEBLE_ALL) return {}
-  return { tipoInmueble }
+function tipoQueryParam(tiposInmueble) {
+  const value = tiposInmuebleQueryValue(tiposInmueble)
+  if (!value) return {}
+  return { tipoInmueble: value }
 }
 
 export async function getAnalyticsOverview(options = {}) {
-  const tipoInmueble = options.tipoInmueble
+  const tiposInmueble = options.tiposInmueble ?? options.tipoInmueble
   if (USE_MOCK_API) {
     const base = { ...analyticsMock, fromDataset: false }
-    return mockResponse(scaleAnalyticsByTipo(base, tipoInmueble))
+    return mockResponse(scaleAnalyticsByTipo(base, tiposInmueble))
   }
 
   const { data } = await api.get('/api/analytics/overview', {
-    params: tipoQueryParam(tipoInmueble),
+    params: tipoQueryParam(tiposInmueble),
   })
   return data
 }
@@ -37,14 +38,14 @@ const MOCK_BREAKDOWN = {
 }
 
 export async function getAnalyticsBreakdown(monthKeys = [], options = {}) {
-  const tipoInmueble = options.tipoInmueble
+  const tiposInmueble = options.tiposInmueble ?? options.tipoInmueble
   if (USE_MOCK_API) {
-    return mockResponse(filterBreakdownByTipo({ ...MOCK_BREAKDOWN }, tipoInmueble))
+    return mockResponse(filterBreakdownByTipo({ ...MOCK_BREAKDOWN }, tiposInmueble))
   }
   const { data } = await api.get('/api/analytics/breakdown', {
     params: {
       dimension: 'tipo_inmueble',
-      ...tipoQueryParam(tipoInmueble),
+      ...tipoQueryParam(tiposInmueble),
       ...(monthKeys.length > 0 ? { months: monthKeys.join(',') } : {}),
     },
   })

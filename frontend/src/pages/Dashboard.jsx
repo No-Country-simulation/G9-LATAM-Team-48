@@ -14,20 +14,24 @@ import { getAnalyticsOverview } from '../services/analyticsService'
 import { useLocale } from '../context/LocaleContext'
 import { useNavigation } from '../context/NavigationContext'
 import { resolveChartBadgeVariant } from '../utils/chartDataSource'
-import { DEFAULT_DASHBOARD_FILTERS, filterConsumos, PERIOD_ALL, TIPO_INMUEBLE_ALL } from '../utils/dashboardChartFilters'
+import {
+  DEFAULT_DASHBOARD_FILTERS,
+  filterConsumos,
+  hasActiveTiposInmuebleFilter,
+  normalizeTiposInmueble,
+  PERIOD_ALL,
+  tiposInmuebleFetchKey,
+} from '../utils/dashboardChartFilters'
 import DashboardChartFilters from '../components/DashboardChartFilters'
 
 function Dashboard() {
   const { t } = useLocale()
   const { setPagina } = useNavigation()
   const [chartFilters, setChartFilters] = useState(DEFAULT_DASHBOARD_FILTERS)
-  const tipoFetchKey =
-    chartFilters.tipoInmueble && chartFilters.tipoInmueble !== TIPO_INMUEBLE_ALL
-      ? chartFilters.tipoInmueble
-      : null
+  const tipoFetchKey = tiposInmuebleFetchKey(chartFilters)
   const fetchConsumoOpts = useMemo(
-    () => (tipoFetchKey ? { tipoInmueble: tipoFetchKey } : {}),
-    [tipoFetchKey],
+    () => (tipoFetchKey ? { tiposInmueble: chartFilters.tiposInmueble } : {}),
+    [tipoFetchKey, chartFilters.tiposInmueble],
   )
   const { data: consumos, loading, error, refetch } = useFetch(
     () => getConsumos(fetchConsumoOpts),
@@ -91,8 +95,10 @@ function Dashboard() {
   const initialLoad = loading && !consumos?.length
   const refreshingCharts = loading || loadingAnalytics
   const chartsLoading = loadingAnalytics && !analytics
-  const tipoFiltered =
-    chartFilters.tipoInmueble && chartFilters.tipoInmueble !== TIPO_INMUEBLE_ALL
+  const tipoFiltered = hasActiveTiposInmuebleFilter(chartFilters)
+  const tiposLabel = normalizeTiposInmueble(chartFilters.tiposInmueble)
+    .map((key) => t(`analysis.types.${key}`, key))
+    .join(', ')
 
   useEffect(() => {
     if (!showChartFilters) {
@@ -142,7 +148,7 @@ function Dashboard() {
             <p className="text-muted small mt-1 mb-0" role="note">
               {t('chart.filters.tipoActiveHint', 'Gráficos y KPIs filtrados por: {tipo}').replace(
                 '{tipo}',
-                t(`analysis.types.${chartFilters.tipoInmueble}`, chartFilters.tipoInmueble),
+                tiposLabel,
               )}
             </p>
           )}
@@ -176,7 +182,7 @@ function Dashboard() {
 
           {chartsReady ? (
             <DashboardChartsSection
-              key={`${chartFilters.period}-${chartFilters.metric}-${chartFilters.tipoInmueble}`}
+              key={`${chartFilters.period}-${chartFilters.metric}-${tipoFetchKey ?? 'all'}`}
               consumos={consumos}
               analytics={analytics}
               chartBadgeVariant={chartBadgeVariant}

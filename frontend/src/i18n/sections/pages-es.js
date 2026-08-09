@@ -91,6 +91,8 @@ export const pagesEs = {
       metricCost: 'Solo costo',
       tipoInmueble: 'Tipo de inmueble',
       tipoInmuebleAll: 'Todos los tipos',
+      tiposMultiHint: 'Podés marcar uno o más; sin marcar = todos los tipos.',
+      tiposClear: 'Quitar selección',
       updating: 'Actualizando gráficos…',
       tipoActiveHint: 'Gráficos y KPIs filtrados por: {tipo}',
     },

@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class AnalyticsService {
@@ -138,18 +138,15 @@ public class AnalyticsService {
     }
 
     private static AnalyticsBreakdownDto filterBreakdownFallback(String tipoInmueble) {
-        Optional<String> key = DatasetTipoInmuebleFilter.normalizeKey(tipoInmueble);
-        if (key.isEmpty()) {
+        List<String> tipos = DatasetTipoInmuebleFilter.parseParam(tipoInmueble);
+        if (tipos.isEmpty() || tipos.size() >= DatasetTipoInmuebleFilter.allKeys().size()) {
             return FALLBACK_BREAKDOWN;
         }
-        String segment =
-                switch (key.get()) {
-                    case "APARTAMENTO" -> "Apartamento";
-                    case "PEQUENO_ESTABLECIMIENTO_COMERCIAL" -> "Pequeño Establecimiento Comercial";
-                    default -> "Casa Unifamiliar";
-                };
+        Set<String> segments = tipos.stream()
+                .map(DatasetTipoInmuebleFilter::segmentLabel)
+                .collect(java.util.stream.Collectors.toSet());
         List<AnalyticsBreakdownItem> filtered = FALLBACK_BREAKDOWN.items().stream()
-                .filter(item -> segment.equals(item.segment()))
+                .filter(item -> segments.contains(item.segment()))
                 .toList();
         if (filtered.isEmpty()) {
             return FALLBACK_BREAKDOWN;

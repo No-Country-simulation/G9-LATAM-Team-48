@@ -1,20 +1,27 @@
 import { BENCHMARKS_KWH } from '../services/iaService'
-import { TIPO_INMUEBLE_ALL } from './dashboardChartFilters'
+import {
+  DASHBOARD_TIPO_OPTIONS,
+  normalizeTiposInmueble,
+} from './dashboardChartFilters'
 
 const REF_KWH = BENCHMARKS_KWH.CASA_UNIFAMILIAR
 
-/** Factor vs casa unifamiliar (benchmark de referencia del mock). */
-export function tipoInmuebleScaleFactor(tipoInmueble) {
-  if (!tipoInmueble || tipoInmueble === TIPO_INMUEBLE_ALL) {
+/** Factor vs casa unifamiliar (promedio si hay varios tipos). */
+export function tipoInmuebleScaleFactor(tiposInmueble) {
+  const list = normalizeTiposInmueble(tiposInmueble)
+  if (!list.length || list.length >= DASHBOARD_TIPO_OPTIONS.length) {
     return 1
   }
-  const kwh = BENCHMARKS_KWH[tipoInmueble]
-  if (!kwh || !REF_KWH) return 1
-  return kwh / REF_KWH
+  let sum = 0
+  for (const key of list) {
+    const kwh = BENCHMARKS_KWH[key]
+    sum += kwh && REF_KWH ? kwh / REF_KWH : 1
+  }
+  return sum / list.length
 }
 
-export function scaleConsumosByTipo(rows, tipoInmueble) {
-  const factor = tipoInmuebleScaleFactor(tipoInmueble)
+export function scaleConsumosByTipo(rows, tiposInmueble) {
+  const factor = tipoInmuebleScaleFactor(tiposInmueble)
   if (factor === 1 || !rows?.length) return rows ?? []
   return rows.map((row) => ({
     ...row,
@@ -28,8 +35,8 @@ function scaleNumbers(values, factor) {
   return values.map((v) => Math.round(Number(v) * factor))
 }
 
-export function scaleAnalyticsByTipo(analytics, tipoInmueble) {
-  const factor = tipoInmuebleScaleFactor(tipoInmueble)
+export function scaleAnalyticsByTipo(analytics, tiposInmueble) {
+  const factor = tipoInmuebleScaleFactor(tiposInmueble)
   if (factor === 1 || !analytics) return analytics
   return {
     ...analytics,
@@ -47,11 +54,11 @@ const SEGMENT_BY_TIPO = {
   PEQUENO_ESTABLECIMIENTO_COMERCIAL: 'Pequeño Establecimiento Comercial',
 }
 
-export function filterBreakdownByTipo(breakdown, tipoInmueble) {
+export function filterBreakdownByTipo(breakdown, tiposInmueble) {
   if (!breakdown?.items?.length) return breakdown
-  if (!tipoInmueble || tipoInmueble === TIPO_INMUEBLE_ALL) return breakdown
-  const segment = SEGMENT_BY_TIPO[tipoInmueble]
-  if (!segment) return breakdown
-  const items = breakdown.items.filter((item) => item.segment === segment)
+  const list = normalizeTiposInmueble(tiposInmueble)
+  if (!list.length || list.length >= DASHBOARD_TIPO_OPTIONS.length) return breakdown
+  const segments = new Set(list.map((k) => SEGMENT_BY_TIPO[k]).filter(Boolean))
+  const items = breakdown.items.filter((item) => segments.has(item.segment))
   return { ...breakdown, items: items.length ? items : breakdown.items }
 }

@@ -30,8 +30,8 @@ public class DatasetFeatureEngineeringDao {
     /**
      * Promedio de kWh y costo estimado (USD ~ 0.75 USD/kWh) por mes calendario ({@code mes_numero}).
      */
-    public List<Map<String, Object>> avgConsumoByMesNumero(String tipoInmueble) {
-        String tipoClause = DatasetTipoInmuebleFilter.sqlAndClause(tipoInmueble);
+    public List<Map<String, Object>> avgConsumoByMesNumero(String tipoInmuebleParam) {
+        String tipoClause = DatasetTipoInmuebleFilter.sqlOrClause(DatasetTipoInmuebleFilter.parseParam(tipoInmuebleParam));
         String sql = """
                 SELECT ROUND(mes_numero) AS mes_numero,
                        AVG(consumo_kwh_mensual) AS consumo,
@@ -50,8 +50,8 @@ public class DatasetFeatureEngineeringDao {
     /**
      * Serie para gráfico real vs tendencia (mes anterior como proxy de predicción del modelo).
      */
-    public List<Map<String, Object>> avgActualVsAnteriorByMesNumero(String tipoInmueble) {
-        String tipoClause = DatasetTipoInmuebleFilter.sqlAndClause(tipoInmueble);
+    public List<Map<String, Object>> avgActualVsAnteriorByMesNumero(String tipoInmuebleParam) {
+        String tipoClause = DatasetTipoInmuebleFilter.sqlOrClause(DatasetTipoInmuebleFilter.parseParam(tipoInmuebleParam));
         String sql = """
                 SELECT ROUND(mes_numero) AS mes_numero,
                        AVG(consumo_kwh_mensual) AS actual_kwh,
@@ -71,8 +71,8 @@ public class DatasetFeatureEngineeringDao {
     /**
      * Reparto pico / valle usando proporciones del dataset (diurno vs nocturno).
      */
-    public List<Map<String, Object>> avgPeakOffPeakByMesNumero(String tipoInmueble) {
-        String tipoClause = DatasetTipoInmuebleFilter.sqlAndClause(tipoInmueble);
+    public List<Map<String, Object>> avgPeakOffPeakByMesNumero(String tipoInmuebleParam) {
+        String tipoClause = DatasetTipoInmuebleFilter.sqlOrClause(DatasetTipoInmuebleFilter.parseParam(tipoInmuebleParam));
         String sql = """
                 SELECT ROUND(mes_numero) AS mes_numero,
                        AVG(consumo_kwh_mensual * COALESCE(NULLIF(pico_uso_diurno, 0), 0.35)) AS peak_kwh,
@@ -122,13 +122,13 @@ public class DatasetFeatureEngineeringDao {
     /**
      * Promedio de kWh por tipo de inmueble (one-hot del dataset). {@code mesNumeros} vacío = sin filtro de mes.
      */
-    public List<Map<String, Object>> avgConsumoByTipoInmueble(List<Integer> mesNumeros, String tipoInmueble) {
+    public List<Map<String, Object>> avgConsumoByTipoInmueble(List<Integer> mesNumeros, String tipoInmuebleParam) {
         String mesClause = "";
         if (mesNumeros != null && !mesNumeros.isEmpty()) {
             String inList = mesNumeros.stream().map(String::valueOf).reduce((a, b) -> a + "," + b).orElse("");
             mesClause = " AND mes_numero IN (" + inList + ") ";
         }
-        String tipoClause = DatasetTipoInmuebleFilter.sqlAndClause(tipoInmueble);
+        String tipoClause = DatasetTipoInmuebleFilter.sqlOrClause(DatasetTipoInmuebleFilter.parseParam(tipoInmuebleParam));
         String sql = """
                 SELECT segment, AVG(consumo_kwh_mensual) AS avg_kwh, COUNT(*) AS samples
                 FROM (

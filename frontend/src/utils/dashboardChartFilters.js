@@ -10,10 +10,47 @@ export const METRIC_BOTH = 'both'
 
 export const TIPO_INMUEBLE_ALL = 'all'
 
+export const DASHBOARD_TIPO_OPTIONS = [
+  'APARTAMENTO',
+  'CASA_UNIFAMILIAR',
+  'PEQUENO_ESTABLECIMIENTO_COMERCIAL',
+]
+
 export const DEFAULT_DASHBOARD_FILTERS = {
   period: PERIOD_ALL,
   metric: METRIC_BOTH,
-  tipoInmueble: TIPO_INMUEBLE_ALL,
+  /** Vacío = todos los tipos; uno o más = OR entre tipos seleccionados. */
+  tiposInmueble: [],
+}
+
+export function normalizeTiposInmueble(raw) {
+  if (raw == null) return []
+  if (typeof raw === 'string') {
+    if (!raw || raw === TIPO_INMUEBLE_ALL) return []
+    return raw
+      .split(',')
+      .map((k) => k.trim())
+      .filter((k) => DASHBOARD_TIPO_OPTIONS.includes(k))
+  }
+  if (Array.isArray(raw)) {
+    return raw.filter((k) => DASHBOARD_TIPO_OPTIONS.includes(k))
+  }
+  return []
+}
+
+export function tiposInmuebleQueryValue(tipos) {
+  const list = normalizeTiposInmueble(tipos)
+  if (!list.length || list.length >= DASHBOARD_TIPO_OPTIONS.length) return null
+  return [...list].sort().join(',')
+}
+
+export function hasActiveTiposInmuebleFilter(filters) {
+  const list = normalizeTiposInmueble(filters?.tiposInmueble ?? filters?.tipoInmueble)
+  return list.length > 0 && list.length < DASHBOARD_TIPO_OPTIONS.length
+}
+
+export function tiposInmuebleFetchKey(filters) {
+  return tiposInmuebleQueryValue(filters?.tiposInmueble ?? filters?.tipoInmueble)
 }
 
 export function sliceByPeriod(items, period) {

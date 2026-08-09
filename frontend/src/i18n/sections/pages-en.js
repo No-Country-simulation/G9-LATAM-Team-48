@@ -91,6 +91,8 @@ export const pagesEn = {
       metricCost: 'Cost only',
       tipoInmueble: 'Property type',
       tipoInmuebleAll: 'All types',
+      tiposMultiHint: 'Select one or more; none selected = all types.',
+      tiposClear: 'Clear selection',
       updating: 'Updating charts…',
       tipoActiveHint: 'Charts and KPIs filtered by: {tipo}',
     },
