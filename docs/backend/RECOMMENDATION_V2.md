@@ -51,15 +51,18 @@ Puebla la tabla `recommendation_catalog` con 33 recomendaciones exhaustivas que 
 
 ---
 
+### Reemplaza la Sección 3 completa con esto:
+
+```markdown
 ## 3. Flujo de Persistencia y Antiduplicados
 
-El flujo dentro de `RecommendationServiceImpl` fue rediseñado para interactuar con la base de datos de forma eficiente:
+El flujo fue dividido en dos responsabilidades claras (Principio SRP) para interactuar con la base de datos de forma eficiente y segura:
 
-1.  **Evaluación Strategy:** El motor mapea los datos de entrada a un `RecommendationRequest` y ejecuta todas las clases que implementan `RecommendationRule` (ej. `HighOccupantConsumptionRule`).
-2.  **Consulta de Historial:** Se lanza una consulta JPQL optimizada al `UserRecommendationRepository` para obtener una lista (Set) con todas las `TipKey` en estado `ACTIVE` para ese `userId`.
-3.  **Filtro Antiduplicados:** Se descartan de la lista recién evaluada todas las reglas que ya existen en el historial activo del usuario.
-4.  **Persistencia de Novedades:** Las reglas verdaderamente nuevas se insertan en `user_recommendations` con estado `ACTIVE`.
-5.  **Respuesta al Cliente:** El objeto `RecommendationResponse` retorna únicamente las recomendaciones novedosas y enriquecidas con el texto del catálogo.
+1.  **Evaluación Strategy (`RecommendationServiceImpl`):** El orquestador principal analiza los datos de entrada, inyecta la sugerencia base, y ejecuta todas las clases dinámicas que implementan `RecommendationRule` (ej. `HighOccupantConsumptionRule`) para obtener las claves (`TipKey`) candidatas.
+2.  **Delegación de Historial (`RecommendationHistoryService`):** El orquestador pasa estas claves candidatas a este servicio, el cual está dedicado exclusivamente a la capa de datos.
+3.  **Filtro Antiduplicados:** El servicio de historial lanza una consulta JPQL optimizada al `UserRecommendationRepository` para obtener las `TipKey` en estado `ACTIVE` del usuario, y descarta de la lista de candidatas aquellas que ya existen.
+4.  **Persistencia de Novedades:** Las reglas verdaderamente nuevas se insertan en `user_recommendations` con estado `ACTIVE` y sus entidades son devueltas al orquestador.
+5.  **Respuesta al Cliente:** `RecommendationServiceImpl` mapea las nuevas entidades a DTOs (`RecommendationItem`), calcula sus prioridades de visualización y retorna el `RecommendationResponse` final.
 
 ---
 
@@ -93,3 +96,4 @@ Se rediseñó la suite de testing para garantizar la seguridad de tipos, el mane
 **Cómo ejecutar la verificación total por terminal:**
 ```bash
 mvn clean test
+```
