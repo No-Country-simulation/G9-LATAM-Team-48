@@ -1,6 +1,6 @@
 package com.alura.consumo.controller;
 
-import com.alura.consumo.dto.ConsumoMensual;
+import com.alura.consumo.dto.ConsumoListDto;
 import com.alura.consumo.service.ConsumoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/consumos")
@@ -25,8 +23,8 @@ public class ConsumoController {
 
     @GetMapping
     @Operation(summary = "Listar consumos mensuales (contrato frontend)")
-    public ResponseEntity<List<ConsumoMensual>> listar(
+    public ResponseEntity<ConsumoListDto> listar(
             @RequestParam(required = false) String tipoInmueble) {
-        return ResponseEntity.ok(consumoService.listar(tipoInmueble));
+        return ResponseEntity.ok(consumoService.listarConMeta(tipoInmueble));
     }
 }

@@ -33,7 +33,7 @@ function GraficoCostoMensual({
 
   const datos = mapConsumosChartRows(consumos, t, locale)
   const yDomain = yDomainWithPadding(datos.map((item) => item.costo))
-  const title = t('chart.costTitle', 'Costo estimado mensual (USD)')
+  const title = t('chart.costTitle')
   const tableCaption = `${title}. ${t('a11y.chartDataCaption', 'Datos del gráfico en tabla')}.`
 
   return (
@@ -44,7 +44,7 @@ function GraficoCostoMensual({
           <DemoSampleBadge variant={chartBadgeVariant} />
         </h3>
         <p className="text-muted small mb-3">
-          {t('chart.costHint', 'Costo estimado asociado al consumo de cada mes.')}
+          {t('chart.costHint')}
         </p>
 
         <ChartVisualShell className="flex-grow-1" style={{ minHeight: 280 }}>

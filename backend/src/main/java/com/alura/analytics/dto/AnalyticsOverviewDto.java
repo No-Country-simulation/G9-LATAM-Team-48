@@ -3,7 +3,7 @@ package com.alura.analytics.dto;
 import java.util.List;
 
 /**
- * Contrato alineado a {@code frontend/src/data/analyticsMock.js} y {@code GET /api/analytics/overview}.
+ * Contrato alineado a {@code GET /api/analytics/overview} (frontend analyticsService).
  */
 public record AnalyticsOverviewDto(
         List<String> months,

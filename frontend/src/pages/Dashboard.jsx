@@ -33,10 +33,11 @@ function Dashboard() {
     () => (tipoFetchKey ? { tiposInmueble: chartFilters.tiposInmueble } : {}),
     [tipoFetchKey, chartFilters.tiposInmueble],
   )
-  const { data: consumos, loading, error, refetch } = useFetch(
+  const { data: consumoBundle, loading, error, refetch } = useFetch(
     () => getConsumos(fetchConsumoOpts),
     [tipoFetchKey],
   )
+  const consumos = consumoBundle?.consumos
   const {
     data: analytics,
     loading: loadingAnalytics,
@@ -78,17 +79,13 @@ function Dashboard() {
   const kpiHint =
     resumen.mesesEnPeriodo > 0
       ? (periodFiltered
-          ? t(
-              'dashboard.kpiFilteredHint',
-              'KPIs calculados con los mismos meses que los gráficos ({count} meses).',
-            )
-          : t(
-              'dashboard.kpiAllMonthsHint',
-              'Suma de los {count} meses del benchmark (promedio del dataset por mes calendario; no es tu factura de un solo mes).',
-            )
+          ? t('dashboard.kpiFilteredHint')
+          : t('dashboard.kpiAllMonthsHint')
         ).replace('{count}', String(resumen.mesesEnPeriodo))
       : null
-  const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos)
+  const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos, {
+    consumosFromDataset: consumoBundle?.fromDataset,
+  })
   const fromDataset = chartBadgeVariant === 'dataset'
   const chartsReady = Boolean(analytics) && !analyticsError
   const showChartFilters = (consumos?.length ?? 0) >= 1
@@ -156,9 +153,6 @@ function Dashboard() {
           >
             {t(
               fromDataset ? 'dashboard.datasetSampleHint' : 'dashboard.demoSampleHint',
-              fromDataset
-                ? 'Promedios agregados del dataset del año anterior. No son tus análisis personales.'
-                : 'Datos de ejemplo para la demo. No provienen de tus análisis reales.',
             )}
           </div>
 

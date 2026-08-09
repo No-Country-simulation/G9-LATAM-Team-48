@@ -40,10 +40,12 @@ export default function ChartVisualShell({ children, className, style }) {
     return () => observer.disconnect()
   }, [])
 
+  const shellClass = ['chart-visual-shell', className].filter(Boolean).join(' ')
+
   return (
     <div
       ref={ref}
-      className={className}
+      className={shellClass}
       style={style}
       aria-hidden="true"
     >

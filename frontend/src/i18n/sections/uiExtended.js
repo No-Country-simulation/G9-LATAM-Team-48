@@ -1,4 +1,7 @@
 /** Traducciones ampliadas (dashboard, gráficos, historial) para idiomas sin pages-* completo. */
+import { monthsFull, monthsShort } from '../shared/monthsCalendar.js'
+import { CHART_EXTRA, DASHBOARD_KPI } from './uiExtendedChartDashboard.js'
+
 const FILTERS = {
   de: {
     title: 'Dashboard-Filter',
@@ -646,89 +649,28 @@ const HISTORIA = {
   },
 }
 
-const DASHBOARD = {
-  de: {
-    demoSampleHint:
-      'Beispieldaten für die Demo. Nicht aus Ihren echten Analysen.',
-    datasetSampleHint:
-      'Aggregierte Dataset-Durchschnitte des Vorjahres. Keine persönlichen Analysen.',
-    kpiFilteredHint: 'KPIs nutzen dieselben Monate wie die Diagramme ({count} Monate).',
-    kpiTotalUsage: 'Gesamtverbrauch (Zeitraum)',
-    kpiTotalCost: 'Gesamtkosten (Zeitraum)',
-    kpiTotalUsageYear: 'Gesamtverbrauch (Jahr)',
-    kpiTotalCostYear: 'Gesamtkosten (Jahr)',
-    kpiAvgUsage: 'Monatsdurchschnitt (Zeitraum)',
-    kpiAllMonthsHint:
-      'Summe von {count} Benchmark-Monaten (Dataset-Durchschnitt pro Kalendermonat).',
-    myAnalysisTitle: 'Meine KI-Analysen',
-    myAnalysisViewAll: 'Vollständigen Verlauf anzeigen',
-    myAnalysisEmpty: 'Noch keine gespeicherten Analysen. Starten Sie eine KI-Analyse.',
-  },
-  fr: {
-    demoSampleHint:
-      "Données d'exemple pour la démo. Ce ne sont pas vos analyses réelles.",
-    datasetSampleHint: "Moyennes agrégées du dataset de l'année précédente.",
-    kpiFilteredHint: 'Les KPI utilisent les mêmes mois que les graphiques ({count} mois).',
-    kpiTotalUsage: 'Consommation totale (période)',
-    kpiTotalCost: 'Coût total (période)',
-    kpiTotalUsageYear: 'Consommation totale (année)',
-    kpiTotalCostYear: 'Coût total (année)',
-    kpiAvgUsage: 'Moyenne mensuelle (période)',
-    kpiAllMonthsHint:
-      'Somme des {count} mois de référence (moyenne dataset par mois calendaire).',
-    myAnalysisTitle: 'Mes analyses IA',
-    myAnalysisViewAll: "Voir l'historique complet",
-    myAnalysisEmpty: 'Aucune analyse enregistrée. Lancez une analyse IA.',
-  },
-  it: {
-    demoSampleHint: 'Dati di esempio per la demo. Non provengono dalle tue analisi reali.',
-    datasetSampleHint: 'Medie aggregate del dataset dell\'anno precedente.',
-    kpiFilteredHint: 'I KPI usano gli stessi mesi dei grafici ({count} mesi).',
-    kpiTotalUsage: 'Consumo totale (periodo)',
-    kpiTotalCost: 'Costo totale (periodo)',
-    kpiTotalUsageYear: 'Consumo totale (anno)',
-    kpiTotalCostYear: 'Costo totale (anno)',
-    kpiAvgUsage: 'Media mensile (periodo)',
-    kpiAllMonthsHint:
-      'Somma di {count} mesi di riferimento (media dataset per mese di calendario).',
-    myAnalysisTitle: 'Le mie analisi IA',
-    myAnalysisViewAll: 'Vedi cronologia completa',
-    myAnalysisEmpty: 'Nessuna analisi salvata. Esegui un\'analisi IA.',
-  },
-  pt: {
-    demoSampleHint:
-      'Dados de exemplo para a demo. Não vêm das suas análises reais.',
-    datasetSampleHint: 'Médias agregadas do dataset do ano anterior.',
-    kpiFilteredHint: 'KPIs usam os mesmos meses dos gráficos ({count} meses).',
-    kpiTotalUsage: 'Consumo total (período)',
-    kpiTotalCost: 'Custo total (período)',
-    kpiTotalUsageYear: 'Consumo total (ano)',
-    kpiTotalCostYear: 'Custo total (ano)',
-    kpiAvgUsage: 'Média mensal (período)',
-    kpiAllMonthsHint:
-      'Soma de {count} meses de referência (média do dataset por mês).',
-    myAnalysisTitle: 'As minhas análises IA',
-    myAnalysisViewAll: 'Ver histórico completo',
-    myAnalysisEmpty: 'Ainda não tem análises guardadas. Faça uma análise IA.',
-  },
-}
-
 export function getUiExtendedPatch(code) {
   if (code === 'es' || code === 'en') return {}
 
   const filters = FILTERS[code]
   if (!filters) return {}
 
+  const chartExtra = CHART_EXTRA[code]
   const patch = {
-    chart: { filters },
+    chart: chartExtra ? { filters, ...chartExtra } : { filters },
     historiaConsumos: {
       filterPeriod: filters.period,
       ...HISTORIA[code],
     },
   }
 
-  if (DASHBOARD[code]) {
-    patch.dashboard = DASHBOARD[code]
+  if (DASHBOARD_KPI[code]) {
+    patch.dashboard = DASHBOARD_KPI[code]
+  }
+
+  if (monthsFull[code]) {
+    patch.months = monthsFull[code]
+    patch.monthsShort = monthsShort[code]
   }
 
   return patch

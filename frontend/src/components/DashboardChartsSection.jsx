@@ -11,7 +11,6 @@ import {
   filterAnalyticsOverview,
   filterConsumos,
   monthKeysFromConsumos,
-  hasActiveTiposInmuebleFilter,
   normalizeTiposInmueble,
   showCostCharts,
   showKwhCharts,
@@ -68,7 +67,7 @@ export default function DashboardChartsSection({
   const variationKey = variationValueKey(filters.metric)
 
   return (
-    <>
+    <div className="dashboard-charts-section">
       {kwhVisible && (
         <GraficoConsumo
           consumos={filteredConsumos}
@@ -121,6 +120,6 @@ export default function DashboardChartsSection({
         chartBadgeVariant={chartBadgeVariant}
         syncId={syncId}
       />
-    </>
+    </div>
   )
 }

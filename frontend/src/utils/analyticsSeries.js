@@ -1,6 +1,4 @@
-import { analyticsMock } from '../data/analyticsMock'
-
-const USE_MOCK = import.meta.env.VITE_USE_MOCK_API === 'true'
+import { formatMonthLabel } from './monthLabels'
 
 const EMPTY_OVERVIEW = {
   months: [],
@@ -17,13 +15,8 @@ export function resolveAnalyticsOverview(analytics) {
   if (analytics?.months?.length) {
     return analytics
   }
-  if (USE_MOCK) {
-    return { ...analyticsMock, fromDataset: false }
-  }
   return EMPTY_OVERVIEW
 }
-
-import { formatMonthLabel } from './monthLabels'
 
 export function buildActualVsPredictedSeries(t, analytics, locale = 'en') {
   const source = resolveAnalyticsOverview(analytics)

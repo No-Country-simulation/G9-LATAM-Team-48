@@ -124,8 +124,7 @@ Copiá [`.env.example`](./.env.example) → `.env`.
 |----------|-------------|
 | `VITE_API_URL` | Base URL del backend. En prod: `https://g9-latam-team-48-production.up.railway.app`. Vacío = misma origen (Docker/nginx). |
 | `VITE_USE_MOCK_AUTH` | `true` → login simulado; `false` → JWT real. |
-| `VITE_USE_MOCK_API` | `true` → datos mock; `false` → API Spring. |
-| `VITE_ML_API_URL` | FastAPI ML opcional (`:8000`). Si está definida, Análisis IA la intenta primero. |
+| `VITE_ML_API_URL` | FastAPI ML opcional (`:8000`). Análisis IA usa el backend → ML. |
 | `VITE_GOOGLE_CLIENT_ID` | Client ID OAuth **Web** (mismo valor que `GOOGLE_CLIENT_ID` en Railway). Sin esto, no se muestra el botón Google. |
 
 **Google Cloud Console** (OAuth Web): registrar **Authorized JavaScript origins** para cada URL de prueba, por ejemplo:
@@ -139,7 +138,6 @@ En Vercel (prod), ejemplo mínimo:
 ```env
 VITE_API_URL=https://g9-latam-team-48-production.up.railway.app
 VITE_USE_MOCK_AUTH=false
-VITE_USE_MOCK_API=false
 VITE_GOOGLE_CLIENT_ID=<tu-client-id>.apps.googleusercontent.com
 ```
 
@@ -324,7 +322,7 @@ Si hay sesión, se muestra el aviso de envío del resultado por correo al email 
 
 Documentación de contrato: [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md), [`ml-service/README.md`](../ml-service/README.md).
 
-Mock del dashboard (Data Analysis): `src/data/analyticsMock.js`.
+Dashboard y consumos: datos desde **`GET /api/consumos`**, **`/api/analytics/*`** (MySQL dataset o serie demo del backend).
 
 ---
 
@@ -332,7 +330,7 @@ Mock del dashboard (Data Analysis): `src/data/analyticsMock.js`.
 
 - **App shell**: header fijo, sidebar en desktop, offcanvas en móvil.
 - **Estados**: `Loader`, `ErrorState` (reintentar), `EmptyState`.
-- **Capa de servicios** con conmutación mock/API vía env.
+- **Capa de servicios** contra API Spring (`VITE_API_URL`).
 - **Responsive**: menú hamburguesa &lt; `md`, grid Bootstrap en tarjetas y gráficos.
 
 ---

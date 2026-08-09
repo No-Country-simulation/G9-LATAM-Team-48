@@ -58,15 +58,12 @@ function GraficoBreakdownTipoInmueble({
     fill: palette[index % palette.length],
   }))
 
-  const title = t('chart.breakdownTipoTitle', 'Consumo medio por tipo de inmueble')
-  const hint = t(
-    'chart.breakdownTipoHint',
-    'Promedio del dataset DS según el periodo seleccionado en los filtros.',
-  )
+  const title = t('chart.breakdownTipoTitle')
+  const hint = t('chart.breakdownTipoHint')
   const tableCaption = `${title}. ${t('a11y.chartDataCaption', 'Datos del gráfico en tabla')}.`
 
   return (
-    <div className="card shadow mt-4 w-100">
+    <div className="card shadow mt-4 w-100 chart-card">
       <div className="card-body">
         <h3 className="d-flex flex-wrap align-items-center gap-2">
           <span>{title}</span>
@@ -107,7 +104,7 @@ function GraficoBreakdownTipoInmueble({
           columns={[
             { key: 'segment', label: t('analysis.installationType', 'Tipo de instalación') },
             { key: 'avgKwh', label: t('chart.axisKwh') },
-            { key: 'samples', label: t('chart.breakdownSamples', 'Registros') },
+            { key: 'samples', label: t('chart.breakdownSamples') },
           ]}
           rows={datos.map((row) => ({
             key: row.key,

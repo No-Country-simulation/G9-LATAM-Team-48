@@ -7,16 +7,37 @@ import { useFetch } from '../hooks/useFetch'
 import { getConsumos, calcularResumen } from '../services/consumoService'
 import { getAnalyticsOverview } from '../services/analyticsService'
 import { useLocale } from '../context/LocaleContext'
+import { useDashboardFilters } from '../context/DashboardFiltersContext'
 import { resolveChartBadgeVariant } from '../utils/chartDataSource'
 import { formatMonthLabel } from '../utils/monthLabels'
+import {
+  tiposInmuebleFetchKey,
+} from '../utils/dashboardChartFilters'
+import { useMemo } from 'react'
 
 function Consumos() {
   const { t, locale } = useLocale()
-  const { data: consumos, loading, error, refetch } = useFetch(getConsumos)
-  const { data: analytics } = useFetch(getAnalyticsOverview)
+  const { chartFilters } = useDashboardFilters()
+  const tipoFetchKey = tiposInmuebleFetchKey(chartFilters)
+  const fetchOpts = useMemo(
+    () => (tipoFetchKey ? { tiposInmueble: chartFilters.tiposInmueble } : {}),
+    [tipoFetchKey, chartFilters.tiposInmueble],
+  )
 
+  const { data: consumoBundle, loading, error, refetch } = useFetch(
+    () => getConsumos(fetchOpts),
+    [tipoFetchKey],
+  )
+  const { data: analytics } = useFetch(
+    () => getAnalyticsOverview(fetchOpts),
+    [tipoFetchKey],
+  )
+
+  const consumos = consumoBundle?.consumos
   const resumen = calcularResumen(consumos || [])
-  const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos)
+  const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos, {
+    consumosFromDataset: consumoBundle?.fromDataset,
+  })
   const fromDataset = chartBadgeVariant === 'dataset'
 
   return (

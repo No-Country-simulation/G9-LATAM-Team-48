@@ -3,6 +3,7 @@ package com.alura.analytics.service;
 import com.alura.analytics.dto.AnalyticsBreakdownDto;
 import com.alura.analytics.dto.AnalyticsBreakdownItem;
 import com.alura.analytics.dto.AnalyticsOverviewDto;
+import com.alura.dataset.DatasetDemoFallback;
 import com.alura.dataset.DatasetFeatureEngineeringDao;
 import com.alura.dataset.DatasetMonthKeys;
 import com.alura.dataset.DatasetTipoInmuebleFilter;
@@ -18,17 +19,7 @@ import java.util.Set;
 @Service
 public class AnalyticsService {
 
-    private static final AnalyticsOverviewDto FALLBACK = new AnalyticsOverviewDto(
-            List.of("january", "february", "march", "april", "may", "june"),
-            List.of(320, 340, 310, 360, 350, 380),
-            List.of(315, 335, 325, 355, 365, 390),
-            List.of(95, 110, 88, 125, 118, 140),
-            List.of(225, 230, 222, 235, 232, 240),
-            "MEDIUM_CONSUMPTION",
-            0.87,
-            List.of(240, 255, 232, 270, 262, 285),
-            false
-    );
+    private static final AnalyticsOverviewDto FALLBACK = DatasetDemoFallback.analyticsOverview();
 
     private static final AnalyticsBreakdownDto FALLBACK_BREAKDOWN = new AnalyticsBreakdownDto(
             "tipo_inmueble",

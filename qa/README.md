@@ -15,7 +15,7 @@ Aquí vive la checklist de pruebas y scripts de smoke; no modifica el código de
 | [run-mail-local.ps1](./run-mail-local.ps1) | Flujo completo verify / reset contra `localhost:8080` |
 | [run-p1.ps1](./run-p1.ps1) | Corrida P1 contra prod (consumos/historia/admin/contacto/roles) |
 | [inspect-google-i18n.ps1](./inspect-google-i18n.ps1) | Inspección Client ID + i18n en el bundle de Vercel |
-| [NAS-DOCKER.md](./NAS-DOCKER.md) | Stack en QNAP (`192.168.0.116`, `:3000` / `:8082`, `docker run`) |
+| [import-dataset-railway.ps1](./import-dataset-railway.ps1) | Carga `03_feature_engineering.csv` → MySQL (activa `fromDataset` en API) |
 | [load-qa-secrets.ps1](./load-qa-secrets.ps1) + [secrets.local.ps1.example](./secrets.local.ps1.example) | Credenciales QA fuera de Git |
 
 Rama de deploy de referencia: `Jorge-martinez`.

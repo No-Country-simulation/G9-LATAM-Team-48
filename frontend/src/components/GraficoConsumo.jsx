@@ -38,14 +38,14 @@ function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo', syncId }) {
   const tableCaption = `${t('chart.title')}. ${t('a11y.chartDataCaption', 'Datos del gráfico en tabla')}.`
 
   return (
-    <div className="card shadow mt-4">
+    <div className="card shadow mt-4 chart-card">
       <div className="card-body">
         <h3 id="chart-consumo-title" className="d-flex flex-wrap align-items-center gap-2">
           <span>{t('chart.title')}</span>
           <DemoSampleBadge variant={chartBadgeVariant} />
         </h3>
 
-        <ChartVisualShell>
+        <ChartVisualShell className="chart-visual-shell--wide">
           <ResponsiveContainer width="100%" height={300}>
           <LineChart data={datos} syncId={syncId} margin={{ top: 8, right: 12, left: 4, bottom: 4 }}>
             <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />

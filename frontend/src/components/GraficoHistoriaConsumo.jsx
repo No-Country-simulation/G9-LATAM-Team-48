@@ -127,7 +127,7 @@ function GraficoHistoriaConsumo({ points = [] }) {
 
   if (datos.length < 2) {
     return (
-      <div className="card shadow-sm mb-4">
+      <div className="card shadow-sm mb-4 chart-card">
         <div className="card-body">
           <h2 className="h5 mb-1">
             {t('historiaConsumos.chartTitle', 'Evolución del consumo')}
@@ -185,7 +185,7 @@ function GraficoHistoriaConsumo({ points = [] }) {
   }
 
   return (
-    <div className="card shadow-sm mb-4">
+    <div className="card shadow-sm mb-4 chart-card">
       <div className="card-body">
         <h2 className="h5 mb-1">
           {t('historiaConsumos.chartTitle', 'Evolución del consumo')}
@@ -198,7 +198,11 @@ function GraficoHistoriaConsumo({ points = [] }) {
         </p>
         <p className={`small mb-3 ${trendClass}`}>{trendText}</p>
 
-        <div ref={wrapRef} style={{ width: '100%', height: chartHeight, minHeight: chartHeight }}>
+        <div
+          ref={wrapRef}
+          className="chart-visual-shell chart-visual-shell--wide"
+          style={{ width: '100%', height: chartHeight, minHeight: chartHeight }}
+        >
           <LineChart
             width={Math.max(width, 320)}
             height={chartHeight}

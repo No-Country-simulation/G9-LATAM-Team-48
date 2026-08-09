@@ -33,7 +33,7 @@ Tras el deploy, cargá filas una sola vez:
 | **Local (Laragon)** | `scripts/import-feature-engineering-dataset.ps1` (`LOAD DATA`, rápido) |
 | **Railway** | `pip install pymysql` + `scripts/import-feature-engineering-dataset-remote.ps1` (`-Replace` si reimportás). Railway **no** permite `LOAD DATA LOCAL`; el disco del plan puede limitar el import completo (~88k filas suele alcanzar para gráficos). |
 
-CSV: `scripts/fetch-feature-engineering-csv.ps1` (~150 MB). Sin filas en la tabla, `/api/consumos` y `/api/analytics/overview` usan fallback de demo. Con datos, responden `fromDataset: true` en analytics.
+CSV: `scripts/fetch-feature-engineering-csv.ps1` (~150 MB). Sin filas en la tabla, `/api/consumos` responde `{ fromDataset: false, consumos: [...] }` (12 meses demo) y `/api/analytics/overview` usa el mismo benchmark. Con datos importados, ambos marcan `fromDataset: true`.
 
 `POST /api/analisis` es **público** (anonymous ok): guarda la consulta y deja el email en `PENDING` si se envía.
 `GET /api/analisis/mis` (y reenvío de email) **requieren login** (JWT).

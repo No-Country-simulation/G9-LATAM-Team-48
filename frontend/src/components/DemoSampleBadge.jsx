@@ -11,7 +11,7 @@ function DemoSampleBadge({ className = '', variant = 'demo' }) {
         className={`badge text-bg-info fw-normal align-middle ${className}`.trim()}
         title={t('dashboard.datasetSampleHint')}
       >
-        {t('dashboard.datasetSample', 'Dataset DS')}
+        {t('dashboard.datasetSample')}
       </span>
     )
   }

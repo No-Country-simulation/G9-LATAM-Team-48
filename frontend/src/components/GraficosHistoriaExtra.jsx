@@ -179,7 +179,11 @@ function SavingsChart({ points }) {
         'Potencial de ahorro estimado en cada consulta.',
       )}
     >
-      <div ref={wrapRef} style={{ width: '100%', height: chartHeight, minHeight: chartHeight }}>
+      <div
+        ref={wrapRef}
+        className="chart-visual-shell"
+        style={{ width: '100%', height: chartHeight, minHeight: chartHeight }}
+      >
         <LineChart
           width={Math.max(width, 280)}
           height={chartHeight}
@@ -250,7 +254,11 @@ function LevelChart({ points }) {
         'Cuántas consultas cayeron en cada nivel de eficiencia.',
       )}
     >
-      <div ref={wrapRef} style={{ width: '100%', height: chartHeight, minHeight: chartHeight }}>
+      <div
+        ref={wrapRef}
+        className="chart-visual-shell"
+        style={{ width: '100%', height: chartHeight, minHeight: chartHeight }}
+      >
         <BarChart
           width={Math.max(width, 280)}
           height={chartHeight}

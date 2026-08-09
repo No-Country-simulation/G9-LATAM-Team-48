@@ -1,8 +1,5 @@
 import api from './api'
-import consumoData from '../data/consumo.json'
-import { USE_MOCK_API, mockResponse } from './mock'
 import { tiposInmuebleQueryValue } from '../utils/dashboardChartFilters'
-import { scaleConsumosByTipo } from '../utils/dashboardTipoScale'
 
 function tipoQueryParam(tiposInmueble) {
   const value = tiposInmuebleQueryValue(tiposInmueble)
@@ -10,16 +7,23 @@ function tipoQueryParam(tiposInmueble) {
   return { tipoInmueble: value }
 }
 
+function normalizeConsumoResponse(data) {
+  if (Array.isArray(data)) {
+    return { consumos: data, fromDataset: false }
+  }
+  return {
+    consumos: data?.consumos ?? [],
+    fromDataset: Boolean(data?.fromDataset),
+  }
+}
+
+/** @returns {Promise<{ consumos: Array, fromDataset: boolean }>} */
 export async function getConsumos(options = {}) {
   const tiposInmueble = options.tiposInmueble ?? options.tipoInmueble
-  if (USE_MOCK_API) {
-    return mockResponse(scaleConsumosByTipo(consumoData, tiposInmueble))
-  }
-
   const { data } = await api.get('/api/consumos', {
     params: tipoQueryParam(tiposInmueble),
   })
-  return data
+  return normalizeConsumoResponse(data)
 }
 
 export function calcularResumen(consumos) {

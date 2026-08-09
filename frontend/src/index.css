@@ -3,6 +3,10 @@
   --motion-fast: 120ms;
   --motion-base: 200ms;
   --focus-ring: 0 0 0 0.2rem rgba(13, 110, 253, 0.35);
+  /* Recharts: evita barras/líneas excesivamente anchas en monitores grandes */
+  --chart-plot-max-width: 920px;
+  --chart-plot-wide-max-width: 1120px;
+  --dashboard-charts-max-width: 1440px;
 }
 
 html,
@@ -112,6 +116,34 @@ html[data-bs-theme='light'] body {
 .page-content {
   max-width: 100%;
   overflow-x: hidden;
+}
+
+/* Área de gráficos: tope en desktop y centrado (el card puede ser ancho; el plot no) */
+.chart-visual-shell {
+  width: 100%;
+  max-width: var(--chart-plot-max-width);
+  margin-inline: auto;
+}
+
+.chart-visual-shell--wide {
+  max-width: var(--chart-plot-wide-max-width);
+}
+
+.dashboard-charts-section {
+  width: 100%;
+  max-width: var(--dashboard-charts-max-width);
+  margin-inline: auto;
+}
+
+.chart-card {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .chart-card {
+    max-width: var(--dashboard-charts-max-width);
+    margin-inline: auto;
+  }
 }
 
 /* ===== Badge equipo en Contáctanos ===== */

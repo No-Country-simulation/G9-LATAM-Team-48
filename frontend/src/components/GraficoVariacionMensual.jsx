@@ -46,11 +46,11 @@ function GraficoVariacionMensual({
 
   const isCost = valueKey === 'costo'
   const title = isCost
-    ? t('chart.variationCostTitle', 'Variación mensual del costo (%)')
-    : t('chart.variationKwhTitle', 'Variación mensual del consumo (%)')
+    ? t('chart.variationCostTitle')
+    : t('chart.variationKwhTitle')
   const hint = isCost
-    ? t('chart.variationCostHint', 'Cambio porcentual respecto al mes anterior (costo).')
-    : t('chart.variationKwhHint', 'Cambio porcentual respecto al mes anterior (kWh).')
+    ? t('chart.variationCostHint')
+    : t('chart.variationKwhHint')
   const tableCaption = `${title}. ${t('a11y.chartDataCaption', 'Datos del gráfico en tabla')}.`
 
   return (
@@ -87,7 +87,7 @@ function GraficoVariacionMensual({
               />
               <Bar
                 dataKey="variacionPct"
-                name={t('chart.variationSeries', 'Variación')}
+                name={t('chart.variationSeries')}
                 radius={[4, 4, 0, 0]}
               >
                 {datos.map((entry) => (
@@ -106,7 +106,7 @@ function GraficoVariacionMensual({
           caption={tableCaption}
           columns={[
             { key: 'mes', label: t('chart.axisMonth') },
-            { key: 'variacionPct', label: t('chart.variationSeries', 'Variación') },
+            { key: 'variacionPct', label: t('chart.variationSeries') },
           ]}
           rows={datos.map((row) => ({
             key: row.mesKey,

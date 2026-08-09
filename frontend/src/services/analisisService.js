@@ -1,6 +1,5 @@
 import api from './api'
 import { analizarConsumo as analizarLocal } from './iaService'
-import { USE_MOCK_API, mockResponse } from './mock'
 import { TOKEN_STORAGE_KEY, USER_STORAGE_KEY } from '../utils/session'
 
 function mapMlResponse(data) {
@@ -27,13 +26,6 @@ function hasStoredSession() {
  * Con sesion: asocia usuario + email. Sin login: consulta anonima (emailStatus SKIPPED).
  */
 export async function analizarConsumo(datos) {
-  if (USE_MOCK_API) {
-    return mockResponse(
-      { ...analizarLocal(datos), source: 'local', emailStatus: 'SKIPPED' },
-      600,
-    )
-  }
-
   // Sin sesion: no enviar Bearer (evita 401 por token vencido en backends viejos)
   const { data } = await api.post('/api/analisis', datos, {
     skipAuth: !hasStoredSession(),
@@ -45,11 +37,5 @@ export async function analizarConsumo(datos) {
  * Fallback local (backend caido). No persiste ni envia email.
  */
 export async function analizarConsumoLocal(datos) {
-  if (USE_MOCK_API) {
-    return mockResponse(
-      { ...analizarLocal(datos), source: 'local', emailStatus: 'SKIPPED' },
-      600,
-    )
-  }
   return { ...analizarLocal(datos), source: 'local', emailStatus: 'SKIPPED' }
 }
