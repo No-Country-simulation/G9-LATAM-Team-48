@@ -25,3 +25,4 @@ target/
 /docs/temp/
 
 .vercel
+.vscode/
