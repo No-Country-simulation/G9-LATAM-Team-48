@@ -1,5 +1,6 @@
 package com.alura.recommendation.rules;
 
+import com.alura.common.enums.ConsumptionCategory;
 import com.alura.recommendation.dto.RecommendationItem;
 import com.alura.recommendation.dto.RecommendationRequest;
 import com.alura.recommendation.dto.TipKey;
@@ -8,10 +9,6 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-/**
- * Regla SHAP #1: Consumo histórico por persona.
- * Si el consumo per cápita es muy alto, dispara esta recomendación.
- */
 @Component
 public class HighOccupantConsumptionRule implements RecommendationRule {
 
@@ -31,8 +28,7 @@ public class HighOccupantConsumptionRule implements RecommendationRule {
             return Optional.empty();
         }
         
-        // Si el modelo dijo "INEFICIENTE", es una ALERTA crítica. Si es "MODERADO", es una OPORTUNIDAD preventiva.
-        String type = "INEFICIENTE".equals(request.getCategory().name()) ? "ALERTA" : "OPORTUNIDAD";
+        String type = ConsumptionCategory.INEFICIENTE.equals(request.getCategory()) ? "ALERTA" : "OPORTUNIDAD";
         
         return Optional.of(RecommendationItem.builder()
                 .tipKey(TipKey.HIGH_CONSUMPTION_PER_PERSON)

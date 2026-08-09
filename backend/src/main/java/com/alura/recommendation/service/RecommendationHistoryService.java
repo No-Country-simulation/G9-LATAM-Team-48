@@ -1,7 +1,5 @@
 package com.alura.recommendation.service;
 
-import com.alura.common.enums.ConsumptionCategory;
-import com.alura.recommendation.dto.RecommendationItem;
 import com.alura.recommendation.dto.TipKey;
 import com.alura.recommendation.model.RecommendationEntity;
 import com.alura.recommendation.model.RecommendationStatus;
@@ -12,13 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Servicio de soporte delegado para gestionar el ciclo de vida, filtrado antiduplicados
+ * Servicio de soporte delegado para gestionar el ciclo de vida, filtrado antiduplicados O(1)
  * y persistencia en base de datos de las recomendaciones de un usuario.
  */
 @Service
@@ -34,17 +33,20 @@ public class RecommendationHistoryService {
     }
 
     /**
-     * Filtra los candidatos para descartar los ya activos y persiste las novedades.
+     * Filtra los candidatos usando un Set (O(1)) para descartar los activos y persiste las novedades.
      */
     @Transactional
     public List<RecommendationEntity> filterAndPersistNovedades(Long userId, Set<TipKey> candidateKeys) {
         
         // 1. CONSULTA BDD: Buscamos qué recomendaciones ya tiene ACTIVAS este usuario
-        List<TipKey> activeUserKeys = userRecRepository.findTipKeysByUserIdAndStatus(userId, RecommendationStatus.ACTIVE);
+        List<TipKey> activeUserKeysList = userRecRepository.findTipKeysByUserIdAndStatus(userId, RecommendationStatus.ACTIVE);
+        
+        // Convertimos a Set para garantizar búsqueda O(1) altamente eficiente en el hot-path
+        Set<TipKey> activeUserKeysSet = new HashSet<>(activeUserKeysList);
 
-        // 2. FILTRO ANTIDUPLICADOS: Dejamos solo los candidatos que NO están activos en la BDD
+        // 2. FILTRO ANTIDUPLICADOS O(1)
         List<TipKey> newKeys = candidateKeys.stream()
-                .filter(key -> !activeUserKeys.contains(key))
+                .filter(key -> !activeUserKeysSet.contains(key))
                 .toList();
 
         List<RecommendationEntity> finalEntities = new ArrayList<>();
@@ -53,7 +55,7 @@ public class RecommendationHistoryService {
         if (!newKeys.isEmpty()) {
             Map<TipKey, RecommendationEntity> catalogMap = catalogRepository.findByTipKeyIn(newKeys).stream()
                     .collect(Collectors.toMap(
-                            (RecommendationEntity entity) -> entity.getTipKey(), 
+                            RecommendationEntity::getTipKey, 
                             entity -> entity
                     ));
 

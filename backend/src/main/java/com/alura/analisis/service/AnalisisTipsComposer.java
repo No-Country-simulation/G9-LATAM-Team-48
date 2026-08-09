@@ -5,6 +5,7 @@ import com.alura.prediction.dto.PredictionResponse;
 import com.alura.recommendation.dto.RecommendationItem;
 import com.alura.recommendation.dto.RecommendationRequest;
 import com.alura.recommendation.dto.RecommendationResponse;
+import com.alura.recommendation.dto.TipKey;
 import com.alura.recommendation.service.RecommendationService;
 import org.springframework.stereotype.Component;
 
@@ -33,7 +34,7 @@ public class AnalisisTipsComposer {
 
     public List<String> compose(PredictionResponse result, Map<String, Object> features, String userId) {
         if (result == null) {
-            return List.of("default");
+            return List.of(TipKey.MEDIUM_CONSUMPTION_BASE.name().toLowerCase(Locale.ROOT));
         }
         String nivelKey = result.nivelKey() != null ? result.nivelKey() : "moderate";
 
@@ -72,7 +73,7 @@ public class AnalisisTipsComposer {
         }
 
         if (merged.isEmpty()) {
-            merged.add("default");
+            merged.add(TipKey.MEDIUM_CONSUMPTION_BASE.name().toLowerCase(Locale.ROOT));
         }
 
         return new ArrayList<>(merged).stream().limit(MAX_TIPS).toList();
@@ -80,12 +81,12 @@ public class AnalisisTipsComposer {
 
     private Long parseUserId(String userId) {
         if (userId == null || userId.isBlank()) {
-            return 1L;
+            throw new IllegalArgumentException("El userId es obligatorio para componer las recomendaciones del historial");
         }
         try {
             return Long.valueOf(userId.trim());
         } catch (NumberFormatException e) {
-            return 1L;
+            throw new IllegalArgumentException("El userId proporcionado no es un número válido: " + userId, e);
         }
     }
 
@@ -112,9 +113,9 @@ public class AnalisisTipsComposer {
 
     private static List<String> baseTipsForNivel(String nivelKey) {
         return switch (String.valueOf(nivelKey).toLowerCase(Locale.ROOT)) {
-            case "efficient" -> List.of("keep", "monitor");
-            case "inefficient" -> List.of("replace", "insulation", "schedules");
-            default -> List.of("led", "appliances", "peak");
+            case "efficient" -> List.of(TipKey.LOW_CONSUMPTION_BASE.name().toLowerCase(Locale.ROOT));
+            case "inefficient" -> List.of(TipKey.HIGH_CONSUMPTION_BASE.name().toLowerCase(Locale.ROOT), TipKey.INSULATION_DEFICIENT.name().toLowerCase(Locale.ROOT));
+            default -> List.of(TipKey.MEDIUM_CONSUMPTION_BASE.name().toLowerCase(Locale.ROOT), TipKey.LED_UPGRADE_NEEDED.name().toLowerCase(Locale.ROOT));
         };
     }
 }

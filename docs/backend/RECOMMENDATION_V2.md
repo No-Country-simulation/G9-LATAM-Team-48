@@ -47,7 +47,7 @@ Crea la infraestructura relacional base:
     *   `status` (VARCHAR) - `ACTIVE` (activa en el front), `DISMISSED` (descartada/resuelta).
 
 ### 2.2. Migración V10 (`V10__insert_recommendation_catalog.sql`)
-Puebla la tabla `recommendation_catalog` con 33 recomendaciones exhaustivas que cubren los 8 dominios de análisis SHAP del modelo (Perfiles de consumo, Climatización, Aislamiento Térmico, Iluminación, Consumo Standby, Densidad de Equipos, Horarios Comerciales y Hábitos Per Cápita).
+Puebla la tabla `recommendation_catalog` con recomendaciones maestras que cubren los dominios de análisis SHAP del modelo.
 
 ---
 
