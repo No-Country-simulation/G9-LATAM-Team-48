@@ -61,6 +61,8 @@ spring:
           writetimeout: 10000
 
 app:
+  cli:
+    enabled: ${APP_CLI_ENABLED:true}
   persistence:
     type: ${APP_PERSISTENCE_TYPE:in-memory}
   frontend-base-url: ${FRONTEND_BASE_URL:http://localhost:5173}
