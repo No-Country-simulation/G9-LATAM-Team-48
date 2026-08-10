@@ -1148,24 +1148,6 @@ Esta configuración permite mantener resultados consistentes en operaciones que 
 
 **EnergIA** se encuentra en una etapa avanzada de desarrollo, con el flujo principal de ciencia de datos estructurado y documentado desde la exploración inicial de los datos hasta la preparación del modelo para su integración.
 
-Actualmente, el proyecto cuenta con:
-
-- Análisis exploratorio inicial de los datos.
-- Proceso de limpieza y corrección de inconsistencias.
-- Análisis exploratorio posterior a la limpieza.
-- Imputación de valores faltantes.
-- Codificación de variables categóricas.
-- Ingeniería de características.
-- Entrenamiento y comparación de diferentes modelos de clasificación.
-- Selección de **LightGBM** como algoritmo principal.
-- Construcción de una versión final desplegable basada en 55 características verificadas.
-- Evaluación del modelo sobre un conjunto de prueba independiente.
-- Documentación técnica y metodológica de las principales etapas.
-- Definición de los campos necesarios para integrar el modelo con la aplicación.
-- Preparación del proceso de exportación de los artefactos necesarios para realizar inferencias.
-
----
-
 ## 14. Equipo
 
 El proyecto **EnergIA** fue desarrollado como un trabajo colaborativo, distribuyendo las actividades entre las diferentes etapas necesarias para construir la solución de ciencia de datos.
