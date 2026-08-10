@@ -35,9 +35,9 @@ export const pagesCa = {
   "chart": {
     "title": "Consum energètic mensual (kWh)",
     "actualVsPredicted": "Real vs predicció (kWh)",
-    "actualVsPredictedHint": "Mock per a Data Analysis: comparar el consum mesurat amb la predicció del model.",
+    "actualVsPredictedHint": "Mitjanes del dataset: consum mensual vs mes anterior (tendència).",
     "peakVsOffPeak": "Punta vs vall (kWh)",
-    "peakVsOffPeakHint": "Mock per a Data Analysis: desglossar el consum en hores punta i fora de punta.",
+    "peakVsOffPeakHint": "Mitjanes del dataset: repartició hores punta i vall.",
     "seriesActual": "Real",
     "seriesPredicted": "Predit",
     "seriesPeak": "Punta",

@@ -35,9 +35,9 @@ export const pagesNl = {
   "chart": {
     "title": "Maandelijks energieverbruik (kWh)",
     "actualVsPredicted": "Werkelijk vs voorspelling (kWh)",
-    "actualVsPredictedHint": "Mock voor Data Analysis: gemeten verbruik vergelijken met de modelvoorspelling.",
+    "actualVsPredictedHint": "Datasetgemiddelden: maandelijks verbruik vs vorige maand (trend).",
     "peakVsOffPeak": "Piek vs daluren (kWh)",
-    "peakVsOffPeakHint": "Mock voor Data Analysis: verbruik splitsen in piek- en daluren.",
+    "peakVsOffPeakHint": "Datasetgemiddelden: verdeling piek- en daluren.",
     "seriesActual": "Werkelijk",
     "seriesPredicted": "Voorspeld",
     "seriesPeak": "Piek",

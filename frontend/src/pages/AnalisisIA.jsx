@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
-import { analizarConsumo, analizarConsumoLocal } from '../services/analisisService'
+import { analizarConsumo } from '../services/analisisService'
 import { INSTALLATION_TYPES } from '../services/iaService'
 import {
   AISLAMIENTO_TERMICO,
@@ -205,17 +205,10 @@ function AnalisisIA() {
     const payload = payloadFromForm()
 
     try {
-      // Siempre POST /api/analisis: guarda consulta (anonima o con usuario)
       const respuesta = await analizarConsumo(payload)
       setResultado(respuesta)
     } catch (err) {
-      try {
-        const local = await analizarConsumoLocal(payload)
-        setResultado(local)
-        setError(null)
-      } catch {
-        setError(err?.response?.data?.message || err?.message || t('analysis.failed'))
-      }
+      setError(err?.response?.data?.message || err?.message || t('analysis.failed'))
     } finally {
       setLoading(false)
     }

@@ -163,7 +163,6 @@ export default {
       googleScriptFailed:
         'No se pudo cargar Google Sign-In (revisá bloqueadores de anuncios o la consola OAuth)',
       googleNoCredential: 'Google no devolvió credenciales',
-      googleNotAvailableInMock: 'Google no está disponible en modo mock',
       network: 'No se pudo conectar con el backend',
       noToken: 'El backend no devolvió un token',
     },

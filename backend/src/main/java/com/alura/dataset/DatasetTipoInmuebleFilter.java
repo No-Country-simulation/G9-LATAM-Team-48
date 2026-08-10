@@ -111,31 +111,6 @@ public final class DatasetTipoInmuebleFilter {
         };
     }
 
-    /** Escala demo/fallback cuando no hay filas del dataset en DB (promedio si hay varios tipos). */
-    public static double demoScaleFactor(String rawParam) {
-        List<String> tipos = parseParam(rawParam);
-        if (tipos.isEmpty() || tipos.size() >= ALL_KEYS.size()) {
-            return 1.0;
-        }
-        double sum = 0;
-        for (String key : tipos) {
-            sum += switch (key) {
-                case "APARTAMENTO" -> 220.0 / 300.0;
-                case "PEQUENO_ESTABLECIMIENTO_COMERCIAL" -> 650.0 / 300.0;
-                default -> 1.0;
-            };
-        }
-        return sum / tipos.size();
-    }
-
-    public static String segmentLabel(String key) {
-        return switch (key) {
-            case "APARTAMENTO" -> "Apartamento";
-            case "PEQUENO_ESTABLECIMIENTO_COMERCIAL" -> "Pequeño Establecimiento Comercial";
-            default -> "Casa Unifamiliar";
-        };
-    }
-
     public static List<String> allKeys() {
         return ALL_KEYS;
     }

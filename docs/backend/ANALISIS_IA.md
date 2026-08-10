@@ -147,7 +147,6 @@ Ver JSON de ejemplo arriba. Validación en `AnalisisPayload` (Bean Validation).
 ## Frontend
 
 ```env
-VITE_USE_MOCK_API=false
 VITE_API_URL=http://localhost:8080
 ```
 

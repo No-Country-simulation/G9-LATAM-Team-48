@@ -35,9 +35,9 @@ export const pagesRo = {
   "chart": {
     "title": "Consum energetic lunar (kWh)",
     "actualVsPredicted": "Real vs predicție (kWh)",
-    "actualVsPredictedHint": "Mock pentru Data Analysis: compară consumul măsurat cu predicția modelului.",
+    "actualVsPredictedHint": "Medii dataset: consum lunar vs luna anterioară (trend).",
     "peakVsOffPeak": "Vârf vs în afara vârfului (kWh)",
-    "peakVsOffPeakHint": "Mock pentru Data Analysis: împarte consumul pe ore de vârf și restul.",
+    "peakVsOffPeakHint": "Medii dataset: împărțire ore de vârf și ore reduse.",
     "seriesActual": "Real",
     "seriesPredicted": "Predicție",
     "seriesPeak": "Vârf",

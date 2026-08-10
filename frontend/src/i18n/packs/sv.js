@@ -178,10 +178,10 @@ export default {
     title: 'Månatlig energiförbrukning (kWh)',
     actualVsPredicted: 'Faktisk vs prognos (kWh)',
     actualVsPredictedHint:
-      'Mock för dataanalys: jämför uppmätt förbrukning med modellens prognos.',
+      'Datasetmedel: månadsförbrukning vs föregående månad (trend).',
     peakVsOffPeak: 'Hög- vs lågtrafik (kWh)',
     peakVsOffPeakHint:
-      'Mock för dataanalys: dela upp förbrukningen i hög- och lågtrafiktimmar.',
+      'Datasetmedel: fördelning peak- och låglast.',
     seriesActual: 'Faktisk',
     seriesPredicted: 'Prognos',
     seriesPeak: 'Högtrafik',

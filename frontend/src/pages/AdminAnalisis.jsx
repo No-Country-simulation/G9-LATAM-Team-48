@@ -77,7 +77,7 @@ function AdminAnalisis() {
     setLoading(true)
     setError(null)
     try {
-      if (!token || String(token).startsWith('mock-token')) {
+      if (!token) {
         setError(t('adminAnalisis.sessionInvalid'))
         setRows([])
         setTotalElements(0)

@@ -35,9 +35,9 @@ export const pagesIt = {
   "chart": {
     "title": "Consumo energetico mensile (kWh)",
     "actualVsPredicted": "Reale vs previsione (kWh)",
-    "actualVsPredictedHint": "Mock per Data Analysis: confrontare il consumo misurato con la previsione del modello.",
+    "actualVsPredictedHint": "Medie dataset: consumo mensile vs mese precedente (trend).",
     "peakVsOffPeak": "Picco vs fuori picco (kWh)",
-    "peakVsOffPeakHint": "Mock per Data Analysis: suddividere il consumo in ore di punta e fuori punta.",
+    "peakVsOffPeakHint": "Medie dataset: ripartizione tra ore di punta e fuori punta.",
     "seriesActual": "Reale",
     "seriesPredicted": "Previsto",
     "seriesPeak": "Picco",

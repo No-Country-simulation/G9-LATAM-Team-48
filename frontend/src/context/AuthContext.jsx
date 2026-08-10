@@ -13,7 +13,6 @@ import {
   bootstrapAuthStorage,
   clearStoredSession,
   emitSessionExpired,
-  getStoredUser,
   isAccessTokenExpired,
   normalizeUser,
 } from '../utils/session'
@@ -29,9 +28,7 @@ function clearSession(setUser, setToken) {
 const initialAuth = bootstrapAuthStorage()
 
 function shouldHydrate(token) {
-  if (!token) return false
-  if (String(token).startsWith('mock-token')) return false
-  return true
+  return Boolean(token)
 }
 
 function persistSession(data, setUser, setToken, onRestored) {
@@ -95,7 +92,6 @@ export function AuthProvider({ children }) {
   function checkTokenLifetime() {
     const currentToken = localStorage.getItem(TOKEN_STORAGE_KEY)
     if (!currentToken) return
-    if (String(currentToken).startsWith('mock-token')) return
     if (isAccessTokenExpired(currentToken)) {
       expireSession()
     }
@@ -142,15 +138,6 @@ export function AuthProvider({ children }) {
       if (isAccessTokenExpired(currentToken)) {
         if (!cancelled) expireSession()
         if (!cancelled) setHydrating(false)
-        return
-      }
-
-      if (String(currentToken).startsWith('mock-token')) {
-        if (!cancelled) {
-          setUser(getStoredUser())
-          setAuthReady(true)
-          setHydrating(false)
-        }
         return
       }
 

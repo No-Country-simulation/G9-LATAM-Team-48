@@ -2,10 +2,8 @@ package com.alura.consumo.service;
 
 import com.alura.consumo.dto.ConsumoListDto;
 import com.alura.consumo.dto.ConsumoMensual;
-import com.alura.dataset.DatasetDemoFallback;
 import com.alura.dataset.DatasetFeatureEngineeringDao;
 import com.alura.dataset.DatasetMonthKeys;
-import com.alura.dataset.DatasetTipoInmuebleFilter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,37 +19,24 @@ public class ConsumoService {
     }
 
     public ConsumoListDto listarConMeta(String tipoInmueble) {
-        if (datasetDao.hasRows()) {
-            List<Map<String, Object>> rows = datasetDao.avgConsumoByMesNumero(tipoInmueble);
-            if (!rows.isEmpty()) {
-                List<ConsumoMensual> consumos = rows.stream()
-                        .map(row -> new ConsumoMensual(
-                                DatasetMonthKeys.fromMesNumero(intValue(row.get("mes_numero"))),
-                                round(row.get("consumo")),
-                                round(row.get("costo"))))
-                        .toList();
-                return new ConsumoListDto(true, consumos);
-            }
+        if (!datasetDao.hasRows()) {
+            return new ConsumoListDto(false, List.of());
         }
-        return new ConsumoListDto(false, scaleFallback(tipoInmueble));
+        List<Map<String, Object>> rows = datasetDao.avgConsumoByMesNumero(tipoInmueble);
+        if (rows.isEmpty()) {
+            return new ConsumoListDto(false, List.of());
+        }
+        List<ConsumoMensual> consumos = rows.stream()
+                .map(row -> new ConsumoMensual(
+                        DatasetMonthKeys.fromMesNumero(intValue(row.get("mes_numero"))),
+                        round(row.get("consumo")),
+                        round(row.get("costo"))))
+                .toList();
+        return new ConsumoListDto(true, consumos);
     }
 
     public boolean isServingDataset() {
         return datasetDao.hasRows();
-    }
-
-    private List<ConsumoMensual> scaleFallback(String tipoInmueble) {
-        double factor = DatasetTipoInmuebleFilter.demoScaleFactor(tipoInmueble);
-        List<ConsumoMensual> base = DatasetDemoFallback.consumos();
-        if (factor == 1.0) {
-            return base;
-        }
-        return base.stream()
-                .map(c -> new ConsumoMensual(
-                        c.mes(),
-                        (int) Math.round(c.consumo() * factor),
-                        (int) Math.round(c.costo() * factor)))
-                .toList();
     }
 
     private static int intValue(Object value) {

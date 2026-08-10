@@ -81,14 +81,10 @@ export function bootstrapAuthStorage() {
   if (!token) {
     return { user: null, token: null }
   }
-  if (String(token).startsWith('mock-token')) {
-    return { user: getStoredUser(), token }
-  }
   if (!isSessionTokenUsable(token)) {
     clearStoredSession()
     return { user: null, token: null }
   }
-  // Token con exp OK: no mostrar nombre hasta validar con /users/me
   return { user: null, token }
 }
 
@@ -101,9 +97,7 @@ export function resolveInitialPagina({
   if (resetToken) return 'reset-password'
   const pagina = getStoredPagina(fallback)
   const token = readStoredToken()
-  const sessionOk =
-    token &&
-    (String(token).startsWith('mock-token') || isSessionTokenUsable(token))
+  const sessionOk = token && isSessionTokenUsable(token)
   if (!sessionOk && paginaRequiresAuth(pagina)) {
     return fallback
   }
@@ -111,7 +105,7 @@ export function resolveInitialPagina({
 }
 
 export function getJwtExpirationMs(token) {
-  if (!token || String(token).startsWith('mock-token')) return null
+  if (!token) return null
   try {
     const segment = String(token).split('.')[1]
     if (!segment) return null
@@ -125,7 +119,7 @@ export function getJwtExpirationMs(token) {
 }
 
 export function isAccessTokenExpired(token, skewMs = 2000) {
-  if (!token || String(token).startsWith('mock-token')) return false
+  if (!token) return true
   const expMs = getJwtExpirationMs(token)
   // Sin exp legible → no confiar en el token (fail-closed)
   if (expMs == null) return true
@@ -134,7 +128,6 @@ export function isAccessTokenExpired(token, skewMs = 2000) {
 
 export function isSessionTokenUsable(token) {
   if (!token) return false
-  if (String(token).startsWith('mock-token')) return true
   return !isAccessTokenExpired(token)
 }
 

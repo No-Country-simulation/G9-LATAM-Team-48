@@ -123,7 +123,6 @@ Copiá [`.env.example`](./.env.example) → `.env`.
 | Variable | Descripción |
 |----------|-------------|
 | `VITE_API_URL` | Base URL del backend. En prod: `https://g9-latam-team-48-production.up.railway.app`. Vacío = misma origen (Docker/nginx). |
-| `VITE_USE_MOCK_AUTH` | `true` → login simulado; `false` → JWT real. |
 | `VITE_ML_API_URL` | FastAPI ML opcional (`:8000`). Análisis IA usa el backend → ML. |
 | `VITE_GOOGLE_CLIENT_ID` | Client ID OAuth **Web** (mismo valor que `GOOGLE_CLIENT_ID` en Railway). Sin esto, no se muestra el botón Google. |
 
@@ -137,7 +136,6 @@ En Vercel (prod), ejemplo mínimo:
 
 ```env
 VITE_API_URL=https://g9-latam-team-48-production.up.railway.app
-VITE_USE_MOCK_AUTH=false
 VITE_GOOGLE_CLIENT_ID=<tu-client-id>.apps.googleusercontent.com
 ```
 
@@ -413,7 +411,7 @@ frontend/
 ├── src/
 │   ├── components/         # UI reutilizable (charts, modals, SrAnnouncer…)
 │   ├── context/            # Auth, Locale, Theme, Navigation
-│   ├── data/               # Mocks y roster equipo
+│   ├── data/               # Roster equipo y assets estáticos
 │   ├── hooks/              # useFetch, etc.
 │   ├── i18n/               # Traducciones
 │   ├── layouts/            # MainLayout (shell + skip links)

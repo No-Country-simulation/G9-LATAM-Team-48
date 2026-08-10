@@ -47,7 +47,7 @@ function AdminUsuarios() {
     setLoading(true)
     setError(null)
     try {
-      if (!token || String(token).startsWith('mock-token')) {
+      if (!token) {
         setError(t('adminUsers.sessionInvalid'))
         setUsers([])
         setTotalElements(0)

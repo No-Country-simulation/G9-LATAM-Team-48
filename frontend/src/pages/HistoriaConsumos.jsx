@@ -165,7 +165,7 @@ function HistoriaConsumos() {
     setLoading(true)
     setError(null)
     try {
-      if (!token || String(token).startsWith('mock-token')) {
+      if (!token) {
         setError(t('historiaConsumos.sessionInvalid'))
         setRows([])
         setTotalElements(0)

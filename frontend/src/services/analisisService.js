@@ -1,5 +1,4 @@
 import api from './api'
-import { analizarConsumo as analizarLocal } from './iaService'
 import { TOKEN_STORAGE_KEY, USER_STORAGE_KEY } from '../utils/session'
 
 function mapMlResponse(data) {
@@ -21,21 +20,10 @@ function hasStoredSession() {
   )
 }
 
-/**
- * Analiza y siempre persiste en backend.
- * Con sesion: asocia usuario + email. Sin login: consulta anonima (emailStatus SKIPPED).
- */
+/** Analiza y persiste en backend (ML + reglas Spring). */
 export async function analizarConsumo(datos) {
-  // Sin sesion: no enviar Bearer (evita 401 por token vencido en backends viejos)
   const { data } = await api.post('/api/analisis', datos, {
     skipAuth: !hasStoredSession(),
   })
   return mapMlResponse({ ...data, source: 'api' })
-}
-
-/**
- * Fallback local (backend caido). No persiste ni envia email.
- */
-export async function analizarConsumoLocal(datos) {
-  return { ...analizarLocal(datos), source: 'local', emailStatus: 'SKIPPED' }
 }

@@ -43,7 +43,6 @@ Esperado: `schema: v3_bundle`, `v3Bundle: true`.
 | Railway | `PREDICTION_API_BASE_URL` | `https://ml-service-lbfk.onrender.com` |
 | Railway | `PREDICTION_API_TIMEOUT` | `60000` |
 | Vercel | `VITE_API_URL` | URL Railway backend |
-| Vercel | `VITE_USE_MOCK_API` | `false` |
 
 El frontend **no** llama a Render; solo Railway.
 

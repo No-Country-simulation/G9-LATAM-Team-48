@@ -196,8 +196,6 @@ Si el envío falla, el backend deja el contenido/link en los logs.
 Variables típicas (`frontend/.env`):
 
 ```env
-VITE_USE_MOCK_AUTH=false
-VITE_USE_MOCK_API=false
 VITE_API_URL=http://localhost:8080
 ```
 

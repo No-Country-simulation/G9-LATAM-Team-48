@@ -3,10 +3,8 @@ package com.alura.analytics.service;
 import com.alura.analytics.dto.AnalyticsBreakdownDto;
 import com.alura.analytics.dto.AnalyticsBreakdownItem;
 import com.alura.analytics.dto.AnalyticsOverviewDto;
-import com.alura.dataset.DatasetDemoFallback;
 import com.alura.dataset.DatasetFeatureEngineeringDao;
 import com.alura.dataset.DatasetMonthKeys;
-import com.alura.dataset.DatasetTipoInmuebleFilter;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,22 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 @Service
 public class AnalyticsService {
-
-    private static final AnalyticsOverviewDto FALLBACK = DatasetDemoFallback.analyticsOverview();
-
-    private static final AnalyticsBreakdownDto FALLBACK_BREAKDOWN = new AnalyticsBreakdownDto(
-            "tipo_inmueble",
-            List.of(
-                    new AnalyticsBreakdownItem("Casa Unifamiliar", 350, 120),
-                    new AnalyticsBreakdownItem("Apartamento", 285, 95),
-                    new AnalyticsBreakdownItem("Pequeño Establecimiento Comercial", 410, 60)
-            ),
-            false
-    );
 
     private final DatasetFeatureEngineeringDao datasetDao;
 
@@ -39,13 +24,13 @@ public class AnalyticsService {
 
     public AnalyticsOverviewDto overview(String tipoInmueble) {
         if (!datasetDao.hasRows()) {
-            return scaleOverviewFallback(tipoInmueble);
+            return emptyOverview();
         }
 
         List<Map<String, Object>> actualRows = datasetDao.avgActualVsAnteriorByMesNumero(tipoInmueble);
         List<Map<String, Object>> peakRows = datasetDao.avgPeakOffPeakByMesNumero(tipoInmueble);
         if (actualRows.isEmpty()) {
-            return scaleOverviewFallback(tipoInmueble);
+            return emptyOverview();
         }
 
         Map<Integer, Map<String, Object>> peakByMes = indexByMes(peakRows);
@@ -94,12 +79,12 @@ public class AnalyticsService {
 
     public AnalyticsBreakdownDto breakdownByTipoInmueble(List<String> monthKeys, String tipoInmueble) {
         if (!datasetDao.hasRows()) {
-            return filterBreakdownFallback(tipoInmueble);
+            return emptyBreakdown();
         }
         List<Integer> mesNumeros = parseMesNumeros(monthKeys);
         List<Map<String, Object>> rows = datasetDao.avgConsumoByTipoInmueble(mesNumeros, tipoInmueble);
         if (rows.isEmpty()) {
-            return filterBreakdownFallback(tipoInmueble);
+            return emptyBreakdown();
         }
         List<AnalyticsBreakdownItem> items = new ArrayList<>();
         for (Map<String, Object> row : rows) {
@@ -111,42 +96,22 @@ public class AnalyticsService {
         return new AnalyticsBreakdownDto("tipo_inmueble", List.copyOf(items), true);
     }
 
-    private static AnalyticsOverviewDto scaleOverviewFallback(String tipoInmueble) {
-        double factor = DatasetTipoInmuebleFilter.demoScaleFactor(tipoInmueble);
-        if (factor == 1.0) {
-            return FALLBACK;
-        }
+    private static AnalyticsOverviewDto emptyOverview() {
         return new AnalyticsOverviewDto(
-                FALLBACK.months(),
-                scaleInts(FALLBACK.actualKwh(), factor),
-                scaleInts(FALLBACK.predictedKwh(), factor),
-                scaleInts(FALLBACK.peakKwh(), factor),
-                scaleInts(FALLBACK.offPeakKwh(), factor),
-                FALLBACK.category(),
-                FALLBACK.confidence(),
-                scaleInts(FALLBACK.cost(), factor),
-                false);
+                List.of(),
+                List.of(),
+                List.of(),
+                List.of(),
+                List.of(),
+                "MEDIUM_CONSUMPTION",
+                0.0,
+                List.of(),
+                false
+        );
     }
 
-    private static AnalyticsBreakdownDto filterBreakdownFallback(String tipoInmueble) {
-        List<String> tipos = DatasetTipoInmuebleFilter.parseParam(tipoInmueble);
-        if (tipos.isEmpty() || tipos.size() >= DatasetTipoInmuebleFilter.allKeys().size()) {
-            return FALLBACK_BREAKDOWN;
-        }
-        Set<String> segments = tipos.stream()
-                .map(DatasetTipoInmuebleFilter::segmentLabel)
-                .collect(java.util.stream.Collectors.toSet());
-        List<AnalyticsBreakdownItem> filtered = FALLBACK_BREAKDOWN.items().stream()
-                .filter(item -> segments.contains(item.segment()))
-                .toList();
-        if (filtered.isEmpty()) {
-            return FALLBACK_BREAKDOWN;
-        }
-        return new AnalyticsBreakdownDto(FALLBACK_BREAKDOWN.dimension(), filtered, false);
-    }
-
-    private static List<Integer> scaleInts(List<Integer> values, double factor) {
-        return values.stream().map(v -> (int) Math.round(v * factor)).toList();
+    private static AnalyticsBreakdownDto emptyBreakdown() {
+        return new AnalyticsBreakdownDto("tipo_inmueble", List.of(), false);
     }
 
     private static List<Integer> parseMesNumeros(List<String> monthKeys) {

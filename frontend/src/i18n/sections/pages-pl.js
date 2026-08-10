@@ -35,9 +35,9 @@ export const pagesPl = {
   "chart": {
     "title": "Miesięczne zużycie energii (kWh)",
     "actualVsPredicted": "Rzeczywiste vs prognoza (kWh)",
-    "actualVsPredictedHint": "Mock dla Data Analysis: porównanie zużycia z prognozą modelu.",
+    "actualVsPredictedHint": "Średnie datasetu: zużycie miesięczne vs poprzedni miesiąc (trend).",
     "peakVsOffPeak": "Szczyt vs poza szczytem (kWh)",
-    "peakVsOffPeakHint": "Mock dla Data Analysis: podział zużycia na godziny szczytu i poza szczytem.",
+    "peakVsOffPeakHint": "Średnie datasetu: podział godzin szczytu i poza szczytem.",
     "seriesActual": "Rzeczywiste",
     "seriesPredicted": "Prognoza",
     "seriesPeak": "Szczyt",

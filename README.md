@@ -99,8 +99,6 @@ Variables mínimas del front en Vercel (Production):
 
 ```env
 VITE_API_URL=https://g9-latam-team-48-production-f9a0.up.railway.app
-VITE_USE_MOCK_AUTH=false
-VITE_USE_MOCK_API=false
 VITE_GOOGLE_CLIENT_ID=tu-client-id.apps.googleusercontent.com
 ```
 

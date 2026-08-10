@@ -178,10 +178,10 @@ export default {
     title: 'Konsumsi energi bulanan (kWh)',
     actualVsPredicted: 'Aktual vs prediksi (kWh)',
     actualVsPredictedHint:
-      'Mock untuk Analisis Data: bandingkan konsumsi terukur dengan prakiraan model.',
+      'Rata-rata dataset: pemakaian bulanan vs bulan sebelumnya (tren).',
     peakVsOffPeak: 'Jam puncak vs luar puncak (kWh)',
     peakVsOffPeakHint:
-      'Mock untuk Analisis Data: pisahkan konsumsi menjadi jam puncak dan luar puncak.',
+      'Rata-rata dataset: pembagian jam puncak dan luar puncak.',
     seriesActual: 'Aktual',
     seriesPredicted: 'Prediksi',
     seriesPeak: 'Puncak',

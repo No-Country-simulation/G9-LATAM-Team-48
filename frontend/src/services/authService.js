@@ -1,8 +1,5 @@
 import api from './api'
 import { formatDisplayName } from '../utils/formatDisplayName'
-import { mockLogin, mockRegister } from './mockAuth'
-
-const USE_MOCK_AUTH = import.meta.env.VITE_USE_MOCK_AUTH === 'true'
 
 function authErrorMessage(error, fallback) {
   return (
@@ -53,10 +50,6 @@ function mapAuthResponse(payload, email, name) {
 }
 
 export async function login(credentials) {
-  if (USE_MOCK_AUTH) {
-    return mockLogin(credentials)
-  }
-
   try {
     const { data } = await api.post('/api/v1/auth/login', {
       email: credentials.email.trim(),
@@ -71,30 +64,18 @@ export async function login(credentials) {
     }
     return session
   } catch (error) {
-    // Solo mock si no hay backend; si el backend responde error, no enmascarar
-    if (import.meta.env.DEV && error.code === 'ERR_NETWORK') {
-      console.warn('Backend no disponible, usando mock auth')
-      return mockLogin(credentials)
-    }
-
     throw new Error(authErrorMessage(error, 'loginFailed'))
   }
 }
 
 /**
  * Registro: no inicia sesion. Requiere verificar email.
- * En dev el backend puede devolver verificationToken solo con expose-token=true (tests).
- * La UI no muestra el token: la validacion es por el link del correo.
  */
 export async function register(credentials) {
   const body = {
     name: credentials.name.trim(),
     email: credentials.email.trim(),
     password: credentials.password,
-  }
-
-  if (USE_MOCK_AUTH) {
-    return mockRegister(body)
   }
 
   try {
@@ -108,10 +89,6 @@ export async function register(credentials) {
       email: body.email,
     }
   } catch (error) {
-    if (import.meta.env.DEV && error.code === 'ERR_NETWORK') {
-      return mockRegister(body)
-    }
-
     throw new Error(authErrorMessage(error, 'registerFailed'))
   }
 }
@@ -120,15 +97,7 @@ export async function logout() {
   // El backend JWT no expone logout; la sesión se limpia en el cliente.
 }
 
-/**
- * Login/registro con Google Identity Services (credential = ID token).
- * El email ya viene verificado por Google.
- */
 export async function loginWithGoogle(credential) {
-  if (USE_MOCK_AUTH) {
-    throw new Error('googleNotAvailableInMock')
-  }
-
   try {
     const { data } = await api.post('/api/v1/auth/google', { credential })
     const auth = data?.data ?? data

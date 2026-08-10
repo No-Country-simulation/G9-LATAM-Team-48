@@ -97,7 +97,6 @@ services:
       args:
         # Vacío = rutas relativas; nginx proxea /api → backend (ideal en NAS)
         VITE_API_URL: ""
-        VITE_USE_MOCK_AUTH: "false"
         VITE_ML_API_URL: ""
         # Mismo valor que GOOGLE_CLIENT_ID (definilo en .env; Vite lo bakea al build)
         VITE_GOOGLE_CLIENT_ID: ${VITE_GOOGLE_CLIENT_ID:-}
