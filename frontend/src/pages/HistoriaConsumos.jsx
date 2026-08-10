@@ -25,6 +25,10 @@ import {
   pickRequestFieldValue,
 } from '../utils/analisisMlContract'
 import {
+  historiaRowIdsEqual,
+  pageIndexForHistoriaRow,
+} from '../utils/historiaChartInteraction'
+import {
   calcHistoriaKpis,
   consumoFromHistoriaItem,
   filterHistoriaItems,
@@ -122,12 +126,6 @@ function tipKeysFrom(detail) {
   if (Array.isArray(detail?.tipKeys) && detail.tipKeys.length) return detail.tipKeys
   if (Array.isArray(detail?.responseJson?.tipKeys)) return detail.responseJson.tipKeys
   return []
-}
-
-function pageIndexForRowId(list, id, size) {
-  const idx = (list ?? []).findIndex((r) => r.id === id)
-  if (idx < 0) return null
-  return Math.floor(idx / size)
 }
 
 function HistoriaConsumos() {
@@ -262,7 +260,7 @@ function HistoriaConsumos() {
     (id) => {
       if (id == null) return
       setHighlightedRowId(id)
-      const targetPage = pageIndexForRowId(filteredRows, id, pageSize)
+      const targetPage = pageIndexForHistoriaRow(filteredRows, id, pageSize)
       if (targetPage != null && targetPage !== page) {
         setPage(targetPage)
       }
@@ -279,8 +277,8 @@ function HistoriaConsumos() {
     const timer = window.setTimeout(() => {
       document
         .getElementById(`historia-row-${highlightedRowId}`)
-        ?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
-    }, 50)
+        ?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+    }, 120)
     return () => window.clearTimeout(timer)
   }, [highlightedRowId, page])
 
@@ -481,7 +479,9 @@ function HistoriaConsumos() {
                             key={row.id}
                             id={`historia-row-${row.id}`}
                             className={
-                              highlightedRowId === row.id ? 'historia-row-highlight' : undefined
+                              historiaRowIdsEqual(highlightedRowId, row.id)
+                                ? 'historia-row-highlight'
+                                : undefined
                             }
                           >
                             <td className="small text-nowrap">

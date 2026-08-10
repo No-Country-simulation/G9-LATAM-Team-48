@@ -14,6 +14,10 @@ import {
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { yDomainWithPadding } from '../utils/chartScale'
+import {
+  HistoriaChartDot,
+  historiaChartHoverHandlers,
+} from '../utils/historiaChartInteraction'
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -99,7 +103,7 @@ function buildSavingsSeries(points, locale) {
       const ahorro = Number(item.ahorro)
       const fecha = toDate(item.createdAt) || new Date(index)
       return {
-        id: item.id ?? index,
+        id: item.id,
         fecha,
         label: formatShortDate(item.createdAt, locale),
         ahorro,
@@ -146,17 +150,6 @@ function ChartCard({ title, subtitle, children }) {
   )
 }
 
-function chartPointHoverHandlers(onPointHover, onPointLeave) {
-  if (!onPointHover && !onPointLeave) return {}
-  return {
-    onMouseMove: (state) => {
-      const id = state?.activePayload?.[0]?.payload?.id
-      if (id != null) onPointHover?.(id)
-    },
-    onMouseLeave: () => onPointLeave?.(),
-  }
-}
-
 function SavingsChart({
   points,
   onPointHover,
@@ -186,7 +179,7 @@ function SavingsChart({
 
   const first = datos[0].ahorro
   const yDomain = yDomainWithPadding(datos.map((item) => item.ahorro))
-  const hoverHandlers = chartPointHoverHandlers(onPointHover, onPointLeave)
+  const hoverHandlers = historiaChartHoverHandlers(datos, onPointHover, onPointLeave)
 
   return (
     <ChartCard
@@ -228,6 +221,7 @@ function SavingsChart({
               `${value}%`,
               t('historiaConsumos.savingsSeries', 'Ahorro'),
             ]}
+            cursor={{ stroke: lineColor, strokeWidth: 1, strokeDasharray: '4 4' }}
             contentStyle={{
               backgroundColor: theme === 'dark' ? '#212529' : '#fff',
               borderColor: gridColor,
@@ -240,23 +234,18 @@ function SavingsChart({
             dataKey="ahorro"
             stroke={lineColor}
             strokeWidth={3}
-            dot={(props) => {
-              const { cx, cy, payload } = props
-              if (cx == null || cy == null) return null
-              const active = highlightedPointId != null && payload?.id === highlightedPointId
-              return (
-                <circle
-                  cx={cx}
-                  cy={cy}
-                  r={active ? 6 : 4}
-                  fill={lineColor}
-                  stroke={active ? textColor : 'none'}
-                  strokeWidth={active ? 2 : 0}
-                  style={{ cursor: onPointHover ? 'pointer' : undefined }}
-                />
-              )
-            }}
-            activeDot={{ r: 6 }}
+            dot={(props) => (
+              <HistoriaChartDot
+                {...props}
+                fill={lineColor}
+                highlightedPointId={highlightedPointId}
+                onPointHover={onPointHover}
+                activeStroke={textColor}
+                baseRadius={4}
+                activeRadius={7}
+              />
+            )}
+            activeDot={false}
             isAnimationActive={false}
           />
         </LineChart>
