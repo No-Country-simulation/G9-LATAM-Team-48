@@ -19,7 +19,7 @@ import java.util.Set;
 
 /**
  * Combina reglas de recomendación, tips del ML/heurística y sugerencias base por nivelKey.
- * Adaptado al Motor de Recomendaciones V2 con soporte para fallbacks de userId y variables SHAP.
+ * Adaptado al Motor de Recomendaciones V2 respetando el diseño original de Jorge y usando AnalisisFeatureCalculator.
  */
 @Component
 public class AnalisisTipsComposer {
@@ -28,9 +28,12 @@ public class AnalisisTipsComposer {
     private static final Long DEFAULT_USER_ID = 1L;
 
     private final RecommendationService recommendationService;
+    private final AnalisisFeatureCalculator featureCalculator;
 
-    public AnalisisTipsComposer(RecommendationService recommendationService) {
+    public AnalisisTipsComposer(RecommendationService recommendationService,
+                                AnalisisFeatureCalculator featureCalculator) {
         this.recommendationService = recommendationService;
+        this.featureCalculator = featureCalculator;
     }
 
     public List<String> compose(PredictionResponse result, Map<String, Object> features, String userId) {
@@ -42,22 +45,10 @@ public class AnalisisTipsComposer {
         Long parsedUserId = parseUserId(userId);
         ConsumptionCategory category = ConsumptionCategory.fromModelValue(nivelKey);
 
-        // Fallbacks seguros para variables SHAP si el formulario frontend no las envía directamente
-        BigDecimal consumoPorPersona = parseBigDecimal(features != null ? features.get("consumo_anterior_por_persona") : null);
-        if (consumoPorPersona == null) {
-            consumoPorPersona = new BigDecimal("160.0"); // Valor por defecto seguro sobre umbral moderado
-        }
-
-        BigDecimal factorAislamiento = parseBigDecimal(features != null ? features.get("factor_aislamiento") : null);
-        if (factorAislamiento == null) {
-            factorAislamiento = new BigDecimal("1.0"); // Regular por defecto
-        }
-
-        BigDecimal proporcionLed = parseBigDecimal(features != null ? features.get("proporcion_iluminacion_led") : null);
-        if (proporcionLed == null) {
-            proporcionLed = new BigDecimal("0.40"); // 40% por defecto para propiciar mejora
-        }
-
+        // Delegamos el cálculo de variables SHAP / heurísticas a nuestro calculador centralizado pasándole el map de features
+        BigDecimal consumoPorPersona = featureCalculator.calculateConsumptionPerPerson(features);
+        BigDecimal factorAislamiento = featureCalculator.calculateInsulationFactor(features);
+        BigDecimal proporcionLed = featureCalculator.calculateLedProportion(features);
         BigDecimal consumoKwh = parseBigDecimal(features != null ? features.get("consumo_kwh_mensual") : null);
 
         RecommendationRequest request = RecommendationRequest.builder()
@@ -106,8 +97,7 @@ public class AnalisisTipsComposer {
         try {
             return Long.valueOf(trimmed);
         } catch (NumberFormatException e) {
-            // Si el userId es un token/email (ej. sesión de JWT de Germán), generamos un hash positivo estable
-            // para evitar que falle el análisis, manteniendo consistencia en el historial del usuario.
+            // Si el userId recibido es un email o token de sesión, generamos un hash positivo estable
             return Math.abs((long) trimmed.hashCode()) % 1000000L + 1L;
         }
     }
