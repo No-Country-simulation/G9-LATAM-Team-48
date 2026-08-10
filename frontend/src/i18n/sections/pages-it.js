@@ -167,44 +167,7 @@ export const pagesIt = {
       "climate": "Climatizzazione",
       "equipment": "Apparecchiature",
       "tech": "Tecnologia"
-    },
-    "items": {
-      "1": {
-        "title": "Sostituire l’illuminazione tradizionale con LED",
-        "description": "Sostituire le lampadine a incandescenza può ridurre fino all’80 % i consumi di illuminazione."
-      },
-      "2": {
-        "title": "Ridurre i consumi nelle ore di punta",
-        "description": "Programmare gli elettrodomestici fuori dall’orario 18:00–22:00 per evitare picchi."
-      },
-      "3": {
-        "title": "Ottimizzare l’uso del condizionatore",
-        "description": "Mantenere l’apparecchio tra 24 °C e 26 °C e usare la modalità eco di notte."
-      },
-      "4": {
-        "title": "Valutare apparecchi vecchi ad alto consumo",
-        "description": "Individuare frigoriferi, microonde o lavatrici con più di 10 anni."
-      },
-      "5": {
-        "title": "Scollegare i caricabatterie in standby",
-        "description": "Evitare i consumi fantasma spegnendo adattatori e dispositivi non usati."
-      },
-      "6": {
-        "title": "Installare un termostato intelligente",
-        "description": "Automatizzare riscaldamento e raffreddamento in base agli orari di presenza."
-      }
-    }
-  },
-  "months": monthsFull.it,
-  "monthsShort": monthsShort.it,
-  "insights": {
-    "title": "Come va il tuo consumo?",
-    "subtitle": "Riassunto chiaro, pensato per chiunque in casa o in azienda.",
-    "trend": {
-      "up": "A {month} hai usato il {pct}% di energia in più rispetto a {prevMonth} ({kwh} kWh in più).",
-      "down": "A {month} hai ridotto del {pct}% rispetto a {prevMonth} (risparmiati {kwh} kWh).",
-      "flat": "A {month} il consumo è quasi uguale a {prevMonth}."
-    },
+    },
     "peak": "Il {pct}% dell’energia di {month} è stata usata nelle ore di punta (di solito più care).",
     "bill": {
       "up": "Bolletta stimata di {month}: ${amount} (circa ${diff} in più del mese scorso).",

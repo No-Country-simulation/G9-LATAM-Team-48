@@ -167,44 +167,7 @@ export const pagesTr = {
       "climate": "İklimlendirme",
       "equipment": "Ekipman",
       "tech": "Teknoloji"
-    },
-    "items": {
-      "1": {
-        "title": "Geleneksel aydınlatmayı LED ile değiştirin",
-        "description": "Akkor ampulleri değiştirmek aydınlatma tüketimini %80’e kadar azaltabilir."
-      },
-      "2": {
-        "title": "Yoğun saatlerde tüketimi azaltın",
-        "description": "Talebi düşürmek için cihazları 18:00–22:00 dışında çalıştırın."
-      },
-      "3": {
-        "title": "Klima kullanımını optimize edin",
-        "description": "Cihazı 24–26 °C arasında tutun ve geceleri eko modunu kullanın."
-      },
-      "4": {
-        "title": "Eski yüksek tüketimli cihazları değerlendirin",
-        "description": "10 yıldan eski buzdolabı, mikrodalga veya çamaşır makinelerini belirleyin."
-      },
-      "5": {
-        "title": "Beklemedeki şarj cihazlarını çıkarın",
-        "description": "Kullanılmayan adaptör ve cihazları kapatarak fantom tüketimi önleyin."
-      },
-      "6": {
-        "title": "Akıllı termostat kurun",
-        "description": "Isıtma ve soğutmayı doluluk saatlerine göre otomatikleştirin."
-      }
-    }
-  },
-  "months": monthsFull.tr,
-  "monthsShort": monthsShort.tr,
-  "insights": {
-    "title": "Tüketimin nasıl?",
-    "subtitle": "Evde veya işte herkesin anlayacağı net bir özet.",
-    "trend": {
-      "up": "{month} ayında {prevMonth} ayına göre %{pct} daha fazla enerji kullandın ({kwh} kWh fazla).",
-      "down": "{month} ayında {prevMonth} ayına göre %{pct} azaldı ({kwh} kWh tasarruf).",
-      "flat": "{month} ayında tüketim {prevMonth} ile neredeyse aynı."
-    },
+    },
     "peak": "{month} ayındaki enerjinin %{pct}’i yoğun saatlerde kullanıldı (genelde daha pahalı).",
     "bill": {
       "up": "{month} için tahmini fatura ${amount} (önceki aya göre yaklaşık ${diff} fazla).",

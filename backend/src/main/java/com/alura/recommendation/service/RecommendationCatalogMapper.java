@@ -13,6 +13,7 @@ public class RecommendationCatalogMapper {
         String type = entity.getType() != null ? entity.getType().toUpperCase(Locale.ROOT) : "INFO";
         return new RecommendationItem(
                 entity.getId().intValue(),
+                entity.getTipKey(),
                 categoryKeyFor(entity.getTipKey(), type),
                 priorityKeyForType(type),
                 estimatedSavingsForType(type),

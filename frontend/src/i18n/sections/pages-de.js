@@ -167,44 +167,7 @@ export const pagesDe = {
       "climate": "Klima",
       "equipment": "Ausstattung",
       "tech": "Technologie"
-    },
-    "items": {
-      "1": {
-        "title": "Herkömmliche Beleuchtung durch LED ersetzen",
-        "description": "Der Austausch von Glühbirnen kann den Beleuchtungsverbrauch um bis zu 80 % senken."
-      },
-      "2": {
-        "title": "Verbrauch in Spitzenzeiten reduzieren",
-        "description": "Geräte außerhalb von 18:00–22:00 planen, um Lastspitzen zu vermeiden."
-      },
-      "3": {
-        "title": "Klimaanlagennutzung optimieren",
-        "description": "Gerät zwischen 24 °C und 26 °C halten und nachts den Eco-Modus nutzen."
-      },
-      "4": {
-        "title": "Alte Geräte mit hohem Verbrauch prüfen",
-        "description": "Kühlschränke, Mikrowellen oder Waschmaschinen älter als 10 Jahre identifizieren."
-      },
-      "5": {
-        "title": "Ladegeräte im Standby trennen",
-        "description": "Scheinverbrauch vermeiden, indem ungenutzte Adapter und Geräte ausgeschaltet werden."
-      },
-      "6": {
-        "title": "Intelligenten Thermostat installieren",
-        "description": "Heizung und Kühlung automatisch nach Belegungszeiten steuern."
-      }
-    }
-  },
-  "months": monthsFull.de,
-  "monthsShort": monthsShort.de,
-  "insights": {
-    "title": "Wie ist Ihr Verbrauch?",
-    "subtitle": "Klarer Überblick für alle – zu Hause oder im Betrieb.",
-    "trend": {
-      "up": "Im {month} haben Sie {pct}% mehr Energie verbraucht als im {prevMonth} ({kwh} kWh mehr).",
-      "down": "Im {month} sind Sie {pct}% unter {prevMonth} ({kwh} kWh gespart).",
-      "flat": "Im {month} war der Verbrauch fast wie im {prevMonth}."
-    },
+    },
     "peak": "{pct}% Ihrer Energie im {month} fiel in die Spitzenzeiten (meist teurer).",
     "bill": {
       "up": "Geschätzte Rechnung für {month}: ${amount} (etwa ${diff} mehr als im Vormonat).",

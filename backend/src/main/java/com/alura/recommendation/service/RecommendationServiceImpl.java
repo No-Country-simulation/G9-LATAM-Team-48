@@ -66,7 +66,7 @@ public class RecommendationServiceImpl implements RecommendationService {
     public List<RecommendationItem> listForFrontend(String category, String userEmail) {
         List<RecommendationCatalogEntity> catalogRows = catalogRepository.findAll();
         if (catalogRows.isEmpty()) {
-            return fallbackInMemory(category);
+            return List.of();
         }
 
         if (isAuthenticated(userEmail)) {
@@ -89,13 +89,6 @@ public class RecommendationServiceImpl implements RecommendationService {
 
     private static boolean isAuthenticated(String userEmail) {
         return userEmail != null && !userEmail.isBlank();
-    }
-
-    private static List<RecommendationItem> fallbackInMemory(String category) {
-        if (category == null || category.isBlank()) {
-            return RecommendationCatalog.all();
-        }
-        return RecommendationCatalog.forCategory(category);
     }
 
     private static boolean matchesCategory(RecommendationItem item, String category) {

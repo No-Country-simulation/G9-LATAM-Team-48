@@ -167,44 +167,7 @@ export const pagesRo = {
       "climate": "Climatizare",
       "equipment": "Echipamente",
       "tech": "Tehnologie"
-    },
-    "items": {
-      "1": {
-        "title": "Înlocuiți iluminatul tradițional cu LED",
-        "description": "Înlocuirea becurilor cu filament poate reduce consumul de iluminat cu până la 80%."
-      },
-      "2": {
-        "title": "Reduceți consumul în orele de vârf",
-        "description": "Programați aparatele în afara intervalului 18:00–22:00 pentru a evita vârfurile."
-      },
-      "3": {
-        "title": "Optimizați folosirea aerului condiționat",
-        "description": "Mențineți aparatul între 24 °C și 26 °C și folosiți modul eco noaptea."
-      },
-      "4": {
-        "title": "Evaluați echipamentele vechi cu consum mare",
-        "description": "Identificați frigidere, cuptoare cu microunde sau mașini de spălat de peste 10 ani."
-      },
-      "5": {
-        "title": "Deconectați încărcătoarele în standby",
-        "description": "Evitați consumul fantomă oprind adaptoarele și dispozitivele nefolosite."
-      },
-      "6": {
-        "title": "Instalați un termostat inteligent",
-        "description": "Automatizați încălzirea și răcirea după programul de ocupare."
-      }
-    }
-  },
-  "months": monthsFull.ro,
-  "monthsShort": monthsShort.ro,
-  "insights": {
-    "title": "Cum arată consumul tău?",
-    "subtitle": "Rezumat clar, ușor de înțeles acasă sau la firmă.",
-    "trend": {
-      "up": "În {month} ai consumat cu {pct}% mai mult decât în {prevMonth} ({kwh} kWh în plus).",
-      "down": "În {month} ai scăzut cu {pct}% față de {prevMonth} (ai economisit {kwh} kWh).",
-      "flat": "În {month} consumul e aproape ca în {prevMonth}."
-    },
+    },
     "peak": "{pct}% din energia din {month} a fost folosită în ore de vârf (de obicei mai scumpe).",
     "bill": {
       "up": "Factura estimată pe {month}: ${amount} (aprox. ${diff} mai mult decât luna trecută).",

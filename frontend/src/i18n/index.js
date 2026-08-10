@@ -2,6 +2,7 @@ import es from './locales/es'
 import en from './locales/en'
 import { pagesEs } from './sections/pages-es.js'
 import { pagesEn } from './sections/pages-en.js'
+import { attachRecommendationCatalog } from './catalog/index.js'
 import { loadLocaleDictionary } from './loadLocale.js'
 import { APP_LANGUAGES, LOCALES, getLanguageMeta } from './languages'
 
@@ -9,8 +10,8 @@ export { LOCALES, APP_LANGUAGES, getLanguageMeta }
 
 /** Solo es + en en el bundle inicial (mobile / FCP). */
 const dictionaryCache = {
-  es: { ...es, ...pagesEs },
-  en: { ...en, ...pagesEn },
+  es: attachRecommendationCatalog({ ...es, ...pagesEs }, 'es'),
+  en: attachRecommendationCatalog({ ...en, ...pagesEn }, 'en'),
 }
 
 const localeSet = new Set(LOCALES.map((item) => item.code))

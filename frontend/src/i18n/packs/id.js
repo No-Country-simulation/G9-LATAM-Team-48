@@ -368,39 +368,7 @@ export default {
       climate: 'Pendingin ruangan',
       equipment: 'Peralatan',
       tech: 'Teknologi',
-    },
-    items: {
-      1: {
-        title: 'Ganti pencahayaan konvensional dengan LED',
-        description:
-          'Mengganti bohlam pijar dapat memangkas konsumsi pencahayaan hingga 80%.',
-      },
-      2: {
-        title: 'Kurangi pemakaian pada jam puncak',
-        description:
-          'Jadwalkan peralatan di luar pukul 18.00-22.00 untuk menghindari puncak permintaan.',
-      },
-      3: {
-        title: 'Optimalkan penggunaan AC',
-        description:
-          'Jaga suhu unit antara 24°C dan 26°C serta gunakan mode eco pada malam hari.',
-      },
-      4: {
-        title: 'Tinjau peralatan lama yang boros',
-        description:
-          'Identifikasi kulkas, microwave, atau mesin cuci yang berusia lebih dari 10 tahun.',
-      },
-      5: {
-        title: 'Cabut pengisi daya yang siaga',
-        description:
-          'Hindari daya siluman dengan mematikan adaptor dan perangkat yang tidak dipakai.',
-      },
-      6: {
-        title: 'Pasang termostat pintar',
-        description:
-          'Otomatiskan pemanas dan pendingin berdasarkan jadwal keberadaan penghuni.',
-      },
-    },
+    },
   },
   months: {
     january: 'Januari',

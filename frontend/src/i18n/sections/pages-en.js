@@ -337,39 +337,7 @@ export const pagesEn = {
       climate: 'Climate',
       equipment: 'Equipment',
       tech: 'Technology',
-    },
-    items: {
-      1: {
-        title: 'Replace traditional lighting with LED',
-        description:
-          'Replacing incandescent bulbs can cut lighting usage by up to 80%.',
-      },
-      2: {
-        title: 'Reduce usage during peak hours',
-        description:
-          'Schedule appliances outside 18:00-22:00 to avoid demand peaks.',
-      },
-      3: {
-        title: 'Optimize air conditioning usage',
-        description:
-          'Keep the unit between 24°C and 26°C and use eco mode at night.',
-      },
-      4: {
-        title: 'Review old high-usage equipment',
-        description:
-          'Identify refrigerators, microwaves or washers older than 10 years.',
-      },
-      5: {
-        title: 'Unplug chargers on standby',
-        description:
-          'Avoid phantom load by switching off unused adapters and devices.',
-      },
-      6: {
-        title: 'Install a smart thermostat',
-        description:
-          'Automate heating and cooling based on occupancy schedules.',
-      },
-    },
+    },
   },
   months: monthsFull.en,
   monthsShort: monthsShort.en,

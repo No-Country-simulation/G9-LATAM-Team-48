@@ -167,44 +167,7 @@ export const pagesFr = {
       "climate": "Climatisation",
       "equipment": "Équipement",
       "tech": "Technologie"
-    },
-    "items": {
-      "1": {
-        "title": "Remplacer l’éclairage traditionnel par des LED",
-        "description": "Remplacer les ampoules à incandescence peut réduire jusqu’à 80 % de la consommation d’éclairage."
-      },
-      "2": {
-        "title": "Réduire la consommation aux heures de pointe",
-        "description": "Programmer les appareils hors de la plage 18:00–22:00 pour éviter les pics de demande."
-      },
-      "3": {
-        "title": "Optimiser l’usage de la climatisation",
-        "description": "Maintenir l’appareil entre 24 °C et 26 °C et utiliser le mode éco la nuit."
-      },
-      "4": {
-        "title": "Évaluer les anciens appareils énergivores",
-        "description": "Identifier réfrigérateurs, micro-ondes ou lave-linge de plus de 10 ans."
-      },
-      "5": {
-        "title": "Débrancher les chargeurs en veille",
-        "description": "Éviter la consommation fantôme en éteignant adaptateurs et appareils inutilisés."
-      },
-      "6": {
-        "title": "Installer un thermostat intelligent",
-        "description": "Automatiser chauffage et climatisation selon les horaires d’occupation."
-      }
-    }
-  },
-  "months": monthsFull.fr,
-  "monthsShort": monthsShort.fr,
-  "insights": {
-    "title": "Comment va votre consommation ?",
-    "subtitle": "Résumé simple, compréhensible par toute personne à la maison ou au travail.",
-    "trend": {
-      "up": "En {month}, vous avez consommé {pct}% de plus qu’en {prevMonth} ({kwh} kWh de plus).",
-      "down": "En {month}, vous avez baissé de {pct}% par rapport à {prevMonth} ({kwh} kWh économisés).",
-      "flat": "En {month}, votre conso est presque la même qu’en {prevMonth}."
-    },
+    },
     "peak": "{pct}% de votre énergie en {month} a été utilisée aux heures de pointe (souvent plus chères).",
     "bill": {
       "up": "Facture estimée de {month} : ${amount} (environ ${diff} de plus que le mois dernier).",

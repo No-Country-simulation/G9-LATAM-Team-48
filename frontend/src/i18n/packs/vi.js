@@ -368,39 +368,7 @@ export default {
       climate: 'Điều hòa',
       equipment: 'Thiết bị',
       tech: 'Công nghệ',
-    },
-    items: {
-      1: {
-        title: 'Thay đèn truyền thống bằng đèn LED',
-        description:
-          'Thay bóng đèn sợi đốt có thể giảm tới 80% điện năng dùng cho chiếu sáng.',
-      },
-      2: {
-        title: 'Giảm tiêu thụ trong giờ cao điểm',
-        description:
-          'Hẹn giờ chạy thiết bị ngoài khung 18:00-22:00 để tránh đỉnh nhu cầu.',
-      },
-      3: {
-        title: 'Tối ưu việc sử dụng điều hòa',
-        description:
-          'Giữ máy ở mức 24°C đến 26°C và dùng chế độ eco vào ban đêm.',
-      },
-      4: {
-        title: 'Rà soát thiết bị cũ tiêu thụ nhiều điện',
-        description:
-          'Xác định tủ lạnh, lò vi sóng hoặc máy giặt đã dùng trên 10 năm.',
-      },
-      5: {
-        title: 'Rút phích cắm sạc ở chế độ chờ',
-        description:
-          'Tránh hao điện ngầm bằng cách tắt các bộ chuyển đổi và thiết bị không dùng.',
-      },
-      6: {
-        title: 'Lắp bộ điều nhiệt thông minh',
-        description:
-          'Tự động điều chỉnh sưởi và làm mát theo lịch có người sử dụng.',
-      },
-    },
+    },
   },
   months: {
     january: 'Tháng 1',

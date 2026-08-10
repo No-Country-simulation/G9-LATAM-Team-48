@@ -6,6 +6,10 @@ import { getRecomendaciones } from '../services/recomendacionesService'
 import { useLocale } from '../context/LocaleContext'
 import { useMemo } from 'react'
 import { pickOneRandomPerCategory } from '../utils/recommendationSample'
+import {
+  recommendationCatalogDescription,
+  recommendationCatalogTitle,
+} from '../utils/recommendationCatalogText'
 
 const priorityClass = {
   high: 'text-bg-danger',
@@ -92,13 +96,9 @@ function RecomendacionesPage() {
                       </span>
                     </div>
 
-                    <h5>
-                      {item.title ||
-                        t(`recommendations.items.${item.id}.title`)}
-                    </h5>
+                    <h5>{recommendationCatalogTitle(t, item)}</h5>
                     <p className="text-muted mb-3">
-                      {item.description ||
-                        t(`recommendations.items.${item.id}.description`)}
+                      {recommendationCatalogDescription(t, item)}
                     </p>
 
                     <div className="d-flex justify-content-between align-items-center">

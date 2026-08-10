@@ -1,3 +1,4 @@
+import { attachRecommendationCatalog } from './catalog/index.js'
 import { deepMerge } from './deepMerge'
 import { loadEnPagesBase, mergeLocaleLayers } from './localeMerge'
 import { getUiExtendedPatch } from './sections/uiExtended.js'
@@ -8,7 +9,13 @@ async function loadRegional(code, localeImport, pagesImport, pagesKey) {
     localeImport(),
     pagesImport(),
   ])
-  return mergeLocaleLayers(baseEn, locMod, pagesMod[pagesKey], getUiExtendedPatch(code))
+  const dict = mergeLocaleLayers(
+    baseEn,
+    locMod,
+    pagesMod[pagesKey],
+    getUiExtendedPatch(code),
+  )
+  return attachRecommendationCatalog(dict, code)
 }
 
 /** Carga bajo demanda de diccionarios (no van en el bundle inicial salvo es/en). */
@@ -19,10 +26,14 @@ export async function loadLocaleDictionary(code) {
         import('./locales/es.js'),
         import('./sections/pages-es.js'),
       ])
-      return { ...esMod.default, ...pagesMod.pagesEs }
+      return attachRecommendationCatalog(
+        { ...esMod.default, ...pagesMod.pagesEs },
+        'es',
+      )
     }
     case 'en': {
-      return loadEnPagesBase()
+      const dict = await loadEnPagesBase()
+      return attachRecommendationCatalog(dict, 'en')
     }
     case 'pt':
       return loadRegional(
@@ -114,5 +125,9 @@ export async function loadLocaleDictionary(code) {
 
 async function mergePack(code, importPack) {
   const [baseEn, packMod] = await Promise.all([loadEnPagesBase(), importPack()])
-  return deepMerge(deepMerge(baseEn, packMod.default), getUiExtendedPatch(code))
+  const dict = deepMerge(
+    deepMerge(baseEn, packMod.default),
+    getUiExtendedPatch(code),
+  )
+  return attachRecommendationCatalog(dict, code)
 }

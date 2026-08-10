@@ -167,44 +167,7 @@ export const pagesNl = {
       "climate": "Klimaat",
       "equipment": "Apparatuur",
       "tech": "Technologie"
-    },
-    "items": {
-      "1": {
-        "title": "Traditionele verlichting vervangen door LED",
-        "description": "Gloeilampen vervangen kan het verlichtingsverbruik tot 80% verlagen."
-      },
-      "2": {
-        "title": "Verbruik in piekuren verminderen",
-        "description": "Apparaten buiten 18:00–22:00 plannen om piekvraag te vermijden."
-      },
-      "3": {
-        "title": "Airco-gebruik optimaliseren",
-        "description": "Apparaat tussen 24 °C en 26 °C houden en ’s nachts de eco-modus gebruiken."
-      },
-      "4": {
-        "title": "Oude energieverslindende apparaten beoordelen",
-        "description": "Koelkasten, magnetrons of wasmachines ouder dan 10 jaar identificeren."
-      },
-      "5": {
-        "title": "Opladers in standby loskoppelen",
-        "description": "Sluipverbruik vermijden door ongebruikte adapters en apparaten uit te schakelen."
-      },
-      "6": {
-        "title": "Slimme thermostaat installeren",
-        "description": "Verwarming en koeling automatiseren op basis van aanwezigheidsschema’s."
-      }
-    }
-  },
-  "months": monthsFull.nl,
-  "monthsShort": monthsShort.nl,
-  "insights": {
-    "title": "Hoe staat je verbruik?",
-    "subtitle": "Duidelijke samenvatting voor iedereen thuis of op het werk.",
-    "trend": {
-      "up": "In {month} gebruikte je {pct}% meer energie dan in {prevMonth} ({kwh} kWh meer).",
-      "down": "In {month} daalde je {pct}% t.o.v. {prevMonth} ({kwh} kWh bespaard).",
-      "flat": "In {month} was het verbruik bijna gelijk aan {prevMonth}."
-    },
+    },
     "peak": "{pct}% van je energie in {month} viel in piekuren (vaak duurder).",
     "bill": {
       "up": "Geschatte rekening voor {month}: ${amount} (ongeveer ${diff} meer dan vorige maand).",

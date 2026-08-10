@@ -38,8 +38,12 @@ export default function AnalysisTipsTable({ tipKeys = [], t, className = '' }) {
         <tbody>
           {keys.map((key) => {
             const meta = tipMetaFor(key)
-            const textKey = `analysis.tipsList.${key}`
-            const suggestion = t(textKey, key)
+            const listKey = `analysis.tipsList.${key}`
+            let suggestion = t(listKey, '')
+            if (!suggestion || suggestion === listKey) {
+              const catalogKey = `recommendations.catalog.${key}.title`
+              suggestion = t(catalogKey, key)
+            }
             return (
               <tr key={key}>
                 <td className={`small fw-semibold ${priorityClass(meta.priority)}`}>

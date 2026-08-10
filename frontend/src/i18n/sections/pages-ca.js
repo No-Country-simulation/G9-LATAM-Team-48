@@ -167,44 +167,7 @@ export const pagesCa = {
       "climate": "Climatització",
       "equipment": "Equipament",
       "tech": "Tecnologia"
-    },
-    "items": {
-      "1": {
-        "title": "Canviar la il·luminació tradicional per LED",
-        "description": "Substituir bombetes incandescents pot reduir fins a un 80% del consum d’il·luminació."
-      },
-      "2": {
-        "title": "Reduir el consum en hores punta",
-        "description": "Programar electrodomèstics fora de l’horari 18:00–22:00 per evitar pics de demanda."
-      },
-      "3": {
-        "title": "Optimitzar l’ús de l’aire condicionat",
-        "description": "Mantenir l’equip entre 24 °C i 26 °C i usar el mode eco a la nit."
-      },
-      "4": {
-        "title": "Avaluar equips antics d’alt consum",
-        "description": "Identificar neveres, microones o rentadores amb més de 10 anys d’ús."
-      },
-      "5": {
-        "title": "Desconnectar carregadors en standby",
-        "description": "Evitar el consum fantasma apagant adaptadors i equips que no s’utilitzen."
-      },
-      "6": {
-        "title": "Instal·lar un termòstat intel·ligent",
-        "description": "Automatitzar calefacció i refrigeració segons els horaris d’ocupació."
-      }
-    }
-  },
-  "months": monthsFull.ca,
-  "monthsShort": monthsShort.ca,
-  "insights": {
-    "title": "Com va el teu consum?",
-    "subtitle": "Resum clar perquè qualsevol persona a casa o a l’empresa l’entengui.",
-    "trend": {
-      "up": "Al {month} vas usar un {pct}% més d’energia que al {prevMonth} ({kwh} kWh de més).",
-      "down": "Al {month} vas baixar un {pct}% respecte al {prevMonth} (vas estalviar {kwh} kWh).",
-      "flat": "Al {month} el consum va ser gairebé igual que al {prevMonth}."
-    },
+    },
     "peak": "El {pct}% de l’energia del {month} es va usar en hores punta (sol ser més cara).",
     "bill": {
       "up": "La factura estimada del {month} és ${amount} (uns ${diff} més que el mes anterior).",

@@ -368,39 +368,7 @@ export default {
       climate: 'Klimat',
       equipment: 'Utrustning',
       tech: 'Teknik',
-    },
-    items: {
-      1: {
-        title: 'Byt traditionell belysning mot LED',
-        description:
-          'Att byta ut glödlampor kan minska belysningens förbrukning med upp till 80%.',
-      },
-      2: {
-        title: 'Minska förbrukningen under högtrafiktimmar',
-        description:
-          'Schemalägg apparater utanför 18:00-22:00 för att undvika efterfrågetoppar.',
-      },
-      3: {
-        title: 'Optimera användningen av luftkonditionering',
-        description:
-          'Håll enheten mellan 24°C och 26°C och använd ekoläge nattetid.',
-      },
-      4: {
-        title: 'Se över gammal utrustning med hög förbrukning',
-        description:
-          'Identifiera kylskåp, mikrovågsugnar eller tvättmaskiner som är äldre än 10 år.',
-      },
-      5: {
-        title: 'Dra ur laddare som står i standby',
-        description:
-          'Undvik smygförbrukning genom att stänga av adaptrar och apparater som inte används.',
-      },
-      6: {
-        title: 'Installera en smart termostat',
-        description:
-          'Automatisera värme och kyla utifrån när lokalerna faktiskt används.',
-      },
-    },
+    },
   },
   months: {
     january: 'Januari',

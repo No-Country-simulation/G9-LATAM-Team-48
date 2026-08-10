@@ -10,14 +10,11 @@ package com.alura.recommendation.dto;
  */
 public record RecommendationItem(
         int id,
+        String tipKey,
         String categoryKey,
         String priorityKey,
         String ahorro,
         String title,
         String description
 ) {
-    /** Compatibilidad con catálogo demo en memoria (i18n por id). */
-    public RecommendationItem(int id, String categoryKey, String priorityKey, String ahorro) {
-        this(id, categoryKey, priorityKey, ahorro, null, null);
-    }
 }

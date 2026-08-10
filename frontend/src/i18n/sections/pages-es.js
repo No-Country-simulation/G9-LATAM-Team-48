@@ -340,39 +340,7 @@ export const pagesEs = {
       climate: 'Climatización',
       equipment: 'Equipamiento',
       tech: 'Tecnología',
-    },
-    items: {
-      1: {
-        title: 'Cambiar iluminación tradicional por LED',
-        description:
-          'Reemplazar bombillas incandescentes reduce hasta un 80% del consumo en iluminación.',
-      },
-      2: {
-        title: 'Reducir consumo en horarios pico',
-        description:
-          'Programar electrodomésticos fuera del horario 18:00-22:00 para evitar picos de demanda.',
-      },
-      3: {
-        title: 'Optimizar uso del aire acondicionado',
-        description:
-          'Mantener el equipo entre 24°C y 26°C y usar modo eco durante la noche.',
-      },
-      4: {
-        title: 'Evaluar equipos antiguos de alto consumo',
-        description:
-          'Identificar refrigeradores, microondas o lavarropas con más de 10 años de uso.',
-      },
-      5: {
-        title: 'Desconectar cargadores en standby',
-        description:
-          'Evitar el consumo fantasma apagando adaptadores y equipos que no se usan.',
-      },
-      6: {
-        title: 'Instalar termostato inteligente',
-        description:
-          'Automatizar calefacción y refrigeración según horarios de ocupación del hogar.',
-      },
-    },
+    },
   },
   months: monthsFull.es,
   monthsShort: monthsShort.es,

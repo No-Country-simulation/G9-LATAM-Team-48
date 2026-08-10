@@ -167,44 +167,7 @@ export const pagesPt = {
       "climate": "Climatização",
       "equipment": "Equipamentos",
       "tech": "Tecnologia"
-    },
-    "items": {
-      "1": {
-        "title": "Trocar iluminação tradicional por LED",
-        "description": "Substituir lâmpadas incandescentes pode reduzir até 80% do consumo em iluminação."
-      },
-      "2": {
-        "title": "Reduzir consumo em horários de pico",
-        "description": "Programar eletrodomésticos fora do horário 18:00–22:00 para evitar picos de demanda."
-      },
-      "3": {
-        "title": "Otimizar uso do ar-condicionado",
-        "description": "Manter o equipamento entre 24 °C e 26 °C e usar o modo eco à noite."
-      },
-      "4": {
-        "title": "Avaliar equipamentos antigos de alto consumo",
-        "description": "Identificar geladeiras, micro-ondas ou máquinas de lavar com mais de 10 anos."
-      },
-      "5": {
-        "title": "Desconectar carregadores em standby",
-        "description": "Evitar consumo fantasma desligando adaptadores e equipamentos sem uso."
-      },
-      "6": {
-        "title": "Instalar termostato inteligente",
-        "description": "Automatizar aquecimento e refrigeração conforme horários de ocupação."
-      }
-    }
-  },
-  "months": monthsFull.pt,
-  "monthsShort": monthsShort.pt,
-  "insights": {
-    "title": "Como está o seu consumo?",
-    "subtitle": "Resumo claro, pensado para qualquer pessoa em casa ou na empresa.",
-    "trend": {
-      "up": "Em {month} você usou {pct}% mais energia do que em {prevMonth} ({kwh} kWh a mais).",
-      "down": "Em {month} você baixou {pct}% em relação a {prevMonth} (economizou {kwh} kWh).",
-      "flat": "Em {month} o consumo ficou quase igual ao de {prevMonth}."
-    },
+    },
     "peak": "{pct}% da sua energia em {month} foi usada no horário de pico (em geral mais caro).",
     "bill": {
       "up": "A conta estimada de {month} é ${amount} (cerca de ${diff} a mais que no mês anterior).",

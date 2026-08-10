@@ -5,6 +5,7 @@ import { getRecomendaciones } from '../services/recomendacionesService'
 import { useLocale } from '../context/LocaleContext'
 import { useMemo } from 'react'
 import { pickOneRandomPerCategory } from '../utils/recommendationSample'
+import { recommendationCatalogTitle } from '../utils/recommendationCatalogText'
 
 function Recomendaciones() {
   const { t } = useLocale()
@@ -31,7 +32,7 @@ function Recomendaciones() {
                 <span className="text-muted small me-1">
                   {t(`recommendations.category.${item.categoryKey}`)}:
                 </span>
-                {item.title || t(`recommendations.items.${item.id}.title`)}
+                {recommendationCatalogTitle(t, item)}
               </li>
             ))}
           </ul>

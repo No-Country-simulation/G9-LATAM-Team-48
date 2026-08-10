@@ -167,44 +167,7 @@ export const pagesPl = {
       "climate": "Klimat",
       "equipment": "Sprzęt",
       "tech": "Technologia"
-    },
-    "items": {
-      "1": {
-        "title": "Zamienić tradycyjne oświetlenie na LED",
-        "description": "Wymiana żarówek żarowych może zmniejszyć zużycie oświetlenia nawet o 80%."
-      },
-      "2": {
-        "title": "Zmniejszyć zużycie w godzinach szczytu",
-        "description": "Uruchamiać urządzenia poza godzinami 18:00–22:00, aby uniknąć szczytów."
-      },
-      "3": {
-        "title": "Zoptymalizować użycie klimatyzacji",
-        "description": "Utrzymywać temperaturę 24–26 °C i używać trybu eco w nocy."
-      },
-      "4": {
-        "title": "Sprawdzić stare urządzenia o wysokim zużyciu",
-        "description": "Zidentyfikować lodówki, mikrofale lub pralki starsze niż 10 lat."
-      },
-      "5": {
-        "title": "Odłączać ładowarki w trybie czuwania",
-        "description": "Unikać poboru biernego, wyłączając nieużywane zasilacze i urządzenia."
-      },
-      "6": {
-        "title": "Zainstalować inteligentny termostat",
-        "description": "Automatyzować ogrzewanie i chłodzenie według harmonogramu obecności."
-      }
-    }
-  },
-  "months": monthsFull.pl,
-  "monthsShort": monthsShort.pl,
-  "insights": {
-    "title": "Jak wygląda Twoje zużycie?",
-    "subtitle": "Jasne podsumowanie dla każdego w domu lub firmie.",
-    "trend": {
-      "up": "W {month} zużyłeś o {pct}% więcej energii niż w {prevMonth} (o {kwh} kWh więcej).",
-      "down": "W {month} spadło o {pct}% względem {prevMonth} (zaoszczędzono {kwh} kWh).",
-      "flat": "W {month} zużycie było prawie jak w {prevMonth}."
-    },
+    },
     "peak": "{pct}% energii w {month} przypadło na godziny szczytu (zwykle droższe).",
     "bill": {
       "up": "Szacowany rachunek za {month}: ${amount} (ok. ${diff} więcej niż poprzednio).",

@@ -368,39 +368,7 @@ export default {
       climate: '空调',
       equipment: '设备',
       tech: '技术',
-    },
-    items: {
-      1: {
-        title: '将传统照明更换为 LED',
-        description:
-          '更换白炽灯泡最多可减少 80% 的照明用电。',
-      },
-      2: {
-        title: '减少高峰时段用电',
-        description:
-          '将家电安排在 18:00-22:00 之外运行，以避开需求高峰。',
-      },
-      3: {
-        title: '优化空调使用',
-        description:
-          '将温度保持在 24°C 至 26°C，夜间使用节能模式。',
-      },
-      4: {
-        title: '检查老旧高耗电设备',
-        description:
-          '找出使用超过 10 年的冰箱、微波炉或洗衣机。',
-      },
-      5: {
-        title: '拔掉待机状态的充电器',
-        description:
-          '关闭未使用的适配器和设备，避免幽灵耗电。',
-      },
-      6: {
-        title: '安装智能温控器',
-        description:
-          '根据人员在场时间表自动调节制热与制冷。',
-      },
-    },
+    },
   },
   months: {
     january: '一月',
