@@ -1178,6 +1178,28 @@ El proyecto **EnergIA** fue desarrollado como un trabajo colaborativo, distribuy
 | Elizabeth Díaz Familia | Data Scientist |
 | Jharle Compres | Data Analyst |
 
+## 15. Licencia
+
+Este proyecto se distribuye bajo la **Apache License, Version 2.0 (January 2004)**.
+
+La licencia permite utilizar, modificar y distribuir el código del proyecto bajo los términos establecidos por Apache License 2.0, incluyendo las condiciones relacionadas con atribución, avisos de copyright, modificaciones y distribución.
+
+La licencia completa debe encontrarse en el archivo:
+
+```text
+LICENSE
+```
+
+ubicado en la raíz del repositorio.
+
+Para conocer todas las condiciones, limitaciones y permisos asociados al uso del proyecto, consultar el contenido completo de dicho archivo.
+
+**Licencia:** Apache License 2.0  
+**Versión:** 2.0  
+**Fecha:** January 2004
+
+
+
 
 
 
