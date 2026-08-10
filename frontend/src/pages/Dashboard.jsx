@@ -2,8 +2,6 @@ import { useEffect, useMemo } from 'react'
 import CardConsumo from '../components/CardConsumo'
 import ChartSectionFallback from '../components/ChartSectionFallback'
 import DashboardChartsSection from '../components/DashboardChartsSection'
-import DashboardMisAnalisisSection from '../components/DashboardMisAnalisisSection'
-import Recomendaciones from '../components/Recomendaciones'
 import Loader from '../components/Loader'
 import ErrorState from '../components/ErrorState'
 import EmptyState from '../components/EmptyState'
@@ -143,10 +141,6 @@ function Dashboard() {
           ) : (
             chartsLoading && <ChartSectionFallback />
           )}
-
-          <DashboardMisAnalisisSection />
-
-          <Recomendaciones />
         </>
       )}
     </div>
