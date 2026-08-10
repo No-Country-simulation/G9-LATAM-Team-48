@@ -6,6 +6,13 @@ import {
   ZONA_INMUEBLE,
 } from './analisisMlContract'
 import { getRequestFromRow } from './analisisRowHelpers'
+import {
+  DASHBOARD_TIPO_OPTIONS,
+  hasActiveTiposInmuebleFilter,
+  normalizeTiposInmueble,
+  PERIOD_ALL,
+  sliceByPeriod,
+} from './dashboardChartFilters'
 
 export const HISTORIA_PERIOD_ALL = 'all'
 export const HISTORIA_PERIOD_7 = 'last7'
@@ -157,6 +164,30 @@ export function calcHistoriaKpis(items) {
       : null
 
   return { count, avgKwh, avgAhorro }
+}
+
+/** Mismos criterios que el dashboard: tipos (multi) + últimos 3/6 puntos cronológicos. */
+export function filterHistoriaByChartFilters(items, chartFilters) {
+  let list = [...(items ?? [])]
+  const tipos = normalizeTiposInmueble(chartFilters?.tiposInmueble)
+  if (tipos.length > 0 && tipos.length < DASHBOARD_TIPO_OPTIONS.length) {
+    list = list.filter((item) => {
+      const key = tipoKeyFromItem(item)
+      return key && tipos.includes(key)
+    })
+  }
+  list.sort((a, b) => {
+    const ta = toDate(a?.createdAt)?.getTime() ?? 0
+    const tb = toDate(b?.createdAt)?.getTime() ?? 0
+    return ta - tb
+  })
+  const period = chartFilters?.period ?? PERIOD_ALL
+  return sliceByPeriod(list, period)
+}
+
+export function hasActiveDashboardFiltersOnHistoria(chartFilters) {
+  const period = chartFilters?.period ?? PERIOD_ALL
+  return hasActiveTiposInmuebleFilter(chartFilters) || period !== PERIOD_ALL
 }
 
 export const HISTORIA_TIPO_OPTIONS = Object.values(INSTALLATION_TYPES)

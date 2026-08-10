@@ -461,6 +461,7 @@ export const pagesEn = {
   historiaConsumos: {
     title: 'Usage history',
     subtitle: 'Your saved consumption analyses (AI Analysis).',
+    myConsultasTitle: 'My AI Analysis queries',
     refresh: 'Refresh',
     tipo: 'Type',
     tipoInmueble: 'Property type',
@@ -512,7 +513,8 @@ export const pagesEn = {
     filterPeriod90: 'Last 90 days',
     filterAll: 'All',
     filterNivelMulti: 'Up to 2 levels; none selected = all levels.',
-    filtersHint: 'Charts, KPIs, and table share the same filters ({count} queries).',
+    filtersHint:
+      'Query KPIs, charts, and table use the same panel filters ({count} queries).',
     filtersEmpty: 'No queries match these filters. Try a wider period or clear filters.',
     filtersEmptyTable: 'No rows to show with these filters.',
     seriesHint:

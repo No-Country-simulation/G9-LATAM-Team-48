@@ -6,19 +6,30 @@ import {
   listMisAnalisisChartPoints,
   reenviarEmailAnalisis,
 } from '../services/historiaConsumosService'
+import { getConsumos } from '../services/consumoService'
+import { getAnalyticsOverview } from '../services/analyticsService'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
 import { useNavigation } from '../context/NavigationContext'
+import { useDashboardFilters } from '../context/DashboardFiltersContext'
+import { useFetch } from '../hooks/useFetch'
 import Loader from '../components/Loader'
 import EmptyState from '../components/EmptyState'
+import ChartSectionFallback from '../components/ChartSectionFallback'
+import DashboardChartsSection from '../components/DashboardChartsSection'
 import GraficoHistoriaConsumo from '../components/GraficoHistoriaConsumo'
 import GraficosHistoriaExtra from '../components/GraficosHistoriaExtra'
 import AnalysisRequestFieldsTable from '../components/AnalysisRequestFieldsTable'
 import AnalysisTipsTable from '../components/AnalysisTipsTable'
 import TablePagination from '../components/TablePagination'
 import CardConsumo from '../components/CardConsumo'
-import HistoriaConsumosFilters from '../components/HistoriaConsumosFilters'
 import { DEFAULT_PAGE_SIZE } from '../utils/pageResponse'
+import { resolveChartBadgeVariant } from '../utils/chartDataSource'
+import {
+  hasActiveTiposInmuebleFilter,
+  normalizeTiposInmueble,
+  tiposInmuebleFetchKey,
+} from '../utils/dashboardChartFilters'
 import { draftFromRequest, saveAnalisisDraft } from '../utils/analisisDraft'
 import {
   ML_REQUEST_FIELD_DEFS,
@@ -27,9 +38,8 @@ import {
 import {
   calcHistoriaKpis,
   consumoFromHistoriaItem,
-  DEFAULT_HISTORIA_FILTERS,
-  filterHistoriaItems,
-  hasActiveHistoriaFilters,
+  filterHistoriaByChartFilters,
+  hasActiveDashboardFiltersOnHistoria,
 } from '../utils/historiaConsumoFilters'
 import {
   formatKwh,
@@ -129,9 +139,36 @@ function HistoriaConsumos() {
   const { t, locale } = useLocale()
   const { token, isAuthenticated, openLogin, hydrating } = useAuth()
   const { setPagina } = useNavigation()
+  const { chartFilters, setFiltersVisible } = useDashboardFilters()
+  const tipoFetchKey = tiposInmuebleFetchKey(chartFilters)
+  const fetchConsumoOpts = useMemo(
+    () => (tipoFetchKey ? { tiposInmueble: chartFilters.tiposInmueble } : {}),
+    [tipoFetchKey, chartFilters.tiposInmueble],
+  )
+  const {
+    data: consumoBundle,
+    loading: loadingDataset,
+    error: datasetError,
+    refetch: refetchDataset,
+  } = useFetch(() => getConsumos(fetchConsumoOpts), [tipoFetchKey])
+  const {
+    data: analytics,
+    loading: loadingAnalytics,
+    error: analyticsError,
+    refetch: refetchAnalytics,
+  } = useFetch(() => getAnalyticsOverview(fetchConsumoOpts), [tipoFetchKey])
+
+  const consumos = consumoBundle?.consumos
+  const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos, {
+    consumosFromDataset: consumoBundle?.fromDataset,
+  })
+  const fromDataset = chartBadgeVariant === 'dataset'
+  const chartsReady = Boolean(analytics) && !analyticsError
+  const chartsLoading = loadingAnalytics && !analytics
+  const refreshingCharts = loadingDataset || loadingAnalytics
+
   const [rows, setRows] = useState([])
   const [chartPoints, setChartPoints] = useState([])
-  const [filters, setFilters] = useState(DEFAULT_HISTORIA_FILTERS)
   const [page, setPage] = useState(0)
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE)
   const [totalElements, setTotalElements] = useState(0)
@@ -206,11 +243,6 @@ function HistoriaConsumos() {
     setPage(0)
   }
 
-  function handleFiltersChange(next) {
-    setFilters(next)
-    setPage(0)
-  }
-
   const seriesSource = useMemo(() => {
     if (chartPoints.length > 0) {
       return chartPoints.map((row) => ({
@@ -228,13 +260,13 @@ function HistoriaConsumos() {
   }, [chartPoints, rows])
 
   const filteredSeries = useMemo(
-    () => filterHistoriaItems(seriesSource, filters),
-    [seriesSource, filters],
+    () => filterHistoriaByChartFilters(seriesSource, chartFilters),
+    [seriesSource, chartFilters],
   )
 
   const filteredRows = useMemo(
-    () => filterHistoriaItems(rows, filters),
-    [rows, filters],
+    () => filterHistoriaByChartFilters(rows, chartFilters),
+    [rows, chartFilters],
   )
 
   const kpis = useMemo(() => calcHistoriaKpis(filteredSeries), [filteredSeries])
@@ -246,15 +278,20 @@ function HistoriaConsumos() {
 
   const filteredTotalPages = Math.max(1, Math.ceil(filteredRows.length / pageSize) || 1)
 
-  const filtersActive = hasActiveHistoriaFilters(filters)
-  const showHistoriaFilters = totalElements > 1
+  const filtersActive = hasActiveDashboardFiltersOnHistoria(chartFilters)
+  const tipoFiltered = hasActiveTiposInmuebleFilter(chartFilters)
+  const tiposLabel = normalizeTiposInmueble(chartFilters.tiposInmueble)
+    .map((key) => t(`analysis.types.${key}`, key))
+    .join(', ')
+  const showChartFilters = (consumos?.length ?? 0) >= 1 || totalElements > 0
 
   useEffect(() => {
-    if (totalElements <= 1) {
-      setFilters(DEFAULT_HISTORIA_FILTERS)
-      setPage(0)
-    }
-  }, [totalElements])
+    setFiltersVisible(showChartFilters)
+  }, [showChartFilters, setFiltersVisible])
+
+  useEffect(() => {
+    setPage(0)
+  }, [chartFilters.period, chartFilters.tiposInmueble, tipoFetchKey])
 
   useEffect(() => {
     if (hydrating) return
@@ -347,7 +384,7 @@ function HistoriaConsumos() {
         </div>
       )}
 
-      {!loading && !error && totalElements === 0 && (
+      {!loading && !error && totalElements === 0 && !consumos?.length && (
         <EmptyState
           mensaje={t('historiaConsumos.empty')}
           actionLabel={t('historiaConsumos.goToAnalysis', 'Ir a Análisis IA')}
@@ -355,15 +392,76 @@ function HistoriaConsumos() {
         />
       )}
 
-      {!loading && !error && totalElements > 0 && (
+      {!loading && !error && (totalElements > 0 || consumos?.length > 0) && (
         <>
-          {showHistoriaFilters && (
-            <HistoriaConsumosFilters
-              filters={filters}
-              onChange={handleFiltersChange}
-              onReset={() => handleFiltersChange(DEFAULT_HISTORIA_FILTERS)}
-            />
+          {refreshingCharts && (
+            <p className="text-muted small mb-2" role="status" aria-live="polite">
+              {t('chart.filters.updating')}
+            </p>
           )}
+
+          {tipoFiltered && (
+            <p className="text-muted small mb-2" role="note">
+              {t('chart.filters.tipoActiveHint').replace('{tipo}', tiposLabel)}
+            </p>
+          )}
+
+          {consumos?.length > 0 && (
+            <>
+              <div
+                className="alert alert-secondary border-0 py-2 small mb-3"
+                role="note"
+              >
+                {t(
+                  fromDataset ? 'dashboard.datasetSampleHint' : 'dashboard.demoSampleHint',
+                )}
+              </div>
+
+              {datasetError && (
+                <div className="alert alert-warning border-0 py-2 small mb-2" role="alert">
+                  {t('states.error')}
+                  <button
+                    type="button"
+                    className="btn btn-link btn-sm p-0 ms-2 align-baseline"
+                    onClick={refetchDataset}
+                  >
+                    {t('states.retry')}
+                  </button>
+                </div>
+              )}
+
+              {analyticsError && (
+                <div className="alert alert-warning border-0 py-2 small mb-2" role="alert">
+                  {t('states.error')}
+                  <button
+                    type="button"
+                    className="btn btn-link btn-sm p-0 ms-2 align-baseline"
+                    onClick={refetchAnalytics}
+                  >
+                    {t('states.retry')}
+                  </button>
+                </div>
+              )}
+
+              {chartsReady ? (
+                <DashboardChartsSection
+                  key={`historia-${chartFilters.period}-${chartFilters.metric}-${tipoFetchKey ?? 'all'}`}
+                  consumos={consumos}
+                  analytics={analytics}
+                  chartBadgeVariant={chartBadgeVariant}
+                  chartFilters={chartFilters}
+                />
+              ) : (
+                chartsLoading && <ChartSectionFallback />
+              )}
+            </>
+          )}
+
+          {totalElements > 0 && (
+            <>
+          <h2 className="h5 text-primary mt-4 mb-3">
+            {t('historiaConsumos.myConsultasTitle', 'Mis consultas de Análisis IA')}
+          </h2>
 
           <div className="row g-3 mb-3">
             <CardConsumo
@@ -384,7 +482,7 @@ function HistoriaConsumos() {
             <p className="text-muted small mb-3" role="note">
               {t(
                 'historiaConsumos.filtersHint',
-                'Gráficos, KPIs y tabla usan los mismos filtros ({count} consultas).',
+                'KPIs, gráficos y tabla de consultas usan los mismos filtros del panel ({count} consultas).',
               ).replace('{count}', String(filteredRows.length))}
             </p>
           )}
@@ -519,6 +617,8 @@ function HistoriaConsumos() {
               />
             </div>
           </div>
+            </>
+          )}
         </>
       )}
 

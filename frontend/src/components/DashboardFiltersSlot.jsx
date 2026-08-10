@@ -2,12 +2,19 @@ import DashboardChartFilters from './DashboardChartFilters'
 import { useDashboardFilters } from '../context/DashboardFiltersContext'
 import { useNavigation } from '../context/NavigationContext'
 
+/** Páginas que comparten filtros y gráficos de dataset con el dashboard. */
+const CHART_FILTER_PAGES = new Set(['dashboard', 'historia-consumos'])
+
+function isChartFilterPage(pagina) {
+  return CHART_FILTER_PAGES.has(pagina)
+}
+
 /** Filtros del dashboard bajo el menú lateral (desktop) o bajo el menú móvil. */
 export function DashboardFiltersSidebarSlot() {
   const { pagina } = useNavigation()
   const { chartFilters, setChartFilters, filtersVisible } = useDashboardFilters()
 
-  if (pagina !== 'dashboard' || !filtersVisible) {
+  if (!isChartFilterPage(pagina) || !filtersVisible) {
     return null
   }
 
@@ -27,7 +34,7 @@ export function DashboardFiltersMainSlot() {
   const { pagina } = useNavigation()
   const { chartFilters, setChartFilters, filtersVisible } = useDashboardFilters()
 
-  if (pagina !== 'dashboard' || !filtersVisible) {
+  if (!isChartFilterPage(pagina) || !filtersVisible) {
     return null
   }
 
