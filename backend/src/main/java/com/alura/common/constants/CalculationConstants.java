@@ -13,11 +13,11 @@ public final class CalculationConstants {
     }
 
     // --- Consumo Per Cápita ---
-    public static final int DEFAULT_OCCUPANTS_COUNT = 2;
+    public static final int DEFAULT_OCCUPANTS_COUNT = 1;
     public static final BigDecimal DEFAULT_CONSUMPTION_PER_PERSON = new BigDecimal("150.0");
 
     // --- Aislamiento Térmico ---
-    public static final double DEFAULT_AREA_M2 = 60.0;
+    public static final double DEFAULT_AREA_M2 = 35.0;
     public static final double MIN_AREA_THRESHOLD = 10.0;
     
     // Ratios de puente térmico / climatización (Valores revisables por Data)
