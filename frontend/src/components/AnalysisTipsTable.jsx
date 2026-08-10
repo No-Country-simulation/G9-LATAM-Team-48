@@ -1,4 +1,6 @@
 import { tipMetaFor } from '../utils/analysisTipsEngine'
+import { tipSuggestionText } from '../utils/recommendationCatalogText'
+import { useLocale } from '../context/LocaleContext'
 
 function priorityLabel(t, priority) {
   const key = `analysis.tipsPriority.${priority}`
@@ -16,6 +18,7 @@ function priorityClass(priority) {
  * Tabla de sugerencias según tipKeys del análisis (prioridad + foco + texto i18n).
  */
 export default function AnalysisTipsTable({ tipKeys = [], t, className = '' }) {
+  const { locale } = useLocale()
   const keys = Array.isArray(tipKeys) ? tipKeys.filter(Boolean) : []
   if (keys.length === 0) {
     return (
@@ -38,12 +41,7 @@ export default function AnalysisTipsTable({ tipKeys = [], t, className = '' }) {
         <tbody>
           {keys.map((key) => {
             const meta = tipMetaFor(key)
-            const listKey = `analysis.tipsList.${key}`
-            let suggestion = t(listKey, '')
-            if (!suggestion || suggestion === listKey) {
-              const catalogKey = `recommendations.catalog.${key}.title`
-              suggestion = t(catalogKey, key)
-            }
+            const suggestion = tipSuggestionText(t, locale, key)
             return (
               <tr key={key}>
                 <td className={`small fw-semibold ${priorityClass(meta.priority)}`}>

@@ -1,6 +1,6 @@
 /**
  * Metadatos de sugerencias (prioridad y foco) para la tabla de resultados.
- * Las claves deben existir en analysis.tipsList (i18n).
+ * Texto visible: recommendations.catalog (V2) o analysis.tipsList (claves cortas del motor).
  */
 export const TIP_DISPLAY_META = {
   keep: { priority: 'low', focusKey: 'analysis.tipsFocus.habits' },

@@ -1,33 +1,5 @@
 import { recommendationCatalogFor } from '../i18n/catalog/index.js'
 
-function normalizeTitle(value) {
-  return String(value || '')
-    .trim()
-    .replace(/\s+/g, ' ')
-}
-
-/** Índice título ES (V11) → tip_key para API sin tipKey. */
-let titleToTipKeyCache = null
-
-function titleToTipKeyMap() {
-  if (titleToTipKeyCache) return titleToTipKeyCache
-  titleToTipKeyCache = new Map()
-  const esCatalog = recommendationCatalogFor('es')
-  for (const [tipKey, entry] of Object.entries(esCatalog)) {
-    const title = normalizeTitle(entry?.title)
-    if (title) titleToTipKeyCache.set(title, tipKey)
-  }
-  return titleToTipKeyCache
-}
-
-export function resolveRecommendationTipKey(item) {
-  const direct = item?.tipKey ?? item?.tip_key
-  if (direct) return direct
-  const apiTitle = normalizeTitle(item?.title)
-  if (!apiTitle) return null
-  return titleToTipKeyMap().get(apiTitle) ?? null
-}
-
 function catalogText(locale, tipKey, field) {
   if (!tipKey) return ''
   const entry = recommendationCatalogFor(locale)?.[tipKey]
@@ -35,8 +7,26 @@ function catalogText(locale, tipKey, field) {
   return text ? String(text) : ''
 }
 
+export function resolveRecommendationTipKey(item) {
+  return item?.tipKey ?? item?.tip_key ?? null
+}
+
+/** Sugerencia por clave: catálogo V2 primero; analysis.tipsList solo para claves cortas (ac, led, …). */
+export function tipSuggestionText(t, locale, key) {
+  if (!key) return ''
+  const fromCatalog = catalogText(locale, key, 'title')
+  if (fromCatalog) return fromCatalog
+  const catalogI18n = `recommendations.catalog.${key}.title`
+  const viaCatalog = t(catalogI18n, '')
+  if (viaCatalog && viaCatalog !== catalogI18n) return viaCatalog
+  const listKey = `analysis.tipsList.${key}`
+  const viaList = t(listKey, '')
+  if (viaList && viaList !== listKey) return viaList
+  return key
+}
+
 /**
- * Textos del catálogo V2 (tip_key). Prioriza i18n; el title del API queda como fallback (ES).
+ * Textos del catálogo V2 (tip_key). Requiere tipKey en el API; title del API solo como fallback ES.
  */
 export function recommendationCatalogTitle(t, item, locale = 'es') {
   const tipKey = resolveRecommendationTipKey(item)
