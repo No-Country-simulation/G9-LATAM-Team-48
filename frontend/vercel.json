@@ -1,5 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "http://163.176.248.56:8080/api/:path*"
+    },
+    {
+      "source": "/actuator/:path*",
+      "destination": "http://163.176.248.56:8080/actuator/:path*"
+    }
+  ],
   "headers": [
     {
       "source": "/assets/:path*",
