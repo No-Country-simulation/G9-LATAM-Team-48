@@ -17,7 +17,7 @@ import AnalysisRequestFieldsTable from '../components/AnalysisRequestFieldsTable
 import AnalysisTipsTable from '../components/AnalysisTipsTable'
 import TablePagination from '../components/TablePagination'
 import CardConsumo from '../components/CardConsumo'
-import HistoriaConsumosFilters from '../components/HistoriaConsumosFilters'
+import { useHistoriaFilters } from '../context/HistoriaFiltersContext'
 import { DEFAULT_PAGE_SIZE } from '../utils/pageResponse'
 import { draftFromRequest, saveAnalisisDraft } from '../utils/analisisDraft'
 import {
@@ -27,7 +27,6 @@ import {
 import {
   calcHistoriaKpis,
   consumoFromHistoriaItem,
-  DEFAULT_HISTORIA_FILTERS,
   filterHistoriaItems,
   hasActiveHistoriaFilters,
 } from '../utils/historiaConsumoFilters'
@@ -39,7 +38,6 @@ import {
 } from '../utils/analisisRowHelpers'
 
 const MAX_HISTORIA_ROWS = 500
-const HISTORIA_FILTERS_STORAGE_KEY = 'energia.historia.filters'
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -53,19 +51,6 @@ const LOCALE_TAGS = {
   ro: 'ro-RO',
   ca: 'ca-ES',
   tr: 'tr-TR',
-}
-
-function readStoredHistoriaFilters() {
-  if (typeof sessionStorage === 'undefined') {
-    return DEFAULT_HISTORIA_FILTERS
-  }
-  try {
-    const raw = sessionStorage.getItem(HISTORIA_FILTERS_STORAGE_KEY)
-    if (!raw) return DEFAULT_HISTORIA_FILTERS
-    return { ...DEFAULT_HISTORIA_FILTERS, ...JSON.parse(raw) }
-  } catch {
-    return DEFAULT_HISTORIA_FILTERS
-  }
 }
 
 function normalizeRequestJson(raw) {
@@ -143,7 +128,7 @@ function HistoriaConsumos() {
   const { t, locale } = useLocale()
   const { token, isAuthenticated, openLogin, hydrating } = useAuth()
   const { setPagina } = useNavigation()
-  const [filters, setFilters] = useState(readStoredHistoriaFilters)
+  const { filters, setFiltersVisible } = useHistoriaFilters()
   const [rows, setRows] = useState([])
   const [chartPoints, setChartPoints] = useState([])
   const [page, setPage] = useState(0)
@@ -166,10 +151,14 @@ function HistoriaConsumos() {
     setPagina('ia')
   }
 
-  function handleFiltersChange(next) {
-    setFilters(next)
+  useEffect(() => {
+    setFiltersVisible(totalElements > 0)
+    return () => setFiltersVisible(false)
+  }, [totalElements, setFiltersVisible])
+
+  useEffect(() => {
     setPage(0)
-  }
+  }, [filters])
 
   async function loadChartPoints() {
     try {
@@ -260,15 +249,6 @@ function HistoriaConsumos() {
 
   const filteredTotalPages = Math.max(1, Math.ceil(filteredRows.length / pageSize) || 1)
   const filtersActive = hasActiveHistoriaFilters(filters)
-  const showHistoriaFilters = totalElements > 0
-
-  useEffect(() => {
-    try {
-      sessionStorage.setItem(HISTORIA_FILTERS_STORAGE_KEY, JSON.stringify(filters))
-    } catch {
-      /* ignore */
-    }
-  }, [filters])
 
   useEffect(() => {
     if (hydrating) return
@@ -371,14 +351,6 @@ function HistoriaConsumos() {
 
       {!loading && !error && totalElements > 0 && (
         <>
-          {showHistoriaFilters && (
-            <HistoriaConsumosFilters
-              filters={filters}
-              onChange={handleFiltersChange}
-              onReset={() => handleFiltersChange(DEFAULT_HISTORIA_FILTERS)}
-            />
-          )}
-
           <div className="row g-3 mb-3">
             <CardConsumo
               titulo={t('historiaConsumos.kpiCount', 'Consultas')}

@@ -5,6 +5,7 @@ import { MENU_ITEMS } from '../data/menuItems'
 import { isAdmin } from '../utils/roles'
 import MenuIcon from './MenuIcon'
 import { DashboardFiltersSidebarSlot } from './DashboardFiltersSlot'
+import { HistoriaFiltersSidebarSlot } from './HistoriaFiltersSlot'
 
 function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
   const { theme } = useTheme()
@@ -90,6 +91,7 @@ function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
       )}
 
       <DashboardFiltersSidebarSlot />
+      <HistoriaFiltersSidebarSlot />
     </nav>
   )
 }

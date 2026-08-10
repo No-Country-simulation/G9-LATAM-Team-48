@@ -1,6 +1,7 @@
 export default {
   common: {
     menu: 'Menú',
+    filters: 'Filtros',
     themeLight: 'Claro',
     themeDark: 'Oscuro',
     login: 'Iniciar sesión',

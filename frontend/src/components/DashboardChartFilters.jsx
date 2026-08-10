@@ -35,7 +35,7 @@ export default function DashboardChartFilters({ filters, onChange, layout = 'mai
   const inner = (
     <>
       <h2 className={`h6 ${isSidebar ? 'mb-2 px-1' : 'mb-3'}`}>
-        {t('chart.filters.title')}
+        {t('common.filters', 'Filtros')}
       </h2>
       <div className={isSidebar ? 'd-flex flex-column gap-2' : 'row g-3 align-items-stretch'}>
         <div className={isSidebar ? '' : 'col-12 col-md-6 col-lg-4'}>

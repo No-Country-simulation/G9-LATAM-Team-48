@@ -80,7 +80,7 @@ export const pagesEn = {
     variationCostHint: 'Percent change vs. the previous month (cost).',
     variationSeries: 'Change',
     filters: {
-      title: 'Dashboard filters',
+      title: 'Filters',
       period: 'Period',
       periodAll: 'All months',
       periodLast6: 'Last 6 months',

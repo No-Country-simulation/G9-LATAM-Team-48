@@ -80,7 +80,7 @@ export const pagesEs = {
     variationCostHint: 'Cambio porcentual respecto al mes anterior (costo).',
     variationSeries: 'Variación',
     filters: {
-      title: 'Filtros del dashboard',
+      title: 'Filtros',
       period: 'Periodo',
       periodAll: 'Todos los meses',
       periodLast6: 'Últimos 6 meses',
