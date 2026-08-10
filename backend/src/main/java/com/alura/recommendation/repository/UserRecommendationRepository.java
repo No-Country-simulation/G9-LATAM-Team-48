@@ -11,10 +11,9 @@ import java.util.List;
 
 public interface UserRecommendationRepository extends JpaRepository<UserRecommendationEntity, Long> {
 
-    // Esta consulta es crucial para el rendimiento. En lugar de traer entidades completas,
-    // extraemos únicamente la lista de TipKeys (Enum) que el usuario tiene activas.
+    // Consulta adaptada para buscar por userId de tipo String (email/token)
     @Query("SELECT ur.recommendation.tipKey FROM UserRecommendationEntity ur " +
            "WHERE ur.userId = :userId AND ur.status = :status")
-    List<TipKey> findTipKeysByUserIdAndStatus(@Param("userId") Long userId, 
+    List<TipKey> findTipKeysByUserIdAndStatus(@Param("userId") String userId, 
                                               @Param("status") RecommendationStatus status);
 }

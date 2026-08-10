@@ -8,15 +8,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-/**
- * DTO de respuesta que contiene las recomendaciones activas para el frontend.
- */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class RecommendationResponse {
-    private Long userId;
+    private String userId; // Actualizado a String para coherencia con el request y sesión
     private ConsumptionCategory category;
     private String categoryFrontendKey;
     private List<RecommendationItem> recommendations;

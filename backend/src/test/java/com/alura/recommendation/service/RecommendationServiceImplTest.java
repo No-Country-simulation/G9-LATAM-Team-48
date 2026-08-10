@@ -51,7 +51,7 @@ class RecommendationServiceImplTest {
     @DisplayName("Debe retornar únicamente recomendación base para categoría EFICIENTE")
     void testEficienteCategory_OnlyBaseTip() {
         RecommendationRequest request = RecommendationRequest.builder()
-                .userId(1L)
+                .userId("1") // Actualizado a String para coherencia con el motor V2
                 .category(ConsumptionCategory.EFICIENTE)
                 .consumoAnteriorPorPersona(new BigDecimal("200.0"))
                 .factorAislamiento(new BigDecimal("1.3"))
@@ -70,7 +70,7 @@ class RecommendationServiceImplTest {
     @DisplayName("Debe evaluar y disparar reglas específicas para categoría MODERADO")
     void testModeradoCategory_TriggersSpecificRules() {
         RecommendationRequest request = RecommendationRequest.builder()
-                .userId(2L)
+                .userId("2") // Actualizado a String para coherencia con el motor V2
                 .category(ConsumptionCategory.MODERADO)
                 .consumoAnteriorPorPersona(new BigDecimal("180.0"))
                 .proporcionIluminacionLed(new BigDecimal("0.20"))
@@ -83,7 +83,7 @@ class RecommendationServiceImplTest {
         assertEquals(3, response.getRecommendations().size());
 
         List<TipKey> tipKeys = response.getRecommendations().stream()
-                .map(RecommendationItem::getTipKey)
+                .map((RecommendationItem item) -> item.getTipKey()) // Tipado explícito para evitar warnings de null safety
                 .toList();
 
         assertTrue(tipKeys.contains(TipKey.MEDIUM_CONSUMPTION_BASE));

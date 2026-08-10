@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class RecommendationRequest {
 
-    private Long userId;
+    private String userId; // Cambiado de Long a String para soportar emails o tokens de sesión nativamente
     private Long consultaId;
     private ConsumptionCategory category;
     

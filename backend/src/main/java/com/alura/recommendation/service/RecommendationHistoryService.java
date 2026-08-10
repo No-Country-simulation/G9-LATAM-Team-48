@@ -16,10 +16,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Servicio de soporte delegado para gestionar el ciclo de vida, filtrado antiduplicados O(1)
- * y persistencia en base de datos de las recomendaciones de un usuario.
- */
 @Service
 public class RecommendationHistoryService {
 
@@ -32,31 +28,24 @@ public class RecommendationHistoryService {
         this.userRecRepository = userRecRepository;
     }
 
-    /**
-     * Filtra los candidatos usando un Set (O(1)) para descartar los activos y persiste las novedades.
-     */
     @Transactional
-    public List<RecommendationEntity> filterAndPersistNovedades(Long userId, Set<TipKey> candidateKeys) {
+    public List<RecommendationEntity> filterAndPersistNovedades(String userId, Set<TipKey> candidateKeys) {
         
-        // 1. CONSULTA BDD: Buscamos qué recomendaciones ya tiene ACTIVAS este usuario
         List<TipKey> activeUserKeysList = userRecRepository.findTipKeysByUserIdAndStatus(userId, RecommendationStatus.ACTIVE);
-        
-        // Convertimos a Set para garantizar búsqueda O(1) altamente eficiente en el hot-path
         Set<TipKey> activeUserKeysSet = new HashSet<>(activeUserKeysList);
 
-        // 2. FILTRO ANTIDUPLICADOS O(1)
         List<TipKey> newKeys = candidateKeys.stream()
                 .filter(key -> !activeUserKeysSet.contains(key))
                 .toList();
 
         List<RecommendationEntity> finalEntities = new ArrayList<>();
 
-        // 3. PERSISTENCIA: Si hay novedades, buscamos su definición en el catálogo y las guardamos
         if (!newKeys.isEmpty()) {
             Map<TipKey, RecommendationEntity> catalogMap = catalogRepository.findByTipKeyIn(newKeys).stream()
                     .collect(Collectors.toMap(
-                            RecommendationEntity::getTipKey, 
-                            entity -> entity
+                            (RecommendationEntity entity) -> entity.getTipKey(), 
+                            entity -> entity,
+                            (existing, replacement) -> existing
                     ));
 
             List<UserRecommendationEntity> newRecords = new ArrayList<>();
@@ -64,7 +53,6 @@ public class RecommendationHistoryService {
             for (TipKey key : newKeys) {
                 RecommendationEntity catalogEntity = catalogMap.get(key);
                 if (catalogEntity != null) {
-                    
                     finalEntities.add(catalogEntity);
 
                     newRecords.add(UserRecommendationEntity.builder()

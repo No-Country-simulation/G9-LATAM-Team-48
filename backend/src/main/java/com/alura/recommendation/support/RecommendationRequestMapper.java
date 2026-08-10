@@ -10,8 +10,9 @@ public class RecommendationRequestMapper {
      * Componente auxiliar para mapear solicitudes externas hacia el contrato del motor V2.
      * TODO: Implementar el mapeo completo extrayendo la categoría y variables SHAP del rawPayload.
      */
-    public RecommendationRequest map(Long userId, Object rawPayload) {
-        // Lanzamos excepción explícita (Fail-Fast) para evitar que pase un request inválido al servicio
-        throw new UnsupportedOperationException("Mapeo hacia RecommendationRequest V2 aún no implementado. Faltan definir extracción de categoría y variables SHAP.");
+    public RecommendationRequest map(String userId, Object rawPayload) {
+        // Lanzamos excepción explícita (Fail-Fast) para evitar que pase un request incompleto
+        throw new UnsupportedOperationException(
+                 "RecommendationRequestMapper.map no está implementado para Recommendation V2 aún");
     }
 }

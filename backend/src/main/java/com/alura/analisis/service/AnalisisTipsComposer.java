@@ -19,13 +19,13 @@ import java.util.Set;
 
 /**
  * Combina reglas de recomendación, tips del ML/heurística y sugerencias base por nivelKey.
- * Adaptado al Motor de Recomendaciones V2 respetando el diseño original de Jorge y usando AnalisisFeatureCalculator.
+ * Adaptado al Motor de Recomendaciones V2 pasando el userId nativo en String.
  */
 @Component
 public class AnalisisTipsComposer {
 
     private static final int MAX_TIPS = 6;
-    private static final Long DEFAULT_USER_ID = 1L;
+    private static final String DEFAULT_USER_ID = "1";
 
     private final RecommendationService recommendationService;
     private final AnalisisFeatureCalculator featureCalculator;
@@ -42,17 +42,17 @@ public class AnalisisTipsComposer {
         }
         String nivelKey = result.nivelKey() != null ? result.nivelKey() : "moderate";
 
-        Long parsedUserId = parseUserId(userId);
+        String finalUserId = (userId != null && !userId.isBlank()) ? userId.trim() : DEFAULT_USER_ID;
         ConsumptionCategory category = ConsumptionCategory.fromModelValue(nivelKey);
 
-        // Delegamos el cálculo de variables SHAP / heurísticas a nuestro calculador centralizado pasándole el map de features
+        // Delegamos el cálculo de variables SHAP / heurísticas a nuestro calculador centralizado
         BigDecimal consumoPorPersona = featureCalculator.calculateConsumptionPerPerson(features);
         BigDecimal factorAislamiento = featureCalculator.calculateInsulationFactor(features);
         BigDecimal proporcionLed = featureCalculator.calculateLedProportion(features);
         BigDecimal consumoKwh = parseBigDecimal(features != null ? features.get("consumo_kwh_mensual") : null);
 
         RecommendationRequest request = RecommendationRequest.builder()
-                .userId(parsedUserId)
+                .userId(finalUserId)
                 .category(category)
                 .consumoAnteriorPorPersona(consumoPorPersona)
                 .factorAislamiento(factorAislamiento)
@@ -87,19 +87,6 @@ public class AnalisisTipsComposer {
         }
 
         return new ArrayList<>(merged).stream().limit(MAX_TIPS).toList();
-    }
-
-    private Long parseUserId(String userId) {
-        if (userId == null || userId.isBlank()) {
-            return DEFAULT_USER_ID;
-        }
-        String trimmed = userId.trim();
-        try {
-            return Long.valueOf(trimmed);
-        } catch (NumberFormatException e) {
-            // Si el userId recibido es un email o token de sesión, generamos un hash positivo estable
-            return Math.abs((long) trimmed.hashCode()) % 1000000L + 1L;
-        }
     }
 
     private BigDecimal parseBigDecimal(Object value) {
