@@ -1,0 +1,8 @@
+# Reempaqueta el JAR cuando no hay pull a Docker Hub (usa deploy/ porque target/ está en .dockerignore).
+# VM: mvn package && cp target/energy-backend-*.jar deploy/app.jar
+#      podman build -f Dockerfile.repack --pull=never -t docker.io/library/g9-latam-team-48-backend:latest .
+
+FROM docker.io/library/g9-latam-team-48-backend:latest
+USER root
+COPY deploy/app.jar /app/app.jar
+USER app

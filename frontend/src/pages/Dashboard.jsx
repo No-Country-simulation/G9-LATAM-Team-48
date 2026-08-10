@@ -3,7 +3,6 @@ import CardConsumo from '../components/CardConsumo'
 import ChartSectionFallback from '../components/ChartSectionFallback'
 import DashboardChartsSection from '../components/DashboardChartsSection'
 import DashboardMisAnalisisSection from '../components/DashboardMisAnalisisSection'
-import ResumenFacil from '../components/ResumenFacil'
 import Recomendaciones from '../components/Recomendaciones'
 import Loader from '../components/Loader'
 import ErrorState from '../components/ErrorState'
@@ -84,7 +83,6 @@ function Dashboard() {
   const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos, {
     consumosFromDataset: consumoBundle?.fromDataset,
   })
-  const fromDataset = chartBadgeVariant === 'dataset'
   const chartsReady = Boolean(analytics) && !analyticsError
   const showChartFilters = (consumos?.length ?? 0) >= 1
   const initialLoad = loading && !consumos?.length
@@ -137,9 +135,7 @@ function Dashboard() {
             className="alert alert-secondary border-0 py-2 small mt-3 mb-0"
             role="note"
           >
-            {t(
-              fromDataset ? 'dashboard.datasetSampleHint' : 'dashboard.demoSampleHint',
-            )}
+            {t('dashboard.demoSampleHint')}
           </div>
 
           {analyticsError && (
@@ -154,8 +150,6 @@ function Dashboard() {
               </button>
             </div>
           )}
-
-          <ResumenFacil analytics={analytics} chartBadgeVariant={chartBadgeVariant} />
 
           {chartsReady ? (
             <DashboardChartsSection

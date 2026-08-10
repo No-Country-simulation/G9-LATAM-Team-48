@@ -13,7 +13,8 @@ import { formatMonthLabel } from '../utils/monthLabels'
 import {
   tiposInmuebleFetchKey,
 } from '../utils/dashboardChartFilters'
-import { useMemo } from 'react'
+import { useMemo, useState, useCallback, useEffect } from 'react'
+import { historiaRowIdsEqual } from '../utils/historiaChartInteraction'
 
 function Consumos() {
   const { t, locale } = useLocale()
@@ -38,7 +39,26 @@ function Consumos() {
   const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos, {
     consumosFromDataset: consumoBundle?.fromDataset,
   })
-  const fromDataset = chartBadgeVariant === 'dataset'
+
+  const [highlightedMesKey, setHighlightedMesKey] = useState(null)
+
+  const handleChartPointHover = useCallback((id) => {
+    if (id != null) setHighlightedMesKey(id)
+  }, [])
+
+  const handleChartPointLeave = useCallback(() => {
+    setHighlightedMesKey(null)
+  }, [])
+
+  useEffect(() => {
+    if (highlightedMesKey == null) return undefined
+    const timer = window.setTimeout(() => {
+      document
+        .getElementById(`consumos-row-${highlightedMesKey}`)
+        ?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+    }, 80)
+    return () => window.clearTimeout(timer)
+  }, [highlightedMesKey])
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -72,10 +92,16 @@ function Consumos() {
             className="alert alert-secondary border-0 py-2 small mb-0"
             role="note"
           >
-            {t(
-              fromDataset ? 'dashboard.datasetSampleHint' : 'dashboard.demoSampleHint',
-            )}
+            {t('dashboard.demoSampleHint')}
           </div>
+
+          <GraficoConsumo
+            consumos={consumos}
+            chartBadgeVariant={chartBadgeVariant}
+            onPointHover={handleChartPointHover}
+            onPointLeave={handleChartPointLeave}
+            highlightedPointId={highlightedMesKey}
+          />
 
           <div className="card shadow mb-4 mt-4">
             <div className="card-body">
@@ -88,7 +114,7 @@ function Consumos() {
               </div>
 
               <div className="table-responsive">
-                <table className="table table-striped align-middle mb-0">
+                <table className="table table-hover table-striped align-middle mb-0">
                   <thead>
                     <tr>
                       <th>{t('consumos.month')}</th>
@@ -102,7 +128,17 @@ function Consumos() {
                       const above = item.consumo > resumen.promedio
 
                       return (
-                        <tr key={item.mes}>
+                        <tr
+                          key={item.mes}
+                          id={`consumos-row-${item.mes}`}
+                          className={
+                            historiaRowIdsEqual(highlightedMesKey, item.mes)
+                              ? 'historia-row-highlight'
+                              : undefined
+                          }
+                          onMouseEnter={() => handleChartPointHover(item.mes)}
+                          onMouseLeave={handleChartPointLeave}
+                        >
                           <td>{formatMonthLabel(t, item.mes, 'full', locale)}</td>
                           <td>{item.consumo}</td>
                           <td>${item.costo}</td>
@@ -125,8 +161,6 @@ function Consumos() {
               </div>
             </div>
           </div>
-
-          <GraficoConsumo consumos={consumos} chartBadgeVariant={chartBadgeVariant} />
         </>
       )}
     </div>

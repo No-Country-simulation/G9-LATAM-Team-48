@@ -90,14 +90,7 @@ export default function AnalysisRequestFieldsTable({
             if (value === undefined && field.legacy) return null
             return (
               <tr key={field.mlKey || field.formKey}>
-                <td className="small">
-                  {t(field.labelKey)}
-                  {field.legacy && (
-                    <span className="text-muted ms-1">
-                      ({t('analysis.legacyFieldTag', 'no usado por el modelo')})
-                    </span>
-                  )}
-                </td>
+                <td className="small">{t(field.labelKey)}</td>
                 {showMlKey && (
                   <td className="small text-muted font-monospace">{field.mlKey}</td>
                 )}

@@ -26,10 +26,7 @@ export const pagesEn = {
     monthlyAverage: 'Monthly average',
     demoSample: 'Sample',
     demoSampleHint:
-      'Sample data for the demo. It does not come from your real analyses.',
-    datasetSample: 'DS dataset',
-    datasetSampleHint:
-      'Aggregated averages from the previous year’s dataset. These are not your personal analyses.',
+      'Charts show aggregated reference data. These are not your personal analyses.',
     kpiFilteredHint:
       'KPIs use the same months as the charts ({count} months).',
     kpiTotalUsage: 'Total usage (period)',
@@ -38,7 +35,7 @@ export const pagesEn = {
     kpiTotalCostYear: 'Total cost (year)',
     kpiAvgUsage: 'Monthly average (period)',
     kpiAllMonthsHint:
-      'Sum of {count} benchmark months (dataset average per calendar month; not a single bill).',
+      'Sum of {count} benchmark months (average per calendar month; not a single bill).',
     myAnalysisTitle: 'My AI analyses',
     myAnalysisViewAll: 'View full history',
     myAnalysisEmpty: 'You have no saved analyses yet. Run one in AI Analysis.',
@@ -97,7 +94,7 @@ export const pagesEn = {
       tipoActiveHint: 'Charts and KPIs filtered by: {tipo}',
     },
     breakdownTipoTitle: 'Average usage by building type',
-    breakdownTipoHint: 'DS dataset average for the period selected in the filters.',
+    breakdownTipoHint: 'Average for the period selected in the filters.',
     breakdownSamples: 'Records',
     confidence: 'Model confidence',
     categories: {
@@ -107,24 +104,25 @@ export const pagesEn = {
     },
   },
   insights: {
-    title: 'How is your usage?',
-    subtitle: 'A clear summary anyone at home or work can understand.',
+    title: 'How is reference usage trending?',
+    subtitle:
+      'Plain-language summary from the previous year’s averages (not your personal analyses).',
     trend: {
-      up: 'In {month} you used {pct}% more energy than in {prevMonth} ({kwh} kWh more).',
-      down: 'In {month} you used {pct}% less than in {prevMonth} (saved {kwh} kWh).',
-      flat: 'In {month} you used about the same as in {prevMonth}.',
+      up: 'In {month} the average was {pct}% higher than in {prevMonth} ({kwh} kWh more).',
+      down: 'In {month} the average was {pct}% lower than in {prevMonth} ({kwh} kWh less).',
+      flat: 'In {month} the average was about the same as in {prevMonth}.',
     },
     peak:
-      '{pct}% of your energy in {month} was used during peak hours (usually more expensive).',
+      'In {month}, about {pct}% of reference usage falls in peak hours (usually more expensive).',
     bill: {
-      up: 'Estimated bill for {month} is ${amount} (about ${diff} more than last month).',
-      down: 'Estimated bill for {month} is ${amount} (about ${diff} less than last month).',
-      flat: 'Estimated bill for {month} stays at ${amount}.',
+      up: 'Estimated reference bill for {month} is ${amount} (about ${diff} more than last month).',
+      down: 'Estimated reference bill for {month} is ${amount} (about ${diff} less than last month).',
+      flat: 'Estimated reference bill for {month} stays at ${amount}.',
     },
     level: {
-      good: 'Your usage is low: you are doing well.',
-      ok: 'Your usage is medium: small changes can still help.',
-      high: 'Your usage is high: check habits and power-hungry appliances.',
+      good: 'Reference level is low: efficient profile.',
+      ok: 'Reference level is medium: room to improve with small changes.',
+      high: 'Reference level is high: worth reviewing habits and heavy appliances.',
     },
     tip: {
       good: 'Tip: keep switching off unused devices and set AC around 24–26 °C.',

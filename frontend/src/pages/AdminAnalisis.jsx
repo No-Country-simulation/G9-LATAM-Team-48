@@ -362,7 +362,6 @@ function AdminAnalisis() {
                 <AnalysisRequestFieldsTable
                   request={detail.requestJson ?? {}}
                   t={t}
-                  showMlKey
                 />
               </div>
               <div>

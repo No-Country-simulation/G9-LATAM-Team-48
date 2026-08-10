@@ -12,11 +12,22 @@ import { useLocale } from '../context/LocaleContext'
 import { formatMonthLabel } from '../utils/monthLabels'
 import { yDomainWithPadding } from '../utils/chartScale'
 import { chartTooltipProps } from '../utils/chartInteractivity'
+import {
+  HistoriaChartDot,
+  historiaChartHoverHandlers,
+} from '../utils/historiaChartInteraction'
 import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
 import DemoSampleBadge from './DemoSampleBadge'
 
-function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo', syncId }) {
+function GraficoConsumo({
+  consumos = [],
+  chartBadgeVariant = 'demo',
+  syncId,
+  onPointHover,
+  onPointLeave,
+  highlightedPointId = null,
+}) {
   const { theme } = useTheme()
   const { t, locale } = useLocale()
   const gridColor = theme === 'dark' ? '#444' : '#ccc'
@@ -28,6 +39,7 @@ function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo', syncId }) {
   }
 
   const datos = consumos.map((item) => ({
+    id: item.mes,
     mesKey: item.mes,
     mes: formatMonthLabel(t, item.mes, 'short', locale),
     mesFull: formatMonthLabel(t, item.mes, 'full', locale),
@@ -35,6 +47,7 @@ function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo', syncId }) {
   }))
 
   const yDomain = yDomainWithPadding(datos.map((item) => item.consumo))
+  const hoverHandlers = historiaChartHoverHandlers(datos, onPointHover, onPointLeave)
   const tableCaption = `${t('chart.title')}. ${t('a11y.chartDataCaption', 'Datos del gráfico en tabla')}.`
 
   return (
@@ -47,7 +60,12 @@ function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo', syncId }) {
 
         <ChartVisualShell className="chart-visual-shell--wide">
           <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={datos} syncId={syncId} margin={{ top: 8, right: 12, left: 4, bottom: 4 }}>
+          <LineChart
+            data={datos}
+            syncId={syncId}
+            margin={{ top: 8, right: 12, left: 4, bottom: 4 }}
+            {...hoverHandlers}
+          >
             <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
             <XAxis
               dataKey="mes"
@@ -74,6 +92,7 @@ function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo', syncId }) {
             />
             <Tooltip
               {...chartTooltipProps(theme, { locale })}
+              cursor={{ stroke: lineColor, strokeWidth: 1, strokeDasharray: '4 4' }}
               labelFormatter={(_label, payload) =>
                 payload?.[0]?.payload?.mesFull ?? _label
               }
@@ -84,8 +103,18 @@ function GraficoConsumo({ consumos = [], chartBadgeVariant = 'demo', syncId }) {
               name={t('chart.title')}
               stroke={lineColor}
               strokeWidth={2}
-              dot={{ r: 4, fill: lineColor, strokeWidth: 0 }}
-              activeDot={{ r: 6, stroke: lineColor, strokeWidth: 2 }}
+              dot={(props) => (
+                <HistoriaChartDot
+                  {...props}
+                  fill={lineColor}
+                  highlightedPointId={highlightedPointId}
+                  onPointHover={onPointHover}
+                  activeStroke={textColor}
+                  baseRadius={4}
+                  activeRadius={7}
+                />
+              )}
+              activeDot={false}
               isAnimationActive
             />
           </LineChart>

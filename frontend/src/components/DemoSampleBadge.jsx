@@ -1,19 +1,11 @@
 import { useLocale } from '../context/LocaleContext'
 
-/** Badge: dataset agregado DS o fallback demo local (no análisis del usuario). */
+/** Badge opcional solo para serie demo local (no datos reales en API). */
 function DemoSampleBadge({ className = '', variant = 'demo' }) {
   const { t } = useLocale()
-  const isDataset = variant === 'dataset'
 
-  if (isDataset) {
-    return (
-      <span
-        className={`badge text-bg-info fw-normal align-middle ${className}`.trim()}
-        title={t('dashboard.datasetSampleHint')}
-      >
-        {t('dashboard.datasetSample')}
-      </span>
-    )
+  if (variant !== 'demo') {
+    return null
   }
 
   return (

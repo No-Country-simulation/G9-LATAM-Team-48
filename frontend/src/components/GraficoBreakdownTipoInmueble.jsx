@@ -48,8 +48,6 @@ function GraficoBreakdownTipoInmueble({
     return null
   }
 
-  const fromDataset = Boolean(breakdown?.fromDataset)
-  const badge = fromDataset ? 'dataset' : chartBadgeVariant
   const datos = items.map((item, index) => ({
     key: item.segment,
     segment: segmentLabel(t, item.segment),
@@ -67,7 +65,7 @@ function GraficoBreakdownTipoInmueble({
       <div className="card-body">
         <h3 className="d-flex flex-wrap align-items-center gap-2">
           <span>{title}</span>
-          <DemoSampleBadge variant={badge} />
+          <DemoSampleBadge variant={chartBadgeVariant} />
         </h3>
         <p className="text-muted small mb-3">{hint}</p>
 

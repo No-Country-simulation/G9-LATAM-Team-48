@@ -592,7 +592,7 @@ function HistoriaConsumos() {
               </div>
 
               <h6 className="mb-3">{t('historiaConsumos.enteredData')}</h6>
-              <AnalysisRequestFieldsTable request={request} t={t} showMlKey />
+              <AnalysisRequestFieldsTable request={request} t={t} />
 
               <h6 className="mb-2 mt-3">{t('historiaConsumos.recommendations')}</h6>
               <AnalysisTipsTable tipKeys={tips} t={t} />

@@ -26,10 +26,7 @@ export const pagesEs = {
     monthlyAverage: 'Promedio mensual',
     demoSample: 'Ejemplo',
     demoSampleHint:
-      'Datos de ejemplo para la demo. No provienen de tus análisis reales.',
-    datasetSample: 'Dataset DS',
-    datasetSampleHint:
-      'Promedios agregados del dataset del año anterior. No son tus análisis personales.',
+      'Promedios del año anterior. No son tus análisis personales.',
     kpiFilteredHint:
       'KPIs calculados con los mismos meses que los gráficos ({count} meses).',
     kpiTotalUsage: 'Total consumo (periodo)',
@@ -38,7 +35,7 @@ export const pagesEs = {
     kpiTotalCostYear: 'Total costo (año)',
     kpiAvgUsage: 'Promedio mensual (periodo)',
     kpiAllMonthsHint:
-      'Suma de los {count} meses del benchmark (promedio del dataset por mes calendario; no es tu factura de un solo mes).',
+      'Suma de los {count} meses del benchmark (promedio por mes calendario; no es tu factura de un solo mes).',
     myAnalysisTitle: 'Mis análisis IA',
     myAnalysisViewAll: 'Ver historial completo',
     myAnalysisEmpty: 'Aún no tenés consultas guardadas. Hacé un análisis en Análisis IA.',
@@ -97,7 +94,7 @@ export const pagesEs = {
       tipoActiveHint: 'Gráficos y KPIs filtrados por: {tipo}',
     },
     breakdownTipoTitle: 'Consumo medio por tipo de inmueble',
-    breakdownTipoHint: 'Promedio del dataset DS según el periodo seleccionado en los filtros.',
+    breakdownTipoHint: 'Promedio según el periodo seleccionado en los filtros.',
     breakdownSamples: 'Registros',
     confidence: 'Confianza del modelo',
     categories: {
@@ -107,24 +104,25 @@ export const pagesEs = {
     },
   },
   insights: {
-    title: '¿Cómo viene tu consumo?',
-    subtitle: 'Resumen en lenguaje claro, pensado para cualquier persona del hogar o la empresa.',
+    title: '¿Cómo viene el consumo de referencia?',
+    subtitle:
+      'Resumen en lenguaje claro a partir de promedios del año anterior (no son tus análisis).',
     trend: {
-      up: 'En {month} usaste un {pct}% más de energía que en {prevMonth} ({kwh} kWh de más).',
-      down: 'En {month} bajaste un {pct}% respecto de {prevMonth} (ahorraste {kwh} kWh).',
-      flat: 'En {month} consumiste casi lo mismo que en {prevMonth}.',
+      up: 'En {month} el promedio fue un {pct}% mayor que en {prevMonth} ({kwh} kWh más).',
+      down: 'En {month} el promedio bajó un {pct}% respecto de {prevMonth} ({kwh} kWh menos).',
+      flat: 'En {month} el promedio fue casi igual que en {prevMonth}.',
     },
     peak:
-      'El {pct}% de tu energía en {month} se usó en horario pico (suele ser más caro).',
+      'En {month}, alrededor del {pct}% del consumo de referencia corresponde a horario pico (suele ser más caro).',
     bill: {
-      up: 'La factura estimada de {month} es ${amount} (unos ${diff} más que el mes anterior).',
-      down: 'La factura estimada de {month} es ${amount} (unos ${diff} menos que el mes anterior).',
-      flat: 'La factura estimada de {month} se mantiene en ${amount}.',
+      up: 'La factura estimada de referencia de {month} es ${amount} (unos ${diff} más que el mes anterior).',
+      down: 'La factura estimada de referencia de {month} es ${amount} (unos ${diff} menos que el mes anterior).',
+      flat: 'La factura estimada de referencia de {month} se mantiene en ${amount}.',
     },
     level: {
-      good: 'Tu consumo está en un nivel bajo: vas bien.',
-      ok: 'Tu consumo está en un nivel medio: hay margen para mejorar sin grandes cambios.',
-      high: 'Tu consumo está alto: conviene revisar hábitos y equipos que más gastan.',
+      good: 'El nivel de referencia es bajo: perfil eficiente.',
+      ok: 'El nivel de referencia es medio: hay margen para mejorar sin grandes cambios.',
+      high: 'El nivel de referencia es alto: conviene revisar hábitos y equipos que más gastan.',
     },
     tip: {
       good: 'Consejo: seguí apagando lo que no uses y mantené el aire cerca de 24–26 °C.',
