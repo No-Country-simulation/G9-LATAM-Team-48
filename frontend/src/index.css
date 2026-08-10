@@ -447,6 +447,28 @@ html[data-bs-theme='light'] body {
   font-size: 0.75rem;
 }
 
+.dashboard-tipo-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.dashboard-tipo-checkboxes .form-check-label {
+  line-height: 1.25;
+}
+
+.dashboard-chart-filters--main .dashboard-tipo-checkboxes {
+  gap: 0.35rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-chart-filters--main .dashboard-tipo-checkboxes {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+  }
+}
+
 [data-bs-theme='dark'] .dashboard-chart-filters--sidebar {
   border-color: rgba(255, 255, 255, 0.12) !important;
 }

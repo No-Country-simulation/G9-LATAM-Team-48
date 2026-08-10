@@ -38,6 +38,27 @@ export function normalizeTiposInmueble(raw) {
   return []
 }
 
+/** Checkboxes: vacío o los 3 = todos marcados en UI. */
+export function tiposInmuebleUiSelection(raw) {
+  const list = normalizeTiposInmueble(raw)
+  if (!list.length || list.length >= DASHBOARD_TIPO_OPTIONS.length) {
+    return [...DASHBOARD_TIPO_OPTIONS]
+  }
+  return list
+}
+
+export function toggleTiposInmuebleSelection(currentRaw, key) {
+  if (!DASHBOARD_TIPO_OPTIONS.includes(key)) {
+    return normalizeTiposInmueble(currentRaw)
+  }
+  const ui = tiposInmuebleUiSelection(currentRaw)
+  const next = ui.includes(key) ? ui.filter((k) => k !== key) : [...ui, key]
+  if (!next.length || next.length >= DASHBOARD_TIPO_OPTIONS.length) {
+    return []
+  }
+  return [...next].sort()
+}
+
 export function tiposInmuebleQueryValue(tipos) {
   const list = normalizeTiposInmueble(tipos)
   if (!list.length || list.length >= DASHBOARD_TIPO_OPTIONS.length) return null

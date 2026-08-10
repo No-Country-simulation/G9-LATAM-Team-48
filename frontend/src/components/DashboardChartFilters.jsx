@@ -5,16 +5,17 @@ import {
   METRIC_BOTH,
   METRIC_COST,
   METRIC_KWH,
-  normalizeTiposInmueble,
   PERIOD_ALL,
   PERIOD_LAST_3,
   PERIOD_LAST_6,
+  tiposInmuebleUiSelection,
+  toggleTiposInmuebleSelection,
 } from '../utils/dashboardChartFilters'
 
 export default function DashboardChartFilters({ filters, onChange, layout = 'main' }) {
   const { t } = useLocale()
   const value = filters ?? DEFAULT_DASHBOARD_FILTERS
-  const selectedTipos = normalizeTiposInmueble(value.tiposInmueble ?? value.tipoInmueble)
+  const selectedTipos = tiposInmuebleUiSelection(value.tiposInmueble ?? value.tipoInmueble)
   const isSidebar = layout === 'sidebar'
   const idPrefix = isSidebar ? 'sidebar' : 'dashboard'
 
@@ -22,8 +23,8 @@ export default function DashboardChartFilters({ filters, onChange, layout = 'mai
     onChange?.({ ...value, [field]: next, tipoInmueble: undefined })
   }
 
-  const onTiposChange = (event) => {
-    const next = Array.from(event.target.selectedOptions, (option) => option.value)
+  const onTipoToggle = (key) => {
+    const next = toggleTiposInmuebleSelection(value.tiposInmueble, key)
     setField('tiposInmueble', next)
   }
 
@@ -33,36 +34,41 @@ export default function DashboardChartFilters({ filters, onChange, layout = 'mai
 
   const inner = (
     <>
-        <h2 className={`h6 ${isSidebar ? 'mb-2 px-1' : 'mb-3'}`}>
+      <h2 className={`h6 ${isSidebar ? 'mb-2 px-1' : 'mb-3'}`}>
         {t('chart.filters.title')}
       </h2>
       <div className={isSidebar ? 'd-flex flex-column gap-2' : 'row g-3 align-items-end'}>
         <div className={isSidebar ? '' : 'col-12 col-md-6 col-lg-4'}>
-          <label htmlFor={`${idPrefix}-filter-tipo`} className="form-label small mb-1">
+          <span className="form-label small mb-1 d-block" id={`${idPrefix}-filter-tipo-label`}>
             {t('chart.filters.tipoInmueble')}
-          </label>
-          <select
-            id={`${idPrefix}-filter-tipo`}
-            multiple
-            size={DASHBOARD_TIPO_OPTIONS.length}
-            className="form-select form-select-sm"
-            value={selectedTipos}
-            onChange={onTiposChange}
-            aria-describedby={`${idPrefix}-filter-tipo-hint`}
+          </span>
+          <div
+            className="dashboard-tipo-checkboxes"
+            role="group"
+            aria-labelledby={`${idPrefix}-filter-tipo-label`}
           >
-            {DASHBOARD_TIPO_OPTIONS.map((key) => (
-              <option key={key} value={key}>
-                {t(`analysis.types.${key}`, key)}
-              </option>
-            ))}
-          </select>
-          <p id={`${idPrefix}-filter-tipo-hint`} className="text-muted small mb-0 mt-1">
-            {t('chart.filters.tiposListHint')}
-          </p>
+            {DASHBOARD_TIPO_OPTIONS.map((key) => {
+              const inputId = `${idPrefix}-filter-tipo-${key}`
+              return (
+                <div className="form-check form-check-sm" key={key}>
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id={inputId}
+                    checked={selectedTipos.includes(key)}
+                    onChange={() => onTipoToggle(key)}
+                  />
+                  <label className="form-check-label small" htmlFor={inputId}>
+                    {t(`analysis.types.${key}`, key)}
+                  </label>
+                </div>
+              )
+            })}
+          </div>
         </div>
         <div className={isSidebar ? '' : 'col-12 col-md-6 col-lg-4'}>
           <label htmlFor={`${idPrefix}-filter-period`} className="form-label small mb-1">
-              {t('chart.filters.period')}
+            {t('chart.filters.period')}
           </label>
           <select
             id={`${idPrefix}-filter-period`}
@@ -70,14 +76,14 @@ export default function DashboardChartFilters({ filters, onChange, layout = 'mai
             value={value.period}
             onChange={(e) => setField('period', e.target.value)}
           >
-              <option value={PERIOD_ALL}>{t('chart.filters.periodAll')}</option>
-              <option value={PERIOD_LAST_6}>{t('chart.filters.periodLast6')}</option>
-              <option value={PERIOD_LAST_3}>{t('chart.filters.periodLast3')}</option>
+            <option value={PERIOD_ALL}>{t('chart.filters.periodAll')}</option>
+            <option value={PERIOD_LAST_6}>{t('chart.filters.periodLast6')}</option>
+            <option value={PERIOD_LAST_3}>{t('chart.filters.periodLast3')}</option>
           </select>
         </div>
         <div className={isSidebar ? '' : 'col-12 col-md-6 col-lg-4'}>
           <label htmlFor={`${idPrefix}-filter-metric`} className="form-label small mb-1">
-              {t('chart.filters.metric')}
+            {t('chart.filters.metric')}
           </label>
           <select
             id={`${idPrefix}-filter-metric`}
@@ -85,9 +91,9 @@ export default function DashboardChartFilters({ filters, onChange, layout = 'mai
             value={value.metric}
             onChange={(e) => setField('metric', e.target.value)}
           >
-              <option value={METRIC_BOTH}>{t('chart.filters.metricBoth')}</option>
-              <option value={METRIC_KWH}>{t('chart.filters.metricKwh')}</option>
-              <option value={METRIC_COST}>{t('chart.filters.metricCost')}</option>
+            <option value={METRIC_BOTH}>{t('chart.filters.metricBoth')}</option>
+            <option value={METRIC_KWH}>{t('chart.filters.metricKwh')}</option>
+            <option value={METRIC_COST}>{t('chart.filters.metricCost')}</option>
           </select>
         </div>
       </div>

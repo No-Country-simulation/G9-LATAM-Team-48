@@ -17,8 +17,6 @@ import { resolveChartBadgeVariant } from '../utils/chartDataSource'
 import {
   DEFAULT_DASHBOARD_FILTERS,
   filterConsumos,
-  hasActiveTiposInmuebleFilter,
-  normalizeTiposInmueble,
   PERIOD_ALL,
   tiposInmuebleFetchKey,
 } from '../utils/dashboardChartFilters'
@@ -92,10 +90,6 @@ function Dashboard() {
   const initialLoad = loading && !consumos?.length
   const refreshingCharts = loading || loadingAnalytics
   const chartsLoading = loadingAnalytics && !analytics
-  const tipoFiltered = hasActiveTiposInmuebleFilter(chartFilters)
-  const tiposLabel = normalizeTiposInmueble(chartFilters.tiposInmueble)
-    .map((key) => t(`analysis.types.${key}`, key))
-    .join(', ')
 
   useEffect(() => {
     setFiltersVisible(showChartFilters)
@@ -136,14 +130,6 @@ function Dashboard() {
           {kpiHint && (
             <p className="text-muted small mt-2 mb-0" role="note">
               {kpiHint}
-            </p>
-          )}
-          {tipoFiltered && (
-            <p className="text-muted small mt-1 mb-0" role="note">
-              {t('chart.filters.tipoActiveHint').replace(
-                '{tipo}',
-                tiposLabel,
-              )}
             </p>
           )}
 

@@ -26,8 +26,6 @@ import CardConsumo from '../components/CardConsumo'
 import { DEFAULT_PAGE_SIZE } from '../utils/pageResponse'
 import { resolveChartBadgeVariant } from '../utils/chartDataSource'
 import {
-  hasActiveTiposInmuebleFilter,
-  normalizeTiposInmueble,
   tiposInmuebleFetchKey,
 } from '../utils/dashboardChartFilters'
 import { draftFromRequest, saveAnalisisDraft } from '../utils/analisisDraft'
@@ -39,7 +37,6 @@ import {
   calcHistoriaKpis,
   consumoFromHistoriaItem,
   filterHistoriaByChartFilters,
-  hasActiveDashboardFiltersOnHistoria,
 } from '../utils/historiaConsumoFilters'
 import {
   formatKwh,
@@ -278,11 +275,6 @@ function HistoriaConsumos() {
 
   const filteredTotalPages = Math.max(1, Math.ceil(filteredRows.length / pageSize) || 1)
 
-  const filtersActive = hasActiveDashboardFiltersOnHistoria(chartFilters)
-  const tipoFiltered = hasActiveTiposInmuebleFilter(chartFilters)
-  const tiposLabel = normalizeTiposInmueble(chartFilters.tiposInmueble)
-    .map((key) => t(`analysis.types.${key}`, key))
-    .join(', ')
   const showChartFilters = (consumos?.length ?? 0) >= 1 || totalElements > 0
 
   useEffect(() => {
@@ -400,12 +392,6 @@ function HistoriaConsumos() {
             </p>
           )}
 
-          {tipoFiltered && (
-            <p className="text-muted small mb-2" role="note">
-              {t('chart.filters.tipoActiveHint').replace('{tipo}', tiposLabel)}
-            </p>
-          )}
-
           {consumos?.length > 0 && (
             <>
               <div
@@ -477,15 +463,6 @@ function HistoriaConsumos() {
               valor={kpis.avgAhorro != null ? `${kpis.avgAhorro}%` : '—'}
             />
           </div>
-
-          {filtersActive && (
-            <p className="text-muted small mb-3" role="note">
-              {t(
-                'historiaConsumos.filtersHint',
-                'KPIs, gráficos y tabla de consultas usan los mismos filtros del panel ({count} consultas).',
-              ).replace('{count}', String(filteredRows.length))}
-            </p>
-          )}
 
           <p className="text-muted small mb-3" role="note">
             {t(
