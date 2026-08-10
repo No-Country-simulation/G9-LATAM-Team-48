@@ -37,64 +37,66 @@ export default function DashboardChartFilters({ filters, onChange, layout = 'mai
       <h2 className={`h6 ${isSidebar ? 'mb-2 px-1' : 'mb-3'}`}>
         {t('chart.filters.title')}
       </h2>
-      <div className={isSidebar ? 'd-flex flex-column gap-2' : 'row g-3 align-items-end'}>
+      <div className={isSidebar ? 'd-flex flex-column gap-2' : 'row g-3 align-items-stretch'}>
         <div className={isSidebar ? '' : 'col-12 col-md-6 col-lg-4'}>
-          <span className="form-label small mb-1 d-block" id={`${idPrefix}-filter-tipo-label`}>
-            {t('chart.filters.tipoInmueble')}
-          </span>
-          <div
-            className="dashboard-tipo-checkboxes"
-            role="group"
-            aria-labelledby={`${idPrefix}-filter-tipo-label`}
-          >
-            {DASHBOARD_TIPO_OPTIONS.map((key) => {
-              const inputId = `${idPrefix}-filter-tipo-${key}`
-              return (
-                <div className="form-check form-check-sm" key={key}>
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id={inputId}
-                    checked={selectedTipos.includes(key)}
-                    onChange={() => onTipoToggle(key)}
-                  />
-                  <label className="form-check-label small" htmlFor={inputId}>
-                    {t(`analysis.types.${key}`, key)}
-                  </label>
-                </div>
-              )
-            })}
-          </div>
+          <fieldset className="dashboard-filter-group">
+            <legend className="dashboard-filter-group__legend">
+              {t('chart.filters.tipoInmueble')}
+            </legend>
+            <div className="dashboard-tipo-checkboxes">
+              {DASHBOARD_TIPO_OPTIONS.map((key) => {
+                const inputId = `${idPrefix}-filter-tipo-${key}`
+                return (
+                  <div className="form-check form-check-sm mb-0" key={key}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id={inputId}
+                      checked={selectedTipos.includes(key)}
+                      onChange={() => onTipoToggle(key)}
+                    />
+                    <label className="form-check-label small" htmlFor={inputId}>
+                      {t(`analysis.types.${key}`, key)}
+                    </label>
+                  </div>
+                )
+              })}
+            </div>
+          </fieldset>
         </div>
         <div className={isSidebar ? '' : 'col-12 col-md-6 col-lg-4'}>
-          <label htmlFor={`${idPrefix}-filter-period`} className="form-label small mb-1">
-            {t('chart.filters.period')}
-          </label>
-          <select
-            id={`${idPrefix}-filter-period`}
-            className="form-select form-select-sm"
-            value={value.period}
-            onChange={(e) => setField('period', e.target.value)}
-          >
-            <option value={PERIOD_ALL}>{t('chart.filters.periodAll')}</option>
-            <option value={PERIOD_LAST_6}>{t('chart.filters.periodLast6')}</option>
-            <option value={PERIOD_LAST_3}>{t('chart.filters.periodLast3')}</option>
-          </select>
+          <fieldset className="dashboard-filter-group">
+            <legend className="dashboard-filter-group__legend">
+              {t('chart.filters.period')}
+            </legend>
+            <select
+              id={`${idPrefix}-filter-period`}
+              className="form-select form-select-sm"
+              value={value.period}
+              onChange={(e) => setField('period', e.target.value)}
+            >
+              <option value={PERIOD_ALL}>{t('chart.filters.periodAll')}</option>
+              <option value={PERIOD_LAST_6}>{t('chart.filters.periodLast6')}</option>
+              <option value={PERIOD_LAST_3}>{t('chart.filters.periodLast3')}</option>
+            </select>
+          </fieldset>
         </div>
         <div className={isSidebar ? '' : 'col-12 col-md-6 col-lg-4'}>
-          <label htmlFor={`${idPrefix}-filter-metric`} className="form-label small mb-1">
-            {t('chart.filters.metric')}
-          </label>
-          <select
-            id={`${idPrefix}-filter-metric`}
-            className="form-select form-select-sm"
-            value={value.metric}
-            onChange={(e) => setField('metric', e.target.value)}
-          >
-            <option value={METRIC_BOTH}>{t('chart.filters.metricBoth')}</option>
-            <option value={METRIC_KWH}>{t('chart.filters.metricKwh')}</option>
-            <option value={METRIC_COST}>{t('chart.filters.metricCost')}</option>
-          </select>
+          <fieldset className="dashboard-filter-group">
+            <legend className="dashboard-filter-group__legend">
+              {t('chart.filters.metric')}
+            </legend>
+            <select
+              id={`${idPrefix}-filter-metric`}
+              className="form-select form-select-sm"
+              value={value.metric}
+              onChange={(e) => setField('metric', e.target.value)}
+            >
+              <option value={METRIC_BOTH}>{t('chart.filters.metricBoth')}</option>
+              <option value={METRIC_KWH}>{t('chart.filters.metricKwh')}</option>
+              <option value={METRIC_COST}>{t('chart.filters.metricCost')}</option>
+            </select>
+          </fieldset>
         </div>
       </div>
     </>
