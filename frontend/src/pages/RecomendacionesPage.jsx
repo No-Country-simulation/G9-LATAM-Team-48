@@ -4,6 +4,8 @@ import EmptyState from '../components/EmptyState'
 import { useFetch } from '../hooks/useFetch'
 import { getRecomendaciones } from '../services/recomendacionesService'
 import { useLocale } from '../context/LocaleContext'
+import { useMemo } from 'react'
+import { pickOneRandomPerCategory } from '../utils/recommendationSample'
 
 const priorityClass = {
   high: 'text-bg-danger',
@@ -15,7 +17,10 @@ function RecomendacionesPage() {
   const { t } = useLocale()
   const { data, loading, error, refetch } = useFetch(getRecomendaciones)
 
-  const recomendaciones = data || []
+  const recomendaciones = useMemo(
+    () => pickOneRandomPerCategory(data || []),
+    [data],
+  )
 
   const ahorroTotal = recomendaciones.reduce((sum, item) => {
     return sum + Number(item.ahorro.replace('%', ''))

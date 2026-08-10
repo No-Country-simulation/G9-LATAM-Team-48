@@ -73,13 +73,6 @@ function Dashboard() {
       valor: `${resumen.promedio} kWh`,
     },
   ]
-  const kpiHint =
-    resumen.mesesEnPeriodo > 0
-      ? (periodFiltered
-          ? t('dashboard.kpiFilteredHint')
-          : t('dashboard.kpiAllMonthsHint')
-        ).replace('{count}', String(resumen.mesesEnPeriodo))
-      : null
   const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos, {
     consumosFromDataset: consumoBundle?.fromDataset,
   })
@@ -124,18 +117,6 @@ function Dashboard() {
             {kpiCards.map((card) => (
               <CardConsumo key={card.titulo} titulo={card.titulo} valor={card.valor} />
             ))}
-          </div>
-          {kpiHint && (
-            <p className="text-muted small mt-2 mb-0" role="note">
-              {kpiHint}
-            </p>
-          )}
-
-          <div
-            className="alert alert-secondary border-0 py-2 small mt-3 mb-0"
-            role="note"
-          >
-            {t('dashboard.demoSampleHint')}
           </div>
 
           {analyticsError && (

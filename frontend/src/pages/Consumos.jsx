@@ -88,13 +88,6 @@ function Consumos() {
             />
           </div>
 
-          <div
-            className="alert alert-secondary border-0 py-2 small mb-0"
-            role="note"
-          >
-            {t('dashboard.demoSampleHint')}
-          </div>
-
           <GraficoConsumo
             consumos={consumos}
             chartBadgeVariant={chartBadgeVariant}

@@ -3,12 +3,17 @@ import ErrorState from './ErrorState'
 import { useFetch } from '../hooks/useFetch'
 import { getRecomendaciones } from '../services/recomendacionesService'
 import { useLocale } from '../context/LocaleContext'
+import { useMemo } from 'react'
+import { pickOneRandomPerCategory } from '../utils/recommendationSample'
 
 function Recomendaciones() {
   const { t } = useLocale()
   const { data, loading, error, refetch } = useFetch(getRecomendaciones)
 
-  const destacadas = (data || []).slice(0, 4)
+  const destacadas = useMemo(
+    () => pickOneRandomPerCategory(data || []),
+    [data],
+  )
 
   return (
     <div className="card shadow mt-4">
@@ -23,6 +28,9 @@ function Recomendaciones() {
           <ul className="mb-0">
             {destacadas.map((item) => (
               <li key={item.id}>
+                <span className="text-muted small me-1">
+                  {t(`recommendations.category.${item.categoryKey}`)}:
+                </span>
                 {item.title || t(`recommendations.items.${item.id}.title`)}
               </li>
             ))}
