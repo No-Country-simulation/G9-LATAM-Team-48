@@ -519,7 +519,7 @@ export const pagesEs = {
     filterAll: 'Todos',
     filterNivelMulti: 'Hasta 2 niveles; sin marcar = todos.',
     filtersHint:
-      'KPIs, gráficos y tabla de consultas usan los mismos filtros del panel ({count} consultas).',
+      'KPIs, gráficos y tabla usan estos filtros ({count} consultas).',
     filtersEmpty:
       'Ninguna consulta coincide con los filtros. Probá ampliar el periodo o limpiar filtros.',
     filtersEmptyTable: 'Sin filas para mostrar con estos filtros.',

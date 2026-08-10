@@ -10,8 +10,6 @@ import {
   DASHBOARD_TIPO_OPTIONS,
   hasActiveTiposInmuebleFilter,
   normalizeTiposInmueble,
-  PERIOD_ALL,
-  sliceByPeriod,
 } from './dashboardChartFilters'
 
 export const HISTORIA_PERIOD_ALL = 'all'
@@ -26,9 +24,9 @@ export const HISTORIA_NIVEL_MAX_SELECTED = 2
 
 export const DEFAULT_HISTORIA_FILTERS = {
   period: HISTORIA_PERIOD_ALL,
-  tipo: HISTORIA_FILTER_ALL,
-  zona: HISTORIA_FILTER_ALL,
-  /** Vacío = todos los niveles; uno o más = OR entre niveles seleccionados. */
+  /** Vacío = todos los tipos (UI: 3 checkboxes marcados). */
+  tiposInmueble: [],
+  /** Vacío = todos los niveles. */
   niveles: [],
 }
 
@@ -104,11 +102,15 @@ export function matchesHistoriaFilters(item, filters = DEFAULT_HISTORIA_FILTERS)
   const f = filters ?? DEFAULT_HISTORIA_FILTERS
   if (!matchesPeriod(item?.createdAt, f.period)) return false
 
-  if (f.tipo !== HISTORIA_FILTER_ALL) {
+  const tipos = normalizeTiposInmueble(f.tiposInmueble)
+  if (tipos.length > 0 && tipos.length < DASHBOARD_TIPO_OPTIONS.length) {
+    const key = tipoKeyFromItem(item)
+    if (!key || !tipos.includes(key)) return false
+  } else if (f.tipo != null && f.tipo !== HISTORIA_FILTER_ALL) {
     if (tipoKeyFromItem(item) !== f.tipo) return false
   }
 
-  if (f.zona !== HISTORIA_FILTER_ALL) {
+  if (f.zona != null && f.zona !== HISTORIA_FILTER_ALL) {
     if (zonaKeyFromItem(item) !== f.zona) return false
   }
 
@@ -129,8 +131,9 @@ export function hasActiveHistoriaFilters(filters) {
   const f = filters ?? DEFAULT_HISTORIA_FILTERS
   return (
     f.period !== HISTORIA_PERIOD_ALL ||
-    f.tipo !== HISTORIA_FILTER_ALL ||
-    f.zona !== HISTORIA_FILTER_ALL ||
+    hasActiveTiposInmuebleFilter({ tiposInmueble: f.tiposInmueble }) ||
+    (f.tipo != null && f.tipo !== HISTORIA_FILTER_ALL) ||
+    (f.zona != null && f.zona !== HISTORIA_FILTER_ALL) ||
     normalizeNivelesFilter(f.niveles ?? f.nivel).length > 0
   )
 }
@@ -164,30 +167,6 @@ export function calcHistoriaKpis(items) {
       : null
 
   return { count, avgKwh, avgAhorro }
-}
-
-/** Mismos criterios que el dashboard: tipos (multi) + últimos 3/6 puntos cronológicos. */
-export function filterHistoriaByChartFilters(items, chartFilters) {
-  let list = [...(items ?? [])]
-  const tipos = normalizeTiposInmueble(chartFilters?.tiposInmueble)
-  if (tipos.length > 0 && tipos.length < DASHBOARD_TIPO_OPTIONS.length) {
-    list = list.filter((item) => {
-      const key = tipoKeyFromItem(item)
-      return key && tipos.includes(key)
-    })
-  }
-  list.sort((a, b) => {
-    const ta = toDate(a?.createdAt)?.getTime() ?? 0
-    const tb = toDate(b?.createdAt)?.getTime() ?? 0
-    return ta - tb
-  })
-  const period = chartFilters?.period ?? PERIOD_ALL
-  return sliceByPeriod(list, period)
-}
-
-export function hasActiveDashboardFiltersOnHistoria(chartFilters) {
-  const period = chartFilters?.period ?? PERIOD_ALL
-  return hasActiveTiposInmuebleFilter(chartFilters) || period !== PERIOD_ALL
 }
 
 export const HISTORIA_TIPO_OPTIONS = Object.values(INSTALLATION_TYPES)

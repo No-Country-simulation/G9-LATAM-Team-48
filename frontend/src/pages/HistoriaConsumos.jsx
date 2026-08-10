@@ -6,28 +6,19 @@ import {
   listMisAnalisisChartPoints,
   reenviarEmailAnalisis,
 } from '../services/historiaConsumosService'
-import { getConsumos } from '../services/consumoService'
-import { getAnalyticsOverview } from '../services/analyticsService'
 import { useAuth } from '../context/AuthContext'
 import { useLocale } from '../context/LocaleContext'
 import { useNavigation } from '../context/NavigationContext'
-import { useDashboardFilters } from '../context/DashboardFiltersContext'
-import { useFetch } from '../hooks/useFetch'
 import Loader from '../components/Loader'
 import EmptyState from '../components/EmptyState'
-import ChartSectionFallback from '../components/ChartSectionFallback'
-import DashboardChartsSection from '../components/DashboardChartsSection'
 import GraficoHistoriaConsumo from '../components/GraficoHistoriaConsumo'
 import GraficosHistoriaExtra from '../components/GraficosHistoriaExtra'
 import AnalysisRequestFieldsTable from '../components/AnalysisRequestFieldsTable'
 import AnalysisTipsTable from '../components/AnalysisTipsTable'
 import TablePagination from '../components/TablePagination'
 import CardConsumo from '../components/CardConsumo'
+import HistoriaConsumosFilters from '../components/HistoriaConsumosFilters'
 import { DEFAULT_PAGE_SIZE } from '../utils/pageResponse'
-import { resolveChartBadgeVariant } from '../utils/chartDataSource'
-import {
-  tiposInmuebleFetchKey,
-} from '../utils/dashboardChartFilters'
 import { draftFromRequest, saveAnalisisDraft } from '../utils/analisisDraft'
 import {
   ML_REQUEST_FIELD_DEFS,
@@ -36,7 +27,9 @@ import {
 import {
   calcHistoriaKpis,
   consumoFromHistoriaItem,
-  filterHistoriaByChartFilters,
+  DEFAULT_HISTORIA_FILTERS,
+  filterHistoriaItems,
+  hasActiveHistoriaFilters,
 } from '../utils/historiaConsumoFilters'
 import {
   formatKwh,
@@ -46,6 +39,7 @@ import {
 } from '../utils/analisisRowHelpers'
 
 const MAX_HISTORIA_ROWS = 500
+const HISTORIA_FILTERS_STORAGE_KEY = 'energia.historia.filters'
 
 const LOCALE_TAGS = {
   es: 'es-AR',
@@ -59,6 +53,19 @@ const LOCALE_TAGS = {
   ro: 'ro-RO',
   ca: 'ca-ES',
   tr: 'tr-TR',
+}
+
+function readStoredHistoriaFilters() {
+  if (typeof sessionStorage === 'undefined') {
+    return DEFAULT_HISTORIA_FILTERS
+  }
+  try {
+    const raw = sessionStorage.getItem(HISTORIA_FILTERS_STORAGE_KEY)
+    if (!raw) return DEFAULT_HISTORIA_FILTERS
+    return { ...DEFAULT_HISTORIA_FILTERS, ...JSON.parse(raw) }
+  } catch {
+    return DEFAULT_HISTORIA_FILTERS
+  }
 }
 
 function normalizeRequestJson(raw) {
@@ -136,34 +143,7 @@ function HistoriaConsumos() {
   const { t, locale } = useLocale()
   const { token, isAuthenticated, openLogin, hydrating } = useAuth()
   const { setPagina } = useNavigation()
-  const { chartFilters, setFiltersVisible } = useDashboardFilters()
-  const tipoFetchKey = tiposInmuebleFetchKey(chartFilters)
-  const fetchConsumoOpts = useMemo(
-    () => (tipoFetchKey ? { tiposInmueble: chartFilters.tiposInmueble } : {}),
-    [tipoFetchKey, chartFilters.tiposInmueble],
-  )
-  const {
-    data: consumoBundle,
-    loading: loadingDataset,
-    error: datasetError,
-    refetch: refetchDataset,
-  } = useFetch(() => getConsumos(fetchConsumoOpts), [tipoFetchKey])
-  const {
-    data: analytics,
-    loading: loadingAnalytics,
-    error: analyticsError,
-    refetch: refetchAnalytics,
-  } = useFetch(() => getAnalyticsOverview(fetchConsumoOpts), [tipoFetchKey])
-
-  const consumos = consumoBundle?.consumos
-  const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos, {
-    consumosFromDataset: consumoBundle?.fromDataset,
-  })
-  const fromDataset = chartBadgeVariant === 'dataset'
-  const chartsReady = Boolean(analytics) && !analyticsError
-  const chartsLoading = loadingAnalytics && !analytics
-  const refreshingCharts = loadingDataset || loadingAnalytics
-
+  const [filters, setFilters] = useState(readStoredHistoriaFilters)
   const [rows, setRows] = useState([])
   const [chartPoints, setChartPoints] = useState([])
   const [page, setPage] = useState(0)
@@ -184,6 +164,11 @@ function HistoriaConsumos() {
     saveAnalisisDraft(draft)
     setDetail(null)
     setPagina('ia')
+  }
+
+  function handleFiltersChange(next) {
+    setFilters(next)
+    setPage(0)
   }
 
   async function loadChartPoints() {
@@ -257,13 +242,13 @@ function HistoriaConsumos() {
   }, [chartPoints, rows])
 
   const filteredSeries = useMemo(
-    () => filterHistoriaByChartFilters(seriesSource, chartFilters),
-    [seriesSource, chartFilters],
+    () => filterHistoriaItems(seriesSource, filters),
+    [seriesSource, filters],
   )
 
   const filteredRows = useMemo(
-    () => filterHistoriaByChartFilters(rows, chartFilters),
-    [rows, chartFilters],
+    () => filterHistoriaItems(rows, filters),
+    [rows, filters],
   )
 
   const kpis = useMemo(() => calcHistoriaKpis(filteredSeries), [filteredSeries])
@@ -274,16 +259,16 @@ function HistoriaConsumos() {
   }, [filteredRows, page, pageSize])
 
   const filteredTotalPages = Math.max(1, Math.ceil(filteredRows.length / pageSize) || 1)
-
-  const showChartFilters = (consumos?.length ?? 0) >= 1 || totalElements > 0
-
-  useEffect(() => {
-    setFiltersVisible(showChartFilters)
-  }, [showChartFilters, setFiltersVisible])
+  const filtersActive = hasActiveHistoriaFilters(filters)
+  const showHistoriaFilters = totalElements > 0
 
   useEffect(() => {
-    setPage(0)
-  }, [chartFilters.period, chartFilters.tiposInmueble, tipoFetchKey])
+    try {
+      sessionStorage.setItem(HISTORIA_FILTERS_STORAGE_KEY, JSON.stringify(filters))
+    } catch {
+      /* ignore */
+    }
+  }, [filters])
 
   useEffect(() => {
     if (hydrating) return
@@ -376,7 +361,7 @@ function HistoriaConsumos() {
         </div>
       )}
 
-      {!loading && !error && totalElements === 0 && !consumos?.length && (
+      {!loading && !error && totalElements === 0 && (
         <EmptyState
           mensaje={t('historiaConsumos.empty')}
           actionLabel={t('historiaConsumos.goToAnalysis', 'Ir a Análisis IA')}
@@ -384,70 +369,15 @@ function HistoriaConsumos() {
         />
       )}
 
-      {!loading && !error && (totalElements > 0 || consumos?.length > 0) && (
+      {!loading && !error && totalElements > 0 && (
         <>
-          {refreshingCharts && (
-            <p className="text-muted small mb-2" role="status" aria-live="polite">
-              {t('chart.filters.updating')}
-            </p>
+          {showHistoriaFilters && (
+            <HistoriaConsumosFilters
+              filters={filters}
+              onChange={handleFiltersChange}
+              onReset={() => handleFiltersChange(DEFAULT_HISTORIA_FILTERS)}
+            />
           )}
-
-          {consumos?.length > 0 && (
-            <>
-              <div
-                className="alert alert-secondary border-0 py-2 small mb-3"
-                role="note"
-              >
-                {t(
-                  fromDataset ? 'dashboard.datasetSampleHint' : 'dashboard.demoSampleHint',
-                )}
-              </div>
-
-              {datasetError && (
-                <div className="alert alert-warning border-0 py-2 small mb-2" role="alert">
-                  {t('states.error')}
-                  <button
-                    type="button"
-                    className="btn btn-link btn-sm p-0 ms-2 align-baseline"
-                    onClick={refetchDataset}
-                  >
-                    {t('states.retry')}
-                  </button>
-                </div>
-              )}
-
-              {analyticsError && (
-                <div className="alert alert-warning border-0 py-2 small mb-2" role="alert">
-                  {t('states.error')}
-                  <button
-                    type="button"
-                    className="btn btn-link btn-sm p-0 ms-2 align-baseline"
-                    onClick={refetchAnalytics}
-                  >
-                    {t('states.retry')}
-                  </button>
-                </div>
-              )}
-
-              {chartsReady ? (
-                <DashboardChartsSection
-                  key={`historia-${chartFilters.period}-${chartFilters.metric}-${tipoFetchKey ?? 'all'}`}
-                  consumos={consumos}
-                  analytics={analytics}
-                  chartBadgeVariant={chartBadgeVariant}
-                  chartFilters={chartFilters}
-                />
-              ) : (
-                chartsLoading && <ChartSectionFallback />
-              )}
-            </>
-          )}
-
-          {totalElements > 0 && (
-            <>
-          <h2 className="h5 text-primary mt-4 mb-3">
-            {t('historiaConsumos.myConsultasTitle', 'Mis consultas de Análisis IA')}
-          </h2>
 
           <div className="row g-3 mb-3">
             <CardConsumo
@@ -464,19 +394,22 @@ function HistoriaConsumos() {
             />
           </div>
 
+          {filtersActive && (
+            <p className="text-muted small mb-3" role="note">
+              {t('historiaConsumos.filtersHint').replace(
+                '{count}',
+                String(filteredRows.length),
+              )}
+            </p>
+          )}
+
           <p className="text-muted small mb-3" role="note">
-            {t(
-              'historiaConsumos.seriesHint',
-              'Cada punto es una consulta de Análisis IA (fecha de guardado), no un mes del medidor.',
-            )}
+            {t('historiaConsumos.seriesHint')}
           </p>
 
           {filteredSeries.length === 0 ? (
             <div className="alert alert-secondary border-0 py-2 small mb-4" role="status">
-              {t(
-                'historiaConsumos.filtersEmpty',
-                'Ninguna consulta coincide con los filtros. Probá ampliar el periodo o limpiar filtros.',
-              )}
+              {t('historiaConsumos.filtersEmpty')}
             </div>
           ) : (
             <>
@@ -523,61 +456,60 @@ function HistoriaConsumos() {
                     {pagedRows.length === 0 ? (
                       <tr>
                         <td colSpan={9} className="text-muted text-center py-4 small">
-                          {t(
-                            'historiaConsumos.filtersEmptyTable',
-                            'Sin filas para mostrar con estos filtros.',
-                          )}
+                          {t('historiaConsumos.filtersEmptyTable')}
                         </td>
                       </tr>
                     ) : (
                       pagedRows.map((row) => {
-                      const consumo = consumoFromRow(row)
-                      const consumoPrev = numericFromRow(row, 'consumoKwhMesAnterior')
-                      const superficie = numericFromRow(row, 'areaM2')
-                      return (
-                      <tr key={row.id}>
-                        <td className="small text-nowrap">{formatDate(row.createdAt, locale)}</td>
-                        <td>{labelTipo(t, row.tipoInstalacion)}</td>
-                        <td>{formatKwh(consumo)}</td>
-                        <td className="d-none d-md-table-cell">{formatKwh(consumoPrev)}</td>
-                        <td className="d-none d-lg-table-cell small">
-                          {zonaLabelFromRow(row, t)}
-                        </td>
-                        <td className="d-none d-xl-table-cell">{formatM2(superficie)}</td>
-                        <td>{labelNivel(t, row.nivelKey)}</td>
-                        <td>{row.ahorro != null ? `${row.ahorro}%` : '—'}</td>
-                        <td className="text-end text-nowrap">
-                          <button
-                            type="button"
-                            className="btn btn-primary btn-sm me-2 d-inline-flex align-items-center justify-content-center"
-                            title={t('historiaConsumos.detail')}
-                            aria-label={t('historiaConsumos.detail')}
-                            onClick={() => setDetail(row)}
-                          >
-                            <LuEye size={16} aria-hidden="true" />
-                          </button>
-                          <button
-                            type="button"
-                            className="btn btn-secondary btn-sm d-inline-flex align-items-center justify-content-center"
-                            title={t('historiaConsumos.resendEmail')}
-                            aria-label={t('historiaConsumos.resendEmail')}
-                            disabled={mailBusyId === row.id}
-                            onClick={() => handleResendEmail(row)}
-                          >
-                            {mailBusyId === row.id ? (
-                              <span
-                                className="spinner-border spinner-border-sm"
-                                role="status"
-                                aria-hidden="true"
-                              />
-                            ) : (
-                              <LuMail size={16} aria-hidden="true" />
-                            )}
-                          </button>
-                        </td>
-                      </tr>
-                      )
-                    })
+                        const consumo = consumoFromRow(row)
+                        const consumoPrev = numericFromRow(row, 'consumoKwhMesAnterior')
+                        const superficie = numericFromRow(row, 'areaM2')
+                        return (
+                          <tr key={row.id}>
+                            <td className="small text-nowrap">
+                              {formatDate(row.createdAt, locale)}
+                            </td>
+                            <td>{labelTipo(t, row.tipoInstalacion)}</td>
+                            <td>{formatKwh(consumo)}</td>
+                            <td className="d-none d-md-table-cell">{formatKwh(consumoPrev)}</td>
+                            <td className="d-none d-lg-table-cell small">
+                              {zonaLabelFromRow(row, t)}
+                            </td>
+                            <td className="d-none d-xl-table-cell">{formatM2(superficie)}</td>
+                            <td>{labelNivel(t, row.nivelKey)}</td>
+                            <td>{row.ahorro != null ? `${row.ahorro}%` : '—'}</td>
+                            <td className="text-end text-nowrap">
+                              <button
+                                type="button"
+                                className="btn btn-primary btn-sm me-2 d-inline-flex align-items-center justify-content-center"
+                                title={t('historiaConsumos.detail')}
+                                aria-label={t('historiaConsumos.detail')}
+                                onClick={() => setDetail(row)}
+                              >
+                                <LuEye size={16} aria-hidden="true" />
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-secondary btn-sm d-inline-flex align-items-center justify-content-center"
+                                title={t('historiaConsumos.resendEmail')}
+                                aria-label={t('historiaConsumos.resendEmail')}
+                                disabled={mailBusyId === row.id}
+                                onClick={() => handleResendEmail(row)}
+                              >
+                                {mailBusyId === row.id ? (
+                                  <span
+                                    className="spinner-border spinner-border-sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                  />
+                                ) : (
+                                  <LuMail size={16} aria-hidden="true" />
+                                )}
+                              </button>
+                            </td>
+                          </tr>
+                        )
+                      })
                     )}
                   </tbody>
                 </table>
@@ -594,8 +526,6 @@ function HistoriaConsumos() {
               />
             </div>
           </div>
-            </>
-          )}
         </>
       )}
 

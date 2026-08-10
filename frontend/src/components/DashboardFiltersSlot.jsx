@@ -2,8 +2,8 @@ import DashboardChartFilters from './DashboardChartFilters'
 import { useDashboardFilters } from '../context/DashboardFiltersContext'
 import { useNavigation } from '../context/NavigationContext'
 
-/** Páginas que comparten filtros y gráficos de dataset con el dashboard. */
-const CHART_FILTER_PAGES = new Set(['dashboard', 'historia-consumos'])
+/** Filtros del dataset solo en el dashboard. */
+const CHART_FILTER_PAGES = new Set(['dashboard'])
 
 function isChartFilterPage(pagina) {
   return CHART_FILTER_PAGES.has(pagina)

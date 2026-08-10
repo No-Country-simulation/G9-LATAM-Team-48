@@ -513,8 +513,7 @@ export const pagesEn = {
     filterPeriod90: 'Last 90 days',
     filterAll: 'All',
     filterNivelMulti: 'Up to 2 levels; none selected = all levels.',
-    filtersHint:
-      'Query KPIs, charts, and table use the same panel filters ({count} queries).',
+    filtersHint: 'KPIs, charts, and table use these filters ({count} queries).',
     filtersEmpty: 'No queries match these filters. Try a wider period or clear filters.',
     filtersEmptyTable: 'No rows to show with these filters.',
     seriesHint:
