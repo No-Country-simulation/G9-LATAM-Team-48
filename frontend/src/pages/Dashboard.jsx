@@ -1,19 +1,23 @@
 import { useEffect, useMemo } from 'react'
 import CardConsumo from '../components/CardConsumo'
-import ChartSectionFallback from '../components/ChartSectionFallback'
-import DashboardChartsSection from '../components/DashboardChartsSection'
+import DashboardChartsLazy from '../components/DashboardChartsLazy'
 import Loader from '../components/Loader'
 import ErrorState from '../components/ErrorState'
 import EmptyState from '../components/EmptyState'
 import { useFetch } from '../hooks/useFetch'
 import { getConsumos, calcularResumenPeriodo } from '../services/consumoService'
-import { getAnalyticsOverview } from '../services/analyticsService'
+import {
+  getAnalyticsBreakdown,
+  getAnalyticsOverview,
+} from '../services/analyticsService'
 import { useLocale } from '../context/LocaleContext'
 import { useNavigation } from '../context/NavigationContext'
 import { resolveChartBadgeVariant } from '../utils/chartDataSource'
 import {
   DEFAULT_DASHBOARD_FILTERS,
   filterConsumos,
+  monthKeysFromConsumos,
+  normalizeTiposInmueble,
   PERIOD_ALL,
   tiposInmuebleFetchKey,
 } from '../utils/dashboardChartFilters'
@@ -39,6 +43,29 @@ function Dashboard() {
     error: analyticsError,
     refetch: refetchAnalytics,
   } = useFetch(() => getAnalyticsOverview(fetchConsumoOpts), [tipoFetchKey])
+
+  const filteredConsumosForBreakdown = useMemo(
+    () => filterConsumos(consumos, chartFilters.period),
+    [consumos, chartFilters.period],
+  )
+  const breakdownMonthKeys = useMemo(
+    () => monthKeysFromConsumos(filteredConsumosForBreakdown),
+    [filteredConsumosForBreakdown],
+  )
+  const breakdownMonthKey = breakdownMonthKeys.join(',')
+
+  const {
+    data: breakdown,
+    loading: loadingBreakdown,
+    refetch: refetchBreakdown,
+  } = useFetch(
+    () =>
+      getAnalyticsBreakdown(breakdownMonthKeys, {
+        tiposInmueble: normalizeTiposInmueble(chartFilters.tiposInmueble),
+      }),
+    [tipoFetchKey, breakdownMonthKey],
+    { enabled: Boolean(consumos?.length) },
+  )
 
   const filteredConsumos = useMemo(
     () => filterConsumos(consumos, chartFilters.period),
@@ -74,11 +101,9 @@ function Dashboard() {
   const chartBadgeVariant = resolveChartBadgeVariant(analytics, consumos, {
     consumosFromDataset: consumoBundle?.fromDataset,
   })
-  const chartsReady = Boolean(analytics) && !analyticsError
   const showChartFilters = (consumos?.length ?? 0) >= 1
   const initialLoad = loading && !consumos?.length
-  const refreshingCharts = loading || loadingAnalytics
-  const chartsLoading = loadingAnalytics && !analytics
+  const refreshingCharts = loading || loadingAnalytics || loadingBreakdown
 
   useEffect(() => {
     setFiltersVisible(showChartFilters)
@@ -86,6 +111,11 @@ function Dashboard() {
       setChartFilters(DEFAULT_DASHBOARD_FILTERS)
     }
   }, [showChartFilters, setChartFilters, setFiltersVisible])
+
+  const retryAnalytics = () => {
+    refetchAnalytics()
+    refetchBreakdown()
+  }
 
   return (
     <div className="container-fluid px-0 px-sm-2">
@@ -123,24 +153,22 @@ function Dashboard() {
               <button
                 type="button"
                 className="btn btn-link btn-sm p-0 ms-2 align-baseline"
-                onClick={refetchAnalytics}
+                onClick={retryAnalytics}
               >
                 {t('states.retry')}
               </button>
             </div>
           )}
 
-          {chartsReady ? (
-            <DashboardChartsSection
-              key={`${chartFilters.period}-${chartFilters.metric}-${tipoFetchKey ?? 'all'}`}
-              consumos={consumos}
-              analytics={analytics}
-              chartBadgeVariant={chartBadgeVariant}
-              chartFilters={chartFilters}
-            />
-          ) : (
-            chartsLoading && <ChartSectionFallback />
-          )}
+          <DashboardChartsLazy
+            consumos={consumos}
+            analytics={analyticsError ? null : analytics}
+            analyticsPending={loadingAnalytics && !analytics}
+            breakdown={breakdown}
+            breakdownPending={loadingBreakdown && !breakdown}
+            chartBadgeVariant={chartBadgeVariant}
+            chartFilters={chartFilters}
+          />
         </>
       )}
     </div>

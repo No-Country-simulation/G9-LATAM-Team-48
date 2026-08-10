@@ -1,12 +1,22 @@
 import { useEffect, useState } from 'react'
 
-export function useFetch(fetcher, deps = []) {
+/**
+ * @param {object} [options]
+ * @param {boolean} [options.enabled=true] — si false, no dispara fetch (espera datos previos).
+ */
+export function useFetch(fetcher, deps = [], options = {}) {
+  const { enabled = true } = options
   const [data, setData] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(Boolean(enabled))
   const [error, setError] = useState(null)
   const [reloadIndex, setReloadIndex] = useState(0)
 
   useEffect(() => {
+    if (!enabled) {
+      setLoading(false)
+      return undefined
+    }
+
     let active = true
 
     setLoading(true)
@@ -27,7 +37,7 @@ export function useFetch(fetcher, deps = []) {
       active = false
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [...deps, reloadIndex])
+  }, [...deps, reloadIndex, enabled])
 
   const refetch = () => setReloadIndex((index) => index + 1)
 

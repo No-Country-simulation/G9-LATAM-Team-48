@@ -19,9 +19,9 @@ public class DatasetFeatureEngineeringDao {
 
     public boolean hasRows() {
         try {
-            Integer count = jdbcTemplate.queryForObject(
-                    "SELECT COUNT(*) FROM dataset_feature_engineering", Integer.class);
-            return count != null && count > 0;
+            Integer one = jdbcTemplate.queryForObject(
+                    "SELECT 1 FROM dataset_feature_engineering LIMIT 1", Integer.class);
+            return one != null;
         } catch (DataAccessException ex) {
             return false;
         }
