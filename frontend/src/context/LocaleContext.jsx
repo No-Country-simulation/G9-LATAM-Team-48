@@ -5,7 +5,7 @@ const LocaleContext = createContext()
 
 export function LocaleProvider({ children }) {
   const [locale, setLocaleState] = useState(detectLocale)
-  const [, setDictTick] = useState(0)
+  const [dictVersion, setDictVersion] = useState(0)
 
   useEffect(() => {
     document.documentElement.lang = locale
@@ -14,7 +14,7 @@ export function LocaleProvider({ children }) {
   useEffect(() => {
     let cancelled = false
     ensureLocale(locale).then(() => {
-      if (!cancelled) setDictTick((n) => n + 1)
+      if (!cancelled) setDictVersion((n) => n + 1)
     })
     return () => {
       cancelled = true
@@ -30,7 +30,9 @@ export function LocaleProvider({ children }) {
   const t = (key, fallback) => translate(locale, key, fallback)
 
   return (
-    <LocaleContext.Provider value={{ locale, setLocale, t, locales: LOCALES }}>
+    <LocaleContext.Provider
+      value={{ locale, setLocale, t, locales: LOCALES, dictVersion }}
+    >
       {children}
     </LocaleContext.Provider>
   )

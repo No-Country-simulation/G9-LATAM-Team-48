@@ -18,7 +18,7 @@ const priorityClass = {
 }
 
 function RecomendacionesPage() {
-  const { t } = useLocale()
+  const { t, locale, dictVersion } = useLocale()
   const { data, loading, error, refetch } = useFetch(getRecomendaciones)
 
   const recomendaciones = useMemo(
@@ -82,7 +82,7 @@ function RecomendacionesPage() {
 
           <div className="row g-4">
             {recomendaciones.map((item) => (
-              <div className="col-12 col-lg-6" key={item.id}>
+              <div className="col-12 col-lg-6" key={`${item.id}-${dictVersion}-${locale}`}>
                 <div className="card shadow h-100">
                   <div className="card-body">
                     <div className="d-flex justify-content-between align-items-start mb-2">
@@ -96,9 +96,9 @@ function RecomendacionesPage() {
                       </span>
                     </div>
 
-                    <h5>{recommendationCatalogTitle(t, item)}</h5>
+                    <h5>{recommendationCatalogTitle(t, item, locale)}</h5>
                     <p className="text-muted mb-3">
-                      {recommendationCatalogDescription(t, item)}
+                      {recommendationCatalogDescription(t, item, locale)}
                     </p>
 
                     <div className="d-flex justify-content-between align-items-center">

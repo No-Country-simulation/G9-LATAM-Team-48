@@ -8,7 +8,7 @@ import { pickOneRandomPerCategory } from '../utils/recommendationSample'
 import { recommendationCatalogTitle } from '../utils/recommendationCatalogText'
 
 function Recomendaciones() {
-  const { t } = useLocale()
+  const { t, locale } = useLocale()
   const { data, loading, error, refetch } = useFetch(getRecomendaciones)
 
   const destacadas = useMemo(
@@ -32,7 +32,7 @@ function Recomendaciones() {
                 <span className="text-muted small me-1">
                   {t(`recommendations.category.${item.categoryKey}`)}:
                 </span>
-                {recommendationCatalogTitle(t, item)}
+                {recommendationCatalogTitle(t, item, locale)}
               </li>
             ))}
           </ul>
