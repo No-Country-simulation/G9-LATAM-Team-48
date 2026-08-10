@@ -31,7 +31,7 @@ Tras el deploy, cargá filas una sola vez:
 | Entorno | Script |
 |---------|--------|
 | **Local (Laragon)** | `scripts/import-feature-engineering-dataset.ps1` (`LOAD DATA`, rápido) |
-| **Railway** | `pip install pymysql` + `scripts/import-feature-engineering-dataset-remote.ps1` (`-Replace` si reimportás). Railway **no** permite `LOAD DATA LOCAL`; el disco del plan puede limitar el import completo (~88k filas suele alcanzar para gráficos). |
+| **Railway** | `pip install pymysql` + `scripts/import-feature-engineering-dataset-remote.ps1` (`-Replace` si reimportás). Railway **no** permite `LOAD DATA LOCAL`; el disco del plan puede limitar el import completo (~88k filas suele alcanzar para gráficos). Flyway **V10–V11** crea `recommendation_catalog` y `user_recommendations` (catálogo de 33 tips; poco espacio en disco). |
 
 CSV: `scripts/fetch-feature-engineering-csv.ps1` (~150 MB). Sin filas en la tabla, `/api/consumos` responde `{ fromDataset: false, consumos: [...] }` (12 meses demo) y `/api/analytics/overview` usa el mismo benchmark. Con datos importados, ambos marcan `fromDataset: true`.
 
