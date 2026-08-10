@@ -101,7 +101,7 @@ function buildSavingsSeries(points, locale) {
       return {
         id: item.id ?? index,
         fecha,
-        label: `${formatShortDate(item.createdAt, locale)} · #${item.id ?? index + 1}`,
+        label: formatShortDate(item.createdAt, locale),
         ahorro,
       }
     })
@@ -146,7 +146,23 @@ function ChartCard({ title, subtitle, children }) {
   )
 }
 
-function SavingsChart({ points }) {
+function chartPointHoverHandlers(onPointHover, onPointLeave) {
+  if (!onPointHover && !onPointLeave) return {}
+  return {
+    onMouseMove: (state) => {
+      const id = state?.activePayload?.[0]?.payload?.id
+      if (id != null) onPointHover?.(id)
+    },
+    onMouseLeave: () => onPointLeave?.(),
+  }
+}
+
+function SavingsChart({
+  points,
+  onPointHover,
+  onPointLeave,
+  highlightedPointId = null,
+}) {
   const { theme } = useTheme()
   const { t, locale } = useLocale()
   const [wrapRef, width] = useElementWidth()
@@ -170,6 +186,7 @@ function SavingsChart({ points }) {
 
   const first = datos[0].ahorro
   const yDomain = yDomainWithPadding(datos.map((item) => item.ahorro))
+  const hoverHandlers = chartPointHoverHandlers(onPointHover, onPointLeave)
 
   return (
     <ChartCard
@@ -189,6 +206,7 @@ function SavingsChart({ points }) {
           height={chartHeight}
           data={datos}
           margin={{ top: 8, right: 12, left: 4, bottom: 8 }}
+          {...hoverHandlers}
         >
           <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
           <XAxis
@@ -222,7 +240,22 @@ function SavingsChart({ points }) {
             dataKey="ahorro"
             stroke={lineColor}
             strokeWidth={3}
-            dot={{ r: 4, fill: lineColor, strokeWidth: 0 }}
+            dot={(props) => {
+              const { cx, cy, payload } = props
+              if (cx == null || cy == null) return null
+              const active = highlightedPointId != null && payload?.id === highlightedPointId
+              return (
+                <circle
+                  cx={cx}
+                  cy={cy}
+                  r={active ? 6 : 4}
+                  fill={lineColor}
+                  stroke={active ? textColor : 'none'}
+                  strokeWidth={active ? 2 : 0}
+                  style={{ cursor: onPointHover ? 'pointer' : undefined }}
+                />
+              )
+            }}
             activeDot={{ r: 6 }}
             isAnimationActive={false}
           />
@@ -300,13 +333,23 @@ function LevelChart({ points }) {
   )
 }
 
-function GraficosHistoriaExtra({ points = [] }) {
+function GraficosHistoriaExtra({
+  points = [],
+  onPointHover,
+  onPointLeave,
+  highlightedPointId = null,
+}) {
   if (!points.length) return null
 
   return (
     <div className="row g-3 mb-4">
       <div className="col-12 col-lg-6">
-        <SavingsChart points={points} />
+        <SavingsChart
+          points={points}
+          onPointHover={onPointHover}
+          onPointLeave={onPointLeave}
+          highlightedPointId={highlightedPointId}
+        />
       </div>
       <div className="col-12 col-lg-6">
         <LevelChart points={points} />

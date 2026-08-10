@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, useCallback } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { LuEye, LuMail, LuRotateCcw } from 'react-icons/lu'
 import {
@@ -124,6 +124,12 @@ function tipKeysFrom(detail) {
   return []
 }
 
+function pageIndexForRowId(list, id, size) {
+  const idx = (list ?? []).findIndex((r) => r.id === id)
+  if (idx < 0) return null
+  return Math.floor(idx / size)
+}
+
 function HistoriaConsumos() {
   const { t, locale } = useLocale()
   const { token, isAuthenticated, openLogin, hydrating } = useAuth()
@@ -139,6 +145,7 @@ function HistoriaConsumos() {
   const [detail, setDetail] = useState(null)
   const [mailBusyId, setMailBusyId] = useState(null)
   const [mailMessage, setMailMessage] = useState(null)
+  const [highlightedRowId, setHighlightedRowId] = useState(null)
 
   function goToAnalisis() {
     setPagina('ia')
@@ -158,6 +165,7 @@ function HistoriaConsumos() {
 
   useEffect(() => {
     setPage(0)
+    setHighlightedRowId(null)
   }, [filters])
 
   async function loadChartPoints() {
@@ -249,6 +257,32 @@ function HistoriaConsumos() {
 
   const filteredTotalPages = Math.max(1, Math.ceil(filteredRows.length / pageSize) || 1)
   const filtersActive = hasActiveHistoriaFilters(filters)
+
+  const handleChartPointHover = useCallback(
+    (id) => {
+      if (id == null) return
+      setHighlightedRowId(id)
+      const targetPage = pageIndexForRowId(filteredRows, id, pageSize)
+      if (targetPage != null && targetPage !== page) {
+        setPage(targetPage)
+      }
+    },
+    [filteredRows, pageSize, page],
+  )
+
+  const handleChartPointLeave = useCallback(() => {
+    setHighlightedRowId(null)
+  }, [])
+
+  useEffect(() => {
+    if (highlightedRowId == null) return undefined
+    const timer = window.setTimeout(() => {
+      document
+        .getElementById(`historia-row-${highlightedRowId}`)
+        ?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+    }, 50)
+    return () => window.clearTimeout(timer)
+  }, [highlightedRowId, page])
 
   useEffect(() => {
     if (hydrating) return
@@ -391,6 +425,9 @@ function HistoriaConsumos() {
                   createdAt: row.createdAt,
                   consumo: row.consumo ?? row.consumoKwh,
                 }))}
+                onPointHover={handleChartPointHover}
+                onPointLeave={handleChartPointLeave}
+                highlightedPointId={highlightedRowId}
               />
               <GraficosHistoriaExtra
                 points={filteredSeries.map((row) => ({
@@ -399,6 +436,9 @@ function HistoriaConsumos() {
                   ahorro: row.ahorro,
                   nivelKey: row.nivelKey,
                 }))}
+                onPointHover={handleChartPointHover}
+                onPointLeave={handleChartPointLeave}
+                highlightedPointId={highlightedRowId}
               />
             </>
           )}
@@ -437,7 +477,13 @@ function HistoriaConsumos() {
                         const consumoPrev = numericFromRow(row, 'consumoKwhMesAnterior')
                         const superficie = numericFromRow(row, 'areaM2')
                         return (
-                          <tr key={row.id}>
+                          <tr
+                            key={row.id}
+                            id={`historia-row-${row.id}`}
+                            className={
+                              highlightedRowId === row.id ? 'historia-row-highlight' : undefined
+                            }
+                          >
                             <td className="small text-nowrap">
                               {formatDate(row.createdAt, locale)}
                             </td>

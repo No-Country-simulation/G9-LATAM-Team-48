@@ -65,7 +65,7 @@ export function buildHistoriaChartData(points, locale) {
       return {
         id: item.id ?? index,
         fecha,
-        label: `${formatShortDate(item.createdAt, locale)} · #${item.id ?? index + 1}`,
+        label: formatShortDate(item.createdAt, locale),
         consumo,
       }
     })
@@ -113,7 +113,23 @@ function useElementWidth() {
   return [ref, width]
 }
 
-function GraficoHistoriaConsumo({ points = [] }) {
+function chartPointHoverHandlers(onPointHover, onPointLeave) {
+  if (!onPointHover && !onPointLeave) return {}
+  return {
+    onMouseMove: (state) => {
+      const id = state?.activePayload?.[0]?.payload?.id
+      if (id != null) onPointHover?.(id)
+    },
+    onMouseLeave: () => onPointLeave?.(),
+  }
+}
+
+function GraficoHistoriaConsumo({
+  points = [],
+  onPointHover,
+  onPointLeave,
+  highlightedPointId = null,
+}) {
   const { theme } = useTheme()
   const { t, locale } = useLocale()
   const [wrapRef, width] = useElementWidth()
@@ -184,6 +200,8 @@ function GraficoHistoriaConsumo({ points = [] }) {
     )
   }
 
+  const hoverHandlers = chartPointHoverHandlers(onPointHover, onPointLeave)
+
   return (
     <div className="card shadow-sm mb-4 chart-card">
       <div className="card-body">
@@ -208,6 +226,7 @@ function GraficoHistoriaConsumo({ points = [] }) {
             height={chartHeight}
             data={datos}
             margin={{ top: 12, right: 16, left: 8, bottom: 8 }}
+            {...hoverHandlers}
           >
             <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
             <XAxis
@@ -240,7 +259,22 @@ function GraficoHistoriaConsumo({ points = [] }) {
               dataKey="consumo"
               stroke={lineColor}
               strokeWidth={3}
-              dot={{ r: 5, fill: lineColor, strokeWidth: 0 }}
+              dot={(props) => {
+                const { cx, cy, payload } = props
+                if (cx == null || cy == null) return null
+                const active = highlightedPointId != null && payload?.id === highlightedPointId
+                return (
+                  <circle
+                    cx={cx}
+                    cy={cy}
+                    r={active ? 7 : 5}
+                    fill={lineColor}
+                    stroke={active ? textColor : 'none'}
+                    strokeWidth={active ? 2 : 0}
+                    style={{ cursor: onPointHover ? 'pointer' : undefined }}
+                  />
+                )
+              }}
               activeDot={{ r: 7 }}
               isAnimationActive={false}
             />
