@@ -517,7 +517,7 @@ export const pagesEs = {
     filterPeriod30: 'Últimos 30 días',
     filterPeriod90: 'Últimos 90 días',
     filterAll: 'Todos',
-    filterNivelMulti: 'Hasta 2 niveles; sin marcar = todos.',
+    filterNivelMulti: 'Desmarcá para filtrar; los tres marcados = todos.',
     filtersHint:
       'KPIs, gráficos y tabla usan estos filtros ({count} consultas).',
     filtersEmpty:

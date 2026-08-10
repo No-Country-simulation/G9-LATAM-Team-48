@@ -19,28 +19,55 @@ export const HISTORIA_PERIOD_90 = 'last90'
 
 export const HISTORIA_FILTER_ALL = 'all'
 
-/** Máximo de niveles seleccionables a la vez en Historia de consumos. */
-export const HISTORIA_NIVEL_MAX_SELECTED = 2
+export const HISTORIA_NIVEL_OPTIONS = ['efficient', 'moderate', 'inefficient']
 
 export const DEFAULT_HISTORIA_FILTERS = {
   period: HISTORIA_PERIOD_ALL,
   /** Vacío = todos los tipos (UI: 3 checkboxes marcados). */
   tiposInmueble: [],
-  /** Vacío = todos los niveles. */
+  /** Vacío = todos los niveles (UI: 3 checkboxes marcados). */
   niveles: [],
 }
 
-function normalizeNivelesFilter(raw) {
+export function normalizeNiveles(raw) {
   if (raw == null) return []
+  if (typeof raw === 'string') {
+    const single = String(raw).trim().toLowerCase()
+    if (!single || single === HISTORIA_FILTER_ALL) return []
+    return HISTORIA_NIVEL_OPTIONS.includes(single) ? [single] : []
+  }
   if (Array.isArray(raw)) {
     return raw
       .map((k) => String(k).trim().toLowerCase())
-      .filter(Boolean)
-      .slice(0, HISTORIA_NIVEL_MAX_SELECTED)
+      .filter((k) => HISTORIA_NIVEL_OPTIONS.includes(k))
   }
-  const single = String(raw).trim().toLowerCase()
-  if (!single || single === HISTORIA_FILTER_ALL) return []
-  return [single]
+  return []
+}
+
+/** Checkboxes: vacío o los 3 = todos marcados en UI. */
+export function nivelesUiSelection(raw) {
+  const list = normalizeNiveles(raw)
+  if (!list.length || list.length >= HISTORIA_NIVEL_OPTIONS.length) {
+    return [...HISTORIA_NIVEL_OPTIONS]
+  }
+  return list
+}
+
+export function toggleNivelesSelection(currentRaw, key) {
+  if (!HISTORIA_NIVEL_OPTIONS.includes(key)) {
+    return normalizeNiveles(currentRaw)
+  }
+  const ui = nivelesUiSelection(currentRaw)
+  const next = ui.includes(key) ? ui.filter((k) => k !== key) : [...ui, key]
+  if (!next.length || next.length >= HISTORIA_NIVEL_OPTIONS.length) {
+    return []
+  }
+  return [...next].sort()
+}
+
+export function hasActiveNivelesFilter(nivelesRaw) {
+  const list = normalizeNiveles(nivelesRaw)
+  return list.length > 0 && list.length < HISTORIA_NIVEL_OPTIONS.length
 }
 
 function toDate(value) {
@@ -114,10 +141,12 @@ export function matchesHistoriaFilters(item, filters = DEFAULT_HISTORIA_FILTERS)
     if (zonaKeyFromItem(item) !== f.zona) return false
   }
 
-  const niveles = normalizeNivelesFilter(f.niveles ?? f.nivel)
-  if (niveles.length > 0) {
+  const niveles = normalizeNiveles(f.niveles ?? f.nivel)
+  if (niveles.length > 0 && niveles.length < HISTORIA_NIVEL_OPTIONS.length) {
     const itemNivel = nivelKeyFromItem(item)
     if (!itemNivel || !niveles.includes(itemNivel)) return false
+  } else if (f.nivel != null && f.nivel !== HISTORIA_FILTER_ALL && !f.niveles?.length) {
+    if (nivelKeyFromItem(item) !== String(f.nivel).trim().toLowerCase()) return false
   }
 
   return true
@@ -134,7 +163,8 @@ export function hasActiveHistoriaFilters(filters) {
     hasActiveTiposInmuebleFilter({ tiposInmueble: f.tiposInmueble }) ||
     (f.tipo != null && f.tipo !== HISTORIA_FILTER_ALL) ||
     (f.zona != null && f.zona !== HISTORIA_FILTER_ALL) ||
-    normalizeNivelesFilter(f.niveles ?? f.nivel).length > 0
+    hasActiveNivelesFilter(f.niveles) ||
+    (f.nivel != null && f.nivel !== HISTORIA_FILTER_ALL && !f.niveles?.length)
   )
 }
 
@@ -172,5 +202,3 @@ export function calcHistoriaKpis(items) {
 export const HISTORIA_TIPO_OPTIONS = Object.values(INSTALLATION_TYPES)
 
 export const HISTORIA_ZONA_OPTIONS = Object.keys(ZONA_INMUEBLE)
-
-export const HISTORIA_NIVEL_OPTIONS = ['efficient', 'moderate', 'inefficient']

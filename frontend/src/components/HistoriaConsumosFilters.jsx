@@ -6,13 +6,14 @@ import {
 } from '../utils/dashboardChartFilters'
 import {
   DEFAULT_HISTORIA_FILTERS,
-  HISTORIA_NIVEL_MAX_SELECTED,
   HISTORIA_NIVEL_OPTIONS,
   HISTORIA_PERIOD_30,
   HISTORIA_PERIOD_7,
   HISTORIA_PERIOD_90,
   HISTORIA_PERIOD_ALL,
   hasActiveHistoriaFilters,
+  nivelesUiSelection,
+  toggleNivelesSelection,
 } from '../utils/historiaConsumoFilters'
 
 export default function HistoriaConsumosFilters({
@@ -24,7 +25,7 @@ export default function HistoriaConsumosFilters({
   const { t } = useLocale()
   const value = filters ?? DEFAULT_HISTORIA_FILTERS
   const selectedTipos = tiposInmuebleUiSelection(value.tiposInmueble)
-  const selectedNiveles = value.niveles ?? []
+  const selectedNiveles = nivelesUiSelection(value.niveles)
   const active = hasActiveHistoriaFilters(value)
   const isSidebar = layout === 'sidebar'
   const idPrefix = isSidebar ? 'historia-sidebar' : 'historia-main'
@@ -38,17 +39,9 @@ export default function HistoriaConsumosFilters({
     setField('tiposInmueble', next)
   }
 
-  const toggleNivel = (key) => {
-    const current = selectedNiveles
-    if (current.includes(key)) {
-      setField(
-        'niveles',
-        current.filter((k) => k !== key),
-      )
-      return
-    }
-    if (current.length >= HISTORIA_NIVEL_MAX_SELECTED) return
-    setField('niveles', [...current, key])
+  const onNivelToggle = (key) => {
+    const next = toggleNivelesSelection(value.niveles, key)
+    setField('niveles', next)
   }
 
   const shellClass = isSidebar
@@ -132,18 +125,14 @@ export default function HistoriaConsumosFilters({
             <div className="dashboard-tipo-checkboxes">
               {HISTORIA_NIVEL_OPTIONS.map((key) => {
                 const inputId = `${idPrefix}-filter-nivel-${key}`
-                const checked = selectedNiveles.includes(key)
-                const disabled =
-                  !checked && selectedNiveles.length >= HISTORIA_NIVEL_MAX_SELECTED
                 return (
                   <div className="form-check form-check-sm mb-0" key={key}>
                     <input
                       className="form-check-input"
                       type="checkbox"
                       id={inputId}
-                      checked={checked}
-                      disabled={disabled}
-                      onChange={() => toggleNivel(key)}
+                      checked={selectedNiveles.includes(key)}
+                      onChange={() => onNivelToggle(key)}
                     />
                     <label className="form-check-label small" htmlFor={inputId}>
                       {t(`analysis.levels.${key}`, key)}
