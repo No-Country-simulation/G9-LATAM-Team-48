@@ -7,6 +7,7 @@ import com.alura.recommendation.service.RecommendationServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,8 +34,12 @@ public class RecommendationController {
     @GetMapping("/recomendaciones")
     @Operation(summary = "Listar recomendaciones (contrato frontend)")
     public ResponseEntity<List<RecommendationItem>> list(
-            @RequestParam(required = false) String category) {
-        return ResponseEntity.ok(recommendationService.listForFrontend(category));
+            @RequestParam(required = false) String category,
+            Authentication authentication) {
+        String userEmail = authentication != null && authentication.isAuthenticated()
+                ? authentication.getName()
+                : null;
+        return ResponseEntity.ok(recommendationService.listForFrontend(category, userEmail));
     }
 
     @PostMapping("/v1/recommendations")

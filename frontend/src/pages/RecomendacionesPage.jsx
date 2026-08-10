@@ -87,9 +87,13 @@ function RecomendacionesPage() {
                       </span>
                     </div>
 
-                    <h5>{t(`recommendations.items.${item.id}.title`)}</h5>
+                    <h5>
+                      {item.title ||
+                        t(`recommendations.items.${item.id}.title`)}
+                    </h5>
                     <p className="text-muted mb-3">
-                      {t(`recommendations.items.${item.id}.description`)}
+                      {item.description ||
+                        t(`recommendations.items.${item.id}.description`)}
                     </p>
 
                     <div className="d-flex justify-content-between align-items-center">

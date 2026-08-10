@@ -10,6 +10,7 @@ import com.alura.analisis.persistence.AnalisisConsultaRepository;
 import com.alura.common.exception.BusinessException;
 import com.alura.prediction.dto.PredictionResponse;
 import com.alura.prediction.service.PredictionService;
+import com.alura.recommendation.service.UserRecommendationSyncService;
 import com.alura.user.model.User;
 import com.alura.user.repository.UserRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -35,6 +36,7 @@ public class AnalisisService {
     private final AnalisisEmailService emailService;
     private final ObjectMapper objectMapper;
     private final AnalisisTipsComposer tipsComposer;
+    private final UserRecommendationSyncService userRecommendationSyncService;
 
     public AnalisisService(
             PredictionService predictionService,
@@ -42,17 +44,21 @@ public class AnalisisService {
             UserRepository userRepository,
             AnalisisEmailService emailService,
             ObjectMapper objectMapper,
-            AnalisisTipsComposer tipsComposer) {
+            AnalisisTipsComposer tipsComposer,
+            UserRecommendationSyncService userRecommendationSyncService) {
         this.predictionService = predictionService;
         this.consultaRepository = consultaRepository;
         this.userRepository = userRepository;
         this.emailService = emailService;
         this.objectMapper = objectMapper;
         this.tipsComposer = tipsComposer;
+        this.userRecommendationSyncService = userRecommendationSyncService;
     }
 
     /**
      * Analiza, persiste la consulta siempre y envia email solo si hay usuario autenticado.
+     * Tips del analisis usan el mismo motor para anonimo y logueado; solo usuarios logueados
+     * persisten filas en {@code user_recommendations} (catalogo en {@code recommendation_catalog}).
      */
     @Transactional
     public AnalisisApiResponse analizarYGuardar(Map<String, Object> mlFeatures, Map<String, Object> storedRequest) {
@@ -118,6 +124,11 @@ public class AnalisisService {
         String emailStatus = emailService.enqueue(saved);
         saved.setEmailStatus(emailStatus);
         consultaRepository.save(saved);
+
+        if (email != null) {
+            userRecommendationSyncService.syncFromAnalysisTips(email, tipKeys);
+        }
+        // Anonimo: analisis_consultas + tips en respuesta; sin user_recommendations.
 
         return AnalisisApiResponse.from(result, emailStatus, saved.getId());
     }

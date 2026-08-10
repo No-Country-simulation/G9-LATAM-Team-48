@@ -23,7 +23,7 @@ function Recomendaciones() {
           <ul className="mb-0">
             {destacadas.map((item) => (
               <li key={item.id}>
-                {t(`recommendations.items.${item.id}.title`)}
+                {item.title || t(`recommendations.items.${item.id}.title`)}
               </li>
             ))}
           </ul>

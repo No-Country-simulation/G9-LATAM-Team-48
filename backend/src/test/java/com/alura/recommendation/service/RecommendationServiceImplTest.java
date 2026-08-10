@@ -4,6 +4,8 @@ import com.alura.common.enums.ConsumptionCategory;
 import com.alura.common.constants.PropertyTypeConstants;
 import com.alura.recommendation.dto.RecommendationRequest;
 import com.alura.recommendation.dto.RecommendationResponse;
+import com.alura.recommendation.persistence.RecommendationCatalogRepository;
+import com.alura.recommendation.persistence.UserRecommendationRepository;
 import com.alura.recommendation.rules.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Pruebas unitarias para el servicio de recomendaciones y su motor de reglas.
@@ -41,7 +45,13 @@ class RecommendationServiceImplTest {
                 new ApartmentEfficiencyRule()
         );
 
-        recommendationService = new RecommendationServiceImpl(rules);
+        RecommendationCatalogRepository catalogRepository = mock(RecommendationCatalogRepository.class);
+        when(catalogRepository.findAll()).thenReturn(List.of());
+        UserRecommendationRepository userRecommendationRepository = mock(UserRecommendationRepository.class);
+        RecommendationCatalogMapper catalogMapper = new RecommendationCatalogMapper();
+
+        recommendationService = new RecommendationServiceImpl(
+                rules, catalogRepository, userRecommendationRepository, catalogMapper);
     }
 
     @Test
