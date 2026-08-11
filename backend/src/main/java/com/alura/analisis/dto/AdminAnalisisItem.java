@@ -13,6 +13,7 @@ public record AdminAnalisisItem(
         String userEmail,
         String tipoInstalacion,
         String nivelKey,
+        String categoria,
         Integer ahorro,
         Double confidence,
         Double benchmark,

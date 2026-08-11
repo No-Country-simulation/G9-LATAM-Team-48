@@ -27,6 +27,7 @@ Migraciones Flyway:
 - `V8` — tabla `dataset_feature_engineering` (dataset procesado DS para gráficos agregados)
 - `V10`–`V11` — recomendaciones (`recommendation_catalog`, 33 `tip_key`)
 - `V12` — rollups dashboard (`dataset_dashboard_*`) + índice `mes_numero`
+- `V13` — columna `categoria` en `analisis_consultas` (backfill desde JSON / `nivel_key`)
 
 Tras el deploy, cargá filas una sola vez:
 

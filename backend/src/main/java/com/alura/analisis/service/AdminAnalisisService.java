@@ -91,6 +91,7 @@ public class AdminAnalisisService {
                     result, new TypeReference<Map<String, Object>>() {});
 
             entity.setNivelKey(result.nivelKey());
+            entity.setCategoria(result.category());
             entity.setAhorro(result.ahorro());
             entity.setConfidence(result.confidence());
             entity.setBenchmark(result.benchmark());
@@ -105,6 +106,9 @@ public class AdminAnalisisService {
 
     private static boolean hasChanged(AnalisisConsultaEntity entity, PredictionResponse result) {
         if (!Objects.equals(entity.getNivelKey(), result.nivelKey())) {
+            return true;
+        }
+        if (!Objects.equals(entity.getCategoria(), result.category())) {
             return true;
         }
         if (!Objects.equals(entity.getAhorro(), result.ahorro())) {
@@ -128,6 +132,7 @@ public class AdminAnalisisService {
                 entity.getUserEmail(),
                 entity.getTipoInstalacion(),
                 entity.getNivelKey(),
+                entity.getCategoria(),
                 entity.getAhorro(),
                 entity.getConfidence(),
                 entity.getBenchmark(),

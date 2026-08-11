@@ -112,6 +112,7 @@ public class AnalisisService {
                 .tipoInstalacion(tipoInstalacion)
                 .requestJson(objectMapper.valueToTree(requestToStore))
                 .nivelKey(result.nivelKey())
+                .categoria(result.category())
                 .ahorro(result.ahorro())
                 .confidence(result.confidence())
                 .benchmark(result.benchmark())
@@ -190,6 +191,7 @@ public class AnalisisService {
                 entity.getUserEmail(),
                 entity.getTipoInstalacion(),
                 entity.getNivelKey(),
+                entity.getCategoria(),
                 entity.getAhorro(),
                 entity.getConfidence(),
                 entity.getBenchmark(),

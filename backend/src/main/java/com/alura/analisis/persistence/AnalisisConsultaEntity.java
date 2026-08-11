@@ -49,6 +49,10 @@ public class AnalisisConsultaEntity {
     @Column(name = "nivel_key", length = 50)
     private String nivelKey;
 
+    /** Perfil de consumo (efficient / moderate / inefficient); ver {@link com.alura.prediction.dto.PredictionResponse#category()}. */
+    @Column(length = 50)
+    private String categoria;
+
     private Integer ahorro;
 
     private Double confidence;
