@@ -3,7 +3,7 @@
 Módulo para el formulario de Análisis Inteligente del frontend.
 Persiste cada consulta y deja el envío por email en cola (`PENDING`).
 
-**Producción (marzo 2026):** ML en [Render](https://render.com) (`ml-service-lbfk.onrender.com`), API en Railway, front en Vercel. Guía completa: [`../DEPLOY_PRODUCCION.md`](../DEPLOY_PRODUCCION.md).
+**Producción (agosto 2026):** ML en [Render](https://render.com), API + MySQL en **OCI VM**, front en Vercel (proxy `/api`). Guía: [`../DEPLOY_PRODUCCION.md`](../DEPLOY_PRODUCCION.md).
 
 ## Piezas
 
@@ -18,7 +18,7 @@ Persiste cada consulta y deja el envío por email en cola (`PENDING`).
 ```text
 Frontend (Vercel)
   → POST /api/analisis (AnalisisPayload, 12 campos)
-  → Spring (Railway)
+  → Spring (OCI / local)
        → FastAPI /predict (12 claves snake_case)
        → perfil: nivelKey, confidence, ahorro, benchmark
        → AnalisisTipsComposer (mismo formulario + nivelKey → tipKeys)
@@ -152,7 +152,7 @@ VITE_API_URL=http://localhost:8080
 
 El análisis puede hacerse sin cuenta; con login/registro se encola email del resultado.
 
-Prod: `VITE_API_URL` apunta al backend Railway (ver [`../DEPLOY_PRODUCCION.md`](../DEPLOY_PRODUCCION.md)).
+Prod: API vía proxy Vercel `/api` o `VITE_API_URL` directo (ver [`../DEPLOY_PRODUCCION.md`](../DEPLOY_PRODUCCION.md)).
 
 ## Swagger
 

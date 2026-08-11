@@ -1,6 +1,6 @@
 # EnergyAI en el NAS (QNAP NASTNL)
 
-Mapa operativo del stack Docker. **No** confundir con Vercel/Railway ni con `docker compose` del repo (en este QNAP `compose` falló por un bug de red; se usa `docker run`).
+Mapa operativo del stack Docker. **No** confundir con Vercel/OCI ni con `docker compose` del repo (en este QNAP `compose` falló por un bug de red; se usa `docker run`).
 
 ## Host
 

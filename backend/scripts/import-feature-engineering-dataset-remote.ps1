@@ -1,16 +1,17 @@
 <#
-Importa el CSV a Railway (u otro MySQL remoto) sin LOAD DATA LOCAL.
-Railway deshabilita local_infile -> usar este script en lugar de import-feature-engineering-dataset.ps1
+Importa el CSV a MySQL remoto (OCI, túnel SSH, etc.) sin LOAD DATA LOCAL.
+Usar cuando local_infile no está disponible.
 
 Requisitos:
   pip install pymysql
   python en PATH
+  MYSQL_PWD en el entorno
 #>
 param(
     [Parameter(Mandatory = $true)] [string]$DatasetPath,
     [string]$MySqlHost = "localhost",
     [int]$MySqlPort = 3306,
-    [string]$Database = "railway",
+    [string]$Database = "energia_ia",
     [string]$Username = "root",
     [switch]$Replace
 )
@@ -45,7 +46,7 @@ if ($Replace) {
     $args += "--replace"
 }
 
-Write-Host "Import por lotes (puede tardar 10-20 min en Railway)..."
+Write-Host "Import por lotes (puede tardar varios minutos en MySQL remoto)..."
 & python @args
 if ($LASTEXITCODE -ne 0) {
     throw "La importacion por lotes fallo."

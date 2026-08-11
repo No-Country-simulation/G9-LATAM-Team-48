@@ -1,5 +1,5 @@
 """
-Importa 03_feature_engineering.csv sin LOAD DATA LOCAL (necesario en Railway).
+Importa 03_feature_engineering.csv sin LOAD DATA LOCAL (MySQL remoto / OCI).
 Requiere: pip install pymysql
 """
 from __future__ import annotations

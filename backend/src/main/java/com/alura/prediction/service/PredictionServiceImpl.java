@@ -29,7 +29,7 @@ public class PredictionServiceImpl implements PredictionService {
         try {
             return predictionClient.predict(request);
         } catch (MlServiceUnavailableException ex) {
-            // Railway suele tener PREDICTION_API_BASE_URL=http://127.0.0.1:8000 sin ML.
+            // Prod mal configurado: PREDICTION_API_BASE_URL apunta a localhost sin ML.
             log.warn("ML no disponible; usando fallback heuristico: {}", ex.getMessage());
             return HeuristicPrediction.fromFeatures(request.features());
         }

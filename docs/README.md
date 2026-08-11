@@ -4,7 +4,7 @@
 
 | Documento | Descripción |
 |-----------|-------------|
-| **[DEPLOY_PRODUCCION.md](./DEPLOY_PRODUCCION.md)** | **Principal:** Vercel + Railway + Render, env vars, ML, troubleshooting, changelog |
+| **[DEPLOY_PRODUCCION.md](./DEPLOY_PRODUCCION.md)** | **Principal:** Vercel + **OCI** + Render, env vars, ML, rollups dashboard, troubleshooting |
 
 ## Backend
 
@@ -28,7 +28,7 @@
 | Documento | Descripción |
 |-----------|-------------|
 | [../ml-service/README.md](../ml-service/README.md) | Contrato FastAPI, `model.joblib` definitivo, adaptador 12 → pipeline |
-| [../ml-service/DEPLOY.md](../ml-service/DEPLOY.md) | Deploy Render / Railway |
+| [../ml-service/DEPLOY.md](../ml-service/DEPLOY.md) | Deploy Render ML |
 | [backend/ANALISIS_IA.md](./backend/ANALISIS_IA.md) | Flujo formulario → ML → tips → front |
 
 ## Ciencia de datos

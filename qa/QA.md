@@ -6,7 +6,7 @@ Marcá **Pass / Fail / N/A** en cada fila. No hace falta cambiar código de prod
 
 | Ambiente | Frontend | Backend API |
 |----------|----------|-------------|
-| **Prod (demo)** | https://g9-latam-team-48.vercel.app | https://g9-latam-team-48-production-f9a0.up.railway.app |
+| **Prod (demo)** | https://g9-latam-team-48.vercel.app | API vía proxy: `/api/*` → OCI `163.176.248.56:8080`; directo: `http://163.176.248.56:8080` |
 | **Local** | `http://localhost:5173` (`frontend/`) | `http://localhost:8080` (`backend/`) |
 
 Rama de deploy: **`Jorge-martinez`**.
@@ -47,7 +47,7 @@ cd ../qa
 | A2 | `mvn test` — RecommendationServiceImplTest | tipKeys según reglas | **Pass** (incluido en `mvn test`) |
 | A3 | `mvn test` — EnergyApplicationTests | Context carga (perfil `test`) | **Pass** |
 | A4 | `npm run build` (frontend) | Build Vite OK | **Pass** |
-| A5 | Smoke Railway (`smoke-api.ps1`) | Críticos 2xx/401-403; Swagger UI 404 en prod (deshabilitada) | **Pass** (2026-08-07; f9a0; health 200; swagger 404; `RESULT: PASS`) |
+| A5 | Smoke API prod (`smoke-api.ps1`) | Críticos 2xx/401-403; Swagger UI 404 en prod (deshabilitada) | **Pass** (2026-08-10; OCI; consumos/overview ~150 ms; `RESULT: PASS`) |
 
 ---
 
@@ -58,13 +58,13 @@ Corrida API/bundle: `qa/run-p0.ps1` (2026-07-27). UI de Google + mail real = MAN
 | ID | Área | Pasos | Esperado | Pass/Fail |
 |----|------|-------|----------|-----------|
 | P0-01 | Deploy | Abrir Vercel | App carga; sin errores de consola graves por API URL | **Pass** (HTML 200 + assets) |
-| P0-02 | Deploy | Network: llamadas a Railway | CORS OK; no 403/failed por origen | **Pass** (ACAO = origen Vercel; API en bundle) |
+| P0-02 | Deploy | Network: llamadas API (proxy Vercel → OCI) | Sin 502 prolongado; `/api/consumos` 200 | **Pass** (proxy vercel.json) |
 | P0-03 | Auth email | Registro con email nuevo | 201; **sin** JWT; **no** se muestra token en UI | **Pass** (API 201 sin JWT; UI token no revisada) |
 | P0-04 | Auth email | Login antes de verificar | Error / conflicto (no entra) | **Pass** (409) |
 | P0-05 | Auth email | Abrir link `?verifyToken=` del mail → Verificar | Cuenta verificada | **Pass** (mail recibido en prod; flujo completo verificado en local — ver L-01…L-08) |
 | P0-06 | Auth email | Login post-verify | Entra; sidebar / sesión OK | **Pass** (seed `operador@…` → JWT + `/me` 200) |
 | P0-07 | Auth Google | Modal login: botón Google visible | Se ve GIS / botón | **Pass** (Client ID / GIS en bundle; confirmar botón en UI) |
-| P0-08 | Auth Google | Completar login Google | Entra sin “Login con Google no está configurado” | **Pass** (login OAuth real OK en UI — 2026-07-28; Client ID Vercel + Railway) |
+| P0-08 | Auth Google | Completar login Google | Entra sin “Login con Google no está configurado” | **Pass** (login OAuth real OK en UI — 2026-07-28; Client ID Vercel + backend OCI) |
 | P0-09 | Análisis IA | Formulario válido (área > 0) → enviar | Resultado predicción/heurística | **Pass** (200; tipKeys `led,peak,appliances,standby`) |
 | P0-10 | Análisis IA | Área 0 o inválida | Validación; no envía o API 400 | **Pass** (400) |
 | P0-11 | Recomendaciones | Abrir recomendaciones / tras análisis | Tips legibles (i18n tipKeys) | **Pass** (GET 200 + tipKeys del análisis) |
@@ -90,7 +90,7 @@ Corrida API: `qa/run-p1.ps1` + inspección bundle (`qa/inspect-google-i18n.ps1`)
 | P1-09 | Contacto | Enviar formulario contacto | OK o feedback claro | **Pass** (200; `emailStatus=SENT`) |
 | P1-10 | i18n | Cambiar idioma (mapa / selector) | UI y tips cambian de idioma | **Pass** (packs es/en/… + strings en bundle Vercel; selector en Header) |
 | P1-11 | Roles | USER no ve Admin | Menú admin oculto / 403 API | **Pass** (USER → `/admin/users` 403) |
-| P1-12 | Google env | Vercel `VITE_GOOGLE_CLIENT_ID` + Railway `GOOGLE_CLIENT_ID` | Mismo Client ID; sin espacios raros en `=` | **Pass** (mismo Client ID en Vercel y local; Railway verifica tokens) |
+| P1-12 | Google env | Vercel `VITE_GOOGLE_CLIENT_ID` + backend `GOOGLE_CLIENT_ID` | Mismo Client ID | **Pass** |
 
 ---
 
@@ -125,7 +125,7 @@ a cualquier destinatario; así el flujo se prueba las veces que haga falta.
 - **Correo en prod (Resend modo test):** solo entrega a la casilla dueña de la cuenta,
   hoy la casilla dueña de Resend (`QA_INBOX`). Verificado el 2026-07-27: alias `+qa` → `emailStatus: FAILED`;
   dirección exacta → `emailStatus: SENT`. Para enviar a cualquier destinatario en prod habría que
-  verificar un dominio en Resend (Railway Hobby bloquea SMTP).
+  verificar un dominio en Resend (SMTP directo suele estar bloqueado en prod).
 - **Ojo:** si `RESEND_API_KEY` está seteada, `UserMailService` la prioriza y el SMTP nunca se usa.
   Por eso `start-local-backend.ps1` la vacía para la corrida local.
 - **Google Sign-In:** el click OAuth real se validó manualmente en prod (2026-07-28).
@@ -135,8 +135,8 @@ a cualquier destinatario; así el flujo se prueba las veces que haga falta.
 
 | Fecha | Ambiente | Quién | A1–A5 | P0 fallidos | Notas |
 |-------|----------|-------|-------|-------------|-------|
-| 2026-08-07 | prod smoke | agente | A5 Pass | — | f9a0; consumos/recomendaciones/docs 200; actuator UP; swagger 404; ML `/health` OK (Render) |
-| 2026-07-27 | prod (Vercel+Railway) | agente | — | ninguno (P0-05/08 Manual) | `run-p0.ps1`: 11 Pass API; falta verify por mail + Google UI |
+| 2026-08-10 | prod smoke OCI | agente | A5 Pass | — | rollups V12; API ~150 ms vía Vercel proxy |
+| 2026-07-27 | prod (Vercel+OCI) | agente | — | ninguno (P0-05/08 Manual) | `run-p0.ps1`: 11 Pass API; falta verify por mail + Google UI |
 | 2026-07-27 | local (SMTP Gmail) | agente | — | ninguno | `run-mail-local.ps1`: L-01…L-08 Pass; queda P0-08 (Google UI) |
 | 2026-07-27 | prod (mail real) | equipo | — | — | Forgot/reset ya OK con mail de Germán; P1-04/05 Pass |
 | 2026-07-28 | prod | agente | — | ninguno | `run-p1.ps1`: P1-01…12 Pass; P0-08 Pass(env); cleanup qa.p0+ |

@@ -53,11 +53,11 @@ Hackathon ONE G9 · Team 48
 | Componente | URL / ubicación |
 |------------|-----------------|
 | **Frontend** | [g9-latam-team-48.vercel.app](https://g9-latam-team-48.vercel.app) |
-| **API (Railway)** | `https://g9-latam-team-48-production-f9a0.up.railway.app` |
+| **API (prod)** | Mismo origen: `/api/*` proxeado a OCI (`vercel.json`). Directo: `http://163.176.248.56:8080` |
 | **ML (Render)** | `https://ml-service-lbfk.onrender.com` (solo backend; ver [`docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md)) |
 | **Deploy Git** | Rama **`Jorge-martinez`** · Vercel **Root Directory:** `frontend` |
 
-La URL de Railway es **solo API**; abrir `/` en el navegador puede responder 403. Usá siempre la app en Vercel.
+En producción **no hace falta** `VITE_API_URL` si el proxy en `vercel.json` está activo (axios usa base URL vacía = mismo origen). Para dev local: `VITE_API_URL=http://localhost:8080`.
 
 Tras cambiar variables `VITE_*` en Vercel, ejecutá **Redeploy** (Vite embebe env en build).
 
@@ -112,7 +112,7 @@ npm run dev
 
 Aplicación en **http://localhost:5173**.
 
-Para API local: backend en `:8080` o apuntar `VITE_API_URL` a Railway (ver [Configuración](#configuración) y [`qa/README.md`](../qa/README.md)).
+Para API local: backend en `:8080` con `VITE_API_URL=http://localhost:8080` (ver [Configuración](#configuración)).
 
 ---
 
@@ -122,9 +122,9 @@ Copiá [`.env.example`](./.env.example) → `.env`.
 
 | Variable | Descripción |
 |----------|-------------|
-| `VITE_API_URL` | Base URL del backend. En prod: `https://g9-latam-team-48-production.up.railway.app`. Vacío = misma origen (Docker/nginx). |
+| `VITE_API_URL` | Base URL del backend. **Prod:** vacío u omitido (proxy `/api` en `vercel.json`). **Local:** `http://localhost:8080`. |
 | `VITE_ML_API_URL` | FastAPI ML opcional (`:8000`). Análisis IA usa el backend → ML. |
-| `VITE_GOOGLE_CLIENT_ID` | Client ID OAuth **Web** (mismo valor que `GOOGLE_CLIENT_ID` en Railway). Sin esto, no se muestra el botón Google. |
+| `VITE_GOOGLE_CLIENT_ID` | Client ID OAuth **Web** (mismo valor que `GOOGLE_CLIENT_ID` en el backend OCI). Sin esto, no se muestra el botón Google. |
 
 **Google Cloud Console** (OAuth Web): registrar **Authorized JavaScript origins** para cada URL de prueba, por ejemplo:
 
@@ -135,7 +135,6 @@ Copiá [`.env.example`](./.env.example) → `.env`.
 En Vercel (prod), ejemplo mínimo:
 
 ```env
-VITE_API_URL=https://g9-latam-team-48-production.up.railway.app
 VITE_GOOGLE_CLIENT_ID=<tu-client-id>.apps.googleusercontent.com
 ```
 
@@ -443,7 +442,7 @@ frontend/
 
 - Checklist y scripts: carpeta [`qa/`](../qa/) (`run-p0.ps1`, `run-p1.ps1`, inspección Google/i18n).
 - Build de producción: `npm run build` antes de merge a rama de deploy.
-- Google Sign-In en prod: validar origen OAuth + variables Vercel/Railway alineadas.
+- Google Sign-In en prod: validar origen OAuth + variables Vercel/backend OCI alineadas.
 
 ---
 

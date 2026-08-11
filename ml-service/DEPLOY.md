@@ -19,7 +19,7 @@ cd ml-service
 .\qa\start-local-ml.ps1          # desde raíz del repo
 ```
 
-## Render (prod actual)
+## Render (prod)
 
 1. [render.com](https://render.com) → repo → Blueprint [`render.yaml`](../render.yaml) (`rootDir: ml-service`).
 2. **Opción A:** commitear los 3 `.joblib` (`git add -f`) y redeploy Docker.
@@ -36,15 +36,15 @@ cd ml-service
 
 Esperado: `schema: v3_bundle`, `v3Bundle: true`.
 
-## Railway (backend) + Vercel (frontend)
+## OCI (backend) + Vercel (frontend)
 
 | Dónde | Variable | Valor |
 |-------|----------|--------|
-| Railway | `PREDICTION_API_BASE_URL` | `https://ml-service-lbfk.onrender.com` |
-| Railway | `PREDICTION_API_TIMEOUT` | `60000` |
-| Vercel | `VITE_API_URL` | URL Railway backend |
+| OCI `.env` | `PREDICTION_API_BASE_URL` | `https://ml-service-lbfk.onrender.com` |
+| OCI `.env` | `PREDICTION_API_TIMEOUT` | `60000` |
+| Vercel | `VITE_GOOGLE_CLIENT_ID` | Mismo Client ID que `GOOGLE_CLIENT_ID` en OCI |
 
-El frontend **no** llama a Render; solo Railway.
+El frontend **no** llama a Render; solo al backend (proxy Vercel → OCI).
 
 ## Legacy
 
@@ -58,7 +58,7 @@ El frontend **no** llama a Render; solo Railway.
 
 - [ ] `/health` → `modelLoaded: true`, preferible `v3_bundle`
 - [ ] `qa/smoke-ml.ps1` OK (local y Render)
-- [ ] Railway `PREDICTION_API_BASE_URL` apunta a Render ML
+- [ ] OCI `PREDICTION_API_BASE_URL` apunta a Render ML
 - [ ] Análisis IA en Vercel devuelve perfil coherente
 
 Guía completa: [`docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md).

@@ -5,7 +5,7 @@
 > comprenda por que la arquitectura esta organizada de esta forma y como
 > extenderla sin romper los principios de diseno.
 >
-> **Despliegue en produccion (Vercel + Railway + Render):** [`../DEPLOY_PRODUCCION.md`](../DEPLOY_PRODUCCION.md).
+> **Despliegue en produccion (Vercel + OCI + Render):** [`../DEPLOY_PRODUCCION.md`](../DEPLOY_PRODUCCION.md).
 
 ---
 

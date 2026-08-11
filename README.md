@@ -25,7 +25,7 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
 | [`docs/`](./docs) | Documentación — índice en [`docs/README.md`](./docs/README.md); **prod:** [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md) |
 | [`qa/`](./qa) | Checklist P0/P1, smoke scripts y notas NAS (sin tocar código de producto) |
 
-> **Rama de deploy:** `Jorge-martinez` (Vercel + Railway + Render).  
+> **Rama de deploy:** `Jorge-martinez` (Vercel + **OCI** + Render).  
 > **Documentación de prod completa:** [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md) (servicios, URLs, env vars, ML, troubleshooting).
 
 ---
@@ -89,20 +89,19 @@ Documentación de auth, email y admin: [`docs/backend/AUTH_EMAIL_ADMIN.md`](./do
 | Capa | Plataforma | URL / notas |
 |------|------------|-------------|
 | **Frontend** | [Vercel](https://vercel.com) | https://g9-latam-team-48.vercel.app — Root `frontend`, rama `Jorge-martinez` |
-| **Backend** | [Railway](https://railway.app) | https://g9-latam-team-48-production-f9a0.up.railway.app — Root `backend` |
+| **Backend + MySQL** | **OCI VM** (Podman) | API `:8080` — proxy desde Vercel (`frontend/vercel.json` → `163.176.248.56:8080`) |
 | **ML (Análisis IA)** | [Render](https://render.com) | https://ml-service-lbfk.onrender.com — Root `ml-service`, Docker, plan Free |
-| **Base de datos** | Railway MySQL | Mismo proyecto Railway; Flyway al arrancar el backend |
 
 Detalle, variables `.env` completas y cambios técnicos: **[`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md)**.
 
 Variables mínimas del front en Vercel (Production):
 
 ```env
-VITE_API_URL=https://g9-latam-team-48-production-f9a0.up.railway.app
+# Con proxy OCI en vercel.json, VITE_API_URL puede omitirse (mismo origen).
 VITE_GOOGLE_CLIENT_ID=tu-client-id.apps.googleusercontent.com
 ```
 
-Backend (Railway): `DB_*`, `JWT_SECRET`, `GOOGLE_CLIENT_ID`, `PREDICTION_API_BASE_URL=https://ml-service-lbfk.onrender.com`, `PREDICTION_API_TIMEOUT=60000`. Plantilla completa en [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md).
+Backend (OCI): `JWT_SECRET`, `GOOGLE_CLIENT_ID`, `PREDICTION_API_BASE_URL=https://ml-service-lbfk.onrender.com`, `PREDICTION_API_TIMEOUT=60000`, credenciales MySQL en `.env` de la VM. Plantilla completa en [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md).
 
 En Google Cloud Console → OAuth Web: origins `https://g9-latam-team-48.vercel.app` y `http://localhost:5173`.
 Usuarios demo (emails en Flyway **V6**; contraseñas solo por canal del equipo / variables QA, **no en Git**):
@@ -113,18 +112,19 @@ Usuarios demo (emails en Flyway **V6**; contraseñas solo por canal del equipo /
 | `admin@energyai.com` | ADMIN |
 | `team48@energyai.com` | USER |
 
-> Un push a `Jorge-martinez` redespliega Vercel y Railway si el auto-deploy está activo en esa rama.
+> Un push a `Jorge-martinez` redespliega Vercel (front). El backend en OCI se actualiza con `git pull` + rebuild en la VM (ver [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md)).
 
 ---
 
 ## Highlights recientes
 
-- **Deploy prod:** Vercel + Railway (API/MySQL) + **Render (ml-service)** — ver [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md)
+- **Deploy prod:** Vercel (front + proxy `/api`) + **OCI (API/MySQL)** + **Render (ml-service)** — ver [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md)
+- **Dashboard perf:** rollups Flyway V12, cache Caffeine, gráficos progresivos en front (~150 ms API vía proxy)
 - **ml-service:** FastAPI + **`models/model.joblib`** (artefacto DS definitivo); formulario **12 campos** → perfil ML; **sugerencias** vía Spring — [`docs/backend/ANALISIS_IA.md`](./docs/backend/ANALISIS_IA.md)
 - **Google Sign-In**
 - **Auth por email** (registro/verify/login, forgot/reset, admin CRUD)
 - **Análisis IA** con `AnalisisPayload`, ML + fallback `HeuristicPrediction`, historial, email
-- **Dashboard** datos dataset (Flyway V8), badge Dataset DS
+- **Dashboard** datos dataset (Flyway V8), rollups V12, badge Dataset DS
 - **Recomendaciones** tip keys + i18n; **Contáctanos** + **Admin**
 - **Mapa idiomas** / i18n / a11y; **QA** en [`qa/`](./qa)
 

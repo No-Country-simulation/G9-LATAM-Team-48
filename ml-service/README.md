@@ -66,7 +66,7 @@ cd ml-service
 
 Stack completo: desde la raíz, `docker compose up -d --build` (monta `ml-service/models`).
 
-Despliegue Render / Railway / Vercel: [`DEPLOY.md`](./DEPLOY.md) y [`../docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md).
+Despliegue Render + OCI + Vercel: [`DEPLOY.md`](./DEPLOY.md) y [`../docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md).
 
 ## Local (solo uvicorn)
 
@@ -94,20 +94,16 @@ docker compose up -d --build ml
 
 Backend: `PREDICTION_API_BASE_URL=http://ml:8000`
 
-## Deploy gratis (Render) — recomendado si Railway no da cupo
+## Deploy en Render (prod)
 
 1. [render.com](https://render.com) → **New → Blueprint** → repo `G9-LATAM-Team-48` (usa `render.yaml` en la raíz).
    - O **Web Service** → repo → **Root Directory:** `ml-service` → Docker.
-2. Tras el deploy, URL tipo `https://g9-latam-ml.onrender.com`.
-3. Railway backend → Variables:
-   - `PREDICTION_API_BASE_URL=https://g9-latam-ml.onrender.com`
+2. Tras el deploy, URL tipo `https://ml-service-lbfk.onrender.com`.
+3. Backend OCI (`.env` en la VM):
+   - `PREDICTION_API_BASE_URL=https://ml-service-lbfk.onrender.com`
    - `PREDICTION_API_TIMEOUT=60000` (cold start Render free)
 
 Ver también `DEPLOY.md`.
-
-## Railway (alternativa)
-
-Segundo servicio en el mismo proyecto, **Root Directory** `ml-service`. Ver `DEPLOY.md`.
 
 ## Contrato `POST /predict`
 

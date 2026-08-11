@@ -65,12 +65,12 @@ app:
   mail:
     enabled: ${MAIL_ENABLED:false}
     from: ${MAIL_FROM:${MAIL_USERNAME:}}
-    # Railway Hobby bloquea SMTP: usar Resend (HTTPS). https://resend.com/api-keys
+    # Prod: SMTP suele estar bloqueado; usar Resend (HTTPS). https://resend.com/api-keys
     resend-api-key: ${RESEND_API_KEY:}
   google:
     client-id: ${GOOGLE_CLIENT_ID:}
 
-# Actuator: SMTP suele marcar DOWN en Railway aunque la API funcione.
+# Actuator: SMTP suele marcar DOWN en prod aunque la API funcione.
 management:
   health:
     mail:

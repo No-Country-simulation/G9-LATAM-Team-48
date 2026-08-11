@@ -1,8 +1,8 @@
 # Datascience — EnergIA
 
 Material de ciencia de datos del hackathon (EDA, limpieza, features y modelos).
-**No forma parte del deploy** de frontend/backend en Railway: vive como carpeta
-hermana para experimentación y documentación del modelo.
+**No forma parte del deploy** de frontend/backend en prod: carpeta hermana para
+experimentación y documentación del modelo. `datasets/processed/` está en `.gitignore` (CSV local, no se sube).
 
 ## Contenido
 

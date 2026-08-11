@@ -75,7 +75,7 @@ if ($r.Ok -and $r.Code -eq 200 -and $r.Content -match "<!DOCTYPE html|<html") {
     Set-Result "P0-01" "FAIL" "code=$($r.Code) err=$($r.Error)"
 }
 
-$apiInBundle = $false
+$bundleApiOk = $false
 $googleInBundle = $false
 if ($r.Ok) {
     $jsMatches = [regex]::Matches($r.Content, 'src="(/assets/[^"]+\.js)"')
@@ -83,7 +83,14 @@ if ($r.Ok) {
         $jsUrl = "$Front$($m.Groups[1].Value)"
         $js = Invoke-Json -Method GET -Url $jsUrl
         if ($js.Ok -and $js.Content) {
-            if ($js.Content -match "g9-latam-team-48-production\.up\.railway\.app|railway\.app") { $apiInBundle = $true }
+            if ($js.Content -match "railway\.app") {
+                $bundleApiOk = $false
+            } elseif ($js.Content -match "163\.176\.248\.56|localhost:8080") {
+                $bundleApiOk = $true
+            } else {
+                # Prod típico: VITE_API_URL vacío → mismo origen (proxy vercel.json)
+                $bundleApiOk = $true
+            }
             if ($js.Content -match "[0-9]+-[a-z0-9]+\.apps\.googleusercontent\.com") { $googleInBundle = $true }
             if ($js.Content -match "accounts\.google|gsi/client") { $googleInBundle = $true }
         }
@@ -105,12 +112,12 @@ if ($corsOpt.Headers -and $corsOpt.Headers["Access-Control-Allow-Origin"]) {
     $acaoOpt = $corsOpt.Headers["Access-Control-Allow-Origin"]
 }
 $corsOk = ($corsGet.Ok -and $corsGet.Code -eq 200) -and (
-    ($acao -eq $Front) -or ($acao -eq "*") -or ($acaoOpt -eq $Front) -or ($acaoOpt -eq "*") -or $apiInBundle
+    ($acao -eq $Front) -or ($acao -eq "*") -or ($acaoOpt -eq $Front) -or ($acaoOpt -eq "*") -or $bundleApiOk
 )
 if ($corsOk) {
-    Set-Result "P0-02" "PASS" "GET=$($corsGet.Code) ACAO=$acao; OPTIONS=$($corsOpt.Code) ACAO=$acaoOpt; bundleApi=$apiInBundle"
+    Set-Result "P0-02" "PASS" "GET=$($corsGet.Code) ACAO=$acao; OPTIONS=$($corsOpt.Code) ACAO=$acaoOpt; bundleApi=$bundleApiOk"
 } else {
-    Set-Result "P0-02" "FAIL" "GET=$($corsGet.Code) ACAO=$acao OPTIONS=$($corsOpt.Code) ACAO=$acaoOpt bundleApi=$apiInBundle"
+    Set-Result "P0-02" "FAIL" "GET=$($corsGet.Code) ACAO=$acao OPTIONS=$($corsOpt.Code) ACAO=$acaoOpt bundleApi=$bundleApiOk"
 }
 
 # --- P0-03 Register ---

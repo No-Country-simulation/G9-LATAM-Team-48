@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * Clasificacion heuristica cuando el microservicio FastAPI no esta disponible
- * (tipico en Railway Hobby sin servicio ML desplegado).
+ * (p. ej. Render en cold start o ML caído).
  *
  * <p>Reemplaza al antiguo {@code MockPredictionService} (contratos tipados
  * incompatibles con el {@code PredictionRequest}/{@code PredictionResponse} actual).

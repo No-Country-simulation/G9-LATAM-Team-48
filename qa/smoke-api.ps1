@@ -1,4 +1,4 @@
-# Smoke API de solo lectura — EnergIA (Railway)
+# Smoke API de solo lectura — EnergIA (OCI / Vercel proxy)
 # No muta datos. No toca frontend/backend/datascience.
 $ErrorActionPreference = "Continue"
 $OutDir = Split-Path -Parent $MyInvocation.MyCommand.Path

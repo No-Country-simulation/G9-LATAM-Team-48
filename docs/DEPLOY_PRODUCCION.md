@@ -1,60 +1,59 @@
 # Deploy en producción — EnergIA (Team 48)
 
-Documento consolidado: **servicios en la nube**, **variables de entorno**, **flujo Análisis IA** y **cambios técnicos** incorporados en la rama `Jorge-martinez` (marzo 2026).
+Documento consolidado: **servicios en la nube**, **variables de entorno**, **flujo Análisis IA** y **cambios técnicos** en la rama `Jorge-martinez` (agosto 2026).
 
 ---
 
-## 1. Arquitectura en producción
+## 1. Arquitectura en producción (actual)
 
 ```text
 Usuario
    │
    ▼
-┌─────────────────────────────────────┐
-│  Vercel — frontend (React + Vite)    │
-│  Root: frontend/                     │
-│  https://g9-latam-team-48.vercel.app │
-└─────────────────┬───────────────────┘
-                  │ HTTPS  VITE_API_URL
-                  ▼
-┌─────────────────────────────────────┐
-│  Railway — backend (Spring Boot)     │
-│  Root: backend/                      │
-│  https://g9-latam-team-48-production-f9a0.up.railway.app
-└────────┬─────────────────┬──────────┘
-         │ JDBC            │ POST /predict (RestClient)
-         ▼                 ▼
-┌─────────────────┐  ┌─────────────────────────────────────┐
-│ Railway MySQL   │  │  Render — ml-service (FastAPI)       │
-│ energia_ia      │  │  Root: ml-service/                   │
-│ Flyway V1–V8…   │  │  https://ml-service-lbfk.onrender.com │
-└─────────────────┘  │  Trio v3 .joblib (imagen o MODEL_V3_*) │
-                     └─────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│  Vercel — frontend (React + Vite)                         │
+│  Root: frontend/ · https://g9-latam-team-48.vercel.app    │
+│  vercel.json: /api/* y /actuator/* → proxy al backend OCI │
+└────────────────────────────┬─────────────────────────────┘
+                             │ HTTPS (mismo origen; sin CORS)
+                             ▼
+┌──────────────────────────────────────────────────────────┐
+│  OCI VM — backend (Spring Boot) + MySQL 8 (Podman)        │
+│  IP pública :8080 · docker-compose.oci.yml                │
+│  Repo en VM: ~/G9-LATAM-Team-48                           │
+└────────┬───────────────────────────────┬───────────────────┘
+         │ JDBC (contenedor db)          │ POST /predict
+         ▼                               ▼
+┌─────────────────────┐    ┌─────────────────────────────────┐
+│ MySQL energia_ia    │    │ Render — ml-service (FastAPI)      │
+│ Flyway V1–V12…      │    │ https://ml-service-lbfk.onrender.com│
+│ ~95k filas dataset  │    │ Trio v3 .joblib                    │
+└─────────────────────┘    └─────────────────────────────────┘
 ```
 
-| Capa | Plataforma | Proyecto / servicio | Root en Git |
-|------|------------|---------------------|-------------|
-| Frontend | Vercel | App Production | `frontend` |
-| API | Railway | `G9-LATAM-Team-48` (backend) | `backend` |
-| Base de datos | Railway | MySQL (mismo proyecto) | — |
-| ML inferencia | Render | `ml-service` (Web Service, Docker) | `ml-service` |
-| Ciencia de datos | — | No se despliega | `datascience/` |
+| Capa | Plataforma | Notas |
+|------|------------|--------|
+| Frontend | Vercel | Root `frontend`; rama `Jorge-martinez` |
+| API + MySQL | **OCI VM** (Podman) | Spring `:8080`; MySQL solo en `127.0.0.1:3306` del host |
+| ML inferencia | Render | Web Service Docker; root `ml-service` |
+| Ciencia de datos | — | No se despliega (`datascience/`) |
 
 **Rama de deploy:** `Jorge-martinez`.
 
-El frontend **nunca** llama a Render; solo al backend. Spring llama al ML con `PREDICTION_API_BASE_URL`.
+El navegador **no** llama a Render ni a la IP de OCI directamente: Vercel reescribe `/api/*` hacia el backend (ver [`frontend/vercel.json`](../frontend/vercel.json)). Spring llama al ML con `PREDICTION_API_BASE_URL`.
 
 ---
 
-## 2. URLs públicas (marzo 2026)
+## 2. URLs públicas (agosto 2026)
 
 | Servicio | URL | Health / prueba |
 |----------|-----|-----------------|
-| Frontend | https://g9-latam-team-48.vercel.app | App en navegador |
-| Backend | https://g9-latam-team-48-production-f9a0.up.railway.app | `/actuator/health` (ver §7) |
-| ML | https://ml-service-lbfk.onrender.com | `/health` → `modelLoaded: true`, `schema: v3_bundle` |
+| Frontend (prod) | https://g9-latam-team-48.vercel.app | App en navegador |
+| API vía Vercel | https://g9-latam-team-48.vercel.app/api/consumos | Mismo origen que el front |
+| API directa (OCI) | http://163.176.248.56:8080 | `/actuator/health`, smoke QA |
+| ML | https://ml-service-lbfk.onrender.com | `/health` → `modelLoaded: true` |
 
-Si Railway regenera dominio, actualizá `VITE_API_URL` en Vercel y `FRONTEND_BASE_URL` en el backend.
+Smoke automatizado contra la API real: `ENERGY_API_URL=http://163.176.248.56:8080 .\qa\smoke-api.ps1` (incluye `/v3/api-docs`). Con base Vercel, `/v3/api-docs` **no** está en el proxy — usá la IP OCI para smoke completo.
 
 ---
 
@@ -62,44 +61,55 @@ Si Railway regenera dominio, actualizá `VITE_API_URL` en Vercel y `FRONTEND_BAS
 
 ### 3.1 Vercel (frontend)
 
+En prod **no hace falta** `VITE_API_URL` si `vercel.json` proxea `/api` (base URL vacía = mismo origen). Solo en desarrollo local:
+
 ```env
-VITE_API_URL=https://g9-latam-team-48-production-f9a0.up.railway.app
+# Opcional en prod con proxy OCI (dejar vacío o omitir):
+# VITE_API_URL=
+
 VITE_GOOGLE_CLIENT_ID=tu-client-id.apps.googleusercontent.com
 ```
 
-Deploy manual desde Git en Production cuando cambie la URL del API (evitar CLI salvo necesidad explícita).
+### 3.2 OCI VM — backend + MySQL
 
-### 3.2 Railway — backend
-
-Plantilla (referencias al servicio **MySQL** del mismo proyecto Railway):
+Archivo `.env` en la VM (junto a `docker-compose.oci.yml`; **no commitear**). Plantilla mínima:
 
 ```env
 SPRING_PROFILES_ACTIVE=prod
-SERVER_PORT=${{PORT}}
-
 JWT_SECRET=secreto-largo-y-aleatorio
 JWT_EXPIRATION=86400000
 
-APP_PERSISTENCE_TYPE=jpa
-FLYWAY_ENABLED=true
-JPA_DDL=validate
-
-DB_DRIVER=com.mysql.cj.jdbc.Driver
-DB_URL=jdbc:mysql://${{MySQL.MYSQLHOST}}:${{MySQL.MYSQLPORT}}/${{MySQL.MYSQLDATABASE}}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-DB_USERNAME=${{MySQL.MYSQLUSER}}
-DB_PASSWORD=${{MySQL.MYSQLPASSWORD}}
-
-FRONTEND_BASE_URL=https://g9-latam-team-48.vercel.app
+MYSQL_DATABASE=energia_ia
+MYSQL_USER=energia_app
+MYSQL_PASSWORD=...
+MYSQL_ROOT_PASSWORD=...
 
 PREDICTION_API_BASE_URL=https://ml-service-lbfk.onrender.com
 PREDICTION_API_TIMEOUT=60000
 
+FRONTEND_BASE_URL=https://g9-latam-team-48.vercel.app
 GOOGLE_CLIENT_ID=mismo-valor-que-VITE_GOOGLE_CLIENT_ID
 
 MAIL_ENABLED=false
+RESEND_API_KEY=...   # opcional
 ```
 
-**No usar en Railway** variables del `.env` de Docker/NAS (`MYSQL_*` sueltas, `http://ml:8000`, `BACKEND_PORT`, etc.): Spring exige `DB_*` y el ML en prod es HTTPS en Render.
+**Redeploy backend en OCI** (tras `git pull` en la VM):
+
+```bash
+cd ~/G9-LATAM-Team-48/backend
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+export PATH="$JAVA_HOME/bin:/usr/bin:$PATH"
+mvn -B package -DskipTests
+mkdir -p deploy && cp target/energy-backend-*.jar deploy/app.jar
+sudo podman build --pull=never -f Dockerfile.repack -t g9-latam-team-48-backend:latest .
+cd ~/G9-LATAM-Team-48
+sudo DOCKER_HOST=unix:///run/podman/podman.sock \
+  /usr/local/bin/docker-compose -f docker-compose.oci.yml up -d --force-recreate backend
+curl -s http://127.0.0.1:8080/actuator/health
+```
+
+El primer arranque tras **Flyway V12** puede tardar **2–3 min** (índice + generación de rollups del dashboard). Reinicios siguientes son más rápidos si las tablas rollup ya están pobladas.
 
 ### 3.3 Render — ml-service
 
@@ -212,9 +222,13 @@ python scripts/smoke_predict.py https://ml-service-lbfk.onrender.com
 
 ## 6. Dashboard y dataset
 
-- Tabla `dataset_feature_engineering` (Flyway **V8**); analytics con `fromDataset: true`.
+- Tabla `dataset_feature_engineering` (Flyway **V8**); ~95k filas importadas una vez (no mutables en prod).
+- Flyway **V11** — catálogo `recommendation_catalog` (33 `tip_key`).
+- Flyway **V12** — índice `mes_numero` + tablas rollup (`dataset_dashboard_monthly`, `_breakdown`, `_meta`).
+- Al **arrancar** el backend, `DatasetDashboardRollupInitializer` pre-agrega el dataset en un solo scan (~30 s la primera vez; luego reutiliza tablas).
+- **Cache Caffeine** en consumos / analytics (dataset inmutable).
 - Badge **Dataset DS** en gráficos cuando aplica.
-- Consumos agregados del dataset (no consumo personal por usuario en dashboard demo).
+- Front: gráficos progresivos + Recharts lazy (`DashboardChartsLazy`); consumo/costo no esperan `analytics/overview`.
 
 ---
 
@@ -222,7 +236,9 @@ python scripts/smoke_predict.py https://ml-service-lbfk.onrender.com
 
 | Síntoma | Causa habitual | Acción |
 |---------|----------------|--------|
-| `/actuator/health` → `"DOWN"` pero `/api/consumos` OK | Health de **mail** (SMTP en Railway) en deploys viejos | `MAIL_ENABLED=false`; `management.health.mail.enabled=false` en prod; redeploy. En f9a0 suele responder **UP** |
+| 502 en Vercel al cargar dashboard | Backend OCI arrancando o caído | Esperar 2–3 min tras redeploy; `curl http://163.176.248.56:8080/actuator/health` |
+| Primer deploy lento tras V12 | Generación de rollups ~95k filas | Normal una vez; log `Dashboard rollups generados en … ms` |
+| `/actuator/health` → `"DOWN"` pero `/api/consumos` OK | Health de **mail** en deploys viejos | `MAIL_ENABLED=false`; `management.health.mail.enabled=false` en prod |
 | `/swagger-ui.html` → 404 en prod | UI deshabilitada (`springdoc.swagger-ui.enabled=false`) | Normal; OpenAPI JSON en `/v3/api-docs` |
 | Backend “failed to respond” | Puerto distinto de `PORT` | `SERVER_PORT=${{PORT}}` o commit que usa `${PORT}` en `server.port` |
 | Análisis solo heurístico | ML caído o timeout | Probar `/health` en Render; revisar `PREDICTION_API_BASE_URL` |
@@ -262,8 +278,10 @@ python scripts/smoke_predict.py https://ml-service-lbfk.onrender.com
 | `d2dc17d3` | fix(ml-service): PORT Render |
 | `00cdcf09` | model.joblib en repo, MODEL_URL, guía |
 | `58a731b3` | Render blueprint, timeout ML, DEPLOY.md |
-| `a6f56c80` | fix(backend): PORT Railway |
+| `a6f56c80` | fix(backend): PORT en PaaS |
 | `fc878cf5` | fix(backend): actuator mail health |
+| `5b7e7fd7` | perf(dashboard): rollups V12 + cache Caffeine + índice `mes_numero` |
+| `03a77fc3` | perf(front): gráficos progresivos, Recharts lazy |
 
 ---
 
@@ -275,7 +293,7 @@ python scripts/smoke_predict.py https://ml-service-lbfk.onrender.com
 | [docs/backend/ANALISIS_IA.md](./backend/ANALISIS_IA.md) | Contrato analisis / ML |
 | [docs/backend/ARCHITECTURE.md](./backend/ARCHITECTURE.md) | Arquitectura Spring |
 | [ml-service/README.md](../ml-service/README.md) | Contrato `/predict` |
-| [ml-service/DEPLOY.md](../ml-service/DEPLOY.md) | Render / Railway ML |
+| [ml-service/DEPLOY.md](../ml-service/DEPLOY.md) | Deploy Render ML |
 | [backend/README.md](../backend/README.md) | API local |
 | [frontend/README.md](../frontend/README.md) | Vercel |
 | [qa/QA.md](../qa/QA.md) | Pruebas manuales |
@@ -284,16 +302,22 @@ python scripts/smoke_predict.py https://ml-service-lbfk.onrender.com
 
 ## 10. Checklist post-deploy
 
-Verificado en prod (2026-08-07):
+Verificado en prod OCI + Vercel (2026-08-10):
 
-- [x] Render `/health` → `modelLoaded: true` (`schema: legacy`)
-- [x] Railway `/api/consumos` → 200 (`…-production-f9a0…`)
-- [x] Vercel Análisis IA → nivel + confianza + sugerencias (validado en corridas P0 previas)
-- [x] `PREDICTION_API_BASE_URL` apunta a Render (no `127.0.0.1` ni `http://ml:8000`)
-- [x] Google OAuth: origin Vercel en Cloud Console (P0-08 Pass 2026-07-28)
+- [x] Render `/health` → `modelLoaded: true`
+- [x] OCI `/api/consumos` y `/api/analytics/overview` → 200 (~150 ms vía proxy Vercel)
+- [x] Flyway V12 aplicado; log rollups en arranque
+- [x] Vercel dashboard carga gráficos (hard refresh Ctrl+Shift+R)
+- [x] `PREDICTION_API_BASE_URL` apunta a Render en `.env` OCI
+- [x] Google OAuth: origin Vercel en Cloud Console
 
-Smoke automatizado: `qa/smoke-api.ps1` (usa `qa/api-url.ps1` o `ENERGY_API_URL`).
+Smoke automatizado:
+
+```powershell
+$env:ENERGY_API_URL = "http://163.176.248.56:8080"
+.\qa\smoke-api.ps1
+```
 
 ---
 
-*Última actualización: despliegue prod con Render (ML) + Railway (API/MySQL) + Vercel (front).*
+*Última actualización: prod con **Vercel (front + proxy)** + **OCI (API/MySQL)** + **Render (ML)**.*

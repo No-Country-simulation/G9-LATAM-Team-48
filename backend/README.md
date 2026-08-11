@@ -3,7 +3,7 @@
 API **Spring Boot** de EnergIA: orquesta autenticacion (JWT + email + Google),
 Analisis IA (FastAPI + fallback heuristico), recomendaciones (tipKeys),
 consumos, contacto y panel admin. Persistencia MySQL + Flyway; correo via
-SMTP (local) o Resend (prod / Railway).
+SMTP (local) o Resend (prod). **Deploy prod actual:** VM OCI + Podman (`docker-compose.oci.yml`).
 
 ---
 
@@ -25,13 +25,16 @@ Migraciones Flyway:
 - `V6` — seed usuarios demo
 - `V7` — consultas anónimas (`user_email` nullable)
 - `V8` — tabla `dataset_feature_engineering` (dataset procesado DS para gráficos agregados)
+- `V10`–`V11` — recomendaciones (`recommendation_catalog`, 33 `tip_key`)
+- `V12` — rollups dashboard (`dataset_dashboard_*`) + índice `mes_numero`
 
 Tras el deploy, cargá filas una sola vez:
 
 | Entorno | Script |
 |---------|--------|
 | **Local (Laragon)** | `scripts/import-feature-engineering-dataset.ps1` (`LOAD DATA`, rápido) |
-| **Railway** | `pip install pymysql` + `scripts/import-feature-engineering-dataset-remote.ps1` (`-Replace` si reimportás). Railway **no** permite `LOAD DATA LOCAL`; el disco del plan puede limitar el import completo (~88k filas suele alcanzar para gráficos). Flyway **V10–V11** crea `recommendation_catalog` y `user_recommendations` (catálogo de 33 tips; poco espacio en disco). |
+| **OCI VM** | Mismo script remoto o import en MySQL del contenedor; ~95k filas. Al arrancar Spring, **V12** + `DatasetDashboardRollupInitializer` pre-agregan gráficos. |
+| **MySQL remoto** | `scripts/import-feature-engineering-dataset-remote.ps1` o `qa/import-dataset-remote.ps1` (sin `LOAD DATA LOCAL`) |
 
 CSV: `scripts/fetch-feature-engineering-csv.ps1` (~150 MB). Sin filas en la tabla, `/api/consumos` responde `{ fromDataset: false, consumos: [...] }` (12 meses demo) y `/api/analytics/overview` usa el mismo benchmark. Con datos importados, ambos marcan `fromDataset: true`.
 

@@ -16,7 +16,7 @@ spring:
 
 server:
   # Puerto de la aplicacion. Ajustable por entorno.
-  # Railway/Render inyectan PORT; local y Docker suelen usar SERVER_PORT o 8080.
+  # PaaS (Render, etc.) inyectan PORT; local y Docker suelen usar SERVER_PORT o 8080.
   port: ${SERVER_PORT:${PORT:8080}}
 
 # ----------------------------------------------------------------------------
@@ -57,3 +57,25 @@ management:
     web:
       exposure:
         include: health,info
+
+# ----------------------------------------------------------------------------
+# Umbrales heurísticos (SHAP / métricas derivadas) — tunables por Data Science
+# Override: APP_CALCULATION_* en .env / OCI (ver backend/.env.example)
+# ----------------------------------------------------------------------------
+app:
+  calculation:
+    default-occupants-count: ${APP_CALCULATION_DEFAULT_OCCUPANTS_COUNT:2}
+    default-consumption-per-person: ${APP_CALCULATION_DEFAULT_CONSUMPTION_PER_PERSON:150.0}
+    default-area-m2: ${APP_CALCULATION_DEFAULT_AREA_M2:60.0}
+    min-area-threshold: ${APP_CALCULATION_MIN_AREA_THRESHOLD:10.0}
+    poor-insulation-ratio-threshold: ${APP_CALCULATION_POOR_INSULATION_RATIO_THRESHOLD:0.5}
+    fair-insulation-ratio-threshold: ${APP_CALCULATION_FAIR_INSULATION_RATIO_THRESHOLD:0.2}
+    insulation-factor-poor: ${APP_CALCULATION_INSULATION_FACTOR_POOR:1.4}
+    insulation-factor-fair: ${APP_CALCULATION_INSULATION_FACTOR_FAIR:1.0}
+    insulation-factor-good: ${APP_CALCULATION_INSULATION_FACTOR_GOOD:0.8}
+    default-equipment-count: ${APP_CALCULATION_DEFAULT_EQUIPMENT_COUNT:5}
+    high-equipment-threshold: ${APP_CALCULATION_HIGH_EQUIPMENT_THRESHOLD:10}
+    medium-equipment-threshold: ${APP_CALCULATION_MEDIUM_EQUIPMENT_THRESHOLD:5}
+    led-proportion-low: ${APP_CALCULATION_LED_PROPORTION_LOW:0.25}
+    led-proportion-medium: ${APP_CALCULATION_LED_PROPORTION_MEDIUM:0.45}
+    led-proportion-high: ${APP_CALCULATION_LED_PROPORTION_HIGH:0.75}
