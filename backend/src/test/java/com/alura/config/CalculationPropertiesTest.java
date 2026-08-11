@@ -24,7 +24,7 @@ class CalculationPropertiesTest {
         assertThat(calculationProperties.insulationFactorPoor())
                 .isEqualByComparingTo(new BigDecimal("1.4"));
         assertThat(calculationProperties.ledProportionForEquipmentCount(12))
-                .isEqualByComparingTo(new BigDecimal("0.75"));
+                .isEqualByComparingTo(new BigDecimal("0.25"));
         assertThat(calculationProperties.insulationFactorForRatio(0.6))
                 .isEqualByComparingTo(new BigDecimal("1.4"));
     }

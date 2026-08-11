@@ -59,14 +59,14 @@ public record CalculationProperties(
         return insulationFactorGood;
     }
 
-    /** Proporción LED según cantidad de equipos. */
+    /** Proporción LED según cantidad de equipos (más equipos → menor proporción LED). */
     public BigDecimal ledProportionForEquipmentCount(int equipmentCount) {
-        if (equipmentCount >= highEquipmentThreshold) {
-            return ledProportionHigh;
+        if (equipmentCount > highEquipmentThreshold) {
+            return ledProportionLow;
         }
-        if (equipmentCount >= mediumEquipmentThreshold) {
+        if (equipmentCount > mediumEquipmentThreshold) {
             return ledProportionMedium;
         }
-        return ledProportionLow;
+        return ledProportionHigh;
     }
 }
