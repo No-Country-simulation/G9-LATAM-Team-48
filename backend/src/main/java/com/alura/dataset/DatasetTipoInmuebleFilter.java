@@ -1,7 +1,6 @@
 package com.alura.dataset;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -113,5 +112,38 @@ public final class DatasetTipoInmuebleFilter {
 
     public static List<String> allKeys() {
         return ALL_KEYS;
+    }
+
+    /** Segmento del gráfico breakdown (misma regla que el SQL del DAO). */
+    public static String segmentLabel(double apt, double casa, double comercial) {
+        if (apt >= casa && apt >= comercial && apt > 0) {
+            return "Apartamento";
+        }
+        if (comercial >= casa && comercial >= apt && comercial > 0) {
+            return "Pequeño Establecimiento Comercial";
+        }
+        return "Casa Unifamiliar";
+    }
+
+    public static boolean rowMatchesFilter(List<String> tipos, double apt, double casa, double comercial) {
+        if (tipos == null || tipos.isEmpty() || tipos.size() >= ALL_KEYS.size()) {
+            return true;
+        }
+        for (String key : tipos) {
+            if (rowMatchesSingleType(key, apt, casa, comercial)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean rowMatchesSingleType(String key, double apt, double casa, double comercial) {
+        return switch (key) {
+            case "APARTAMENTO" -> apt >= casa && apt >= comercial && apt > 0;
+            case "PEQUENO_ESTABLECIMIENTO_COMERCIAL" ->
+                    comercial >= casa && comercial >= apt && comercial > 0;
+            default -> !rowMatchesSingleType("APARTAMENTO", apt, casa, comercial)
+                    && !rowMatchesSingleType("PEQUENO_ESTABLECIMIENTO_COMERCIAL", apt, casa, comercial);
+        };
     }
 }

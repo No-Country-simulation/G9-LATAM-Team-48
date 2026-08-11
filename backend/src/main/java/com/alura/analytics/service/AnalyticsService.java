@@ -5,6 +5,7 @@ import com.alura.analytics.dto.AnalyticsBreakdownItem;
 import com.alura.analytics.dto.AnalyticsOverviewDto;
 import com.alura.dataset.DatasetFeatureEngineeringDao;
 import com.alura.dataset.DatasetMonthKeys;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ public class AnalyticsService {
         this.datasetDao = datasetDao;
     }
 
+    @Cacheable(
+            cacheNames = "dashboardOverview",
+            key = "T(com.alura.dataset.DatasetFilterKey).fromParam(#tipoInmueble)")
     public AnalyticsOverviewDto overview(String tipoInmueble) {
         if (!datasetDao.hasRows()) {
             return emptyOverview();
@@ -77,6 +81,10 @@ public class AnalyticsService {
         );
     }
 
+    @Cacheable(
+            cacheNames = "dashboardBreakdown",
+            key =
+                    "T(com.alura.dataset.DatasetFilterKey).fromParam(#tipoInmueble) + '|' + T(com.alura.analytics.service.AnalyticsService).breakdownMonthsKey(#monthKeys)")
     public AnalyticsBreakdownDto breakdownByTipoInmueble(List<String> monthKeys, String tipoInmueble) {
         if (!datasetDao.hasRows()) {
             return emptyBreakdown();
@@ -174,5 +182,13 @@ public class AnalyticsService {
             return 0.87;
         }
         return Math.min(0.99, Math.max(0.5, value));
+    }
+
+    /** Clave de cache estable para meses del breakdown. */
+    public static String breakdownMonthsKey(List<String> monthKeys) {
+        if (monthKeys == null || monthKeys.isEmpty()) {
+            return "all";
+        }
+        return monthKeys.stream().sorted().reduce((a, b) -> a + "," + b).orElse("all");
     }
 }

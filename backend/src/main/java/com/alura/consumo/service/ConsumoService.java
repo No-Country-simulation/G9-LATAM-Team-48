@@ -4,6 +4,7 @@ import com.alura.consumo.dto.ConsumoListDto;
 import com.alura.consumo.dto.ConsumoMensual;
 import com.alura.dataset.DatasetFeatureEngineeringDao;
 import com.alura.dataset.DatasetMonthKeys;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,9 @@ public class ConsumoService {
         this.datasetDao = datasetDao;
     }
 
+    @Cacheable(
+            cacheNames = "dashboardConsumos",
+            key = "T(com.alura.dataset.DatasetFilterKey).fromParam(#tipoInmueble)")
     public ConsumoListDto listarConMeta(String tipoInmueble) {
         if (!datasetDao.hasRows()) {
             return new ConsumoListDto(false, List.of());
