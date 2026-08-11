@@ -7,11 +7,22 @@ import {
   PILOT_CATALOG_KEYS,
   PILOT_TITLES_BY_LANG,
 } from './recommendation-catalog-data.mjs'
+import {
+  EFFICIENT_CATALOG_KEYS,
+  EFFICIENT_TITLES_BY_LANG,
+  INEFFICIENT_CATALOG_KEYS,
+  INEFFICIENT_TITLES_BY_LANG,
+} from './level-catalog-export.mjs'
 
 const root = dirname(fileURLToPath(import.meta.url))
 const outPath = join(root, '../src/i18n/catalog/byLocale.js')
 
-const ALL_KEYS = [...CATALOG_KEYS, ...PILOT_CATALOG_KEYS]
+const ALL_KEYS = [
+  ...CATALOG_KEYS,
+  ...PILOT_CATALOG_KEYS,
+  ...EFFICIENT_CATALOG_KEYS,
+  ...INEFFICIENT_CATALOG_KEYS,
+]
 
 const LOCALES = [
   'es',
@@ -42,11 +53,19 @@ function titlesForLocale(locale) {
     TITLES_BY_LANG[locale] ||
     TITLES_BY_LANG.en ||
     TITLES_BY_LANG.es
-  const pilot =
+  const moderate =
     PILOT_TITLES_BY_LANG[locale] ||
     PILOT_TITLES_BY_LANG.en ||
     PILOT_TITLES_BY_LANG.es
-  return [...base, ...pilot]
+  const efficient =
+    EFFICIENT_TITLES_BY_LANG[locale] ||
+    EFFICIENT_TITLES_BY_LANG.en ||
+    EFFICIENT_TITLES_BY_LANG.es
+  const inefficient =
+    INEFFICIENT_TITLES_BY_LANG[locale] ||
+    INEFFICIENT_TITLES_BY_LANG.en ||
+    INEFFICIENT_TITLES_BY_LANG.es
+  return [...base, ...moderate, ...efficient, ...inefficient]
 }
 
 function toCatalog(titles) {

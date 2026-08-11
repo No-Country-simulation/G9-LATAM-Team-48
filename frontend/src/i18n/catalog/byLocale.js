@@ -384,6 +384,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Etiquetar enchufes críticos versus prescindibles para apagado rápido",
       "description": "Etiquetar enchufes críticos versus prescindibles para apagado rápido"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Mantener termostato en 25°C cuando el clima lo permita",
+      "description": "Mantener termostato en 25°C cuando el clima lo permita"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Usar modo ventilación sin compresor en días templados",
+      "description": "Usar modo ventilación sin compresor en días templados"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Aprovechar brisa nocturna para refrescar antes del amanecer",
+      "description": "Aprovechar brisa nocturna para refrescar antes del amanecer"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Revisar calendario estacional del equipo de climatización",
+      "description": "Revisar calendario estacional del equipo de climatización"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Mantener filtros limpios según plan de mantenimiento preventivo",
+      "description": "Mantener filtros limpios según plan de mantenimiento preventivo"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Usar cortinas térmicas solo cuando aporten valor adicional",
+      "description": "Usar cortinas térmicas solo cuando aporten valor adicional"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Evitar sobreenfriar espacios ya confortables",
+      "description": "Evitar sobreenfriar espacios ya confortables"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Registrar consumo mensual de climatización para detectar desvíos",
+      "description": "Registrar consumo mensual de climatización para detectar desvíos"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Cerrar puertas interiores para zonificar sin exceso de equipos",
+      "description": "Cerrar puertas interiores para zonificar sin exceso de equipos"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Preferir ventilador de bajo consumo antes que bajar más la temperatura",
+      "description": "Preferir ventilador de bajo consumo antes que bajar más la temperatura"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Verificar que el termostato no esté expuesto a sol directo",
+      "description": "Verificar que el termostato no esté expuesto a sol directo"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Compartir buenas prácticas de climatización con otros ocupantes",
+      "description": "Compartir buenas prácticas de climatización con otros ocupantes"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Apagar luces en zonas con suficiente luz natural",
+      "description": "Apagar luces en zonas con suficiente luz natural"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Usar iluminación puntual en lugar de iluminar toda la habitación",
+      "description": "Usar iluminación puntual en lugar de iluminar toda la habitación"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Mantener focos LED en buen estado sin parpadeo",
+      "description": "Mantener focos LED en buen estado sin parpadeo"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Ajustar intensidad al mínimo confortable en cada espacio",
+      "description": "Ajustar intensidad al mínimo confortable en cada espacio"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Revisar que sensores de presencia estén bien calibrados",
+      "description": "Revisar que sensores de presencia estén bien calibrados"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Evitar luces nocturnas permanentes innecesarias",
+      "description": "Evitar luces nocturnas permanentes innecesarias"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limitar iluminación decorativa a horarios definidos",
+      "description": "Limitar iluminación decorativa a horarios definidos"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Preferir lámparas direccionables para evitar sobreiluminar",
+      "description": "Preferir lámparas direccionables para evitar sobreiluminar"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Documentar layout de iluminación eficiente del hogar",
+      "description": "Documentar layout de iluminación eficiente del hogar"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Cambiar solo los focos que aún no son LED",
+      "description": "Cambiar solo los focos que aún no son LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Usar temporizadores en exteriores con horario mínimo necesario",
+      "description": "Usar temporizadores en exteriores con horario mínimo necesario"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Medir consumo de iluminación tras cambios para validar ahorro",
+      "description": "Medir consumo de iluminación tras cambios para validar ahorro"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Usar programas eco en todos los ciclos compatibles",
+      "description": "Usar programas eco en todos los ciclos compatibles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Mantener electrodomésticos en modo eficiente de fábrica",
+      "description": "Mantener electrodomésticos en modo eficiente de fábrica"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Desconectar equipos secundarios fuera de temporada",
+      "description": "Desconectar equipos secundarios fuera de temporada"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Revisar manual de eficiencia de cada electrodoméstico principal",
+      "description": "Revisar manual de eficiencia de cada electrodoméstico principal"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Evitar standby innecesario en equipos ya eficientes",
+      "description": "Evitar standby innecesario en equipos ya eficientes"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Usar olla a presión eléctrica para reducir tiempo de cocción",
+      "description": "Usar olla a presión eléctrica para reducir tiempo de cocción"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Mantener refrigerador entre 3°C y 5°C sin sobre-enfriar",
+      "description": "Mantener refrigerador entre 3°C y 5°C sin sobre-enfriar"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Planificar una carga semanal de lavado consolidada",
+      "description": "Planificar una carga semanal de lavado consolidada"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Preferir secado al aire cuando el clima lo permita",
+      "description": "Preferir secado al aire cuando el clima lo permita"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Etiquetar equipos por consumo relativo en el hogar",
+      "description": "Etiquetar equipos por consumo relativo en el hogar"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Revisar sellos de electrodomésticos una vez por trimestre",
+      "description": "Revisar sellos de electrodomésticos una vez por trimestre"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Renovar equipos solo cuando la eficiencia lo justifique",
+      "description": "Renovar equipos solo cuando la eficiencia lo justifique"
+    },
+    "HABITS_EFF_01": {
+      "title": "Mantener rutina de apagado al salir de cada habitación",
+      "description": "Mantener rutina de apagado al salir de cada habitación"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limitar duchas a lo necesario con cierre rápido del grifo",
+      "description": "Limitar duchas a lo necesario con cierre rápido del grifo"
+    },
+    "HABITS_EFF_03": {
+      "title": "Usar horario valle para cargas programables habituales",
+      "description": "Usar horario valle para cargas programables habituales"
+    },
+    "HABITS_EFF_04": {
+      "title": "Revisar consumo semanal en la app como hábito fijo",
+      "description": "Revisar consumo semanal en la app como hábito fijo"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinar uso de equipos compartidos para evitar duplicidad",
+      "description": "Coordinar uso de equipos compartidos para evitar duplicidad"
+    },
+    "HABITS_EFF_06": {
+      "title": "Evitar precalentar espacios que ya están confortables",
+      "description": "Evitar precalentar espacios que ya están confortables"
+    },
+    "HABITS_EFF_07": {
+      "title": "Cerrar persianas en verano antes de la radiación máxima",
+      "description": "Cerrar persianas en verano antes de la radiación máxima"
+    },
+    "HABITS_EFF_08": {
+      "title": "Preferir actividades manuales de bajo consumo cuando sea viable",
+      "description": "Preferir actividades manuales de bajo consumo cuando sea viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Establecer meta de reducción incremental del 2% mensual",
+      "description": "Establecer meta de reducción incremental del 2% mensual"
+    },
+    "HABITS_EFF_10": {
+      "title": "Apagar tiras LED decorativas al dormir",
+      "description": "Apagar tiras LED decorativas al dormir"
+    },
+    "HABITS_EFF_11": {
+      "title": "Usar regla de un equipo pesado encendido a la vez",
+      "description": "Usar regla de un equipo pesado encendido a la vez"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrar y documentar hitos de ahorro con el hogar",
+      "description": "Celebrar y documentar hitos de ahorro con el hogar"
+    },
+    "TECH_EFF_01": {
+      "title": "Automatizar apagado nocturno de periféricos de cómputo",
+      "description": "Automatizar apagado nocturno de periféricos de cómputo"
+    },
+    "TECH_EFF_02": {
+      "title": "Usar medidor inteligente para confirmar ausencia de standby",
+      "description": "Usar medidor inteligente para confirmar ausencia de standby"
+    },
+    "TECH_EFF_03": {
+      "title": "Mantener firmware actualizado en dispositivos conectados",
+      "description": "Mantener firmware actualizado en dispositivos conectados"
+    },
+    "TECH_EFF_04": {
+      "title": "Configurar alertas de consumo anómalo en apps compatibles",
+      "description": "Configurar alertas de consumo anómalo en apps compatibles"
+    },
+    "TECH_EFF_05": {
+      "title": "Preferir Wi-Fi programable para reducir equipos activos",
+      "description": "Preferir Wi-Fi programable para reducir equipos activos"
+    },
+    "TECH_EFF_06": {
+      "title": "Desactivar LEDs indicadores innecesarios cuando sea posible",
+      "description": "Desactivar LEDs indicadores innecesarios cuando sea posible"
+    },
+    "TECH_EFF_07": {
+      "title": "Usar regletas con horario para cargadores compartidos",
+      "description": "Usar regletas con horario para cargadores compartidos"
+    },
+    "TECH_EFF_08": {
+      "title": "Auditar dispositivos IoT y retirar los que no aporten valor",
+      "description": "Auditar dispositivos IoT y retirar los que no aporten valor"
+    },
+    "TECH_EFF_09": {
+      "title": "Sincronizar escenas domóticas con presencia real en el hogar",
+      "description": "Sincronizar escenas domóticas con presencia real en el hogar"
+    },
+    "TECH_EFF_10": {
+      "title": "Medir consumo de rack de red y optimizar horarios",
+      "description": "Medir consumo de rack de red y optimizar horarios"
+    },
+    "TECH_EFF_11": {
+      "title": "Elegir monitores eficientes al ampliar puestos de trabajo",
+      "description": "Elegir monitores eficientes al ampliar puestos de trabajo"
+    },
+    "TECH_EFF_12": {
+      "title": "Exportar reportes mensuales de consumo conectado",
+      "description": "Exportar reportes mensuales de consumo conectado"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Revisar urgentemente equipos de climatización con consumo creciente",
+      "description": "Revisar urgentemente equipos de climatización con consumo creciente"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Sustituir unidades viejas con bajo SEER por modelos eficientes",
+      "description": "Sustituir unidades viejas con bajo SEER por modelos eficientes"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Priorizar aislamiento en habitaciones con mayor pérdida térmica",
+      "description": "Priorizar aislamiento en habitaciones con mayor pérdida térmica"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limitar horas de AA a bloques estrictos en horario pico",
+      "description": "Limitar horas de AA a bloques estrictos en horario pico"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Detectar y sellar filtraciones de aire en ventanas prioritarias",
+      "description": "Detectar y sellar filtraciones de aire en ventanas prioritarias"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Evitar climatizar zonas abiertas o mal cerradas",
+      "description": "Evitar climatizar zonas abiertas o mal cerradas"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Usar termostato programable con límites máximos de uso diario",
+      "description": "Usar termostato programable con límites máximos de uso diario"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Solicitar mantenimiento profesional si el consumo no baja",
+      "description": "Solicitar mantenimiento profesional si el consumo no baja"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Reducir temperatura de consigna un grado por semana hasta 24°C",
+      "description": "Reducir temperatura de consigna un grado por semana hasta 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Instalar sensor puerta-ventana para apagar AA al ventilar",
+      "description": "Instalar sensor puerta-ventana para apagar AA al ventilar"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Evitar usar AA simultáneamente con calefacción eléctrica",
+      "description": "Evitar usar AA simultáneamente con calefacción eléctrica"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Planificar inversión en doble vidriado en la próxima renovación",
+      "description": "Planificar inversión en doble vidriado en la próxima renovación"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Sustituir de inmediato todas las lámparas incandescentes o halógenas",
+      "description": "Sustituir de inmediato todas las lámparas incandescentes o halógenas"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Eliminar iluminación exterior encendida todo el día sin necesidad",
+      "description": "Eliminar iluminación exterior encendida todo el día sin necesidad"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Instalar sensores de movimiento en todas las zonas de tránsito",
+      "description": "Instalar sensores de movimiento en todas las zonas de tránsito"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reducir cantidad de puntos de luz activos en áreas amplias",
+      "description": "Reducir cantidad de puntos de luz activos en áreas amplias"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Apagar iluminación decorativa hasta completar migración LED",
+      "description": "Apagar iluminación decorativa hasta completar migración LED"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Revisar balastos viejos que generan consumo excesivo",
+      "description": "Revisar balastos viejos que generan consumo excesivo"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Priorizar iluminación LED en cocina y baños de alto uso",
+      "description": "Priorizar iluminación LED en cocina y baños de alto uso"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Usar una sola fuente de luz central en lugar de múltiples lámparas",
+      "description": "Usar una sola fuente de luz central en lugar de múltiples lámparas"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Medir antes y después del cambio masivo a LED",
+      "description": "Medir antes y después del cambio masivo a LED"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Desactivar letreros o carteles luminosos no esenciales",
+      "description": "Desactivar letreros o carteles luminosos no esenciales"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Programar apagado total de luces exteriores en horario diurno",
+      "description": "Programar apagado total de luces exteriores en horario diurno"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Consultar subsidio o programa local de eficiencia lumínica",
+      "description": "Consultar subsidio o programa local de eficiencia lumínica"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Reemplazar electrodomésticos de más de diez años con etiqueta A o superior",
+      "description": "Reemplazar electrodomésticos de más de diez años con etiqueta A o superior"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Evitar usar secadora en días soleados; usar tendedero",
+      "description": "Evitar usar secadora en días soleados; usar tendedero"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "No operar lavadora, horno y microondas al mismo tiempo",
+      "description": "No operar lavadora, horno y microondas al mismo tiempo"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Revisar circuito dedicado para equipos de alto consumo",
+      "description": "Revisar circuito dedicado para equipos de alto consumo"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Desconectar segunda heladera o freezer si no es indispensable",
+      "description": "Desconectar segunda heladera o freezer si no es indispensable"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Usar timer en termotanque para limitar horas de calentamiento",
+      "description": "Usar timer en termotanque para limitar horas de calentamiento"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Evitar plancha y aspiradora en horario pico eléctrico",
+      "description": "Evitar plancha y aspiradora en horario pico eléctrico"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidar cocción en un solo bloque diario",
+      "description": "Consolidar cocción en un solo bloque diario"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Retirar equipos obsoletos que permanecen conectados",
+      "description": "Retirar equipos obsoletos que permanecen conectados"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Priorizar reparación de sellos en refrigeración antes de verano",
+      "description": "Priorizar reparación de sellos en refrigeración antes de verano"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluar arrendamiento de equipos eficientes vs reparar viejos",
+      "description": "Evaluar arrendamiento de equipos eficientes vs reparar viejos"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Instalar protector de voltaje en equipos críticos para evitar daños",
+      "description": "Instalar protector de voltaje en equipos críticos para evitar daños"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Reducir duchas a cinco minutos como máximo inmediato",
+      "description": "Reducir duchas a cinco minutos como máximo inmediato"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Desplazar lavado, plancha y cocina intensa fuera del pico",
+      "description": "Desplazar lavado, plancha y cocina intensa fuera del pico"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Apagar todo equipo no esencial al salir de casa",
+      "description": "Apagar todo equipo no esencial al salir de casa"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Establecer tope diario de horas de entretenimiento eléctrico",
+      "description": "Establecer tope diario de horas de entretenimiento eléctrico"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Revisar factura semanal y fijar meta de reducción del 15%",
+      "description": "Revisar factura semanal y fijar meta de reducción del 15%"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limitar cantidad de dispositivos cargando simultáneamente",
+      "description": "Limitar cantidad de dispositivos cargando simultáneamente"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Evitar dormir con AA a temperatura muy baja",
+      "description": "Evitar dormir con AA a temperatura muy baja"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involucrar a todos con checklist diario de apagado",
+      "description": "Involucrar a todos con checklist diario de apagado"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Desconectar equipos que permanecen encendidos 24/7 sin necesidad",
+      "description": "Desconectar equipos que permanecen encendidos 24/7 sin necesidad"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Usar ventilación natural cuando la calidad del aire lo permita",
+      "description": "Usar ventilación natural cuando la calidad del aire lo permita"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Priorizar una auditoría energética domiciliaria profesional",
+      "description": "Priorizar una auditoría energética domiciliaria profesional"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Registrar hábitos diarios que más impactan la factura",
+      "description": "Registrar hábitos diarios que más impactan la factura"
+    },
+    "TECH_INEFF_01": {
+      "title": "Instalar medidor de enchufe en los cinco equipos más sospechosos",
+      "description": "Instalar medidor de enchufe en los cinco equipos más sospechosos"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configurar smart plugs para apagar standby masivo nocturno",
+      "description": "Configurar smart plugs para apagar standby masivo nocturno"
+    },
+    "TECH_INEFF_03": {
+      "title": "Retirar dispositivos IoT duplicados o sin uso",
+      "description": "Retirar dispositivos IoT duplicados o sin uso"
+    },
+    "TECH_INEFF_04": {
+      "title": "Migrar entretenimiento a una sola regleta maestra con apagado total",
+      "description": "Migrar entretenimiento a una sola regleta maestra con apagado total"
+    },
+    "TECH_INEFF_05": {
+      "title": "Desactivar servidores caseros o NAS fuera de horario laboral",
+      "description": "Desactivar servidores caseros o NAS fuera de horario laboral"
+    },
+    "TECH_INEFF_06": {
+      "title": "Sustituir cargadores genéricos por versiones eficientes certificadas",
+      "description": "Sustituir cargadores genéricos por versiones eficientes certificadas"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limitar cantidad de hubs inteligentes encendidos permanentemente",
+      "description": "Limitar cantidad de hubs inteligentes encendidos permanentemente"
+    },
+    "TECH_INEFF_08": {
+      "title": "Activar modo ahorro agresivo en todos los equipos compatibles",
+      "description": "Activar modo ahorro agresivo en todos los equipos compatibles"
+    },
+    "TECH_INEFF_09": {
+      "title": "Auditar apps que mantienen hardware activo innecesariamente",
+      "description": "Auditar apps que mantienen hardware activo innecesariamente"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidar cargadores en estación única con timer",
+      "description": "Consolidar cargadores en estación única con timer"
+    },
+    "TECH_INEFF_11": {
+      "title": "Planificar upgrade a domótica con métricas de retorno de inversión",
+      "description": "Planificar upgrade a domótica con métricas de retorno de inversión"
+    },
+    "TECH_INEFF_12": {
+      "title": "Eliminar dispositivos fantasma conectados a la red doméstica",
+      "description": "Eliminar dispositivos fantasma conectados a la red doméstica"
     }
   },
   "en": {
@@ -770,6 +1250,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "pt": {
@@ -1156,6 +2116,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "fr": {
@@ -1542,6 +2982,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "it": {
@@ -1928,6 +3848,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "de": {
@@ -2314,6 +4714,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "nl": {
@@ -2700,6 +5580,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "pl": {
@@ -3086,6 +6446,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "ro": {
@@ -3472,6 +7312,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "ca": {
@@ -3858,6 +8178,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "tr": {
@@ -4244,6 +9044,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "ar": {
@@ -4630,6 +9910,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "zh": {
@@ -5016,6 +10776,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "ja": {
@@ -5402,6 +11642,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "ko": {
@@ -5788,6 +12508,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "ru": {
@@ -6174,6 +13374,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "hi": {
@@ -6560,6 +14240,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "uk": {
@@ -6946,6 +15106,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "vi": {
@@ -7332,6 +15972,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "id": {
@@ -7718,6 +16838,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   },
   "sv": {
@@ -8104,6 +17704,486 @@ export const CATALOG_BY_LOCALE = {
     "TECH_MOD_12": {
       "title": "Label critical versus optional outlets for quick shutdown",
       "description": "Label critical versus optional outlets for quick shutdown"
+    },
+    "CLIMATE_EFF_01": {
+      "title": "Keep thermostat at 25°C when weather allows",
+      "description": "Keep thermostat at 25°C when weather allows"
+    },
+    "CLIMATE_EFF_02": {
+      "title": "Use fan-only mode on mild days",
+      "description": "Use fan-only mode on mild days"
+    },
+    "CLIMATE_EFF_03": {
+      "title": "Use night breeze to cool before sunrise",
+      "description": "Use night breeze to cool before sunrise"
+    },
+    "CLIMATE_EFF_04": {
+      "title": "Review seasonal HVAC schedule",
+      "description": "Review seasonal HVAC schedule"
+    },
+    "CLIMATE_EFF_05": {
+      "title": "Keep filters clean per preventive maintenance plan",
+      "description": "Keep filters clean per preventive maintenance plan"
+    },
+    "CLIMATE_EFF_06": {
+      "title": "Use thermal curtains only when they add value",
+      "description": "Use thermal curtains only when they add value"
+    },
+    "CLIMATE_EFF_07": {
+      "title": "Avoid over-cooling already comfortable spaces",
+      "description": "Avoid over-cooling already comfortable spaces"
+    },
+    "CLIMATE_EFF_08": {
+      "title": "Log monthly HVAC consumption to spot drift",
+      "description": "Log monthly HVAC consumption to spot drift"
+    },
+    "CLIMATE_EFF_09": {
+      "title": "Close interior doors to zone without extra units",
+      "description": "Close interior doors to zone without extra units"
+    },
+    "CLIMATE_EFF_10": {
+      "title": "Prefer low-power fan before lowering temperature further",
+      "description": "Prefer low-power fan before lowering temperature further"
+    },
+    "CLIMATE_EFF_11": {
+      "title": "Ensure thermostat is not exposed to direct sun",
+      "description": "Ensure thermostat is not exposed to direct sun"
+    },
+    "CLIMATE_EFF_12": {
+      "title": "Share HVAC best practices with other occupants",
+      "description": "Share HVAC best practices with other occupants"
+    },
+    "LIGHTING_EFF_01": {
+      "title": "Turn off lights where natural light is enough",
+      "description": "Turn off lights where natural light is enough"
+    },
+    "LIGHTING_EFF_02": {
+      "title": "Use task lighting instead of whole-room lighting",
+      "description": "Use task lighting instead of whole-room lighting"
+    },
+    "LIGHTING_EFF_03": {
+      "title": "Keep LED bulbs in good condition without flicker",
+      "description": "Keep LED bulbs in good condition without flicker"
+    },
+    "LIGHTING_EFF_04": {
+      "title": "Set intensity to minimum comfortable level per space",
+      "description": "Set intensity to minimum comfortable level per space"
+    },
+    "LIGHTING_EFF_05": {
+      "title": "Verify motion sensors are properly calibrated",
+      "description": "Verify motion sensors are properly calibrated"
+    },
+    "LIGHTING_EFF_06": {
+      "title": "Avoid unnecessary permanent night lights",
+      "description": "Avoid unnecessary permanent night lights"
+    },
+    "LIGHTING_EFF_07": {
+      "title": "Limit decorative lighting to defined hours",
+      "description": "Limit decorative lighting to defined hours"
+    },
+    "LIGHTING_EFF_08": {
+      "title": "Prefer directional lamps to avoid over-lighting",
+      "description": "Prefer directional lamps to avoid over-lighting"
+    },
+    "LIGHTING_EFF_09": {
+      "title": "Document efficient home lighting layout",
+      "description": "Document efficient home lighting layout"
+    },
+    "LIGHTING_EFF_10": {
+      "title": "Replace only bulbs not yet LED",
+      "description": "Replace only bulbs not yet LED"
+    },
+    "LIGHTING_EFF_11": {
+      "title": "Use outdoor timers with minimum required schedule",
+      "description": "Use outdoor timers with minimum required schedule"
+    },
+    "LIGHTING_EFF_12": {
+      "title": "Measure lighting consumption after changes to validate savings",
+      "description": "Measure lighting consumption after changes to validate savings"
+    },
+    "EQUIPMENT_EFF_01": {
+      "title": "Use eco programs on all compatible cycles",
+      "description": "Use eco programs on all compatible cycles"
+    },
+    "EQUIPMENT_EFF_02": {
+      "title": "Keep appliances in factory efficient mode",
+      "description": "Keep appliances in factory efficient mode"
+    },
+    "EQUIPMENT_EFF_03": {
+      "title": "Unplug seasonal secondary equipment",
+      "description": "Unplug seasonal secondary equipment"
+    },
+    "EQUIPMENT_EFF_04": {
+      "title": "Review efficiency manual for each main appliance",
+      "description": "Review efficiency manual for each main appliance"
+    },
+    "EQUIPMENT_EFF_05": {
+      "title": "Avoid unnecessary standby on already efficient gear",
+      "description": "Avoid unnecessary standby on already efficient gear"
+    },
+    "EQUIPMENT_EFF_06": {
+      "title": "Use electric pressure cooker to shorten cooking time",
+      "description": "Use electric pressure cooker to shorten cooking time"
+    },
+    "EQUIPMENT_EFF_07": {
+      "title": "Keep refrigerator between 3°C and 5°C without over-cooling",
+      "description": "Keep refrigerator between 3°C and 5°C without over-cooling"
+    },
+    "EQUIPMENT_EFF_08": {
+      "title": "Plan one consolidated weekly laundry load",
+      "description": "Plan one consolidated weekly laundry load"
+    },
+    "EQUIPMENT_EFF_09": {
+      "title": "Prefer air drying when weather allows",
+      "description": "Prefer air drying when weather allows"
+    },
+    "EQUIPMENT_EFF_10": {
+      "title": "Label appliances by relative home consumption",
+      "description": "Label appliances by relative home consumption"
+    },
+    "EQUIPMENT_EFF_11": {
+      "title": "Check appliance seals once per quarter",
+      "description": "Check appliance seals once per quarter"
+    },
+    "EQUIPMENT_EFF_12": {
+      "title": "Replace equipment only when efficiency justifies it",
+      "description": "Replace equipment only when efficiency justifies it"
+    },
+    "HABITS_EFF_01": {
+      "title": "Keep turn-off routine when leaving each room",
+      "description": "Keep turn-off routine when leaving each room"
+    },
+    "HABITS_EFF_02": {
+      "title": "Limit showers to needed time with quick tap shutoff",
+      "description": "Limit showers to needed time with quick tap shutoff"
+    },
+    "HABITS_EFF_03": {
+      "title": "Use off-peak hours for regular programmable loads",
+      "description": "Use off-peak hours for regular programmable loads"
+    },
+    "HABITS_EFF_04": {
+      "title": "Review weekly consumption in app as fixed habit",
+      "description": "Review weekly consumption in app as fixed habit"
+    },
+    "HABITS_EFF_05": {
+      "title": "Coordinate shared equipment use to avoid duplication",
+      "description": "Coordinate shared equipment use to avoid duplication"
+    },
+    "HABITS_EFF_06": {
+      "title": "Avoid pre-heating spaces already comfortable",
+      "description": "Avoid pre-heating spaces already comfortable"
+    },
+    "HABITS_EFF_07": {
+      "title": "Close blinds in summer before peak radiation",
+      "description": "Close blinds in summer before peak radiation"
+    },
+    "HABITS_EFF_08": {
+      "title": "Prefer manual low-consumption activities when viable",
+      "description": "Prefer manual low-consumption activities when viable"
+    },
+    "HABITS_EFF_09": {
+      "title": "Set incremental 2% monthly reduction goal",
+      "description": "Set incremental 2% monthly reduction goal"
+    },
+    "HABITS_EFF_10": {
+      "title": "Turn off decorative LED strips at bedtime",
+      "description": "Turn off decorative LED strips at bedtime"
+    },
+    "HABITS_EFF_11": {
+      "title": "Use rule of one heavy appliance on at a time",
+      "description": "Use rule of one heavy appliance on at a time"
+    },
+    "HABITS_EFF_12": {
+      "title": "Celebrate and document savings milestones at home",
+      "description": "Celebrate and document savings milestones at home"
+    },
+    "TECH_EFF_01": {
+      "title": "Automate nightly shutdown of computer peripherals",
+      "description": "Automate nightly shutdown of computer peripherals"
+    },
+    "TECH_EFF_02": {
+      "title": "Use smart meter to confirm no standby draw",
+      "description": "Use smart meter to confirm no standby draw"
+    },
+    "TECH_EFF_03": {
+      "title": "Keep firmware updated on connected devices",
+      "description": "Keep firmware updated on connected devices"
+    },
+    "TECH_EFF_04": {
+      "title": "Configure anomaly alerts in compatible consumption apps",
+      "description": "Configure anomaly alerts in compatible consumption apps"
+    },
+    "TECH_EFF_05": {
+      "title": "Prefer schedulable Wi-Fi to reduce active gear",
+      "description": "Prefer schedulable Wi-Fi to reduce active gear"
+    },
+    "TECH_EFF_06": {
+      "title": "Disable unnecessary indicator LEDs when possible",
+      "description": "Disable unnecessary indicator LEDs when possible"
+    },
+    "TECH_EFF_07": {
+      "title": "Use scheduled power strips for shared chargers",
+      "description": "Use scheduled power strips for shared chargers"
+    },
+    "TECH_EFF_08": {
+      "title": "Audit IoT devices and remove those without value",
+      "description": "Audit IoT devices and remove those without value"
+    },
+    "TECH_EFF_09": {
+      "title": "Sync smart home scenes with actual presence",
+      "description": "Sync smart home scenes with actual presence"
+    },
+    "TECH_EFF_10": {
+      "title": "Measure network rack consumption and optimize schedules",
+      "description": "Measure network rack consumption and optimize schedules"
+    },
+    "TECH_EFF_11": {
+      "title": "Choose efficient monitors when adding workstations",
+      "description": "Choose efficient monitors when adding workstations"
+    },
+    "TECH_EFF_12": {
+      "title": "Export monthly connected consumption reports",
+      "description": "Export monthly connected consumption reports"
+    },
+    "CLIMATE_INEFF_01": {
+      "title": "Urgently review HVAC units with rising consumption",
+      "description": "Urgently review HVAC units with rising consumption"
+    },
+    "CLIMATE_INEFF_02": {
+      "title": "Replace old low-SEER units with efficient models",
+      "description": "Replace old low-SEER units with efficient models"
+    },
+    "CLIMATE_INEFF_03": {
+      "title": "Prioritize insulation in rooms with highest thermal loss",
+      "description": "Prioritize insulation in rooms with highest thermal loss"
+    },
+    "CLIMATE_INEFF_04": {
+      "title": "Limit AC hours to strict blocks during peak tariff",
+      "description": "Limit AC hours to strict blocks during peak tariff"
+    },
+    "CLIMATE_INEFF_05": {
+      "title": "Find and seal air leaks on priority windows",
+      "description": "Find and seal air leaks on priority windows"
+    },
+    "CLIMATE_INEFF_06": {
+      "title": "Avoid conditioning open or poorly sealed zones",
+      "description": "Avoid conditioning open or poorly sealed zones"
+    },
+    "CLIMATE_INEFF_07": {
+      "title": "Use programmable thermostat with daily usage caps",
+      "description": "Use programmable thermostat with daily usage caps"
+    },
+    "CLIMATE_INEFF_08": {
+      "title": "Request professional service if consumption does not drop",
+      "description": "Request professional service if consumption does not drop"
+    },
+    "CLIMATE_INEFF_09": {
+      "title": "Lower setpoint one degree per week until 24°C",
+      "description": "Lower setpoint one degree per week until 24°C"
+    },
+    "CLIMATE_INEFF_10": {
+      "title": "Install door/window sensor to shut AC when ventilating",
+      "description": "Install door/window sensor to shut AC when ventilating"
+    },
+    "CLIMATE_INEFF_11": {
+      "title": "Never run AC simultaneously with electric heating",
+      "description": "Never run AC simultaneously with electric heating"
+    },
+    "CLIMATE_INEFF_12": {
+      "title": "Plan double-glazing investment in next renovation",
+      "description": "Plan double-glazing investment in next renovation"
+    },
+    "LIGHTING_INEFF_01": {
+      "title": "Replace all incandescent or halogen bulbs immediately",
+      "description": "Replace all incandescent or halogen bulbs immediately"
+    },
+    "LIGHTING_INEFF_02": {
+      "title": "Remove outdoor lighting left on all day unnecessarily",
+      "description": "Remove outdoor lighting left on all day unnecessarily"
+    },
+    "LIGHTING_INEFF_03": {
+      "title": "Install motion sensors in all transit areas",
+      "description": "Install motion sensors in all transit areas"
+    },
+    "LIGHTING_INEFF_04": {
+      "title": "Reduce active light points in large areas",
+      "description": "Reduce active light points in large areas"
+    },
+    "LIGHTING_INEFF_05": {
+      "title": "Turn off decorative lighting until LED migration completes",
+      "description": "Turn off decorative lighting until LED migration completes"
+    },
+    "LIGHTING_INEFF_06": {
+      "title": "Check old ballasts causing excessive consumption",
+      "description": "Check old ballasts causing excessive consumption"
+    },
+    "LIGHTING_INEFF_07": {
+      "title": "Prioritize LED in high-use kitchen and bathrooms",
+      "description": "Prioritize LED in high-use kitchen and bathrooms"
+    },
+    "LIGHTING_INEFF_08": {
+      "title": "Use one central light source instead of many lamps",
+      "description": "Use one central light source instead of many lamps"
+    },
+    "LIGHTING_INEFF_09": {
+      "title": "Measure before and after mass LED upgrade",
+      "description": "Measure before and after mass LED upgrade"
+    },
+    "LIGHTING_INEFF_10": {
+      "title": "Disable non-essential illuminated signs",
+      "description": "Disable non-essential illuminated signs"
+    },
+    "LIGHTING_INEFF_11": {
+      "title": "Schedule full outdoor light shutdown during daytime",
+      "description": "Schedule full outdoor light shutdown during daytime"
+    },
+    "LIGHTING_INEFF_12": {
+      "title": "Check local lighting efficiency subsidy programs",
+      "description": "Check local lighting efficiency subsidy programs"
+    },
+    "EQUIPMENT_INEFF_01": {
+      "title": "Replace 10+ year appliances with A-label or better",
+      "description": "Replace 10+ year appliances with A-label or better"
+    },
+    "EQUIPMENT_INEFF_02": {
+      "title": "Skip dryer on sunny days; use clothesline",
+      "description": "Skip dryer on sunny days; use clothesline"
+    },
+    "EQUIPMENT_INEFF_03": {
+      "title": "Do not run washer, oven and microwave at same time",
+      "description": "Do not run washer, oven and microwave at same time"
+    },
+    "EQUIPMENT_INEFF_04": {
+      "title": "Review dedicated circuit for high-consumption gear",
+      "description": "Review dedicated circuit for high-consumption gear"
+    },
+    "EQUIPMENT_INEFF_05": {
+      "title": "Unplug second fridge or freezer if not essential",
+      "description": "Unplug second fridge or freezer if not essential"
+    },
+    "EQUIPMENT_INEFF_06": {
+      "title": "Use water heater timer to limit heating hours",
+      "description": "Use water heater timer to limit heating hours"
+    },
+    "EQUIPMENT_INEFF_07": {
+      "title": "Avoid iron and vacuum during peak electricity hours",
+      "description": "Avoid iron and vacuum during peak electricity hours"
+    },
+    "EQUIPMENT_INEFF_08": {
+      "title": "Consolidate cooking into one daily block",
+      "description": "Consolidate cooking into one daily block"
+    },
+    "EQUIPMENT_INEFF_09": {
+      "title": "Remove obsolete equipment still plugged in",
+      "description": "Remove obsolete equipment still plugged in"
+    },
+    "EQUIPMENT_INEFF_10": {
+      "title": "Fix refrigeration seals before summer priority",
+      "description": "Fix refrigeration seals before summer priority"
+    },
+    "EQUIPMENT_INEFF_11": {
+      "title": "Evaluate renting efficient gear vs repairing old units",
+      "description": "Evaluate renting efficient gear vs repairing old units"
+    },
+    "EQUIPMENT_INEFF_12": {
+      "title": "Install surge protector on critical appliances",
+      "description": "Install surge protector on critical appliances"
+    },
+    "HABITS_INEFF_01": {
+      "title": "Cut showers to five minutes maximum immediately",
+      "description": "Cut showers to five minutes maximum immediately"
+    },
+    "HABITS_INEFF_02": {
+      "title": "Shift laundry, ironing and heavy cooking off peak",
+      "description": "Shift laundry, ironing and heavy cooking off peak"
+    },
+    "HABITS_INEFF_03": {
+      "title": "Turn off all non-essential gear when leaving home",
+      "description": "Turn off all non-essential gear when leaving home"
+    },
+    "HABITS_INEFF_04": {
+      "title": "Set daily cap on electric entertainment hours",
+      "description": "Set daily cap on electric entertainment hours"
+    },
+    "HABITS_INEFF_05": {
+      "title": "Review weekly bill and target 15% reduction",
+      "description": "Review weekly bill and target 15% reduction"
+    },
+    "HABITS_INEFF_06": {
+      "title": "Limit simultaneous device charging count",
+      "description": "Limit simultaneous device charging count"
+    },
+    "HABITS_INEFF_07": {
+      "title": "Avoid sleeping with AC at very low temperature",
+      "description": "Avoid sleeping with AC at very low temperature"
+    },
+    "HABITS_INEFF_08": {
+      "title": "Involve everyone with daily shutdown checklist",
+      "description": "Involve everyone with daily shutdown checklist"
+    },
+    "HABITS_INEFF_09": {
+      "title": "Disconnect 24/7 equipment that is not needed",
+      "description": "Disconnect 24/7 equipment that is not needed"
+    },
+    "HABITS_INEFF_10": {
+      "title": "Use natural ventilation when air quality allows",
+      "description": "Use natural ventilation when air quality allows"
+    },
+    "HABITS_INEFF_11": {
+      "title": "Prioritize professional home energy audit",
+      "description": "Prioritize professional home energy audit"
+    },
+    "HABITS_INEFF_12": {
+      "title": "Log daily habits that most impact the bill",
+      "description": "Log daily habits that most impact the bill"
+    },
+    "TECH_INEFF_01": {
+      "title": "Install plug meter on top five suspect devices",
+      "description": "Install plug meter on top five suspect devices"
+    },
+    "TECH_INEFF_02": {
+      "title": "Configure smart plugs for massive nightly standby cutoff",
+      "description": "Configure smart plugs for massive nightly standby cutoff"
+    },
+    "TECH_INEFF_03": {
+      "title": "Remove duplicate or unused IoT devices",
+      "description": "Remove duplicate or unused IoT devices"
+    },
+    "TECH_INEFF_04": {
+      "title": "Move entertainment to one master strip with full shutdown",
+      "description": "Move entertainment to one master strip with full shutdown"
+    },
+    "TECH_INEFF_05": {
+      "title": "Power down home servers or NAS outside work hours",
+      "description": "Power down home servers or NAS outside work hours"
+    },
+    "TECH_INEFF_06": {
+      "title": "Replace generic chargers with certified efficient ones",
+      "description": "Replace generic chargers with certified efficient ones"
+    },
+    "TECH_INEFF_07": {
+      "title": "Limit always-on smart hubs count",
+      "description": "Limit always-on smart hubs count"
+    },
+    "TECH_INEFF_08": {
+      "title": "Enable aggressive power saving on all compatible gear",
+      "description": "Enable aggressive power saving on all compatible gear"
+    },
+    "TECH_INEFF_09": {
+      "title": "Audit apps keeping hardware unnecessarily active",
+      "description": "Audit apps keeping hardware unnecessarily active"
+    },
+    "TECH_INEFF_10": {
+      "title": "Consolidate chargers on one timed station",
+      "description": "Consolidate chargers on one timed station"
+    },
+    "TECH_INEFF_11": {
+      "title": "Plan smart home upgrade with ROI metrics",
+      "description": "Plan smart home upgrade with ROI metrics"
+    },
+    "TECH_INEFF_12": {
+      "title": "Remove ghost devices connected to home network",
+      "description": "Remove ghost devices connected to home network"
     }
   }
 }

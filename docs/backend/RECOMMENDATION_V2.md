@@ -52,8 +52,9 @@ POST /api/analisis
 |--------|---------|
 | Columnas | `nivel` (`efficient` \| `moderate` \| `inefficient`; NULL = todos) y `category_key` (`climate`, `lighting`, …) |
 | Backfill | Las 33 filas V11 reciben `category_key`; perfiles base reciben `nivel` explícito |
-| Piloto | **15** tips `CLIMATE_MOD_01`–`15` + **48** tips V15 (`LIGHTING/EQUIPMENT/HABITS/TECH_MOD_01`–`12`) con `nivel=moderate` |
-| API | `GET /api/recomendaciones?nivel=moderate&domain=climate` (opcionales; `category` sigue filtrando por perfil de consumo) |
+| Piloto moderado | **63** tips (`*_MOD_*`, V14–V15) |
+| Niveles efficient / inefficient | **120** tips V16 (`*_EFF_*` / `*_INEFF_*`, 12 × 5 dominios) |
+| API | `GET /api/recomendaciones?nivel=efficient&domain=climate` (etc.) |
 | i18n front | `PILOT_CATALOG_KEYS` + `npm run build:catalog` (es/en; resto fallback a en) |
 
 **Próximas fases:** escalar a ~100 tips por categoría × nivel; traducciones completas en los 21 locales.
