@@ -132,6 +132,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Desajuste entre la cantidad de ocupantes declarados y el patrón de consumo observado",
       "description": "Desajuste entre la cantidad de ocupantes declarados y el patrón de consumo observado"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Ajustar termostato a 24°C en horario diurno",
+      "description": "Ajustar termostato a 24°C en horario diurno"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Ventilar con corrientes cruzadas antes de encender el aire acondicionado",
+      "description": "Ventilar con corrientes cruzadas antes de encender el aire acondicionado"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Limpiar filtros del equipo de climatización cada tres meses",
+      "description": "Limpiar filtros del equipo de climatización cada tres meses"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Cerrar cortinas en las horas de mayor radiación solar",
+      "description": "Cerrar cortinas en las horas de mayor radiación solar"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Evitar climatizar habitaciones que permanecen vacías",
+      "description": "Evitar climatizar habitaciones que permanecen vacías"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Revisar y reemplazar burletes deteriorados en ventanas",
+      "description": "Revisar y reemplazar burletes deteriorados en ventanas"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Usar modo eco o sleep del equipo cuando sea posible",
+      "description": "Usar modo eco o sleep del equipo cuando sea posible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Descongelar el split si el hielo reduce el rendimiento",
+      "description": "Descongelar el split si el hielo reduce el rendimiento"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "No obstruir rejillas ni difusores de salida de aire",
+      "description": "No obstruir rejillas ni difusores de salida de aire"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Programar el prec enfriamiento treinta minutos antes de llegar",
+      "description": "Programar el prec enfriamiento treinta minutos antes de llegar"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Mantener como máximo ocho grados de diferencia con el exterior",
+      "description": "Mantener como máximo ocho grados de diferencia con el exterior"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Complementar el aire acondicionado con ventilador de techo",
+      "description": "Complementar el aire acondicionado con ventilador de techo"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Revisar carga de refrigerante si el equipo rinde poco",
+      "description": "Revisar carga de refrigerante si el equipo rinde poco"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Aprovechar sombra natural en fachadas expuestas al oeste",
+      "description": "Aprovechar sombra natural en fachadas expuestas al oeste"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Agrupar actividades que generan calor fuera del horario pico",
+      "description": "Agrupar actividades que generan calor fuera del horario pico"
     }
   },
   "en": {
@@ -266,6 +326,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Mismatch between declared occupant count and observed consumption pattern",
       "description": "Mismatch between declared occupant count and observed consumption pattern"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "pt": {
@@ -400,6 +520,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Descompasso entre a quantidade de ocupantes declarada e o padrão de consumo observado",
       "description": "Descompasso entre a quantidade de ocupantes declarada e o padrão de consumo observado"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "fr": {
@@ -534,6 +714,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Écart entre le nombre d’occupants déclaré et le profil de consommation observé",
       "description": "Écart entre le nombre d’occupants déclaré et le profil de consommation observé"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "it": {
@@ -668,6 +908,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Disallineamento tra occupanti dichiarati e profilo di consumo osservato",
       "description": "Disallineamento tra occupanti dichiarati e profilo di consumo osservato"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "de": {
@@ -802,6 +1102,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Abweichung zwischen angegebener Bewohnerzahl und beobachtetem Verbrauchsmuster",
       "description": "Abweichung zwischen angegebener Bewohnerzahl und beobachtetem Verbrauchsmuster"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "nl": {
@@ -936,6 +1296,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Mismatch tussen opgegeven aantal bewoners en waargenomen verbruikspatroon",
       "description": "Mismatch tussen opgegeven aantal bewoners en waargenomen verbruikspatroon"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "pl": {
@@ -1070,6 +1490,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Niezgodność między zadeklarowaną liczbą mieszkańców a obserwowanym profilem zużycia",
       "description": "Niezgodność między zadeklarowaną liczbą mieszkańców a obserwowanym profilem zużycia"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "ro": {
@@ -1204,6 +1684,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Neconcordanță între numărul declarat de ocupanți și modelul de consum observat",
       "description": "Neconcordanță între numărul declarat de ocupanți și modelul de consum observat"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "ca": {
@@ -1338,6 +1878,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Desajust entre la quantitat d’ocupants declarada i el patró de consum observat",
       "description": "Desajust entre la quantitat d’ocupants declarada i el patró de consum observat"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "tr": {
@@ -1472,6 +2072,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Bildirilen kişi sayısı ile gözlemlenen tüketim deseni arasında uyumsuzluk",
       "description": "Bildirilen kişi sayısı ile gözlemlenen tüketim deseni arasında uyumsuzluk"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "ar": {
@@ -1606,6 +2266,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "عدم تطابق بين عدد الشاغلين المُعلَن ونمط الاستهلاك المُلاحَظ",
       "description": "عدم تطابق بين عدد الشاغلين المُعلَن ونمط الاستهلاك المُلاحَظ"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "zh": {
@@ -1740,6 +2460,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "申报居住人数与观测到的用能模式不一致",
       "description": "申报居住人数与观测到的用能模式不一致"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "ja": {
@@ -1874,6 +2654,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "申告された居住人数と観測された消費パターンの不一致",
       "description": "申告された居住人数と観測された消費パターンの不一致"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "ko": {
@@ -2008,6 +2848,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "신고된 거주 인원과 관측된 소비 패턴 불일치",
       "description": "신고된 거주 인원과 관측된 소비 패턴 불일치"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "ru": {
@@ -2142,6 +3042,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Несоответствие заявленного числа жильцов и наблюдаемого профиля потребления",
       "description": "Несоответствие заявленного числа жильцов и наблюдаемого профиля потребления"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "hi": {
@@ -2276,6 +3236,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "घोषित निवासियों की संख्या और देखे गए खपत पैटर्न में असंगति",
       "description": "घोषित निवासियों की संख्या और देखे गए खपत पैटर्न में असंगति"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "uk": {
@@ -2410,6 +3430,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Невідповідність заявленої кількості мешканців і спостережуваного профілю споживання",
       "description": "Невідповідність заявленої кількості мешканців і спостережуваного профілю споживання"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "vi": {
@@ -2544,6 +3624,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Lệch giữa số người khai báo và mô hình tiêu thụ quan sát được",
       "description": "Lệch giữa số người khai báo và mô hình tiêu thụ quan sát được"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "id": {
@@ -2678,6 +3818,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Ketidaksesuaian jumlah penghuni yang dilaporkan dan pola konsumsi yang diamati",
       "description": "Ketidaksesuaian jumlah penghuni yang dilaporkan dan pola konsumsi yang diamati"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   },
   "sv": {
@@ -2812,6 +4012,66 @@ export const CATALOG_BY_LOCALE = {
     "HOUSEHOLD_OCCUPANCY_MISMATCH": {
       "title": "Avvikelse mellan deklarerat antal boende och observerat förbrukningsmönster",
       "description": "Avvikelse mellan deklarerat antal boende och observerat förbrukningsmönster"
+    },
+    "CLIMATE_MOD_01": {
+      "title": "Set thermostat to 24°C during daytime hours",
+      "description": "Set thermostat to 24°C during daytime hours"
+    },
+    "CLIMATE_MOD_02": {
+      "title": "Cross-ventilate before turning on air conditioning",
+      "description": "Cross-ventilate before turning on air conditioning"
+    },
+    "CLIMATE_MOD_03": {
+      "title": "Clean HVAC filters every three months",
+      "description": "Clean HVAC filters every three months"
+    },
+    "CLIMATE_MOD_04": {
+      "title": "Close curtains during peak solar radiation hours",
+      "description": "Close curtains during peak solar radiation hours"
+    },
+    "CLIMATE_MOD_05": {
+      "title": "Avoid air conditioning empty rooms",
+      "description": "Avoid air conditioning empty rooms"
+    },
+    "CLIMATE_MOD_06": {
+      "title": "Inspect and replace worn window weather seals",
+      "description": "Inspect and replace worn window weather seals"
+    },
+    "CLIMATE_MOD_07": {
+      "title": "Use eco or sleep mode on HVAC when possible",
+      "description": "Use eco or sleep mode on HVAC when possible"
+    },
+    "CLIMATE_MOD_08": {
+      "title": "Defrost split unit when ice reduces performance",
+      "description": "Defrost split unit when ice reduces performance"
+    },
+    "CLIMATE_MOD_09": {
+      "title": "Do not block air outlet grilles or diffusers",
+      "description": "Do not block air outlet grilles or diffusers"
+    },
+    "CLIMATE_MOD_10": {
+      "title": "Schedule pre-cooling thirty minutes before arrival",
+      "description": "Schedule pre-cooling thirty minutes before arrival"
+    },
+    "CLIMATE_MOD_11": {
+      "title": "Keep at most eight degrees difference from outdoors",
+      "description": "Keep at most eight degrees difference from outdoors"
+    },
+    "CLIMATE_MOD_12": {
+      "title": "Supplement AC with a ceiling fan",
+      "description": "Supplement AC with a ceiling fan"
+    },
+    "CLIMATE_MOD_13": {
+      "title": "Check refrigerant charge if unit underperforms",
+      "description": "Check refrigerant charge if unit underperforms"
+    },
+    "CLIMATE_MOD_14": {
+      "title": "Use natural shade on west-facing facades",
+      "description": "Use natural shade on west-facing facades"
+    },
+    "CLIMATE_MOD_15": {
+      "title": "Group heat-generating activities outside peak hours",
+      "description": "Group heat-generating activities outside peak hours"
     }
   }
 }

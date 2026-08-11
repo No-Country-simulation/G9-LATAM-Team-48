@@ -63,7 +63,8 @@ public class RecommendationServiceImpl implements RecommendationService {
      * {@code user_recommendations}, devuelve ese subconjunto; si no, el catálogo completo.
      */
     @Transactional(readOnly = true)
-    public List<RecommendationItem> listForFrontend(String category, String userEmail) {
+    public List<RecommendationItem> listForFrontend(
+            String category, String nivel, String domain, String userEmail) {
         List<RecommendationCatalogEntity> catalogRows = catalogRepository.findAll();
         if (catalogRows.isEmpty()) {
             return List.of();
@@ -75,6 +76,8 @@ public class RecommendationServiceImpl implements RecommendationService {
             if (!personal.isEmpty()) {
                 return personal.stream()
                         .map(UserRecommendationEntity::getRecommendation)
+                        .filter(row -> matchesCatalogNivel(row, nivel))
+                        .filter(row -> matchesCatalogDomain(row, domain))
                         .map(catalogMapper::toFrontendItem)
                         .filter(item -> matchesCategory(item, category))
                         .toList();
@@ -82,6 +85,8 @@ public class RecommendationServiceImpl implements RecommendationService {
         }
 
         return catalogRows.stream()
+                .filter(row -> matchesCatalogNivel(row, nivel))
+                .filter(row -> matchesCatalogDomain(row, domain))
                 .map(catalogMapper::toFrontendItem)
                 .filter(item -> matchesCategory(item, category))
                 .toList();
@@ -103,5 +108,25 @@ public class RecommendationServiceImpl implements RecommendationService {
             return !"low".equals(item.priorityKey());
         }
         return true;
+    }
+
+    static boolean matchesCatalogNivel(RecommendationCatalogEntity row, String nivel) {
+        if (nivel == null || nivel.isBlank()) {
+            return true;
+        }
+        if (row.getNivel() == null || row.getNivel().isBlank()) {
+            return true;
+        }
+        return row.getNivel().equalsIgnoreCase(nivel.trim());
+    }
+
+    static boolean matchesCatalogDomain(RecommendationCatalogEntity row, String domain) {
+        if (domain == null || domain.isBlank()) {
+            return true;
+        }
+        if (row.getCategoryKey() == null || row.getCategoryKey().isBlank()) {
+            return true;
+        }
+        return row.getCategoryKey().equalsIgnoreCase(domain.trim());
     }
 }

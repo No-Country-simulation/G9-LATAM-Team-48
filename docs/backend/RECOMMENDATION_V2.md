@@ -46,6 +46,20 @@ POST /api/analisis
 
 ---
 
+## Catálogo ampliado — Fase 1 (Flyway V14)
+
+| Cambio | Detalle |
+|--------|---------|
+| Columnas | `nivel` (`efficient` \| `moderate` \| `inefficient`; NULL = todos) y `category_key` (`climate`, `lighting`, …) |
+| Backfill | Las 33 filas V11 reciben `category_key`; perfiles base reciben `nivel` explícito |
+| Piloto | **15** tips `CLIMATE_MOD_01`–`15` con `nivel=moderate`, `category_key=climate` |
+| API | `GET /api/recomendaciones?nivel=moderate&domain=climate` (opcionales; `category` sigue filtrando por perfil de consumo) |
+| i18n front | `PILOT_CATALOG_KEYS` + `npm run build:catalog` (es/en; resto fallback a en) |
+
+**Próximas fases:** escalar a ~100 tips por categoría × nivel; traducciones completas en los 21 locales.
+
+---
+
 ## Umbrales (Data Science)
 
 Configuración en `application.yml` → `app.calculation`. Override en OCI:

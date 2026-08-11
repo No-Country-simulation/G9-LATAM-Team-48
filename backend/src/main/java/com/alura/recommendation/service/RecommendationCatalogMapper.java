@@ -11,10 +11,13 @@ public class RecommendationCatalogMapper {
 
     public RecommendationItem toFrontendItem(RecommendationCatalogEntity entity) {
         String type = entity.getType() != null ? entity.getType().toUpperCase(Locale.ROOT) : "INFO";
+        String categoryKey = entity.getCategoryKey() != null && !entity.getCategoryKey().isBlank()
+                ? entity.getCategoryKey()
+                : categoryKeyFor(entity.getTipKey(), type);
         return new RecommendationItem(
                 entity.getId().intValue(),
                 entity.getTipKey(),
-                categoryKeyFor(entity.getTipKey(), type),
+                categoryKey,
                 priorityKeyForType(type),
                 estimatedSavingsForType(type),
                 entity.getTitle(),

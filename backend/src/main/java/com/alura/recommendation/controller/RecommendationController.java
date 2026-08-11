@@ -35,11 +35,13 @@ public class RecommendationController {
     @Operation(summary = "Listar recomendaciones (contrato frontend)")
     public ResponseEntity<List<RecommendationItem>> list(
             @RequestParam(required = false) String category,
+            @RequestParam(required = false) String nivel,
+            @RequestParam(required = false) String domain,
             Authentication authentication) {
         String userEmail = authentication != null && authentication.isAuthenticated()
                 ? authentication.getName()
                 : null;
-        return ResponseEntity.ok(recommendationService.listForFrontend(category, userEmail));
+        return ResponseEntity.ok(recommendationService.listForFrontend(category, nivel, domain, userEmail));
     }
 
     @PostMapping("/v1/recommendations")

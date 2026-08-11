@@ -30,6 +30,12 @@ public class RecommendationCatalogEntity {
     @Column(nullable = false, length = 50)
     private String type;
 
+    @Column(length = 20)
+    private String nivel;
+
+    @Column(name = "category_key", length = 30)
+    private String categoryKey;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 }
