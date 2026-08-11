@@ -65,7 +65,8 @@ app:
   mail:
     enabled: ${MAIL_ENABLED:false}
     from: ${MAIL_FROM:${MAIL_USERNAME:}}
-    # Prod: SMTP suele estar bloqueado; usar Resend (HTTPS). https://resend.com/api-keys
+    # Prod OCI (Team 48): Gmail SMTP vía MAIL_*; dejar RESEND_API_KEY vacío.
+    # Resend opcional si RESEND_API_KEY está definida (tiene prioridad sobre SMTP).
     resend-api-key: ${RESEND_API_KEY:}
   google:
     client-id: ${GOOGLE_CLIENT_ID:}

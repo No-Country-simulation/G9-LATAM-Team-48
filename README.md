@@ -78,7 +78,7 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
   </tr>
 </table>
 
-> **Nueva contraseña** y **Verificar email** se abren solo con el link del correo (`?resetToken=` / `?verifyToken=`). En **prod** los mails salen por **Resend**; en **local** podés usar SMTP (Gmail). Detalle de flujos y troubleshooting: [`qa/QA.md`](./qa/QA.md). Scripts de smoke y checklist: [`qa/README.md`](./qa/README.md).
+> **Nueva contraseña** y **Verificar email** se abren solo con el link del correo (`?resetToken=` / `?verifyToken=`). En **prod (OCI)** y **local** los mails salen por **Gmail SMTP** (`MAIL_*`). Detalle: [`docs/backend/AUTH_EMAIL_ADMIN.md`](./docs/backend/AUTH_EMAIL_ADMIN.md), [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md).
 
 Documentación de auth, email y admin: [`docs/backend/AUTH_EMAIL_ADMIN.md`](./docs/backend/AUTH_EMAIL_ADMIN.md).
 

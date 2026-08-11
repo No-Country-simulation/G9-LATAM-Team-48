@@ -139,6 +139,24 @@ Estados de respuesta: `SENT` | `FAILED` | `PENDING` | `SKIPPED`.
 
 Si el envío falla, el backend deja el contenido/link en los logs.
 
+### Prod OCI (Team 48)
+
+En la VM (`~/G9-LATAM-Team-48/.env`, no commitear):
+
+```env
+MAIL_ENABLED=true
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=energyiaTeam48@gmail.com
+MAIL_PASSWORD=app_password_16_caracteres
+MAIL_FROM=energyiaTeam48@gmail.com
+FRONTEND_BASE_URL=https://g9-latam-team-48.vercel.app
+```
+
+- **No** definir `RESEND_API_KEY` (Resend tiene prioridad si existe).
+- Tras cambiar mail: `docker-compose -f docker-compose.oci.yml up -d --force-recreate backend`.
+- Egress `smtp.gmail.com:587` verificado en la instancia OCI (ago 2026).
+
 ---
 
 ## 6. Panel Admin (CRUD)

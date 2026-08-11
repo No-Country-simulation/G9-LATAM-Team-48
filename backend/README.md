@@ -3,7 +3,7 @@
 API **Spring Boot** de EnergIA: orquesta autenticacion (JWT + email + Google),
 Analisis IA (FastAPI + fallback heuristico), recomendaciones (tipKeys),
 consumos, contacto y panel admin. Persistencia MySQL + Flyway; correo via
-SMTP (local) o Resend (prod). **Deploy prod actual:** VM OCI + Podman (`docker-compose.oci.yml`).
+**Gmail SMTP** (`MAIL_*`, local y prod OCI). **Deploy prod actual:** VM OCI + Podman (`docker-compose.oci.yml`).
 
 ---
 
@@ -111,7 +111,7 @@ Material de notebooks y datasets: carpeta hermana [`datascience/`](../datascienc
 - **Maven**
 - **Spring Web** (API REST)
 - **Spring Security** + **JWT** (`jjwt`) + Google ID Token
-- **Spring Mail** / Resend (HTTPS)
+- **Spring Mail** (Gmail SMTP)
 - **Spring Validation** (Bean Validation)
 - **Lombok**
 - **Springdoc OpenAPI** (Swagger UI)
@@ -193,10 +193,10 @@ defecto para desarrollo). Los perfiles disponibles son:
 | `MAIL_USERNAME`           | Usuario SMTP                             | —                        |
 | `MAIL_PASSWORD`           | App password SMTP                        | —                        |
 | `MAIL_FROM`               | Remitente (`From:`)                      | —                        |
-| `RESEND_API_KEY`          | API key Resend (prod)                    | —                        |
 | `GOOGLE_CLIENT_ID`        | Client ID OAuth Google (mismo que front) | —                        |
 
-> Si `RESEND_API_KEY` está definida, **Resend tiene prioridad** sobre SMTP.
+> **Prod OCI (Team 48):** correo solo Gmail SMTP; no definir `RESEND_API_KEY` en la VM.
+> Si `RESEND_API_KEY` está definida, Resend tiene prioridad sobre SMTP (legacy opcional).
 > En `prod`, `JWT_SECRET` y `PREDICTION_API_BASE_URL` **no** tienen valor por
 > defecto: la aplicacion no debe arrancar sin ellos.
 
@@ -279,7 +279,7 @@ donde el email ya viene verificado por Google).
 | `POST` | `/api/v1/admin/analisis/recalcular` | ADMIN | Recalculo heurístico de historial. |
 | `POST` | `/api/v1/contact` | Publico | Formulario Contáctanos (mail al equipo). |
 
-Correo: **Resend** en prod (`RESEND_API_KEY`) o **SMTP** local (`MAIL_*`).
+Correo: **Gmail SMTP** (`MAIL_*`) en local y prod OCI. Links usan `FRONTEND_BASE_URL` (Vercel en prod).
 Links en mails usan `FRONTEND_BASE_URL`. Variables: `backend/.env.example` y
 [`docs/backend/AUTH_EMAIL_ADMIN.md`](../docs/backend/AUTH_EMAIL_ADMIN.md).
 

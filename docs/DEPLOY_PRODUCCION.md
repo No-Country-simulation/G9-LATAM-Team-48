@@ -90,9 +90,18 @@ PREDICTION_API_TIMEOUT=60000
 FRONTEND_BASE_URL=https://g9-latam-team-48.vercel.app
 GOOGLE_CLIENT_ID=mismo-valor-que-VITE_GOOGLE_CLIENT_ID
 
-MAIL_ENABLED=false
-RESEND_API_KEY=...   # opcional
+# Correo: Gmail SMTP (sin RESEND_API_KEY). App Password del buzón del equipo.
+MAIL_ENABLED=true
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=energyiaTeam48@gmail.com
+MAIL_PASSWORD=app_password_16_caracteres
+MAIL_FROM=energyiaTeam48@gmail.com
 ```
+
+> **Correo en prod:** el backend en OCI envía por **Gmail SMTP** (`smtp.gmail.com:587`).
+> No definir `RESEND_API_KEY` en la VM (si existe, Resend tiene prioridad sobre SMTP).
+> Links de verificación/reset usan `FRONTEND_BASE_URL` (Vercel). Ver [`backend/AUTH_EMAIL_ADMIN.md`](./backend/AUTH_EMAIL_ADMIN.md).
 
 **Redeploy backend en OCI** (tras `git pull` en la VM):
 
@@ -309,6 +318,7 @@ Verificado en prod OCI + Vercel (2026-08-10):
 - [x] Flyway V12 aplicado; log rollups en arranque
 - [x] Vercel dashboard carga gráficos (hard refresh Ctrl+Shift+R)
 - [x] `PREDICTION_API_BASE_URL` apunta a Render en `.env` OCI
+- [x] Correo prod: Gmail SMTP (`MAIL_*`), sin `RESEND_API_KEY`; `FRONTEND_BASE_URL` = Vercel
 - [x] Google OAuth: origin Vercel en Cloud Console
 
 Smoke automatizado:
@@ -320,4 +330,4 @@ $env:ENERGY_API_URL = "http://163.176.248.56:8080"
 
 ---
 
-*Última actualización: prod con **Vercel (front + proxy)** + **OCI (API/MySQL)** + **Render (ML)**.*
+*Última actualización: prod con **Vercel (front + proxy)** + **OCI (API/MySQL, mail Gmail SMTP)** + **Render (ML)**.*

@@ -19,8 +19,7 @@ import java.time.Duration;
 
 /**
  * Envio de mails de cuenta.
- * <p>En prod el SMTP suele estar bloqueado: usar {@code RESEND_API_KEY} (HTTPS).
- * En local se puede usar SMTP Gmail con App Password.
+ * <p>Gmail SMTP ({@code MAIL_*}) en local y prod OCI. Resend solo si {@code RESEND_API_KEY} está definida.</p>
  */
 @Service
 public class UserMailService {

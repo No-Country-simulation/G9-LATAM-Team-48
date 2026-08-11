@@ -94,15 +94,13 @@ Corrida API: `qa/run-p1.ps1` + inspección bundle (`qa/inspect-google-i18n.ps1`)
 
 ---
 
-## Correo — corrida local (SMTP Gmail)
+## Correo — local y prod (Gmail SMTP)
 
-En prod el correo sale por **Resend en modo test**, que solo entrega a la casilla dueña
-configurada en Resend (variable `QA_INBOX` en scripts locales) y puede rechazar alias `+`.
-En local se puede usar el **SMTP Gmail** del equipo (`backend/.env`, gitignored), que entrega
-a cualquier destinatario; así el flujo se prueba las veces que haga falta.
+Local y **prod OCI** usan **Gmail SMTP** (`backend/.env` / `.env` en la VM, gitignored).
+Entrega a cualquier destinatario (límites Gmail ~500/día). No usar `RESEND_API_KEY`.
 
 ```powershell
-# Terminal 1 — backend local (SMTP en vez de Resend, tokens expuestos)
+# Terminal 1 — backend local (SMTP Gmail, tokens expuestos en dev)
 .\qa\start-local-backend.ps1
 
 # Terminal 2 — flujo completo de correo
@@ -122,11 +120,10 @@ a cualquier destinatario; así el flujo se prueba las veces que haga falta.
 
 ## Límites (prueba manual obligatoria)
 
-- **Correo en prod (Resend modo test):** solo entrega a la casilla dueña de la cuenta,
-  hoy la casilla dueña de Resend (`QA_INBOX`). Verificado el 2026-07-27: alias `+qa` → `emailStatus: FAILED`;
-  dirección exacta → `emailStatus: SENT`. Para enviar a cualquier destinatario en prod habría que
-  verificar un dominio en Resend (SMTP directo suele estar bloqueado en prod).
-- **Ojo:** si `RESEND_API_KEY` está seteada, `UserMailService` la prioriza y el SMTP nunca se usa.
+- **Correo prod OCI:** Gmail SMTP (`energyiaTeam48@gmail.com` + App Password en `.env` VM).
+  Verificado 2026-08-11: `forgot-password` → `emailStatus: SENT` vía SMTP.
+- **Links en mails:** `FRONTEND_BASE_URL=https://g9-latam-team-48.vercel.app` en la VM.
+- **Ojo:** si `RESEND_API_KEY` está seteada en la VM, Resend tiene prioridad y Gmail no se usa.
   Por eso `start-local-backend.ps1` la vacía para la corrida local.
 - **Google Sign-In:** el click OAuth real se validó manualmente en prod (2026-07-28).
 - No hay suite E2E en frontend; UI = esta checklist (+ opcional `npm run screenshots` en `frontend/`, solo capturas).

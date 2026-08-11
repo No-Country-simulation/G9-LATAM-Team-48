@@ -11,7 +11,7 @@ Aquí vive la checklist de pruebas y scripts de smoke; no modifica el código de
 | [run-p0.ps1](./run-p0.ps1) | Corrida P0 contra prod (registro/login/análisis/admin; escribe `*-results.json` local, gitignored) |
 | [check-users.ps1](./check-users.ps1) | Padrón de usuarios en prod vía admin (solo GET) |
 | [mail-p0.ps1](./mail-p0.ps1) | Dispara los mails reales (verify / forgot) hacia la casilla habilitada |
-| [start-local-backend.ps1](./start-local-backend.ps1) | Backend local con SMTP Gmail (en vez de Resend) y tokens expuestos |
+| [start-local-backend.ps1](./start-local-backend.ps1) | Backend local con SMTP Gmail y tokens expuestos |
 | [run-mail-local.ps1](./run-mail-local.ps1) | Flujo completo verify / reset contra `localhost:8080` |
 | [run-p1.ps1](./run-p1.ps1) | Corrida P1 contra prod (consumos/historia/admin/contacto/roles) |
 | [inspect-google-i18n.ps1](./inspect-google-i18n.ps1) | Inspección Client ID + i18n en el bundle de Vercel |
