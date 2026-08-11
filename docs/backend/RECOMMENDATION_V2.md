@@ -52,7 +52,7 @@ POST /api/analisis
 |--------|---------|
 | Columnas | `nivel` (`efficient` \| `moderate` \| `inefficient`; NULL = todos) y `category_key` (`climate`, `lighting`, …) |
 | Backfill | Las 33 filas V11 reciben `category_key`; perfiles base reciben `nivel` explícito |
-| Piloto | **15** tips `CLIMATE_MOD_01`–`15` con `nivel=moderate`, `category_key=climate` |
+| Piloto | **15** tips `CLIMATE_MOD_01`–`15` + **48** tips V15 (`LIGHTING/EQUIPMENT/HABITS/TECH_MOD_01`–`12`) con `nivel=moderate` |
 | API | `GET /api/recomendaciones?nivel=moderate&domain=climate` (opcionales; `category` sigue filtrando por perfil de consumo) |
 | i18n front | `PILOT_CATALOG_KEYS` + `npm run build:catalog` (es/en; resto fallback a en) |
 

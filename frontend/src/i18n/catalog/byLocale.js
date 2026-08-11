@@ -192,6 +192,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Agrupar actividades que generan calor fuera del horario pico",
       "description": "Agrupar actividades que generan calor fuera del horario pico"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Reemplazar focos restantes de incandescentes por LED de bajo consumo",
+      "description": "Reemplazar focos restantes de incandescentes por LED de bajo consumo"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Aprovechar luz natural en escritorios y cocina durante el día",
+      "description": "Aprovechar luz natural en escritorios y cocina durante el día"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Instalar dimmers en áreas de convivencia para ajustar intensidad",
+      "description": "Instalar dimmers en áreas de convivencia para ajustar intensidad"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Apagar luces al salir de habitaciones poco usadas",
+      "description": "Apagar luces al salir de habitaciones poco usadas"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Usar luminarias LED con etiqueta de alta eficiencia energética",
+      "description": "Usar luminarias LED con etiqueta de alta eficiencia energética"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Colocar espejos estratégicos para amplificar luz natural",
+      "description": "Colocar espejos estratégicos para amplificar luz natural"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Limpiar pantallas y difusores para mantener el flujo lumínico",
+      "description": "Limpiar pantallas y difusores para mantener el flujo lumínico"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Agrupar puntos de luz en zonas de trabajo con interruptor único",
+      "description": "Agrupar puntos de luz en zonas de trabajo con interruptor único"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Evitar lámparas decorativas de alto consumo en horario diurno",
+      "description": "Evitar lámparas decorativas de alto consumo en horario diurno"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Programar temporizadores en iluminación exterior nocturna",
+      "description": "Programar temporizadores en iluminación exterior nocturna"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Preferir tonos claros en paredes para reducir horas de luz artificial",
+      "description": "Preferir tonos claros en paredes para reducir horas de luz artificial"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Revisar sensores de movimiento en pasillos y baños",
+      "description": "Revisar sensores de movimiento en pasillos y baños"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Lavar ropa con carga completa y programa económico",
+      "description": "Lavar ropa con carga completa y programa económico"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Desconectar electrodomésticos no usados con alto consumo en standby",
+      "description": "Desconectar electrodomésticos no usados con alto consumo en standby"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Usar ollas con tapa para reducir tiempo de cocción eléctrica",
+      "description": "Usar ollas con tapa para reducir tiempo de cocción eléctrica"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Revisar sellado de puerta del refrigerador para evitar fugas de frío",
+      "description": "Revisar sellado de puerta del refrigerador para evitar fugas de frío"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Programar lavavajillas fuera del horario pico tarifario",
+      "description": "Programar lavavajillas fuera del horario pico tarifario"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Evitar abrir el horno repetidamente mientras cocina",
+      "description": "Evitar abrir el horno repetidamente mientras cocina"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Preferir microondas o air fryer para recalentar porciones pequeñas",
+      "description": "Preferir microondas o air fryer para recalentar porciones pequeñas"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Mantener serpentín trasero del refrigerador libre de polvo",
+      "description": "Mantener serpentín trasero del refrigerador libre de polvo"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "No sobrecargar extensiones con múltiples equipos de alto wattaje",
+      "description": "No sobrecargar extensiones con múltiples equipos de alto wattaje"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Usar termo eléctrico con timer en lugar de calentar agua todo el día",
+      "description": "Usar termo eléctrico con timer en lugar de calentar agua todo el día"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Revisar etiqueta de eficiencia energética al reemplazar electrodomésticos",
+      "description": "Revisar etiqueta de eficiencia energética al reemplazar electrodomésticos"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Agrupar uso de secadora y plancha en bloques cortos consecutivos",
+      "description": "Agrupar uso de secadora y plancha en bloques cortos consecutivos"
+    },
+    "HABITS_MOD_01": {
+      "title": "Desplazar cargas pesadas fuera del horario pico vespertino",
+      "description": "Desplazar cargas pesadas fuera del horario pico vespertino"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reducir tiempo de ducha a ocho minutos como meta diaria",
+      "description": "Reducir tiempo de ducha a ocho minutos como meta diaria"
+    },
+    "HABITS_MOD_03": {
+      "title": "Apagar equipos de entretenimiento al terminar la jornada",
+      "description": "Apagar equipos de entretenimiento al terminar la jornada"
+    },
+    "HABITS_MOD_04": {
+      "title": "Cargar dispositivos móviles durante horas valle nocturnas",
+      "description": "Cargar dispositivos móviles durante horas valle nocturnas"
+    },
+    "HABITS_MOD_05": {
+      "title": "Evitar dejar ventiladores encendidos en habitaciones vacías",
+      "description": "Evitar dejar ventiladores encendidos en habitaciones vacías"
+    },
+    "HABITS_MOD_06": {
+      "title": "Usar modo ahorro de energía en computadoras cuando no se usen",
+      "description": "Usar modo ahorro de energía en computadoras cuando no se usen"
+    },
+    "HABITS_MOD_07": {
+      "title": "Planificar una auditoría visual mensual de enchufes activos",
+      "description": "Planificar una auditoría visual mensual de enchufes activos"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinar horarios de cocina para no encender varios fogones a la vez",
+      "description": "Coordinar horarios de cocina para no encender varios fogones a la vez"
+    },
+    "HABITS_MOD_09": {
+      "title": "Bajar persianas al salir para reducir necesidad de climatización",
+      "description": "Bajar persianas al salir para reducir necesidad de climatización"
+    },
+    "HABITS_MOD_10": {
+      "title": "Establecer recordatorio semanal para revisar consumo en la app",
+      "description": "Establecer recordatorio semanal para revisar consumo en la app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involucrar a todos los ocupantes en apagar luces y equipos compartidos",
+      "description": "Involucrar a todos los ocupantes en apagar luces y equipos compartidos"
+    },
+    "HABITS_MOD_12": {
+      "title": "Evitar precalentar el horno más de quince minutos antes de cocinar",
+      "description": "Evitar precalentar el horno más de quince minutos antes de cocinar"
+    },
+    "TECH_MOD_01": {
+      "title": "Instalar regleta inteligente en centro de entretenimiento",
+      "description": "Instalar regleta inteligente en centro de entretenimiento"
+    },
+    "TECH_MOD_02": {
+      "title": "Configurar apagado automático de monitor tras inactividad",
+      "description": "Configurar apagado automático de monitor tras inactividad"
+    },
+    "TECH_MOD_03": {
+      "title": "Usar enchufes con interruptor para cargadores y transformadores",
+      "description": "Usar enchufes con interruptor para cargadores y transformadores"
+    },
+    "TECH_MOD_04": {
+      "title": "Medir consumo standby con medidor de enchufe en equipos dudosos",
+      "description": "Medir consumo standby con medidor de enchufe en equipos dudosos"
+    },
+    "TECH_MOD_05": {
+      "title": "Actualizar firmware de termostatos inteligentes para optimizar ciclos",
+      "description": "Actualizar firmware de termostatos inteligentes para optimizar ciclos"
+    },
+    "TECH_MOD_06": {
+      "title": "Conectar router y modem a regleta apagable nocturna si no se requiere 24/7",
+      "description": "Conectar router y modem a regleta apagable nocturna si no se requiere 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Preferir equipos con certificación Energy Star al renovar tecnología",
+      "description": "Preferir equipos con certificación Energy Star al renovar tecnología"
+    },
+    "TECH_MOD_08": {
+      "title": "Desactivar funciones cloud innecesarias en dispositivos IoT del hogar",
+      "description": "Desactivar funciones cloud innecesarias en dispositivos IoT del hogar"
+    },
+    "TECH_MOD_09": {
+      "title": "Sincronizar horarios de smart plugs con tarifa eléctrica valle",
+      "description": "Sincronizar horarios de smart plugs con tarifa eléctrica valle"
+    },
+    "TECH_MOD_10": {
+      "title": "Revisar apps de monitoreo de consumo para detectar picos anómalos",
+      "description": "Revisar apps de monitoreo de consumo para detectar picos anómalos"
+    },
+    "TECH_MOD_11": {
+      "title": "Usar power bank en lugar de dejar cargador de pared siempre conectado",
+      "description": "Usar power bank en lugar de dejar cargador de pared siempre conectado"
+    },
+    "TECH_MOD_12": {
+      "title": "Etiquetar enchufes críticos versus prescindibles para apagado rápido",
+      "description": "Etiquetar enchufes críticos versus prescindibles para apagado rápido"
     }
   },
   "en": {
@@ -386,6 +578,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "pt": {
@@ -580,6 +964,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "fr": {
@@ -774,6 +1350,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "it": {
@@ -968,6 +1736,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "de": {
@@ -1162,6 +2122,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "nl": {
@@ -1356,6 +2508,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "pl": {
@@ -1550,6 +2894,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "ro": {
@@ -1744,6 +3280,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "ca": {
@@ -1938,6 +3666,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "tr": {
@@ -2132,6 +4052,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "ar": {
@@ -2326,6 +4438,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "zh": {
@@ -2520,6 +4824,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "ja": {
@@ -2714,6 +5210,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "ko": {
@@ -2908,6 +5596,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "ru": {
@@ -3102,6 +5982,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "hi": {
@@ -3296,6 +6368,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "uk": {
@@ -3490,6 +6754,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "vi": {
@@ -3684,6 +7140,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "id": {
@@ -3878,6 +7526,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   },
   "sv": {
@@ -4072,6 +7912,198 @@ export const CATALOG_BY_LOCALE = {
     "CLIMATE_MOD_15": {
       "title": "Group heat-generating activities outside peak hours",
       "description": "Group heat-generating activities outside peak hours"
+    },
+    "LIGHTING_MOD_01": {
+      "title": "Replace remaining incandescent bulbs with low-consumption LED",
+      "description": "Replace remaining incandescent bulbs with low-consumption LED"
+    },
+    "LIGHTING_MOD_02": {
+      "title": "Use natural light at desks and kitchen during daytime",
+      "description": "Use natural light at desks and kitchen during daytime"
+    },
+    "LIGHTING_MOD_03": {
+      "title": "Install dimmers in living areas to adjust light intensity",
+      "description": "Install dimmers in living areas to adjust light intensity"
+    },
+    "LIGHTING_MOD_04": {
+      "title": "Turn off lights when leaving rarely used rooms",
+      "description": "Turn off lights when leaving rarely used rooms"
+    },
+    "LIGHTING_MOD_05": {
+      "title": "Choose LED fixtures with high energy-efficiency labeling",
+      "description": "Choose LED fixtures with high energy-efficiency labeling"
+    },
+    "LIGHTING_MOD_06": {
+      "title": "Place mirrors strategically to amplify natural light",
+      "description": "Place mirrors strategically to amplify natural light"
+    },
+    "LIGHTING_MOD_07": {
+      "title": "Clean shades and diffusers to maintain light output",
+      "description": "Clean shades and diffusers to maintain light output"
+    },
+    "LIGHTING_MOD_08": {
+      "title": "Group work-area lights under a single switch",
+      "description": "Group work-area lights under a single switch"
+    },
+    "LIGHTING_MOD_09": {
+      "title": "Avoid high-consumption decorative lamps during daytime",
+      "description": "Avoid high-consumption decorative lamps during daytime"
+    },
+    "LIGHTING_MOD_10": {
+      "title": "Set timers on outdoor lighting at night",
+      "description": "Set timers on outdoor lighting at night"
+    },
+    "LIGHTING_MOD_11": {
+      "title": "Prefer light wall colors to reduce artificial lighting hours",
+      "description": "Prefer light wall colors to reduce artificial lighting hours"
+    },
+    "LIGHTING_MOD_12": {
+      "title": "Check motion sensors in hallways and bathrooms",
+      "description": "Check motion sensors in hallways and bathrooms"
+    },
+    "EQUIPMENT_MOD_01": {
+      "title": "Wash clothes with full loads using eco program",
+      "description": "Wash clothes with full loads using eco program"
+    },
+    "EQUIPMENT_MOD_02": {
+      "title": "Unplug unused appliances with high standby consumption",
+      "description": "Unplug unused appliances with high standby consumption"
+    },
+    "EQUIPMENT_MOD_03": {
+      "title": "Use lidded pots to reduce electric cooking time",
+      "description": "Use lidded pots to reduce electric cooking time"
+    },
+    "EQUIPMENT_MOD_04": {
+      "title": "Check refrigerator door seal to prevent cold leaks",
+      "description": "Check refrigerator door seal to prevent cold leaks"
+    },
+    "EQUIPMENT_MOD_05": {
+      "title": "Schedule dishwasher outside peak tariff hours",
+      "description": "Schedule dishwasher outside peak tariff hours"
+    },
+    "EQUIPMENT_MOD_06": {
+      "title": "Avoid opening the oven repeatedly while cooking",
+      "description": "Avoid opening the oven repeatedly while cooking"
+    },
+    "EQUIPMENT_MOD_07": {
+      "title": "Prefer microwave or air fryer to reheat small portions",
+      "description": "Prefer microwave or air fryer to reheat small portions"
+    },
+    "EQUIPMENT_MOD_08": {
+      "title": "Keep refrigerator rear coils free of dust",
+      "description": "Keep refrigerator rear coils free of dust"
+    },
+    "EQUIPMENT_MOD_09": {
+      "title": "Do not overload power strips with high-wattage devices",
+      "description": "Do not overload power strips with high-wattage devices"
+    },
+    "EQUIPMENT_MOD_10": {
+      "title": "Use electric kettle with timer instead of heating water all day",
+      "description": "Use electric kettle with timer instead of heating water all day"
+    },
+    "EQUIPMENT_MOD_11": {
+      "title": "Check energy label when replacing appliances",
+      "description": "Check energy label when replacing appliances"
+    },
+    "EQUIPMENT_MOD_12": {
+      "title": "Batch dryer and iron use in short consecutive blocks",
+      "description": "Batch dryer and iron use in short consecutive blocks"
+    },
+    "HABITS_MOD_01": {
+      "title": "Shift heavy loads outside evening peak hours",
+      "description": "Shift heavy loads outside evening peak hours"
+    },
+    "HABITS_MOD_02": {
+      "title": "Reduce shower time to eight minutes as a daily goal",
+      "description": "Reduce shower time to eight minutes as a daily goal"
+    },
+    "HABITS_MOD_03": {
+      "title": "Turn off entertainment devices at end of day",
+      "description": "Turn off entertainment devices at end of day"
+    },
+    "HABITS_MOD_04": {
+      "title": "Charge mobile devices during off-peak night hours",
+      "description": "Charge mobile devices during off-peak night hours"
+    },
+    "HABITS_MOD_05": {
+      "title": "Avoid leaving fans on in empty rooms",
+      "description": "Avoid leaving fans on in empty rooms"
+    },
+    "HABITS_MOD_06": {
+      "title": "Use power-saving mode on computers when idle",
+      "description": "Use power-saving mode on computers when idle"
+    },
+    "HABITS_MOD_07": {
+      "title": "Plan a monthly visual audit of active outlets",
+      "description": "Plan a monthly visual audit of active outlets"
+    },
+    "HABITS_MOD_08": {
+      "title": "Coordinate cooking times to avoid multiple burners at once",
+      "description": "Coordinate cooking times to avoid multiple burners at once"
+    },
+    "HABITS_MOD_09": {
+      "title": "Lower blinds when leaving to reduce later HVAC need",
+      "description": "Lower blinds when leaving to reduce later HVAC need"
+    },
+    "HABITS_MOD_10": {
+      "title": "Set a weekly reminder to review consumption in the app",
+      "description": "Set a weekly reminder to review consumption in the app"
+    },
+    "HABITS_MOD_11": {
+      "title": "Involve all occupants in turning off shared lights and devices",
+      "description": "Involve all occupants in turning off shared lights and devices"
+    },
+    "HABITS_MOD_12": {
+      "title": "Avoid preheating oven more than fifteen minutes before cooking",
+      "description": "Avoid preheating oven more than fifteen minutes before cooking"
+    },
+    "TECH_MOD_01": {
+      "title": "Install smart power strip in entertainment center",
+      "description": "Install smart power strip in entertainment center"
+    },
+    "TECH_MOD_02": {
+      "title": "Configure automatic monitor shutdown after inactivity",
+      "description": "Configure automatic monitor shutdown after inactivity"
+    },
+    "TECH_MOD_03": {
+      "title": "Use switched outlets for chargers and transformers",
+      "description": "Use switched outlets for chargers and transformers"
+    },
+    "TECH_MOD_04": {
+      "title": "Measure standby draw with plug meter on suspect devices",
+      "description": "Measure standby draw with plug meter on suspect devices"
+    },
+    "TECH_MOD_05": {
+      "title": "Update smart thermostat firmware to optimize cycles",
+      "description": "Update smart thermostat firmware to optimize cycles"
+    },
+    "TECH_MOD_06": {
+      "title": "Connect router and modem to nightly switchable strip if not 24/7",
+      "description": "Connect router and modem to nightly switchable strip if not 24/7"
+    },
+    "TECH_MOD_07": {
+      "title": "Prefer Energy Star certified gear when upgrading technology",
+      "description": "Prefer Energy Star certified gear when upgrading technology"
+    },
+    "TECH_MOD_08": {
+      "title": "Disable unnecessary cloud features on home IoT devices",
+      "description": "Disable unnecessary cloud features on home IoT devices"
+    },
+    "TECH_MOD_09": {
+      "title": "Sync smart plug schedules with off-peak electricity rates",
+      "description": "Sync smart plug schedules with off-peak electricity rates"
+    },
+    "TECH_MOD_10": {
+      "title": "Review consumption monitoring apps for anomalous spikes",
+      "description": "Review consumption monitoring apps for anomalous spikes"
+    },
+    "TECH_MOD_11": {
+      "title": "Use power bank instead of leaving wall charger always connected",
+      "description": "Use power bank instead of leaving wall charger always connected"
+    },
+    "TECH_MOD_12": {
+      "title": "Label critical versus optional outlets for quick shutdown",
+      "description": "Label critical versus optional outlets for quick shutdown"
     }
   }
 }
