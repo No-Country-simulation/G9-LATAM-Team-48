@@ -26,6 +26,7 @@ public class LegacyTipCatalogMapper {
             Map.entry("shifts", "PEAK_HOUR_SHIFT"),
             Map.entry("monitor", "LOW_CONSUMPTION_BASE"),
             Map.entry("keep", "LOW_CONSUMPTION_BASE"),
+            Map.entry("occupancy", "HIGH_CONSUMPTION_PER_PERSON"),
             Map.entry("default", "MEDIUM_CONSUMPTION_BASE"));
 
     public String catalogTipKeyForLegacy(String legacyTip) {

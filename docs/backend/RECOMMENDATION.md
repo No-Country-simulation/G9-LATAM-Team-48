@@ -23,6 +23,7 @@
 *   **Motor de reglas** (patrón Strategy) que genera recomendaciones de ahorro energético.
 *   **Reglas base** evaluadas por la categoría de consumo (`HighConsumptionRule`, `MediumConsumptionRule`, `LowConsumptionRule`).
 *   **Reglas granulares** basadas en hábitos específicos, como `PeakHourUsageRule`.
+*   **Reglas SHAP derivadas** (`HighOccupantConsumptionRule`, `InsulationFromFormRule`, `LedUpgradeRule`) alimentadas por `AnalisisFeatureCalculator` + `CalculationProperties` (umbrales tunables vía `APP_CALCULATION_*`).
 *   **Reglas de enrutamiento por inmueble** (`CommercialOptimizationRule`, `HouseEfficiencyRule`, `ApartmentEfficiencyRule`) que aseguran coherencia estructural.
 *   **Pivote de i18n:** Las reglas devuelven claves cortas (ej. `"peak"`, `"ac"`, `"commercial"`) en lugar de oraciones traducidas. El frontend resuelve el texto final según su propio diccionario.
 *   **Mensaje de contingencia** (`"default"`) cuando ninguna regla aplica.
@@ -58,7 +59,10 @@ Esto habilita el principio **Abierto/Cerrado (OCP)** de SOLID: añadir una recom
 | `ConsumptionCategory` | `common.enums` | Enum que centraliza y mapea las categorías del modelo ML (`ALTO`, `BAJO`) con las claves visuales del frontend (`inefficient`, `efficient`), eliminando condicionales en los servicios. |
 | `PropertyTypeConstants`| `common.constants` | Centraliza los tipos de inmuebles válidos (`CASA_UNIFAMILIAR`, etc.). |
 | `RecommendationServiceImpl` | `recommendation.service` | Filtra las reglas, extrae las claves, las convierte a minúsculas y devuelve la lista final sin duplicados. |
-| `RecommendationRequest` | `recommendation.dto` | Entrada: `userId`, `category`, `tipoInmueble` + variables tipadas específicas del consumo. |
+| `RecommendationRequest` | `recommendation.dto` | Entrada: `userId`, `category`, `tipoInmueble` + variables del formulario + métricas derivadas SHAP (`consumoPorPersona`, `factorAislamientoCalculado`, `proporcionLedCalculada`). |
+| `AnalisisFeatureCalculator` | `analisis.service` | Deriva métricas SHAP desde el payload del análisis; usado por `AnalisisTipsComposer`. |
+| `CalculationProperties` | `config` | Umbrales tunables (`app.calculation` / `APP_CALCULATION_*`). |
+| `UserRecommendationSyncService` | `recommendation.service` | Persiste tips ACTIVE por usuario logueado; evita duplicados en BD. |
 | `RecommendationResponse` | `recommendation.dto` | Salida: `userId` + lista de `tipKeys`. |
 
 ### 4.1. Contrato de Integración con el Modelo ML (Python)
@@ -75,25 +79,32 @@ Esto permite que, ante modificaciones en el contrato del modelo predictivo, los 
 ## 5. Flujo de generación de recomendaciones
 
 ```text
-PredictionResponse                    RecommendationServiceImpl
-(userId, category, confidence)                │
-        │                                     │  1. Recibe RecommendationRequest
-        │  (se arma el                        │     (userId, category, tipoInmueble, usoHorarioPico, etc.)
-        │   RecommendationRequest              │
-        │   enriquecido)                       │
-        ▼                                      ▼
-RecommendationRequest  ──────────────►  rules.stream()
-                                            .filter(rule -> rule.applies(request))
-                                            .map(rule -> rule.evaluate(request).name().toLowerCase())
-                                            .distinct()
-                                            .toList()
-                                               │
-                                               │  Si la lista queda vacía:
-                                               │  Lista con ["default"]
-                                               ▼
-                                        RecommendationResponse
-                                        (userId, [tipKeys])
+POST /api/analisis (features del formulario)
+        │
+        ▼
+AnalisisTipsComposer
+  ├─ AnalisisFeatureCalculator → consumo/persona, aislamiento, LED
+  ├─ RecommendationRequest enriquecido
+  └─ RecommendationServiceImpl.generate() → tipKeys cortas
+        │
+        ▼
+UserRecommendationSyncService (solo usuario logueado, sin duplicar ACTIVE)
+        │
+        ▼
+PredictionResponse.tipKeys → frontend (i18n en UI)
+```
 
+Flujo interno del motor:
+
+```text
+RecommendationRequest                RecommendationServiceImpl
+(userId, category, métricas)                │
+        │                                     │  rules.stream()
+        ▼                                     │    .filter(applies)
+RecommendationServiceImpl  ──────────────►  │    .map(evaluate → tipKey)
+                                            ▼
+                                     RecommendationResponse
+                                     (userId, [tipKeys])
 ```
 ## 5.1 Flujo de Integración y Orquestación (`PredictionServiceImpl`)
 
@@ -115,13 +126,16 @@ Si la información provista no coincide con ninguna regla registrada, `Recommend
 
 ## 7. Pruebas
 
-La suite de pruebas `RecommendationServiceImplTest` cubre:
+| Test | Qué valida |
+|------|------------|
+| `RecommendationServiceImplTest` | Reglas por categoría, composición multi-regla, `occupancy`/`led` con métricas derivadas |
+| `AnalisisTipsComposerTest` | El calculador SHAP enriquece el request antes de evaluar reglas |
+| `UserRecommendationSyncAntiduplicateTest` | No duplica filas ACTIVE en `user_recommendations` |
+| `CalculationPropertiesTest` | Defaults y umbrales desde `application.yml` |
 
-* Evaluación correcta de las reglas según la constante de categoría y tipo de inmueble.
-* Retorno del fallback `"default"` ante condiciones no mapeadas.
-* Verificación de que el orquestador convierte correctamente los `TipKey` a cadenas en minúsculas y filtra elementos duplicados (ej. `["ac", "peak"]`).
-
----
+```bash
+cd backend && mvn clean test
+```
 
 ## 8. Evolución del Contrato
 

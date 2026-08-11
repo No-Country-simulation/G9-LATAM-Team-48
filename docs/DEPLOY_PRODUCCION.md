@@ -214,7 +214,7 @@ python scripts/smoke_predict.py https://ml-service-lbfk.onrender.com
 2. Spring valida `AnalisisPayload` (@Valid) y arma `toMlFeatureMap()` (**12 features**).
 3. `PredictionServiceImpl` → `FastApiPredictionClient` → Render `/predict` → **`model.joblib`** → `nivelKey`, `confidence`, `ahorro`, `benchmark` (`tipKeys` vacío desde Python).
 4. Si Render no responde (timeout, cold start, error): **fallback** `HeuristicPrediction` (log en backend).
-5. `AnalisisTipsComposer` combina reglas de recomendación + tips base por `nivelKey` (usa **todo** el mapa del formulario); persiste en `analisis_consultas`; respuesta al front (perfil + tabla de sugerencias i18n).
+5. `AnalisisTipsComposer` enriquece el request con **métricas SHAP derivadas** (`AnalisisFeatureCalculator` + `CalculationProperties`), evalúa reglas (`occupancy`, `insulation`, `led`, …), combina tips ML + base por `nivelKey`; persiste consulta y, si hay login, sincroniza `user_recommendations` sin duplicar ACTIVE.
 
 **Render Free:** instancia duerme; primera petición puede tardar ~30–60 s → `PREDICTION_API_TIMEOUT=60000`.
 

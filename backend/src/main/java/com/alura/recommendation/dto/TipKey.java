@@ -18,5 +18,7 @@ public enum TipKey {
     APPLIANCES,
     MONITOR,
     KEEP,
-    SCHEDULES
+    SCHEDULES,
+    /** Consumo per cápita elevado (métrica SHAP derivada). */
+    OCCUPANCY
 }

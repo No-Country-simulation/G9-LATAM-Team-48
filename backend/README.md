@@ -95,6 +95,9 @@ curl -X POST http://localhost:8080/api/analisis ^
 Guía completa de contrato e integración:
 [`docs/backend/ANALISIS_IA.md`](../docs/backend/ANALISIS_IA.md).
 
+Motor de recomendaciones + métricas SHAP:
+[`docs/backend/RECOMMENDATION.md`](../docs/backend/RECOMMENDATION.md) · [`docs/backend/RECOMMENDATION_V2.md`](../docs/backend/RECOMMENDATION_V2.md).
+
 Microservicio Python: [`ml-service/README.md`](../ml-service/README.md) · Deploy prod: [`docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md).
 
 Material de notebooks y datasets: carpeta hermana [`datascience/`](../datascience/).

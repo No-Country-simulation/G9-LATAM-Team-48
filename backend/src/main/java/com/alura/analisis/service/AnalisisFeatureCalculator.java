@@ -47,9 +47,8 @@ public class AnalisisFeatureCalculator {
             double area = features.containsKey("area_m2")
                     ? parseDouble(features.get("area_m2"))
                     : calc.defaultAreaM2();
-            double horasClima = features.containsKey("horas_climatizacion")
-                    ? parseDouble(features.get("horas_climatizacion"))
-                    : 0.0;
+            double horasClima = doubleFromFeatures(features, 0.0,
+                    "horas_uso_aa_dia", "horasClimatizacion", "horas_climatizacion");
             double ratioClimaArea = horasClima / Math.max(area, calc.minAreaThreshold());
             return calc.insulationFactorForRatio(ratioClimaArea);
         } catch (Exception e) {
@@ -62,9 +61,8 @@ public class AnalisisFeatureCalculator {
             return calc.ledProportionMedium();
         }
         try {
-            int equipos = features.containsKey("cantidad_equipos")
-                    ? parseInt(features.get("cantidad_equipos"), calc.defaultEquipmentCount())
-                    : calc.defaultEquipmentCount();
+            int equipos = intFromFeatures(features, calc.defaultEquipmentCount(),
+                    "cantidad_equipos_total", "cantidadEquipos", "cantidad_equipos");
             if (equipos > calc.highEquipmentThreshold()) {
                 return calc.ledProportionLow();
             }
@@ -85,6 +83,24 @@ public class AnalisisFeatureCalculator {
             return number.doubleValue();
         }
         return Double.parseDouble(val.toString().trim());
+    }
+
+    private static int intFromFeatures(Map<String, Object> features, int defaultVal, String... keys) {
+        for (String key : keys) {
+            if (features.containsKey(key) && features.get(key) != null) {
+                return parseInt(features.get(key), defaultVal);
+            }
+        }
+        return defaultVal;
+    }
+
+    private static double doubleFromFeatures(Map<String, Object> features, double defaultVal, String... keys) {
+        for (String key : keys) {
+            if (features.containsKey(key) && features.get(key) != null) {
+                return parseDouble(features.get(key));
+            }
+        }
+        return defaultVal;
     }
 
     private static int parseInt(Object val, int defaultVal) {

@@ -11,9 +11,11 @@ public class LedUpgradeRule implements RecommendationRule {
 
     @Override
     public boolean applies(RecommendationRequest request) {
+        Double pct = request != null ? request.effectivePctIluminacionLed() : null;
         return request != null
-                && request.pctIluminacionLed() != null
-                && request.pctIluminacionLed() < UMBRAL_LED;
+                && request.requiresDetailedAnalysis()
+                && pct != null
+                && pct < UMBRAL_LED;
     }
 
     @Override

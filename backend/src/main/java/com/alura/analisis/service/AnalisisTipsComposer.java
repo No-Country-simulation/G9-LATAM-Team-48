@@ -21,9 +21,13 @@ public class AnalisisTipsComposer {
     private static final int MAX_TIPS = 6;
 
     private final RecommendationService recommendationService;
+    private final AnalisisFeatureCalculator featureCalculator;
 
-    public AnalisisTipsComposer(RecommendationService recommendationService) {
+    public AnalisisTipsComposer(
+            RecommendationService recommendationService,
+            AnalisisFeatureCalculator featureCalculator) {
         this.recommendationService = recommendationService;
+        this.featureCalculator = featureCalculator;
     }
 
     public List<String> compose(PredictionResponse result, Map<String, Object> features, String userId) {
@@ -32,7 +36,8 @@ public class AnalisisTipsComposer {
         }
         String nivelKey = result.nivelKey() != null ? result.nivelKey() : "moderate";
 
-        RecommendationRequest request = RecommendationRequest.fromAnalysisFeatures(features, nivelKey, userId);
+        RecommendationRequest request = RecommendationRequest.fromAnalysisFeatures(
+                features, nivelKey, userId, featureCalculator);
         List<String> fromRules = recommendationService.generate(request).recommendations();
 
         Set<String> merged = new LinkedHashSet<>();

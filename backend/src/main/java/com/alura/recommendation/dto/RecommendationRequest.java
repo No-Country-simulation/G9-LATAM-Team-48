@@ -1,5 +1,6 @@
 package com.alura.recommendation.dto;
 
+import com.alura.analisis.service.AnalisisFeatureCalculator;
 import com.alura.recommendation.support.RecommendationRequestMapper;
 
 import java.util.Locale;
@@ -22,24 +23,67 @@ public record RecommendationRequest(
         Boolean usoHorarioPico,
         Double pctIluminacionLed,
         String aislamientoTermico,
-        Double antiguedadElectrodomesticosAnios
+        Double antiguedadElectrodomesticosAnios,
+        Double consumoPorPersona,
+        Double factorAislamientoCalculado,
+        Double proporcionLedCalculada
 ) {
     public static RecommendationRequest fromAnalysisFeatures(
             Map<String, Object> features, String nivelKey, String userId) {
+        return fromAnalysisFeatures(features, nivelKey, userId, null);
+    }
+
+    /**
+     * Enriquece el request con métricas derivadas (SHAP) cuando se provee el calculador.
+     */
+    public static RecommendationRequest fromAnalysisFeatures(
+            Map<String, Object> features, String nivelKey, String userId,
+            AnalisisFeatureCalculator calculator) {
         if (features == null) {
             features = Map.of();
+        }
+        Double derivedConsumoPerPerson = null;
+        Double derivedInsulation = null;
+        Double derivedLed = null;
+        if (calculator != null) {
+            derivedConsumoPerPerson = calculator.calculateConsumptionPerPerson(features).doubleValue();
+            derivedInsulation = calculator.calculateInsulationFactor(features).doubleValue();
+            derivedLed = calculator.calculateLedProportion(features).doubleValue();
         }
         return new RecommendationRequest(
                 userId,
                 RecommendationRequestMapper.mapNivelToCategoryModel(nivelKey),
                 RecommendationRequestMapper.mapTipoInmueble(features),
-                intOrNull(features, "cantidad_equipos_total", "cantidadEquipos"),
-                intOrNull(features, "horas_uso_aa_dia", "horasClimatizacion"),
+                intOrNull(features, "cantidad_equipos_total", "cantidadEquipos", "cantidad_equipos"),
+                intOrNull(features, "horas_uso_aa_dia", "horasClimatizacion", "horas_climatizacion"),
                 intOrNull(features, "horasAltoConsumo", "horas_alto_consumo"),
                 boolOrNull(features.get("usoHorarioPico")),
                 doubleOrNull(features, "pct_iluminacion_led", "pctIluminacionLed"),
                 stringOrNull(features, "aislamiento_termico", "aislamientoTermico"),
-                doubleOrNull(features, "antiguedad_electrodomesticos_anios", "antiguedadElectrodomesticosAnios"));
+                doubleOrNull(features, "antiguedad_electrodomesticos_anios", "antiguedadElectrodomesticosAnios"),
+                derivedConsumoPerPerson,
+                derivedInsulation,
+                derivedLed);
+    }
+
+    /** {@code true} para perfiles MODERADO/ALTO (reglas SHAP detalladas). */
+    public boolean requiresDetailedAnalysis() {
+        if (category == null) {
+            return false;
+        }
+        String normalized = category.trim().toUpperCase(Locale.ROOT);
+        return !"BAJO".equals(normalized) && !"LOW".equals(normalized) && !"EFFICIENT".equals(normalized);
+    }
+
+    /** Porcentaje LED efectivo: formulario o métrica calculada (0–100). */
+    public Double effectivePctIluminacionLed() {
+        if (pctIluminacionLed != null) {
+            return pctIluminacionLed;
+        }
+        if (proporcionLedCalculada != null) {
+            return proporcionLedCalculada * 100.0;
+        }
+        return null;
     }
 
     private static Integer intOrNull(Map<String, Object> map, String... keys) {
