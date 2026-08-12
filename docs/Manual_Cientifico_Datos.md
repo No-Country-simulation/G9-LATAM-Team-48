@@ -6219,3 +6219,68 @@ Se deja como requisito explícito para el Capítulo 25: el microservicio FastAPI
 
 * Justificación de herramienta (Streamlit).
 * Requisito de logging de predicciones, formalizado como dependencia del Capítulo 25.
+
+## Capítulo 28 – Documentación Técnica
+
+### Objetivo
+
+Consolidar en un único documento, independiente del manual completo, todo lo que un consumidor externo del microservicio (Backend, o quien construya la imagen Docker) necesita para ejecutarlo e integrarlo, sin depender de leer los Capítulos 1-27.
+
+### 1. Alcance
+
+* Cómo ejecutar el servicio y sus requisitos.
+
+* Referencia consolidada del contrato de datos (Capítulos 20-22).
+* Cómo validar que una instancia del servicio funciona correctamente.
+* Mapa de toda la documentación técnica generada por el proyecto.
+
+### 2. Producto generado
+
+* `docs/documentacion_tecnica_integracion.md` — documento de entrega técnica.
+
+## Capítulo 29 – Checklist antes del Deploy
+
+### Objetivo
+
+Verificar, antes de la entrega formal a Backend y al equipo de Docker/OCI, que el trabajo de Ciencia de Datos está completo, documentado, probado y libre de artefactos que puedan confundir o comprometer el despliegue.
+
+### 1. Alcance
+
+Checklist de preparación del lado de Ciencia de Datos. No cubre pasos operativos de containerización ni de infraestructura OCI — esos quedan en el checklist propio de quien construya los Capítulos 26 y 27.
+
+### 2. Checklist
+
+**Código y artefactos**
+
+* [x] `git status` limpio — sin `venv/`, sin `*.db`, sin `.joblib` descartados de versiones anteriores (v1, v2, "final_v3" pre-regularización)
+* [x] `models/` contiene exactamente los 6 artefactos oficiales: `model_pipeline_v3.joblib`, `metadata_v3.json`, `training_config_v3.json`, `export_log_v3.json`, `label_encoder_v3.joblib`, `columnas_requeridas_final_v3.joblib`
+* [x] `requirements.txt` (raíz y `api/`) actualizado con las dependencias reales usadas
+* [x] Commit y push realizados a `feature/notebooks-analisis`
+* [ ] Pull Request hacia `datascience` actualizado con este último push — **confirmar manualmente en GitHub**
+
+**Pruebas**
+
+* [x] Suite de aceptación (`tests/test_aceptacion_capitulo21.py`) pasa en verde: no-regresión por clase, suma de probabilidades = 100%, manejo de `ERROR_INTERNO_MODELO`
+* [x] Los 4 escenarios de error (`CAMPO_FALTANTE`, `CAMPO_INVALIDO`, `VALOR_FUERA_DE_RANGO`, `ERROR_INTERNO_MODELO`) verificados manualmente vía Swagger
+
+**Documentación**
+
+* [x] `docs/documentacion_tecnica_integracion.md` — documento de entrega único (Capítulo 28)
+* [x] `docs/especificacion-formulario-modelo.md` — contrato de datos detallado
+* [x] `reports/model_interpretation/informe_interpretacion_modelo.md` — interpretación SHAP y casos de estudio
+* [x] `docs/documentacion_tecnica_seleccion_modelo.md` — selección y comparación de modelos
+* [x] Manual (`Manual_Cientifico_Datos.md`) actualizado hasta el capítulo vigente
+
+**Consistencia**
+
+* [x] La versión referenciada en `metadata_v3.json`, en los endpoints (`/api/v3/...`) y en el contrato de datos es la misma (`v3`) en todos los documentos
+* [x] El Pipeline exportado incluye el feature engineering embebido (regularización, Capítulo 18/25) — confirmado, no es el binario descartado
+
+**Pendientes conocidos, no bloqueantes**
+
+* [ ] SLA de latencia bajo carga real — no medido todavía (Capítulo 21, sección 8); se documentará cuando el compañero de Docker/OCI tenga el servicio corriendo en un entorno real
+* [ ] Confirmación explícita de que el equipo de Docker/OCI recibió la rama y no encontró bloqueantes al construir sobre ella
+
+### 3. Producto generado
+
+* Este checklist, con su estado real a la fecha de entrega.
