@@ -1,301 +1,3 @@
-**Contenido**
-
-[**Objetivo** 6](#_Toc235650482)
-
-[**1. Arquitectura General** 6](#_Toc235650483)
-
-[La solución estará compuesta por cinco capas. 6](#_Toc235650484)
-
-[**2. Responsabilidad del Científico de Datos** 6](#_Toc235650485)
-
-[**3. Flujo completo del sistema** 7](#_Toc235650486)
-
-[**4. Arquitectura de Ciencia de Datos** 8](#_Toc235650487)
-
-[**5. Flujo interno del modelo** 8](#_Toc235650488)
-
-[**6. Responsabilidad del Backend** 9](#_Toc235650489)
-
-[**7. Responsabilidad del Frontend** 9](#_Toc235650490)
-
-[**8. Arquitectura del Modelo de Machine Learning** 10](#_Toc235650491)
-
-[**9. Contrato entre Ciencia de Datos y Backend** 10](#_Toc235650492)
-
-[**10. Arquitectura de almacenamiento** 11](#_Toc235650493)
-
-[**11. Arquitectura lógica del proyecto** 11](#_Toc235650494)
-
-[**12. Integración con OCI** 12](#_Toc235650495)
-
-[**13. Entregables del Científico de Datos** 12](#_Toc235650496)
-
-[**14. Decisiones de arquitectura adoptadas para este manual** 12](#_Toc235650497)
-
-[**Capítulo 02 – Configuración Profesional del Entorno** 13](#_Toc235650498)
-
-[**Objetivo** 13](#_Toc235650499)
-
-[**1. Software a instalar** 13](#_Toc235650500)
-
-[**2. Instalación de Python** 14](#_Toc235650501)
-
-[**3. Instalación de Visual Studio Code** 14](#_Toc235650502)
-
-[**4. Crear la carpeta del proyecto** 14](#_Toc235650503)
-
-[**5. Abrir el proyecto en VSCode** 15](#_Toc235650504)
-
-[**6. Extensiones obligatorias de VSCode** 16](#_Toc235650505)
-
-[**Python** 16](#_Toc235650506)
-
-[**Jupyter** 16](#_Toc235650507)
-
-[**Pylance** 17](#_Toc235650508)
-
-[**Ruff** 17](#_Toc235650509)
-
-[**Black Formatter** 17](#_Toc235650510)
-
-[**GitLens** 17](#_Toc235650511)
-
-[**Error Lens** 18](#_Toc235650512)
-
-[**Markdown All in One** 18](#_Toc235650513)
-
-[**Material Icon Theme** 18](#_Toc235650514)
-
-[**Docker** 18](#_Toc235650515)
-
-[**REST Client** 18](#_Toc235650516)
-
-[**7. Seleccionar el intérprete de Python** 19](#_Toc235650517)
-
-[**8. Crear el entorno virtual** 19](#_Toc235650518)
-
-[**9. Configuración inicial de VSCode** 19](#_Toc235650519)
-
-[**10. Instalar dependencias** 20](#_Toc235650520)
-
-[**11. Verificar instalación** 21](#_Toc235650521)
-
-[**12. Configuración de Git** 21](#_Toc235650522)
-
-[**13. Crear archivo .gitignore** 21](#_Toc235650523)
-
-[**14. Configuración de Jupyter** 22](#_Toc235650524)
-
-[**15. Configuración de Postman** 22](#_Toc235650525)
-
-[**16. Validación final del entorno** 23](#_Toc235650526)
-
-[**17. Decisiones adoptadas para el resto del manual** 23](#_Toc235650527)
-
-[**Capítulo 03 – Organización del Proyecto en GitHub** 24](#_Toc235650528)
-
-[**Objetivo** 24](#_Toc235650529)
-
-[**1. Organización general del Hackathon** 24](#_Toc235650530)
-
-[**2. Repositorio de Ciencia de Datos** 24](#_Toc235650531)
-
-[**3. Configuración inicial del repositorio** 25](#_Toc235650532)
-
-[**4. Incorporación de un nuevo integrante** 25](#_Toc235650533)
-
-[**5. Entorno de trabajo de cada analista** 26](#_Toc235650534)
-
-[**6. Flujo oficial de trabajo** 26](#_Toc235650535)
-
-[**7. Estrategia de ramas** 27](#_Toc235650536)
-
-[**Ramas de trabajo** 27](#_Toc235650537)
-
-[**8. Flujo de creación de ramas** 28](#_Toc235650538)
-
-[**9. Distribución de responsabilidades** 29](#_Toc235650539)
-
-[**Ricardo Chirinos – Ingeniería y Análisis de Datos** 29](#_Toc235650540)
-
-[**Jharle Compres – Machine Learning e Integración** 29](#_Toc235650541)
-
-[**10. Sincronización entre analistas** 29](#_Toc235650542)
-
-[**11. Revisión de cambios** 30](#_Toc235650543)
-
-[**12. Organización de notebooks** 30](#_Toc235650544)
-
-[**13. Organización del código en src** 31](#_Toc235650545)
-
-[**14. Integración con Backend** 31](#_Toc235650546)
-
-[**15. Integración con Frontend** 32](#_Toc235650547)
-
-[**16. Convención de commits** 32](#_Toc235650548)
-
-[**17. Gestión de versiones del modelo** 32](#_Toc235650549)
-
-[**18. Flujo de trabajo durante el proyecto** 33](#_Toc235650550)
-
-[**19. Decisiones adoptadas para el resto del manual** 34](#_Toc235650551)
-
-[**Capítulo 04 – Definición del Problema de Ciencia de Datos** 34](#_Toc235650552)
-
-[**Objetivo** 34](#_Toc235650553)
-
-[**1. Contexto del problema** 35](#_Toc235650554)
-
-[**2. Definición del problema** 35](#_Toc235650555)
-
-[**3. Objetivo del modelo** 35](#_Toc235650556)
-
-[**4. Alcance del MVP** 36](#_Toc235650557)
-
-[**5. Tipo de aprendizaje** 36](#_Toc235650558)
-
-[**6. Tipo de problema** 36](#_Toc235650559)
-
-[**7. Unidad de análisis** 37](#_Toc235650560)
-
-[**8. Variables de entrada** 38](#_Toc235650561)
-
-[**9. Variable objetivo (Target)** 38](#_Toc235650562)
-
-[**10. Restricciones del modelo** 38](#_Toc235650563)
-
-[**11. Criterios de éxito** 39](#_Toc235650564)
-
-[**12. Exclusiones del proyecto** 39](#_Toc235650565)
-
-[**13. Distribución del trabajo** 39](#_Toc235650566)
-
-[**Ricardo Chirinos – Ingeniería y Análisis de Datos** 39](#_Toc235650567)
-
-[**Jharle Compres – Machine Learning e Integración** 40](#_Toc235650568)
-
-[**14. Dependencias con los siguientes capítulos** 40](#_Toc235650569)
-
-[**15. Decisiones adoptadas para el resto del manual** 40](#_Toc235650570)
-
-[**Capítulo 05 – Estrategia del Modelo** 41](#_Toc235650571)
-
-[**Objetivo** 41](#_Toc235650572)
-
-[**1. Estrategia general** 41](#_Toc235650573)
-
-[**2. Principios de desarrollo** 42](#_Toc235650574)
-
-[**3. Arquitectura del modelo** 43](#_Toc235650575)
-
-[**4. Estrategia de selección de algoritmos** 44](#_Toc235650576)
-
-[**Algoritmos candidatos** 44](#_Toc235650577)
-
-[**5. Modelo Baseline** 45](#_Toc235650578)
-
-[**6. Estrategia de experimentación** 45](#_Toc235650579)
-
-[**7. Control de experimentos** 45](#_Toc235650580)
-
-[**8. Estrategia de validación** 46](#_Toc235650581)
-
-[**9. Gestión de versiones del modelo** 46](#_Toc235650582)
-
-[**10. Criterios para reemplazar un modelo** 47](#_Toc235650583)
-
-[**11. Preparación para producción** 47](#_Toc235650584)
-
-[**12. Integración con Backend** 48](#_Toc235650585)
-
-[**13. Estrategia de mantenimiento** 48](#_Toc235650586)
-
-[**14. Distribución del trabajo** 48](#_Toc235650587)
-
-[**Ricardo Chirinos – Ingeniería y Análisis de Datos** 48](#_Toc235650588)
-
-[**Jharle Compres – Machine Learning e Integración** 49](#_Toc235650589)
-
-[**15. Dependencias con los siguientes capítulos** 49](#_Toc235650590)
-
-[**16. Decisiones adoptadas para el resto del manual** 50](#_Toc235650591)
-
-[**Objetivo** 50](#_Toc235650592)
-
-[**1. Estrategia de obtención de datos** 51](#_Toc235650593)
-
-[**2. Decisión técnica del proyecto** 51](#_Toc235650594)
-
-[**3. Objetivo del dataset** 52](#_Toc235650595)
-
-[**4. Metodología de construcción** 52](#_Toc235650596)
-
-[**5. Principios de construcción** 53](#_Toc235650597)
-
-[**6. Diseño de variables** 53](#_Toc235650598)
-
-[**7. Construcción del Target** 54](#_Toc235650599)
-
-[**8. Generación de escenarios** 55](#_Toc235650600)
-
-[**9. Incorporación controlada de problemas de calidad** 55](#_Toc235650601)
-
-[**10. Tamaño del dataset** 56](#_Toc235650602)
-
-[**11. Versionado del dataset** 56](#_Toc235650603)
-
-[**12. Organización del trabajo** 57](#_Toc235650604)
-
-[**Ricardo Chirinos– Ingeniería y Análisis de Datos** 57](#_Toc235650605)
-
-[**Jharle Compres– Machine Learning e Integración** 57](#_Toc235650606)
-
-[**13. Almacenamiento del dataset** 57](#_Toc235650607)
-
-[**14. Dependencias con los siguientes capítulos** 58](#_Toc235650608)
-
-[**15. Decisiones adoptadas para el resto del manual** 59](#_Toc235650609)
-
-[**Objetivo** 59](#_Toc235650610)
-
-[**1. Alcance de la validación** 59](#_Toc235650611)
-
-[**2. Objetivos de la validación** 60](#_Toc235650612)
-
-[**3. Flujo oficial de validación** 60](#_Toc235650613)
-
-[**4. Validación estructural** 61](#_Toc235650614)
-
-[**5. Validación de variables** 61](#_Toc235650615)
-
-[**6. Validación de tipos de datos** 62](#_Toc235650616)
-
-[**7. Validación de integridad** 62](#_Toc235650617)
-
-[**8. Validación de dominios** 63](#_Toc235650618)
-
-[**9. Validación de reglas de negocio** 63](#_Toc235650619)
-
-[**10. Validación de la variable objetivo** 63](#_Toc235650620)
-
-[**11. Validación de identificadores** 64](#_Toc235650621)
-
-[**12. Validación estadística inicial** 64](#_Toc235650622)
-
-[**13. Registro de incidencias** 65](#_Toc235650623)
-
-[**14. Criterios de aprobación** 65](#_Toc235650624)
-
-[**15. Distribución del trabajo** 66](#_Toc235650625)
-
-[**Ricardo Chirinos– Ingeniería y Análisis de Datos** 66](#_Toc235650626)
-
-[**Jharle Compres– Machine Learning e Integración** 66](#_Toc235650627)
-
-[**16. Dependencias con los siguientes capítulos** 66](#_Toc235650628)
-
-[**17. Decisiones adoptadas para el resto del manual** 67](#_Toc235650629)
-
 **Capítulo 01 – Arquitectura General del Proyecto**
 
 ## **Objetivo**
@@ -3150,3 +2852,3435 @@ Las siguientes decisiones quedan establecidas como estándar para todos los cap�
 * La columna Unnamed: 0 será considerada un artefacto técnico y será eliminada durante la etapa de limpieza, sin participar en ningún proceso analítico o de modelado.
 * Toda modificación en nombres, tipos, dominios o estructura de las variables deberá reflejarse primero en este diccionario antes de ser aplicada al dataset o al código del proyecto.
 * La trazabilidad entre el dataset original, el dataset procesado, el Pipeline, el modelo y los contratos de integración será obligatoria durante todo el desarrollo.
+
+**Capítulo 09 – Definición del Target**
+
+**Objetivo**
+
+Definir formalmente la variable objetivo (Target) que será utilizada durante el entrenamiento del modelo de Machine Learning, estableciendo su propósito, criterios de construcción, dominio permitido, reglas de validación y restricciones de uso.
+
+La definición realizada en este capítulo será obligatoria para todos los procesos posteriores de entrenamiento, evaluación, interpretación del modelo e integración con Backend.
+
+**1. Definición del Target**
+
+El proyecto utilizará una única variable objetivo.
+
+La variable objetivo oficial será:
+
+perfil\_energetico
+
+Esta variable representa la clasificación energética general de una vivienda o pequeño establecimiento para el período mensual analizado.
+
+El modelo tendrá como finalidad predecir esta variable a partir del resto de las características del registro.
+
+**2. Tipo de problema**
+
+Con la definición oficial del dataset, el proyecto queda clasificado definitivamente como un problema de **Clasificación Supervisada Multiclase**.
+
+A partir de este capítulo queda descartado el escenario de regresión considerado durante el diseño inicial de la arquitectura.
+
+Todas las decisiones posteriores deberán asumir que el modelo resolverá un problema de clasificación.
+
+**3. Naturaleza del Target**
+
+El Target representa una evaluación integral del comportamiento energético del inmueble.
+
+Su clasificación considera el efecto conjunto de múltiples variables relacionadas con:
+
+* Consumo energético.
+* Características del inmueble.
+* Equipamiento eléctrico.
+* Hábitos de uso.
+* Variables ambientales.
+* Factores de eficiencia.
+
+Por esta razón, el Target no deberá interpretarse como una función directa de una única variable, sino como el resultado de un conjunto de condiciones definidas durante la construcción del dataset.
+
+**4. Dominio permitido**
+
+Únicamente se admitirán las siguientes categorías:
+
+* Eficiente
+* Moderado
+* Ineficiente
+
+Estas categorías constituyen el dominio oficial del Target.
+
+No podrán incorporarse nuevas categorías durante el desarrollo del proyecto.
+
+**5. Significado de las categorías**
+
+**Eficiente**
+
+Representa inmuebles cuyo comportamiento energético refleja un uso racional de la energía y un nivel reducido de desperdicio.
+
+Generalmente estarán asociados a patrones como:
+
+* Consumo proporcional al tamaño del inmueble.
+* Uso eficiente de equipos.
+* Hábitos sostenibles.
+* Aprovechamiento de tecnologías de ahorro energético.
+
+**Moderado**
+
+Representa inmuebles con un comportamiento energético intermedio.
+
+Presentan oportunidades de mejora, aunque no evidencian un uso claramente ineficiente.
+
+**Ineficiente**
+
+Representa inmuebles con patrones de consumo que indican un uso poco eficiente de la energía.
+
+Estas observaciones constituirán el principal objetivo de las recomendaciones generadas por la aplicación.
+
+**6. Construcción del Target**
+
+El Target fue incorporado durante la generación del dataset sintético.
+
+No fue asignado de manera aleatoria.
+
+Su construcción responde a un conjunto de reglas de negocio que consideran múltiples variables del registro.
+
+Por esta razón, el Target será tratado como una etiqueta de referencia válida durante el entrenamiento.
+
+No se recalculará ni se modificará durante el proyecto.
+
+**7. Restricciones del Target**
+
+La variable perfil\_energetico deberá cumplir las siguientes condiciones:
+
+* Existir en todos los datasets oficiales.
+* Mantener exactamente el mismo nombre.
+* Conservar las tres categorías oficiales.
+* No cambiar su significado entre versiones del dataset.
+* No ser modificada durante los procesos de limpieza o transformación.
+
+En caso de existir registros sin etiqueta, estos serán tratados durante la preparación de los datos siguiendo las reglas definidas en el capítulo correspondiente.
+
+**8. Relación con las variables predictoras**
+
+Todas las demás variables del dataset serán consideradas candidatas a variables predictoras.
+
+Durante el proceso de selección de variables se evaluará su aporte para explicar el comportamiento del Target.
+
+Ninguna variable que revele directa o indirectamente el valor de perfil\_energetico podrá utilizarse como predictora si genera fuga de información (Data Leakage).
+
+**9. Balance de clases**
+
+Antes del entrenamiento deberá analizarse la distribución de las categorías del Target.
+
+El objetivo será identificar posibles desbalances que puedan afectar el rendimiento del modelo.
+
+Se verificará:
+
+* Número de registros por categoría.
+* Porcentaje de representación.
+* Distribución relativa.
+* Existencia de clases minoritarias.
+
+La decisión de aplicar técnicas de balanceo dependerá de los resultados obtenidos durante el EDA y el entrenamiento.
+
+No se aplicarán técnicas de balanceo sin evidencia de que mejoren el desempeño del modelo.
+
+**10. Codificación del Target**
+
+Durante el entrenamiento, el Target podrá transformarse a una representación numérica cuando el algoritmo lo requiera.
+
+La codificación deberá realizarse mediante herramientas reproducibles del Pipeline.
+
+No se permitirá modificar manualmente los valores del Target.
+
+La representación original deberá mantenerse para la interpretación de resultados y la integración con Backend.
+
+**11. Uso del Target durante el Pipeline**
+
+La variable perfil\_energetico tendrá exclusivamente las siguientes funciones:
+
+* Entrenamiento del modelo.
+* Validación del modelo.
+* Evaluación de métricas.
+* Interpretación de resultados.
+
+El Target nunca formará parte del conjunto de variables de entrada durante la inferencia.
+
+Backend no enviará esta variable al modelo.
+
+La aplicación deberá predecirla.
+
+**12. Uso durante la inferencia**
+
+Una solicitud enviada por Backend contendrá únicamente las variables predictoras.
+
+El Pipeline procesará dichas variables y devolverá:
+
+* Categoría predicha.
+* Probabilidad asociada a cada clase (cuando el algoritmo lo permita).
+* Información necesaria para la generación de recomendaciones.
+
+La variable objetivo nunca será recibida como parámetro de entrada.
+
+**13. Validaciones obligatorias**
+
+Antes de iniciar el entrenamiento deberán verificarse las siguientes condiciones:
+
+* El Target existe.
+* El nombre coincide exactamente con la definición oficial.
+* No existen categorías distintas de las permitidas.
+* No existen diferencias de escritura.
+* La distribución de clases está documentada.
+* Los registros sin etiqueta fueron tratados conforme a la estrategia definida para el proyecto.
+
+**14. Relación con Backend**
+
+Backend únicamente conocerá el resultado generado por el modelo.
+
+El contrato entre ambos componentes utilizará el nombre oficial:
+
+perfil\_energetico
+
+Las respuestas enviadas por el modelo deberán utilizar exactamente las categorías oficiales definidas en este capítulo.
+
+No se traducirán ni modificarán durante el MVP.
+
+**15. Organización del trabajo**
+
+**Ricardo Chirinos – Ingeniería y Análisis de Datos**
+
+Responsable de:
+
+* Verificar la integridad del Target.
+* Analizar la distribución de clases.
+* Identificar posibles problemas de calidad.
+* Documentar el comportamiento del Target durante el EDA.
+* Validar que las transformaciones no alteren su significado.
+
+**Jharle Compres – Machine Learning e Integración**
+
+Responsable de:
+
+* Preparar el Target para el entrenamiento.
+* Implementar la codificación cuando sea necesaria.
+* Evaluar el impacto del balance de clases.
+* Validar que el modelo prediga correctamente las categorías oficiales.
+* Garantizar la compatibilidad del Target con Backend.
+
+**16. Dependencias con los siguientes capítulos**
+
+Las decisiones adoptadas en este capítulo serán utilizadas directamente en:
+
+* Definición de Variables.
+* Análisis Exploratorio (EDA).
+* Limpieza de Datos.
+* Feature Engineering.
+* Selección de Modelos.
+* Entrenamiento.
+* Evaluación de Métricas.
+* Interpretación del Modelo.
+* Diseño del JSON.
+* Contrato con Backend.
+
+Todos estos capítulos deberán utilizar la definición oficial del Target establecida aquí.
+
+**17. Decisiones adoptadas para el resto del manual**
+
+Las siguientes decisiones quedan establecidas como estándar para los capítulos posteriores:
+
+* El proyecto implementará un modelo de **clasificación supervisada multiclase**, descartando definitivamente el escenario de regresión considerado durante el diseño inicial.
+* La variable perfil\_energetico será la única variable objetivo oficial y mantendrá exactamente tres categorías: **Eficiente**, **Moderado** e **Ineficiente**.
+* El Target será considerado una etiqueta fija del dataset oficial; no será recalculado, modificado ni utilizado como variable de entrada durante la inferencia.
+* Cualquier codificación necesaria para el entrenamiento se realizará exclusivamente dentro del Pipeline, preservando siempre la representación original para la interpretación de resultados y la integración con Backend.
+* El análisis de la distribución de clases será obligatorio antes del entrenamiento y servirá como criterio para decidir la aplicación de técnicas de balanceo.
+* Todos los componentes del proyecto (Ciencia de Datos, Backend y Frontend) utilizarán el nombre oficial perfil\_energetico y las mismas categorías definidas en este capítulo, garantizando consistencia durante todo el ciclo de desarrollo.
+
+**Capítulo 10 – Definición de Variables**
+
+**Objetivo**
+
+Definir formalmente las variables que participarán en el desarrollo del modelo de Machine Learning, estableciendo los criterios para su clasificación, selección, exclusión y utilización durante el entrenamiento.
+
+Este capítulo determina qué variables podrán utilizarse como entrada del modelo, cuáles deberán descartarse y cuáles serán creadas posteriormente mediante procesos de Feature Engineering.
+
+Las decisiones adoptadas aquí serán obligatorias para el resto del proyecto.
+
+**1. Principios de selección**
+
+La selección de variables se realizará siguiendo los siguientes principios:
+
+* Toda variable deberá aportar información útil para explicar el comportamiento del Target.
+* Ninguna variable será incluida únicamente por estar disponible en el dataset.
+* Se priorizarán variables con significado de negocio.
+* Se evitarán variables redundantes.
+* Se eliminarán variables que introduzcan fuga de información (Data Leakage).
+* Toda decisión deberá estar respaldada por evidencia obtenida durante el EDA.
+
+La selección definitiva se completará después del Análisis Exploratorio de Datos.
+
+**2. Clasificación funcional de variables**
+
+Para facilitar su gestión, las variables se clasificarán en las siguientes categorías:
+
+* Variables identificadoras.
+* Variables predictoras.
+* Variables derivadas.
+* Variables de auditoría.
+* Variable objetivo.
+
+Esta clasificación será utilizada durante todo el proyecto.
+
+**3. Variables identificadoras**
+
+Las variables identificadoras permiten rastrear cada registro dentro del dataset.
+
+Variable oficial:
+
+id\_registro
+
+Características:
+
+* Identificador único.
+* No contiene información predictiva.
+* Utilizada únicamente para trazabilidad.
+* No participará en el entrenamiento.
+
+Toda variable cuyo único propósito sea identificar un registro quedará excluida del modelo.
+
+**4. Variable objetivo**
+
+La única variable objetivo oficial será:
+
+perfil\_energetico
+
+Esta variable será utilizada exclusivamente durante:
+
+* Entrenamiento.
+* Validación.
+* Evaluación.
+* Interpretación del modelo.
+
+Nunca formará parte del conjunto de variables de entrada.
+
+**5. Variables predictoras**
+
+Se consideran candidatas a variables predictoras todas aquellas que describen el estado del inmueble antes de realizar la predicción.
+
+Estas variables pertenecen, entre otras, a las siguientes categorías:
+
+* Información temporal.
+* Características del inmueble.
+* Equipamiento eléctrico.
+* Hábitos de uso.
+* Variables energéticas.
+* Variables económicas.
+* Variables ambientales.
+
+La utilización definitiva de cada una dependerá del análisis realizado durante el EDA.
+
+**6. Variables excluidas**
+
+Quedan excluidas desde este momento las siguientes variables:
+
+* id\_registro
+* perfil\_energetico
+* Unnamed: 0
+
+Estas variables no podrán utilizarse durante el entrenamiento.
+
+La exclusión de nuevas variables deberá justificarse técnicamente y documentarse.
+
+**7. Variables candidatas a transformación**
+
+Algunas variables podrán requerir transformaciones antes del entrenamiento.
+
+Entre las transformaciones previstas se incluyen:
+
+* Conversión de tipos de datos.
+* Normalización de formatos.
+* Codificación de variables categóricas.
+* Escalamiento.
+* Agrupación de categorías.
+* Conversión de variables booleanas.
+
+Las transformaciones se implementarán exclusivamente dentro del Pipeline oficial.
+
+**8. Variables candidatas a ingeniería de características**
+
+El proyecto permitirá construir nuevas variables derivadas cuando aporten información adicional.
+
+Las nuevas variables deberán cumplir los siguientes criterios:
+
+* Basarse únicamente en información disponible antes de la inferencia.
+* Tener interpretación de negocio.
+* Mejorar el desempeño del modelo.
+* No generar Data Leakage.
+* Ser reproducibles mediante el Pipeline.
+
+Toda variable derivada deberá documentarse antes de incorporarse al entrenamiento.
+
+**9. Variables con posible redundancia**
+
+Durante el EDA se evaluará la existencia de variables que describan información similar.
+
+Se analizarán aspectos como:
+
+* Alta correlación entre variables numéricas.
+* Variables categóricas equivalentes.
+* Variables derivadas que repliquen información existente.
+* Dependencias funcionales entre columnas.
+
+Las variables redundantes podrán eliminarse si no aportan información adicional.
+
+**10. Variables con riesgo de Data Leakage**
+
+Antes del entrenamiento se verificará que ninguna variable revele directa o indirectamente el valor del Target.
+
+Se considerará que existe Data Leakage cuando una variable:
+
+* Sea consecuencia del Target.
+* Contenga información disponible únicamente después de la predicción.
+* Permita inferir el Target de manera trivial.
+* Haya sido calculada utilizando el propio Target.
+
+Toda variable identificada con este riesgo será eliminada del conjunto de entrenamiento.
+
+**11. Variables obligatorias**
+
+Se consideran obligatorias aquellas variables necesarias para que el modelo pueda realizar una predicción.
+
+La lista definitiva se establecerá después del proceso de selección de variables y deberá mantenerse estable para:
+
+* Entrenamiento.
+* Exportación del modelo.
+* Integración con Backend.
+* Diseño del JSON de entrada.
+
+Backend deberá enviar exactamente estas variables durante la inferencia.
+
+**12. Variables opcionales**
+
+Podrán existir variables presentes en el dataset que no formen parte del modelo.
+
+Estas variables podrán utilizarse para:
+
+* Auditoría.
+* Análisis exploratorio.
+* Visualización.
+* Documentación.
+* Construcción de indicadores.
+
+Su exclusión no afectará el funcionamiento del modelo.
+
+**13. Criterios para eliminar variables**
+
+Una variable podrá ser descartada cuando cumpla uno o más de los siguientes criterios:
+
+* Alta proporción de valores faltantes.
+* Varianza prácticamente nula.
+* Información redundante.
+* Baja relevancia predictiva.
+* Riesgo de Data Leakage.
+* Problemas de calidad que no puedan resolverse adecuadamente.
+* Ausencia de interpretación de negocio.
+
+Toda eliminación deberá quedar registrada.
+
+**14. Validación de las variables seleccionadas**
+
+Antes del entrenamiento se verificará que todas las variables seleccionadas:
+
+* Existan en el dataset procesado.
+* Tengan el tipo de dato esperado.
+* No presenten inconsistencias estructurales.
+* Sean compatibles con el Pipeline.
+* Mantengan la misma nomenclatura utilizada en el diccionario de datos.
+
+Esta validación será obligatoria antes de entrenar cualquier modelo.
+
+**15. Compatibilidad con Backend**
+
+Las variables seleccionadas constituirán el contrato de entrada del modelo.
+
+Esto implica que:
+
+* Backend utilizará exactamente los mismos nombres definidos en el diccionario de datos.
+* No se permitirán abreviaturas ni alias.
+* Toda modificación deberá actualizar simultáneamente:
+  * el Pipeline,
+  * el JSON de entrada,
+  * el contrato con Backend,
+  * la documentación técnica.
+
+**16. Organización del trabajo**
+
+**Ricardo Chirinos – Ingeniería y Análisis de Datos**
+
+Responsable de:
+
+* Analizar el comportamiento de cada variable durante el EDA.
+* Detectar redundancias.
+* Identificar variables problemáticas.
+* Proponer nuevas variables derivadas.
+* Documentar todas las decisiones de selección y exclusión.
+
+**Jharle Compres – Machine Learning e Integración**
+
+Responsable de:
+
+* Evaluar la importancia predictiva de las variables.
+* Detectar riesgos de Data Leakage.
+* Implementar las transformaciones dentro del Pipeline.
+* Definir el conjunto final de variables de entrada del modelo.
+* Garantizar la compatibilidad con Backend.
+
+**17. Dependencias con los siguientes capítulos**
+
+Las decisiones tomadas en este capítulo servirán como base para:
+
+* Análisis Exploratorio (EDA).
+* Limpieza de Datos.
+* Feature Engineering.
+* Selección de Modelos.
+* Entrenamiento.
+* Exportación del Modelo.
+* Diseño del JSON.
+* Contrato entre Ciencia de Datos y Backend.
+
+Todos estos capítulos deberán utilizar exclusivamente la definición oficial de variables establecida aquí.
+
+**18. Decisiones adoptadas para el resto del manual**
+
+Las siguientes decisiones quedan establecidas como estándar para todos los capítulos posteriores:
+
+* El conjunto de variables del modelo se definirá mediante evidencia obtenida durante el EDA y no por criterios arbitrarios.
+* Las variables id\_registro, perfil\_energetico y Unnamed: 0 quedan excluidas permanentemente como variables de entrada del modelo.
+* Todas las transformaciones de variables se implementarán exclusivamente dentro del Pipeline oficial, garantizando reproducibilidad entre entrenamiento e inferencia.
+* La creación de nuevas variables mediante Feature Engineering deberá aportar valor predictivo, mantener interpretación de negocio y evitar cualquier forma de Data Leakage.
+* El conjunto final de variables seleccionadas constituirá el contrato oficial de entrada para Backend, por lo que su estructura y nomenclatura deberán permanecer consistentes durante todo el proyecto.
+* Cualquier incorporación, eliminación o modificación de variables deberá documentarse previamente y mantenerse alineada con el Diccionario de Datos, el Pipeline y los contratos de integración.
+
+**Capítulo 11 – Análisis Exploratorio de Datos (EDA)**
+
+**Objetivo**
+
+Definir la metodología oficial para realizar el Análisis Exploratorio de Datos (EDA) sobre el dataset procesado, con el propósito de comprender el comportamiento de las variables, identificar patrones, detectar problemas de calidad, descubrir relaciones relevantes y obtener evidencia para las decisiones posteriores de limpieza, ingeniería de variables y selección de modelos.
+
+El EDA tendrá un carácter exclusivamente analítico. Ninguna transformación permanente del dataset será realizada durante esta etapa.
+
+**1. Objetivos específicos del EDA**
+
+El Análisis Exploratorio deberá permitir responder las siguientes preguntas:
+
+* ¿Cómo está distribuido el dataset?
+* ¿Cuál es la calidad general de la información?
+* ¿Cómo se distribuye la variable objetivo?
+* ¿Qué variables presentan mayor variabilidad?
+* ¿Qué relaciones existen entre las variables?
+* ¿Existen valores atípicos?
+* ¿Existen patrones de consumo claramente diferenciados?
+* ¿Qué variables parecen aportar mayor información para explicar el Target?
+* ¿Qué problemas deberán resolverse durante la limpieza de datos?
+
+Todas las conclusiones deberán sustentarse mediante evidencia obtenida del dataset.
+
+**2. Alcance**
+
+El EDA se realizará utilizando exclusivamente el dataset oficial validado.
+
+Durante esta etapa:
+
+* No se eliminarán registros.
+* No se modificarán valores.
+* No se crearán variables nuevas.
+* No se entrenarán modelos.
+
+El propósito será comprender el comportamiento de los datos antes de iniciar cualquier transformación.
+
+**3. Flujo oficial del EDA**
+
+El proceso seguirá el siguiente orden:
+
+Carga del dataset validado
+
+↓
+
+Inspección general
+
+↓
+
+Análisis univariado
+
+↓
+
+Análisis bivariado
+
+↓
+
+Análisis multivariado
+
+↓
+
+Análisis del Target
+
+↓
+
+Identificación de problemas
+
+↓
+
+Documentación de hallazgos
+
+↓
+
+Definición de acciones para Limpieza de Datos
+
+No se alterará este flujo durante el proyecto.
+
+**4. Inspección inicial**
+
+La primera actividad consistirá en obtener una visión general del dataset.
+
+Como mínimo se documentará:
+
+* Número de registros.
+* Número de variables.
+* Tipos de datos.
+* Consumo de memoria.
+* Variables numéricas.
+* Variables categóricas.
+* Variables booleanas.
+* Variables temporales.
+
+También se verificará que la estructura coincida con la validada en el capítulo anterior.
+
+**5. Calidad general del dataset**
+
+Se analizará el estado inicial de la información.
+
+Como mínimo se evaluará:
+
+* Valores nulos.
+* Valores faltantes.
+* Registros duplicados.
+* Valores únicos.
+* Variables constantes.
+* Variables con alta cardinalidad.
+* Variables con formatos inconsistentes.
+
+El objetivo será construir una línea base de calidad antes de iniciar la limpieza.
+
+**6. Análisis univariado**
+
+Cada variable será analizada individualmente para comprender su comportamiento.
+
+**Variables numéricas**
+
+Se calcularán, como mínimo:
+
+* Media.
+* Mediana.
+* Moda.
+* Mínimo.
+* Máximo.
+* Rango.
+* Desviación estándar.
+* Percentiles.
+* Asimetría.
+* Curtosis.
+
+También se analizará la forma de la distribución.
+
+**Variables categóricas**
+
+Se documentará:
+
+* Frecuencia absoluta.
+* Frecuencia relativa.
+* Número de categorías.
+* Categorías dominantes.
+* Categorías poco representadas.
+
+Se identificarán posibles inconsistencias de escritura.
+
+**Variables booleanas**
+
+Se verificará:
+
+* Distribución de valores.
+* Balance entre categorías.
+* Posibles errores de codificación.
+
+**7. Análisis de la variable objetivo**
+
+La variable:
+
+perfil\_energetico
+
+deberá analizarse de manera independiente.
+
+Se documentará:
+
+* Número de registros por categoría.
+* Distribución porcentual.
+* Balance de clases.
+* Posibles clases minoritarias.
+* Existencia de registros sin etiqueta.
+
+Este análisis servirá como referencia para el entrenamiento del modelo.
+
+**8. Análisis bivariado**
+
+Se estudiará la relación entre cada variable predictora y el Target.
+
+El objetivo será identificar qué variables presentan mayor capacidad explicativa.
+
+Se analizarán relaciones entre:
+
+* Variables numéricas vs. Target.
+* Variables categóricas vs. Target.
+* Variables booleanas vs. Target.
+
+Las conclusiones obtenidas servirán como evidencia para la selección de variables.
+
+**9. Análisis entre variables predictoras**
+
+Además del análisis respecto al Target, se evaluarán relaciones entre las propias variables predictoras.
+
+Se identificarán:
+
+* Correlaciones fuertes.
+* Variables redundantes.
+* Dependencias funcionales.
+* Posibles multicolinealidades.
+
+Estas observaciones serán utilizadas durante Feature Engineering.
+
+**10. Análisis multivariado**
+
+Se analizarán combinaciones de múltiples variables para identificar patrones complejos de comportamiento energético.
+
+Se buscará identificar:
+
+* Agrupaciones naturales.
+* Comportamientos repetitivos.
+* Relaciones no evidentes en análisis individuales.
+* Variables que interactúan entre sí para explicar el Target.
+
+No se realizarán técnicas de reducción de dimensionalidad durante esta etapa.
+
+**11. Análisis de consumo energético**
+
+Debido a la naturaleza del proyecto, el EDA prestará especial atención a las variables relacionadas con el consumo eléctrico.
+
+Se analizarán, entre otras:
+
+* consumo\_kwh\_mensual
+* consumo\_kwh\_mes\_anterior
+* consumo\_neto\_facturado\_kwh
+* variacion\_pct\_consumo\_mensual
+* costo\_estimado\_usd
+
+El objetivo será comprender los distintos perfiles de consumo representados en el dataset.
+
+**12. Análisis de variables del inmueble**
+
+Se estudiará el comportamiento de variables relacionadas con:
+
+* tipo\_inmueble
+* superficie\_m2
+* num\_personas
+* nivel\_socioeconomico
+* antiguedad\_construccion\_anios
+* aislamiento\_termico
+
+Estas variables permitirán caracterizar el contexto físico del consumo energético.
+
+**13. Análisis de hábitos de consumo**
+
+Se evaluará el comportamiento de las variables relacionadas con el uso cotidiano de la energía.
+
+Entre ellas:
+
+* horario\_pico\_uso
+* horas\_uso\_aa\_dia
+* porcentaje\_iluminacion\_led
+* frecuencia de utilización de equipos
+
+El objetivo será identificar patrones de comportamiento asociados al Target.
+
+**14. Análisis de variables ambientales**
+
+Las variables ambientales serán analizadas para determinar su influencia sobre el consumo energético.
+
+Se estudiarán relaciones con:
+
+* temperatura\_promedio\_c
+* generacion\_solar\_kwh\_mensual
+* dias\_sin\_electricidad\_mes
+* fuente\_energia\_secundaria
+
+Estas variables podrán explicar diferencias entre registros con consumos similares.
+
+**15. Identificación de Outliers**
+
+Durante el EDA se identificarán valores atípicos.
+
+Cada caso será clasificado como:
+
+* Valor extremo válido.
+* Error de captura.
+* Error de generación.
+* Escenario poco frecuente pero posible.
+
+Los outliers no serán eliminados automáticamente.
+
+La decisión se tomará durante la etapa de limpieza.
+
+**16. Registro de hallazgos**
+
+Cada observación relevante deberá documentarse.
+
+Como mínimo se registrarán:
+
+* Variables problemáticas.
+* Variables con alta relevancia.
+* Variables redundantes.
+* Posibles transformaciones.
+* Variables candidatas a Feature Engineering.
+* Riesgos detectados para el entrenamiento.
+
+Este documento será utilizado durante los capítulos siguientes.
+
+**17. Productos generados por el EDA**
+
+Al finalizar esta etapa deberán existir, como mínimo:
+
+* Informe de análisis exploratorio.
+* Resumen estadístico.
+* Visualizaciones del comportamiento de las variables.
+* Matriz de correlación.
+* Distribución del Target.
+* Inventario de problemas detectados.
+* Lista preliminar de variables candidatas para ingeniería de características.
+
+Estos productos deberán almacenarse dentro de:
+
+reports/eda/
+
+**18. Organización del trabajo**
+
+**Ricardo Chirinos – Ingeniería y Análisis de Datos**
+
+Responsable de:
+
+* Ejecutar el análisis univariado.
+* Analizar la calidad de los datos.
+* Identificar valores atípicos.
+* Elaborar las visualizaciones.
+* Documentar todos los hallazgos.
+
+**Jharle Compres – Machine Learning e Integración**
+
+Responsable de:
+
+* Analizar la relación entre las variables y el Target.
+* Evaluar correlaciones y redundancias.
+* Detectar posibles riesgos de Data Leakage.
+* Identificar variables candidatas para el modelo.
+* Preparar las conclusiones que servirán para Feature Engineering.
+
+**19. Dependencias con los siguientes capítulos**
+
+Las conclusiones obtenidas durante el EDA constituirán la evidencia técnica para:
+
+* Limpieza de Datos.
+* Feature Engineering.
+* Selección de Variables.
+* Selección de Modelos.
+* Entrenamiento.
+* Evaluación de Métricas.
+
+Ninguna decisión sobre eliminación, transformación o creación de variables deberá realizarse sin estar respaldada por los resultados del EDA.
+
+**20. Decisiones adoptadas para el resto del manual**
+
+Las siguientes decisiones quedan establecidas como estándar para todos los capítulos posteriores:
+
+* El EDA será la única etapa destinada a comprender el comportamiento del dataset antes de aplicar transformaciones permanentes.
+* Todas las decisiones de limpieza, selección de variables e ingeniería de características deberán justificarse mediante evidencia obtenida durante el EDA.
+* Los valores atípicos, correlaciones y posibles problemas de calidad únicamente serán identificados y documentados en esta etapa; cualquier modificación se realizará posteriormente en el capítulo de Limpieza de Datos.
+* El análisis de la variable perfil\_energetico y de las relaciones entre las variables predictoras y el Target será obligatorio antes de entrenar cualquier modelo.
+* Todos los informes, estadísticas y visualizaciones generados durante el EDA se almacenarán en reports/eda/ y constituirán la documentación técnica oficial utilizada para sustentar las decisiones del resto del proyecto.
+* La selección final de variables predictoras y las transformaciones implementadas en el Pipeline deberán derivarse de los hallazgos documentados durante este análisis.
+
+**Capítulo 12 – Limpieza de Datos**
+
+**Objetivo**
+
+Definir el procedimiento oficial para preparar el dataset antes del entrenamiento del modelo, eliminando o corrigiendo problemas de calidad identificados durante la validación y el EDA, garantizando que el conjunto de datos utilizado por el Pipeline sea consistente, reproducible y apto para procesos de Machine Learning.
+
+Toda transformación realizada durante esta etapa deberá ser completamente reproducible mediante código y formar parte del Pipeline oficial del proyecto.
+
+**1. Alcance**
+
+La limpieza de datos se ejecutará exclusivamente sobre una copia del dataset ubicado en:
+
+datasets/raw/
+
+El dataset original nunca será modificado.
+
+El resultado de esta etapa será almacenado en:
+
+datasets/processed/
+
+**2. Objetivos de la limpieza**
+
+El proceso deberá garantizar que el dataset final:
+
+* Mantenga su integridad estructural.
+* Preserve el significado de las variables.
+* Sea consistente para entrenamiento.
+* Elimine problemas que afecten el desempeño del modelo.
+* Sea completamente reproducible.
+* Mantenga trazabilidad respecto al dataset original.
+
+**3. Flujo oficial de limpieza**
+
+El proceso seguirá estrictamente el siguiente orden:
+
+Carga del dataset RAW
+
+↓
+
+Eliminación de columnas no útiles
+
+↓
+
+Corrección de tipos de datos
+
+↓
+
+Normalización de formatos
+
+↓
+
+Tratamiento de valores faltantes
+
+↓
+
+Tratamiento de duplicados
+
+↓
+
+Validación de dominios
+
+↓
+
+Tratamiento de valores atípicos
+
+↓
+
+Validación final
+
+↓
+
+Exportación del dataset procesado
+
+Ninguna etapa podrá ejecutarse fuera de este flujo.
+
+**4. Principios generales**
+
+Toda transformación deberá cumplir los siguientes principios:
+
+* Ser reproducible mediante código.
+* Mantener el significado original de los datos.
+* No modificar el Target.
+* No introducir sesgos artificiales.
+* Estar documentada.
+* Poder ejecutarse nuevamente sin intervención manual.
+
+No se permitirá modificar manualmente archivos CSV.
+
+Toda limpieza deberá implementarse mediante scripts del proyecto.
+
+**5. Eliminación de variables no útiles**
+
+Antes de cualquier otra transformación se eliminarán las columnas que no aporten información al modelo.
+
+Para este proyecto queda establecida la eliminación obligatoria de:
+
+Unnamed: 0
+
+Esta columna corresponde a un artefacto generado durante la exportación del dataset y no contiene información del negocio.
+
+Su eliminación será permanente dentro del dataset procesado.
+
+**6. Corrección de tipos de datos**
+
+Cada variable deberá convertirse al tipo de dato definido en el Diccionario de Datos.
+
+Se verificará:
+
+* Variables numéricas.
+* Variables categóricas.
+* Variables booleanas.
+* Variables temporales.
+* Variables identificadoras.
+
+No se permitirá entrenar modelos utilizando tipos inconsistentes.
+
+**7. Normalización de formatos**
+
+Todas las variables deberán mantener un formato uniforme.
+
+Como mínimo se normalizarán:
+
+* Texto.
+* Espacios en blanco.
+* Uso de mayúsculas y minúsculas.
+* Valores booleanos.
+* Formatos de fechas.
+* Separadores decimales.
+* Unidades de medida cuando corresponda.
+
+Esta normalización facilitará la consistencia del Pipeline.
+
+**8. Tratamiento de valores faltantes**
+
+Los valores faltantes se tratarán de acuerdo con la naturaleza de cada variable.
+
+Antes de aplicar cualquier técnica se evaluará:
+
+* Porcentaje de valores faltantes.
+* Distribución.
+* Patrón de ausencia.
+* Importancia de la variable.
+
+Las estrategias permitidas incluyen:
+
+* Eliminación de registros.
+* Eliminación de variables.
+* Imputación mediante medidas estadísticas.
+* Imputación mediante reglas de negocio.
+* Imputación mediante modelos cuando sea técnicamente justificable.
+
+La estrategia aplicada deberá documentarse para cada variable.
+
+**9. Tratamiento de registros duplicados**
+
+Se identificarán dos tipos de duplicados:
+
+**Duplicados exactos**
+
+Registros completamente idénticos.
+
+Podrán eliminarse si no representan eventos distintos.
+
+**Duplicados parciales**
+
+Registros similares con diferencias en algunas variables.
+
+Cada caso deberá analizarse antes de decidir su tratamiento.
+
+No se eliminarán automáticamente.
+
+**10. Validación de dominios**
+
+Después de la limpieza se verificará nuevamente que todas las variables respeten los dominios definidos en el Diccionario de Datos.
+
+Se revisarán:
+
+* Categorías permitidas.
+* Rangos numéricos.
+* Valores booleanos.
+* Restricciones lógicas.
+* Consistencia entre variables relacionadas.
+
+**11. Tratamiento de valores atípicos**
+
+Los valores atípicos identificados durante el EDA serán evaluados individualmente.
+
+Cada caso podrá clasificarse como:
+
+* Error de generación.
+* Error de captura.
+* Escenario válido.
+* Escenario extremo pero posible.
+
+Los valores extremos válidos permanecerán en el dataset.
+
+Únicamente se corregirán aquellos que representen errores reales.
+
+**12. Validación de reglas de negocio**
+
+Después de aplicar la limpieza se verificará nuevamente la coherencia entre variables relacionadas.
+
+Como mínimo se comprobarán relaciones entre:
+
+* consumo\_kwh\_mensual
+* consumo\_neto\_facturado\_kwh
+* costo\_estimado\_usd
+* generacion\_solar\_kwh\_mensual
+* horas\_uso\_aa\_dia
+* cantidad\_equipos\_total
+* perfil\_energetico
+
+Toda inconsistencia detectada deberá resolverse antes de exportar el dataset procesado.
+
+**13. Restricciones durante la limpieza**
+
+Durante esta etapa queda prohibido:
+
+* Modificar la variable perfil\_energetico.
+* Crear variables nuevas.
+* Eliminar variables sin justificación técnica.
+* Alterar el significado del dataset.
+* Aplicar transformaciones destinadas al entrenamiento.
+
+Las actividades de ingeniería de variables se realizarán exclusivamente en el capítulo siguiente.
+
+**14. Validación del dataset limpio**
+
+Antes de exportar el dataset procesado se verificará que:
+
+* No existan errores estructurales.
+* Los tipos de datos sean correctos.
+* La columna Unnamed: 0 haya sido eliminada.
+* Las variables mantengan la nomenclatura oficial.
+* El Target permanezca sin modificaciones.
+* El dataset sea compatible con el Pipeline.
+
+Esta validación será obligatoria.
+
+**15. Exportación del dataset procesado**
+
+El dataset limpio será almacenado en:
+
+datasets/processed/
+
+Utilizando la siguiente nomenclatura:
+
+energia\_v1\_processed.csv
+
+El archivo exportado será la única versión autorizada para:
+
+* Feature Engineering.
+* Selección de Variables.
+* Entrenamiento.
+* Evaluación.
+* Exportación del modelo.
+
+**16. Organización del trabajo**
+
+**Ricardo Chirinos – Ingeniería y Análisis de Datos**
+
+Responsable de:
+
+* Implementar todas las transformaciones de limpieza.
+* Corregir tipos de datos.
+* Tratar valores faltantes.
+* Analizar registros duplicados.
+* Documentar cada transformación aplicada.
+* Exportar el dataset procesado.
+
+**Jharle Compres – Machine Learning e Integración**
+
+Responsable de:
+
+* Validar que la limpieza no genere Data Leakage.
+* Verificar la compatibilidad con el Pipeline.
+* Confirmar la integridad del Target.
+* Validar que el dataset esté listo para Feature Engineering.
+* Aprobar técnicamente la versión procesada.
+
+**17. Productos generados**
+
+Al finalizar este capítulo deberán existir como mínimo:
+
+* Dataset procesado.
+* Registro de transformaciones realizadas.
+* Informe de limpieza de datos.
+* Comparación entre el dataset RAW y el dataset procesado.
+* Validación final del dataset.
+
+Toda la documentación deberá almacenarse en:
+
+reports/data\_cleaning/
+
+**18. Dependencias con los siguientes capítulos**
+
+El dataset generado en este capítulo será utilizado directamente en:
+
+* Feature Engineering.
+* Selección de Modelos.
+* Entrenamiento.
+* Evaluación de Métricas.
+* Interpretación del Modelo.
+* Exportación del Modelo.
+
+A partir de este punto, ninguna etapa volverá a utilizar directamente el dataset almacenado en datasets/raw/.
+
+**19. Decisiones adoptadas para el resto del manual**
+
+Las siguientes decisiones quedan establecidas como estándar para todos los capítulos posteriores:
+
+* El dataset original almacenado en datasets/raw/ permanecerá inalterado durante todo el proyecto y será la referencia permanente para garantizar la trazabilidad.
+* Toda limpieza será implementada mediante scripts reproducibles integrados al Pipeline oficial; no se permitirán modificaciones manuales sobre los archivos del dataset.
+* La columna Unnamed: 0 será eliminada de forma permanente antes de cualquier proceso analítico o de entrenamiento.
+* La variable perfil\_energetico no podrá modificarse, imputarse ni transformarse durante la limpieza de datos.
+* El dataset ubicado en datasets/processed/ será la única fuente autorizada para las etapas de Feature Engineering, entrenamiento, evaluación e integración con el modelo.
+* Todas las transformaciones aplicadas deberán quedar documentadas y ser completamente reproducibles para garantizar consistencia entre el entrenamiento y futuras ejecuciones del proyecto.
+
+**Capítulo 13 – Feature Engineering**
+
+**Objetivo**
+
+Definir la metodología oficial para crear, transformar y seleccionar características (features) que incrementen la capacidad predictiva del modelo de Machine Learning, preservando la trazabilidad, la reproducibilidad y la interpretación de negocio.
+
+Toda característica generada en esta etapa deberá implementarse dentro del Pipeline oficial del proyecto y podrá utilizarse tanto durante el entrenamiento como durante la inferencia.
+
+**1. Alcance**
+
+El proceso de Feature Engineering se ejecutará exclusivamente sobre el dataset ubicado en:
+
+datasets/processed/
+
+No se crearán variables directamente sobre el dataset RAW.
+
+Toda transformación será reproducible mediante código.
+
+**2. Objetivos del Feature Engineering**
+
+Las nuevas variables deberán contribuir a:
+
+* Mejorar el desempeño del modelo.
+* Incrementar la capacidad explicativa del Target.
+* Reducir ruido.
+* Facilitar la interpretación del modelo.
+* Representar mejor el comportamiento energético del inmueble.
+* Mantener coherencia con las reglas de negocio definidas para el proyecto.
+
+**3. Flujo oficial**
+
+El proceso seguirá el siguiente orden:
+
+Carga del dataset procesado
+
+↓
+
+Análisis de variables candidatas
+
+↓
+
+Construcción de nuevas variables
+
+↓
+
+Transformación de variables existentes
+
+↓
+
+Evaluación de relevancia
+
+↓
+
+Validación de Data Leakage
+
+↓
+
+Actualización del Pipeline
+
+↓
+
+Exportación del dataset enriquecido
+
+**4. Principios generales**
+
+Toda nueva característica deberá cumplir los siguientes criterios:
+
+* Tener significado de negocio.
+* Poder calcularse durante la inferencia.
+* Ser reproducible.
+* No utilizar información futura.
+* No depender del Target.
+* No introducir Data Leakage.
+* Poder documentarse completamente.
+
+Toda variable que no cumpla estas condiciones será descartada.
+
+**5. Tipos de transformaciones permitidas**
+
+Durante esta etapa podrán aplicarse las siguientes transformaciones:
+
+* Creación de variables derivadas.
+* Agrupación de categorías.
+* Conversión de variables booleanas.
+* Codificación de variables categóricas.
+* Escalamiento.
+* Transformaciones matemáticas.
+* Generación de indicadores compuestos.
+* Variables basadas en reglas de negocio.
+
+No se realizarán transformaciones que alteren el significado del Target.
+
+**6. Variables derivadas del consumo energético**
+
+El dataset incorpora diversas variables relacionadas con el consumo eléctrico.
+
+A partir de ellas podrán generarse indicadores derivados como:
+
+* Consumo por metro cuadrado.
+* Consumo por ocupante.
+* Consumo por equipo eléctrico.
+* Consumo promedio diario.
+* Costo promedio diario.
+* Relación entre consumo actual y consumo histórico.
+* Índice de intensidad energética.
+
+Estas variables permitirán representar de forma más precisa la eficiencia energética del inmueble.
+
+**7. Variables derivadas de hábitos de consumo**
+
+Las variables relacionadas con el comportamiento de los usuarios podrán combinarse para representar patrones de uso.
+
+Ejemplos:
+
+* Intensidad de uso del aire acondicionado.
+* Índice de utilización de equipos eléctricos.
+* Nivel de ocupación energética.
+* Indicador de uso nocturno.
+* Índice de eficiencia de iluminación.
+
+Estas variables buscarán capturar relaciones que no son evidentes mediante las variables originales.
+
+**8. Variables derivadas del inmueble**
+
+Podrán construirse indicadores que relacionen las características físicas del inmueble.
+
+Ejemplos:
+
+* Densidad de ocupación.
+* Equipos por metro cuadrado.
+* Superficie por ocupante.
+* Antigüedad relativa del inmueble.
+* Índice estructural de eficiencia.
+
+Estos indicadores podrán mejorar la capacidad predictiva del modelo.
+
+**9. Variables derivadas del entorno**
+
+Las variables ambientales podrán combinarse para representar condiciones externas relevantes.
+
+Ejemplos:
+
+* Dependencia de generación solar.
+* Disponibilidad energética alternativa.
+* Impacto climático sobre el consumo.
+* Índice de resiliencia energética.
+
+Estas características deberán construirse exclusivamente con información disponible antes de la predicción.
+
+**10. Codificación de variables categóricas**
+
+Las variables categóricas serán transformadas utilizando técnicas compatibles con el algoritmo seleccionado.
+
+Las técnicas permitidas incluyen:
+
+* One-Hot Encoding.
+* Ordinal Encoding.
+* Binary Encoding.
+
+La selección dependerá del algoritmo definitivo y de los resultados obtenidos durante el entrenamiento.
+
+Toda codificación será implementada dentro del Pipeline oficial.
+
+**11. Escalamiento de variables**
+
+Las variables numéricas podrán escalarse cuando el algoritmo utilizado lo requiera.
+
+Las técnicas permitidas incluyen:
+
+* StandardScaler.
+* MinMaxScaler.
+* RobustScaler.
+
+No se realizará escalamiento si el algoritmo seleccionado no obtiene beneficios de esta transformación.
+
+El escalador utilizado formará parte del Pipeline oficial.
+
+**12. Validación de nuevas variables**
+
+Cada nueva característica deberá cumplir los siguientes criterios antes de incorporarse al modelo:
+
+* Aporta información nueva.
+* Tiene interpretación de negocio.
+* Puede calcularse durante la inferencia.
+* No genera Data Leakage.
+* Presenta calidad suficiente.
+* Mejora o mantiene el desempeño del modelo.
+
+Toda variable que no aporte valor será descartada.
+
+**13. Evaluación de importancia**
+
+Después de crear nuevas características se evaluará su contribución utilizando técnicas compatibles con el modelo seleccionado.
+
+Como mínimo se analizará:
+
+* Importancia de variables.
+* Redundancia.
+* Correlación.
+* Contribución al desempeño del modelo.
+* Complejidad añadida.
+
+No se conservarán variables únicamente por haber sido creadas.
+
+**14. Integración con el Pipeline**
+
+Toda transformación desarrollada durante esta etapa deberá implementarse dentro del Pipeline oficial.
+
+Queda prohibido:
+
+* Crear variables manualmente antes del entrenamiento.
+* Ejecutar transformaciones fuera del Pipeline.
+* Aplicar procesos distintos entre entrenamiento e inferencia.
+
+El mismo Pipeline deberá generar exactamente las mismas variables en ambos escenarios.
+
+**15. Exportación del dataset enriquecido**
+
+El resultado del Feature Engineering podrá almacenarse temporalmente para fines de auditoría y validación.
+
+La versión oficial se ubicará en:
+
+datasets/features/
+
+Utilizando la nomenclatura:
+
+energia\_v1\_features.csv
+
+Este archivo será una copia técnica para análisis y verificación.
+
+El entrenamiento oficial utilizará el Pipeline y no dependerá de este archivo.
+
+**16. Organización del trabajo**
+
+**Ricardo Chirinos – Ingeniería y Análisis de Datos**
+
+Responsable de:
+
+* Diseñar nuevas variables derivadas.
+* Implementar reglas de negocio.
+* Evaluar la calidad de las nuevas características.
+* Documentar cada transformación realizada.
+* Validar la coherencia de las variables generadas.
+
+**Jharle Compres – Machine Learning e Integración**
+
+Responsable de:
+
+* Integrar las transformaciones al Pipeline.
+* Evaluar el impacto de las nuevas variables en el rendimiento del modelo.
+* Detectar posibles casos de Data Leakage.
+* Validar la compatibilidad entre entrenamiento e inferencia.
+* Aprobar el conjunto final de características utilizadas por el modelo.
+
+**17. Productos generados**
+
+Al finalizar esta etapa deberán existir como mínimo:
+
+* Scripts de Feature Engineering.
+* Variables derivadas documentadas.
+* Pipeline actualizado.
+* Informe de evaluación de características.
+* Inventario de variables utilizadas y descartadas.
+
+Toda la documentación deberá almacenarse en:
+
+reports/feature\_engineering/
+
+**18. Dependencias con los siguientes capítulos**
+
+Las características generadas en este capítulo serán utilizadas directamente en:
+
+* Selección de Modelos.
+* Entrenamiento.
+* Evaluación de Métricas.
+* Interpretación del Modelo.
+* Exportación del Modelo.
+* Integración con Backend.
+
+A partir de este punto, el modelo trabajará únicamente con las variables generadas por el Pipeline oficial.
+
+**19. Decisiones adoptadas para el resto del manual**
+
+Las siguientes decisiones quedan establecidas como estándar para todos los capítulos posteriores:
+
+* Todo el Feature Engineering será implementado exclusivamente dentro del Pipeline oficial, garantizando que entrenamiento e inferencia ejecuten exactamente las mismas transformaciones.
+* Las nuevas variables deberán tener justificación técnica y significado de negocio; no se incorporarán características únicamente por incrementar la cantidad de variables disponibles.
+* Las variables derivadas estarán basadas principalmente en relaciones entre consumo energético, características del inmueble, hábitos de uso y condiciones ambientales, alineadas con el objetivo del proyecto de clasificar perfiles energéticos.
+* El archivo datasets/features/energia\_v1\_features.csv tendrá únicamente fines de auditoría y validación; el entrenamiento oficial dependerá siempre del Pipeline y no de archivos previamente transformados.
+* Ninguna característica que introduzca Data Leakage o que no pueda calcularse durante la inferencia será incorporada al modelo.
+* Toda variable creada deberá quedar documentada, validada y ser trazable desde su definición hasta su utilización en el modelo y en la integración con Backend.
+
+**Capítulo 14 – Selección de Modelos**
+
+**Objetivo**
+
+Definir la estrategia oficial para seleccionar el modelo de Machine Learning que será utilizado para clasificar el perfil energético de viviendas y pequeños establecimientos, garantizando que la decisión esté sustentada en evidencia experimental, métricas objetivas, capacidad de generalización e integración con el resto de la arquitectura del proyecto.
+
+La selección del modelo se realizará utilizando exclusivamente el dataset procesado y el Pipeline definido en los capítulos anteriores.
+
+**1. Alcance**
+
+La selección de modelos comprenderá:
+
+* Definición de modelos candidatos.
+* Entrenamiento bajo las mismas condiciones.
+* Comparación utilizando las mismas métricas.
+* Evaluación de estabilidad.
+* Selección del modelo definitivo.
+* Documentación de los resultados.
+
+No se realizarán optimizaciones avanzadas de hiperparámetros durante esta etapa.
+
+El objetivo será identificar la arquitectura con mejor comportamiento general.
+
+**2. Flujo oficial**
+
+La selección seguirá el siguiente proceso:
+
+Carga del dataset procesado
+
+↓
+
+Aplicación del Pipeline oficial
+
+↓
+
+División Train/Test
+
+↓
+
+Entrenamiento de modelos candidatos
+
+↓
+
+Evaluación utilizando las mismas métricas
+
+↓
+
+Comparación de resultados
+
+↓
+
+Selección del mejor modelo
+
+↓
+
+Documentación técnica
+
+Este flujo será obligatorio.
+
+**3. Principios de selección**
+
+El modelo definitivo deberá cumplir los siguientes criterios:
+
+* Alto desempeño predictivo.
+* Buena capacidad de generalización.
+* Bajo riesgo de sobreajuste.
+* Tiempo de entrenamiento razonable.
+* Tiempo de inferencia reducido.
+* Facilidad de integración con Backend.
+* Compatibilidad con exportación mediante Joblib.
+* Interpretabilidad suficiente para justificar las predicciones.
+
+No se seleccionará un modelo únicamente por obtener la mayor precisión.
+
+**4. Tipo de problema**
+
+El proyecto resolverá un problema de:
+
+Clasificación Supervisada Multiclase
+
+Los modelos seleccionados deberán soportar de forma nativa este tipo de problema.
+
+**5. Modelos candidatos**
+
+El proyecto evaluará los siguientes algoritmos.
+
+**Modelo 1**
+
+Random Forest Classifier
+
+Será considerado el modelo base debido a:
+
+* Robustez.
+* Bajo riesgo de sobreajuste.
+* Buena interpretación.
+* Excelente comportamiento con variables mixtas.
+* Baja necesidad de escalamiento.
+
+**Modelo 2**
+
+Gradient Boosting Classifier
+
+Será evaluado por su capacidad para capturar relaciones complejas entre variables.
+
+**Modelo 3**
+
+XGBoost
+
+Será considerado como alternativa de alto rendimiento cuando la complejidad del dataset justifique su utilización.
+
+Su uso dependerá de la disponibilidad del paquete correspondiente dentro del entorno del proyecto.
+
+**Modelo 4**
+
+LightGBM
+
+Será evaluado únicamente si ofrece mejoras significativas respecto a los modelos anteriores.
+
+**Modelo 5**
+
+Decision Tree Classifier
+
+Será utilizado como referencia para comparar modelos más complejos.
+
+Su principal función será proporcionar interpretabilidad.
+
+**Modelo 6**
+
+Logistic Regression
+
+Aunque se trata de un modelo lineal, será entrenado como línea base para medir la ganancia obtenida por modelos no lineales.
+
+**6. Modelos descartados**
+
+Durante esta versión del proyecto quedan descartados:
+
+* Redes Neuronales.
+* Deep Learning.
+* Modelos de series temporales.
+* Modelos no supervisados.
+* Clustering.
+* Reinforcement Learning.
+
+Estas técnicas exceden los objetivos del MVP.
+
+**7. Condiciones de entrenamiento**
+
+Todos los modelos deberán entrenarse utilizando exactamente:
+
+* El mismo dataset.
+* El mismo Pipeline.
+* Las mismas variables.
+* La misma división Train/Test.
+* El mismo Target.
+* La misma estrategia de validación.
+
+De esta manera se garantizará una comparación justa.
+
+**8. Validación**
+
+La evaluación de cada modelo deberá realizarse utilizando validación cruzada.
+
+Se utilizará:
+
+Stratified K-Fold Cross Validation
+
+Esta estrategia permitirá conservar la distribución de clases del Target en cada partición.
+
+El número oficial de particiones será:
+
+5 folds
+
+**9. Comparación de modelos**
+
+Cada modelo será evaluado considerando:
+
+* Accuracy.
+* Precision.
+* Recall.
+* F1-Score.
+* Matriz de Confusión.
+* Tiempo de entrenamiento.
+* Tiempo de inferencia.
+* Estabilidad entre folds.
+
+Ninguna métrica será evaluada de forma aislada.
+
+**10. Criterios de desempate**
+
+Si dos modelos presentan resultados similares, la selección seguirá el siguiente orden de prioridad:
+
+1. Mayor F1-Score.
+2. Menor diferencia entre entrenamiento y prueba.
+3. Menor tiempo de inferencia.
+4. Mayor interpretabilidad.
+5. Menor complejidad de mantenimiento.
+6. Menor consumo de recursos.
+
+**11. Prevención del sobreajuste**
+
+Durante la evaluación se analizará:
+
+* Diferencia entre entrenamiento y prueba.
+* Variación entre folds.
+* Estabilidad de las métricas.
+* Complejidad del modelo.
+
+Los modelos con evidencia de sobreajuste serán descartados.
+
+**12. Selección del modelo definitivo**
+
+El modelo oficial será aquel que:
+
+* Obtenga el mejor equilibrio entre desempeño y estabilidad.
+* Generalice correctamente sobre datos no vistos.
+* Sea compatible con el Pipeline.
+* Permita una integración sencilla con Backend.
+* Mantenga tiempos de respuesta adecuados para el MVP.
+
+La selección deberá documentarse técnicamente.
+
+**13. Compatibilidad con el Pipeline**
+
+El modelo seleccionado deberá integrarse completamente dentro del Pipeline oficial.
+
+El Pipeline incluirá:
+
+* Transformaciones.
+* Codificación.
+* Escalamiento cuando corresponda.
+* Modelo entrenado.
+
+Backend nunca ejecutará transformaciones manuales.
+
+**14. Reproducibilidad**
+
+Todos los entrenamientos deberán ser reproducibles.
+
+Como estándar del proyecto se utilizará:
+
+random\_state = 42
+
+Siempre que el algoritmo lo permita.
+
+Esto garantizará resultados consistentes entre ejecuciones.
+
+**15. Exportación prevista**
+
+El modelo seleccionado deberá ser compatible con la exportación mediante:
+
+Joblib
+
+No se seleccionarán modelos cuya serialización complique la integración con Backend.
+
+**16. Organización del trabajo**
+
+**Ricardo Chirinos – Ingeniería y Análisis de Datos**
+
+Responsable de:
+
+* Preparar el dataset definitivo para entrenamiento.
+* Ejecutar el Pipeline previo al entrenamiento.
+* Documentar los resultados obtenidos por cada modelo.
+* Elaborar los cuadros comparativos.
+* Registrar las conclusiones técnicas.
+
+**Jharle Compres – Machine Learning e Integración**
+
+Responsable de:
+
+* Implementar los modelos candidatos.
+* Ejecutar la validación cruzada.
+* Comparar métricas.
+* Analizar sobreajuste.
+* Seleccionar el modelo definitivo.
+* Garantizar la compatibilidad con la exportación e integración.
+
+**17. Productos generados**
+
+Al finalizar este capítulo deberán existir como mínimo:
+
+* Scripts de entrenamiento de modelos candidatos.
+* Resultados de validación cruzada.
+* Tabla comparativa de métricas.
+* Ranking de modelos.
+* Informe técnico de selección.
+* Configuración del modelo elegido.
+
+Toda la documentación deberá almacenarse en:
+
+reports/model\_selection/
+
+**18. Dependencias con los siguientes capítulos**
+
+Las decisiones tomadas en este capítulo serán utilizadas directamente en:
+
+* Entrenamiento.
+* Evaluación de Métricas.
+* Interpretación del Modelo.
+* Exportación del Modelo.
+* Integración con Backend.
+* FastAPI para pruebas.
+
+A partir de este punto no se incorporarán nuevos algoritmos sin repetir el proceso completo de selección.
+
+**19. Decisiones adoptadas para el resto del manual**
+
+Las siguientes decisiones quedan establecidas como estándar para todos los capítulos posteriores:
+
+* La selección del modelo se realizará mediante una comparación objetiva entre **Random Forest**, **Gradient Boosting**, **XGBoost**, **LightGBM**, **Decision Tree** y **Logistic Regression**, utilizando exactamente el mismo Pipeline y el mismo conjunto de datos.
+* La validación oficial del proyecto utilizará **Stratified K-Fold Cross Validation** con **5 folds**, preservando la distribución de las clases del Target en todas las evaluaciones.
+* El criterio principal de selección será el equilibrio entre capacidad predictiva, estabilidad, interpretabilidad y facilidad de integración, evitando decisiones basadas únicamente en la métrica **Accuracy**.
+* El valor **random\_state = 42** se adopta como estándar para todos los algoritmos y procesos que permitan controlar la aleatoriedad, garantizando la reproducibilidad del proyecto.
+* El modelo seleccionado deberá poder integrarse completamente dentro del Pipeline oficial y ser exportado mediante **Joblib**, asegurando compatibilidad con Backend y FastAPI.
+* El algoritmo elegido en este capítulo será el único utilizado durante los capítulos de Entrenamiento, Evaluación, Interpretación, Exportación e Integración, salvo que un nuevo proceso de selección documentado justifique su sustitución.
+
+**Capítulo 15 – Entrenamiento**
+
+**Objetivo**
+
+Definir el procedimiento oficial para entrenar el modelo de Machine Learning utilizando el Pipeline aprobado, garantizando reproducibilidad, trazabilidad, consistencia entre entrenamiento e inferencia y compatibilidad con la arquitectura general del proyecto.
+
+El entrenamiento se realizará únicamente después de completar las etapas de validación del dataset, limpieza de datos, Feature Engineering y selección del modelo.
+
+**1. Alcance**
+
+Esta etapa comprende:
+
+* Preparación del dataset final.
+* División de los datos.
+* Configuración del Pipeline.
+* Entrenamiento del modelo seleccionado.
+* Validación durante el entrenamiento.
+* Registro de resultados.
+* Almacenamiento de los artefactos generados.
+
+No se modificarán variables ni se crearán nuevas características durante esta fase.
+
+**2. Flujo oficial del entrenamiento**
+
+El entrenamiento seguirá estrictamente el siguiente flujo:
+
+Carga del dataset procesado
+
+↓
+
+Carga del Pipeline oficial
+
+↓
+
+Selección de variables de entrada
+
+↓
+
+Separación de variables predictoras y Target
+
+↓
+
+División Train/Test
+
+↓
+
+Entrenamiento del Pipeline
+
+↓
+
+Predicción sobre Test
+
+↓
+
+Almacenamiento del modelo entrenado
+
+↓
+
+Registro de métricas
+
+↓
+
+Validación final
+
+Este flujo será obligatorio para todas las ejecuciones.
+
+**3. Fuente de datos**
+
+El entrenamiento utilizará exclusivamente:
+
+datasets/processed/
+
+El dataset RAW y cualquier versión intermedia quedan excluidos del entrenamiento.
+
+**4. Variables utilizadas**
+
+El conjunto de entrada estará compuesto únicamente por las variables predictoras aprobadas durante los capítulos anteriores.
+
+La variable:
+
+perfil\_energetico
+
+será utilizada exclusivamente como Target.
+
+La variable:
+
+id\_registro
+
+no participará en el entrenamiento.
+
+**5. División del dataset**
+
+La separación entre entrenamiento y prueba se realizará una única vez antes del entrenamiento.
+
+Se adopta como estándar del proyecto:
+
+80 % → Entrenamiento
+
+20 % → Prueba
+
+La división deberá preservar la distribución de las clases mediante estratificación.
+
+**6. Configuración del entrenamiento**
+
+Antes de iniciar el entrenamiento se verificará que:
+
+* El Pipeline corresponda a la versión oficial.
+* Todas las transformaciones estén integradas.
+* El conjunto de variables sea el aprobado.
+* El Target mantenga las categorías oficiales.
+* No existan registros inválidos.
+
+No se permitirá entrenar modelos fuera del Pipeline.
+
+**7. Entrenamiento del Pipeline**
+
+El entrenamiento consistirá en ejecutar una única instrucción sobre el Pipeline completo.
+
+El Pipeline deberá encargarse automáticamente de:
+
+* Transformaciones.
+* Codificación.
+* Escalamiento (cuando aplique).
+* Entrenamiento del modelo.
+
+No se ejecutarán transformaciones manuales previas.
+
+**8. Control de reproducibilidad**
+
+Todas las ejecuciones deberán ser reproducibles.
+
+Como estándar obligatorio del proyecto:
+
+random\_state = 42
+
+Además, deberán mantenerse constantes:
+
+* Versión del dataset.
+* Pipeline.
+* Librerías.
+* Variables seleccionadas.
+* Configuración del modelo.
+
+**9. Registro del entrenamiento**
+
+Cada entrenamiento deberá generar un registro técnico con la siguiente información:
+
+* Fecha y hora.
+* Versión del dataset.
+* Versión del Pipeline.
+* Modelo utilizado.
+* Parámetros del modelo.
+* Número de registros.
+* Número de variables.
+* Tiempo de entrenamiento.
+* Responsable de la ejecución.
+
+Este registro permitirá la trazabilidad completa del proceso.
+
+**10. Gestión de versiones**
+
+Cada entrenamiento aprobado generará una nueva versión del modelo.
+
+La nomenclatura oficial será:
+
+modelo\_v1.pkl
+
+modelo\_v2.pkl
+
+modelo\_v3.pkl
+
+Nunca se sobrescribirá una versión aprobada.
+
+**11. Control de experimentos**
+
+Todo entrenamiento deberá registrarse como un experimento independiente.
+
+Cada experimento incluirá:
+
+* Identificador.
+* Objetivo.
+* Configuración utilizada.
+* Dataset empleado.
+* Variables utilizadas.
+* Modelo entrenado.
+* Resultados obtenidos.
+* Conclusión técnica.
+
+Esto permitirá comparar distintas ejecuciones sin perder trazabilidad.
+
+**12. Validaciones posteriores al entrenamiento**
+
+Finalizado el entrenamiento se verificará que:
+
+* El modelo haya convergido correctamente.
+* No existan errores durante el Pipeline.
+* El modelo pueda realizar predicciones.
+* El Target sea correctamente reconocido.
+* El número de variables coincida con la configuración oficial.
+
+Solo después de esta validación el modelo podrá pasar a la etapa de evaluación.
+
+**13. Restricciones durante el entrenamiento**
+
+Durante esta etapa queda prohibido:
+
+* Modificar el dataset.
+* Cambiar el Target.
+* Incorporar nuevas variables.
+* Alterar el Pipeline.
+* Cambiar manualmente hiperparámetros sin documentarlo.
+* Reemplazar el modelo seleccionado.
+
+Cualquier modificación requerirá repetir el proceso de selección de modelos.
+
+**14. Almacenamiento de artefactos**
+
+Los artefactos generados durante el entrenamiento deberán almacenarse en:
+
+models/
+
+Como mínimo deberán conservarse:
+
+* Modelo entrenado.
+* Configuración utilizada.
+* Pipeline entrenado.
+* Registro del experimento.
+
+**15. Productos generados**
+
+Al finalizar esta etapa deberán existir como mínimo:
+
+* Pipeline entrenado.
+* Modelo entrenado.
+* Registro de entrenamiento.
+* Historial de experimentos.
+* Configuración utilizada.
+* Dataset de entrenamiento identificado.
+
+Toda la documentación deberá almacenarse en:
+
+reports/training/
+
+**16. Organización del trabajo**
+
+**Ricardo Chirinos – Ingeniería y Análisis de Datos**
+
+Responsable de:
+
+* Verificar la calidad del dataset antes del entrenamiento.
+* Confirmar la versión oficial del dataset.
+* Validar las variables de entrada.
+* Ejecutar la preparación previa al entrenamiento.
+* Documentar el experimento realizado.
+
+**Jharle Compres – Machine Learning e Integración**
+
+Responsable de:
+
+* Ejecutar el entrenamiento del Pipeline.
+* Configurar el modelo seleccionado.
+* Registrar los parámetros utilizados.
+* Validar el funcionamiento del modelo entrenado.
+* Exportar los artefactos generados para las siguientes etapas.
+
+**17. Dependencias con los siguientes capítulos**
+
+Los artefactos generados en esta etapa serán utilizados directamente en:
+
+* Evaluación de Métricas.
+* Interpretación del Modelo.
+* Exportación del Modelo.
+* Integración con Backend.
+* FastAPI para pruebas.
+
+A partir de este punto no se volverá a entrenar el modelo salvo que exista una modificación documentada del dataset, del Pipeline o de la estrategia de modelado.
+
+**18. Decisiones adoptadas para el resto del manual**
+
+Las siguientes decisiones quedan establecidas como estándar para todos los capítulos posteriores:
+
+* El entrenamiento se realizará exclusivamente mediante el **Pipeline oficial**, evitando cualquier transformación manual antes o después del proceso.
+* La división oficial del dataset será **80 % para entrenamiento** y **20 % para prueba**, utilizando estratificación para preservar la distribución de perfil\_energetico.
+* Todos los entrenamientos deberán ser completamente reproducibles utilizando random\_state = 42, las mismas versiones de librerías, el mismo Pipeline y la misma versión del dataset.
+* Cada ejecución generará una nueva versión del modelo y un registro completo del experimento, garantizando trazabilidad y permitiendo comparar resultados entre entrenamientos.
+* Los artefactos oficiales del entrenamiento se almacenarán en models/ y constituirán la única fuente autorizada para la evaluación, exportación e integración con Backend.
+* Una vez aprobado el modelo entrenado, no se permitirán modificaciones en el Pipeline, las variables o el algoritmo sin reiniciar el proceso desde la etapa correspondiente y documentar el nuevo experimento.
+
+**Capítulo 16 – Evaluación de Métricas**
+
+**Objetivo**
+
+Definir la metodología oficial para evaluar el desempeño del modelo entrenado, utilizando métricas objetivas que permitan determinar su capacidad de generalización, estabilidad y utilidad para clasificar correctamente el perfil energético de viviendas y pequeños establecimientos.
+
+La evaluación será realizada exclusivamente sobre datos no utilizados durante el entrenamiento.
+
+**1. Alcance**
+
+Esta etapa comprende:
+
+* Evaluación del modelo sobre el conjunto de prueba.
+* Cálculo de métricas de clasificación.
+* Análisis del comportamiento por clase.
+* Identificación de fortalezas y debilidades.
+* Comparación entre resultados de entrenamiento y prueba.
+* Aprobación o rechazo del modelo para las siguientes etapas.
+
+No se realizarán modificaciones al modelo durante esta fase.
+
+**2. Flujo oficial de evaluación**
+
+La evaluación seguirá el siguiente flujo:
+
+Carga del Pipeline entrenado
+
+↓
+
+Carga del conjunto de prueba
+
+↓
+
+Generación de predicciones
+
+↓
+
+Cálculo de métricas
+
+↓
+
+Análisis por clase
+
+↓
+
+Evaluación de estabilidad
+
+↓
+
+Conclusiones técnicas
+
+↓
+
+Aprobación o rechazo del modelo
+
+Este flujo será obligatorio para todas las evaluaciones.
+
+**3. Fuente de evaluación**
+
+La evaluación utilizará exclusivamente:
+
+* El conjunto **Test** generado durante el entrenamiento.
+* El Pipeline oficial entrenado.
+* El modelo seleccionado en el Capítulo 14.
+
+No se utilizarán datos externos ni registros empleados para entrenar el modelo.
+
+**4. Principios de evaluación**
+
+Toda evaluación deberá cumplir los siguientes principios:
+
+* Utilizar datos no vistos durante el entrenamiento.
+* Aplicar exactamente el mismo Pipeline utilizado para entrenar.
+* Mantener reproducibilidad.
+* Basarse en múltiples métricas.
+* Documentar todos los resultados obtenidos.
+
+No se aprobará un modelo utilizando únicamente una métrica.
+
+**5. Accuracy**
+
+La Accuracy medirá el porcentaje total de predicciones correctas.
+
+Su cálculo será obligatorio.
+
+No obstante, esta métrica no será utilizada como criterio único debido al carácter multiclase del problema.
+
+**6. Precision**
+
+La Precision será calculada para cada clase del Target.
+
+Permitirá medir la proporción de predicciones positivas correctas realizadas por el modelo.
+
+Será especialmente útil para identificar clases con mayor tendencia a falsos positivos.
+
+**7. Recall**
+
+El Recall será calculado para cada categoría de:
+
+perfil\_energetico
+
+Permitirá conocer la capacidad del modelo para identificar correctamente cada perfil energético.
+
+Será utilizado para detectar falsos negativos.
+
+**8. F1-Score**
+
+El F1-Score será considerado la principal métrica del proyecto.
+
+Su utilización permitirá equilibrar Precision y Recall.
+
+La selección definitiva del modelo deberá priorizar esta métrica sobre Accuracy cuando existan diferencias significativas entre clases.
+
+**9. Matriz de confusión**
+
+Se generará una matriz de confusión para analizar el comportamiento del modelo.
+
+El análisis deberá identificar:
+
+* Clases correctamente clasificadas.
+* Clases confundidas entre sí.
+* Patrones de error.
+* Frecuencia de cada tipo de confusión.
+
+Esta información servirá de base para la interpretación del modelo.
+
+**10. Reporte de clasificación**
+
+Se generará un reporte completo que incluya:
+
+* Precision.
+* Recall.
+* F1-Score.
+* Support.
+
+El reporte deberá calcularse para cada categoría del Target.
+
+**11. Evaluación mediante validación cruzada**
+
+Además de la evaluación sobre Test, se analizarán los resultados obtenidos durante:
+
+Stratified K-Fold Cross Validation
+
+Se revisará:
+
+* Promedio de las métricas.
+* Desviación estándar.
+* Estabilidad entre folds.
+* Consistencia del modelo.
+
+La validación cruzada complementará la evaluación final.
+
+**12. Evaluación del sobreajuste**
+
+Se compararán los resultados obtenidos sobre:
+
+* Entrenamiento.
+* Prueba.
+
+Se analizarán diferencias en:
+
+* Accuracy.
+* Precision.
+* Recall.
+* F1-Score.
+
+Diferencias significativas indicarán posible sobreajuste.
+
+**13. Tiempo de inferencia**
+
+El modelo deberá evaluarse considerando también su tiempo de respuesta.
+
+Se registrará:
+
+* Tiempo promedio por predicción.
+* Tiempo para procesar múltiples registros.
+* Consumo aproximado de recursos.
+
+El modelo deberá ser apto para responder solicitudes desde Backend sin demoras perceptibles.
+
+**14. Criterios de aceptación**
+
+El modelo será aprobado únicamente si cumple simultáneamente los siguientes criterios:
+
+* Presenta estabilidad entre entrenamiento y prueba.
+* No evidencia sobreajuste significativo.
+* Mantiene un desempeño consistente entre las distintas clases.
+* Puede integrarse con el Pipeline oficial.
+* Es apto para ser exportado e integrado con Backend.
+
+En caso contrario deberá revisarse la etapa correspondiente del proyecto.
+
+**15. Registro de resultados**
+
+Cada evaluación deberá registrar:
+
+* Versión del modelo.
+* Versión del Pipeline.
+* Métricas obtenidas.
+* Tiempo de evaluación.
+* Conclusión técnica.
+
+Esto permitirá mantener trazabilidad entre diferentes versiones del modelo.
+
+**16. Organización del trabajo**
+
+**Ricardo Chirinos – Ingeniería y Análisis de Datos**
+
+Responsable de:
+
+* Ejecutar la evaluación sobre el conjunto de prueba.
+* Generar la matriz de confusión.
+* Elaborar el reporte de clasificación.
+* Documentar los resultados obtenidos.
+* Preparar el informe técnico de evaluación.
+
+**Jharle Compres – Machine Learning e Integración**
+
+Responsable de:
+
+* Analizar la estabilidad del modelo.
+* Comparar resultados de entrenamiento y prueba.
+* Detectar posibles casos de sobreajuste.
+* Validar el tiempo de inferencia.
+* Aprobar técnicamente el modelo para las siguientes etapas.
+
+**17. Productos generados**
+
+Al finalizar esta etapa deberán existir como mínimo:
+
+* Reporte de métricas.
+* Matriz de confusión.
+* Reporte de clasificación.
+* Resultados de validación cruzada.
+* Informe de evaluación técnica.
+
+Toda la documentación deberá almacenarse en:
+
+reports/model\_evaluation/
+
+**18. Dependencias con los siguientes capítulos**
+
+Las conclusiones obtenidas en esta etapa serán utilizadas directamente en:
+
+* Interpretación del Modelo.
+* Exportación del Modelo.
+* Integración con Backend.
+* Diseño del JSON.
+* FastAPI para pruebas.
+* Dashboard de métricas.
+
+Solo un modelo aprobado podrá avanzar hacia la etapa de interpretación y despliegue.
+
+**19. Decisiones adoptadas para el resto del manual**
+
+Las siguientes decisiones quedan establecidas como estándar para todos los capítulos posteriores:
+
+* La evaluación oficial del modelo combinará **Accuracy**, **Precision**, **Recall**, **F1-Score**, matriz de confusión y reporte de clasificación; ninguna métrica será utilizada de forma aislada.
+* El **F1-Score** será la métrica principal para comparar el desempeño del modelo, al ofrecer el mejor equilibrio entre Precision y Recall en un problema de clasificación multiclase.
+* La validación del modelo incluirá obligatoriamente el análisis de los resultados obtenidos en **Stratified K-Fold Cross Validation** y la comparación entre entrenamiento y prueba para detectar sobreajuste.
+* El modelo solo será aprobado si demuestra estabilidad, capacidad de generalización, tiempos de inferencia compatibles con el MVP y plena compatibilidad con el Pipeline oficial.
+* Todos los resultados de evaluación deberán documentarse y almacenarse en reports/model\_evaluation/, formando parte del historial técnico del proyecto.
+* Únicamente los modelos aprobados en esta etapa podrán continuar hacia los capítulos de Interpretación del Modelo, Exportación, Integración con Backend y despliegue del sistema.
+
+**Capítulo 17 – Interpretación del Modelo**
+
+**Objetivo**
+
+Definir la metodología oficial para interpretar el comportamiento del modelo de Machine Learning, explicando cómo las variables de entrada influyen en la clasificación del perfil energético y garantizando que las predicciones sean comprensibles, auditables y justificables desde el punto de vista técnico y del negocio.
+
+La interpretación será realizada sobre el modelo oficialmente aprobado en el capítulo anterior.
+
+**1. Alcance**
+
+Esta etapa comprende:
+
+* Interpretación global del modelo.
+* Interpretación de predicciones individuales.
+* Análisis de importancia de variables.
+* Validación de coherencia con las reglas de negocio.
+* Identificación de posibles sesgos.
+* Documentación de los resultados.
+
+Esta etapa no modifica el modelo entrenado.
+
+**2. Flujo oficial de interpretación**
+
+La interpretación seguirá el siguiente flujo:
+
+Carga del Pipeline entrenado
+
+↓
+
+Carga del modelo aprobado
+
+↓
+
+Análisis de importancia de variables
+
+↓
+
+Interpretación global
+
+↓
+
+Interpretación local
+
+↓
+
+Validación con reglas de negocio
+
+↓
+
+Análisis de consistencia
+
+↓
+
+Documentación técnica
+
+**3. Principios generales**
+
+Toda interpretación deberá cumplir los siguientes principios:
+
+* Ser reproducible.
+* Basarse en evidencia obtenida del modelo.
+* Mantener consistencia con el comportamiento observado durante el EDA.
+* Poder ser comprendida por el equipo de Backend y Frontend.
+* Servir como base para las recomendaciones energéticas entregadas al usuario.
+
+No se aceptarán conclusiones basadas únicamente en percepción o criterio personal.
+
+**4. Interpretación global**
+
+La interpretación global permitirá comprender cómo el modelo toma decisiones de forma general sobre todo el dataset.
+
+Se analizarán:
+
+* Variables más influyentes.
+* Variables con menor aporte.
+* Relaciones predominantes.
+* Comportamientos generales del modelo.
+* Coherencia con el conocimiento del dominio.
+
+Este análisis servirá como referencia para todo el proyecto.
+
+**5. Importancia de variables**
+
+Se calculará la importancia de todas las variables predictoras.
+
+Como mínimo se generará un ranking ordenado desde la variable con mayor contribución hasta la de menor impacto.
+
+El análisis permitirá identificar:
+
+* Variables críticas.
+* Variables secundarias.
+* Variables con aporte mínimo.
+* Variables candidatas a ser eliminadas en futuras versiones.
+
+La importancia deberá documentarse utilizando la técnica compatible con el algoritmo seleccionado.
+
+**6. Interpretación de predicciones individuales**
+
+Además del comportamiento global, se analizarán predicciones específicas.
+
+Para cada registro evaluado se documentará:
+
+* Variables que más influyeron en la clasificación.
+* Sentido de la influencia.
+* Intensidad de la contribución.
+* Coherencia con los datos de entrada.
+
+Este análisis facilitará la explicación de resultados al usuario final.
+
+**7. Técnica oficial de interpretabilidad**
+
+Como estándar del proyecto se utilizará:
+
+SHAP (SHapley Additive exPlanations)
+
+SHAP será la herramienta principal para:
+
+* Explicar predicciones individuales.
+* Explicar el comportamiento global.
+* Analizar la contribución de cada variable.
+* Facilitar la auditoría del modelo.
+
+Si el algoritmo seleccionado presenta limitaciones técnicas con SHAP, se utilizará la técnica de importancia de variables nativa del modelo como mecanismo complementario.
+
+**8. Validación con reglas de negocio**
+
+Las conclusiones del modelo deberán ser coherentes con las reglas definidas para el proyecto.
+
+Se verificará que:
+
+* Mayores consumos energéticos no favorezcan clasificaciones eficientes sin justificación.
+* Variables relacionadas con generación solar reflejen una influencia coherente.
+* Hábitos de consumo intensivo incrementen la probabilidad de perfiles menos eficientes cuando corresponda.
+* Las relaciones observadas sean consistentes con el objetivo del sistema.
+
+Toda discrepancia deberá investigarse antes del despliegue.
+
+**9. Detección de sesgos**
+
+Se analizará la existencia de posibles sesgos derivados de:
+
+* Distribución del dataset.
+* Variables altamente dominantes.
+* Desbalance entre clases.
+* Correlaciones espurias.
+* Características sintéticas del conjunto de datos.
+
+Si se detectan sesgos relevantes, deberán documentarse junto con su posible impacto.
+
+**10. Consistencia entre entrenamiento e inferencia**
+
+Se verificará que las variables interpretadas durante el entrenamiento sean exactamente las mismas utilizadas durante la inferencia.
+
+Se comprobará:
+
+* Orden de variables.
+* Transformaciones del Pipeline.
+* Codificaciones.
+* Escalamiento.
+* Compatibilidad del modelo exportado.
+
+No se permitirá interpretar variables que no formen parte del Pipeline oficial.
+
+**11. Casos de estudio**
+
+Se seleccionarán registros representativos de cada categoría de:
+
+perfil\_energetico
+
+Para cada uno se documentará:
+
+* Valores de entrada.
+* Predicción obtenida.
+* Probabilidad asociada a cada clase.
+* Variables con mayor influencia.
+* Justificación técnica de la clasificación.
+
+Estos casos servirán como referencia para las pruebas funcionales del sistema.
+
+**12. Relación con el sistema de recomendaciones**
+
+La interpretación del modelo será la base para construir las recomendaciones energéticas entregadas al usuario.
+
+Las recomendaciones deberán derivarse de las variables con mayor influencia detectadas durante la interpretación.
+
+Ejemplos:
+
+* Alto consumo por ocupante.
+* Uso intensivo de aire acondicionado.
+* Baja eficiencia de iluminación.
+* Escasa generación solar.
+* Alta densidad de equipos eléctricos.
+
+Backend utilizará esta información para generar mensajes personalizados.
+
+**13. Restricciones**
+
+Durante esta etapa queda prohibido:
+
+* Modificar el modelo entrenado.
+* Alterar el Pipeline.
+* Cambiar variables de entrada.
+* Reentrenar el modelo.
+* Ajustar hiperparámetros.
+
+La interpretación será exclusivamente analítica.
+
+**14. Documentación técnica**
+
+El informe de interpretación deberá incluir como mínimo:
+
+* Resumen ejecutivo.
+* Ranking de importancia de variables.
+* Interpretación global.
+* Interpretación de casos individuales.
+* Validación con reglas de negocio.
+* Posibles limitaciones.
+* Conclusiones técnicas.
+
+Este documento será utilizado por Backend y Frontend para comprender el funcionamiento del modelo.
+
+**15. Organización del trabajo**
+
+**Ricardo Chirinos– Ingeniería y Análisis de Datos**
+
+Responsable de:
+
+* Generar los análisis de importancia de variables.
+* Elaborar los casos de estudio.
+* Validar la coherencia con el conocimiento del dominio.
+* Documentar los resultados obtenidos.
+* Preparar el informe técnico de interpretación.
+
+**Jharle Compres – Machine Learning e Integración**
+
+Responsable de:
+
+* Implementar SHAP o la técnica de interpretación correspondiente.
+* Validar la consistencia entre Pipeline y modelo.
+* Analizar posibles sesgos.
+* Preparar la información necesaria para Backend.
+* Aprobar técnicamente la interpretación del modelo.
+
+**16. Productos generados**
+
+Al finalizar esta etapa deberán existir como mínimo:
+
+* Informe de interpretación del modelo.
+* Ranking de importancia de variables.
+* Análisis SHAP global.
+* Análisis SHAP por observación.
+* Casos de estudio documentados.
+* Informe de validación de consistencia.
+
+Toda la documentación deberá almacenarse en:
+
+reports/model\_interpretation/
+
+**17. Dependencias con los siguientes capítulos**
+
+Los resultados obtenidos en esta etapa serán utilizados directamente en:
+
+* Exportación del Modelo.
+* Integración con Backend.
+* Diseño del JSON.
+* Contrato entre Ciencia de Datos y Backend.
+* Dashboard.
+* FastAPI para pruebas.
+
+Backend utilizará esta información para construir respuestas interpretables y recomendaciones energéticas basadas en la predicción del modelo.
+
+**18. Decisiones adoptadas para el resto del manual**
+
+Las siguientes decisiones quedan establecidas como estándar para todos los capítulos posteriores:
+
+* La interpretación oficial del modelo se realizará utilizando **SHAP** como técnica principal y la importancia nativa del algoritmo como mecanismo complementario cuando sea necesario.
+* Toda recomendación energética mostrada al usuario deberá estar respaldada por las variables con mayor influencia identificadas durante la interpretación del modelo.
+* Backend no generará recomendaciones mediante reglas independientes; utilizará la información derivada de la interpretación del modelo para mantener coherencia entre la predicción y las acciones sugeridas.
+* Los casos de estudio elaborados en este capítulo serán la referencia oficial para validar el comportamiento del sistema durante las pruebas funcionales y de integración.
+* Toda la documentación generada se almacenará en reports/model\_interpretation/ y constituirá la base técnica para explicar, auditar y mantener el modelo en futuras versiones del proyecto.
+* A partir de este capítulo, cualquier modificación del modelo que altere significativamente la importancia de las variables requerirá repetir el proceso de interpretación antes de proceder con la exportación e integración.
+
+**Capítulo 18 – Exportación del Modelo**
+
+**Objetivo**
+
+Definir el procedimiento oficial para exportar el modelo de Machine Learning aprobado junto con su Pipeline completo, garantizando que pueda ser utilizado por Backend exactamente bajo las mismas condiciones en las que fue entrenado, sin requerir transformaciones adicionales.
+
+La exportación constituye el punto de transición entre el equipo de Ciencia de Datos y el equipo Backend.
+
+**1. Alcance**
+
+Esta etapa comprende:
+
+* Exportación del Pipeline completo.
+* Versionado del modelo.
+* Organización de artefactos.
+* Validación de integridad.
+* Pruebas de carga del modelo.
+* Documentación técnica para Backend.
+
+No se exportarán componentes parciales del Pipeline.
+
+**2. Flujo oficial de exportación**
+
+El proceso seguirá el siguiente flujo:
+
+Modelo aprobado
+
+↓
+
+Validación final
+
+↓
+
+Serialización del Pipeline
+
+↓
+
+Generación de metadatos
+
+↓
+
+Prueba de carga
+
+↓
+
+Prueba de inferencia
+
+↓
+
+Versionado
+
+↓
+
+Entrega al Backend
+
+**3. Principios generales**
+
+La exportación deberá cumplir los siguientes principios:
+
+* Reproducibilidad.
+* Compatibilidad entre entrenamiento e inferencia.
+* Versionado.
+* Integridad del Pipeline.
+* Facilidad de integración.
+* Trazabilidad.
+
+Backend nunca reconstruirá el Pipeline.
+
+**4. Elemento oficial a exportar**
+
+El artefacto oficial del proyecto será:
+
+Pipeline completo
+
+El Pipeline incluirá:
+
+* Preprocesamiento.
+* Codificación.
+* Escalamiento (cuando aplique).
+* Feature Engineering.
+* Modelo entrenado.
+
+Queda prohibido exportar únicamente el algoritmo entrenado.
+
+**5. Herramienta oficial de serialización**
+
+Como estándar del proyecto se utilizará:
+
+Joblib
+
+No se utilizarán otros mecanismos de serialización salvo que exista una justificación técnica documentada.
+
+**6. Estructura de almacenamiento**
+
+Todos los artefactos exportados se almacenarán en:
+
+models/
+
+Con la siguiente estructura:
+
+models/
+
+├── model\_pipeline\_v1.joblib
+
+├── metadata\_v1.json
+
+├── training\_config\_v1.json
+
+└── export\_log\_v1.json
+
+**7. Versionado**
+
+Cada exportación aprobada generará una nueva versión.
+
+La nomenclatura oficial será:
+
+model\_pipeline\_v1.joblib
+
+model\_pipeline\_v2.joblib
+
+model\_pipeline\_v3.joblib
+
+Nunca se sobrescribirá una versión previamente aprobada.
+
+**8. Metadatos obligatorios**
+
+Cada versión exportada deberá incluir un archivo de metadatos con información como:
+
+* Versión del modelo.
+* Algoritmo utilizado.
+* Versión del Pipeline.
+* Versión del dataset.
+* Número de variables.
+* Variable Target.
+
+Estos metadatos permitirán reproducir el modelo en el futuro.
+
+**9. Configuración de entrenamiento**
+
+Se exportará un archivo independiente con la configuración utilizada durante el entrenamiento.
+
+Como mínimo contendrá:
+
+* random\_state.
+* División Train/Test.
+* Estrategia de validación.
+* Parámetros del algoritmo.
+* Variables utilizadas.
+* Variables descartadas.
+
+Este archivo servirá para auditoría técnica.
+
+**10. Validación de integridad**
+
+Antes de aprobar una exportación se verificará que:
+
+* El archivo pueda cargarse correctamente.
+* El Pipeline esté completo.
+* El modelo responda a nuevas predicciones.
+* No existan errores de serialización.
+* La salida sea consistente con la obtenida durante el entrenamiento.
+
+Solo después de esta validación el modelo podrá entregarse al equipo Backend.
+
+**11. Prueba de carga**
+
+Cada artefacto exportado deberá superar una prueba de carga.
+
+Se verificará:
+
+* Tiempo de carga.
+* Consumo de memoria.
+* Compatibilidad con el entorno del proyecto.
+* Integridad del Pipeline.
+
+**12. Prueba de inferencia**
+
+Una vez cargado el modelo se ejecutarán predicciones utilizando registros de prueba.
+
+Se comprobará que:
+
+* Las predicciones sean exitosas.
+* Las probabilidades puedan calcularse cuando el algoritmo lo permita.
+* Las clases devueltas pertenezcan al dominio oficial de perfil\_energetico.
+* No existan diferencias respecto al modelo utilizado durante la evaluación.
+
+**13. Compatibilidad con Backend**
+
+El modelo exportado deberá permitir que Backend únicamente realice las siguientes acciones:
+
+* Cargar el Pipeline.
+* Recibir datos de entrada.
+* Ejecutar predict().
+* Ejecutar predict\_proba() cuando esté disponible.
+* Construir la respuesta JSON.
+
+Backend no aplicará transformaciones manuales sobre los datos recibidos.
+
+**14. Restricciones**
+
+Durante la exportación queda prohibido:
+
+* Modificar el modelo entrenado.
+* Reentrenar el algoritmo.
+* Cambiar variables.
+* Alterar el Pipeline.
+* Editar manualmente los archivos exportados.
+
+Toda modificación requerirá una nueva exportación oficial.
+
+**15. Registro de exportación**
+
+Cada exportación deberá generar un registro técnico con:
+
+* Versión del modelo.
+
+Este registro garantizará la trazabilidad de cada versión.
+
+**16. Organización del trabajo**
+
+**Ricardo Chirinos – Ingeniería y Análisis de Datos**
+
+Responsable de:
+
+* Validar la versión definitiva del modelo.
+* Verificar la consistencia de los metadatos.
+* Generar la documentación técnica.
+* Registrar la versión aprobada.
+* Preparar la entrega al equipo Backend.
+
+**Jharle Compres – Machine Learning e Integración**
+
+Responsable de:
+
+* Exportar el Pipeline mediante Joblib.
+* Ejecutar las pruebas de carga e inferencia.
+* Validar la integridad del artefacto.
+* Generar los archivos de configuración.
+* Aprobar técnicamente la versión exportada.
+
+**17. Productos generados**
+
+Al finalizar esta etapa deberán existir como mínimo:
+
+* Pipeline exportado (.joblib).
+* Historial de versiones del modelo.
+
+Toda la documentación deberá almacenarse en:
+
+reports/model\_export/
+
+**18. Dependencias con los siguientes capítulos**
+
+Los artefactos generados en esta etapa serán utilizados directamente en:
+
+* Integración con Backend.
+* Diseño del JSON.
+* Contrato entre Ciencia de Datos y Backend.
+* Endpoints.
+* FastAPI para pruebas.
+* Docker.
+* OCI.
+
+A partir de este punto, Backend trabajará exclusivamente con el Pipeline exportado.
+
+**19. Decisiones adoptadas para el resto del manual**
+
+Las siguientes decisiones quedan establecidas como estándar para todos los capítulos posteriores:
+
+* El único artefacto oficial entregado a Backend será el **Pipeline completo exportado mediante Joblib**, incluyendo todas las transformaciones y el modelo entrenado.
+* Toda exportación deberá generar una nueva versión identificable, sin sobrescribir versiones anteriores, garantizando trazabilidad y posibilidad de reversión.
+* Cada versión incluirá obligatoriamente un archivo de metadatos, un archivo con la configuración del entrenamiento y un registro de exportación para facilitar auditorías y mantenimiento.
+* Ningún componente externo (Backend, FastAPI o Frontend) implementará transformaciones de datos; toda la lógica de preprocesamiento permanecerá encapsulada dentro del Pipeline exportado.
+* Antes de ser entregado al equipo Backend, el Pipeline deberá superar satisfactoriamente las pruebas de carga, integridad e inferencia, demostrando que reproduce exactamente el comportamiento validado durante la etapa de evaluación.
+* El Pipeline exportado se convierte en la única fuente autorizada para la integración, el despliegue y las futuras versiones del sistema, salvo que una nueva iteración del proyecto genere una versión superior siguiendo el mismo procedimiento.
+
+## Capítulo 19 – Integración con Backend
+
+### Objetivo
+
+Definir la arquitectura oficial mediante la cual el modelo de Machine Learning se pone a disposición de Backend, garantizando que ningún componente externo reimplemente lógica que pertenece al Pipeline de Ciencia de Datos.
+
+### 1. Alcance
+
+Este capítulo define:
+
+* La arquitectura de integración entre Ciencia de Datos y Backend.
+* Las responsabilidades de cada equipo.
+* La topología de despliegue.
+
+No define (se desarrollan en capítulos posteriores):
+
+* El esquema exacto del JSON de entrada/salida (Capítulo 20).
+* El contrato formal Ciencia de Datos–Backend (Capítulo 21).
+* Los endpoints específicos (Capítulo 22).
+* La implementación del servicio FastAPI (Capítulo 25).
+
+### 2. Principio arquitectónico oficial
+
+El modelo entrenado (`model_pipeline_v3.joblib`) es un artefacto de Python y solo puede ejecutarse dentro de un proceso Python. Backend, desarrollado en Java Spring Boot, no puede cargar ni ejecutar este artefacto de forma nativa.
+
+Se establece como arquitectura oficial:
+
+> El modelo se expone como un **microservicio Python independiente**, accesible por Backend exclusivamente a través de una API REST (HTTP + JSON).
+
+Se descarta, para esta etapa del proyecto, la exportación a formatos de ejecución nativa en Java (ONNX, PMML). Motivo: introducen una capa adicional de conversión numérica que representa una fuente de riesgo de inconsistencia entre el modelo entrenado y el modelo ejecutado — el mismo tipo de riesgo ya identificado y corregido en el Capítulo 18. Esta decisión puede revisarse en una fase posterior si el rendimiento de red del microservicio resulta insuficiente.
+
+### 3. Extensión del principio del Pipeline auto-contenido
+
+El Capítulo 18 estableció que ningún componente externo implementará transformaciones de datos. Este principio se extiende explícitamente a la integración con Backend:
+
+* Backend nunca ejecutará feature engineering, codificación ni escalamiento.
+* Backend nunca reconstruirá el Pipeline ni sus columnas.
+* Backend entrega únicamente los datos crudos capturados por el formulario; toda transformación ocurre dentro de `model_pipeline_v3.joblib`.
+
+### 4. Responsabilidades por equipo
+
+| Equipo | Responsabilidad |
+| --- | --- |
+| Ciencia de Datos | Entrenar, validar, exportar y servir el modelo (microservicio Python). Documentar el contrato de datos. |
+| Backend (Java Spring Boot) | Recibir el formulario, invocar el microservicio vía HTTP, persistir resultados, aplicar lógica de negocio. |
+| Frontend | Capturar los datos del formulario y mostrar el resultado (nivel, confianza, recomendaciones). |
+
+### 5. Topología de integración
+
+Ver diagrama. Frontend envía el formulario a Backend; Backend reenvía el JSON de 12 campos crudos al microservicio ML; el microservicio ejecuta `predict_proba()` sobre el Pipeline completo y responde con nivel, confianza y probabilidades por clase (contrato definido en la sesión de trabajo previa a este capítulo). La respuesta recorre el mismo camino en sentido inverso hasta llegar a Frontend.
+
+### 6. Dependencias
+
+Este capítulo es prerrequisito de: Diseño del JSON (Cap. 20), Contrato Ciencia de Datos–Backend (Cap. 21), Endpoints necesarios (Cap. 22), FastAPI para pruebas (Cap. 25).
+
+### 7. Producto generado
+
+* Definición formal de la arquitectura de integración (este capítulo).
+
+* Diagrama de topología del sistema.
+
+## Capítulo 20 – Diseño del JSON
+
+### Objetivo
+
+Formalizar la estructura, tipos de datos y reglas de validación de los mensajes JSON que circulan entre Frontend, Backend y el microservicio ML, estableciendo un estándar único que evite ambigüedad de interpretación entre equipos.
+
+### 1. Alcance
+
+* Esquema del JSON de entrada (solicitud de predicción).
+
+* Esquema del JSON de salida (respuesta exitosa).
+* Esquema del JSON de error.
+* Reglas de validación y manejo de valores inválidos.
+* Convenciones de nomenclatura.
+
+No define (se desarrolla en capítulos posteriores):
+
+* Las rutas y métodos HTTP exactos (Capítulo 22 — Endpoints).
+* Las obligaciones formales y responsabilidades entre equipos (Capítulo 21 — Contrato).
+
+### 2. Convenciones de nomenclatura
+
+* `snake_case` en todas las claves, sin excepción.
+
+* Los nombres de campo del JSON de entrada son idénticos a los nombres de columna del dataset crudo de origen — trazabilidad directa entre lo que Frontend captura y lo que Ciencia de Datos entrenó.
+* Sin abreviaturas no evidentes (`antiguedad_construccion_anios`, no `ant_constr_anios`).
+* Los valores de tipo enum (dropdowns) se transmiten como texto plano, nunca como códigos numéricos ni como nombres de columna codificada (ver Capítulo 19, principio del Pipeline auto-contenido).
+
+### 3. Esquema del JSON de entrada
+
+| Campo | Tipo | Formato / Valores permitidos | Obligatorio |
+| --- | --- | --- | --- |
+| `tipo_inmueble` | string (enum) | `Apartamento` / `Casa Unifamiliar` / `Pequeño Establecimiento Comercial` | Sí |
+| `superficie_m2` | number (float) | ≥ 0 | Sí |
+| `num_personas` | integer | ≥ 1 | Sí |
+| `cantidad_equipos_total` | integer | ≥ 0 | Sí |
+| `horas_uso_aa_dia` | number (float) | 0 a 24 | Sí |
+| `consumo_kwh_mensual` | number (float) | ≥ 0 | Sí |
+| `consumo_kwh_mes_anterior` | number (float) | ≥ 0 | Sí |
+| `aislamiento_termico` | string (enum) | `Bueno` / `Malo` / `Regular` | Sí |
+| `pct_iluminacion_led` | number (float) | 0 a 100 | Sí |
+| `antiguedad_construccion_anios` | number (float) | ≥ 0 | Sí |
+| `zona` | string (enum) | `Suburbana` / `Urbana Costera` / `Urbana Interior` | Sí |
+| `antiguedad_electrodomesticos_anios` | number (float) | ≥ 0 | Sí |
+
+No hay campos opcionales en esta versión: los 12 son obligatorios porque los 55 features del modelo dependen de todos ellos (Capítulo 19, sección 3).
+
+### 4. Esquema del JSON de salida (respuesta exitosa)
+
+```json
+{
+  "nivel": "Eficiente",
+  "confianza_pct": 65.0,
+  "probabilidades": {
+    "Eficiente": 65.0,
+    "Ineficiente": 10.0,
+    "Moderado": 25.0
+  }
+}
+```
+
+| Campo | Tipo | Descripción |
+| --- | --- | --- |
+| `nivel` | string (enum) | Clase predicha: `Eficiente` / `Ineficiente` / `Moderado` |
+| `confianza_pct` | number (float) | Probabilidad de la clase predicha, en escala 0-100, redondeada a 1 decimal |
+| `probabilidades` | object | Probabilidad de cada una de las 3 clases, mismo formato que `confianza_pct` |
+
+### 5. Esquema del JSON de error
+
+```json
+{
+  "error": {
+    "codigo": "CAMPO_INVALIDO",
+    "mensaje": "El campo 'zona' debe ser uno de: Suburbana, Urbana Costera, Urbana Interior",
+    "campo": "zona"
+  }
+}
+```
+
+| Código | HTTP status | Cuándo ocurre |
+| --- | --- | --- |
+| `CAMPO_FALTANTE` | 400 | Falta uno de los 12 campos obligatorios |
+| `CAMPO_INVALIDO` | 400 | Un enum no coincide con ninguno de los valores permitidos, o un tipo de dato no corresponde |
+| `VALOR_FUERA_DE_RANGO` | 400 | Un campo numérico está fuera del rango definido en la sección 3 (ej. `pct_iluminacion_led` > 100) |
+| `ERROR_INTERNO_MODELO` | 500 | Falla inesperada al ejecutar el Pipeline (no debería ocurrir si la validación previa pasó) |
+
+El campo `campo` en el error solo aparece cuando el error es atribuible a un campo específico (`CAMPO_FALTANTE`, `CAMPO_INVALIDO`, `VALOR_FUERA_DE_RANGO`); se omite en `ERROR_INTERNO_MODELO`.
+
+### 6. Reglas de validación
+
+* La validación de tipos, enums y rangos ocurre en el microservicio ML (vía Pydantic, Capítulo 25), no en Backend — consistente con el principio de que toda lógica relacionada con el modelo vive en un único lugar.
+
+* Los valores de enum son sensibles a mayúsculas/minúsculas y tildes; no se aplica normalización automática (ver advertencia del Capítulo 19 sobre categorías desconocidas degradando la predicción).
+* Backend puede aplicar validaciones adicionales de negocio (ej. límites de superficie razonables) antes de reenviar, pero nunca sustituye la validación del microservicio.
+
+### 7. Versionado
+
+El esquema de entrada está atado a la versión del modelo (`v3`). Si una futura versión del modelo requiere campos adicionales o distintos, se define un nuevo esquema versionado y ambas versiones coexisten temporalmente a través del versionado de endpoint (Capítulo 22) — nunca se modifica el esquema `v3` de forma retroactiva.
+
+### 8. Producto generado
+
+* Esquema JSON de entrada (formal, sección 3).
+
+* Esquema JSON de salida (formal, sección 4).
+* Esquema JSON de error (formal, sección 5) — producto nuevo, no existía antes de este capítulo.
+* Tabla de códigos de error.
+
+## Capítulo 21 – Contrato entre Ciencia de Datos y Backend
+
+### Objetivo
+
+Formalizar los compromisos, garantías y procedimientos de cambio entre el equipo de Ciencia de Datos y el equipo de Backend, de modo que ambos puedan desarrollar de forma independiente sin bloquearse mutuamente, y que cualquier incumplimiento sea detectable y atribuible.
+
+### 1. Alcance
+
+Este capítulo define:
+
+* Qué garantiza Ciencia de Datos.
+* Qué garantiza Backend.
+* El procedimiento de cambio de versión del modelo.
+* Las pruebas de aceptación previas a la integración.
+* El manejo de incidentes y fallos del microservicio.
+
+No define (se desarrolla en capítulos posteriores):
+
+* Las rutas HTTP exactas (Capítulo 22 — Endpoints).
+* La implementación técnica del servicio (Capítulo 25 — FastAPI).
+* El monitoreo en producción (Capítulo 26 — OCI).
+
+### 2. Partes del contrato
+
+| Parte | Responsable |
+| --- | --- |
+| Ciencia de Datos / ML | Jharle Compres |
+| Ingeniería y Análisis de Datos | Ricardo Chirinos |
+| Backend | Equipo de Backend (Java Spring Boot) |
+
+### 3. Garantías de Ciencia de Datos
+
+Ciencia de Datos se compromete a:
+
+1. Mantener `model_pipeline_v3.joblib` como artefacto **auto-contenido** (Capítulo 18/19) — Backend nunca necesita implementar transformaciones.
+2. No modificar el esquema JSON de una versión ya publicada (Capítulo 20) sin pasar por el procedimiento de cambio de versión (sección 6).
+3. Documentar toda nueva versión del modelo con `metadata_vN.json`, `training_config_vN.json` y `export_log_vN.json` (Capítulo 18).
+4. Notificar a Backend con antelación razonable ante cualquier cambio de contrato (campos nuevos, cambio de rango, cambio de enum).
+5. Proveer un entorno de pruebas (Capítulo 25 — FastAPI local) antes de solicitar integración en Backend.
+
+### 4. Garantías de Backend
+
+Backend se compromete a:
+
+1. Enviar exclusivamente los 12 campos definidos en el Capítulo 20, con los tipos y formatos exactos — sin transformar, redondear, ni recodificar valores antes de enviarlos.
+2. Enviar los valores de enum como texto plano idéntico al especificado (mayúsculas, espacios, sin normalización propia).
+3. Interpretar y manejar los 4 códigos de error del Capítulo 20 de forma explícita (no tratarlos como un error genérico).
+4. Implementar timeout y reintento ante fallos de red hacia el microservicio (política de reintento a definir en el Capítulo 22).
+5. No persistir ni exponer `probabilidades` o `confianza_pct` de forma que sugiera precisión estadística no garantizada (evitar decimales artificiales en la UI, por ejemplo).
+
+### 5. Pruebas de aceptación
+
+Antes de que Backend integre una versión del modelo en un ambiente distinto al local, deben pasar:
+
+* [ ] El microservicio responde `200 OK` con el esquema exacto del Capítulo 20 ante un payload válido.
+* [ ] El microservicio responde con el código de error correcto ante cada uno de los 4 escenarios de error (Capítulo 20, sección 5).
+* [ ] Las probabilidades devueltas suman 100% (± tolerancia de redondeo).
+* [ ] Los resultados de un lote de prueba conocido coinciden con las predicciones documentadas en `reports/model_interpretation/` (validación de no-regresión).
+
+### 6. Procedimiento de cambio de versión
+
+1. Ciencia de Datos publica la nueva versión (`vN`) junto con sus 4 artefactos de metadatos.
+2. Ciencia de Datos documenta explícitamente las diferencias respecto a la versión anterior (campos agregados/eliminados, cambios de rango).
+3. Ambas versiones (`vN-1` y `vN`) coexisten en el microservicio durante un período de transición (mecanismo exacto: Capítulo 22).
+4. Backend migra y confirma las pruebas de aceptación (sección 5) sobre `vN` antes de que Ciencia de Datos retire `vN-1`.
+5. Ninguna versión se retira sin confirmación explícita de Backend.
+
+### 7. Manejo de incidentes
+
+* Si el microservicio no responde o responde `ERROR_INTERNO_MODELO`, Backend no debe bloquear el flujo del usuario — debe aplicar una respuesta de contingencia definida por Backend (ej. "resultado no disponible temporalmente"), nunca inventar un nivel o confianza.
+
+* Ciencia de Datos es responsable de investigar y resolver la causa raíz cuando el error se origina en el modelo.
+
+### 8. Pendiente de definición
+
+* SLA de tiempo de respuesta: aún no se ha medido el rendimiento del microservicio bajo carga — se definirá con evidencia una vez completado el Capítulo 25 (pruebas locales) y el Capítulo 26 (despliegue en OCI). No se establece un número aquí para evitar comprometer una cifra sin datos.
+
+### 9. Producto generado
+
+* Este documento de contrato.
+
+* Checklist de pruebas de aceptación (sección 5), reutilizable en cada nueva versión del modelo.
+
+## Capítulo 22 – Endpoints necesarios
+
+### Objetivo
+
+Especificar las rutas HTTP concretas del microservicio ML: método, formato de entrada/salida, códigos de estado, y el mecanismo de versionado que permite la coexistencia de versiones del modelo acordada en el Capítulo 21.
+
+### 1. Alcance
+
+* Listado completo de endpoints del microservicio.
+
+* Mecanismo de versionado de la API.
+* Códigos de estado HTTP por escenario.
+* Alcance explícito de lo que NO se expone en esta etapa.
+
+No define (se desarrolla en capítulos posteriores):
+
+* La implementación del código (Capítulo 25 — FastAPI).
+* El empaquetado y despliegue (Capítulos 26-27 — OCI y Docker).
+
+### 2. Mecanismo de versionado
+
+Versionado por **ruta**, no por header ni por parámetro de query — es explícito, cacheable, y visible en cualquier log sin inspeccionar headers:
+
+/api/{version}/{recurso}
+
+Ejemplo: `/api/v3/predict`. Cuando exista una versión `v4` del modelo, coexiste en `/api/v4/predict` durante el período de transición del Capítulo 21, sección 6 — nunca se reemplaza `v3` en el mismo path.
+
+### 3. Endpoints
+
+| Método | Ruta | Propósito | Request | Response exitosa |
+| --- | --- | --- | --- | --- |
+| `GET` | `/api/v3/health` | Verifica que el servicio está vivo y el Pipeline cargado en memoria | — | `{"status": "ok", "version": "v3"}` |
+| `GET` | `/api/v3/info` | Expone metadata del modelo activo, para que Backend confirme qué versión está corriendo | — | Contenido de `metadata_v3.json` (Capítulo 18) |
+| `POST` | `/api/v3/predict` | Ejecuta la predicción sobre un registro | Esquema de entrada (Capítulo 20, sección 3) | Esquema de salida (Capítulo 20, sección 4) |
+
+Explícitamente **fuera de alcance** en esta versión (no se construyen ahora, para no sobredimensionar el MVP):
+
+* Endpoint de predicción por lotes (`/predict/batch`) — el formulario es de un registro a la vez; se evalúa solo si surge una necesidad real.
+* Endpoint de reentrenamiento o actualización de modelo vía API — el reentrenamiento ocurre en los notebooks (Capítulos 1-18), nunca en producción.
+
+### 4. `GET /api/v3/health`
+
+Uso previsto: *liveness probe* de Docker/OCI (Capítulos 26-27) y verificación manual de Backend antes de enviar tráfico real.
+
+Respuesta:
+
+```json
+{"status": "ok", "version": "v3"}
+```
+
+No requiere autenticación. Responde en menos de lo que tarda cargar el proceso — no ejecuta el Pipeline, solo confirma que está en memoria.
+
+### 5. `GET /api/v3/info`
+
+Uso previsto: que Backend pueda loggear o mostrar en un panel interno qué versión del modelo está sirviendo en un momento dado, sin tener que coordinarlo manualmente con Ciencia de Datos.
+
+Respuesta: el contenido de `metadata_v3.json` tal cual (clases, cantidad de features, métricas de test, librerías) — un solo lugar de verdad, sin duplicar esa información a mano en el código del endpoint.
+
+### 6. `POST /api/v3/predict`
+
+El endpoint principal. Recibe el JSON de 12 campos (Capítulo 20, sección 3) y devuelve el JSON de salida (Capítulo 20, sección 4) o de error (Capítulo 20, sección 5).
+
+**Códigos de estado HTTP:**
+
+| Código HTTP | Cuándo | Cuerpo de la respuesta |
+| --- | --- | --- |
+| `200 OK` | Predicción exitosa | Esquema de salida (Cap. 20, sec. 4) |
+| `400 Bad Request` | `CAMPO_FALTANTE`, `CAMPO_INVALIDO` o `VALOR_FUERA_DE_RANGO` | Esquema de error (Cap. 20, sec. 5) |
+| `500 Internal Server Error` | `ERROR_INTERNO_MODELO` | Esquema de error (Cap. 20, sec. 5) |
+
+No hay código `404` aplicable a este endpoint (la ruta es fija); un `404` real solo ocurriría si Backend llama a una versión de API que no existe (ej. `/api/v9/predict`), lo cual es un error de configuración de Backend, no un caso de negocio a documentar aquí.
+
+### 7. Documentación interactiva
+
+FastAPI genera automáticamente documentación interactiva de estos 3 endpoints (`/docs` y `/redoc`) a partir del esquema Pydantic — se aprovechará en el Capítulo 25 en vez de mantener una documentación manual duplicada que pueda desincronizarse del código real.
+
+### 8. Producto generado
+
+* Tabla de endpoints (sección 3), lista para implementar en el Capítulo 25.
+
+* Mecanismo de versionado formalizado — cierra el pendiente del Capítulo 21, sección 6.
+
+## Capítulo 23 – KPIs
+
+### Objetivo
+
+Definir los indicadores que permiten monitorear la salud del modelo y del sistema en producción, distinguiendo entre lo que se puede medir directamente (uso, latencia, errores) y lo que solo se puede aproximar por ausencia de retroalimentación con la realidad (calidad predictiva).
+
+### 1. Alcance
+
+* KPIs de calidad del modelo (proxy, sin ground truth).
+
+* KPIs de uso y producto.
+* KPIs de sistema y disponibilidad.
+* Frecuencia de medición y umbrales de alerta.
+* Limitación estructural: ausencia de feedback loop.
+
+No define (se desarrolla en capítulos posteriores):
+
+* La visualización de estos indicadores (Capítulo 24 — Dashboard).
+* La infraestructura de métricas/logging en OCI (Capítulo 26).
+
+### 2. KPIs de calidad del modelo (proxy)
+
+Como no hay etiqueta real disponible en producción, estos KPIs no miden "aciertos" — miden **desviación respecto al comportamiento observado durante el entrenamiento**. Una desviación grande es una alerta de posible *data drift*, no una medición directa de error.
+
+| KPI | Línea base (de entrenamiento) | Qué señala una desviación |
+| --- | --- | --- |
+| Distribución de clases predichas | Eficiente 34.97% / Ineficiente 30.16% / Moderado 34.87% (Capítulo 6) | Si la proporción de una clase se dispara o desaparece, el perfil de usuarios reales difiere del dataset de entrenamiento |
+| Confianza promedio de predicción (`confianza_pct`) | A establecer con el primer lote real de producción — no se fija un número sin datos | Una caída sostenida sugiere que el modelo enfrenta casos cada vez más ambiguos o fuera de su distribución de entrenamiento |
+| % de predicciones con confianza < 50% | A establecer con el primer lote real | Volumen alto sugiere revisar si el formulario captura bien la realidad del usuario, o si el modelo necesita reentrenamiento |
+| Rango de valores de entrada por campo | Rango observado en `03_feature_engineering.csv` por campo (Capítulo 6) | Valores sistemáticamente fuera de rango (ej. `superficie_m2` muy por encima del máximo visto en entrenamiento) indican una población de usuarios distinta a la entrenada |
+
+### 3. KPIs de uso y producto
+
+| KPI | Descripción |
+| --- | --- |
+| Cantidad de predicciones por día/semana | Adopción del sistema |
+| Tasa de finalización del formulario | Usuarios que completan los 12 campos vs. los que abandonan — mide fricción del formulario, no del modelo |
+| Distribución de recomendaciones generadas | Qué categorías (Capítulo 17 — Alto consumo por ocupante, Aislamiento deficiente, etc.) se disparan con más frecuencia — insumo útil para priorizar mejoras del producto |
+| % de predicciones tipo ALERTA vs. OPORTUNIDAD | Del sistema de recomendaciones de dos niveles (Capítulo 17) — una proporción muy desbalanceada hacia ALERTA podría indicar que el umbral necesita recalibrarse con datos reales, igual que se recalibró para la clase Moderado durante el desarrollo |
+
+### 4. KPIs de sistema y disponibilidad
+
+| KPI | Descripción |
+| --- | --- |
+| Disponibilidad del endpoint `/api/v3/health` | Uptime del microservicio (Capítulo 22) |
+| Latencia de `/api/v3/predict` (p50 / p95 / p99) | Tiempo de respuesta real — pendiente de primera medición (Capítulo 21, sección 8) |
+| Tasa de errores por código | Proporción de `200` vs `400` vs `500` — un aumento sostenido de `400` sugiere un problema de validación en Frontend/Backend, no del modelo; un aumento de `500` sí es responsabilidad de Ciencia de Datos |
+
+### 5. Frecuencia de medición
+
+| KPI | Frecuencia sugerida |
+| --- | --- |
+| Distribución de clases predichas, confianza promedio | Semanal (volumen bajo esperado en un MVP recién lanzado; diario sería ruido, no señal) |
+| Uso y producto | Diario |
+| Sistema y disponibilidad | Tiempo real / continuo (vía health checks) |
+
+### 6. Limitación estructural: sin feedback loop
+
+Ninguno de los KPIs de la sección 2 mide error real, porque el sistema **no tiene un mecanismo para capturar la clase verdadera** después de la predicción (ej. una factura real posterior, o una confirmación del usuario). Esto es una limitación de producto, no del modelo:
+
+* Sin este mecanismo, no es posible calcular un F1 o accuracy "en producción" — solo proxies de drift.
+* Se recomienda evaluar, como trabajo futuro, capturar una señal de retroalimentación mínima (ej. "¿esta clasificación te parece correcta? Sí/No" en el Frontend) para habilitar monitoreo de calidad real. No se implementa en esta etapa por estar fuera del alcance del MVP.
+
+### 7. Producto generado
+
+* Catálogo de KPIs por categoría (secciones 2-4).
+
+* Líneas base cuantitativas donde existen (distribución de clases); marcadas explícitamente como pendientes donde no hay datos de producción todavía.
+* Documentación de la limitación de feedback loop, como insumo para decisiones de producto futuras.
+
+## Capítulo 24 – Dashboard
+
+### Objetivo
+
+Definir la herramienta, estructura y fuente de datos del dashboard de monitoreo interno, que visualiza los KPIs definidos en el Capítulo 23 para Ciencia de Datos y Producto.
+
+### 1. Alcance
+
+* Selección de herramienta y justificación.
+
+* Audiencia y propósito.
+* Estructura de secciones, alineada 1 a 1 con las categorías de KPIs del Capítulo 23.
+* Fuente de datos requerida y su estado actual (pendiente vs. disponible).
+
+No define (fuera de alcance de este capítulo):
+
+* La UI de resultado que ve el usuario final del formulario (eso es Frontend, Capítulo 19) — este dashboard es una herramienta interna, no un producto para el cliente.
+* La infraestructura de despliegue del dashboard (Capítulo 26 — OCI).
+
+### 2. Audiencia y propósito
+
+Herramienta interna para Ciencia de Datos y Producto. No es un dashboard de cliente final ni reemplaza al Frontend del formulario (Capítulo 19). Propósito: detectar *drift*, problemas de disponibilidad y patrones de uso antes de que se conviertan en incidentes reportados por Backend o por usuarios.
+
+### 3. Herramienta seleccionada: Streamlit
+
+Se elige **Streamlit** sobre alternativas (Power BI, Grafana, Metabase) por consistencia con el resto del stack de Ciencia de Datos:
+
+* Mismo lenguaje (Python) que el resto del proyecto — sin curva de aprendizaje adicional para el equipo.
+* Puede leer directamente los artefactos ya generados (`reports/`, `models/metadata_v3.json`) sin una capa de integración extra.
+* Suficiente para el volumen de un MVP recién lanzado (Capítulo 23, sección 5 — frecuencias semanal/diaria, no tiempo real de alto volumen).
+* Se descarta Grafana/Power BI en esta etapa por requerir infraestructura de métricas (Prometheus, conectores) que no existe todavía — se reevalúa si el proyecto escala más allá del MVP.
+
+### 4. Estructura del dashboard
+
+**Sección A — Calidad del modelo (proxy)**
+
+* Gráfico de distribución de clases predichas (período actual) vs. línea base de entrenamiento (Capítulo 23, sección 2).
+* Serie de tiempo: confianza promedio de predicción por semana.
+* Serie de tiempo: % de predicciones con confianza < 50%.
+* Indicador visual de alerta cuando cualquiera de los dos anteriores se desvía más de 2 desviaciones estándar de su propio histórico (umbral a calibrar con los primeros datos reales, no con un número inventado ahora).
+
+**Sección B — Uso y producto**
+
+* Predicciones por día/semana (conteo).
+* Distribución de categorías de recomendación disparadas (Capítulo 17).
+* Proporción de mensajes tipo ALERTA vs. OPORTUNIDAD (Capítulo 17, sección de corrección de Moderado).
+
+**Sección C — Sistema y disponibilidad**
+
+* Estado actual de `/api/v3/health` (Capítulo 22).
+* Latencia p50/p95/p99 de `/api/v3/predict`.
+* Tasa de errores por código (`400` vs `500`), diferenciando origen (validación vs. modelo) según el Capítulo 20, sección 5.
+
+**Sección D — Referencia del modelo (estática)**
+
+* Ranking global de importancia SHAP (Capítulo 17) y métricas de test del modelo activo, leídas directamente de `reports/model_interpretation/` y `models/metadata_v3.json` — contexto de referencia, no recalculado en cada carga del dashboard (SHAP es costoso computacionalmente, Capítulo 17).
+
+### 5. Fuente de datos — dependencia pendiente
+
+Las secciones A, B y C requieren un **registro histórico de predicciones** (input, output, timestamp, código de respuesta, latencia) que **todavía no existe** en ningún capítulo anterior. Sin esto, el dashboard no tiene datos que mostrar más allá de la Sección D.
+
+Se deja como requisito explícito para el Capítulo 25: el microservicio FastAPI debe registrar cada predicción (éxito o error) en un almacenamiento consultable — la decisión de mecanismo concreto (archivo estructurado, SQLite, base de datos) se toma en ese capítulo, no aquí, porque depende de decisiones de implementación que todavía no se han tomado.
+
+### 6. Producto generado
+
+* Especificación de estructura del dashboard (secciones A-D).
+
+* Justificación de herramienta (Streamlit).
+* Requisito de logging de predicciones, formalizado como dependencia del Capítulo 25.
+
+## Capítulo 28 – Documentación Técnica
+
+### Objetivo
+
+Consolidar en un único documento, independiente del manual completo, todo lo que un consumidor externo del microservicio (Backend, o quien construya la imagen Docker) necesita para ejecutarlo e integrarlo, sin depender de leer los Capítulos 1-27.
+
+### 1. Alcance
+
+* Cómo ejecutar el servicio y sus requisitos.
+
+* Referencia consolidada del contrato de datos (Capítulos 20-22).
+* Cómo validar que una instancia del servicio funciona correctamente.
+* Mapa de toda la documentación técnica generada por el proyecto.
+
+### 2. Producto generado
+
+* `docs/documentacion_tecnica_integracion.md` — documento de entrega técnica.
+
+## Capítulo 29 – Checklist antes del Deploy
+
+### Objetivo
+
+Verificar, antes de la entrega formal a Backend y al equipo de Docker/OCI, que el trabajo de Ciencia de Datos está completo, documentado, probado y libre de artefactos que puedan confundir o comprometer el despliegue.
+
+### 1. Alcance
+
+Checklist de preparación del lado de Ciencia de Datos. No cubre pasos operativos de containerización ni de infraestructura OCI — esos quedan en el checklist propio de quien construya los Capítulos 26 y 27.
+
+### 2. Checklist
+
+**Código y artefactos**
+
+* [x] `git status` limpio — sin `venv/`, sin `*.db`, sin `.joblib` descartados de versiones anteriores (v1, v2, "final_v3" pre-regularización)
+* [x] `models/` contiene exactamente los 6 artefactos oficiales: `model_pipeline_v3.joblib`, `metadata_v3.json`, `training_config_v3.json`, `export_log_v3.json`, `label_encoder_v3.joblib`, `columnas_requeridas_final_v3.joblib`
+* [x] `requirements.txt` (raíz y `api/`) actualizado con las dependencias reales usadas
+* [x] Commit y push realizados a `feature/notebooks-analisis`
+* [ ] Pull Request hacia `datascience` actualizado con este último push — **confirmar manualmente en GitHub**
+
+**Pruebas**
+
+* [x] Suite de aceptación (`tests/test_aceptacion_capitulo21.py`) pasa en verde: no-regresión por clase, suma de probabilidades = 100%, manejo de `ERROR_INTERNO_MODELO`
+* [x] Los 4 escenarios de error (`CAMPO_FALTANTE`, `CAMPO_INVALIDO`, `VALOR_FUERA_DE_RANGO`, `ERROR_INTERNO_MODELO`) verificados manualmente vía Swagger
+
+**Documentación**
+
+* [x] `docs/documentacion_tecnica_integracion.md` — documento de entrega único (Capítulo 28)
+* [x] `docs/especificacion-formulario-modelo.md` — contrato de datos detallado
+* [x] `reports/model_interpretation/informe_interpretacion_modelo.md` — interpretación SHAP y casos de estudio
+* [x] `docs/documentacion_tecnica_seleccion_modelo.md` — selección y comparación de modelos
+* [x] Manual (`Manual_Cientifico_Datos.md`) actualizado hasta el capítulo vigente
+
+**Consistencia**
+
+* [x] La versión referenciada en `metadata_v3.json`, en los endpoints (`/api/v3/...`) y en el contrato de datos es la misma (`v3`) en todos los documentos
+* [x] El Pipeline exportado incluye el feature engineering embebido (regularización, Capítulo 18/25) — confirmado, no es el binario descartado
+
+**Pendientes conocidos, no bloqueantes**
+
+* [ ] SLA de latencia bajo carga real — no medido todavía (Capítulo 21, sección 8); se documentará cuando el compañero de Docker/OCI tenga el servicio corriendo en un entorno real
+* [ ] Confirmación explícita de que el equipo de Docker/OCI recibió la rama y no encontró bloqueantes al construir sobre ella
+
+### 3. Producto generado
+
+* Este checklist, con su estado real a la fecha de entrega.
