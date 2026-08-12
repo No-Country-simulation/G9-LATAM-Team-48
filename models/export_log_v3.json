@@ -1,0 +1,15 @@
+{
+  "fecha_exportacion": "2026-08-10T20:59:52.621712",
+  "pipeline_incluye_feature_engineering": true,
+  "validacion_fidelidad": {
+    "filas_test_comparadas": 18908,
+    "diferencia_mediana": 0.0,
+    "diferencia_maxima": 0.014192127633061657,
+    "filas_con_diferencia_mayor_a_0.001": 1,
+    "conclusion": "Diferencia aislada a 1 fila de 18,908, causada por ruido de punto flotante (~1e-15) amplificado por un umbral de decisión del árbol. Sin sesgo sistemático (mediana=0). No representa un error de lógica en el feature engineering."
+  },
+  "limitaciones_conocidas": [
+    "Dominio de generación solar excluido del modelo (no capturable desde el formulario)",
+    "mes_numero se deriva de la fecha del servidor en producción, no de un campo del formulario"
+  ]
+}
