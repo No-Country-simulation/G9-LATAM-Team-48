@@ -25,7 +25,7 @@ Plataforma para el análisis y la optimización del consumo energético (**Energ
 | [`docs/`](./docs) | Documentación — índice en [`docs/README.md`](./docs/README.md); **prod:** [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md) |
 | [`qa/`](./qa) | Checklist P0/P1, smoke scripts y notas NAS (sin tocar código de producto) |
 
-> **Rama de deploy:** `Jorge-martinez` (Vercel + **OCI** + Render).  
+> **Ramas:** `main` = **producción** · `Jorge-martinez` = **desarrollo**.  
 > **Documentación de prod completa:** [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md) (servicios, URLs, env vars, ML, troubleshooting).
 
 ---
@@ -88,9 +88,9 @@ Documentación de auth, email y admin: [`docs/backend/AUTH_EMAIL_ADMIN.md`](./do
 
 | Capa | Plataforma | URL / notas |
 |------|------------|-------------|
-| **Frontend** | [Vercel](https://vercel.com) | https://g9-latam-team-48.vercel.app — Root `frontend`, rama `Jorge-martinez` |
-| **Backend + MySQL** | **OCI VM** (Podman) | API `:8080` — proxy desde Vercel (`frontend/vercel.json` → `163.176.248.56:8080`) |
-| **ML (Análisis IA)** | [Render](https://render.com) | https://ml-service-lbfk.onrender.com — Root `ml-service`, Docker, plan Free |
+| **Frontend** | [Vercel](https://vercel.com) | https://g9-latam-team-48.vercel.app — Root `frontend`, Production Branch **`main`** |
+| **Backend + MySQL** | **OCI VM** (Podman) | API `:8080` — proxy desde Vercel (`frontend/vercel.json` → `163.176.248.56:8080`); deploy desde **`main`** |
+| **ML (Análisis IA)** | [Render](https://render.com) | https://ml-service-lbfk.onrender.com — Root `ml-service`, Docker, plan Free; branch **`main`** |
 
 Detalle, variables `.env` completas y cambios técnicos: **[`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md)**.
 
@@ -112,7 +112,8 @@ Usuarios demo (emails en Flyway **V6**; contraseñas solo por canal del equipo /
 | `admin@energyai.com` | ADMIN |
 | `team48@energyai.com` | USER |
 
-> Un push a `Jorge-martinez` redespliega Vercel (front). El backend en OCI se actualiza con `git pull` + rebuild en la VM (ver [`docs/DEPLOY_PRODUCCION.md`](./docs/DEPLOY_PRODUCCION.md)).
+> **Prod:** push a `main` → Vercel Production + (manual) pull/rebuild en OCI + redeploy Render.  
+> **Dev:** trabajar en `Jorge-martinez` (preview Vercel / local); merge a `main` cuando esté listo para prod.
 
 ---
 

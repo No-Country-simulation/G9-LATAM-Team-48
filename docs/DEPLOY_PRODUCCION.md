@@ -1,6 +1,15 @@
 # Deploy en producción — EnergIA (Team 48)
 
-Documento consolidado: **servicios en la nube**, **variables de entorno**, **flujo Análisis IA** y **cambios técnicos** en la rama `Jorge-martinez` (agosto 2026).
+Documento consolidado: **servicios en la nube**, **variables de entorno**, **flujo Análisis IA** y **cambios técnicos** (agosto 2026).
+
+### Ramas Git
+
+| Rama | Uso |
+|------|-----|
+| **`main`** | **Producción** — Vercel Production, OCI (`git pull` + jar), Render ML |
+| **`Jorge-martinez`** | **Desarrollo** — trabajo diario, previews Vercel, pruebas locales |
+
+Flujo: desarrollar en `Jorge-martinez` → merge/PR a `main` → redeploy prod.
 
 ---
 
@@ -33,12 +42,12 @@ Usuario
 
 | Capa | Plataforma | Notas |
 |------|------------|--------|
-| Frontend | Vercel | Root `frontend`; rama `Jorge-martinez` |
-| API + MySQL | **OCI VM** (Podman) | Spring `:8080`; MySQL solo en `127.0.0.1:3306` del host |
-| ML inferencia | Render | Web Service Docker; root `ml-service` |
+| Frontend | Vercel | Root `frontend`; Production Branch **`main`** |
+| API + MySQL | **OCI VM** (Podman) | Spring `:8080`; MySQL solo en `127.0.0.1:3306` del host; código desde **`main`** |
+| ML inferencia | Render | Web Service Docker; root `ml-service`; branch **`main`** |
 | Ciencia de datos | — | No se despliega (`datascience/`) |
 
-**Rama de deploy:** `Jorge-martinez`.
+**Rama de producción:** `main`. **Rama de desarrollo:** `Jorge-martinez`.
 
 El navegador **no** llama a Render ni a la IP de OCI directamente: Vercel reescribe `/api/*` hacia el backend (ver [`frontend/vercel.json`](../frontend/vercel.json)). Spring llama al ML con `PREDICTION_API_BASE_URL`.
 
@@ -114,11 +123,13 @@ MAIL_FROM=energyiaTeam48@gmail.com
 **Redeploy / reinicio seguro** (sin `docker-compose … --force-recreate backend`):
 
 ```bash
-cd ~/G9-LATAM-Team-48/backend
+cd ~/G9-LATAM-Team-48
+git fetch origin
+git checkout main
+git pull --ff-only origin main
+cd backend
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 export PATH="$JAVA_HOME/bin:/usr/bin:$PATH"
-# Solo si hay cambios de código que deban entrar al jar:
-# git pull   # cuando el equipo lo autorice
 mvn -B package -DskipTests
 sudo systemctl restart energy-backend.service
 sudo systemctl status energy-backend.service --no-pager

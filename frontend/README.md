@@ -55,7 +55,7 @@ Hackathon ONE G9 · Team 48
 | **Frontend** | [g9-latam-team-48.vercel.app](https://g9-latam-team-48.vercel.app) |
 | **API (prod)** | Mismo origen: `/api/*` proxeado a OCI (`vercel.json`). Directo: `http://163.176.248.56:8080` |
 | **ML (Render)** | `https://ml-service-lbfk.onrender.com` (solo backend; ver [`docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md)) |
-| **Deploy Git** | Rama **`Jorge-martinez`** · Vercel **Root Directory:** `frontend` |
+| **Deploy Git** | Production **`main`** · Dev **`Jorge-martinez`** · Vercel **Root Directory:** `frontend` |
 
 En producción **no hace falta** `VITE_API_URL` si el proxy en `vercel.json` está activo (axios usa base URL vacía = mismo origen). Para dev local: `VITE_API_URL=http://localhost:8080`.
 

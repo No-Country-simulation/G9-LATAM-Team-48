@@ -18,7 +18,7 @@ Aquí vive la checklist de pruebas y scripts de smoke; no modifica el código de
 | [import-dataset-remote.ps1](./import-dataset-remote.ps1) | Carga `03_feature_engineering.csv` → MySQL remoto (OCI; activa `fromDataset` en API) |
 | [load-qa-secrets.ps1](./load-qa-secrets.ps1) + [secrets.local.ps1.example](./secrets.local.ps1.example) | Credenciales QA fuera de Git |
 
-Rama de deploy de referencia: `Jorge-martinez`.
+Ramas: `main` = prod · `Jorge-martinez` = dev.
 
 ### Secretos y GitGuardian
 
