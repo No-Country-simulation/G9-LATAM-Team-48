@@ -65,9 +65,15 @@ function GraficoVariacionMensual({
                 }}
               />
               <ReferenceLine y={0} stroke={gridColor} />
+              {/* <Tooltip
+                {...chartTooltipProps(theme, {locale, unit: 'pct'})}
+                labelFormatter={(_label, payload) => payload?.[0]?.payload?.mesFull ?? _label}
+              /> */}
               <Tooltip
                 {...chartTooltipProps(theme, {locale, unit: 'pct'})}
                 labelFormatter={(_label, payload) => payload?.[0]?.payload?.mesFull ?? _label}
+                labelStyle={{color: textColor}}
+                itemStyle={{color: textColor}}
               />
               <Bar dataKey="variacionPct" name={t('chart.variationSeries')} radius={[4, 4, 0, 0]}>
                 {datos.map(entry => (
