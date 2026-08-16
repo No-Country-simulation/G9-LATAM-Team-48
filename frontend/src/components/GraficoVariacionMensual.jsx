@@ -84,6 +84,22 @@ function GraficoVariacionMensual({
                 labelFormatter={(_label, payload) =>
                   payload?.[0]?.payload?.mesFull ?? _label
                 }
+                labelStyle={{ color: textColor }}
+                itemStyle={{ color: textColor }}
+                formatter={(value, name) => {
+                  const variation = Number(value)
+                  const color = variation >= 0 ? negative : positive
+
+                  return [
+                    <span style={{ color, fontWeight: 700 }}>
+                      {variation.toLocaleString(locale, {
+                        maximumFractionDigits: 1,
+                      })}{' '}
+                      %
+                    </span>,
+                    name,
+                  ]
+                }}
               />
               <Bar
                 dataKey="variacionPct"
