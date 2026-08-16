@@ -103,22 +103,30 @@ MAIL_FROM=energyiaTeam48@gmail.com
 > No definir `RESEND_API_KEY` en la VM (si existe, Resend tiene prioridad sobre SMTP).
 > Links de verificación/reset usan `FRONTEND_BASE_URL` (Vercel). Ver [`backend/AUTH_EMAIL_ADMIN.md`](./backend/AUTH_EMAIL_ADMIN.md).
 
-**Redeploy backend en OCI** (tras `git pull` en la VM):
+### Runtime actual en OCI (systemd) — **canónico**
+
+| Servicio | Unit | Qué hace |
+|----------|------|----------|
+| API | `energy-backend.service` (`enabled`) | `java -jar …/backend/target/energy-backend-0.1.0-SNAPSHOT.jar` |
+| Env | `/etc/energy-backend.env` | Variables de prod (no commitear) |
+| MySQL | Podman `energyai-db` + `container-energyai-db.service` | Puerto 3306 |
+
+**Redeploy / reinicio seguro** (sin `docker-compose … --force-recreate backend`):
 
 ```bash
 cd ~/G9-LATAM-Team-48/backend
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 export PATH="$JAVA_HOME/bin:/usr/bin:$PATH"
+# Solo si hay cambios de código que deban entrar al jar:
+# git pull   # cuando el equipo lo autorice
 mvn -B package -DskipTests
-mkdir -p deploy && cp target/energy-backend-*.jar deploy/app.jar
-sudo podman build --pull=never -f Dockerfile.repack -t g9-latam-team-48-backend:latest .
-cd ~/G9-LATAM-Team-48
-sudo DOCKER_HOST=unix:///run/podman/podman.sock \
-  /usr/local/bin/docker-compose -f docker-compose.oci.yml up -d --force-recreate backend
+sudo systemctl restart energy-backend.service
+sudo systemctl status energy-backend.service --no-pager
 curl -s http://127.0.0.1:8080/actuator/health
 ```
 
-> **Nota (ago 2026):** en la VM a veces el API corre como **jar directo** (`java -jar …/target/energy-backend-*.jar`) con MySQL en Podman. El flujo documentado arriba (compose + `Dockerfile.repack`) sigue siendo el canónico. Sync de cambios hechos a mano en OCI: [`backend/OCI_SYNC_2026-08-16.md`](./backend/OCI_SYNC_2026-08-16.md).
+> **No** recrear el stack con el compose “nuevo” (`energia_mysql` / `energia_backend`): deja de usar los units systemd y puede romper prod.  
+> Detalle del sync ago-2026: [`backend/OCI_SYNC_2026-08-16.md`](./backend/OCI_SYNC_2026-08-16.md).
 
 El primer arranque tras **Flyway V12** puede tardar **2–3 min** (índice + generación de rollups del dashboard). Reinicios siguientes son más rápidos si las tablas rollup ya están pobladas.
 
