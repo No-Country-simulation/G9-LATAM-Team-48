@@ -9,16 +9,23 @@ COPY ml-service/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ml-service/app ./app
+COPY ml-service/src ./src
 COPY ml-service/models ./models
 # Canon DS: datascience/models (trio v3 exportado en notebooks)
 COPY datascience/models ./models-ds
+ENV PYTHONPATH=/app
 RUN set -e; \
     if [ -d models-ds ]; then \
       for f in models-ds/columnas_requeridas_final_v3.joblib \
                models-ds/label_encoder_v3.joblib \
-               models-ds/modelo_perfil_energetico_final_v3.joblib; do \
+               models-ds/modelo_perfil_energetico_final_v3.joblib \
+               models-ds/model_pipeline_v3.joblib; do \
         if [ -f "$f" ]; then cp "$f" models/; fi; \
       done; \
+      if [ ! -f models/modelo_perfil_energetico_final_v3.joblib ] \
+         && [ -f models/model_pipeline_v3.joblib ]; then \
+        cp models/model_pipeline_v3.joblib models/modelo_perfil_energetico_final_v3.joblib; \
+      fi; \
     fi; \
     true
 

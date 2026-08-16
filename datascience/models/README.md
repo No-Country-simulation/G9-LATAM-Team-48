@@ -1,23 +1,32 @@
-# Artefactos del modelo (export notebooks)
+# Artefactos del modelo v3 (export rama `datascience` / notebooks 08_Exportacion)
 
-Ruta de export desde `notebooks/06_Modelos.ipynb` (rama datascience):
+## Trio canónico (ml-service / Render)
 
 | Archivo | Uso |
 |---------|-----|
-| `columnas_requeridas_final_v3.joblib` | Orden/nombres de entrada del modelo v3 |
-| `label_encoder_v3.joblib` | Encoder(s) de categorías / objetivo |
-| `modelo_perfil_energetico_final_v3.joblib` | Pipeline o clasificador v3 |
+| `columnas_requeridas_final_v3.joblib` | Orden/nombres de entrada |
+| `label_encoder_v3.joblib` | Encoder de clases / categorías |
+| `modelo_perfil_energetico_final_v3.joblib` | Pipeline LightGBM v3 (**alias** de `model_pipeline_v3.joblib`) |
 
-**Git:** los `*.joblib` están ignorados por defecto; para versionarlos:
+También versionado:
 
-```powershell
-git add -f datascience/models/columnas_requeridas_final_v3.joblib `
-           datascience/models/label_encoder_v3.joblib `
-           datascience/models/modelo_perfil_energetico_final_v3.joblib
-```
+| Archivo | Notas |
+|---------|-------|
+| `model_pipeline_v3.joblib` | Nombre original del export DS |
+| `metadata_v3.json` | F1 macro 0.91, 55 features, 12 crudas |
+| `export_log_v3.json` / `training_config_v3.json` | Auditoría de export |
 
-**Deploy:** el Dockerfile de `ml-service` copia estos archivos a `/app/models/` en Render. Local:
+**Copiar a ml-service:**
 
 ```powershell
 .\ml-service\scripts\copy-v3-models.ps1
 ```
+
+**Git:** `*.joblib` ignorados por defecto; excepción `!datascience/models/*.joblib`.
+
+```powershell
+.\scripts\add-datascience-v3-models.ps1
+```
+
+Interpretación SHAP: `../reports/model_interpretation/`.
+Especificación del formulario: `../docs/especificacion-formulario-modelo.md`.

@@ -70,9 +70,10 @@ app:
     min-area-threshold: ${APP_CALCULATION_MIN_AREA_THRESHOLD:10.0}
     poor-insulation-ratio-threshold: ${APP_CALCULATION_POOR_INSULATION_RATIO_THRESHOLD:0.5}
     fair-insulation-ratio-threshold: ${APP_CALCULATION_FAIR_INSULATION_RATIO_THRESHOLD:0.2}
-    insulation-factor-poor: ${APP_CALCULATION_INSULATION_FACTOR_POOR:1.4}
+    # Alineado a SHAP v3 (Bueno=0.7, Regular=1.0, Malo=1.3) — reports DS
+    insulation-factor-poor: ${APP_CALCULATION_INSULATION_FACTOR_POOR:1.3}
     insulation-factor-fair: ${APP_CALCULATION_INSULATION_FACTOR_FAIR:1.0}
-    insulation-factor-good: ${APP_CALCULATION_INSULATION_FACTOR_GOOD:0.8}
+    insulation-factor-good: ${APP_CALCULATION_INSULATION_FACTOR_GOOD:0.7}
     default-equipment-count: ${APP_CALCULATION_DEFAULT_EQUIPMENT_COUNT:5}
     high-equipment-threshold: ${APP_CALCULATION_HIGH_EQUIPMENT_THRESHOLD:10}
     medium-equipment-threshold: ${APP_CALCULATION_MEDIUM_EQUIPMENT_THRESHOLD:5}

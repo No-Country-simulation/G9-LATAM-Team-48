@@ -178,8 +178,13 @@ class EnergyModelService:
     ) -> PredictionResponse:
         assert self._v3 is not None
         bundle = self._v3
-        frame = build_v3_input_frame(features, bundle)
-        X = transform_v3_features(frame, bundle)
+        if bundle.is_full_pipeline:
+            # Pipeline DS: FeatureEngineerV3 + clasificador — input = 12 crudas.
+            frame = pd.DataFrame([_coerce_row(features)])
+            X = frame
+        else:
+            frame = build_v3_input_frame(features, bundle)
+            X = transform_v3_features(frame, bundle)
         raw_label = bundle.model.predict(X)[0]
         decoded = decode_v3_label(raw_label, bundle)
         confidence = v3_predict_proba(bundle.model, X, raw_label, bundle.y_encoder)

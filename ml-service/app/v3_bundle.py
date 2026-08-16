@@ -17,6 +17,8 @@ log = logging.getLogger(__name__)
 V3_COLUMNS_FILE = "columnas_requeridas_final_v3.joblib"
 V3_ENCODER_FILE = "label_encoder_v3.joblib"
 V3_MODEL_FILE = "modelo_perfil_energetico_final_v3.joblib"
+# Nombre exportado en rama datascience (notebooks 08_Exportacion)
+V3_MODEL_FILE_ALT = "model_pipeline_v3.joblib"
 
 CATEGORICAL_API_KEYS = frozenset({"tipo_inmueble", "aislamiento_termico", "zona"})
 
@@ -35,6 +37,32 @@ class V3Bundle:
     x_encoders: dict[str, Any]
     y_encoder: Any | None
     x_preprocessor: Any | None
+    # True si el .joblib es Pipeline(FeatureEngineerV3 → clasificador) con 12 inputs crudos
+    is_full_pipeline: bool = False
+
+
+def _ensure_src_on_path() -> None:
+    """El pipeline DS importa ``src.features.feature_engineer_v3`` al unpickle."""
+    import sys
+    from pathlib import Path
+
+    roots = [
+        Path(__file__).resolve().parents[1],  # ml-service/
+        Path(__file__).resolve().parents[2] / "datascience",
+    ]
+    for root in roots:
+        src = root / "src" / "features" / "feature_engineer_v3.py"
+        if src.is_file() and str(root) not in sys.path:
+            sys.path.insert(0, str(root))
+            return
+    # último recurso: ml-service aunque aún no exista el módulo
+    fallback = str(Path(__file__).resolve().parents[1])
+    if fallback not in sys.path:
+        sys.path.insert(0, fallback)
+
+
+def _is_sklearn_pipeline(model: Any) -> bool:
+    return hasattr(model, "steps") and hasattr(model, "predict") and hasattr(model, "named_steps")
 
 
 def v3_bundle_paths(models_dir: Path | None = None) -> tuple[Path, Path, Path] | None:
@@ -45,6 +73,8 @@ def v3_bundle_paths(models_dir: Path | None = None) -> tuple[Path, Path, Path] |
         cols = directory / V3_COLUMNS_FILE
         enc = directory / V3_ENCODER_FILE
         model = directory / V3_MODEL_FILE
+        if not model.is_file():
+            model = directory / V3_MODEL_FILE_ALT
         if cols.is_file() and enc.is_file() and model.is_file():
             return cols, enc, model
     return None
@@ -127,22 +157,28 @@ def _parse_encoder_artifact(raw: Any) -> tuple[dict[str, Any], Any | None, Any |
 
 
 def load_v3_bundle(cols_path: Path, encoder_path: Path, model_path: Path) -> V3Bundle:
+    _ensure_src_on_path()
     columns_raw = joblib.load(cols_path)
     encoder_raw = joblib.load(encoder_path)
     model = joblib.load(model_path)
 
     feature_columns = _as_column_list(columns_raw)
     feature_columns = [c for c in feature_columns if c != "perfil_energetico"]
+    full_pipeline = _is_sklearn_pipeline(model)
     names_in = getattr(model, "feature_names_in_", None)
-    if names_in is not None:
+    if full_pipeline:
+        # Entrada = 12 features crudas del formulario (FE interno del Pipeline).
+        feature_columns = list(FEATURE_KEYS)
+    elif names_in is not None:
         feature_columns = list(names_in)
     elif not feature_columns:
         feature_columns = list(FEATURE_KEYS)
 
     x_encoders, y_encoder, x_preprocessor = _parse_encoder_artifact(encoder_raw)
     log.info(
-        "Bundle v3: %s columnas, encoders X=%s, preprocessor=%s, encoder y=%s",
+        "Bundle v3: %s columnas, pipeline=%s, encoders X=%s, preprocessor=%s, encoder y=%s",
         len(feature_columns),
+        full_pipeline,
         list(x_encoders.keys()) if x_encoders else "—",
         type(x_preprocessor).__name__ if x_preprocessor else "—",
         type(y_encoder).__name__ if y_encoder else "—",
@@ -153,6 +189,7 @@ def load_v3_bundle(cols_path: Path, encoder_path: Path, model_path: Path) -> V3B
         x_encoders=x_encoders,
         y_encoder=y_encoder,
         x_preprocessor=x_preprocessor,
+        is_full_pipeline=full_pipeline,
     )
 
 

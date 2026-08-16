@@ -57,7 +57,7 @@ POST /api/analisis
 | API | `GET /api/recomendaciones?nivel=efficient&domain=climate` (etc.) |
 | i18n front | `PILOT_CATALOG_KEYS` + `npm run build:catalog` (es/en; resto fallback a en) |
 
-**Próximas fases:** escalar a ~100 tips por categoría × nivel; traducciones completas en los 21 locales.
+**Próximas fases:** escalar tips; artefactos DS v3 + SHAP en [`DATASCIENCE_V3_ARTEFACTOS.md`](./DATASCIENCE_V3_ARTEFACTOS.md).
 
 ---
 
@@ -67,7 +67,9 @@ Configuración en `application.yml` → `app.calculation`. Override en OCI:
 
 ```bash
 APP_CALCULATION_DEFAULT_CONSUMPTION_PER_PERSON=150.0   # umbral occupancy
-APP_CALCULATION_INSULATION_FACTOR_FAIR=1.0             # aislamiento calculado ≥ → insulation
+APP_CALCULATION_INSULATION_FACTOR_POOR=1.3             # Malo (SHAP v3)
+APP_CALCULATION_INSULATION_FACTOR_FAIR=1.0             # Regular
+APP_CALCULATION_INSULATION_FACTOR_GOOD=0.7             # Bueno
 ```
 
 Ver `backend/.env.example` para la lista completa.
