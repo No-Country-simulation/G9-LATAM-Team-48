@@ -1,0 +1,85 @@
+# ============================================================================
+# Perfil PROD - produccion
+# ----------------------------------------------------------------------------
+# Todos los valores sensibles se resuelven EXCLUSIVAMENTE desde variables de
+# entorno (sin defaults inseguros). Se activa con SPRING_PROFILES_ACTIVE=prod.
+# ============================================================================
+
+server:
+  port: ${SERVER_PORT:${PORT:8080}}
+
+logging:
+  level:
+    root: WARN
+    com.alura: INFO
+
+# En produccion la interfaz de Swagger UI permanece deshabilitada por seguridad.
+springdoc:
+  swagger-ui:
+    enabled: false
+
+security:
+  jwt:
+    # Obligatorio en produccion: la aplicacion no debe arrancar sin un secreto real.
+    secret: ${JWT_SECRET}
+    expiration: ${JWT_EXPIRATION:86400000}
+
+prediction:
+  api:
+    base-url: ${PREDICTION_API_BASE_URL}
+    timeout: ${PREDICTION_API_TIMEOUT:60000}
+
+# Persistencia MySQL obligatoria en produccion
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
+    hikari:
+      # Pool afinado en OCI (jar directo / compose): evita leaks en queries largas del dashboard.
+      leak-detection-threshold: ${HIKARI_LEAK_DETECTION_MS:20000}
+      connection-timeout: ${HIKARI_CONNECTION_TIMEOUT_MS:10000}
+      max-lifetime: ${HIKARI_MAX_LIFETIME_MS:1740000}
+      maximum-pool-size: ${HIKARI_MAX_POOL_SIZE:10}
+      minimum-idle: ${HIKARI_MIN_IDLE:2}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 10000
+          timeout: 10000
+          writetimeout: 10000
+
+app:
+  persistence:
+    type: jpa
+  frontend-base-url: ${FRONTEND_BASE_URL:https://g9-latam-team-48.vercel.app}
+  mail:
+    enabled: ${MAIL_ENABLED:false}
+    from: ${MAIL_FROM:${MAIL_USERNAME:}}
+    # Prod OCI (Team 48): Gmail SMTP vía MAIL_*; dejar RESEND_API_KEY vacío.
+    # Resend opcional si RESEND_API_KEY está definida (tiene prioridad sobre SMTP).
+    resend-api-key: ${RESEND_API_KEY:}
+  google:
+    client-id: ${GOOGLE_CLIENT_ID:}
+
+# Actuator: SMTP suele marcar DOWN en prod aunque la API funcione.
+management:
+  health:
+    mail:
+      enabled: false

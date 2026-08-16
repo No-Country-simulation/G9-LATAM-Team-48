@@ -1,0 +1,80 @@
+package com.alura.recommendation.service;
+
+import com.alura.recommendation.dto.RecommendationItem;
+import com.alura.recommendation.persistence.RecommendationCatalogEntity;
+import org.springframework.stereotype.Component;
+
+import java.util.Locale;
+
+@Component
+public class RecommendationCatalogMapper {
+
+    public RecommendationItem toFrontendItem(RecommendationCatalogEntity entity) {
+        String type = entity.getType() != null ? entity.getType().toUpperCase(Locale.ROOT) : "INFO";
+        String categoryKey = entity.getCategoryKey() != null && !entity.getCategoryKey().isBlank()
+                ? entity.getCategoryKey()
+                : categoryKeyFor(entity.getTipKey(), type);
+        return new RecommendationItem(
+                entity.getId().intValue(),
+                entity.getTipKey(),
+                categoryKey,
+                priorityKeyForType(type),
+                estimatedSavingsForType(type),
+                entity.getTitle(),
+                entity.getTitle());
+    }
+
+    private static String priorityKeyForType(String type) {
+        return switch (type) {
+            case "ALERTA" -> "high";
+            case "OPORTUNIDAD" -> "medium";
+            default -> "low";
+        };
+    }
+
+    private static String estimatedSavingsForType(String type) {
+        return switch (type) {
+            case "ALERTA" -> "12%";
+            case "OPORTUNIDAD" -> "8%";
+            default -> "5%";
+        };
+    }
+
+    private static String categoryKeyFor(String tipKey, String type) {
+        if (tipKey == null) {
+            return "habits";
+        }
+        String key = tipKey.toUpperCase(Locale.ROOT);
+        if (key.startsWith("INSULATION") || key.contains("INSULAT") || key.contains("THERMAL_BRIDGE")) {
+            return "insulation";
+        }
+        if (key.startsWith("OCCUPANCY") || key.contains("OCCUPAN") || key.contains("PER_PERSON")) {
+            return "occupancy";
+        }
+        if (key.startsWith("BUILDING") || key.contains("HOUSE") || key.contains("APARTMENT")) {
+            return "building";
+        }
+        if (key.startsWith("PEAK") || key.contains("PEAK_HOUR") || key.contains("OFF_PEAK")) {
+            return "peak";
+        }
+        if (key.startsWith("ZONE")) {
+            return "zone";
+        }
+        if (key.contains("AC") || key.contains("HVAC") || key.contains("CLIMAT")) {
+            return "climate";
+        }
+        if (key.contains("LED") || key.contains("LIGHT") || key.contains("ILUMIN")) {
+            return "lighting";
+        }
+        if (key.contains("COMMERCIAL") || key.contains("EQUIP") || key.contains("CIRCUIT")) {
+            return "equipment";
+        }
+        if (key.contains("TECH") || key.contains("SMART") || key.contains("STANDBY")) {
+            return "tech";
+        }
+        if ("ALERTA".equals(type)) {
+            return "climate";
+        }
+        return "habits";
+    }
+}

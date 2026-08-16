@@ -1,0 +1,67 @@
+# OCI VM: MySQL + Spring API only (frontend on Vercel, ML on Render).
+# Usage: docker-compose -f docker-compose.oci.yml up -d --build
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: energyai-db
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3306:3306"
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-energia_ia}
+      MYSQL_USER: ${MYSQL_USER:-energia_app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - energyai_mysqldata:/var/lib/mysql
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: energyai-backend
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
+      SERVER_PORT: 8080
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-86400000}
+      PREDICTION_API_BASE_URL: ${PREDICTION_API_BASE_URL}
+      APP_PERSISTENCE_TYPE: jpa
+      FLYWAY_ENABLED: "true"
+      JPA_DDL: validate
+      DB_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE:-energia_ia}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8&connectionCollation=utf8mb4_unicode_ci
+      DB_USERNAME: ${MYSQL_USER:-energia_app}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      DB_DRIVER: com.mysql.cj.jdbc.Driver
+      FRONTEND_BASE_URL: ${FRONTEND_BASE_URL}
+      MAIL_ENABLED: ${MAIL_ENABLED:-false}
+      MAIL_HOST: ${MAIL_HOST:-smtp.gmail.com}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_FROM: ${MAIL_FROM:-}
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 120s
+
+volumes:
+  energyai_mysqldata:

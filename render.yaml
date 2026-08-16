@@ -1,0 +1,12 @@
+# Blueprint Render — ML desde monorepo (incluye datascience/models → v3)
+services:
+  - type: web
+    name: g9-latam-ml
+    rootDir: .
+    runtime: docker
+    dockerfilePath: ml-service/Dockerfile.monorepo
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"

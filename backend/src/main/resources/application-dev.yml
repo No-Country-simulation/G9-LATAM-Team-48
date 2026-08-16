@@ -1,0 +1,81 @@
+# ============================================================================
+# Perfil DEV - desarrollo local
+# ----------------------------------------------------------------------------
+# Por defecto: usuarios en memoria (sin MySQL).
+# Para MySQL + Flyway:
+#   APP_PERSISTENCE_TYPE=jpa
+#   FLYWAY_ENABLED=true
+#   DB_URL / DB_USERNAME / DB_PASSWORD
+# Ver backend/.env.example
+# ============================================================================
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    com.alura: DEBUG
+
+springdoc:
+  swagger-ui:
+    enabled: true
+
+prediction:
+  api:
+    base-url: http://localhost:8000
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:h2:mem:energia;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL:update}
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: ${FLYWAY_ENABLED:false}
+  h2:
+    console:
+      enabled: true
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 10000
+          timeout: 10000
+          writetimeout: 10000
+
+app:
+  persistence:
+    type: ${APP_PERSISTENCE_TYPE:in-memory}
+  frontend-base-url: ${FRONTEND_BASE_URL:http://localhost:5173}
+  mail:
+    from: ${MAIL_FROM:${MAIL_USERNAME:}}
+    enabled: ${MAIL_ENABLED:true}
+    resend-api-key: ${RESEND_API_KEY:}
+  email-verification:
+    # false = el usuario solo verifica con el link del mail (no auto-verify en UI)
+    expose-token: ${EMAIL_VERIFICATION_EXPOSE_TOKEN:false}
+    ttl-hours: ${EMAIL_VERIFICATION_TTL_HOURS:48}
+  password-reset:
+    # false = cambiar password solo con el link del mail
+    expose-token: ${PASSWORD_RESET_EXPOSE_TOKEN:false}
+    ttl-hours: ${PASSWORD_RESET_TTL_HOURS:24}
+  google:
+    # Mismo Client ID que VITE_GOOGLE_CLIENT_ID (Google Cloud Console → OAuth Web)
+    client-id: ${GOOGLE_CLIENT_ID:}

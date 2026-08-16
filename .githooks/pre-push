@@ -1,0 +1,25 @@
+#!/bin/sh
+# Bloquea push si algun commit nuevo incluye co-autoría de Cursor.
+zero="0000000000000000000000000000000000000000"
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [ -z "$local_sha" ] && continue
+  [ "$local_sha" = "$zero" ] && continue
+
+  if [ "$remote_sha" = "$zero" ]; then
+    range="$local_sha"
+  else
+    range="${remote_sha}..${local_sha}"
+  fi
+
+  if git log --format=%B "$range" 2>/dev/null | grep -qiE 'Co-authored-by:[[:space:]]*Cursor[[:space:]]*<'; then
+    echo >&2 ""
+    echo >&2 "Push bloqueado: hay commits con Co-authored-by: Cursor en $range"
+    echo >&2 "Reescribi el mensaje (ver docs en .cursor/rules/git-commits-no-cursor-coauthor.mdc)."
+    git log --oneline "$range" 2>/dev/null | head -8 >&2
+    echo >&2 ""
+    exit 1
+  fi
+done
+
+exit 0

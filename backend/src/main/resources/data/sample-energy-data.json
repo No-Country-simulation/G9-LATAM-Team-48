@@ -1,0 +1,23 @@
+[
+  {
+    "userId": "1",
+    "month": "2026-06",
+    "consumptionKwh": 180.5,
+    "peakHourUsageKwh": 42.0,
+    "tariffPerKwh": 0.15
+  },
+  {
+    "userId": "2",
+    "month": "2026-06",
+    "consumptionKwh": 520.0,
+    "peakHourUsageKwh": 210.3,
+    "tariffPerKwh": 0.15
+  },
+  {
+    "userId": "3",
+    "month": "2026-06",
+    "consumptionKwh": 310.2,
+    "peakHourUsageKwh": 120.7,
+    "tariffPerKwh": 0.15
+  }
+]
