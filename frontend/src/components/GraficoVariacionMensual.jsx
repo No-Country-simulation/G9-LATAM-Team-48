@@ -27,7 +27,7 @@ function GraficoVariacionMensual({
   const { theme } = useTheme()
   const { t, locale } = useLocale()
   const gridColor = theme === 'dark' ? '#444' : '#ccc'
-  const textColor = theme === 'dark' ? '#ccc' : '#333'
+  const textColor = theme === 'dark' ? '#ccc' : '#969595'
   const positive = theme === 'dark' ? '#75b798' : '#198754'
   const negative = theme === 'dark' ? '#e35d6a' : '#dc3545'
 
