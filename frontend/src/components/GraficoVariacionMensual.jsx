@@ -72,6 +72,8 @@ function GraficoVariacionMensual({
               <Tooltip
                 {...chartTooltipProps(theme, {locale, unit: 'pct'})}
                 labelFormatter={(_label, payload) => payload?.[0]?.payload?.mesFull ?? _label}
+                labelStyle={{color: textColor}}
+                itemStyle={{color: textColor}}
                 formatter={(value, name) => {
                   const variation = Number(value);
                   const color = variation >= 0 ? negative : positive;
