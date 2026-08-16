@@ -864,6 +864,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Eliminar dispositivos fantasma conectados a la red doméstica",
       "description": "Eliminar dispositivos fantasma conectados a la red doméstica"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Mejorar sellado de juntas en muros y techos con aislamiento débil",
+      "description": "Mejorar sellado de juntas en muros y techos con aislamiento débil"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Agregar burletes en puertas exteriores para reducir filtraciones",
+      "description": "Agregar burletes en puertas exteriores para reducir filtraciones"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Revisar cámaras de aire y material aislante en techos prioritarios",
+      "description": "Revisar cámaras de aire y material aislante en techos prioritarios"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Usar cortinas térmicas en ventanas de fachadas frías o soleadas",
+      "description": "Usar cortinas térmicas en ventanas de fachadas frías o soleadas"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Priorizar aislamiento en habitaciones de mayor permanencia diaria",
+      "description": "Priorizar aislamiento en habitaciones de mayor permanencia diaria"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detectar puentes térmicos en esquinas y dinteles con termografía casera",
+      "description": "Detectar puentes térmicos en esquinas y dinteles con termografía casera"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Sellar huecos alrededor de cañerías y cajas eléctricas en muros exteriores",
+      "description": "Sellar huecos alrededor de cañerías y cajas eléctricas en muros exteriores"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluar paneles aislantes desmontables en techos de chapa o concreto",
+      "description": "Evaluar paneles aislantes desmontables en techos de chapa o concreto"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Mantener persianas cerradas en invierno por la noche para retener calor",
+      "description": "Mantener persianas cerradas en invierno por la noche para retener calor"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Planificar mejora de aislamiento si el formulario indica nivel Malo",
+      "description": "Planificar mejora de aislamiento si el formulario indica nivel Malo"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Ajustar hábitos de ducha y agua caliente al número real de ocupantes",
+      "description": "Ajustar hábitos de ducha y agua caliente al número real de ocupantes"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Compartir electrodomésticos de alto consumo entre ocupantes por turno",
+      "description": "Compartir electrodomésticos de alto consumo entre ocupantes por turno"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Evitar climatizar habitaciones sin ocupación activa",
+      "description": "Evitar climatizar habitaciones sin ocupación activa"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Definir meta de kWh por persona y revisarla cada mes en la app",
+      "description": "Definir meta de kWh por persona y revisarla cada mes en la app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinar horarios de cocina para no duplicar uso de hornos y microondas",
+      "description": "Coordinar horarios de cocina para no duplicar uso de hornos y microondas"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Asignar responsables de apagado por zona cuando hay varios ocupantes",
+      "description": "Asignar responsables de apagado por zona cuando hay varios ocupantes"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reducir equipos personales en standby si el consumo per cápita es alto",
+      "description": "Reducir equipos personales en standby si el consumo per cápita es alto"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Usar lavados consolidados en lugar de ciclos individuales por persona",
+      "description": "Usar lavados consolidados en lugar de ciclos individuales por persona"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Revisar si la cantidad de ocupantes declarada coincide con el uso real",
+      "description": "Revisar si la cantidad de ocupantes declarada coincide con el uso real"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Priorizar tip occupancy cuando el consumo por persona supera el umbral",
+      "description": "Priorizar tip occupancy cuando el consumo por persona supera el umbral"
+    },
+    "BUILDING_MOD_01": {
+      "title": "En casas antiguas priorizar aislamiento de techos y aberturas exteriores",
+      "description": "En casas antiguas priorizar aislamiento de techos y aberturas exteriores"
+    },
+    "BUILDING_MOD_02": {
+      "title": "En departamentos enfocar eficiencia en AA y electrodomésticos compartidos",
+      "description": "En departamentos enfocar eficiencia en AA y electrodomésticos compartidos"
+    },
+    "BUILDING_MOD_03": {
+      "title": "En locales comerciales apagar climatización fuera del horario operativo",
+      "description": "En locales comerciales apagar climatización fuera del horario operativo"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Ajustar potencia de climatización al área real en m2 del inmueble",
+      "description": "Ajustar potencia de climatización al área real en m2 del inmueble"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Revisar instalaciones eléctricas en construcciones con más de 20 años",
+      "description": "Revisar instalaciones eléctricas en construcciones con más de 20 años"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zonificar calefacción y refrigeración según planta y orientación",
+      "description": "Zonificar calefacción y refrigeración según planta y orientación"
+    },
+    "BUILDING_MOD_07": {
+      "title": "En superficies grandes evitar climatizar todo el volumen a la vez",
+      "description": "En superficies grandes evitar climatizar todo el volumen a la vez"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Actualizar tableros y protecciones si la antigüedad de obra es elevada",
+      "description": "Actualizar tableros y protecciones si la antigüedad de obra es elevada"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Aprovechar patio o balcón para secado natural según tipo de inmueble",
+      "description": "Aprovechar patio o balcón para secado natural según tipo de inmueble"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluar renovación edilicia cuando antigüedad y consumo crecen juntos",
+      "description": "Evaluar renovación edilicia cuando antigüedad y consumo crecen juntos"
+    },
+    "PEAK_MOD_01": {
+      "title": "Desplazar lavarropas y lavavajillas fuera del horario pico eléctrico",
+      "description": "Desplazar lavarropas y lavavajillas fuera del horario pico eléctrico"
+    },
+    "PEAK_MOD_02": {
+      "title": "Programar termotanque y cargas pesadas en horas valle nocturnas",
+      "description": "Programar termotanque y cargas pesadas en horas valle nocturnas"
+    },
+    "PEAK_MOD_03": {
+      "title": "Evitar usar horno, secadora y AA al mismo tiempo en pico",
+      "description": "Evitar usar horno, secadora y AA al mismo tiempo en pico"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limitar horas de alto consumo a bloques cortos y planificados",
+      "description": "Limitar horas de alto consumo a bloques cortos y planificados"
+    },
+    "PEAK_MOD_05": {
+      "title": "Usar timer o smart plug para cortar cargas al inicio del pico",
+      "description": "Usar timer o smart plug para cortar cargas al inicio del pico"
+    },
+    "PEAK_MOD_06": {
+      "title": "Cargar dispositivos y notebooks en la madrugada o madrugada temprana",
+      "description": "Cargar dispositivos y notebooks en la madrugada o madrugada temprana"
+    },
+    "PEAK_MOD_07": {
+      "title": "Revisar la factura: identificar franja pico y fijar tope diario de kWh",
+      "description": "Revisar la factura: identificar franja pico y fijar tope diario de kWh"
+    },
+    "PEAK_MOD_08": {
+      "title": "Si usoHorarioPico es true, priorizar tip peak sobre hábitos genéricos",
+      "description": "Si usoHorarioPico es true, priorizar tip peak sobre hábitos genéricos"
+    },
+    "PEAK_MOD_09": {
+      "title": "Agrupar planchado y aspirado en un solo bloque fuera de pico",
+      "description": "Agrupar planchado y aspirado en un solo bloque fuera de pico"
+    },
+    "PEAK_MOD_10": {
+      "title": "Preferir cocción lenta o olla a presión en horario valle",
+      "description": "Preferir cocción lenta o olla a presión en horario valle"
+    },
+    "ZONE_MOD_01": {
+      "title": "En zona costera priorizar protección contra humedad y corrosión de AA",
+      "description": "En zona costera priorizar protección contra humedad y corrosión de AA"
+    },
+    "ZONE_MOD_02": {
+      "title": "En zona urbana interior reforzar sombra y ventilación cruzada diurna",
+      "description": "En zona urbana interior reforzar sombra y ventilación cruzada diurna"
+    },
+    "ZONE_MOD_03": {
+      "title": "En zona suburbana aprovechar mayor área para ventilación natural",
+      "description": "En zona suburbana aprovechar mayor área para ventilación natural"
+    },
+    "ZONE_MOD_04": {
+      "title": "Ajustar temperatura de consigna según microclima de la zona declarada",
+      "description": "Ajustar temperatura de consigna según microclima de la zona declarada"
+    },
+    "ZONE_MOD_05": {
+      "title": "En costa usar filtros y mantenimiento de AA con mayor frecuencia",
+      "description": "En costa usar filtros y mantenimiento de AA con mayor frecuencia"
+    },
+    "ZONE_MOD_06": {
+      "title": "En interior urbano reducir aporte solar con cortinas en fachada oeste",
+      "description": "En interior urbano reducir aporte solar con cortinas en fachada oeste"
+    },
+    "ZONE_MOD_07": {
+      "title": "En suburbana evaluar paneles o toldos en techos expuestos",
+      "description": "En suburbana evaluar paneles o toldos en techos expuestos"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adaptar horarios de ventilación a ruido y calidad del aire de la zona",
+      "description": "Adaptar horarios de ventilación a ruido y calidad del aire de la zona"
+    },
+    "ZONE_MOD_09": {
+      "title": "Revisar orientación y asoleamiento típicos de la zona al planificar AA",
+      "description": "Revisar orientación y asoleamiento típicos de la zona al planificar AA"
+    },
+    "ZONE_MOD_10": {
+      "title": "Usar la zona del formulario para priorizar tips climáticos locales",
+      "description": "Usar la zona del formulario para priorizar tips climáticos locales"
     }
   },
   "en": {
@@ -1730,6 +1930,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "pt": {
@@ -2596,6 +2996,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "fr": {
@@ -3462,6 +4062,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "it": {
@@ -4328,6 +5128,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "de": {
@@ -5194,6 +6194,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "nl": {
@@ -6060,6 +7260,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "pl": {
@@ -6926,6 +8326,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "ro": {
@@ -7792,6 +9392,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "ca": {
@@ -8658,6 +10458,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "tr": {
@@ -9524,6 +11524,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "ar": {
@@ -10390,6 +12590,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "zh": {
@@ -11256,6 +13656,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "ja": {
@@ -12122,6 +14722,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "ko": {
@@ -12988,6 +15788,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "ru": {
@@ -13854,6 +16854,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "hi": {
@@ -14720,6 +17920,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "uk": {
@@ -15586,6 +18986,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "vi": {
@@ -16452,6 +20052,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "id": {
@@ -17318,6 +21118,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   },
   "sv": {
@@ -18184,6 +22184,206 @@ export const CATALOG_BY_LOCALE = {
     "TECH_INEFF_12": {
       "title": "Remove ghost devices connected to home network",
       "description": "Remove ghost devices connected to home network"
+    },
+    "INSULATION_MOD_01": {
+      "title": "Improve joint sealing in walls and roofs with weak insulation",
+      "description": "Improve joint sealing in walls and roofs with weak insulation"
+    },
+    "INSULATION_MOD_02": {
+      "title": "Add weatherstripping on exterior doors to reduce air leaks",
+      "description": "Add weatherstripping on exterior doors to reduce air leaks"
+    },
+    "INSULATION_MOD_03": {
+      "title": "Check air cavities and insulation material on priority roofs",
+      "description": "Check air cavities and insulation material on priority roofs"
+    },
+    "INSULATION_MOD_04": {
+      "title": "Use thermal curtains on cold or sun-exposed facade windows",
+      "description": "Use thermal curtains on cold or sun-exposed facade windows"
+    },
+    "INSULATION_MOD_05": {
+      "title": "Prioritize insulation in rooms with highest daily occupancy",
+      "description": "Prioritize insulation in rooms with highest daily occupancy"
+    },
+    "INSULATION_MOD_06": {
+      "title": "Detect thermal bridges at corners and lintels with DIY thermography",
+      "description": "Detect thermal bridges at corners and lintels with DIY thermography"
+    },
+    "INSULATION_MOD_07": {
+      "title": "Seal gaps around pipes and electrical boxes in exterior walls",
+      "description": "Seal gaps around pipes and electrical boxes in exterior walls"
+    },
+    "INSULATION_MOD_08": {
+      "title": "Evaluate removable insulating panels on metal or concrete roofs",
+      "description": "Evaluate removable insulating panels on metal or concrete roofs"
+    },
+    "INSULATION_MOD_09": {
+      "title": "Keep blinds closed on winter nights to retain heat",
+      "description": "Keep blinds closed on winter nights to retain heat"
+    },
+    "INSULATION_MOD_10": {
+      "title": "Plan insulation upgrades when the form indicates Poor level",
+      "description": "Plan insulation upgrades when the form indicates Poor level"
+    },
+    "OCCUPANCY_MOD_01": {
+      "title": "Adjust shower and hot-water habits to the real occupant count",
+      "description": "Adjust shower and hot-water habits to the real occupant count"
+    },
+    "OCCUPANCY_MOD_02": {
+      "title": "Share high-consumption appliances among occupants by schedule",
+      "description": "Share high-consumption appliances among occupants by schedule"
+    },
+    "OCCUPANCY_MOD_03": {
+      "title": "Avoid conditioning rooms without active occupancy",
+      "description": "Avoid conditioning rooms without active occupancy"
+    },
+    "OCCUPANCY_MOD_04": {
+      "title": "Set a kWh-per-person goal and review it monthly in the app",
+      "description": "Set a kWh-per-person goal and review it monthly in the app"
+    },
+    "OCCUPANCY_MOD_05": {
+      "title": "Coordinate cooking times to avoid duplicate oven and microwave use",
+      "description": "Coordinate cooking times to avoid duplicate oven and microwave use"
+    },
+    "OCCUPANCY_MOD_06": {
+      "title": "Assign shutdown owners by zone when several occupants share space",
+      "description": "Assign shutdown owners by zone when several occupants share space"
+    },
+    "OCCUPANCY_MOD_07": {
+      "title": "Reduce personal standby devices if per-capita consumption is high",
+      "description": "Reduce personal standby devices if per-capita consumption is high"
+    },
+    "OCCUPANCY_MOD_08": {
+      "title": "Use consolidated laundry loads instead of one cycle per person",
+      "description": "Use consolidated laundry loads instead of one cycle per person"
+    },
+    "OCCUPANCY_MOD_09": {
+      "title": "Check whether declared occupants match the observed usage pattern",
+      "description": "Check whether declared occupants match the observed usage pattern"
+    },
+    "OCCUPANCY_MOD_10": {
+      "title": "Prioritize occupancy tips when consumption per person exceeds the threshold",
+      "description": "Prioritize occupancy tips when consumption per person exceeds the threshold"
+    },
+    "BUILDING_MOD_01": {
+      "title": "In older houses prioritize roof and exterior opening insulation",
+      "description": "In older houses prioritize roof and exterior opening insulation"
+    },
+    "BUILDING_MOD_02": {
+      "title": "In apartments focus efficiency on AC and shared appliances",
+      "description": "In apartments focus efficiency on AC and shared appliances"
+    },
+    "BUILDING_MOD_03": {
+      "title": "In commercial spaces shut HVAC outside operating hours",
+      "description": "In commercial spaces shut HVAC outside operating hours"
+    },
+    "BUILDING_MOD_04": {
+      "title": "Match HVAC capacity to the real floor area in m2",
+      "description": "Match HVAC capacity to the real floor area in m2"
+    },
+    "BUILDING_MOD_05": {
+      "title": "Review electrical installations in buildings older than 20 years",
+      "description": "Review electrical installations in buildings older than 20 years"
+    },
+    "BUILDING_MOD_06": {
+      "title": "Zone heating and cooling by floor plan and orientation",
+      "description": "Zone heating and cooling by floor plan and orientation"
+    },
+    "BUILDING_MOD_07": {
+      "title": "In large floor areas avoid conditioning the whole volume at once",
+      "description": "In large floor areas avoid conditioning the whole volume at once"
+    },
+    "BUILDING_MOD_08": {
+      "title": "Update panels and protections when construction age is high",
+      "description": "Update panels and protections when construction age is high"
+    },
+    "BUILDING_MOD_09": {
+      "title": "Use patio or balcony for natural drying by property type",
+      "description": "Use patio or balcony for natural drying by property type"
+    },
+    "BUILDING_MOD_10": {
+      "title": "Evaluate building renovation when age and consumption rise together",
+      "description": "Evaluate building renovation when age and consumption rise together"
+    },
+    "PEAK_MOD_01": {
+      "title": "Shift washer and dishwasher outside peak electricity hours",
+      "description": "Shift washer and dishwasher outside peak electricity hours"
+    },
+    "PEAK_MOD_02": {
+      "title": "Schedule water heater and heavy loads in overnight off-peak hours",
+      "description": "Schedule water heater and heavy loads in overnight off-peak hours"
+    },
+    "PEAK_MOD_03": {
+      "title": "Avoid running oven, dryer and AC at the same time during peak",
+      "description": "Avoid running oven, dryer and AC at the same time during peak"
+    },
+    "PEAK_MOD_04": {
+      "title": "Limit high-consumption hours to short planned blocks",
+      "description": "Limit high-consumption hours to short planned blocks"
+    },
+    "PEAK_MOD_05": {
+      "title": "Use a timer or smart plug to cut loads at peak start",
+      "description": "Use a timer or smart plug to cut loads at peak start"
+    },
+    "PEAK_MOD_06": {
+      "title": "Charge devices and laptops overnight or early morning",
+      "description": "Charge devices and laptops overnight or early morning"
+    },
+    "PEAK_MOD_07": {
+      "title": "Review the bill: identify peak window and set a daily kWh cap",
+      "description": "Review the bill: identify peak window and set a daily kWh cap"
+    },
+    "PEAK_MOD_08": {
+      "title": "If peak-hour use is true, prioritize peak tips over generic habits",
+      "description": "If peak-hour use is true, prioritize peak tips over generic habits"
+    },
+    "PEAK_MOD_09": {
+      "title": "Batch ironing and vacuuming in one block outside peak",
+      "description": "Batch ironing and vacuuming in one block outside peak"
+    },
+    "PEAK_MOD_10": {
+      "title": "Prefer slow cooking or pressure cooker in off-peak hours",
+      "description": "Prefer slow cooking or pressure cooker in off-peak hours"
+    },
+    "ZONE_MOD_01": {
+      "title": "In coastal zones prioritize AC protection against humidity and corrosion",
+      "description": "In coastal zones prioritize AC protection against humidity and corrosion"
+    },
+    "ZONE_MOD_02": {
+      "title": "In inland urban zones reinforce shade and daytime cross-ventilation",
+      "description": "In inland urban zones reinforce shade and daytime cross-ventilation"
+    },
+    "ZONE_MOD_03": {
+      "title": "In suburban zones use larger outdoor area for natural ventilation",
+      "description": "In suburban zones use larger outdoor area for natural ventilation"
+    },
+    "ZONE_MOD_04": {
+      "title": "Adjust setpoint temperature to the declared zone microclimate",
+      "description": "Adjust setpoint temperature to the declared zone microclimate"
+    },
+    "ZONE_MOD_05": {
+      "title": "On the coast service AC filters more frequently",
+      "description": "On the coast service AC filters more frequently"
+    },
+    "ZONE_MOD_06": {
+      "title": "In inland urban areas cut solar gain with west-facing curtains",
+      "description": "In inland urban areas cut solar gain with west-facing curtains"
+    },
+    "ZONE_MOD_07": {
+      "title": "In suburban areas evaluate panels or awnings on exposed roofs",
+      "description": "In suburban areas evaluate panels or awnings on exposed roofs"
+    },
+    "ZONE_MOD_08": {
+      "title": "Adapt ventilation schedules to local noise and air quality",
+      "description": "Adapt ventilation schedules to local noise and air quality"
+    },
+    "ZONE_MOD_09": {
+      "title": "Review typical orientation and sun exposure when planning AC",
+      "description": "Review typical orientation and sun exposure when planning AC"
+    },
+    "ZONE_MOD_10": {
+      "title": "Use the form zone field to prioritize local climate tips",
+      "description": "Use the form zone field to prioritize local climate tips"
     }
   }
 }

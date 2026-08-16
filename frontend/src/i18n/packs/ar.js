@@ -368,6 +368,11 @@ export default {
       climate: 'التكييف',
       equipment: 'المعدات',
       tech: 'التقنية',
+      zone: 'المنطقة',
+      peak: 'ساعات الذروة',
+      building: 'المبنى',
+      occupancy: 'الإشغال',
+      insulation: 'العزل',
     },
   },
   months: {

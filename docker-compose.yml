@@ -63,7 +63,7 @@ services:
       APP_PERSISTENCE_TYPE: jpa
       FLYWAY_ENABLED: "true"
       JPA_DDL: validate
-      DB_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE:-energia_ia}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      DB_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE:-energia_ia}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8&connectionCollation=utf8mb4_unicode_ci
       DB_USERNAME: ${MYSQL_USER:-energia_app}
       DB_PASSWORD: ${MYSQL_PASSWORD:-change-me}
       DB_DRIVER: com.mysql.cj.jdbc.Driver

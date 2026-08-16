@@ -368,6 +368,11 @@ export default {
       climate: 'Pendingin ruangan',
       equipment: 'Peralatan',
       tech: 'Teknologi',
+      zone: 'Zona',
+      peak: 'Jam sibuk',
+      building: 'Bangunan',
+      occupancy: 'Okupansi',
+      insulation: 'Isolasi',
     },
   },
   months: {

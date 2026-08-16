@@ -368,6 +368,11 @@ export default {
       climate: 'Клімат',
       equipment: 'Обладнання',
       tech: 'Технології',
+      zone: 'Зона',
+      peak: 'Пікові години',
+      building: 'Будівля',
+      occupancy: 'Заселеність',
+      insulation: 'Ізоляція',
     },
   },
   months: {

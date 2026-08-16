@@ -166,7 +166,12 @@ export const pagesCa = {
       "habits": "Hàbits",
       "climate": "Climatització",
       "equipment": "Equipament",
-      "tech": "Tecnologia"
+      "tech": "Tecnologia",
+      "zone": "Zona",
+      "peak": "Horari punta",
+      "building": "Immoble",
+      "occupancy": "Ocupació",
+      "insulation": "Aïllament"
     },
     "peak": "El {pct}% de l’energia del {month} es va usar en hores punta (sol ser més cara).",
     "bill": {

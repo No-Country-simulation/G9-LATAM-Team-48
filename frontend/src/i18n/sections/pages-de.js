@@ -166,7 +166,12 @@ export const pagesDe = {
       "habits": "Gewohnheiten",
       "climate": "Klima",
       "equipment": "Ausstattung",
-      "tech": "Technologie"
+      "tech": "Technologie",
+      "zone": "Zone",
+      "peak": "Spitzenzeiten",
+      "building": "Gebäude",
+      "occupancy": "Belegung",
+      "insulation": "Isolierung"
     },
     "peak": "{pct}% Ihrer Energie im {month} fiel in die Spitzenzeiten (meist teurer).",
     "bill": {

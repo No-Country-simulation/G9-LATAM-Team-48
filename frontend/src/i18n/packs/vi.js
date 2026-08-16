@@ -368,6 +368,11 @@ export default {
       climate: 'Điều hòa',
       equipment: 'Thiết bị',
       tech: 'Công nghệ',
+      zone: 'Khu vực',
+      peak: 'Giờ cao điểm',
+      building: 'Tòa nhà',
+      occupancy: 'Cư trú',
+      insulation: 'Cách nhiệt',
     },
   },
   months: {

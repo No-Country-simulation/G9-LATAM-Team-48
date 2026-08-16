@@ -166,7 +166,12 @@ export const pagesNl = {
       "habits": "Gewoonten",
       "climate": "Klimaat",
       "equipment": "Apparatuur",
-      "tech": "Technologie"
+      "tech": "Technologie",
+      "zone": "Zone",
+      "peak": "Spitsuren",
+      "building": "Gebouw",
+      "occupancy": "Bezetting",
+      "insulation": "Isolatie"
     },
     "peak": "{pct}% van je energie in {month} viel in piekuren (vaak duurder).",
     "bill": {

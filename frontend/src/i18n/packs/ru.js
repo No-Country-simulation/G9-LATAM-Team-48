@@ -368,6 +368,11 @@ export default {
       climate: 'Климат',
       equipment: 'Оборудование',
       tech: 'Технологии',
+      zone: 'Зона',
+      peak: 'Часы пик',
+      building: 'Здание',
+      occupancy: 'Заселённость',
+      insulation: 'Изоляция',
     },
   },
   months: {

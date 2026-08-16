@@ -118,6 +118,8 @@ sudo DOCKER_HOST=unix:///run/podman/podman.sock \
 curl -s http://127.0.0.1:8080/actuator/health
 ```
 
+> **Nota (ago 2026):** en la VM a veces el API corre como **jar directo** (`java -jar …/target/energy-backend-*.jar`) con MySQL en Podman. El flujo documentado arriba (compose + `Dockerfile.repack`) sigue siendo el canónico. Sync de cambios hechos a mano en OCI: [`backend/OCI_SYNC_2026-08-16.md`](./backend/OCI_SYNC_2026-08-16.md).
+
 El primer arranque tras **Flyway V12** puede tardar **2–3 min** (índice + generación de rollups del dashboard). Reinicios siguientes son más rápidos si las tablas rollup ya están pobladas.
 
 ### 3.3 Render — ml-service

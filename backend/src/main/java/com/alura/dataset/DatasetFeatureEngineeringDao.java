@@ -20,6 +20,17 @@ public class DatasetFeatureEngineeringDao {
     }
 
     public boolean hasRows() {
+        // Preferir rollups del dashboard si existen (arranque / health del dataset).
+        try {
+            Integer rollup = jdbcTemplate.queryForObject(
+                    "SELECT 1 FROM dataset_dashboard_monthly LIMIT 1", Integer.class);
+            if (rollup != null) {
+                return true;
+            }
+        } catch (DataAccessException ignored) {
+            // tabla ausente o vacía → seguir con dataset crudo
+        }
+
         try {
             Integer one = jdbcTemplate.queryForObject(
                     "SELECT 1 FROM dataset_feature_engineering LIMIT 1", Integer.class);
@@ -38,9 +49,10 @@ public class DatasetFeatureEngineeringDao {
                 return rollupsReady;
             }
             try {
-                Long count = jdbcTemplate.queryForObject(
-                        "SELECT COUNT(*) FROM dataset_dashboard_monthly", Long.class);
-                rollupsReady = count != null && count > 0;
+                // LIMIT 1 evita COUNT(*) sobre tablas grandes en cada cold-check.
+                Integer one = jdbcTemplate.queryForObject(
+                        "SELECT 1 FROM dataset_dashboard_monthly LIMIT 1", Integer.class);
+                rollupsReady = one != null;
             } catch (DataAccessException ex) {
                 rollupsReady = false;
             }

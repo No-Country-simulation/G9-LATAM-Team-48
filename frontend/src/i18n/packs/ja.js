@@ -368,6 +368,11 @@ export default {
       climate: '空調',
       equipment: '機器',
       tech: 'テクノロジー',
+      zone: '地域',
+      peak: 'ピーク時間',
+      building: '建物',
+      occupancy: '居住',
+      insulation: '断熱',
     },
   },
   months: {

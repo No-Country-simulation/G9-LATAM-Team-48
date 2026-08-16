@@ -166,7 +166,12 @@ export const pagesPl = {
       "habits": "Nawyki",
       "climate": "Klimat",
       "equipment": "Sprzęt",
-      "tech": "Technologia"
+      "tech": "Technologia",
+      "zone": "Strefa",
+      "peak": "Godziny szczytu",
+      "building": "Budynek",
+      "occupancy": "Zajętość",
+      "insulation": "Izolacja"
     },
     "peak": "{pct}% energii w {month} przypadło na godziny szczytu (zwykle droższe).",
     "bill": {

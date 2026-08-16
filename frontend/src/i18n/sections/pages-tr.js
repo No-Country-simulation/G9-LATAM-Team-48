@@ -166,7 +166,12 @@ export const pagesTr = {
       "habits": "Alışkanlıklar",
       "climate": "İklimlendirme",
       "equipment": "Ekipman",
-      "tech": "Teknoloji"
+      "tech": "Teknoloji",
+      "zone": "Bölge",
+      "peak": "Yoğun saatler",
+      "building": "Bina",
+      "occupancy": "Doluluk",
+      "insulation": "Yalıtım"
     },
     "peak": "{month} ayındaki enerjinin %{pct}’i yoğun saatlerde kullanıldı (genelde daha pahalı).",
     "bill": {

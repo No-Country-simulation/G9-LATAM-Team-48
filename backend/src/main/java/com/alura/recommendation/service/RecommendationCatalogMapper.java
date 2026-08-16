@@ -45,6 +45,21 @@ public class RecommendationCatalogMapper {
             return "habits";
         }
         String key = tipKey.toUpperCase(Locale.ROOT);
+        if (key.startsWith("INSULATION") || key.contains("INSULAT") || key.contains("THERMAL_BRIDGE")) {
+            return "insulation";
+        }
+        if (key.startsWith("OCCUPANCY") || key.contains("OCCUPAN") || key.contains("PER_PERSON")) {
+            return "occupancy";
+        }
+        if (key.startsWith("BUILDING") || key.contains("HOUSE") || key.contains("APARTMENT")) {
+            return "building";
+        }
+        if (key.startsWith("PEAK") || key.contains("PEAK_HOUR") || key.contains("OFF_PEAK")) {
+            return "peak";
+        }
+        if (key.startsWith("ZONE")) {
+            return "zone";
+        }
         if (key.contains("AC") || key.contains("HVAC") || key.contains("CLIMAT")) {
             return "climate";
         }
@@ -53,6 +68,9 @@ public class RecommendationCatalogMapper {
         }
         if (key.contains("COMMERCIAL") || key.contains("EQUIP") || key.contains("CIRCUIT")) {
             return "equipment";
+        }
+        if (key.contains("TECH") || key.contains("SMART") || key.contains("STANDBY")) {
+            return "tech";
         }
         if ("ALERTA".equals(type)) {
             return "climate";

@@ -368,6 +368,11 @@ export default {
       climate: 'तापमान नियंत्रण',
       equipment: 'उपकरण',
       tech: 'तकनीक',
+      zone: 'क्षेत्र',
+      peak: 'पीक घंटे',
+      building: 'भवन',
+      occupancy: 'अधिभोग',
+      insulation: 'इन्सुलेशन',
     },
   },
   months: {

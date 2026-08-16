@@ -166,7 +166,12 @@ export const pagesRo = {
       "habits": "Obiceiuri",
       "climate": "Climatizare",
       "equipment": "Echipamente",
-      "tech": "Tehnologie"
+      "tech": "Tehnologie",
+      "zone": "Zonă",
+      "peak": "Ore de vârf",
+      "building": "Clădire",
+      "occupancy": "Ocupare",
+      "insulation": "Izolație"
     },
     "peak": "{pct}% din energia din {month} a fost folosită în ore de vârf (de obicei mai scumpe).",
     "bill": {

@@ -368,6 +368,11 @@ export default {
       climate: 'Klimat',
       equipment: 'Utrustning',
       tech: 'Teknik',
+      zone: 'Zon',
+      peak: 'Topptimmar',
+      building: 'Byggnad',
+      occupancy: 'Beläggning',
+      insulation: 'Isolering',
     },
   },
   months: {

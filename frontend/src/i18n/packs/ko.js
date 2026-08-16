@@ -368,6 +368,11 @@ export default {
       climate: '냉난방',
       equipment: '설비',
       tech: '기술',
+      zone: '지역',
+      peak: '피크 시간',
+      building: '건물',
+      occupancy: '거주',
+      insulation: '단열',
     },
   },
   months: {

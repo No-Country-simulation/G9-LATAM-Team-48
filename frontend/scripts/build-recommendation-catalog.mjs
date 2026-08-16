@@ -13,6 +13,10 @@ import {
   INEFFICIENT_CATALOG_KEYS,
   INEFFICIENT_TITLES_BY_LANG,
 } from './level-catalog-export.mjs'
+import {
+  FORM_CATALOG_KEYS,
+  FORM_TITLES_BY_LANG,
+} from './form-catalog-export.mjs'
 
 const root = dirname(fileURLToPath(import.meta.url))
 const outPath = join(root, '../src/i18n/catalog/byLocale.js')
@@ -22,6 +26,7 @@ const ALL_KEYS = [
   ...PILOT_CATALOG_KEYS,
   ...EFFICIENT_CATALOG_KEYS,
   ...INEFFICIENT_CATALOG_KEYS,
+  ...FORM_CATALOG_KEYS,
 ]
 
 const LOCALES = [
@@ -65,7 +70,11 @@ function titlesForLocale(locale) {
     INEFFICIENT_TITLES_BY_LANG[locale] ||
     INEFFICIENT_TITLES_BY_LANG.en ||
     INEFFICIENT_TITLES_BY_LANG.es
-  return [...base, ...moderate, ...efficient, ...inefficient]
+  const form =
+    FORM_TITLES_BY_LANG[locale] ||
+    FORM_TITLES_BY_LANG.en ||
+    FORM_TITLES_BY_LANG.es
+  return [...base, ...moderate, ...efficient, ...inefficient, ...form]
 }
 
 function toCatalog(titles) {

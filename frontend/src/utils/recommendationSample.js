@@ -5,6 +5,11 @@ export const RECOMMENDATION_CATEGORY_ORDER = [
   'lighting',
   'equipment',
   'tech',
+  'insulation',
+  'occupancy',
+  'building',
+  'peak',
+  'zone',
 ]
 
 function randomFrom(list) {

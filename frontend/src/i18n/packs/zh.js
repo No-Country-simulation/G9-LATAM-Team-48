@@ -368,6 +368,11 @@ export default {
       climate: '空调',
       equipment: '设备',
       tech: '技术',
+      zone: '区域',
+      peak: '高峰时段',
+      building: '建筑',
+      occupancy: '入住',
+      insulation: '隔热',
     },
   },
   months: {
