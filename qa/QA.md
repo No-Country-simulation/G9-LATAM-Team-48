@@ -9,7 +9,7 @@ Marcá **Pass / Fail / N/A** en cada fila. No hace falta cambiar código de prod
 | **Prod (demo)** | https://g9-latam-team-48.vercel.app | API vía proxy: `/api/*` → OCI `163.176.248.56:8080`; directo: `http://163.176.248.56:8080` |
 | **Local** | `http://localhost:5173` (`frontend/`) | `http://localhost:8080` (`backend/`) |
 
-Rama de deploy: **`Jorge-martinez`**.
+Ramas: **`main`** = prod · **`Jorge-martinez`** = dev.
 
 ### Usuarios demo (prod / seed Flyway V6)
 

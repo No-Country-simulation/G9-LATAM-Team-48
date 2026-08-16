@@ -2,7 +2,7 @@
 
 Guía para el equipo: qué implementamos para personas que usan **lectores de pantalla**, **solo teclado** o poca visión, y cómo probarlo sin ser usuario no vidente.
 
-**Rama de referencia:** `Jorge-martinez` (Vercel).
+**Ramas:** `main` = prod (Vercel Production) · `Jorge-martinez` = dev.
 
 ---
 
