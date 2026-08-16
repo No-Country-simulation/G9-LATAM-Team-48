@@ -69,19 +69,23 @@ function GraficoVariacionMensual({
                 {...chartTooltipProps(theme, {locale, unit: 'pct'})}
                 labelFormatter={(_label, payload) => payload?.[0]?.payload?.mesFull ?? _label}
               /> */}
-              formatter=
-              {(value, name) => {
-                const variation = Number(value);
-                const color = variation >= 0 ? negative : positive;
-                const formattedValue = `${variation.toLocaleString(locale, {
-                  maximumFractionDigits: 1
-                })} %`;
+              <Tooltip
+                {...chartTooltipProps(theme, {locale, unit: 'pct'})}
+                labelFormatter={(_label, payload) => payload?.[0]?.payload?.mesFull ?? _label}
+                labelStyle={{color: textColor}}
+                itemStyle={{color: textColor}}
+                formatter={(value, name) => {
+                  const variation = Number(value);
+                  const color = variation >= 0 ? negative : positive;
 
-                return [
-                  <span style={{color, fontWeight: 700}}>{formattedValue}</span>,
-                  <span style={{color, fontWeight: 700}}>{name}:</span>
-                ];
-              }}
+                  return [
+                    <span style={{color, fontWeight: 700}}>
+                      {variation.toLocaleString(locale, {maximumFractionDigits: 1})} %
+                    </span>,
+                    name
+                  ];
+                }}
+              />
               <Bar dataKey="variacionPct" name={t('chart.variationSeries')} radius={[4, 4, 0, 0]}>
                 {datos.map(entry => (
                   <Cell key={entry.mesKey} fill={(entry.variacionPct ?? 0) >= 0 ? negative : positive} />
