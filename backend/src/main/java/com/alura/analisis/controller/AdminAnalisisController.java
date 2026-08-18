@@ -43,7 +43,7 @@ public class AdminAnalisisController {
     @Operation(summary = "Recalcular un lote de consultas historicas con el modelo IA actual")
     public ResponseEntity<ApiResponse<AdminRecalculoResult>> recalcular(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "5") int size) {
         return ResponseEntity.ok(ApiResponse.ok(adminAnalisisService.recalcularConModelo(page, size)));
     }
 }
