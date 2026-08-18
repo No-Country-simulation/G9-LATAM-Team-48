@@ -1,5 +1,6 @@
 package com.alura.analisis.dto;
 
+import com.alura.analisis.support.MlFeatureNormalizer;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -118,39 +119,14 @@ public record AnalisisPayload(
     }
 
     private static String mapTipoInmuebleMl(String raw) {
-        if (raw == null) {
-            return "Casa Unifamiliar";
-        }
-        String trimmed = raw.trim();
-        return switch (trimmed.toUpperCase()) {
-            case "APARTAMENTO" -> "Apartamento";
-            case "PEQUENO_ESTABLECIMIENTO_COMERCIAL" -> "Pequeño Establecimiento Comercial";
-            case "CASA_UNIFAMILIAR", "CASA" -> "Casa Unifamiliar";
-            default -> trimmed.contains(" ") ? trimmed : "Casa Unifamiliar";
-        };
+        return MlFeatureNormalizer.tipoInmueble(raw);
     }
 
     private static String mapAislamientoMl(String raw) {
-        if (raw == null) {
-            return "Regular";
-        }
-        return switch (raw.trim().toUpperCase()) {
-            case "BUENO" -> "Bueno";
-            case "MALO" -> "Malo";
-            case "REGULAR" -> "Regular";
-            default -> raw.trim();
-        };
+        return MlFeatureNormalizer.aislamientoTermico(raw);
     }
 
     private static String mapZonaMl(String raw) {
-        if (raw == null) {
-            return "Urbana Interior";
-        }
-        return switch (raw.trim().toUpperCase()) {
-            case "SUBURBANA" -> "Suburbana";
-            case "URBANA_COSTERA" -> "Urbana Costera";
-            case "URBANA_INTERIOR" -> "Urbana Interior";
-            default -> raw.trim();
-        };
+        return MlFeatureNormalizer.zona(raw);
     }
 }
