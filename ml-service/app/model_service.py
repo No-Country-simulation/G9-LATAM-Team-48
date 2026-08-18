@@ -12,8 +12,13 @@ from app.benchmark import compute_benchmark
 from app.config import MODELS_DIR, resolve_model_path
 from app.feature_adapters import legacy_row_from_features, schema_from_column_names
 from app.features import FEATURE_KEYS, NUMERIC_KEYS
-from app.mapping import map_prediction_to_nivel
-from app.schemas import PredictionResponse
+from app.mapping import (
+    confianza_pct,
+    map_prediction_to_nivel,
+    nivel_display_es,
+    normalize_label,
+)
+from app.schemas import FeaturesV3, PredictionResponse
 from app.v3_bundle import (
     V3Bundle,
     build_v3_input_frame,
@@ -44,11 +49,11 @@ def _unwrap_artifact(raw: Any) -> tuple[Any, list[str] | None]:
 
 
 def _coerce_row(features: dict[str, Any]) -> dict[str, Any]:
+    # Validación tipada (enums + rangos) alineada a API datascience.
+    validated = FeaturesV3.model_validate(features).as_feature_dict()
     row: dict[str, Any] = {}
     for key in FEATURE_KEYS:
-        if key not in features or features[key] is None:
-            raise ValueError(f"Falta la feature obligatoria: {key}")
-        value = features[key]
+        value = validated[key]
         if key in NUMERIC_KEYS:
             row[key] = float(value)
         else:
@@ -79,6 +84,74 @@ def _frame_for_model(
     return pd.DataFrame(data)
 
 
+def _probabilities_map(
+    model: Any,
+    X: Any,
+    y_encoder: Any | None,
+) -> dict[str, float]:
+    if not hasattr(model, "predict_proba"):
+        return {}
+    try:
+        proba = model.predict_proba(X)[0]
+        classes = getattr(model, "classes_", None)
+        if classes is None:
+            return {}
+        out: dict[str, float] = {}
+        for idx, cls in enumerate(classes):
+            label = cls
+            if y_encoder is not None and isinstance(cls, (int, np.integer)):
+                try:
+                    label = y_encoder.inverse_transform([int(cls)])[0]
+                except Exception:
+                    label = cls
+            # Clave display ES si es posible
+            key = str(label)
+            nk, _, _ = map_prediction_to_nivel(label)
+            display = nivel_display_es(nk)
+            # Preferir etiqueta humana ES del encoder si ya viene así
+            if normalize_label(key) in (
+                "eficiente",
+                "moderado",
+                "ineficiente",
+            ):
+                display = {
+                    "eficiente": "Eficiente",
+                    "moderado": "Moderado",
+                    "ineficiente": "Ineficiente",
+                }[normalize_label(key)]
+            out[display] = round(float(proba[idx]) * 100.0, 1)
+        return out
+    except Exception:
+        log.debug("No se pudieron armar probabilidades", exc_info=True)
+        return {}
+
+
+def _build_response(
+    *,
+    user_id: str | None,
+    nivel_key: str,
+    category: str,
+    confidence: float,
+    ahorro: int,
+    benchmark: float,
+    probabilidades: dict[str, float] | None,
+    schema: str,
+) -> PredictionResponse:
+    return PredictionResponse(
+        userId=user_id,
+        category=category,
+        nivelKey=nivel_key,
+        confidence=round(confidence, 4),
+        ahorro=ahorro,
+        tipKeys=[],
+        benchmark=float(benchmark),
+        nivel=nivel_display_es(nivel_key),
+        confianza_pct=confianza_pct(confidence),
+        probabilidades=probabilidades or None,
+        schema=schema,
+    )
+
+
 class EnergyModelService:
     def __init__(self) -> None:
         self._pipeline: Any | None = None
@@ -87,6 +160,7 @@ class EnergyModelService:
         self._classes: list[Any] | None = None
         self._schema: str = "v3"
         self._v3: V3Bundle | None = None
+        self._metadata: dict[str, Any] | None = None
 
     @property
     def model_path(self) -> Path | None:
@@ -100,7 +174,22 @@ class EnergyModelService:
     def schema(self) -> str:
         return self._schema
 
+    @property
+    def metadata(self) -> dict[str, Any]:
+        if self._metadata is not None:
+            return self._metadata
+        return {
+            "version_modelo": "v3" if self._schema == "v3_bundle" else self._schema,
+            "schema": self._schema,
+            "modelPath": str(self._model_path) if self._model_path else None,
+            "modelLoaded": self.is_loaded,
+            "clases": ["Eficiente", "Ineficiente", "Moderado"],
+            "cantidad_features_crudas_requeridas": len(FEATURE_KEYS),
+            "features_crudas": list(FEATURE_KEYS),
+        }
+
     def load(self) -> None:
+        self._metadata = self._load_metadata_file()
         bundle_paths = v3_bundle_paths()
         if bundle_paths is not None:
             cols_p, enc_p, model_p = bundle_paths
@@ -141,6 +230,21 @@ class EnergyModelService:
         self._schema = schema_from_column_names(cols)
         log.info("Modelo cargado desde %s (schema=%s)", path, self._schema)
 
+    def _load_metadata_file(self) -> dict[str, Any] | None:
+        candidates = (
+            MODELS_DIR / "metadata_v3.json",
+            MODELS_DIR.parent.parent / "datascience" / "models" / "metadata_v3.json",
+        )
+        for path in candidates:
+            if path.is_file():
+                try:
+                    import json
+
+                    return json.loads(path.read_text(encoding="utf-8"))
+                except Exception:
+                    log.warning("No se pudo leer metadata %s", path, exc_info=True)
+        return None
+
     def predict(self, user_id: str | None, features: dict[str, Any]) -> PredictionResponse:
         if self._pipeline is None:
             raise ModelNotLoadedError(
@@ -150,11 +254,16 @@ class EnergyModelService:
         if self._schema == "v3_bundle" and self._v3 is not None:
             return self._predict_v3_bundle(user_id, features)
 
-        row = _coerce_row(features) if self._schema == "v3" else legacy_row_from_features(features)
+        row = (
+            _coerce_row(features)
+            if self._schema == "v3"
+            else legacy_row_from_features(features)
+        )
         frame = _frame_for_model(row, self._pipeline, self._feature_columns, self._schema)
 
         raw_label = self._pipeline.predict(frame)[0]
         confidence = self._confidence(frame, raw_label)
+        probs = _probabilities_map(self._pipeline, frame, None)
 
         if str(raw_label) in ("efficient", "moderate", "inefficient"):
             nivel_key = category = str(raw_label)
@@ -163,14 +272,15 @@ class EnergyModelService:
             nivel_key, category, ahorro = map_prediction_to_nivel(raw_label)
         benchmark = compute_benchmark(features)
 
-        return PredictionResponse(
-            userId=user_id,
+        return _build_response(
+            user_id=user_id,
+            nivel_key=nivel_key,
             category=category,
-            nivelKey=nivel_key,
-            confidence=round(confidence, 4),
+            confidence=confidence,
             ahorro=ahorro,
-            tipKeys=[],
-            benchmark=float(benchmark),
+            benchmark=benchmark,
+            probabilidades=probs,
+            schema=self._schema,
         )
 
     def _predict_v3_bundle(
@@ -179,7 +289,6 @@ class EnergyModelService:
         assert self._v3 is not None
         bundle = self._v3
         if bundle.is_full_pipeline:
-            # Pipeline DS: FeatureEngineerV3 + clasificador — input = 12 crudas.
             frame = pd.DataFrame([_coerce_row(features)])
             X = frame
         else:
@@ -188,6 +297,7 @@ class EnergyModelService:
         raw_label = bundle.model.predict(X)[0]
         decoded = decode_v3_label(raw_label, bundle)
         confidence = v3_predict_proba(bundle.model, X, raw_label, bundle.y_encoder)
+        probs = _probabilities_map(bundle.model, X, bundle.y_encoder)
 
         if str(decoded) in ("efficient", "moderate", "inefficient"):
             nivel_key = category = str(decoded)
@@ -196,14 +306,15 @@ class EnergyModelService:
             nivel_key, category, ahorro = map_prediction_to_nivel(decoded)
         benchmark = compute_benchmark(features)
 
-        return PredictionResponse(
-            userId=user_id,
+        return _build_response(
+            user_id=user_id,
+            nivel_key=nivel_key,
             category=category,
-            nivelKey=nivel_key,
-            confidence=round(confidence, 4),
+            confidence=confidence,
             ahorro=ahorro,
-            tipKeys=[],
-            benchmark=float(benchmark),
+            benchmark=benchmark,
+            probabilidades=probs,
+            schema=self._schema,
         )
 
     def _confidence(self, frame: pd.DataFrame, raw_label: Any) -> float:

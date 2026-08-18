@@ -1,6 +1,15 @@
 # Microservicio ML — EnergIA
 
-FastAPI (`POST /predict`) consumido por Spring vía `PREDICTION_API_BASE_URL`.
+FastAPI consumido por Spring vía `PREDICTION_API_BASE_URL`.
+
+| Método | Ruta | Uso |
+|--------|------|-----|
+| `GET` | `/health` · `/api/v3/health` | Liveness + schema (`v3_bundle`) |
+| `GET` | `/info` · `/api/v3/info` | Metadata del modelo (clases, métricas) |
+| `POST` | `/predict` | Contrato Spring (`{ userId, features }`) |
+| `POST` | `/api/v3/predict` | Contrato datascience (12 campos en la raíz) |
+
+Ambos `POST` usan el mismo Pipeline v3 y responden el contrato Spring **más** campos DS: `nivel`, `confianza_pct`, `probabilidades`.
 
 **Deploy en producción:** [`../docs/DEPLOY_PRODUCCION.md`](../docs/DEPLOY_PRODUCCION.md) · [`DEPLOY.md`](./DEPLOY.md)
 

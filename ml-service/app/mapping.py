@@ -25,3 +25,15 @@ def map_prediction_to_nivel(raw_label: object) -> tuple[str, str, int]:
     if any(k in label for k in ("moderado", "moderate", "medio", "medium")):
         return "moderate", "moderate", 15
     return "moderate", "moderate", 15
+
+
+def nivel_display_es(nivel_key: str) -> str:
+    return {
+        "efficient": "Eficiente",
+        "moderate": "Moderado",
+        "inefficient": "Ineficiente",
+    }.get(str(nivel_key).strip().lower(), "Moderado")
+
+
+def confianza_pct(confidence: float) -> float:
+    return round(float(confidence) * 100.0, 1)

@@ -8,3 +8,5 @@ models/*.pkl
 !models/columnas_requeridas_final_v3.joblib
 !models/label_encoder_v3.joblib
 !models/modelo_perfil_energetico_final_v3.joblib
+!models/metadata_v3.json
+logs/
