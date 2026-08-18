@@ -12,8 +12,23 @@ export async function listAnalisis({ page = 0, size = DEFAULT_PAGE_SIZE } = {}) 
   return normalizePageResponse(data)
 }
 
-/** Recalcula historial con la heurística actual (solo ADMIN). */
-export async function recalcularAnalisis() {
-  const { data } = await api.post('/api/v1/admin/analisis/recalcular')
-  return unwrap(data) ?? { total: 0, updated: 0, unchanged: 0, skipped: 0 }
+/**
+ * Recalcula un lote del historial con el modelo IA (solo ADMIN).
+ *
+ * Se procesa por lotes porque cada fila implica una llamada al ML service y el
+ * proxy corta las requests largas.
+ */
+export async function recalcularAnalisis({ page = 0, size = 10 } = {}) {
+  const { data } = await api.post('/api/v1/admin/analisis/recalcular', null, {
+    params: { page, size },
+  })
+  return (
+    unwrap(data) ?? {
+      total: 0,
+      updated: 0,
+      unchanged: 0,
+      skipped: 0,
+      hasMore: false,
+    }
+  )
 }
