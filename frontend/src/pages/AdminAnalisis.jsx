@@ -19,6 +19,11 @@ import EmptyState from '../components/EmptyState'
 import TablePagination from '../components/TablePagination'
 import { DEFAULT_PAGE_SIZE } from '../utils/pageResponse'
 
+// Cada fila implica una llamada al ML service: lotes chicos para no exceder el
+// timeout del proxy en requests largas.
+const RECALC_BATCH_SIZE = 10
+const MAX_RECALC_BATCHES = 500
+
 const LOCALE_TAGS = {
   es: 'es-AR',
   en: 'en-US',
@@ -67,6 +72,7 @@ function AdminAnalisis() {
   const [totalElements, setTotalElements] = useState(0)
   const [loading, setLoading] = useState(true)
   const [recalculating, setRecalculating] = useState(false)
+  const [recalcProgress, setRecalcProgress] = useState(null)
   const [error, setError] = useState(null)
   const [info, setInfo] = useState(null)
   const [detail, setDetail] = useState(null)
@@ -158,14 +164,35 @@ function AdminAnalisis() {
     setRecalculating(true)
     setError(null)
     setInfo(null)
+    setRecalcProgress(null)
     try {
-      const result = await recalcularAnalisis()
+      const acc = { total: 0, updated: 0, unchanged: 0, skipped: 0 }
+      let batch = 0
+      let hasMore = true
+
+      while (hasMore && batch < MAX_RECALC_BATCHES) {
+        const result = await recalcularAnalisis({
+          page: batch,
+          size: RECALC_BATCH_SIZE,
+        })
+        acc.total = result.total ?? acc.total
+        acc.updated += result.updated ?? 0
+        acc.unchanged += result.unchanged ?? 0
+        acc.skipped += result.skipped ?? 0
+        hasMore = Boolean(result.hasMore)
+        batch += 1
+        setRecalcProgress({
+          done: Math.min(batch * RECALC_BATCH_SIZE, acc.total || 0),
+          total: acc.total,
+        })
+      }
+
       setInfo(
         t('adminAnalisis.recalculateDone')
-          .replace('{total}', String(result.total ?? 0))
-          .replace('{updated}', String(result.updated ?? 0))
-          .replace('{unchanged}', String(result.unchanged ?? 0))
-          .replace('{skipped}', String(result.skipped ?? 0)),
+          .replace('{total}', String(acc.total))
+          .replace('{updated}', String(acc.updated))
+          .replace('{unchanged}', String(acc.unchanged))
+          .replace('{skipped}', String(acc.skipped)),
       )
       await load()
     } catch (err) {
@@ -181,6 +208,7 @@ function AdminAnalisis() {
       }
     } finally {
       setRecalculating(false)
+      setRecalcProgress(null)
     }
   }
 
@@ -219,7 +247,9 @@ function AdminAnalisis() {
             disabled={!allowed || loading || hydrating || recalculating}
           >
             {recalculating
-              ? t('adminAnalisis.recalculating')
+              ? recalcProgress?.total
+                ? `${t('adminAnalisis.recalculating')} ${recalcProgress.done}/${recalcProgress.total}`
+                : t('adminAnalisis.recalculating')
               : t('adminAnalisis.recalculate')}
           </button>
         </div>

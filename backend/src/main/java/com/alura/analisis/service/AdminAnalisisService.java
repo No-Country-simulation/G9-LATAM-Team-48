@@ -54,13 +54,18 @@ public class AdminAnalisisService {
     }
 
     /**
-     * Reaplica el modelo IA actual sobre el requestJson guardado.
+     * Reaplica el modelo IA actual sobre el requestJson guardado, por lotes.
      * Si el ML service no responde, cae a la heuristica local por fila.
      * No crea filas nuevas ni reenvia emails.
+     *
+     * <p>Se procesa de a paginas porque cada fila implica una llamada HTTP al
+     * ML service, y un recalculo completo excederia el timeout del proxy.</p>
      */
     @Transactional
-    public AdminRecalculoResult recalcularConModelo() {
-        List<AnalisisConsultaEntity> rows = repository.findAllByOrderByCreatedAtDesc();
+    public AdminRecalculoResult recalcularConModelo(int page, int size) {
+        var springPage = repository.findAllByOrderByCreatedAtDesc(
+                PageRequests.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt")));
+        List<AnalisisConsultaEntity> rows = springPage.getContent();
         int updated = 0;
         int unchanged = 0;
         int skipped = 0;
@@ -102,7 +107,12 @@ public class AdminAnalisisService {
             updated++;
         }
 
-        return new AdminRecalculoResult(rows.size(), updated, unchanged, skipped);
+        return new AdminRecalculoResult(
+                (int) springPage.getTotalElements(),
+                updated,
+                unchanged,
+                skipped,
+                springPage.hasNext());
     }
 
     private static boolean hasChanged(AnalisisConsultaEntity entity, PredictionResponse result) {
