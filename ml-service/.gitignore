@@ -4,3 +4,7 @@ __pycache__/
 .pytest_cache/
 models/*.joblib
 models/*.pkl
+# Trio v3 versionado: la imagen de Render debe traer el modelo, no depender de descargas.
+!models/columnas_requeridas_final_v3.joblib
+!models/label_encoder_v3.joblib
+!models/modelo_perfil_energetico_final_v3.joblib

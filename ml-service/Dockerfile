@@ -9,8 +9,12 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app ./app
-# Artefactos: trio v3 y/o model.joblib (local build o descarga MODEL_V3_* al arrancar)
+# El Pipeline v3 referencia src.features.feature_engineer_v3 al deserializar.
+COPY src ./src
+# Artefactos: trio v3 versionado (y model.joblib legacy como ultimo recurso)
 COPY models ./models
+
+ENV PYTHONPATH=/app
 
 EXPOSE 8000
 

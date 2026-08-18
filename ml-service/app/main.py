@@ -23,6 +23,12 @@ app = FastAPI(
 def _load_model() -> None:
     ensure_model_artifacts()
     model_service.load()
+    if model_service.is_loaded and model_service.schema != "v3_bundle":
+        log.warning(
+            "Modelo activo con schema=%s (esperado v3_bundle): faltan artefactos v3 en la imagen "
+            "y las predicciones no corresponden al modelo entrenado.",
+            model_service.schema,
+        )
 
 
 @app.get("/health")

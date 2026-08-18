@@ -3,7 +3,9 @@ uvicorn[standard]>=0.32.0
 pydantic>=2.9.0
 pandas>=2.2.0
 numpy>=2.0.0
-scikit-learn>=1.6.0,<1.10.0
+# Fijadas a las versiones de entrenamiento (datascience/models/metadata_v3.json):
+# desalinearlas dispara InconsistentVersionWarning al deserializar el Pipeline v3.
+scikit-learn==1.9.0
 joblib>=1.4.0
-lightgbm>=4.5.0
+lightgbm==4.6.0
 category-encoders>=2.6.0,<2.10.0

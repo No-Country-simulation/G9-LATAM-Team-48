@@ -14,6 +14,7 @@ import { useLocale } from '../context/LocaleContext'
 import { buildActualVsPredictedSeries } from '../utils/analyticsSeries'
 import {
   chartTooltipProps,
+  DASHBOARD_CHART_SYNC_METHOD,
   toggleSeriesVisibility,
 } from '../utils/chartInteractivity'
 import DemoSampleBadge from './DemoSampleBadge'
@@ -48,7 +49,12 @@ function GraficoRealVsPrediccion({ analytics, chartBadgeVariant = 'demo', syncId
 
         <ChartVisualShell className="flex-grow-1" style={{ minHeight: 300 }}>
           <ResponsiveContainer width="100%" height="100%" minHeight={300}>
-            <BarChart data={data} syncId={syncId} margin={{ top: 8, right: 12, left: 4, bottom: 4 }}>
+            <BarChart
+              data={data}
+              syncId={syncId}
+              syncMethod={DASHBOARD_CHART_SYNC_METHOD}
+              margin={{ top: 8, right: 12, left: 4, bottom: 4 }}
+            >
               <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
               <XAxis
                 dataKey="mes"

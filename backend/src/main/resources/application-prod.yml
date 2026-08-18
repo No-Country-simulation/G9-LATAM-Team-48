@@ -28,6 +28,8 @@ prediction:
   api:
     base-url: ${PREDICTION_API_BASE_URL}
     timeout: ${PREDICTION_API_TIMEOUT:60000}
+    max-attempts: ${PREDICTION_API_MAX_ATTEMPTS:3}
+    retry-delay: ${PREDICTION_API_RETRY_DELAY:3000}
 
 # Persistencia MySQL obligatoria en produccion
 spring:
