@@ -12,7 +12,11 @@ import {
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { formatMonthLabel } from '../utils/monthLabels'
-import { chartTooltipProps, DASHBOARD_CHART_SYNC_ID } from '../utils/chartInteractivity'
+import {
+  chartTooltipProps,
+  DASHBOARD_CHART_SYNC_ID,
+  DASHBOARD_CHART_SYNC_METHOD,
+} from '../utils/chartInteractivity'
 import { buildVariationSeries } from '../utils/dashboardChartFilters'
 import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
@@ -38,6 +42,9 @@ function GraficoVariacionMensual({
       ...row,
       mes: formatMonthLabel(t, row.mesKey, 'short', locale),
       mesFull: formatMonthLabel(t, row.mesKey, 'full', locale),
+      mesPrevFull: row.mesPrevKey
+        ? formatMonthLabel(t, row.mesPrevKey, 'full', locale)
+        : null,
     }))
 
   if (datos.length === 0) {
@@ -64,7 +71,12 @@ function GraficoVariacionMensual({
 
         <ChartVisualShell className="flex-grow-1" style={{ minHeight: 280 }}>
           <ResponsiveContainer width="100%" height="100%" minHeight={280}>
-            <BarChart data={datos} syncId={syncId} margin={{ top: 8, right: 12, left: 4, bottom: 4 }}>
+            <BarChart
+              data={datos}
+              syncId={syncId}
+              syncMethod={DASHBOARD_CHART_SYNC_METHOD}
+              margin={{ top: 8, right: 12, left: 4, bottom: 4 }}
+            >
               <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
               <XAxis dataKey="mes" stroke={textColor} tick={{ fill: textColor }} />
               <YAxis
@@ -81,9 +93,13 @@ function GraficoVariacionMensual({
               <ReferenceLine y={0} stroke={gridColor} />
               <Tooltip
                 {...chartTooltipProps(theme, { locale, unit: 'pct' })}
-                labelFormatter={(_label, payload) =>
-                  payload?.[0]?.payload?.mesFull ?? _label
-                }
+                labelFormatter={(_label, payload) => {
+                  const row = payload?.[0]?.payload
+                  const mesFull = row?.mesFull ?? _label
+                  return row?.mesPrevFull
+                    ? `${mesFull} ${t('chart.variationVsPrevious', 'vs')} ${row.mesPrevFull}`
+                    : mesFull
+                }}
                 labelStyle={{ color: textColor }}
                 itemStyle={{ color: textColor }}
                 formatter={(value, name) => {

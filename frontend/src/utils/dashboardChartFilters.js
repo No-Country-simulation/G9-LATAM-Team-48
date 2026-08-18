@@ -124,6 +124,7 @@ export function buildVariationSeries(rows, valueKey = 'consumo') {
     }
     return {
       mesKey: item.mes,
+      mesPrevKey: index > 0 ? rows[index - 1].mes : null,
       value: current,
       variacionPct,
     }

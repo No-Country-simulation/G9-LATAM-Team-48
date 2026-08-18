@@ -8,6 +8,9 @@ __pycache__/
 *.joblib
 !datascience/models/*.joblib
 !ml-service/models/model.joblib
+!ml-service/models/columnas_requeridas_final_v3.joblib
+!ml-service/models/label_encoder_v3.joblib
+!ml-service/models/modelo_perfil_energetico_final_v3.joblib
 
 # Secretos locales (nunca commitear)
 .env

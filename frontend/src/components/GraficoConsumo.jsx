@@ -11,7 +11,10 @@ import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { formatMonthLabel } from '../utils/monthLabels'
 import { yDomainWithPadding } from '../utils/chartScale'
-import { chartTooltipProps } from '../utils/chartInteractivity'
+import {
+  chartTooltipProps,
+  DASHBOARD_CHART_SYNC_METHOD,
+} from '../utils/chartInteractivity'
 import {
   HistoriaChartDot,
   historiaChartHoverHandlers,
@@ -63,6 +66,7 @@ function GraficoConsumo({
           <LineChart
             data={datos}
             syncId={syncId}
+            syncMethod={DASHBOARD_CHART_SYNC_METHOD}
             margin={{ top: 8, right: 12, left: 4, bottom: 4 }}
             {...hoverHandlers}
           >

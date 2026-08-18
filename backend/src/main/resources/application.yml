@@ -39,6 +39,8 @@ prediction:
     # Microservicio ML (ml-service / FastAPI). Ver docs/backend/ANALISIS_IA.md
     base-url: ${PREDICTION_API_BASE_URL:http://localhost:8000}
     timeout: ${PREDICTION_API_TIMEOUT:5000}
+    max-attempts: ${PREDICTION_API_MAX_ATTEMPTS:3}
+    retry-delay: ${PREDICTION_API_RETRY_DELAY:2000}
 
 # ----------------------------------------------------------------------------
 # Documentacion OpenAPI / Swagger UI

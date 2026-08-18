@@ -1,6 +1,12 @@
 /** syncId compartido: hover alineado entre gráficos del dashboard (Recharts). */
 export const DASHBOARD_CHART_SYNC_ID = 'dashboard-charts'
 
+/**
+ * Sincroniza por valor del eje X y no por posición: la serie de variación mensual
+ * omite el primer mes (sin mes previo) y con 'index' el hover queda corrido un mes.
+ */
+export const DASHBOARD_CHART_SYNC_METHOD = 'value'
+
 export function formatKwhValue(value, locale = undefined) {
   const n = Number(value)
   if (Number.isNaN(n)) return '—'

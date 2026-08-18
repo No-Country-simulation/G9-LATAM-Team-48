@@ -10,7 +10,11 @@ import {
 import { useTheme } from '../context/ThemeContext'
 import { useLocale } from '../context/LocaleContext'
 import { yDomainWithPadding } from '../utils/chartScale'
-import { chartTooltipProps, DASHBOARD_CHART_SYNC_ID } from '../utils/chartInteractivity'
+import {
+  chartTooltipProps,
+  DASHBOARD_CHART_SYNC_ID,
+  DASHBOARD_CHART_SYNC_METHOD,
+} from '../utils/chartInteractivity'
 import { mapConsumosChartRows } from '../utils/dashboardChartFilters'
 import ChartVisualShell from './ChartVisualShell'
 import ChartSrTable from './ChartSrTable'
@@ -49,7 +53,12 @@ function GraficoCostoMensual({
 
         <ChartVisualShell className="flex-grow-1" style={{ minHeight: 280 }}>
           <ResponsiveContainer width="100%" height="100%" minHeight={280}>
-            <AreaChart data={datos} syncId={syncId} margin={{ top: 8, right: 12, left: 4, bottom: 4 }}>
+            <AreaChart
+              data={datos}
+              syncId={syncId}
+              syncMethod={DASHBOARD_CHART_SYNC_METHOD}
+              margin={{ top: 8, right: 12, left: 4, bottom: 4 }}
+            >
               <CartesianGrid stroke={gridColor} strokeDasharray="3 3" />
               <XAxis dataKey="mes" stroke={textColor} tick={{ fill: textColor }} />
               <YAxis

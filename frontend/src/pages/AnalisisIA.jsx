@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
 import { analizarConsumo } from '../services/analisisService'
@@ -155,9 +155,18 @@ function AnalisisIA() {
   const [datos, setDatos] = useState(emptyDraft)
   const [resultado, setResultado] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [statusPhase, setStatusPhase] = useState('idle')
   const [error, setError] = useState(null)
   const [fieldErrors, setFieldErrors] = useState({})
   const [prefillNotice, setPrefillNotice] = useState(false)
+  const phaseTimersRef = useRef([])
+
+  function clearPhaseTimers() {
+    phaseTimersRef.current.forEach((id) => window.clearTimeout(id))
+    phaseTimersRef.current = []
+  }
+
+  useEffect(() => () => clearPhaseTimers(), [])
 
   useEffect(() => {
     const draft = consumeAnalisisDraft()
@@ -166,6 +175,7 @@ function AnalisisIA() {
     setResultado(null)
     setError(null)
     setFieldErrors({})
+    setStatusPhase('idle')
     setPrefillNotice(true)
   }, [])
 
@@ -176,6 +186,7 @@ function AnalisisIA() {
       [name]: type === 'checkbox' ? checked : value,
     }))
     setResultado(null)
+    setStatusPhase('idle')
     setFieldErrors((prev) => {
       if (!prev[name]) return prev
       const next = { ...prev }
@@ -194,20 +205,36 @@ function AnalisisIA() {
     if (Object.keys(errors).length > 0) {
       setError(null)
       setResultado(null)
+      setStatusPhase('idle')
       return
     }
 
+    clearPhaseTimers()
     setError(null)
     setResultado(null)
     setLoading(true)
+    setStatusPhase('sending')
     setPrefillNotice(false)
+
+    const analyzingTimer = window.setTimeout(() => {
+      setStatusPhase((prev) => (prev === 'sending' ? 'analyzing' : prev))
+    }, 1800)
+    phaseTimersRef.current.push(analyzingTimer)
 
     const payload = payloadFromForm()
 
     try {
       const respuesta = await analizarConsumo(payload)
+      clearPhaseTimers()
+      setStatusPhase('done')
       setResultado(respuesta)
+      const doneTimer = window.setTimeout(() => {
+        setStatusPhase((prev) => (prev === 'done' ? 'idle' : prev))
+      }, 1600)
+      phaseTimersRef.current.push(doneTimer)
     } catch (err) {
+      clearPhaseTimers()
+      setStatusPhase('idle')
       setError(err?.response?.data?.message || err?.message || t('analysis.failed'))
     } finally {
       setLoading(false)
@@ -572,7 +599,73 @@ function AnalisisIA() {
 
             {error && <ErrorState mensaje={error} onRetry={analizar} />}
 
-            {!resultado && !error && (
+            {(loading || statusPhase === 'done') && (
+              <div
+                className="card shadow-sm border-primary-subtle"
+                role="status"
+                aria-live="polite"
+                aria-busy={loading}
+              >
+                <div className="card-body py-4 text-center">
+                  {statusPhase !== 'done' ? (
+                    <div
+                      className="spinner-border text-primary mb-3"
+                      role="presentation"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <div
+                      className="rounded-circle bg-success-subtle text-success d-inline-flex align-items-center justify-content-center mb-3"
+                      style={{ width: 48, height: 48, fontSize: '1.4rem' }}
+                      aria-hidden="true"
+                    >
+                      ✓
+                    </div>
+                  )}
+                  <p className="fw-semibold mb-3 fs-5">
+                    {statusPhase === 'sending' &&
+                      t('analysis.statusSending', 'Enviando datos…')}
+                    {statusPhase === 'analyzing' &&
+                      t('analysis.statusAnalyzing', 'Analizando…')}
+                    {statusPhase === 'done' &&
+                      t('analysis.statusDone', 'Terminado')}
+                  </p>
+                  <ol className="list-unstyled small text-muted mb-0 d-flex flex-column flex-sm-row justify-content-center gap-2 gap-sm-4">
+                    <li
+                      className={
+                        statusPhase === 'sending'
+                          ? 'text-primary fw-semibold'
+                          : statusPhase === 'analyzing' || statusPhase === 'done'
+                            ? 'text-success'
+                            : ''
+                      }
+                    >
+                      1. {t('analysis.statusStepSend', 'Enviando')}
+                    </li>
+                    <li
+                      className={
+                        statusPhase === 'analyzing'
+                          ? 'text-primary fw-semibold'
+                          : statusPhase === 'done'
+                            ? 'text-success'
+                            : ''
+                      }
+                    >
+                      2. {t('analysis.statusStepAnalyze', 'Analizando')}
+                    </li>
+                    <li
+                      className={
+                        statusPhase === 'done' ? 'text-success fw-semibold' : ''
+                      }
+                    >
+                      3. {t('analysis.statusStepDone', 'Terminado')}
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            )}
+
+            {!resultado && !error && !loading && statusPhase === 'idle' && (
               <div className="card shadow-sm">
                 <div className="card-body py-3">
                   <p className="text-muted small mb-0">{t('analysis.panelHint')}</p>
@@ -580,7 +673,7 @@ function AnalisisIA() {
               </div>
             )}
 
-            {resultado && (
+            {resultado && statusPhase !== 'sending' && statusPhase !== 'analyzing' && (
               <div className="card shadow-sm">
                 <div className="card-body p-3">
                   <h5 className="mb-3">{t('analysis.result')}</h5>
