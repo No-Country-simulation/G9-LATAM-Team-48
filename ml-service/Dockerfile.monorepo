@@ -5,6 +5,9 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
+# Cache-bust: cambiar este valor fuerza rebuild completo en Render (pip + COPY models).
+ARG CACHE_BUST=2026-08-17-v3-01
+
 COPY ml-service/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -27,7 +30,8 @@ RUN set -e; \
         cp models/model_pipeline_v3.joblib models/modelo_perfil_energetico_final_v3.joblib; \
       fi; \
     fi; \
-    true
+    echo "=== Contenido /app/models (build) ===" && ls -la models && \
+    echo "=== Versiones libs ===" && pip show scikit-learn lightgbm 2>/dev/null | grep -E "Name|Version"
 
 EXPOSE 8000
 
