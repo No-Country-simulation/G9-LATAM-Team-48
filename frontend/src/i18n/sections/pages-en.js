@@ -402,10 +402,10 @@ export const pagesEn = {
     title: 'AI Analysis — history',
     subtitle: 'Saved queries (with or without login). Email is sent only when the user is signed in.',
     refresh: 'Refresh',
-    recalculate: 'Recalculate with current rules',
+    recalculate: 'Recalculate with the AI model',
     recalculating: 'Recalculating…',
     recalculateConfirm:
-      'Recalculate all saved analyses with the current heuristic? No emails are sent and no new queries are created.',
+      'Recalculate all saved analyses with the current AI model? It may take a while depending on how many queries there are. No emails are sent and no new queries are created.',
     recalculateDone:
       'Done: {total} queries · {updated} updated · {unchanged} unchanged · {skipped} skipped.',
     recalculateFailed: 'Could not recalculate analyses.',

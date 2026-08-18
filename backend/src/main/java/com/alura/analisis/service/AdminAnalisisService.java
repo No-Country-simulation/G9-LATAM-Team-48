@@ -54,11 +54,12 @@ public class AdminAnalisisService {
     }
 
     /**
-     * Reaplica la heuristica actual sobre el requestJson guardado.
+     * Reaplica el modelo IA actual sobre el requestJson guardado.
+     * Si el ML service no responde, cae a la heuristica local por fila.
      * No crea filas nuevas ni reenvia emails.
      */
     @Transactional
-    public AdminRecalculoResult recalcularConHeuristica() {
+    public AdminRecalculoResult recalcularConModelo() {
         List<AnalisisConsultaEntity> rows = repository.findAllByOrderByCreatedAtDesc();
         int updated = 0;
         int unchanged = 0;
@@ -71,7 +72,7 @@ public class AdminAnalisisService {
                 continue;
             }
 
-            PredictionResponse rawResult = predictionService.analyzeHeuristic(features);
+            PredictionResponse rawResult = predictionService.analyze(features);
             List<String> tips = tipsComposer.compose(
                     rawResult, features, entity.getUserEmail());
             PredictionResponse result = new PredictionResponse(

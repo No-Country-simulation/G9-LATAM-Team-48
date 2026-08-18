@@ -40,8 +40,8 @@ public class AdminAnalisisController {
     }
 
     @PostMapping("/recalcular")
-    @Operation(summary = "Recalcular consultas historicas con la heuristica actual")
+    @Operation(summary = "Recalcular consultas historicas con el modelo IA actual")
     public ResponseEntity<ApiResponse<AdminRecalculoResult>> recalcular() {
-        return ResponseEntity.ok(ApiResponse.ok(adminAnalisisService.recalcularConHeuristica()));
+        return ResponseEntity.ok(ApiResponse.ok(adminAnalisisService.recalcularConModelo()));
     }
 }
