@@ -18,7 +18,7 @@ export async function listAnalisis({ page = 0, size = DEFAULT_PAGE_SIZE } = {}) 
  * Se procesa por lotes porque cada fila implica una llamada al ML service y el
  * proxy corta las requests largas.
  */
-export async function recalcularAnalisis({ page = 0, size = 10 } = {}) {
+export async function recalcularAnalisis({ page = 0, size = 5 } = {}) {
   const { data } = await api.post('/api/v1/admin/analisis/recalcular', null, {
     params: { page, size },
   })

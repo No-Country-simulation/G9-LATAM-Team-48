@@ -21,7 +21,7 @@ import { DEFAULT_PAGE_SIZE } from '../utils/pageResponse'
 
 // Cada fila implica una llamada al ML service: lotes chicos para no exceder el
 // timeout del proxy en requests largas.
-const RECALC_BATCH_SIZE = 10
+const RECALC_BATCH_SIZE = 5
 const MAX_RECALC_BATCHES = 500
 
 const LOCALE_TAGS = {
