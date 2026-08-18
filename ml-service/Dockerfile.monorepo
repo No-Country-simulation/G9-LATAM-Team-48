@@ -5,8 +5,14 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
+# libgomp1: runtime de OpenMP que LightGBM carga por ctypes. Sin esto el import
+# de lightgbm falla y el unpickle del pipeline v3 cae al modelo legacy.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Cache-bust: cambiar este valor fuerza rebuild completo en Render (pip + COPY models).
-ARG CACHE_BUST=2026-08-17-v3-01
+ARG CACHE_BUST=2026-08-17-v3-02
 
 COPY ml-service/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt

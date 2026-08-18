@@ -5,6 +5,12 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
+# libgomp1: runtime de OpenMP que LightGBM carga por ctypes. Sin esto el import
+# de lightgbm falla y el unpickle del pipeline v3 cae al modelo legacy.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
