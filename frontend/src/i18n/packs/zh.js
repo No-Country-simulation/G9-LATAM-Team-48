@@ -373,7 +373,7 @@ export default {
       building: '建筑',
       occupancy: '入住',
       insulation: '隔热',
-    },
+    },
   },
   months: {
     january: '一月',
@@ -430,10 +430,10 @@ export default {
     title: 'AI 分析 — 历史记录',
     subtitle: '已保存的查询（登录或未登录均可）。仅在用户已登录时才发送邮件。',
     refresh: '刷新',
-    recalculate: '使用当前规则重新计算',
+    recalculate: '使用 AI 模型重新计算',
     recalculating: '正在重新计算…',
     recalculateConfirm:
-      '要使用当前启发式规则重新计算所有已保存的分析吗？不会发送邮件，也不会创建新查询。',
+      '要使用当前 AI 模型重新计算所有已保存的分析吗？根据查询数量可能需要一些时间。不会发送邮件，也不会创建新查询。',
     recalculateDone:
       '完成：共 {total} 条查询 · {updated} 条已更新 · {unchanged} 条未变 · {skipped} 条已跳过。',
     recalculateFailed: '无法重新计算分析。',

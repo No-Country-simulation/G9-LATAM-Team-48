@@ -172,7 +172,7 @@ export const pagesIt = {
       "building": "Immobile",
       "occupancy": "Occupazione",
       "insulation": "Isolamento"
-    },
+    },
     "peak": "Il {pct}% dell’energia di {month} è stata usata nelle ore di punta (di solito più care).",
     "bill": {
       "up": "Bolletta stimata di {month}: ${amount} (circa ${diff} in più del mese scorso).",
@@ -235,10 +235,10 @@ export const pagesIt = {
     title: 'Analisi IA — cronologia',
     subtitle: 'Query salvate dagli utenti autenticati.',
     refresh: 'Aggiorna',
-    recalculate: 'Ricalcola con le regole attuali',
+    recalculate: 'Ricalcola con il modello IA',
     recalculating: 'Ricalcolo…',
     recalculateConfirm:
-      'Ricalcolare tutte le analisi salvate con l’euristica attuale? Nessuna email né nuove query.',
+      'Ricalcolare tutte le analisi salvate con il modello IA attuale? Può richiedere tempo in base al numero di query. Nessuna email né nuove query.',
     recalculateDone:
       'Fatto: {total} query · {updated} aggiornate · {unchanged} invariate · {skipped} saltate.',
     recalculateFailed: 'Impossibile ricalcolare le analisi.',

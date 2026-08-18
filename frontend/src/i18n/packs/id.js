@@ -373,7 +373,7 @@ export default {
       building: 'Bangunan',
       occupancy: 'Okupansi',
       insulation: 'Isolasi',
-    },
+    },
   },
   months: {
     january: 'Januari',
@@ -430,10 +430,10 @@ export default {
     title: 'Analisis AI — riwayat',
     subtitle: 'Kueri tersimpan (dengan atau tanpa masuk). Email hanya dikirim jika pengguna sudah masuk.',
     refresh: 'Muat ulang',
-    recalculate: 'Hitung ulang dengan aturan saat ini',
+    recalculate: 'Hitung ulang dengan model AI',
     recalculating: 'Menghitung ulang…',
     recalculateConfirm:
-      'Hitung ulang semua analisis tersimpan dengan heuristik saat ini? Tidak ada email yang dikirim dan tidak ada kueri baru yang dibuat.',
+      'Hitung ulang semua analisis tersimpan dengan model AI saat ini? Mungkin butuh waktu tergantung jumlah kueri. Tidak ada email yang dikirim dan tidak ada kueri baru yang dibuat.',
     recalculateDone:
       'Selesai: {total} kueri · {updated} diperbarui · {unchanged} tidak berubah · {skipped} dilewati.',
     recalculateFailed: 'Tidak dapat menghitung ulang analisis.',

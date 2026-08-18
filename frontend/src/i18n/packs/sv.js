@@ -373,7 +373,7 @@ export default {
       building: 'Byggnad',
       occupancy: 'Beläggning',
       insulation: 'Isolering',
-    },
+    },
   },
   months: {
     january: 'Januari',
@@ -430,10 +430,10 @@ export default {
     title: 'AI-analys — historik',
     subtitle: 'Sparade frågor (med eller utan inloggning). E-post skickas bara när användaren är inloggad.',
     refresh: 'Uppdatera',
-    recalculate: 'Räkna om med nuvarande regler',
+    recalculate: 'Räkna om med AI-modellen',
     recalculating: 'Räknar om…',
     recalculateConfirm:
-      'Räkna om alla sparade analyser med nuvarande heuristik? Inga mejl skickas och inga nya frågor skapas.',
+      'Räkna om alla sparade analyser med den aktuella AI-modellen? Det kan ta tid beroende på antalet frågor. Inga mejl skickas och inga nya frågor skapas.',
     recalculateDone:
       'Klart: {total} frågor · {updated} uppdaterade · {unchanged} oförändrade · {skipped} överhoppade.',
     recalculateFailed: 'Det gick inte att räkna om analyserna.',

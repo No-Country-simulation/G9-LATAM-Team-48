@@ -373,7 +373,7 @@ export default {
       building: 'Tòa nhà',
       occupancy: 'Cư trú',
       insulation: 'Cách nhiệt',
-    },
+    },
   },
   months: {
     january: 'Tháng 1',
@@ -430,10 +430,10 @@ export default {
     title: 'Phân tích AI — lịch sử',
     subtitle: 'Các truy vấn đã lưu (có hoặc không đăng nhập). Email chỉ được gửi khi người dùng đã đăng nhập.',
     refresh: 'Làm mới',
-    recalculate: 'Tính lại theo quy tắc hiện tại',
+    recalculate: 'Tính lại với mô hình AI',
     recalculating: 'Đang tính lại…',
     recalculateConfirm:
-      'Tính lại tất cả phân tích đã lưu theo quy tắc hiện tại? Không gửi email và không tạo truy vấn mới.',
+      'Tính lại tất cả phân tích đã lưu với mô hình AI hiện tại? Có thể mất thời gian tùy số lượng truy vấn. Không gửi email và không tạo truy vấn mới.',
     recalculateDone:
       'Hoàn tất: {total} truy vấn · {updated} đã cập nhật · {unchanged} không đổi · {skipped} đã bỏ qua.',
     recalculateFailed: 'Không thể tính lại các phân tích.',

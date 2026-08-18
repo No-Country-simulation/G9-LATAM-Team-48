@@ -172,7 +172,7 @@ export const pagesNl = {
       "building": "Gebouw",
       "occupancy": "Bezetting",
       "insulation": "Isolatie"
-    },
+    },
     "peak": "{pct}% van je energie in {month} viel in piekuren (vaak duurder).",
     "bill": {
       "up": "Geschatte rekening voor {month}: ${amount} (ongeveer ${diff} meer dan vorige maand).",
@@ -235,10 +235,10 @@ export const pagesNl = {
     title: 'AI-analyse — geschiedenis',
     subtitle: 'Opgeslagen query\'s van ingelogde gebruikers.',
     refresh: 'Vernieuwen',
-    recalculate: 'Herberekenen met huidige regels',
+    recalculate: 'Herberekenen met het AI-model',
     recalculating: 'Herberekenen…',
     recalculateConfirm:
-      'Alle opgeslagen analyses herberekenen met de huidige heuristiek? Geen e-mails en geen nieuwe queries.',
+      'Alle opgeslagen analyses herberekenen met het huidige AI-model? Dit kan even duren afhankelijk van het aantal queries. Geen e-mails en geen nieuwe queries.',
     recalculateDone:
       'Klaar: {total} queries · {updated} bijgewerkt · {unchanged} ongewijzigd · {skipped} overgeslagen.',
     recalculateFailed: 'Analyses konden niet worden herberekend.',

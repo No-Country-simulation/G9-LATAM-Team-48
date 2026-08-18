@@ -172,7 +172,7 @@ export const pagesPl = {
       "building": "Budynek",
       "occupancy": "Zajętość",
       "insulation": "Izolacja"
-    },
+    },
     "peak": "{pct}% energii w {month} przypadło na godziny szczytu (zwykle droższe).",
     "bill": {
       "up": "Szacowany rachunek za {month}: ${amount} (ok. ${diff} więcej niż poprzednio).",
@@ -235,10 +235,10 @@ export const pagesPl = {
     title: 'Analiza AI — historia',
     subtitle: 'Zapytania zapisane przez zalogowanych użytkowników.',
     refresh: 'Odśwież',
-    recalculate: 'Przelicz według aktualnych reguł',
+    recalculate: 'Przelicz z modelem AI',
     recalculating: 'Przeliczanie…',
     recalculateConfirm:
-      'Przeliczyć wszystkie zapisane analizy według aktualnej heurystyki? Bez e-maili i bez nowych zapytań.',
+      'Przeliczyć wszystkie zapisane analizy z aktualnym modelem AI? Może to potrwać w zależności od liczby zapytań. Bez e-maili i bez nowych zapytań.',
     recalculateDone:
       'Gotowe: {total} zapytań · {updated} zaktualizowanych · {unchanged} bez zmian · {skipped} pominiętych.',
     recalculateFailed: 'Nie udało się przeliczyć analiz.',
