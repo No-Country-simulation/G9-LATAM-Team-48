@@ -6,6 +6,7 @@ import com.alura.common.dto.PageResponse;
 import com.alura.common.util.PageRequests;
 import com.alura.analisis.persistence.AnalisisConsultaEntity;
 import com.alura.analisis.persistence.AnalisisConsultaRepository;
+import com.alura.analisis.support.MlFeatureNormalizer;
 import com.alura.prediction.dto.PredictionResponse;
 import com.alura.prediction.service.PredictionService;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -71,7 +72,10 @@ public class AdminAnalisisService {
         int skipped = 0;
 
         for (AnalisisConsultaEntity entity : rows) {
-            Map<String, Object> features = jsonToMap(entity.getRequestJson());
+            // El request guardado mezcla claves del formulario con las del ML;
+            // hay que remapearlo o el modelo lo rechaza y cae a la heuristica.
+            Map<String, Object> features =
+                    MlFeatureNormalizer.fromStoredRequest(jsonToMap(entity.getRequestJson()));
             if (features.isEmpty()) {
                 skipped++;
                 continue;
