@@ -172,7 +172,7 @@ export const pagesFr = {
       "building": "Bâtiment",
       "occupancy": "Occupation",
       "insulation": "Isolation"
-    },
+    },
     "peak": "{pct}% de votre énergie en {month} a été utilisée aux heures de pointe (souvent plus chères).",
     "bill": {
       "up": "Facture estimée de {month} : ${amount} (environ ${diff} de plus que le mois dernier).",
@@ -235,10 +235,10 @@ export const pagesFr = {
     title: 'Analyse IA — historique',
     subtitle: 'Requêtes enregistrées par les utilisateurs authentifiés.',
     refresh: 'Actualiser',
-    recalculate: 'Recalculer avec les règles actuelles',
+    recalculate: 'Recalculer avec le modèle IA',
     recalculating: 'Recalcul…',
     recalculateConfirm:
-      'Recalculer toutes les analyses enregistrées avec l’heuristique actuelle ? Aucun e-mail ni nouvelle requête.',
+      'Recalculer toutes les analyses enregistrées avec le modèle IA actuel ? Cela peut prendre du temps selon le nombre de requêtes. Aucun e-mail ni nouvelle requête.',
     recalculateDone:
       'Terminé : {total} requêtes · {updated} mises à jour · {unchanged} inchangées · {skipped} ignorées.',
     recalculateFailed: 'Impossible de recalculer les analyses.',

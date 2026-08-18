@@ -172,7 +172,7 @@ export const pagesDe = {
       "building": "Gebäude",
       "occupancy": "Belegung",
       "insulation": "Isolierung"
-    },
+    },
     "peak": "{pct}% Ihrer Energie im {month} fiel in die Spitzenzeiten (meist teurer).",
     "bill": {
       "up": "Geschätzte Rechnung für {month}: ${amount} (etwa ${diff} mehr als im Vormonat).",
@@ -235,10 +235,10 @@ export const pagesDe = {
     title: 'KI-Analyse — Verlauf',
     subtitle: 'Gespeicherte Abfragen authentifizierter Benutzer.',
     refresh: 'Aktualisieren',
-    recalculate: 'Mit aktuellen Regeln neu berechnen',
+    recalculate: 'Mit dem KI-Modell neu berechnen',
     recalculating: 'Neu berechnen…',
     recalculateConfirm:
-      'Alle gespeicherten Analysen mit der aktuellen Heuristik neu berechnen? Keine E-Mails und keine neuen Abfragen.',
+      'Alle gespeicherten Analysen mit dem aktuellen KI-Modell neu berechnen? Je nach Anzahl der Abfragen kann es dauern. Keine E-Mails und keine neuen Abfragen.',
     recalculateDone:
       'Fertig: {total} Abfragen · {updated} aktualisiert · {unchanged} unverändert · {skipped} übersprungen.',
     recalculateFailed: 'Analysen konnten nicht neu berechnet werden.',

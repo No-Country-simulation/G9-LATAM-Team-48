@@ -172,7 +172,7 @@ export const pagesTr = {
       "building": "Bina",
       "occupancy": "Doluluk",
       "insulation": "Yalıtım"
-    },
+    },
     "peak": "{month} ayındaki enerjinin %{pct}’i yoğun saatlerde kullanıldı (genelde daha pahalı).",
     "bill": {
       "up": "{month} için tahmini fatura ${amount} (önceki aya göre yaklaşık ${diff} fazla).",
@@ -235,10 +235,10 @@ export const pagesTr = {
     title: 'YZ analizi — geçmiş',
     subtitle: 'Kimliği doğrulanmış kullanıcıların kaydedilen sorguları.',
     refresh: 'Yenile',
-    recalculate: 'Güncel kurallarla yeniden hesapla',
+    recalculate: 'Yapay zekâ modeliyle yeniden hesapla',
     recalculating: 'Yeniden hesaplanıyor…',
     recalculateConfirm:
-      'Kayıtlı tüm analizler güncel sezgisel kurallarla yeniden hesaplansın mı? E-posta yok, yeni sorgu yok.',
+      'Kayıtlı tüm analizler güncel yapay zekâ modeliyle yeniden hesaplansın mı? Sorgu sayısına göre sürebilir. E-posta yok, yeni sorgu yok.',
     recalculateDone:
       'Tamam: {total} sorgu · {updated} güncellendi · {unchanged} değişmedi · {skipped} atlandı.',
     recalculateFailed: 'Analizler yeniden hesaplanamadı.',

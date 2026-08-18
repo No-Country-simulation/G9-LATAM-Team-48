@@ -373,7 +373,7 @@ export default {
       building: '건물',
       occupancy: '거주',
       insulation: '단열',
-    },
+    },
   },
   months: {
     january: '1월',
@@ -430,10 +430,10 @@ export default {
     title: 'AI 분석 — 이력',
     subtitle: '저장된 조회 내역(로그인 여부 무관). 이메일은 사용자가 로그인한 경우에만 발송됩니다.',
     refresh: '새로 고침',
-    recalculate: '현재 규칙으로 재계산',
+    recalculate: 'AI 모델로 재계산',
     recalculating: '재계산 중…',
     recalculateConfirm:
-      '저장된 모든 분석을 현재 휴리스틱으로 재계산할까요? 이메일은 발송되지 않으며 새 조회도 생성되지 않습니다.',
+      '저장된 모든 분석을 현재 AI 모델로 재계산할까요? 조회 수에 따라 시간이 걸릴 수 있습니다. 이메일은 발송되지 않으며 새 조회도 생성되지 않습니다.',
     recalculateDone:
       '완료: 조회 {total}건 · {updated}건 갱신 · {unchanged}건 변경 없음 · {skipped}건 건너뜀.',
     recalculateFailed: '분석을 재계산할 수 없습니다.',

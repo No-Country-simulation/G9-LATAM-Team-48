@@ -172,7 +172,7 @@ export const pagesCa = {
       "building": "Immoble",
       "occupancy": "Ocupació",
       "insulation": "Aïllament"
-    },
+    },
     "peak": "El {pct}% de l’energia del {month} es va usar en hores punta (sol ser més cara).",
     "bill": {
       "up": "La factura estimada del {month} és ${amount} (uns ${diff} més que el mes anterior).",
@@ -235,10 +235,10 @@ export const pagesCa = {
     title: 'Anàlisi IA — historial',
     subtitle: 'Consultes desades pels usuaris autenticats.',
     refresh: 'Actualitzar',
-    recalculate: 'Recalcular amb les regles actuals',
+    recalculate: 'Recalcular amb el model d’IA',
     recalculating: 'Recalculant…',
     recalculateConfirm:
-      'Recalcular totes les anàlisis desades amb l’heurística actual? Sense emails ni consultes noves.',
+      'Recalcular totes les anàlisis desades amb el model d’IA actual? Pot trigar segons la quantitat de consultes. Sense emails ni consultes noves.',
     recalculateDone:
       'Fet: {total} consultes · {updated} actualitzades · {unchanged} sense canvis · {skipped} omeses.',
     recalculateFailed: 'No s’han pogut recalcular les anàlisis.',

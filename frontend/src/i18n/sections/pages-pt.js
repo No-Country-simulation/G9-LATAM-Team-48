@@ -172,7 +172,7 @@ export const pagesPt = {
       "building": "Imóvel",
       "occupancy": "Ocupação",
       "insulation": "Isolamento"
-    },
+    },
     "peak": "{pct}% da sua energia em {month} foi usada no horário de pico (em geral mais caro).",
     "bill": {
       "up": "A conta estimada de {month} é ${amount} (cerca de ${diff} a mais que no mês anterior).",
@@ -235,10 +235,10 @@ export const pagesPt = {
     title: 'Análise IA — histórico',
     subtitle: 'Consultas salvas por usuários autenticados.',
     refresh: 'Atualizar',
-    recalculate: 'Recalcular com regras atuais',
+    recalculate: 'Recalcular com o modelo de IA',
     recalculating: 'Recalculando…',
     recalculateConfirm:
-      'Recalcular todas as análises salvas com a heurística atual? Não envia emails nem cria consultas novas.',
+      'Recalcular todas as análises salvas com o modelo de IA atual? Pode demorar conforme a quantidade de consultas. Não envia emails nem cria consultas novas.',
     recalculateDone:
       'Pronto: {total} consultas · {updated} atualizadas · {unchanged} sem mudanças · {skipped} omitidas.',
     recalculateFailed: 'Não foi possível recalcular as análises.',

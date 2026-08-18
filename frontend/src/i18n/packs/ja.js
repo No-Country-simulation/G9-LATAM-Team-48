@@ -373,7 +373,7 @@ export default {
       building: '建物',
       occupancy: '居住',
       insulation: '断熱',
-    },
+    },
   },
   months: {
     january: '1月',
@@ -430,10 +430,10 @@ export default {
     title: 'AI 分析 — 履歴',
     subtitle: '保存された照会（ログインの有無を問わず）。メールはユーザーがログインしている場合のみ送信されます。',
     refresh: '更新',
-    recalculate: '現在のルールで再計算',
+    recalculate: 'AIモデルで再計算',
     recalculating: '再計算中…',
     recalculateConfirm:
-      '保存済みのすべての分析を現在のヒューリスティックで再計算しますか？メールは送信されず、新しい照会も作成されません。',
+      '保存済みのすべての分析を現在のAIモデルで再計算しますか？照会数によっては時間がかかることがあります。メールは送信されず、新しい照会も作成されません。',
     recalculateDone:
       '完了: {total} 件の照会 · {updated} 件更新 · {unchanged} 件変更なし · {skipped} 件スキップ。',
     recalculateFailed: '分析を再計算できませんでした。',

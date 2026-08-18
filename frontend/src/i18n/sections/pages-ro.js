@@ -172,7 +172,7 @@ export const pagesRo = {
       "building": "Clădire",
       "occupancy": "Ocupare",
       "insulation": "Izolație"
-    },
+    },
     "peak": "{pct}% din energia din {month} a fost folosită în ore de vârf (de obicei mai scumpe).",
     "bill": {
       "up": "Factura estimată pe {month}: ${amount} (aprox. ${diff} mai mult decât luna trecută).",
@@ -235,10 +235,10 @@ export const pagesRo = {
     title: 'Analiză IA — istoric',
     subtitle: 'Interogări salvate de utilizatorii autentificați.',
     refresh: 'Actualizează',
-    recalculate: 'Recalculează cu regulile actuale',
+    recalculate: 'Recalculează cu modelul IA',
     recalculating: 'Se recalculează…',
     recalculateConfirm:
-      'Recalculezi toate analizele salvate cu euristica actuală? Fără emailuri și fără interogări noi.',
+      'Recalculezi toate analizele salvate cu modelul IA actual? Poate dura în funcție de numărul de interogări. Fără emailuri și fără interogări noi.',
     recalculateDone:
       'Gata: {total} interogări · {updated} actualizate · {unchanged} neschimbate · {skipped} omise.',
     recalculateFailed: 'Nu s-au putut recalcula analizele.',
