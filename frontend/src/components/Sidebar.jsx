@@ -66,7 +66,7 @@ function Sidebar({ pagina, setPagina, onNavigate, isMobile = false }) {
 
   return (
     <nav
-      className={`sidebar ${sidebarClass} p-3 d-flex flex-column ${isMobile ? '' : 'h-100'}`}
+      className={`sidebar ${sidebarClass} p-3 d-flex flex-column`}
       aria-label={t('a11y.mainNav', 'Menú principal')}
     >
       {!isMobile && (
