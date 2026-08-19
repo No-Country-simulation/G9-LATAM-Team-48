@@ -392,8 +392,14 @@ html[data-bs-theme='light'] body {
 }
 
 /* ===== Sidebar ===== */
+/* Solo se recorta en horizontal (el hover desplaza los links); en vertical debe
+   poder crecer para que .app-sidebar scrollee cuando menu + filtros no entran. */
 .sidebar {
-  overflow: hidden;
+  overflow-x: hidden;
+}
+
+.app-sidebar .sidebar {
+  min-height: 100%;
 }
 
 .sidebar-link {
